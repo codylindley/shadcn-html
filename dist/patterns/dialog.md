@@ -52,61 +52,83 @@ Requires minimal JavaScript — only for trigger wiring and backdrop-click-to-cl
 
 ---
 
+## Sizes
+
+| `data-size` | Max width  | Use case                         |
+|-------------|------------|----------------------------------|
+| `sm`        | `24rem`    | Confirmations, simple alerts     |
+| *(default)* | `28rem`    | Standard forms, content          |
+| `lg`        | `32rem`    | Complex forms, rich content      |
+| `xl`        | `40rem`    | Data-heavy, multi-column layouts |
+| `full`      | `calc(100vw - 2rem)` | Full-screen modal        |
+
+---
+
 ## CSS
 
 ```css
-dialog.dialog {
-  border: none;
-  border-radius: var(--radius-xl);
-  background-color: var(--popover);
-  color: var(--popover-foreground);
-  padding: 0;
-  margin: auto;
-  position: fixed;
-  inset: 0;
-  max-width: 28rem;
-  width: calc(100vw - 2rem);
-  max-height: calc(100vh - 2rem);
-  box-shadow: 0 25px 80px oklch(0 0 0 / 0.25), 0 0 0 1px var(--border);
-  opacity: 0;
-  transform: translateY(-0.5rem) scale(0.98);
-  transition: opacity 200ms ease, transform 200ms ease, display 200ms allow-discrete;
-}
-dialog.dialog[open] {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-@starting-style {
-  dialog.dialog[open] {
+@layer components {
+  dialog.dialog {
+    border: none;
+    border-radius: var(--radius-xl);
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    padding: 0;
+    margin: auto;
+    position: fixed;
+    inset: 0;
+    max-width: 28rem;
+    width: calc(100vw - 2rem);
+    max-height: calc(100vh - 2rem);
+    box-shadow: 0 25px 80px oklch(0 0 0 / 0.25), 0 0 0 1px var(--border);
     opacity: 0;
     transform: translateY(-0.5rem) scale(0.98);
-  }
-}
+    transition: opacity 200ms ease, transform 200ms ease, display 200ms allow-discrete;
 
-/* ── Backdrop ───────────────────────────────────────────── */
-dialog.dialog::backdrop {
-  background: oklch(0 0 0 / 0);
-  backdrop-filter: blur(0px);
-  transition: all 200ms ease, display 200ms allow-discrete;
-}
-dialog.dialog[open]::backdrop {
-  background: oklch(0 0 0 / 0.45);
-  backdrop-filter: blur(3px);
-}
-@starting-style {
-  dialog.dialog[open]::backdrop {
-    background: oklch(0 0 0 / 0);
-    backdrop-filter: blur(0px);
-  }
-}
+    &[open] {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
 
-/* ── Content sections ───────────────────────────────────── */
-.dialog-content { padding: 1.5rem; }
-.dialog-header  { margin-bottom: 1rem; }
-.dialog-title   { font-size: 1.0625rem; font-weight: 600; margin: 0 0 0.375rem; letter-spacing: -0.01em; }
-.dialog-description { font-size: 0.875rem; color: var(--muted-foreground); margin: 0; line-height: 1.6; }
-.dialog-body    { margin-top: 1rem; }
-.dialog-footer  { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.5rem; }
+    /* ── Sizes ──────────────────────────────────────────────── */
+    &[data-size="sm"]   { max-width: 24rem; }
+    &[data-size="lg"]   { max-width: 32rem; }
+    &[data-size="xl"]   { max-width: 40rem; }
+    &[data-size="full"] { max-width: calc(100vw - 2rem); }
+
+    /* ── Backdrop ───────────────────────────────────────────── */
+    &::backdrop {
+      background: oklch(0 0 0 / 0);
+      backdrop-filter: blur(0px);
+      transition: all 200ms ease, display 200ms allow-discrete;
+    }
+
+    &[open]::backdrop {
+      background: oklch(0 0 0 / 0.45);
+      backdrop-filter: blur(3px);
+    }
+  }
+
+  @starting-style {
+    dialog.dialog[open] {
+      opacity: 0;
+      transform: translateY(-0.5rem) scale(0.98);
+    }
+
+    dialog.dialog[open]::backdrop {
+      background: oklch(0 0 0 / 0);
+      backdrop-filter: blur(0px);
+    }
+  }
+
+  /* ── Content sections ───────────────────────────────────── */
+  .dialog-content { padding: 1.5rem; }
+  .dialog-header  { margin-bottom: 1rem; }
+  .dialog-title   { font-size: 1.0625rem; font-weight: 600; margin: 0 0 0.375rem; letter-spacing: -0.01em; }
+  .dialog-description { font-size: 0.875rem; color: var(--muted-foreground); margin: 0; line-height: 1.6; }
+  .dialog-body    { margin-top: 1rem; }
+  .dialog-footer  { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.5rem; }
+}
 ```
 
 ### Centering note

@@ -32,27 +32,32 @@
 ## CSS
 
 ```css
-.badge {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 9999px;
-  padding: 0.125rem 0.625rem;
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  line-height: 1.5rem;
-}
-.badge[data-variant="outline"] {
-  border: 1px solid var(--border);
-  color: var(--muted-foreground);
-}
-.badge[data-variant="secondary"] {
-  background: var(--secondary);
-  color: var(--secondary-foreground);
-}
-.badge[data-variant="default"] {
-  background: var(--primary);
-  color: var(--primary-foreground);
+@layer components {
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 0.125rem 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.5rem;
+
+    &[data-variant="outline"] {
+      border: 1px solid var(--border);
+      color: var(--muted-foreground);
+    }
+
+    &[data-variant="secondary"] {
+      background: var(--secondary);
+      color: var(--secondary-foreground);
+    }
+
+    &[data-variant="default"] {
+      background: var(--primary);
+      color: var(--primary-foreground);
+    }
+  }
 }
 ```
 

@@ -1,86 +1,73 @@
 /* ── Accordion component ─────────────────────────────────────── */
 
-.accordion {
-  display: flex;
-  flex-direction: column;
-}
+@layer components {
+  .accordion {
+    display: flex;
+    flex-direction: column;
+  }
 
-.accordion-item {
-  border-bottom: 1px solid var(--border);
-}
+  .accordion-item {
+    border-bottom: 1px solid var(--border);
 
-.accordion-item:last-child {
-  border-bottom: none;
-}
+    &:last-child { border-bottom: none; }
 
-/* Remove default details marker */
-.accordion-trigger {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 1rem 0;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  text-align: left;
-  cursor: pointer;
-  list-style: none;
-  color: var(--foreground);
-  transition: color 150ms;
-}
+    /* ── Content animation (CSS-only) ───────────────────────── */
+    & ::details-content {
+      block-size: 0;
+      overflow-y: clip;
+      transition: block-size 200ms ease, content-visibility 200ms allow-discrete;
+    }
 
-.accordion-trigger::-webkit-details-marker {
-  display: none;
-}
+    &[open] ::details-content {
+      block-size: auto;
+    }
+  }
 
-.accordion-trigger::marker {
-  content: '';
-}
+  @starting-style {
+    .accordion-item[open] ::details-content {
+      block-size: 0;
+    }
+  }
 
-.accordion-trigger:hover {
-  text-decoration: underline;
-}
+  /* Remove default details marker */
+  .accordion-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 0;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    list-style: none;
+    color: var(--foreground);
+    transition: color 150ms;
 
-/* Chevron rotation */
-.accordion-chevron {
-  color: var(--muted-foreground);
-  transition: transform 200ms ease;
-  flex-shrink: 0;
-}
+    &::-webkit-details-marker { display: none; }
+    &::marker { content: ''; }
+    &:hover { text-decoration: underline; }
+  }
 
-details[open] > .accordion-trigger .accordion-chevron {
-  transform: rotate(180deg);
-}
+  /* Chevron rotation */
+  .accordion-chevron {
+    color: var(--muted-foreground);
+    transition: transform 200ms ease;
+    flex-shrink: 0;
 
-/* Content */
-.accordion-content {
-  padding-bottom: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.7;
-  color: var(--muted-foreground);
-  overflow: hidden;
-}
+    details[open] > .accordion-trigger & {
+      transform: rotate(180deg);
+    }
+  }
 
-.accordion-content p {
-  margin: 0;
-}
+  /* Content */
+  .accordion-content {
+    padding-bottom: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--muted-foreground);
+    overflow: hidden;
 
-/* ── Content animation (CSS-only) ───────────────────────────── */
-/* Uses ::details-content pseudo-element for smooth height animation.
-   calc-size(auto, size) is implicit via `block-size: auto`.
-   @starting-style enables enter transitions from the closed state. */
-.accordion-item ::details-content {
-  block-size: 0;
-  overflow-y: clip;
-  transition: block-size 200ms ease, content-visibility 200ms allow-discrete;
-}
-
-.accordion-item[open] ::details-content {
-  block-size: auto;
-}
-
-@starting-style {
-  .accordion-item[open] ::details-content {
-    block-size: 0;
+    & p { margin: 0; }
   }
 }

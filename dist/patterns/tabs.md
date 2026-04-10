@@ -69,85 +69,108 @@ panel switching. Follows the WAI-ARIA Tabs design pattern.
 ## Token usage (CSS)
 
 ```css
-/* ── Default (pill) variant ─────────────────────────────────── */
-.tab-list {
-  display: inline-flex;
-  align-items: center;
-  background: var(--muted);
-  border-radius: var(--radius-lg);
-  padding: 0.25rem;
-  gap: 0.125rem;
-}
+@layer components {
+  /* ── Default (pill) variant ─────────────────────────────────── */
+  .tab-list {
+    display: inline-flex;
+    align-items: center;
+    background: var(--muted);
+    border-radius: var(--radius-lg);
+    padding: 0.25rem;
+    gap: 0.125rem;
 
-.tab-trigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.375rem 0.75rem;
-  border-radius: calc(var(--radius) * 0.6);
-  font-size: 0.875rem;
-  font-weight: 500;
-  border: none;
-  background: transparent;
-  color: var(--muted-foreground);
-  cursor: pointer;
-  transition: all 150ms ease;
-  white-space: nowrap;
-  outline: none;
-}
+    /* ── Line variant ───────────────────────────────────────────── */
+    &[data-variant="line"] {
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
 
-.tab-trigger[aria-selected="true"] {
-  background: var(--background);
-  color: var(--foreground);
-  box-shadow: 0 1px 3px oklch(0 0 0 / 0.08), 0 0 0 1px var(--border);
-}
+      & .tab-trigger {
+        border-radius: 0;
+        padding: 0.5rem 1rem;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
 
-.tab-trigger:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-}
+        &[aria-selected="true"] {
+          background: transparent;
+          color: var(--foreground);
+          border-bottom-color: var(--primary);
+          box-shadow: none;
+        }
+      }
+    }
 
-.tab-trigger:disabled {
-  pointer-events: none;
-  opacity: 0.5;
-}
+    /* ── Vertical orientation ──────────────────────────────────── */
+    &[aria-orientation="vertical"] {
+      flex-direction: column;
+      width: auto;
 
-/* ── Line variant ───────────────────────────────────────────── */
-.tab-list[data-variant="line"] {
-  background: transparent;
-  border-radius: 0;
-  padding: 0;
-  gap: 0;
-  border-bottom: 1px solid var(--border);
-}
+      & .tab-trigger {
+        justify-content: flex-start;
+        width: 100%;
+      }
+    }
+  }
 
-.tab-list[data-variant="line"] .tab-trigger {
-  border-radius: 0;
-  padding: 0.5rem 1rem;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-}
+  .tab-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: calc(var(--radius) * 0.6);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    transition: all 150ms ease;
+    white-space: nowrap;
+    outline: none;
 
-.tab-list[data-variant="line"] .tab-trigger[aria-selected="true"] {
-  background: transparent;
-  color: var(--foreground);
-  border-bottom-color: var(--primary);
-  box-shadow: none;
-}
+    &[aria-selected="true"] {
+      background: var(--background);
+      color: var(--foreground);
+      box-shadow: 0 1px 3px oklch(0 0 0 / 0.08), 0 0 0 1px var(--border);
+    }
 
-/* ── Panel ──────────────────────────────────────────────────── */
-.tab-content {
-  margin-top: 0.75rem;
-}
+    &:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
 
-.tab-content:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-}
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
 
-.tab-content[hidden] {
-  display: none;
+  /* ── Vertical layout container ───────────────────────────── */
+  .tabs:has(.tab-list[aria-orientation="vertical"]) {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+
+    & > .tab-content {
+      margin-top: 0;
+      flex: 1;
+    }
+  }
+
+  /* ── Panel ──────────────────────────────────────────────────── */
+  .tab-content {
+    margin-top: 0.75rem;
+
+    &:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    &[hidden] { display: none; }
+  }
 }
 ```
 
@@ -285,30 +308,11 @@ inline styles needed:
 </div>
 ```
 
-### Vertical CSS (`:has()` based)
+### Vertical CSS
 
-```css
-.tabs:has(.tab-list[aria-orientation="vertical"]) {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-.tab-list[aria-orientation="vertical"] {
-  flex-direction: column;
-  width: auto;
-}
-
-.tab-list[aria-orientation="vertical"] .tab-trigger {
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.tabs:has(.tab-list[aria-orientation="vertical"]) > .tab-content {
-  margin-top: 0;
-  flex: 1;
-}
-```
+The vertical layout is handled automatically via `:has()` — when the tablist has
+`aria-orientation="vertical"`, the `.tabs` container switches to flex row layout.
+No additional CSS is needed beyond what's in the main CSS block above.
 
 The JavaScript already handles vertical orientation — arrow keys switch to
 Up/Down based on `aria-orientation`.

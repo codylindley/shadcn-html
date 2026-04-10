@@ -70,67 +70,82 @@ Requires JavaScript for keyboard navigation and ARIA management.
 ## Token usage (CSS)
 
 ```css
-.dropdown-content {
-  background-color: var(--popover);
-  color: var(--popover-foreground);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 0.25rem;
-  min-width: 8rem;
-  box-shadow: 0 4px 16px oklch(0 0 0 / 0.12), 0 0 0 1px var(--border);
-}
+@layer components {
+  /* ── Trigger anchor ───────────────────────────────────────── */
+  [data-dropdown-trigger] {
+    anchor-name: --dropdown-trigger;
+  }
 
-.dropdown-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 0.375rem 0.5rem;
-  border-radius: calc(var(--radius) * 0.6);
-  font-size: 0.875rem;
-  border: none;
-  background: transparent;
-  color: var(--foreground);
-  cursor: pointer;
-  outline: none;
-  text-align: left;
-}
+  .dropdown-content {
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0.25rem;
+    min-width: 8rem;
+    box-shadow: 0 4px 16px oklch(0 0 0 / 0.12), 0 0 0 1px var(--border);
 
-.dropdown-item:hover,
-.dropdown-item[data-highlighted] {
-  background-color: var(--accent);
-  color: var(--accent-foreground);
-}
+    /* ── Anchor positioning ──────────────────────────────────── */
+    position-anchor: --dropdown-trigger;
+    top: anchor(bottom);
+    left: anchor(left);
+    margin: 0;
+    margin-top: 4px;
+    position-try: flip-block;
+  }
 
-.dropdown-item[data-variant="destructive"]:hover,
-.dropdown-item[data-variant="destructive"][data-highlighted] {
-  background-color: var(--destructive);
-  color: var(--destructive-foreground);
-}
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.375rem 0.5rem;
+    border-radius: calc(var(--radius) * 0.6);
+    font-size: 0.875rem;
+    border: none;
+    background: transparent;
+    color: var(--foreground);
+    cursor: pointer;
+    outline: none;
+    text-align: left;
 
-.dropdown-item:disabled {
-  pointer-events: none;
-  opacity: 0.5;
-}
+    &:hover, &[data-highlighted] {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
 
-.dropdown-separator {
-  height: 1px;
-  background: var(--border);
-  margin: 0.25rem -0.25rem;
-}
+    &[data-variant="destructive"] {
+      &:hover, &[data-highlighted] {
+        background-color: var(--destructive);
+        color: var(--destructive-foreground);
+      }
+    }
 
-.dropdown-label {
-  padding: 0.375rem 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--muted-foreground);
-}
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
 
-.dropdown-shortcut {
-  margin-left: auto;
-  font-size: 0.75rem;
-  color: var(--muted-foreground);
-  letter-spacing: 0.05em;
+  .dropdown-separator {
+    height: 1px;
+    background: var(--border);
+    margin: 0.25rem -0.25rem;
+  }
+
+  .dropdown-label {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted-foreground);
+  }
+
+  .dropdown-shortcut {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    letter-spacing: 0.05em;
+  }
 }
 ```
 
@@ -144,17 +159,7 @@ document.querySelectorAll('[data-dropdown-trigger]').forEach(trigger => {
   const menu = document.getElementById(trigger.dataset.dropdownTrigger);
   if (!menu) return;
 
-  // Position menu below trigger
-  function positionMenu() {
-    const rect = trigger.getBoundingClientRect();
-    menu.style.position = 'fixed';
-    menu.style.top = rect.bottom + 4 + 'px';
-    menu.style.left = rect.left + 'px';
-    menu.style.margin = '0';
-  }
-
   trigger.addEventListener('click', () => {
-    positionMenu();
     menu.togglePopover();
   });
 
@@ -240,22 +245,24 @@ document.querySelectorAll('[data-dropdown-trigger]').forEach(trigger => {
 ## Animations
 
 ```css
-.dropdown-content {
-  opacity: 0;
-  transform: scale(0.96) translateY(-0.25rem);
-  transition: opacity 150ms ease, transform 150ms ease,
-              display 150ms allow-discrete;
-}
-
-.dropdown-content:popover-open {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-}
-
-@starting-style {
-  .dropdown-content:popover-open {
+@layer components {
+  .dropdown-content {
     opacity: 0;
     transform: scale(0.96) translateY(-0.25rem);
+    transition: opacity 150ms ease, transform 150ms ease,
+                display 150ms allow-discrete;
+
+    &:popover-open {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @starting-style {
+    .dropdown-content:popover-open {
+      opacity: 0;
+      transform: scale(0.96) translateY(-0.25rem);
+    }
   }
 }
 ```
@@ -296,7 +303,8 @@ For checkbox/radio items in the menu, use `aria-checked`:
 ## Notes
 
 - Always use `popover` attribute for the menu — it renders in the top layer and avoids overflow clipping
-- Position the menu with JS relative to the trigger — the popover API does not auto-position
+- CSS anchor positioning (`position-anchor`, `anchor()`) handles placement — no JS positioning needed
+- `position-try: flip-block` automatically flips the menu above the trigger if there's no room below
 - The `popover` API handles light-dismiss (click outside) automatically
 - For submenus, nest another `[popover]` element triggered by a `menuitem` with `aria-haspopup="menu"`
 - Escape closes the menu and returns focus to the trigger
