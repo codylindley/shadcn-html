@@ -1,0 +1,12 @@
+/* ── Card component ──────────────────────────────────────────── */
+
+.card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.card-description {
+  color: var(--muted-foreground);
+}

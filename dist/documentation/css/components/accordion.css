@@ -1,0 +1,86 @@
+/* ── Accordion component ─────────────────────────────────────── */
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+/* Remove default details marker */
+.accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 0;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  list-style: none;
+  color: var(--foreground);
+  transition: color 150ms;
+}
+
+.accordion-trigger::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-trigger::marker {
+  content: '';
+}
+
+.accordion-trigger:hover {
+  text-decoration: underline;
+}
+
+/* Chevron rotation */
+.accordion-chevron {
+  color: var(--muted-foreground);
+  transition: transform 200ms ease;
+  flex-shrink: 0;
+}
+
+details[open] > .accordion-trigger .accordion-chevron {
+  transform: rotate(180deg);
+}
+
+/* Content */
+.accordion-content {
+  padding-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+  overflow: hidden;
+}
+
+.accordion-content p {
+  margin: 0;
+}
+
+/* ── Content animation (CSS-only) ───────────────────────────── */
+/* Uses ::details-content pseudo-element for smooth height animation.
+   calc-size(auto, size) is implicit via `block-size: auto`.
+   @starting-style enables enter transitions from the closed state. */
+.accordion-item ::details-content {
+  block-size: 0;
+  overflow-y: clip;
+  transition: block-size 200ms ease, content-visibility 200ms allow-discrete;
+}
+
+.accordion-item[open] ::details-content {
+  block-size: auto;
+}
+
+@starting-style {
+  .accordion-item[open] ::details-content {
+    block-size: 0;
+  }
+}
