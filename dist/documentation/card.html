@@ -136,247 +136,235 @@
           <span class="badge" data-variant="secondary">No JS</span>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Card</h1>
-        <p class="text-muted-foreground leading-relaxed mb-8">
+        <p class="text-muted-foreground leading-relaxed mb-6">
           Content container with header, body, and footer regions.
           Use <code>&lt;div&gt;</code> for layout grouping or <code>&lt;article&gt;</code> for standalone content.
         </p>
 
-        <div class="tab-list doc-tablist" role="tablist">
-          <button class="tab-btn" role="tab" aria-selected="true" aria-controls="card-preview" data-group="card">Preview</button>
-          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="card-pattern" data-group="card">Pattern</button>
-          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="card-html" data-group="card">HTML</button>
-        </div>
-
-        <div class="tab-panel active" id="card-preview" data-tab-group="card">
-          <div class="preview" style="flex-direction:column;align-items:stretch;padding:2rem 2.5rem;gap:2rem;">
-
-            <!-- Row 1: Notifications card + Metric cards -->
-            <div style="display:flex;gap:1.25rem;flex-wrap:wrap;align-items:stretch;">
-              <!-- Notifications card -->
-              <div class="card" style="max-width:21rem;width:100%;">
-                <div class="card-header">
-                  <h3 class="card-title">Notifications</h3>
-                  <p class="card-description">Manage your notification preferences.</p>
-                </div>
-                <div class="card-content" style="padding-top:1.25rem;">
-                  <div style="display:flex;flex-direction:column;gap:0;">
-                    <div style="display:flex;align-items:center;justify-content:space-between;padding:0.6875rem 0;border-bottom:1px solid var(--border);">
-                      <div>
-                        <p style="margin:0;font-size:0.875rem;font-weight:500;line-height:1.25;">Push Notifications</p>
-                        <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Device alerts</p>
-                      </div>
-                      <div style="width:2.25rem;height:1.25rem;background:var(--primary);border-radius:9999px;cursor:pointer;flex-shrink:0;" title="Toggle"></div>
-                    </div>
-                    <div style="display:flex;align-items:center;justify-content:space-between;padding:0.6875rem 0;border-bottom:1px solid var(--border);">
-                      <div>
-                        <p style="margin:0;font-size:0.875rem;font-weight:500;line-height:1.25;">Email Digest</p>
-                        <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Daily summary</p>
-                      </div>
-                      <div style="width:2.25rem;height:1.25rem;background:var(--muted);border:1px solid var(--border);border-radius:9999px;cursor:pointer;flex-shrink:0;"></div>
-                    </div>
-                    <div style="display:flex;align-items:center;justify-content:space-between;padding:0.6875rem 0;">
-                      <div>
-                        <p style="margin:0;font-size:0.875rem;font-weight:500;line-height:1.25;">SMS Alerts</p>
-                        <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Critical only</p>
-                      </div>
-                      <div style="width:2.25rem;height:1.25rem;background:var(--primary);border-radius:9999px;cursor:pointer;flex-shrink:0;"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer" style="padding-top:1rem;border-top:1px solid var(--border);">
-                  <button class="btn" data-variant="default" style="width:100%;">Save preferences</button>
-                </div>
-              </div>
-
-              <!-- Metric cards -->
-              <div style="display:flex;flex-direction:column;gap:1.25rem;flex:1;min-width:10rem;">
-                <div class="card">
-                  <div class="card-header" style="flex-direction:row;align-items:center;justify-content:space-between;padding-bottom:0.5rem;">
-                    <p class="card-description" style="font-weight:500;color:var(--foreground);font-size:0.8125rem;">Total Revenue</p>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted-foreground)"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                  </div>
-                  <div class="card-content" style="padding-top:0.25rem;">
-                    <p style="font-size:1.625rem;font-weight:700;margin:0;letter-spacing:-0.025em;">$45,231</p>
-                    <p class="card-description" style="font-size:0.75rem;margin-top:0.25rem;">+20.1% from last month</p>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" style="flex-direction:row;align-items:center;justify-content:space-between;padding-bottom:0.5rem;">
-                    <p class="card-description" style="font-weight:500;color:var(--foreground);font-size:0.8125rem;">Active Users</p>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted-foreground)"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  </div>
-                  <div class="card-content" style="padding-top:0.25rem;">
-                    <p style="font-size:1.625rem;font-weight:700;margin:0;letter-spacing:-0.025em;">+2,350</p>
-                    <p class="card-description" style="font-size:0.75rem;margin-top:0.25rem;">+180 since last hour</p>
-                  </div>
-                </div>
-              </div>
+        <!-- Pattern Reference -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Pattern Reference — patterns/card.md
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Structure</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>.card</code><span class="text-muted-foreground">host — div or article, --card bg, --border</span>
+              <code>.card-header</code><span class="text-muted-foreground">title + description, padding 1.5rem (no bottom)</span>
+              <code>.card-title</code><span class="text-muted-foreground">1.25rem, weight 600</span>
+              <code>.card-description</code><span class="text-muted-foreground">--muted-foreground, 0.875rem</span>
+              <code>.card-content</code><span class="text-muted-foreground">body, padding 1.5rem all sides</span>
+              <code>.card-footer</code><span class="text-muted-foreground">flex row, padding 1.5rem (no top)</span>
             </div>
 
-            <!-- Row 2: Image card + Header action card -->
-            <div style="display:flex;gap:1.25rem;flex-wrap:wrap;align-items:start;">
-              <!-- Image card -->
-              <article class="card" style="max-width:20rem;width:100%;">
-                <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=600&h=300&fit=crop" alt="Abstract shapes" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
-                <div class="card-header">
-                  <h3 class="card-title">Modern Design</h3>
-                  <p class="card-description">Exploring minimal aesthetics through form and color.</p>
-                </div>
-                <div class="card-content" style="padding-top:0;">
-                  <p style="margin:0;font-size:0.875rem;color:var(--muted-foreground);line-height:1.6;">A deep dive into the principles that guide contemporary visual design. Less is more when every detail is intentional.</p>
-                </div>
-                <div class="card-footer">
-                  <button class="btn" data-variant="default" data-size="sm">Read more</button>
-                  <button class="btn" data-variant="ghost" data-size="sm">Bookmark</button>
-                </div>
-              </article>
-
-              <!-- Header action card -->
-              <div class="card" style="max-width:20rem;width:100%;">
-                <div class="card-header" style="flex-direction:row;align-items:center;justify-content:space-between;">
-                  <div>
-                    <h3 class="card-title">Team Members</h3>
-                    <p class="card-description">Manage who has access to this project.</p>
-                  </div>
-                  <button class="btn" data-variant="ghost" data-size="icon" aria-label="More options">
-                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-                  </button>
-                </div>
-                <div class="card-content" style="display:flex;flex-direction:column;gap:0.75rem;">
-                  <div style="display:flex;align-items:center;gap:0.75rem;">
-                    <div style="width:2rem;height:2rem;border-radius:9999px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:var(--primary-foreground);flex-shrink:0;">CL</div>
-                    <div style="flex:1;min-width:0;">
-                      <p style="margin:0;font-size:0.875rem;font-weight:500;">Cody Lindley</p>
-                      <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Owner</p>
-                    </div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:0.75rem;">
-                    <div style="width:2rem;height:2rem;border-radius:9999px;background:var(--secondary);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:var(--secondary-foreground);flex-shrink:0;">JD</div>
-                    <div style="flex:1;min-width:0;">
-                      <p style="margin:0;font-size:0.875rem;font-weight:500;">Jane Doe</p>
-                      <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Editor</p>
-                    </div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:0.75rem;">
-                    <div style="width:2rem;height:2rem;border-radius:9999px;background:var(--muted);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:var(--muted-foreground);flex-shrink:0;">AS</div>
-                    <div style="flex:1;min-width:0;">
-                      <p style="margin:0;font-size:0.875rem;font-weight:500;">Alex Smith</p>
-                      <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Viewer</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer" style="padding-top:1rem;border-top:1px solid var(--border);">
-                  <button class="btn" data-variant="outline" data-size="sm" style="width:100%;">
-                    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
-                    Invite member
-                  </button>
-                </div>
-              </div>
-            </div>
-
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Element choice</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>&lt;div&gt;</code> — UI grouping, forms, settings panels</p>
+            <p class="text-muted-foreground" style="margin:0;">• <code>&lt;article&gt;</code> — standalone content (blog post, product listing)</p>
           </div>
-        </div>
+        </details>
 
-        <div class="tab-panel" id="card-pattern" data-tab-group="card">
-          <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
-            <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);">
-              <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">patterns/card.md</span>
+        <!-- Standard card -->
+        <p class="text-sm font-medium mb-2 mt-6">Standard</p>
+        <p class="text-xs text-muted-foreground mb-3">Header, content with form fields, and footer with actions.</p>
+        <div class="preview" style="justify-content:center;">
+          <div class="card" style="max-width:22rem;width:100%;">
+            <div class="card-header">
+              <h3 class="card-title">Create project</h3>
+              <p class="card-description">Deploy your new project in one click.</p>
             </div>
-            <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Structure</p>
-              <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-                <code>.card</code><span class="text-muted-foreground">host — div or article</span>
-                <code>.card-header</code><span class="text-muted-foreground">title + description, padding 1.5rem (no bottom)</span>
-                <code>.card-title</code><span class="text-muted-foreground">heading, 1.125rem, weight 600</span>
-                <code>.card-description</code><span class="text-muted-foreground">--muted-foreground, 0.875rem</span>
-                <code>.card-content</code><span class="text-muted-foreground">body, padding 1.5rem all sides</span>
-                <code>.card-footer</code><span class="text-muted-foreground">flex row, padding 1.5rem (no top)</span>
+            <div class="card-content">
+              <div style="display:flex;flex-direction:column;gap:1rem;">
+                <div>
+                  <label class="label" for="card-name">Name</label>
+                  <input class="input" id="card-name" type="text" placeholder="My project">
+                </div>
+                <div>
+                  <label class="label" for="card-desc">Description</label>
+                  <input class="input" id="card-desc" type="text" placeholder="Optional description">
+                </div>
               </div>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Token usage</p>
-              <p class="text-muted-foreground" style="margin:0 0 0.25rem;">Surface → <code>--card</code></p>
-              <p class="text-muted-foreground" style="margin:0 0 0.25rem;">Text → <code>--card-foreground</code></p>
-              <p class="text-muted-foreground" style="margin:0 0 1.25rem;">Border → <code>--border</code></p>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Composition patterns</p>
-              <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-                <code>Image card</code><span class="text-muted-foreground">Place &lt;img&gt; as first child (overflow:hidden on .card handles rounding)</span>
-                <code>Header action</code><span class="text-muted-foreground">flex-direction:row on .card-header, action button in slot</span>
-                <code>Metric card</code><span class="text-muted-foreground">Header-only layout with icon + large stat value</span>
-              </div>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Element choice</p>
-              <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>&lt;div&gt;</code> — UI grouping, forms, settings panels</p>
-              <p class="text-muted-foreground" style="margin:0;">• <code>&lt;article&gt;</code> — standalone content (blog post, product listing)</p>
+            </div>
+            <div class="card-footer" style="justify-content:space-between;">
+              <button class="btn" data-variant="outline">Cancel</button>
+              <button class="btn" data-variant="default">Deploy</button>
             </div>
           </div>
         </div>
-
-        <div class="tab-panel" id="card-html" data-tab-group="card">
-          <div style="position:relative;">
-            <button class="copy-btn">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-              Copy
-            </button>
-            <pre><code>&lt;!-- Standard card --&gt;
-&lt;div class="card"&gt;
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;div class="card"&gt;
   &lt;div class="card-header"&gt;
-    &lt;h3 class="card-title"&gt;Card Title&lt;/h3&gt;
-    &lt;p class="card-description"&gt;Supporting text.&lt;/p&gt;
+    &lt;h3 class="card-title"&gt;Create project&lt;/h3&gt;
+    &lt;p class="card-description"&gt;Deploy your new project in one click.&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="card-content"&gt;
-    &lt;!-- body content --&gt;
-  &lt;/div&gt;
-  &lt;div class="card-footer"&gt;
-    &lt;button class="btn" data-variant="outline"&gt;Cancel&lt;/button&gt;
-    &lt;button class="btn" data-variant="default"&gt;Save&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- Image card (article for standalone content) --&gt;
-&lt;article class="card"&gt;
-  &lt;img src="..." alt="..." style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;"&gt;
-  &lt;div class="card-header"&gt;
-    &lt;h3 class="card-title"&gt;Title&lt;/h3&gt;
-    &lt;p class="card-description"&gt;Description&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class="card-content" style="padding-top:0;"&gt;
-    &lt;p&gt;Body text...&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class="card-footer"&gt;
-    &lt;button class="btn" data-variant="default" data-size="sm"&gt;Read more&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/article&gt;
-
-&lt;!-- Header action card --&gt;
-&lt;div class="card"&gt;
-  &lt;div class="card-header" style="flex-direction:row;align-items:center;justify-content:space-between;"&gt;
-    &lt;div&gt;
-      &lt;h3 class="card-title"&gt;Title&lt;/h3&gt;
-      &lt;p class="card-description"&gt;Description&lt;/p&gt;
+    &lt;div style="display:flex;flex-direction:column;gap:1rem;"&gt;
+      &lt;div&gt;
+        &lt;label class="label" for="name"&gt;Name&lt;/label&gt;
+        &lt;input class="input" id="name" type="text" placeholder="My project"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label class="label" for="desc"&gt;Description&lt;/label&gt;
+        &lt;input class="input" id="desc" type="text" placeholder="Optional description"&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
-    &lt;button class="btn" data-variant="ghost" data-size="icon" aria-label="More"&gt;
-      &lt;svg aria-hidden="true"&gt;...&lt;/svg&gt;
-    &lt;/button&gt;
   &lt;/div&gt;
-  &lt;div class="card-content"&gt;...&lt;/div&gt;
-&lt;/div&gt;
+  &lt;div class="card-footer" style="justify-content:space-between;"&gt;
+    &lt;button class="btn" data-variant="outline"&gt;Cancel&lt;/button&gt;
+    &lt;button class="btn" data-variant="default"&gt;Deploy&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
 
-&lt;!-- Metric card (compact) --&gt;
-&lt;div class="card"&gt;
+        <!-- Metric card -->
+        <p class="text-sm font-medium mb-2 mt-8">Metric</p>
+        <p class="text-xs text-muted-foreground mb-3">Compact card for dashboard stats. Header row with icon.</p>
+        <div class="preview" style="justify-content:center;">
+          <div class="card" style="max-width:16rem;width:100%;">
+            <div class="card-header" style="flex-direction:row;align-items:center;justify-content:space-between;padding-bottom:0.5rem;">
+              <p class="card-description" style="font-weight:500;color:var(--foreground);font-size:0.8125rem;">Total Revenue</p>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted-foreground)"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="card-content" style="padding-top:0.25rem;">
+              <p style="font-size:1.625rem;font-weight:700;margin:0;letter-spacing:-0.025em;">$45,231</p>
+              <p class="card-description" style="font-size:0.75rem;margin-top:0.25rem;">+20.1% from last month</p>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;div class="card"&gt;
   &lt;div class="card-header"
        style="flex-direction:row;align-items:center;
               justify-content:space-between;padding-bottom:0.5rem;"&gt;
-    &lt;p class="card-description" style="font-weight:500;"&gt;Revenue&lt;/p&gt;
-    &lt;svg aria-hidden="true"&gt;...&lt;/svg&gt;
+    &lt;p class="card-description"
+       style="font-weight:500;color:var(--foreground);
+              font-size:0.8125rem;"&gt;Total Revenue&lt;/p&gt;
+    &lt;svg width="14" height="14" ...&gt;...&lt;/svg&gt;
   &lt;/div&gt;
   &lt;div class="card-content" style="padding-top:0.25rem;"&gt;
-    &lt;p style="font-size:1.75rem;font-weight:700;"&gt;$45,231&lt;/p&gt;
-    &lt;p class="card-description"&gt;+20.1% from last month&lt;/p&gt;
+    &lt;p style="font-size:1.625rem;font-weight:700;margin:0;
+              letter-spacing:-0.025em;"&gt;$45,231&lt;/p&gt;
+    &lt;p class="card-description"
+       style="font-size:0.75rem;margin-top:0.25rem;"&gt;+20.1% from last month&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Image card -->
+        <p class="text-sm font-medium mb-2 mt-8">With Image</p>
+        <p class="text-xs text-muted-foreground mb-3">Use <code>&lt;article&gt;</code> for standalone content. Image as first child.</p>
+        <div class="preview" style="justify-content:center;">
+          <article class="card" style="max-width:20rem;width:100%;">
+            <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=600&h=300&fit=crop" alt="Abstract shapes" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+            <div class="card-header">
+              <h3 class="card-title">Modern Design</h3>
+              <p class="card-description">Exploring minimal aesthetics through form and color.</p>
+            </div>
+            <div class="card-content" style="padding-top:0;">
+              <p style="margin:0;font-size:0.875rem;color:var(--muted-foreground);line-height:1.6;">A deep dive into the principles that guide contemporary visual design.</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn" data-variant="default" data-size="sm">Read more</button>
+              <button class="btn" data-variant="ghost" data-size="sm">Bookmark</button>
+            </div>
+          </article>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;article class="card"&gt;
+  &lt;img src="..." alt="..."
+       style="width:100%;aspect-ratio:16/9;
+              object-fit:cover;display:block;"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;h3 class="card-title"&gt;Modern Design&lt;/h3&gt;
+    &lt;p class="card-description"&gt;Exploring minimal aesthetics.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="card-content" style="padding-top:0;"&gt;
+    &lt;p style="margin:0;font-size:0.875rem;
+              color:var(--muted-foreground);"&gt;Body text...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="card-footer"&gt;
+    &lt;button class="btn" data-variant="default" data-size="sm"&gt;Read more&lt;/button&gt;
+    &lt;button class="btn" data-variant="ghost" data-size="sm"&gt;Bookmark&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+        </div>
+
+        <!-- Header action card -->
+        <p class="text-sm font-medium mb-2 mt-8">Header Action</p>
+        <p class="text-xs text-muted-foreground mb-3">Action button in the header for settings or overflow menus.</p>
+        <div class="preview" style="justify-content:center;">
+          <div class="card" style="max-width:20rem;width:100%;">
+            <div class="card-header" style="flex-direction:row;align-items:center;justify-content:space-between;">
+              <div>
+                <h3 class="card-title">Team Members</h3>
+                <p class="card-description">Manage who has access.</p>
+              </div>
+              <button class="btn" data-variant="ghost" data-size="icon" aria-label="More options">
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+              </button>
+            </div>
+            <div class="card-content" style="display:flex;flex-direction:column;gap:0.75rem;">
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <div style="width:2rem;height:2rem;border-radius:9999px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:var(--primary-foreground);flex-shrink:0;">CL</div>
+                <div><p style="margin:0;font-size:0.875rem;font-weight:500;">Cody Lindley</p><p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Owner</p></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <div style="width:2rem;height:2rem;border-radius:9999px;background:var(--secondary);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:var(--secondary-foreground);flex-shrink:0;">JD</div>
+                <div><p style="margin:0;font-size:0.875rem;font-weight:500;">Jane Doe</p><p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Editor</p></div>
+              </div>
+            </div>
+            <div class="card-footer" style="padding-top:1rem;border-top:1px solid var(--border);">
+              <button class="btn" data-variant="outline" data-size="sm" style="width:100%;">
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+                Invite member
+              </button>
+            </div>
           </div>
         </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;div class="card"&gt;
+  &lt;div class="card-header"
+       style="flex-direction:row;align-items:center;
+              justify-content:space-between;"&gt;
+    &lt;div&gt;
+      &lt;h3 class="card-title"&gt;Team Members&lt;/h3&gt;
+      &lt;p class="card-description"&gt;Manage who has access.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;button class="btn" data-variant="ghost" data-size="icon"
+            aria-label="More options"&gt;
+      &lt;svg aria-hidden="true" ...&gt;...&lt;/svg&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="card-content"&gt;
+    &lt;!-- list items --&gt;
+  &lt;/div&gt;
+  &lt;div class="card-footer"
+       style="padding-top:1rem;border-top:1px solid var(--border);"&gt;
+    &lt;button class="btn" data-variant="outline" data-size="sm"
+            style="width:100%;"&gt;
+      &lt;svg aria-hidden="true" ...&gt;...&lt;/svg&gt;
+      Invite member
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
     </main>
   </div>
 

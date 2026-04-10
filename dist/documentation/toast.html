@@ -131,28 +131,84 @@
     </aside>
 
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
-<div class="flex items-baseline justify-between mb-1">
+        <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / toast</p>
           <span class="badge" data-variant="secondary">Minimal JS</span>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Toast</h1>
-        <p class="text-muted-foreground leading-relaxed mb-8">
+        <p class="text-muted-foreground leading-relaxed mb-6">
           Transient notification using <code>popover="manual"</code>. Imperative <code>toast.show()</code> API
           with auto-dismiss, stacking, destructive variant, and action buttons.
         </p>
 
-        <div class="tab-list doc-tablist" role="tablist">
-          <button class="tab-btn" role="tab" aria-selected="true" aria-controls="tst-preview" data-group="tst">Preview</button>
-          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tst-pattern" data-group="tst">Pattern</button>
-          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tst-html" data-group="tst">HTML</button>
-        </div>
+        <!-- ── Pattern Reference ────────────────────────────────── -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Pattern Reference — patterns/toast.md
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;border-top:1px solid var(--border);">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">API</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>toast.show(opts)</code><span class="text-muted-foreground">Default toast with title, description, action</span>
+              <code>toast.success(opts)</code><span class="text-muted-foreground">Green border + check icon</span>
+              <code>toast.warning(opts)</code><span class="text-muted-foreground">Amber border + triangle icon</span>
+              <code>toast.info(opts)</code><span class="text-muted-foreground">Blue border + info icon</span>
+              <code>toast.error(opts)</code><span class="text-muted-foreground">Red destructive variant + x-circle icon</span>
+              <code>toast.dismiss()</code><span class="text-muted-foreground">Dismiss all visible toasts</span>
+            </div>
 
-        <div class="tab-panel active" id="tst-preview" data-tab-group="tst">
-          <div class="preview" style="gap:0.75rem;flex-wrap:wrap;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Options</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>title</code><span class="text-muted-foreground">string — main toast text (or pass string directly)</span>
+              <code>description</code><span class="text-muted-foreground">string — secondary detail</span>
+              <code>variant</code><span class="text-muted-foreground">"success" | "warning" | "info" | "destructive"</span>
+              <code>duration</code><span class="text-muted-foreground">ms (default 4000, Infinity for persistent)</span>
+              <code>action</code><span class="text-muted-foreground">{ label, onClick } — adds action button</span>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Container</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">Place once in the page: <code>&lt;div id="toast-container" class="toast-container" aria-label="Notifications" data-position="bottom-right"&gt;&lt;/div&gt;</code>. Positions: <code>bottom-right</code>, <code>bottom-left</code>, <code>bottom-center</code>, <code>top-right</code>, <code>top-left</code>, <code>top-center</code>.</p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">ARIA</p>
+            <p class="text-muted-foreground" style="margin:0;">Each toast uses <code>role="status"</code> + <code>aria-live="polite"</code> (destructive uses <code>role="alert"</code> + <code>aria-live="assertive"</code>). Container uses <code>aria-label="Notifications"</code>.</p>
+          </div>
+        </details>
+
+        <!-- ── Example: Default ─────────────────────────────────── -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Default</h2>
+          <p class="text-muted-foreground text-sm mb-3">Basic toast with title and description via <code>toast.show()</code>.</p>
+          <div class="preview" style="gap:0.75rem;">
             <button class="btn" data-variant="default"
                     onclick="toast.show({ title: 'Event created', description: 'Monday, January 3rd at 6:00pm' })">
-              Default
+              Show Toast
             </button>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code>&lt;button class="btn" data-variant="default"
+        onclick="toast.show({ title: 'Event created', description: 'Monday, January 3rd at 6:00pm' })"&gt;
+  Show Toast
+&lt;/button&gt;
+
+&lt;script&gt;
+toast.show({
+  title: 'Event created',
+  description: 'Monday, January 3rd at 6:00pm'
+});
+&lt;/script&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- ── Example: Variants ────────────────────────────────── -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Variants</h2>
+          <p class="text-muted-foreground text-sm mb-3">Semantic variants add a colored border and icon. Use <code>toast.success()</code>, <code>toast.warning()</code>, <code>toast.info()</code>, or <code>toast.error()</code>.</p>
+          <div class="preview" style="gap:0.75rem;flex-wrap:wrap;">
             <button class="btn" data-variant="outline"
                     onclick="toast.success({ title: 'Success', description: 'Your changes have been saved.' })">
               Success
@@ -167,82 +223,104 @@
             </button>
             <button class="btn" data-variant="destructive"
                     onclick="toast.error({ title: 'Error', description: 'Something went wrong. Please try again.' })">
-              Destructive
-            </button>
-            <button class="btn" data-variant="outline"
-                    onclick="toast.show({ title: 'Changes saved', description: 'Your profile has been updated.', action: { label: 'Undo', onClick: () => toast.show('Undone!') } })">
-              With action
+              Error
             </button>
           </div>
-        </div>
-
-        <div class="tab-panel" id="tst-pattern" data-tab-group="tst">
-          <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
-            <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);">
-              <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">patterns/toast.md</span>
-            </div>
-            <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">API</p>
-              <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-                <code>toast.show(opts)</code><span class="text-muted-foreground">Default toast with title, description, action</span>
-                <code>toast.success(opts)</code><span class="text-muted-foreground">Green border + check icon</span>
-                <code>toast.warning(opts)</code><span class="text-muted-foreground">Amber border + triangle icon</span>
-                <code>toast.info(opts)</code><span class="text-muted-foreground">Blue border + info icon</span>
-                <code>toast.error(opts)</code><span class="text-muted-foreground">Red destructive variant + x-circle icon</span>
-                <code>toast.dismiss()</code><span class="text-muted-foreground">Dismiss all visible toasts</span>
-              </div>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Options</p>
-              <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-                <code>title</code><span class="text-muted-foreground">string — main toast text (or pass string directly)</span>
-                <code>description</code><span class="text-muted-foreground">string — secondary detail</span>
-                <code>variant</code><span class="text-muted-foreground">"success" | "warning" | "info" | "destructive"</span>
-                <code>duration</code><span class="text-muted-foreground">ms (default 4000, Infinity for persistent)</span>
-                <code>action</code><span class="text-muted-foreground">{ label, onClick } — adds action button</span>
-              </div>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">ARIA</p>
-              <p class="text-muted-foreground" style="margin:0;">Each toast uses <code>role="status"</code> + <code>aria-live="polite"</code>. Container uses <code>aria-label="Notifications"</code>.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="tab-panel" id="tst-html" data-tab-group="tst">
-          <div style="position:relative;">
+          <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>&lt;!-- Place container once in the page --&gt;
-&lt;div id="toast-container"
-     class="toast-container"
-     aria-label="Notifications"
-     data-position="bottom-right"&gt;
-&lt;/div&gt;
+            <pre><code>&lt;button class="btn" data-variant="outline"
+        onclick="toast.success({ title: 'Success', description: 'Your changes have been saved.' })"&gt;
+  Success
+&lt;/button&gt;
 
-&lt;!-- Trigger from JavaScript --&gt;
+&lt;button class="btn" data-variant="outline"
+        onclick="toast.warning({ title: 'Warning', description: 'Your session will expire in 5 minutes.' })"&gt;
+  Warning
+&lt;/button&gt;
+
+&lt;button class="btn" data-variant="outline"
+        onclick="toast.info({ title: 'Info', description: 'A new version is available for download.' })"&gt;
+  Info
+&lt;/button&gt;
+
+&lt;button class="btn" data-variant="destructive"
+        onclick="toast.error({ title: 'Error', description: 'Something went wrong.' })"&gt;
+  Error
+&lt;/button&gt;
+
 &lt;script&gt;
-// Simple
-toast.show('Event created');
+toast.success({ title: 'Success', description: 'Your changes have been saved.' });
+toast.warning({ title: 'Warning', description: 'Your session will expire in 5 minutes.' });
+toast.info({ title: 'Info', description: 'A new version is available for download.' });
+toast.error({ title: 'Error', description: 'Something went wrong.' });
+&lt;/script&gt;</code></pre>
+          </div>
+        </section>
 
-// With options
+        <!-- ── Example: With Description ────────────────────────── -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">With Description</h2>
+          <p class="text-muted-foreground text-sm mb-3">Pass a <code>description</code> for a secondary line of detail below the title.</p>
+          <div class="preview" style="gap:0.75rem;">
+            <button class="btn" data-variant="outline"
+                    onclick="toast.show({ title: 'Scheduled', description: 'Your report will be generated at 9:00 AM tomorrow.' })">
+              Show Toast
+            </button>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code>&lt;button class="btn" data-variant="outline"
+        onclick="toast.show({ title: 'Scheduled', description: 'Your report will be generated at 9:00 AM tomorrow.' })"&gt;
+  Show Toast
+&lt;/button&gt;
+
+&lt;script&gt;
+toast.show({
+  title: 'Scheduled',
+  description: 'Your report will be generated at 9:00 AM tomorrow.'
+});
+&lt;/script&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- ── Example: With Action ─────────────────────────────── -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">With Action</h2>
+          <p class="text-muted-foreground text-sm mb-3">Add an <code>action</code> object with <code>label</code> and <code>onClick</code> to render an action button inside the toast.</p>
+          <div class="preview" style="gap:0.75rem;">
+            <button class="btn" data-variant="outline"
+                    onclick="toast.show({ title: 'Changes saved', description: 'Your profile has been updated.', action: { label: 'Undo', onClick: () => toast.show('Undone!') } })">
+              Show Toast
+            </button>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code>&lt;button class="btn" data-variant="outline"
+        onclick="toast.show({ title: 'Changes saved', description: 'Your profile has been updated.', action: { label: 'Undo', onClick: () =&gt; toast.show('Undone!') } })"&gt;
+  Show Toast
+&lt;/button&gt;
+
+&lt;script&gt;
 toast.show({
   title: 'Changes saved',
   description: 'Your profile has been updated.',
-  action: { label: 'Undo', onClick: () =&gt; {} }
+  action: {
+    label: 'Undo',
+    onClick: () =&gt; toast.show('Undone!')
+  }
 });
-
-// Variants (each adds icon + colored border)
-toast.success('Changes saved');
-toast.warning('Session expiring soon');
-toast.info('New version available');
-toast.error('Something went wrong');
-
-// Dismiss all
-toast.dismiss();
 &lt;/script&gt;</code></pre>
           </div>
-        </div>
+        </section>
     </main>
   </div>
 

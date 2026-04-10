@@ -136,108 +136,113 @@
           <span class="badge" data-variant="secondary">Minimal JS</span>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Dialog</h1>
-        <p class="text-muted-foreground leading-relaxed mb-8">
+        <p class="text-muted-foreground leading-relaxed mb-6">
           Modal window built on native <code>&lt;dialog&gt;</code> + <code>showModal()</code>.
           Focus trap, Escape key, and backdrop are all browser-native. Animated with <code>@starting-style</code>.
         </p>
 
-        <div class="tab-list doc-tablist" role="tablist">
-          <button class="tab-btn" role="tab" aria-selected="true" aria-controls="dlg-preview" data-group="dlg">Preview</button>
-          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="dlg-pattern" data-group="dlg">Pattern</button>
-          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="dlg-html" data-group="dlg">HTML</button>
-        </div>
+        <!-- Pattern Reference -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Pattern Reference — patterns/dialog.md
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;dialog&gt;</code> + <code>.showModal()</code>. Browser provides focus trap, Escape key, and <code>::backdrop</code>.</p>
 
-        <div class="tab-panel active" id="dlg-preview" data-tab-group="dlg">
-          <div class="preview">
-            <button class="btn" data-variant="default" data-dialog-trigger="demo-dialog" aria-haspopup="dialog">Edit Profile</button>
-            <button class="btn" data-variant="outline" data-dialog-trigger="confirm-dialog" aria-haspopup="dialog">Confirm Delete</button>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Wiring conventions</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-dialog-trigger="[id]"</code> on any element → opens that dialog</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-dialog-close</code> on any element inside → closes the dialog</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• Click on backdrop → closes (click lands on <code>&lt;dialog&gt;</code> itself)</p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">ARIA</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>role="dialog"</code> + <code>aria-modal="true"</code> + <code>aria-labelledby</code></p>
+            <p class="text-muted-foreground" style="margin:0;">• Focus returns to trigger on close</p>
           </div>
+        </details>
+
+        <!-- Form dialog -->
+        <p class="text-sm font-medium mb-2 mt-6">Form Dialog</p>
+        <p class="text-xs text-muted-foreground mb-3">Dialog with form inputs. Click "Edit Profile" to open.</p>
+        <div class="preview">
+          <button class="btn" data-variant="default" data-dialog-trigger="demo-dialog" aria-haspopup="dialog">Edit Profile</button>
         </div>
-
-        <div class="tab-panel" id="dlg-pattern" data-tab-group="dlg">
-          <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
-            <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);">
-              <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">patterns/dialog.md</span>
-            </div>
-            <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-              <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;dialog&gt;</code> + <code>.showModal()</code>. Browser provides focus trap, Escape key, and <code>::backdrop</code>.</p>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Wiring conventions</p>
-              <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-dialog-trigger="[id]"</code> on any element → opens that dialog</p>
-              <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-dialog-close</code> on any element inside → closes the dialog</p>
-              <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• Click on backdrop → closes (click lands on <code>&lt;dialog&gt;</code> itself)</p>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">ARIA</p>
-              <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>role="dialog"</code> + <code>aria-modal="true"</code> + <code>aria-labelledby</code></p>
-              <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• Focus returns to trigger on close (JS)</p>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Animation</p>
-              <p class="text-muted-foreground" style="margin:0;">CSS-only enter via <code>@starting-style</code>. Exit via <code>transition</code> + <code>allow-discrete</code>.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="tab-panel" id="dlg-html" data-tab-group="dlg">
-          <div style="position:relative;">
-            <button class="copy-btn">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-              Copy
-            </button>
-            <pre><code>&lt;!-- Trigger --&gt;
-&lt;button class="btn" data-variant="default"
-        data-dialog-trigger="my-dialog"
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;button class="btn" data-variant="default"
+        data-dialog-trigger="edit-dialog"
         aria-haspopup="dialog"&gt;
-  Open
+  Edit Profile
 &lt;/button&gt;
 
-&lt;!-- Dialog (place as direct child of body) --&gt;
-&lt;dialog id="my-dialog" class="dialog"
+&lt;dialog id="edit-dialog" class="dialog"
         role="dialog" aria-modal="true"
-        aria-labelledby="my-dialog-title"&gt;
+        aria-labelledby="edit-title"&gt;
   &lt;div class="dialog-content"&gt;
     &lt;div class="dialog-header"&gt;
-      &lt;h2 class="dialog-title" id="my-dialog-title"&gt;Title&lt;/h2&gt;
-      &lt;p class="dialog-description"&gt;Description text.&lt;/p&gt;
+      &lt;h2 class="dialog-title" id="edit-title"&gt;Edit Profile&lt;/h2&gt;
+      &lt;p class="dialog-description"&gt;Make changes to your profile here.&lt;/p&gt;
     &lt;/div&gt;
+    &lt;div class="dialog-body"&gt;
+      &lt;div style="display:flex;flex-direction:column;gap:1rem;"&gt;
+        &lt;div&gt;
+          &lt;label class="label" for="name"&gt;Name&lt;/label&gt;
+          &lt;input class="input" id="name" type="text" value="Cody Lindley"&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;label class="label" for="username"&gt;Username&lt;/label&gt;
+          &lt;input class="input" id="username" type="text" value="@codylindley"&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="dialog-footer"&gt;
+      &lt;button class="btn" data-variant="outline" data-dialog-close&gt;Cancel&lt;/button&gt;
+      &lt;button class="btn" data-variant="default" data-dialog-close&gt;Save changes&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+        </div>
 
-    &lt;!-- body content --&gt;
+        <!-- Confirmation dialog -->
+        <p class="text-sm font-medium mb-2 mt-8">Confirmation</p>
+        <p class="text-xs text-muted-foreground mb-3">Destructive action confirmation. Click "Confirm Delete" to open.</p>
+        <div class="preview">
+          <button class="btn" data-variant="outline" data-dialog-trigger="confirm-dialog" aria-haspopup="dialog">Confirm Delete</button>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;button class="btn" data-variant="outline"
+        data-dialog-trigger="confirm-dialog"
+        aria-haspopup="dialog"&gt;
+  Confirm Delete
+&lt;/button&gt;
 
+&lt;dialog id="confirm-dialog" class="dialog"
+        role="dialog" aria-modal="true"
+        aria-labelledby="confirm-title"&gt;
+  &lt;div class="dialog-content"&gt;
+    &lt;div class="dialog-header"&gt;
+      &lt;h2 class="dialog-title" id="confirm-title"&gt;Delete account?&lt;/h2&gt;
+      &lt;p class="dialog-description"&gt;This action cannot be undone.
+        This will permanently delete your account.&lt;/p&gt;
+    &lt;/div&gt;
     &lt;div class="dialog-footer"&gt;
       &lt;button class="btn" data-variant="outline"
               data-dialog-close&gt;Cancel&lt;/button&gt;
-      &lt;button class="btn" data-variant="default"&gt;
-        Save
-      &lt;/button&gt;
+      &lt;button class="btn" data-variant="destructive"
+              data-dialog-close&gt;Delete account&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/dialog&gt;
-
-&lt;!-- dialog.js: wire once for all dialogs on page --&gt;
-&lt;script&gt;
-document.querySelectorAll('[data-dialog-trigger]').forEach(trigger =&gt; {
-  const dialog = document.getElementById(trigger.dataset.dialogTrigger);
-  if (!dialog) return;
-  trigger.addEventListener('click', () =&gt; {
-    dialog._trigger = trigger;
-    dialog.showModal();
-  });
-});
-
-document.querySelectorAll('dialog').forEach(dialog =&gt; {
-  dialog.addEventListener('click', e =&gt; {
-    if (e.target === dialog) dialog.close();
-  });
-  dialog.querySelectorAll('[data-dialog-close]').forEach(btn =&gt; {
-    btn.addEventListener('click', () =&gt; dialog.close());
-  });
-  dialog.addEventListener('close', () =&gt; {
-    dialog._trigger?.focus();
-  });
-});
-&lt;/script&gt;</code></pre>
-          </div>
+&lt;/dialog&gt;</code></pre>
         </div>
+
     </main>
   </div>
 

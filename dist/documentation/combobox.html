@@ -131,25 +131,68 @@
     </aside>
 
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
-<div class="flex items-baseline justify-between mb-1">
+        <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / combobox</p>
           <span class="badge" data-variant="secondary">Minimal JS</span>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Combobox</h1>
-        <p class="text-muted-foreground leading-relaxed mb-8">
+        <p class="text-muted-foreground leading-relaxed mb-6">
           Searchable select input using <code>&lt;input role="combobox"&gt;</code> + <code>role="listbox"</code> popup.
           Filters as you type, keyboard navigable via <code>aria-activedescendant</code>. Uses <code>popover</code> for the dropdown.
         </p>
 
-        <div class="tab-list doc-tablist" role="tablist">
-          <button class="tab-btn" role="tab" aria-selected="true" aria-controls="cb-preview" data-group="cb">Preview</button>
-          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="cb-pattern" data-group="cb">Pattern</button>
-          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="cb-html" data-group="cb">HTML</button>
-        </div>
+        <!-- Pattern Reference -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Pattern Reference — patterns/combobox.md
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;border-top:1px solid var(--border);">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;input role="combobox"&gt;</code> + <code>role="listbox"</code> popup. The <code>popover</code> API provides top-layer rendering and light-dismiss. DOM focus stays on the input at all times — list navigation is managed via <code>aria-activedescendant</code>.</p>
 
-        <div class="tab-panel active" id="cb-preview" data-tab-group="cb">
-          <div class="preview" style="min-height:20rem;align-items:flex-start;padding-top:3rem;gap:2rem;flex-wrap:wrap;">
-            <!-- Basic combobox -->
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>.combobox</code><span class="text-muted-foreground">wrapper, position: relative</span>
+              <code>.combobox-input-group</code><span class="text-muted-foreground">flex row — input + chevron trigger</span>
+              <code>.combobox-trigger</code><span class="text-muted-foreground">absolute-positioned chevron toggle button</span>
+              <code>.combobox-content</code><span class="text-muted-foreground">listbox popup with popover, fixed position</span>
+              <code>.combobox-item</code><span class="text-muted-foreground">options with hover/highlight/selected states</span>
+              <code>.combobox-group-label</code><span class="text-muted-foreground">non-interactive group heading</span>
+              <code>.combobox-separator</code><span class="text-muted-foreground">visual divider between groups</span>
+              <code>.combobox-empty</code><span class="text-muted-foreground">shown when filter returns no results</span>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">ARIA attributes</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>role="combobox"</code><span class="text-muted-foreground">on the input element</span>
+              <code>aria-expanded</code><span class="text-muted-foreground">true when popup is open, false when closed</span>
+              <code>aria-controls</code><span class="text-muted-foreground">points to the listbox id</span>
+              <code>aria-activedescendant</code><span class="text-muted-foreground">id of keyboard-highlighted option</span>
+              <code>aria-autocomplete="list"</code><span class="text-muted-foreground">indicates list filtering behavior</span>
+              <code>role="listbox"</code><span class="text-muted-foreground">on the popup container</span>
+              <code>role="option"</code><span class="text-muted-foreground">on each selectable item</span>
+              <code>aria-selected</code><span class="text-muted-foreground">true on the currently selected option</span>
+              <code>aria-disabled="true"</code><span class="text-muted-foreground">greyed out, not selectable</span>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Keyboard</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:0;">
+              <code>ArrowDown / Up</code><span class="text-muted-foreground">navigate through options</span>
+              <code>Enter</code><span class="text-muted-foreground">select the highlighted option</span>
+              <code>Escape</code><span class="text-muted-foreground">close the popup</span>
+              <code>Tab</code><span class="text-muted-foreground">close popup and move focus to next element</span>
+              <code>Typing</code><span class="text-muted-foreground">filters the list in real-time</span>
+            </div>
+          </div>
+        </details>
+
+        <!-- ─── Example 1: Basic Combobox ─── -->
+        <section style="margin-bottom:3rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">Basic Combobox</h2>
+          <p class="text-muted-foreground text-sm mb-4">A simple searchable select with a flat list of framework options. Type to filter, arrow keys to navigate, Enter to select.</p>
+
+          <div class="preview" style="min-height:18rem;align-items:flex-start;padding-top:3rem;">
             <div class="combobox" style="width:14rem;">
               <label class="label" for="cb-framework-input">Framework</label>
               <div class="combobox-input-group">
@@ -176,8 +219,66 @@
                 <div role="option" id="cb-opt-astro" class="combobox-item" data-value="astro" aria-selected="false">Astro</div>
               </div>
             </div>
+          </div>
 
-            <!-- Grouped combobox with disabled items -->
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code>&lt;div class="combobox" style="width:14rem;"&gt;
+  &lt;label class="label" for="cb-framework-input"&gt;Framework&lt;/label&gt;
+  &lt;div class="combobox-input-group"&gt;
+    &lt;input id="cb-framework-input"
+           class="input"
+           type="text"
+           role="combobox"
+           autocomplete="off"
+           aria-expanded="false"
+           aria-controls="cb-framework-listbox"
+           aria-activedescendant=""
+           aria-autocomplete="list"
+           placeholder="Search framework..."&gt;
+    &lt;button class="combobox-trigger" type="button"
+            tabindex="-1" aria-label="Toggle suggestions"&gt;
+      &lt;svg aria-hidden="true" width="16" height="16"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"&gt;
+        &lt;path d="m6 9 6 6 6-6"/&gt;
+      &lt;/svg&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div id="cb-framework-listbox"
+       class="combobox-content"
+       role="listbox" popover
+       aria-label="Frameworks"&gt;
+    &lt;div class="combobox-empty" hidden&gt;No results found.&lt;/div&gt;
+    &lt;div role="option" id="cb-opt-next"
+         class="combobox-item" data-value="nextjs"
+         aria-selected="false"&gt;Next.js&lt;/div&gt;
+    &lt;div role="option" id="cb-opt-svelte"
+         class="combobox-item" data-value="sveltekit"
+         aria-selected="false"&gt;SvelteKit&lt;/div&gt;
+    &lt;div role="option" id="cb-opt-nuxt"
+         class="combobox-item" data-value="nuxt"
+         aria-selected="false"&gt;Nuxt&lt;/div&gt;
+    &lt;div role="option" id="cb-opt-remix"
+         class="combobox-item" data-value="remix"
+         aria-selected="false"&gt;Remix&lt;/div&gt;
+    &lt;div role="option" id="cb-opt-astro"
+         class="combobox-item" data-value="astro"
+         aria-selected="false"&gt;Astro&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- ─── Example 2: Grouped with Disabled Items ─── -->
+        <section style="margin-bottom:3rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">Grouped with Disabled Items</h2>
+          <p class="text-muted-foreground text-sm mb-4">Combobox with option groups, visual separators, and a disabled option. Use <code>.combobox-group-label</code> for headings and <code>aria-disabled="true"</code> to disable individual items.</p>
+
+          <div class="preview" style="min-height:18rem;align-items:flex-start;padding-top:3rem;">
             <div class="combobox" style="width:14rem;">
               <label class="label" for="cb-timezone-input">Timezone</label>
               <div class="combobox-input-group">
@@ -209,85 +310,65 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="tab-panel" id="cb-pattern" data-tab-group="cb">
-          <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
-            <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);">
-              <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">patterns/combobox.md</span>
-            </div>
-            <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-              <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;input role="combobox"&gt;</code> + <code>role="listbox"</code> popup. DOM focus stays on input — uses <code>aria-activedescendant</code>.</p>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Structure</p>
-              <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-                <code>.combobox</code><span class="text-muted-foreground">wrapper, position: relative</span>
-                <code>.combobox-input-group</code><span class="text-muted-foreground">flex row — input + chevron trigger</span>
-                <code>.combobox-content</code><span class="text-muted-foreground">listbox with popover, fixed position</span>
-                <code>.combobox-item</code><span class="text-muted-foreground">options with hover/highlight/selected states</span>
-                <code>.combobox-group-label</code><span class="text-muted-foreground">non-interactive group heading</span>
-                <code>.combobox-separator</code><span class="text-muted-foreground">visual divider between groups</span>
-                <code>.combobox-empty</code><span class="text-muted-foreground">shown when filter returns no results</span>
-                <code>aria-disabled="true"</code><span class="text-muted-foreground">greyed out, not selectable</span>
-              </div>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Keyboard</p>
-              <p class="text-muted-foreground" style="margin:0 0 0.25rem;"><code>ArrowDown/Up</code> navigate options. <code>Enter</code> selects. <code>Escape</code> closes.</p>
-              <p class="text-muted-foreground" style="margin:0;">Typing filters the list. <code>Tab</code> closes popup and moves focus.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="tab-panel" id="cb-html" data-tab-group="cb">
-          <div style="position:relative;">
+          <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>&lt;div class="combobox"&gt;
-  &lt;label class="label" for="my-input"&gt;Framework&lt;/label&gt;
+            <pre><code>&lt;div class="combobox" style="width:14rem;"&gt;
+  &lt;label class="label" for="cb-timezone-input"&gt;Timezone&lt;/label&gt;
   &lt;div class="combobox-input-group"&gt;
-    &lt;input id="my-input" class="input" type="text"
-           role="combobox" autocomplete="off"
+    &lt;input id="cb-timezone-input"
+           class="input"
+           type="text"
+           role="combobox"
+           autocomplete="off"
            aria-expanded="false"
-           aria-controls="my-listbox"
+           aria-controls="cb-timezone-listbox"
            aria-activedescendant=""
            aria-autocomplete="list"
-           placeholder="Search..."&gt;
+           placeholder="Search timezone..."&gt;
     &lt;button class="combobox-trigger" type="button"
-            tabindex="-1" aria-label="Toggle"&gt;
-      &lt;svg aria-hidden="true"&gt;...&lt;/svg&gt;
+            tabindex="-1" aria-label="Toggle suggestions"&gt;
+      &lt;svg aria-hidden="true" width="16" height="16"
+           viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"&gt;
+        &lt;path d="m6 9 6 6 6-6"/&gt;
+      &lt;/svg&gt;
     &lt;/button&gt;
   &lt;/div&gt;
-  &lt;div id="my-listbox" class="combobox-content"
-       role="listbox" popover aria-label="Options"&gt;
-    &lt;div class="combobox-empty" hidden&gt;
-      No results found.
-    &lt;/div&gt;
-    &lt;!-- Grouped with labels --&gt;
-    &lt;div class="combobox-group-label"&gt;Group A&lt;/div&gt;
-    &lt;div role="option" id="opt-1"
-         class="combobox-item"
-         data-value="next" aria-selected="false"&gt;
-      Next.js
-    &lt;/div&gt;
+  &lt;div id="cb-timezone-listbox"
+       class="combobox-content"
+       role="listbox" popover
+       aria-label="Timezones"&gt;
+    &lt;div class="combobox-empty" hidden&gt;No results found.&lt;/div&gt;
+    &lt;div class="combobox-group-label"&gt;North America&lt;/div&gt;
+    &lt;div role="option" id="cb-tz-est"
+         class="combobox-item" data-value="est"
+         aria-selected="false"&gt;Eastern (EST)&lt;/div&gt;
+    &lt;div role="option" id="cb-tz-cst"
+         class="combobox-item" data-value="cst"
+         aria-selected="false"&gt;Central (CST)&lt;/div&gt;
+    &lt;div role="option" id="cb-tz-pst"
+         class="combobox-item" data-value="pst"
+         aria-selected="false"&gt;Pacific (PST)&lt;/div&gt;
     &lt;div class="combobox-separator"&gt;&lt;/div&gt;
-    &lt;div class="combobox-group-label"&gt;Group B&lt;/div&gt;
-    &lt;div role="option" id="opt-2"
-         class="combobox-item"
-         data-value="svelte" aria-selected="false"&gt;
-      SvelteKit
-    &lt;/div&gt;
-    &lt;!-- Disabled option --&gt;
-    &lt;div role="option" class="combobox-item"
-         aria-disabled="true" aria-selected="false"&gt;
-      Unavailable
-    &lt;/div&gt;
+    &lt;div class="combobox-group-label"&gt;Europe&lt;/div&gt;
+    &lt;div role="option" id="cb-tz-gmt"
+         class="combobox-item" data-value="gmt"
+         aria-selected="false"&gt;GMT (London)&lt;/div&gt;
+    &lt;div role="option" id="cb-tz-cet"
+         class="combobox-item" data-value="cet"
+         aria-selected="false"&gt;CET (Berlin)&lt;/div&gt;
+    &lt;div role="option" id="cb-tz-eet"
+         class="combobox-item" data-value="eet"
+         aria-selected="false"
+         aria-disabled="true"&gt;EET (Bucharest)&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
           </div>
-        </div>
+        </section>
     </main>
   </div>
 

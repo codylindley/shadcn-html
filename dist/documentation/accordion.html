@@ -131,164 +131,187 @@
     </aside>
 
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
-<div class="flex items-baseline justify-between mb-1">
+        <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / accordion</p>
           <span class="badge" data-variant="secondary">No JS *</span>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Accordion</h1>
-        <p class="text-muted-foreground leading-relaxed mb-8">
+        <p class="text-muted-foreground leading-relaxed mb-6">
           Collapsible content sections built on native <code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code>.
           Multi-open needs zero JS. Single-open adds a small toggle handler.
         </p>
 
-        <div class="tab-list doc-tablist" role="tablist">
-          <button class="tab-btn" role="tab" aria-selected="true" aria-controls="acc-preview" data-group="acc">Preview</button>
-          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="acc-pattern" data-group="acc">Pattern</button>
-          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="acc-html" data-group="acc">HTML</button>
-        </div>
+        <!-- Pattern Reference -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Pattern Reference — patterns/accordion.md
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;border-top:1px solid var(--border);">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code>. Browser provides toggle, keyboard, and screen reader support natively.</p>
 
-        <div class="tab-panel active" id="acc-preview" data-tab-group="acc">
-          <div class="preview" style="flex-direction:column;align-items:stretch;padding:2rem 2.5rem;gap:2.5rem;">
-            <!-- Multi-open (zero JS) -->
-            <div>
-              <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3" style="letter-spacing:0.08em;">Multi-open (zero JS)</p>
-              <div class="accordion" style="max-width:28rem;width:100%;">
-                <details class="accordion-item" open>
-                  <summary class="accordion-trigger">
-                    <span>Is it accessible?</span>
-                    <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                  </summary>
-                  <div class="accordion-content">
-                    <p>Yes. It uses native HTML details/summary elements which are fully accessible by default. Screen reader and keyboard support are built in.</p>
-                  </div>
-                </details>
-                <details class="accordion-item" open>
-                  <summary class="accordion-trigger">
-                    <span>Is it styled?</span>
-                    <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                  </summary>
-                  <div class="accordion-content">
-                    <p>Yes. It follows the shadcn/ui token system for consistent theming across light and dark modes.</p>
-                  </div>
-                </details>
-                <details class="accordion-item">
-                  <summary class="accordion-trigger">
-                    <span>Is it animated?</span>
-                    <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                  </summary>
-                  <div class="accordion-content">
-                    <p>Yes. Uses <code>::details-content</code> with <code>calc-size(auto, size)</code> for smooth height animation. The chevron rotates via CSS transition.</p>
-                  </div>
-                </details>
-              </div>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>.accordion</code><span class="text-muted-foreground">Flex column wrapper</span>
+              <code>.accordion-item</code><span class="text-muted-foreground"><code>&lt;details&gt;</code> — bottom border (except last child)</span>
+              <code>.accordion-trigger</code><span class="text-muted-foreground"><code>&lt;summary&gt;</code> — full width, space-between, cursor pointer</span>
+              <code>.accordion-content</code><span class="text-muted-foreground">Padding-bottom only, <code>--muted-foreground</code> text</span>
+              <code>.accordion-chevron</code><span class="text-muted-foreground">SVG icon — rotates 180° when <code>[open]</code> (CSS only)</span>
             </div>
 
-            <!-- Single-open -->
-            <div>
-              <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3" style="letter-spacing:0.08em;">Single-open (JS closes siblings)</p>
-              <div class="accordion" data-type="single" style="max-width:28rem;width:100%;">
-                <details class="accordion-item" open>
-                  <summary class="accordion-trigger">
-                    <span>What payment methods do you accept?</span>
-                    <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                  </summary>
-                  <div class="accordion-content">
-                    <p>We accept all major credit cards (Visa, Mastercard, AmEx), PayPal, and bank transfers for annual plans.</p>
-                  </div>
-                </details>
-                <details class="accordion-item">
-                  <summary class="accordion-trigger">
-                    <span>Can I cancel my subscription?</span>
-                    <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                  </summary>
-                  <div class="accordion-content">
-                    <p>Yes, you can cancel at any time from your account settings. Your access continues until the end of the current billing period.</p>
-                  </div>
-                </details>
-                <details class="accordion-item">
-                  <summary class="accordion-trigger">
-                    <span>Do you offer team pricing?</span>
-                    <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                  </summary>
-                  <div class="accordion-content">
-                    <p>Yes. Teams of 5 or more get a 20% discount. Contact our sales team for custom enterprise plans with dedicated support.</p>
-                  </div>
-                </details>
-              </div>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Single-open JS</p>
+            <p class="text-muted-foreground" style="margin:0;">Add <code>data-type="single"</code> to the <code>.accordion</code> wrapper. A small <code>toggle</code> event listener closes siblings when one opens. Add <code>data-collapsible</code> to allow all items to be closed.</p>
+          </div>
+        </details>
+
+        <!-- ── Example 1: Multi-open ── -->
+        <section style="margin-bottom:3rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">Multi-open</h2>
+          <p class="text-muted-foreground text-sm mb-4">Default behavior — multiple items can be open simultaneously. Uses native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> with zero JavaScript.</p>
+
+          <div class="preview" style="flex-direction:column;align-items:stretch;padding:2rem 2.5rem;">
+            <div class="accordion" style="max-width:28rem;width:100%;">
+              <details class="accordion-item" open>
+                <summary class="accordion-trigger">
+                  <span>Is it accessible?</span>
+                  <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </summary>
+                <div class="accordion-content">
+                  <p>Yes. It uses native HTML details/summary elements which are fully accessible by default. Screen reader and keyboard support are built in.</p>
+                </div>
+              </details>
+              <details class="accordion-item" open>
+                <summary class="accordion-trigger">
+                  <span>Is it styled?</span>
+                  <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </summary>
+                <div class="accordion-content">
+                  <p>Yes. It follows the shadcn/ui token system for consistent theming across light and dark modes.</p>
+                </div>
+              </details>
+              <details class="accordion-item">
+                <summary class="accordion-trigger">
+                  <span>Is it animated?</span>
+                  <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </summary>
+                <div class="accordion-content">
+                  <p>Yes. Uses <code>::details-content</code> with <code>calc-size(auto, size)</code> for smooth height animation. The chevron rotates via CSS transition.</p>
+                </div>
+              </details>
             </div>
           </div>
-        </div>
 
-        <div class="tab-panel" id="acc-pattern" data-tab-group="acc">
-          <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
-            <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);">
-              <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">patterns/accordion.md</span>
-            </div>
-            <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-              <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code>. Browser provides toggle, keyboard, and screen reader support natively.</p>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Behavior modes</p>
-              <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-                <code>multi-open</code><span class="text-muted-foreground">Default. Any number open. Zero JS.</span>
-                <code>data-type="single"</code><span class="text-muted-foreground">One at a time. JS closes siblings on toggle.</span>
-                <code>data-collapsible</code><span class="text-muted-foreground">With single — allows all to be closed.</span>
-              </div>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Animation</p>
-              <p class="text-muted-foreground" style="margin:0 0 0.25rem;">Uses <code>::details-content</code> pseudo-element with <code>block-size</code> transition for smooth open/close.</p>
-              <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>@starting-style</code> provides the enter animation. Chevron rotates 180deg via CSS.</p>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Structure</p>
-              <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-                <code>.accordion</code><span class="text-muted-foreground">flex column wrapper</span>
-                <code>.accordion-item</code><span class="text-muted-foreground">&lt;details&gt; — bottom border (except last)</span>
-                <code>.accordion-trigger</code><span class="text-muted-foreground">&lt;summary&gt; — full width, space-between</span>
-                <code>.accordion-chevron</code><span class="text-muted-foreground">SVG — rotates 180deg when open (CSS)</span>
-                <code>.accordion-content</code><span class="text-muted-foreground">padding-bottom, --muted-foreground</span>
-              </div>
-
-              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Keyboard</p>
-              <p class="text-muted-foreground" style="margin:0;">All native — <code>Tab</code> to focus, <code>Enter</code>/<code>Space</code> to toggle. No JS needed.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="tab-panel" id="acc-html" data-tab-group="acc">
-          <div style="position:relative;">
+          <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>&lt;!-- Multi-open (zero JS) --&gt;
-&lt;div class="accordion"&gt;
+            <pre><code>&lt;div class="accordion"&gt;
   &lt;details class="accordion-item" open&gt;
     &lt;summary class="accordion-trigger"&gt;
-      &lt;span&gt;Question text&lt;/span&gt;
-      &lt;svg class="accordion-chevron" aria-hidden="true"
-           width="16" height="16" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="2"&gt;
-        &lt;path d="m6 9 6 6 6-6"/&gt;
-      &lt;/svg&gt;
+      &lt;span&gt;Is it accessible?&lt;/span&gt;
+      &lt;svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
     &lt;/summary&gt;
     &lt;div class="accordion-content"&gt;
-      &lt;p&gt;Answer content...&lt;/p&gt;
+      &lt;p&gt;Yes. It uses native HTML details/summary elements which are fully accessible by default. Screen reader and keyboard support are built in.&lt;/p&gt;
     &lt;/div&gt;
   &lt;/details&gt;
-  &lt;!-- more items... --&gt;
-&lt;/div&gt;
-
-&lt;!-- Single-open (JS closes siblings) --&gt;
-&lt;div class="accordion" data-type="single"&gt;
-  &lt;!-- same item structure --&gt;
-&lt;/div&gt;
-
-&lt;!-- Single-open + collapsible (all can be closed) --&gt;
-&lt;div class="accordion" data-type="single" data-collapsible&gt;
-  &lt;!-- same item structure --&gt;
+  &lt;details class="accordion-item" open&gt;
+    &lt;summary class="accordion-trigger"&gt;
+      &lt;span&gt;Is it styled?&lt;/span&gt;
+      &lt;svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
+    &lt;/summary&gt;
+    &lt;div class="accordion-content"&gt;
+      &lt;p&gt;Yes. It follows the shadcn/ui token system for consistent theming across light and dark modes.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/details&gt;
+  &lt;details class="accordion-item"&gt;
+    &lt;summary class="accordion-trigger"&gt;
+      &lt;span&gt;Is it animated?&lt;/span&gt;
+      &lt;svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
+    &lt;/summary&gt;
+    &lt;div class="accordion-content"&gt;
+      &lt;p&gt;Yes. Uses ::details-content with calc-size(auto, size) for smooth height animation. The chevron rotates via CSS transition.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/details&gt;
 &lt;/div&gt;</code></pre>
           </div>
-        </div>
+        </section>
+
+        <!-- ── Example 2: Single-open ── -->
+        <section style="margin-bottom:3rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">Single-open</h2>
+          <p class="text-muted-foreground text-sm mb-4">Only one item can be open at a time. Add <code>data-type="single"</code> to the wrapper — a small JS handler closes siblings on toggle.</p>
+
+          <div class="preview" style="flex-direction:column;align-items:stretch;padding:2rem 2.5rem;">
+            <div class="accordion" data-type="single" style="max-width:28rem;width:100%;">
+              <details class="accordion-item" open>
+                <summary class="accordion-trigger">
+                  <span>What payment methods do you accept?</span>
+                  <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </summary>
+                <div class="accordion-content">
+                  <p>We accept all major credit cards (Visa, Mastercard, AmEx), PayPal, and bank transfers for annual plans.</p>
+                </div>
+              </details>
+              <details class="accordion-item">
+                <summary class="accordion-trigger">
+                  <span>Can I cancel my subscription?</span>
+                  <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </summary>
+                <div class="accordion-content">
+                  <p>Yes, you can cancel at any time from your account settings. Your access continues until the end of the current billing period.</p>
+                </div>
+              </details>
+              <details class="accordion-item">
+                <summary class="accordion-trigger">
+                  <span>Do you offer team pricing?</span>
+                  <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </summary>
+                <div class="accordion-content">
+                  <p>Yes. Teams of 5 or more get a 20% discount. Contact our sales team for custom enterprise plans with dedicated support.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code>&lt;div class="accordion" data-type="single"&gt;
+  &lt;details class="accordion-item" open&gt;
+    &lt;summary class="accordion-trigger"&gt;
+      &lt;span&gt;What payment methods do you accept?&lt;/span&gt;
+      &lt;svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
+    &lt;/summary&gt;
+    &lt;div class="accordion-content"&gt;
+      &lt;p&gt;We accept all major credit cards (Visa, Mastercard, AmEx), PayPal, and bank transfers for annual plans.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/details&gt;
+  &lt;details class="accordion-item"&gt;
+    &lt;summary class="accordion-trigger"&gt;
+      &lt;span&gt;Can I cancel my subscription?&lt;/span&gt;
+      &lt;svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
+    &lt;/summary&gt;
+    &lt;div class="accordion-content"&gt;
+      &lt;p&gt;Yes, you can cancel at any time from your account settings. Your access continues until the end of the current billing period.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/details&gt;
+  &lt;details class="accordion-item"&gt;
+    &lt;summary class="accordion-trigger"&gt;
+      &lt;span&gt;Do you offer team pricing?&lt;/span&gt;
+      &lt;svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
+    &lt;/summary&gt;
+    &lt;div class="accordion-content"&gt;
+      &lt;p&gt;Yes. Teams of 5 or more get a 20% discount. Contact our sales team for custom enterprise plans with dedicated support.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </section>
     </main>
   </div>
 
