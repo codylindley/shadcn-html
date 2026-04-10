@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card — shadcn-html</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../tokens/tokens.css">
+  <link rel="stylesheet" href="../base/reset.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components/button.css">
+  <link rel="stylesheet" href="css/components/card.css">
+  <link rel="stylesheet" href="css/components/dialog.css">
+  <link rel="stylesheet" href="css/components/badge.css">
+  <link rel="stylesheet" href="css/components/input.css">
+  <link rel="stylesheet" href="css/components/accordion.css">
+  <link rel="stylesheet" href="css/components/tabs.css">
+  <link rel="stylesheet" href="css/components/dropdown.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/combobox.css">
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:is(.dark *));
+    @theme inline {
+      --color-background:              var(--background);
+      --color-foreground:              var(--foreground);
+      --color-card:                    var(--card);
+      --color-card-foreground:         var(--card-foreground);
+      --color-popover:                 var(--popover);
+      --color-popover-foreground:      var(--popover-foreground);
+      --color-primary:                 var(--primary);
+      --color-primary-foreground:      var(--primary-foreground);
+      --color-secondary:               var(--secondary);
+      --color-secondary-foreground:    var(--secondary-foreground);
+      --color-muted:                   var(--muted);
+      --color-muted-foreground:        var(--muted-foreground);
+      --color-accent:                  var(--accent);
+      --color-accent-foreground:       var(--accent-foreground);
+      --color-destructive:             var(--destructive);
+      --color-destructive-foreground:  var(--destructive-foreground);
+      --color-border:                  var(--border);
+      --color-input:                   var(--input);
+      --color-ring:                    var(--ring);
+      --color-chart-1:                 var(--chart-1);
+      --color-chart-2:                 var(--chart-2);
+      --color-chart-3:                 var(--chart-3);
+      --color-chart-4:                 var(--chart-4);
+      --color-chart-5:                 var(--chart-5);
+      --color-sidebar:                 var(--sidebar);
+      --color-sidebar-foreground:      var(--sidebar-foreground);
+      --color-sidebar-primary:         var(--sidebar-primary);
+      --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+      --color-sidebar-accent:          var(--sidebar-accent);
+      --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+      --color-sidebar-border:          var(--sidebar-border);
+      --color-sidebar-ring:            var(--sidebar-ring);
+      --font-sans:    var(--font-sans);
+      --font-serif:   var(--font-serif);
+      --font-mono:    var(--font-mono);
+      --radius-sm:   calc(var(--radius) - 4px);
+      --radius-md:   calc(var(--radius) - 2px);
+      --radius-lg:   var(--radius);
+      --radius-xl:   calc(var(--radius) + 4px);
+      --shadow-2xs:  var(--shadow-2xs);
+      --shadow-xs:   var(--shadow-xs);
+      --shadow-sm:   var(--shadow-sm);
+      --shadow:      var(--shadow);
+      --shadow-md:   var(--shadow-md);
+      --shadow-lg:   var(--shadow-lg);
+      --shadow-xl:   var(--shadow-xl);
+      --shadow-2xl:  var(--shadow-2xl);
+    }
+    @layer base {
+      * { @apply border-border outline-ring/50; }
+      body { @apply bg-background text-foreground; }
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed top-0 left-0 right-0 z-50 h-14 border-b border-border flex items-center px-6 gap-4"
+          style="background: oklch(from var(--background) l c h / 0.88); backdrop-filter: blur(14px);">
+    <a href="index.html" class="flex items-center gap-2.5 no-underline">
+      <span style="font-family: var(--font-display); font-size: 1.1875rem; font-weight: 500; letter-spacing: -0.03em; color: var(--foreground);">shadcn<em>-html</em></span>
+      <span class="badge" data-variant="outline" style="font-family: var(--font-mono);">v0.1.0</span>
+    </a>
+    <div class="flex-1"></div>
+    <nav class="flex items-center gap-1">
+      <a href="https://github.com" target="_blank"
+         class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors no-underline">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+      <button id="theme-toggle"
+              class="w-9 h-9 rounded-lg border border-border flex items-center justify-center text-foreground hover:bg-accent transition-colors bg-transparent cursor-pointer"
+              aria-label="Toggle dark mode">
+        <svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg id="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <aside class="w-56 flex-shrink-0 border-r border-sidebar-border overflow-y-auto"
+           style="position: sticky; top: 3.5rem; height: calc(100vh - 3.5rem); background: var(--sidebar); padding: 1.25rem 0.75rem;">
+      <div style="margin-bottom: 1.25rem;">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
+           style="letter-spacing: 0.08em;">Overview</p>
+        <a class="nav-link" href="index.html">Introduction</a>
+        <a class="nav-link" href="tokens.html">Token System</a>
+        <a class="nav-link" href="setup.html">Setup</a>
+        <a class="nav-link" href="agents.html">agents.md</a>
+      </div>
+      <div style="margin-bottom: 1.25rem;">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
+           style="letter-spacing: 0.08em;">Components</p>
+        <a class="nav-link" href="button.html">Button</a>
+        <a class="nav-link" href="dialog.html">Dialog</a>
+        <a class="nav-link active" href="card.html">Card</a>
+        <a class="nav-link" href="accordion.html">Accordion</a>
+        <a class="nav-link" href="tabs.html">Tabs</a>
+        <a class="nav-link" href="dropdown.html">Dropdown</a>
+        <a class="nav-link" href="toast.html">Toast</a>
+        <a class="nav-link" href="combobox.html">Combobox</a>
+      </div>
+    </aside>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
+<div class="flex items-baseline justify-between mb-1">
+          <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / card</p>
+          <span class="badge" data-variant="secondary">No JS</span>
+        </div>
+        <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Card</h1>
+        <p class="text-muted-foreground leading-relaxed mb-8">
+          Content container with header, body, and footer regions.
+          Use <code>&lt;div&gt;</code> for layout grouping or <code>&lt;article&gt;</code> for standalone content.
+        </p>
+
+        <div class="tab-list doc-tablist" role="tablist">
+          <button class="tab-btn" role="tab" aria-selected="true" aria-controls="card-preview" data-group="card">Preview</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="card-pattern" data-group="card">Pattern</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="card-html" data-group="card">HTML</button>
+        </div>
+
+        <div class="tab-panel active" id="card-preview" data-tab-group="card">
+          <div class="preview" style="flex-direction:column;align-items:stretch;padding:2rem 2.5rem;gap:2rem;">
+
+            <!-- Row 1: Notifications card + Metric cards -->
+            <div style="display:flex;gap:1.25rem;flex-wrap:wrap;align-items:stretch;">
+              <!-- Notifications card -->
+              <div class="card" style="max-width:21rem;width:100%;">
+                <div class="card-header">
+                  <h3 class="card-title">Notifications</h3>
+                  <p class="card-description">Manage your notification preferences.</p>
+                </div>
+                <div class="card-content" style="padding-top:1.25rem;">
+                  <div style="display:flex;flex-direction:column;gap:0;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:0.6875rem 0;border-bottom:1px solid var(--border);">
+                      <div>
+                        <p style="margin:0;font-size:0.875rem;font-weight:500;line-height:1.25;">Push Notifications</p>
+                        <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Device alerts</p>
+                      </div>
+                      <div style="width:2.25rem;height:1.25rem;background:var(--primary);border-radius:9999px;cursor:pointer;flex-shrink:0;" title="Toggle"></div>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:0.6875rem 0;border-bottom:1px solid var(--border);">
+                      <div>
+                        <p style="margin:0;font-size:0.875rem;font-weight:500;line-height:1.25;">Email Digest</p>
+                        <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Daily summary</p>
+                      </div>
+                      <div style="width:2.25rem;height:1.25rem;background:var(--muted);border:1px solid var(--border);border-radius:9999px;cursor:pointer;flex-shrink:0;"></div>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:0.6875rem 0;">
+                      <div>
+                        <p style="margin:0;font-size:0.875rem;font-weight:500;line-height:1.25;">SMS Alerts</p>
+                        <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Critical only</p>
+                      </div>
+                      <div style="width:2.25rem;height:1.25rem;background:var(--primary);border-radius:9999px;cursor:pointer;flex-shrink:0;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer" style="padding-top:1rem;border-top:1px solid var(--border);">
+                  <button class="btn" data-variant="default" style="width:100%;">Save preferences</button>
+                </div>
+              </div>
+
+              <!-- Metric cards -->
+              <div style="display:flex;flex-direction:column;gap:1.25rem;flex:1;min-width:10rem;">
+                <div class="card">
+                  <div class="card-header" style="flex-direction:row;align-items:center;justify-content:space-between;padding-bottom:0.5rem;">
+                    <p class="card-description" style="font-weight:500;color:var(--foreground);font-size:0.8125rem;">Total Revenue</p>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted-foreground)"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  </div>
+                  <div class="card-content" style="padding-top:0.25rem;">
+                    <p style="font-size:1.625rem;font-weight:700;margin:0;letter-spacing:-0.025em;">$45,231</p>
+                    <p class="card-description" style="font-size:0.75rem;margin-top:0.25rem;">+20.1% from last month</p>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" style="flex-direction:row;align-items:center;justify-content:space-between;padding-bottom:0.5rem;">
+                    <p class="card-description" style="font-weight:500;color:var(--foreground);font-size:0.8125rem;">Active Users</p>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted-foreground)"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </div>
+                  <div class="card-content" style="padding-top:0.25rem;">
+                    <p style="font-size:1.625rem;font-weight:700;margin:0;letter-spacing:-0.025em;">+2,350</p>
+                    <p class="card-description" style="font-size:0.75rem;margin-top:0.25rem;">+180 since last hour</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: Image card + Header action card -->
+            <div style="display:flex;gap:1.25rem;flex-wrap:wrap;align-items:start;">
+              <!-- Image card -->
+              <article class="card" style="max-width:20rem;width:100%;">
+                <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=600&h=300&fit=crop" alt="Abstract shapes" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                <div class="card-header">
+                  <h3 class="card-title">Modern Design</h3>
+                  <p class="card-description">Exploring minimal aesthetics through form and color.</p>
+                </div>
+                <div class="card-content" style="padding-top:0;">
+                  <p style="margin:0;font-size:0.875rem;color:var(--muted-foreground);line-height:1.6;">A deep dive into the principles that guide contemporary visual design. Less is more when every detail is intentional.</p>
+                </div>
+                <div class="card-footer">
+                  <button class="btn" data-variant="default" data-size="sm">Read more</button>
+                  <button class="btn" data-variant="ghost" data-size="sm">Bookmark</button>
+                </div>
+              </article>
+
+              <!-- Header action card -->
+              <div class="card" style="max-width:20rem;width:100%;">
+                <div class="card-header" style="flex-direction:row;align-items:center;justify-content:space-between;">
+                  <div>
+                    <h3 class="card-title">Team Members</h3>
+                    <p class="card-description">Manage who has access to this project.</p>
+                  </div>
+                  <button class="btn" data-variant="ghost" data-size="icon" aria-label="More options">
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                  </button>
+                </div>
+                <div class="card-content" style="display:flex;flex-direction:column;gap:0.75rem;">
+                  <div style="display:flex;align-items:center;gap:0.75rem;">
+                    <div style="width:2rem;height:2rem;border-radius:9999px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:var(--primary-foreground);flex-shrink:0;">CL</div>
+                    <div style="flex:1;min-width:0;">
+                      <p style="margin:0;font-size:0.875rem;font-weight:500;">Cody Lindley</p>
+                      <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Owner</p>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:0.75rem;">
+                    <div style="width:2rem;height:2rem;border-radius:9999px;background:var(--secondary);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:var(--secondary-foreground);flex-shrink:0;">JD</div>
+                    <div style="flex:1;min-width:0;">
+                      <p style="margin:0;font-size:0.875rem;font-weight:500;">Jane Doe</p>
+                      <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Editor</p>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:0.75rem;">
+                    <div style="width:2rem;height:2rem;border-radius:9999px;background:var(--muted);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:var(--muted-foreground);flex-shrink:0;">AS</div>
+                    <div style="flex:1;min-width:0;">
+                      <p style="margin:0;font-size:0.875rem;font-weight:500;">Alex Smith</p>
+                      <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">Viewer</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer" style="padding-top:1rem;border-top:1px solid var(--border);">
+                  <button class="btn" data-variant="outline" data-size="sm" style="width:100%;">
+                    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+                    Invite member
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="tab-panel" id="card-pattern" data-tab-group="card">
+          <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+            <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);">
+              <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">patterns/card.md</span>
+            </div>
+            <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Structure</p>
+              <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+                <code>.card</code><span class="text-muted-foreground">host — div or article</span>
+                <code>.card-header</code><span class="text-muted-foreground">title + description, padding 1.5rem (no bottom)</span>
+                <code>.card-title</code><span class="text-muted-foreground">heading, 1.125rem, weight 600</span>
+                <code>.card-description</code><span class="text-muted-foreground">--muted-foreground, 0.875rem</span>
+                <code>.card-content</code><span class="text-muted-foreground">body, padding 1.5rem all sides</span>
+                <code>.card-footer</code><span class="text-muted-foreground">flex row, padding 1.5rem (no top)</span>
+              </div>
+
+              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Token usage</p>
+              <p class="text-muted-foreground" style="margin:0 0 0.25rem;">Surface → <code>--card</code></p>
+              <p class="text-muted-foreground" style="margin:0 0 0.25rem;">Text → <code>--card-foreground</code></p>
+              <p class="text-muted-foreground" style="margin:0 0 1.25rem;">Border → <code>--border</code></p>
+
+              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Composition patterns</p>
+              <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+                <code>Image card</code><span class="text-muted-foreground">Place &lt;img&gt; as first child (overflow:hidden on .card handles rounding)</span>
+                <code>Header action</code><span class="text-muted-foreground">flex-direction:row on .card-header, action button in slot</span>
+                <code>Metric card</code><span class="text-muted-foreground">Header-only layout with icon + large stat value</span>
+              </div>
+
+              <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Element choice</p>
+              <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>&lt;div&gt;</code> — UI grouping, forms, settings panels</p>
+              <p class="text-muted-foreground" style="margin:0;">• <code>&lt;article&gt;</code> — standalone content (blog post, product listing)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="card-html" data-tab-group="card">
+          <div style="position:relative;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code>&lt;!-- Standard card --&gt;
+&lt;div class="card"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;h3 class="card-title"&gt;Card Title&lt;/h3&gt;
+    &lt;p class="card-description"&gt;Supporting text.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="card-content"&gt;
+    &lt;!-- body content --&gt;
+  &lt;/div&gt;
+  &lt;div class="card-footer"&gt;
+    &lt;button class="btn" data-variant="outline"&gt;Cancel&lt;/button&gt;
+    &lt;button class="btn" data-variant="default"&gt;Save&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Image card (article for standalone content) --&gt;
+&lt;article class="card"&gt;
+  &lt;img src="..." alt="..." style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;h3 class="card-title"&gt;Title&lt;/h3&gt;
+    &lt;p class="card-description"&gt;Description&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="card-content" style="padding-top:0;"&gt;
+    &lt;p&gt;Body text...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="card-footer"&gt;
+    &lt;button class="btn" data-variant="default" data-size="sm"&gt;Read more&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+&lt;!-- Header action card --&gt;
+&lt;div class="card"&gt;
+  &lt;div class="card-header" style="flex-direction:row;align-items:center;justify-content:space-between;"&gt;
+    &lt;div&gt;
+      &lt;h3 class="card-title"&gt;Title&lt;/h3&gt;
+      &lt;p class="card-description"&gt;Description&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;button class="btn" data-variant="ghost" data-size="icon" aria-label="More"&gt;
+      &lt;svg aria-hidden="true"&gt;...&lt;/svg&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="card-content"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Metric card (compact) --&gt;
+&lt;div class="card"&gt;
+  &lt;div class="card-header"
+       style="flex-direction:row;align-items:center;
+              justify-content:space-between;padding-bottom:0.5rem;"&gt;
+    &lt;p class="card-description" style="font-weight:500;"&gt;Revenue&lt;/p&gt;
+    &lt;svg aria-hidden="true"&gt;...&lt;/svg&gt;
+  &lt;/div&gt;
+  &lt;div class="card-content" style="padding-top:0.25rem;"&gt;
+    &lt;p style="font-size:1.75rem;font-weight:700;"&gt;$45,231&lt;/p&gt;
+    &lt;p class="card-description"&gt;+20.1% from last month&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>

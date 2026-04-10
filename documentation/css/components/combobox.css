@@ -1,0 +1,45 @@
+/* ── Combobox component ──────────────────────────────────── */
+
+.combobox { position: relative; }
+.combobox-input-group { position: relative; display: flex; }
+.combobox-input-group .input { padding-right: 2.25rem; }
+.combobox-trigger {
+  position: absolute; right: 0; top: 0; height: 100%; width: 2.25rem;
+  display: flex; align-items: center; justify-content: center;
+  border: none; background: transparent; color: var(--muted-foreground); cursor: pointer;
+}
+.combobox-trigger:hover { color: var(--foreground); }
+.combobox-content {
+  position: fixed; background-color: var(--popover); color: var(--popover-foreground);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 0.25rem; min-width: 8rem; max-height: 16rem; overflow-y: auto;
+  box-shadow: 0 4px 16px oklch(0 0 0 / 0.12); margin: 0;
+  opacity: 0; transform: scale(0.96) translateY(-0.25rem);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+.combobox-content[data-open] { opacity: 1; transform: scale(1) translateY(0); }
+.combobox-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.375rem 0.5rem; padding-left: 1.75rem;
+  border-radius: var(--radius-sm); font-size: 0.875rem;
+  cursor: pointer; outline: none; transition: background 100ms;
+}
+.combobox-item:hover, .combobox-item[data-highlighted] {
+  background-color: var(--accent); color: var(--accent-foreground);
+}
+.combobox-item[aria-selected="true"] { padding-left: 0.5rem; }
+.combobox-item[aria-selected="true"]::before {
+  content: ''; display: inline-block; width: 1rem; height: 1rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  background-size: contain; flex-shrink: 0;
+}
+.combobox-empty {
+  padding: 1.5rem 0.5rem; text-align: center; font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+.combobox-group-label {
+  padding: 0.375rem 0.5rem; font-size: 0.75rem; font-weight: 600;
+  color: var(--muted-foreground); pointer-events: none;
+}
+.combobox-separator { height: 1px; background: var(--border); margin: 0.25rem -0.25rem; }
+.combobox-item[aria-disabled="true"] { pointer-events: none; opacity: 0.5; }

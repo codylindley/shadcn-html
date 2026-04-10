@@ -1,0 +1,141 @@
+/**
+ * shadcn-html — Token Layer
+ * Shadcn-compatible semantic CSS custom properties.
+ * OKLCH color space. Full surface/foreground pair model.
+ *
+ * Tweakcn themes (tweakcn.com) are compatible out of the box.
+ * Override these values to retheme every component simultaneously.
+ */
+
+:root {
+  /* ── Surface / Foreground pairs ────────────────────────────── */
+  --background:              oklch(0.985 0.002 247);
+  --foreground:              oklch(0.145 0.005 285);
+
+  --card:                    oklch(1 0 0);
+  --card-foreground:         oklch(0.145 0.005 285);
+
+  --popover:                 oklch(1 0 0);
+  --popover-foreground:      oklch(0.145 0.005 285);
+
+  --primary:                 oklch(0.205 0.005 285);
+  --primary-foreground:      oklch(0.985 0.002 247);
+
+  --secondary:               oklch(0.94 0.003 247);
+  --secondary-foreground:    oklch(0.205 0.005 285);
+
+  --muted:                   oklch(0.94 0.003 247);
+  --muted-foreground:        oklch(0.52 0.01 285);
+
+  --accent:                  oklch(0.94 0.003 247);
+  --accent-foreground:       oklch(0.205 0.005 285);
+
+  --destructive:             oklch(0.577 0.245 27.325);
+  --destructive-foreground:  oklch(0.985 0.002 247);
+
+  /* ── Utility tokens ─────────────────────────────────────────── */
+  --border:                  oklch(0.88 0.004 247);
+  --input:                   oklch(0.88 0.004 247);
+  --ring:                    oklch(0.205 0.005 285);
+
+  /* ── Sidebar tokens ─────────────────────────────────────────── */
+  --sidebar:                 oklch(0.97 0.002 247);
+  --sidebar-foreground:      oklch(0.145 0.005 285);
+  --sidebar-primary:         oklch(0.205 0.005 285);
+  --sidebar-primary-foreground: oklch(0.985 0.002 247);
+  --sidebar-accent:          oklch(0.94 0.003 247);
+  --sidebar-accent-foreground: oklch(0.205 0.005 285);
+  --sidebar-border:          oklch(0.88 0.004 247);
+  --sidebar-ring:            oklch(0.205 0.005 285);
+
+  /* ── Chart tokens ───────────────────────────────────────────── */
+  --chart-1:                 oklch(0.646 0.222 41.116);
+  --chart-2:                 oklch(0.6 0.118 184.704);
+  --chart-3:                 oklch(0.398 0.07 227.392);
+  --chart-4:                 oklch(0.828 0.189 84.429);
+  --chart-5:                 oklch(0.769 0.188 70.08);
+
+  /* ── Typography tokens ──────────────────────────────────────── */
+  --font-sans:  ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono:  ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* ── Radius ─────────────────────────────────────────────────── */
+  --radius:                  0.625rem;
+  /* Derived — needed as real custom properties because @theme inline
+     only creates Tailwind utilities, not CSS vars for var() access. */
+  --radius-sm:               calc(var(--radius) - 4px);
+  --radius-md:               calc(var(--radius) - 2px);
+  --radius-lg:               var(--radius);
+  --radius-xl:               calc(var(--radius) + 4px);
+
+  /* ── Spacing ────────────────────────────────────────────────── */
+  --spacing:                 0.25rem;
+
+  /* ── Tracking ───────────────────────────────────────────────── */
+  --tracking-normal:         0em;
+
+  /* ── Shadow composition ─────────────────────────────────────── */
+  --shadow-x:       0;
+  --shadow-y:       1px;
+  --shadow-blur:    3px;
+  --shadow-spread:  0px;
+  --shadow-opacity: 0.1;
+  --shadow-color:   oklch(0 0 0);
+
+  /* ── Shadow scale ───────────────────────────────────────────── */
+  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs:  0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm:  0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow:     0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow-md:  0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
+  --shadow-lg:  0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
+  --shadow-xl:  0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+}
+
+/* ── Dark mode ────────────────────────────────────────────────── */
+.dark {
+  --background:              oklch(0.145 0.005 285);
+  --foreground:              oklch(0.985 0.002 247);
+
+  --card:                    oklch(0.18 0.005 285);
+  --card-foreground:         oklch(0.985 0.002 247);
+
+  --popover:                 oklch(0.18 0.005 285);
+  --popover-foreground:      oklch(0.985 0.002 247);
+
+  --primary:                 oklch(0.985 0.002 247);
+  --primary-foreground:      oklch(0.205 0.005 285);
+
+  --secondary:               oklch(0.22 0.006 285);
+  --secondary-foreground:    oklch(0.985 0.002 247);
+
+  --muted:                   oklch(0.22 0.006 285);
+  --muted-foreground:        oklch(0.62 0.01 285);
+
+  --accent:                  oklch(0.22 0.006 285);
+  --accent-foreground:       oklch(0.985 0.002 247);
+
+  --destructive:             oklch(0.396 0.141 25.723);
+  --destructive-foreground:  oklch(0.985 0.002 247);
+
+  --border:                  oklch(0.25 0.006 285);
+  --input:                   oklch(0.25 0.006 285);
+  --ring:                    oklch(0.7 0.008 285);
+
+  --sidebar:                 oklch(0.17 0.005 285);
+  --sidebar-foreground:      oklch(0.985 0.002 247);
+  --sidebar-primary:         oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0.002 247);
+  --sidebar-accent:          oklch(0.22 0.006 285);
+  --sidebar-accent-foreground: oklch(0.985 0.002 247);
+  --sidebar-border:          oklch(0.22 0.006 285);
+  --sidebar-ring:            oklch(0.7 0.008 285);
+
+  --chart-1:                 oklch(0.488 0.243 264.376);
+  --chart-2:                 oklch(0.696 0.17 162.48);
+  --chart-3:                 oklch(0.769 0.188 70.08);
+  --chart-4:                 oklch(0.627 0.265 303.9);
+  --chart-5:                 oklch(0.645 0.246 16.439);
+}

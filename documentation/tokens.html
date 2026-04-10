@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Token System — shadcn-html</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../tokens/tokens.css">
+  <link rel="stylesheet" href="../base/reset.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components/button.css">
+  <link rel="stylesheet" href="css/components/card.css">
+  <link rel="stylesheet" href="css/components/dialog.css">
+  <link rel="stylesheet" href="css/components/badge.css">
+  <link rel="stylesheet" href="css/components/input.css">
+  <link rel="stylesheet" href="css/components/accordion.css">
+  <link rel="stylesheet" href="css/components/tabs.css">
+  <link rel="stylesheet" href="css/components/dropdown.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/combobox.css">
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:is(.dark *));
+    @theme inline {
+      --color-background:              var(--background);
+      --color-foreground:              var(--foreground);
+      --color-card:                    var(--card);
+      --color-card-foreground:         var(--card-foreground);
+      --color-popover:                 var(--popover);
+      --color-popover-foreground:      var(--popover-foreground);
+      --color-primary:                 var(--primary);
+      --color-primary-foreground:      var(--primary-foreground);
+      --color-secondary:               var(--secondary);
+      --color-secondary-foreground:    var(--secondary-foreground);
+      --color-muted:                   var(--muted);
+      --color-muted-foreground:        var(--muted-foreground);
+      --color-accent:                  var(--accent);
+      --color-accent-foreground:       var(--accent-foreground);
+      --color-destructive:             var(--destructive);
+      --color-destructive-foreground:  var(--destructive-foreground);
+      --color-border:                  var(--border);
+      --color-input:                   var(--input);
+      --color-ring:                    var(--ring);
+      --color-chart-1:                 var(--chart-1);
+      --color-chart-2:                 var(--chart-2);
+      --color-chart-3:                 var(--chart-3);
+      --color-chart-4:                 var(--chart-4);
+      --color-chart-5:                 var(--chart-5);
+      --color-sidebar:                 var(--sidebar);
+      --color-sidebar-foreground:      var(--sidebar-foreground);
+      --color-sidebar-primary:         var(--sidebar-primary);
+      --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+      --color-sidebar-accent:          var(--sidebar-accent);
+      --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+      --color-sidebar-border:          var(--sidebar-border);
+      --color-sidebar-ring:            var(--sidebar-ring);
+      --font-sans:    var(--font-sans);
+      --font-serif:   var(--font-serif);
+      --font-mono:    var(--font-mono);
+      --radius-sm:   calc(var(--radius) - 4px);
+      --radius-md:   calc(var(--radius) - 2px);
+      --radius-lg:   var(--radius);
+      --radius-xl:   calc(var(--radius) + 4px);
+      --shadow-2xs:  var(--shadow-2xs);
+      --shadow-xs:   var(--shadow-xs);
+      --shadow-sm:   var(--shadow-sm);
+      --shadow:      var(--shadow);
+      --shadow-md:   var(--shadow-md);
+      --shadow-lg:   var(--shadow-lg);
+      --shadow-xl:   var(--shadow-xl);
+      --shadow-2xl:  var(--shadow-2xl);
+    }
+    @layer base {
+      * { @apply border-border outline-ring/50; }
+      body { @apply bg-background text-foreground; }
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed top-0 left-0 right-0 z-50 h-14 border-b border-border flex items-center px-6 gap-4"
+          style="background: oklch(from var(--background) l c h / 0.88); backdrop-filter: blur(14px);">
+    <a href="index.html" class="flex items-center gap-2.5 no-underline">
+      <span style="font-family: var(--font-display); font-size: 1.1875rem; font-weight: 500; letter-spacing: -0.03em; color: var(--foreground);">shadcn<em>-html</em></span>
+      <span class="badge" data-variant="outline" style="font-family: var(--font-mono);">v0.1.0</span>
+    </a>
+    <div class="flex-1"></div>
+    <nav class="flex items-center gap-1">
+      <a href="https://github.com" target="_blank"
+         class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors no-underline">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+      <button id="theme-toggle"
+              class="w-9 h-9 rounded-lg border border-border flex items-center justify-center text-foreground hover:bg-accent transition-colors bg-transparent cursor-pointer"
+              aria-label="Toggle dark mode">
+        <svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg id="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <aside class="w-56 flex-shrink-0 border-r border-sidebar-border overflow-y-auto"
+           style="position: sticky; top: 3.5rem; height: calc(100vh - 3.5rem); background: var(--sidebar); padding: 1.25rem 0.75rem;">
+      <div style="margin-bottom: 1.25rem;">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
+           style="letter-spacing: 0.08em;">Overview</p>
+        <a class="nav-link" href="index.html">Introduction</a>
+        <a class="nav-link active" href="tokens.html">Token System</a>
+        <a class="nav-link" href="setup.html">Setup</a>
+        <a class="nav-link" href="agents.html">agents.md</a>
+      </div>
+      <div style="margin-bottom: 1.25rem;">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
+           style="letter-spacing: 0.08em;">Components</p>
+        <a class="nav-link" href="button.html">Button</a>
+        <a class="nav-link" href="dialog.html">Dialog</a>
+        <a class="nav-link" href="card.html">Card</a>
+        <a class="nav-link" href="accordion.html">Accordion</a>
+        <a class="nav-link" href="tabs.html">Tabs</a>
+        <a class="nav-link" href="dropdown.html">Dropdown</a>
+        <a class="nav-link" href="toast.html">Toast</a>
+        <a class="nav-link" href="combobox.html">Combobox</a>
+      </div>
+    </aside>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
+<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / token-system</p>
+  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Token System</h1>
+  <p class="text-muted-foreground leading-relaxed mb-10" style="max-width:38rem;">
+    100% compatible with shadcn/ui's semantic token model. Same CSS custom
+    property names. Same surface/foreground pair convention. Tweakcn exports drop in directly.
+  </p>
+
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Surface / Foreground pairs</h2>
+  <p class="text-sm text-muted-foreground mb-5">Every surface token pairs with a foreground token for text/icons placed on it.</p>
+  <div class="flex flex-col gap-2 mb-10" id="swatch-container"></div>
+
+  <div class="sep"></div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Utility tokens</h2>
+  <div class="flex flex-col gap-2 mb-10">
+    <div class="swatch-row">
+      <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--border);border:1px solid var(--border);flex-shrink:0;"></div>
+      <code>--border</code><span class="text-sm text-muted-foreground ml-auto">border-border</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--input);border:1px solid var(--border);flex-shrink:0;"></div>
+      <code>--input</code><span class="text-sm text-muted-foreground ml-auto">border-input</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--ring);border:1px solid var(--border);flex-shrink:0;"></div>
+      <code>--ring</code><span class="text-sm text-muted-foreground ml-auto">ring-ring</span>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Radius scale</h2>
+  <div class="flex flex-col gap-2">
+    <div class="swatch-row">
+      <div style="width:3rem;height:1.875rem;background:var(--muted);border-radius:var(--radius-sm);border:1px solid var(--border);flex-shrink:0;"></div>
+      <code>--radius-sm</code><span class="dim text-sm ml-auto">radius − 4px</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:3rem;height:1.875rem;background:var(--muted);border-radius:var(--radius-md);border:1px solid var(--border);flex-shrink:0;"></div>
+      <code>--radius-md</code><span class="dim text-sm ml-auto">radius − 2px</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:3rem;height:1.875rem;background:var(--muted);border-radius:var(--radius-lg);border:1px solid var(--border);flex-shrink:0;"></div>
+      <code>--radius-lg</code><span class="dim text-sm ml-auto">base (--radius)</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:3rem;height:1.875rem;background:var(--muted);border-radius:var(--radius-xl);border:1px solid var(--border);flex-shrink:0;"></div>
+      <code>--radius-xl</code><span class="dim text-sm ml-auto">radius + 4px</span>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Sidebar tokens</h2>
+  <p class="text-sm text-muted-foreground mb-5">Full sidebar token set for sidebar-specific theming. Same surface/foreground pair convention.</p>
+  <div class="flex flex-col gap-2 mb-10" id="sidebar-swatch-container"></div>
+
+  <div class="sep"></div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Chart tokens</h2>
+  <p class="text-sm text-muted-foreground mb-5">Five chart colors for data visualization.</p>
+  <div class="flex flex-col gap-2 mb-10">
+    <div class="swatch-row">
+      <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--chart-1);flex-shrink:0;"></div>
+      <code>--chart-1</code><span class="text-sm text-muted-foreground ml-auto">bg-chart-1</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--chart-2);flex-shrink:0;"></div>
+      <code>--chart-2</code><span class="text-sm text-muted-foreground ml-auto">bg-chart-2</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--chart-3);flex-shrink:0;"></div>
+      <code>--chart-3</code><span class="text-sm text-muted-foreground ml-auto">bg-chart-3</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--chart-4);flex-shrink:0;"></div>
+      <code>--chart-4</code><span class="text-sm text-muted-foreground ml-auto">bg-chart-4</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--chart-5);flex-shrink:0;"></div>
+      <code>--chart-5</code><span class="text-sm text-muted-foreground ml-auto">bg-chart-5</span>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Typography tokens</h2>
+  <p class="text-sm text-muted-foreground mb-5">Font stacks as CSS custom properties. Themes can override these to change typography globally.</p>
+  <div class="flex flex-col gap-2 mb-10">
+    <div class="swatch-row">
+      <span style="font-family:var(--font-sans);font-size:0.875rem;flex-shrink:0;width:8rem;">The quick brown fox</span>
+      <code>--font-sans</code><span class="text-sm text-muted-foreground ml-auto">font-sans</span>
+    </div>
+    <div class="swatch-row">
+      <span style="font-family:var(--font-serif);font-size:0.875rem;flex-shrink:0;width:8rem;">The quick brown fox</span>
+      <code>--font-serif</code><span class="text-sm text-muted-foreground ml-auto">font-serif</span>
+    </div>
+    <div class="swatch-row">
+      <span style="font-family:var(--font-mono);font-size:0.875rem;flex-shrink:0;width:8rem;">The quick brown fox</span>
+      <code>--font-mono</code><span class="text-sm text-muted-foreground ml-auto">font-mono</span>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Shadow scale</h2>
+  <p class="text-sm text-muted-foreground mb-5">Theme-aware shadows available as both tokens and Tailwind utilities.</p>
+  <div class="flex flex-col gap-2 mb-10">
+    <div class="swatch-row">
+      <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-2xs);flex-shrink:0;"></div>
+      <code>--shadow-2xs</code><span class="text-sm text-muted-foreground ml-auto">shadow-2xs</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-xs);flex-shrink:0;"></div>
+      <code>--shadow-xs</code><span class="text-sm text-muted-foreground ml-auto">shadow-xs</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);flex-shrink:0;"></div>
+      <code>--shadow-sm</code><span class="text-sm text-muted-foreground ml-auto">shadow-sm</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow);flex-shrink:0;"></div>
+      <code>--shadow</code><span class="text-sm text-muted-foreground ml-auto">shadow</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-md);flex-shrink:0;"></div>
+      <code>--shadow-md</code><span class="text-sm text-muted-foreground ml-auto">shadow-md</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);flex-shrink:0;"></div>
+      <code>--shadow-lg</code><span class="text-sm text-muted-foreground ml-auto">shadow-lg</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-xl);flex-shrink:0;"></div>
+      <code>--shadow-xl</code><span class="text-sm text-muted-foreground ml-auto">shadow-xl</span>
+    </div>
+    <div class="swatch-row">
+      <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-2xl);flex-shrink:0;"></div>
+      <code>--shadow-2xl</code><span class="text-sm text-muted-foreground ml-auto">shadow-2xl</span>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Spacing &amp; Tracking</h2>
+  <p class="text-sm text-muted-foreground mb-5">Base units that control all spacing and letter-spacing utilities.</p>
+  <div class="flex flex-col gap-2">
+    <div class="swatch-row">
+      <div style="display:flex;gap:2px;align-items:flex-end;flex-shrink:0;width:4rem;">
+        <div style="width:var(--spacing);height:0.5rem;background:var(--primary);border-radius:1px;"></div>
+        <div style="width:var(--spacing);height:1rem;background:var(--primary);border-radius:1px;"></div>
+        <div style="width:var(--spacing);height:1.5rem;background:var(--primary);border-radius:1px;"></div>
+        <div style="width:var(--spacing);height:1rem;background:var(--primary);border-radius:1px;"></div>
+      </div>
+      <code>--spacing</code><span class="dim text-sm ml-auto">0.25rem (4px)</span>
+    </div>
+    <div class="swatch-row">
+      <span style="font-size:0.875rem;letter-spacing:var(--tracking-normal);flex-shrink:0;width:4rem;">Aa Bb Cc</span>
+      <code>--tracking-normal</code><span class="dim text-sm ml-auto">0em</span>
+    </div>
+  </div>
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>

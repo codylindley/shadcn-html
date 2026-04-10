@@ -1,0 +1,15 @@
+/* ── Documentation site overrides ────────────────────────── */
+/* Custom fonts and styles specific to the docs site.        */
+/* These override the system's generic font stacks.          */
+
+:root {
+  --font-sans:               'Geist', sans-serif;
+  --font-serif:              'Fraunces', serif;
+  --font-mono:               'Geist Mono', monospace;
+  --font-display:            'Fraunces', serif;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
