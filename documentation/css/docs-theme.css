@@ -9,6 +9,13 @@
   --font-display:            'Fraunces', serif;
 }
 
+/* ── Minimal base (Tailwind preflight handles the rest) ─── */
+body {
+  font-family: var(--font-sans);
+  margin: 0;
+  line-height: 1.6;
+}
+
 /* ── Scrollbar ───────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }

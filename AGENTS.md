@@ -162,18 +162,21 @@ Always prefer the simplest approach that achieves correct, accessible behavior:
 
 ## Pattern reference
 
-Before implementing any interactive component, read the spec in `patterns/`:
+Before implementing any component, read the spec in `patterns/`:
 
 | Component   | Pattern file             | Native basis                   |
 |-------------|--------------------------|--------------------------------|
+| Accordion   | `patterns/accordion.md`  | `<details>/<summary>`          |
+| Badge       | `patterns/badge.md`      | `<span>`                       |
 | Button      | `patterns/button.md`     | `<button>`                     |
-| Dialog      | `patterns/dialog.md`     | `<dialog>` + `showModal()`     |
 | Card        | `patterns/card.md`       | `<div>` / `<article>`          |
+| Combobox    | `patterns/combobox.md`   | `<input>` + `role="listbox"`   |
+| Dialog      | `patterns/dialog.md`     | `<dialog>` + `showModal()`     |
 | Dropdown    | `patterns/dropdown.md`   | `popover` API                  |
+| Input       | `patterns/input.md`      | `<input>`                      |
+| Sheet       | `patterns/sheet.md`      | `<dialog>` + `showModal()`     |
 | Tabs        | `patterns/tabs.md`       | `role="tablist"` + aria        |
 | Toast       | `patterns/toast.md`      | `popover` API                  |
-| Combobox    | `patterns/combobox.md`   | `<input>` + `role="listbox"`   |
-| Accordion   | `patterns/accordion.md`  | `<details>/<summary>`          |
 
 The pattern file defines: structure, ARIA attributes, event wiring, state model,
 and token usage. Read it and implement from scratch. Do not import libraries.
@@ -184,14 +187,31 @@ and token usage. Read it and implement from scratch. Do not import libraries.
 
 ```
 shadcn-html/
-├── tokens/tokens.css      ← CSS custom property definitions
-├── theme/theme.css        ← Tailwind v4 @theme inline bridge
-├── base/reset.css         ← baseline reset
-├── base/typography.css    ← prose type scale
-├── patterns/*.md          ← behavioral specs (read before building)
-├── documentation/*.html   ← reference implementations
-└── AGENTS.md              ← this file
+├── AGENTS.md                          ← this file
+├── tokens/tokens.css                  ← CSS custom property definitions (the source of truth)
+├── theme/theme.css                    ← Tailwind v4 @theme inline bridge (reference/template)
+├── patterns/*.md                      ← behavioral specs (read before building)
+└── documentation/                     ← reference implementations (working examples)
+    ├── *.html                         ← one page per component + index, setup, tokens
+    ├── css/
+    │   ├── docs-theme.css             ← doc-site font overrides (not part of the system)
+    │   ├── layout.css                 ← doc-site layout (not part of the system)
+    │   └── components/*.css           ← component stylesheets (copy into your project)
+    └── js/
+        └── site.js                    ← doc-site JS + component interaction wiring
 ```
+
+### Notes on specific files
+
+- **`theme/theme.css`** — This is a reference template for the `@theme inline` block.
+  When using Tailwind v4's CDN browser build, the `@theme` block must be inlined
+  in a `<style type="text/tailwindcss">` tag (it cannot be `<link>`-ed). Each HTML
+  file in `documentation/` contains this block inline. If you update `theme/theme.css`,
+  update the inline blocks too.
+
+- **`documentation/css/components/*.css`** — These are the actual component stylesheets.
+  Copy the ones you need into your project. They use `var(--*)` references to tokens
+  and are fully theme-aware.
 
 ---
 
