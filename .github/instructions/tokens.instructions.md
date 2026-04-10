@@ -1,6 +1,6 @@
 ---
-description: "Use when editing design tokens in dist/tokens/tokens.css, the theme bridge in dist/theme/theme.css, or any component pattern/CSS. Covers token shape, tweakcn compatibility, the theme bridge relationship, and the token boundary rule."
-applyTo: ["dist/tokens/**", "dist/theme/**", "dist/patterns/**", "dist/documentation/css/components/**"]
+description: "Use when editing design tokens in dist/theme/semantic-tokens.css or any component pattern/CSS. Covers token shape, tweakcn compatibility, and the token boundary rule."
+applyTo: ["dist/theme/**", "dist/component-specifications/**", "dist/documentation/css/components/**"]
 ---
 # Tokens & Theme
 
@@ -8,14 +8,13 @@ applyTo: ["dist/tokens/**", "dist/theme/**", "dist/patterns/**", "dist/documenta
 
 **Components must only use the tokens that exist in the TweakCN export shape.**
 
-- `tokens.css` defines the complete set of available CSS custom properties.
-- No new custom properties may be added to `tokens.css` beyond what TweakCN provides.
-- Components CSS (`dist/patterns/*.md` and `dist/documentation/css/components/*.css`)
+- `semantic-tokens.css` defines the complete set of available CSS custom properties.
+- No new custom properties may be added to `semantic-tokens.css` beyond what TweakCN provides.
+- Components CSS (`dist/component-specifications/*.md` and `dist/documentation/css/components/*.css`)
   must reference only these tokens via `var(--*)`.
 - If a component needs a color that has no token (e.g., status colors like
   green/amber/blue), use a hardcoded CSS value directly in the component CSS.
   Do NOT invent a new `--*` token for it.
-- The theme bridge (`theme.css`) must mirror `tokens.css` exactly — no additions.
 
 ### Why
 TweakCN themes are drop-in replacements. If we add tokens that TweakCN doesn't
@@ -55,7 +54,7 @@ in component CSS. Use a literal CSS value instead.
 
 ## Token shape (tweakcn compatible)
 
-`dist/tokens/tokens.css` must match the shape of theme exports from tweakcn.com:
+`dist/theme/semantic-tokens.css` must match the shape of theme exports from tweakcn.com:
 
 ### `:root` block provides:
 - Color pairs: `--primary` / `--primary-foreground` (and all other semantic pairs)
@@ -85,12 +84,3 @@ Tweakcn themes only provide `--radius`. The derived values must use `var(--radiu
 ```
 
 These exist as real CSS custom properties because component CSS uses `var(--radius-md)` directly.
-The `@theme inline` block creates Tailwind utilities but NOT CSS custom properties.
-
-## Theme bridge
-
-`dist/theme/theme.css` maps tokens to Tailwind utilities via `@theme inline`.
-This file is a reference template — the actual bridge is inlined in each HTML file's
-`<style type="text/tailwindcss">` tag.
-
-If you change the theme bridge, update ALL HTML files in `dist/documentation/`.

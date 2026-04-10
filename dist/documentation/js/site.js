@@ -13,12 +13,23 @@
     document.documentElement.classList.add('dark');
   }
 
+  // ── Highlight.js theme sync ─────────────────────────────
+  function syncHljsTheme() {
+    var isDark = document.documentElement.classList.contains('dark');
+    var light = document.getElementById('hljs-light');
+    var dark = document.getElementById('hljs-dark');
+    if (light) light.disabled = isDark;
+    if (dark) dark.disabled = !isDark;
+  }
+  syncHljsTheme(); // sync on initial load (before DOMContentLoaded)
+
   function toggleDark() {
     var isDark = document.documentElement.classList.contains('dark');
     document.documentElement.classList.toggle('dark', !isDark);
     document.getElementById('icon-sun').style.display  = isDark ? 'block' : 'none';
     document.getElementById('icon-moon').style.display = isDark ? 'none'  : 'block';
     localStorage.setItem('shadcn-html-theme', isDark ? 'light' : 'dark');
+    syncHljsTheme();
   }
 
   // ── On DOM ready ────────────────────────────────────────
@@ -34,6 +45,9 @@
     // Bind toggle button
     var themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) themeBtn.addEventListener('click', toggleDark);
+
+    // ── Syntax highlighting (highlight.js) ──────────────
+    if (window.hljs) hljs.highlightAll();
 
     // ── Doc tabs (Preview / Pattern / HTML) ─────────────
     document.querySelectorAll('.doc-tablist[role="tablist"]').forEach(function (tabList) {
@@ -381,7 +395,7 @@
       pairs.forEach(function (p) {
         var surface = p[0], fg = p[1];
         var row = document.createElement('div'); row.className = 'swatch-row';
-        row.innerHTML = '<div style="display:flex;gap:0.375rem;flex-shrink:0;"><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + surface + ');border:1px solid var(--border);"></div><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + fg + ');border:1px solid var(--border);"></div></div><div><p style="margin:0;font-size:0.8125rem;font-family:var(--font-mono);">--' + surface + '</p><p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">--' + fg + '</p></div><span style="margin-left:auto;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">bg-' + surface + ' text-' + fg + '</span>';
+        row.innerHTML = '<div style="display:flex;gap:0.375rem;flex-shrink:0;"><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + surface + ');border:1px solid var(--border);"></div><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + fg + ');border:1px solid var(--border);"></div></div><div><p style="margin:0;font-size:0.8125rem;font-family:var(--font-mono);">--' + surface + '</p><p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">--' + fg + '</p></div><span style="margin-left:auto;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">var(--' + surface + ') var(--' + fg + ')</span>';
         swatchContainer.appendChild(row);
       });
     }
@@ -390,13 +404,13 @@
       [['sidebar','sidebar-foreground'],['sidebar-primary','sidebar-primary-foreground'],['sidebar-accent','sidebar-accent-foreground']].forEach(function (p) {
         var surface = p[0], fg = p[1];
         var row = document.createElement('div'); row.className = 'swatch-row';
-        row.innerHTML = '<div style="display:flex;gap:0.375rem;flex-shrink:0;"><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + surface + ');border:1px solid var(--border);"></div><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + fg + ');border:1px solid var(--border);"></div></div><div><p style="margin:0;font-size:0.8125rem;font-family:var(--font-mono);">--' + surface + '</p><p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">--' + fg + '</p></div><span style="margin-left:auto;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">bg-' + surface + ' text-' + fg + '</span>';
+        row.innerHTML = '<div style="display:flex;gap:0.375rem;flex-shrink:0;"><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + surface + ');border:1px solid var(--border);"></div><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + fg + ');border:1px solid var(--border);"></div></div><div><p style="margin:0;font-size:0.8125rem;font-family:var(--font-mono);">--' + surface + '</p><p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">--' + fg + '</p></div><span style="margin-left:auto;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">var(--' + surface + ') var(--' + fg + ')</span>';
         sidebarSwatchContainer.appendChild(row);
       });
       [['sidebar-border','border-sidebar-border'],['sidebar-ring','ring-sidebar-ring']].forEach(function (p) {
         var token = p[0], utility = p[1];
         var row = document.createElement('div'); row.className = 'swatch-row';
-        row.innerHTML = '<div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + token + ');border:1px solid var(--border);flex-shrink:0;"></div><code>--' + token + '</code><span class="text-sm text-muted-foreground ml-auto">' + utility + '</span>';
+        row.innerHTML = '<div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + token + ');border:1px solid var(--border);flex-shrink:0;"></div><code>--' + token + '</code><span class="text-sm text-muted-foreground ml-auto">var(--' + token + ')</span>';
         sidebarSwatchContainer.appendChild(row);
       });
     }

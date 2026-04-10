@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Token System — shadcn-html</title>
+  <title>Semantic Tokens — shadcn-html</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../tokens/tokens.css">
+  <link rel="stylesheet" href="../theme/semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
+  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <link rel="stylesheet" href="css/components/button.css">
   <link rel="stylesheet" href="css/components/card.css">
   <link rel="stylesheet" href="css/components/dialog.css">
@@ -110,7 +113,7 @@
         <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
            style="letter-spacing: 0.08em;">Overview</p>
         <a class="nav-link" href="index.html">Introduction</a>
-        <a class="nav-link active" href="tokens.html">Token System</a>
+        <a class="nav-link active" href="tokens.html">Semantic Tokens</a>
         <a class="nav-link" href="setup.html">Setup</a>
         <a class="nav-link" href="agents.html">agents.md</a>
       </div>
@@ -131,11 +134,12 @@
     </aside>
 
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
-<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / token-system</p>
-  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Token System</h1>
+<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / semantic-tokens</p>
+  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Semantic Tokens</h1>
   <p class="text-muted-foreground leading-relaxed mb-10" style="max-width:38rem;">
-    100% compatible with shadcn/ui's semantic token model. Same CSS custom
-    property names. Same surface/foreground pair convention. Tweakcn exports drop in directly.
+    These tokens define the theme. They are 100% compatible with shadcn/ui's semantic
+    token model — same CSS custom property names, same surface/foreground pair convention.
+    Export a theme from <a href="https://tweakcn.com" target="_blank" style="text-decoration:underline;">tweakcn.com</a>, drop it into <code>semantic-tokens.css</code>, and every component rethemes instantly.
   </p>
 
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Surface / Foreground pairs</h2>
@@ -148,22 +152,27 @@
   <div class="flex flex-col gap-2 mb-10">
     <div class="swatch-row">
       <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--border);border:1px solid var(--border);flex-shrink:0;"></div>
-      <code>--border</code><span class="text-sm text-muted-foreground ml-auto">border-border</span>
+      <code>--border</code><span class="text-sm text-muted-foreground ml-auto">var(--border)</span>
     </div>
     <div class="swatch-row">
       <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--input);border:1px solid var(--border);flex-shrink:0;"></div>
-      <code>--input</code><span class="text-sm text-muted-foreground ml-auto">border-input</span>
+      <code>--input</code><span class="text-sm text-muted-foreground ml-auto">var(--input)</span>
     </div>
     <div class="swatch-row">
       <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--ring);border:1px solid var(--border);flex-shrink:0;"></div>
-      <code>--ring</code><span class="text-sm text-muted-foreground ml-auto">ring-ring</span>
+      <code>--ring</code><span class="text-sm text-muted-foreground ml-auto">var(--ring)</span>
     </div>
   </div>
 
   <div class="sep"></div>
 
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Radius scale</h2>
+  <p class="text-sm text-muted-foreground mb-5">Set <code>--radius</code> to retheme all border radii. The derived values are computed from it.</p>
   <div class="flex flex-col gap-2">
+    <div class="swatch-row">
+      <div style="width:3rem;height:1.875rem;background:var(--muted);border-radius:var(--radius);border:1px solid var(--border);flex-shrink:0;"></div>
+      <code>--radius</code><span class="dim text-sm ml-auto">base (0.625rem)</span>
+    </div>
     <div class="swatch-row">
       <div style="width:3rem;height:1.875rem;background:var(--muted);border-radius:var(--radius-sm);border:1px solid var(--border);flex-shrink:0;"></div>
       <code>--radius-sm</code><span class="dim text-sm ml-auto">radius − 4px</span>
@@ -195,23 +204,23 @@
   <div class="flex flex-col gap-2 mb-10">
     <div class="swatch-row">
       <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--chart-1);flex-shrink:0;"></div>
-      <code>--chart-1</code><span class="text-sm text-muted-foreground ml-auto">bg-chart-1</span>
+      <code>--chart-1</code><span class="text-sm text-muted-foreground ml-auto">var(--chart-1)</span>
     </div>
     <div class="swatch-row">
       <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--chart-2);flex-shrink:0;"></div>
-      <code>--chart-2</code><span class="text-sm text-muted-foreground ml-auto">bg-chart-2</span>
+      <code>--chart-2</code><span class="text-sm text-muted-foreground ml-auto">var(--chart-2)</span>
     </div>
     <div class="swatch-row">
       <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--chart-3);flex-shrink:0;"></div>
-      <code>--chart-3</code><span class="text-sm text-muted-foreground ml-auto">bg-chart-3</span>
+      <code>--chart-3</code><span class="text-sm text-muted-foreground ml-auto">var(--chart-3)</span>
     </div>
     <div class="swatch-row">
       <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--chart-4);flex-shrink:0;"></div>
-      <code>--chart-4</code><span class="text-sm text-muted-foreground ml-auto">bg-chart-4</span>
+      <code>--chart-4</code><span class="text-sm text-muted-foreground ml-auto">var(--chart-4)</span>
     </div>
     <div class="swatch-row">
       <div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--chart-5);flex-shrink:0;"></div>
-      <code>--chart-5</code><span class="text-sm text-muted-foreground ml-auto">bg-chart-5</span>
+      <code>--chart-5</code><span class="text-sm text-muted-foreground ml-auto">var(--chart-5)</span>
     </div>
   </div>
 
@@ -222,54 +231,79 @@
   <div class="flex flex-col gap-2 mb-10">
     <div class="swatch-row">
       <span style="font-family:var(--font-sans);font-size:0.875rem;flex-shrink:0;width:8rem;">The quick brown fox</span>
-      <code>--font-sans</code><span class="text-sm text-muted-foreground ml-auto">font-sans</span>
+      <code>--font-sans</code><span class="text-sm text-muted-foreground ml-auto">var(--font-sans)</span>
     </div>
     <div class="swatch-row">
       <span style="font-family:var(--font-serif);font-size:0.875rem;flex-shrink:0;width:8rem;">The quick brown fox</span>
-      <code>--font-serif</code><span class="text-sm text-muted-foreground ml-auto">font-serif</span>
+      <code>--font-serif</code><span class="text-sm text-muted-foreground ml-auto">var(--font-serif)</span>
     </div>
     <div class="swatch-row">
       <span style="font-family:var(--font-mono);font-size:0.875rem;flex-shrink:0;width:8rem;">The quick brown fox</span>
-      <code>--font-mono</code><span class="text-sm text-muted-foreground ml-auto">font-mono</span>
+      <code>--font-mono</code><span class="text-sm text-muted-foreground ml-auto">var(--font-mono)</span>
     </div>
   </div>
 
   <div class="sep"></div>
 
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Shadow scale</h2>
-  <p class="text-sm text-muted-foreground mb-5">Theme-aware shadows available as both tokens and Tailwind utilities.</p>
+  <p class="text-sm text-muted-foreground mb-5">Theme-aware shadows available as CSS custom properties.</p>
   <div class="flex flex-col gap-2 mb-10">
     <div class="swatch-row">
       <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-2xs);flex-shrink:0;"></div>
-      <code>--shadow-2xs</code><span class="text-sm text-muted-foreground ml-auto">shadow-2xs</span>
+      <code>--shadow-2xs</code><span class="text-sm text-muted-foreground ml-auto">var(--shadow-2xs)</span>
     </div>
     <div class="swatch-row">
       <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-xs);flex-shrink:0;"></div>
-      <code>--shadow-xs</code><span class="text-sm text-muted-foreground ml-auto">shadow-xs</span>
+      <code>--shadow-xs</code><span class="text-sm text-muted-foreground ml-auto">var(--shadow-xs)</span>
     </div>
     <div class="swatch-row">
       <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);flex-shrink:0;"></div>
-      <code>--shadow-sm</code><span class="text-sm text-muted-foreground ml-auto">shadow-sm</span>
+      <code>--shadow-sm</code><span class="text-sm text-muted-foreground ml-auto">var(--shadow-sm)</span>
     </div>
     <div class="swatch-row">
       <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow);flex-shrink:0;"></div>
-      <code>--shadow</code><span class="text-sm text-muted-foreground ml-auto">shadow</span>
+      <code>--shadow</code><span class="text-sm text-muted-foreground ml-auto">var(--shadow)</span>
     </div>
     <div class="swatch-row">
       <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-md);flex-shrink:0;"></div>
-      <code>--shadow-md</code><span class="text-sm text-muted-foreground ml-auto">shadow-md</span>
+      <code>--shadow-md</code><span class="text-sm text-muted-foreground ml-auto">var(--shadow-md)</span>
     </div>
     <div class="swatch-row">
       <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);flex-shrink:0;"></div>
-      <code>--shadow-lg</code><span class="text-sm text-muted-foreground ml-auto">shadow-lg</span>
+      <code>--shadow-lg</code><span class="text-sm text-muted-foreground ml-auto">var(--shadow-lg)</span>
     </div>
     <div class="swatch-row">
       <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-xl);flex-shrink:0;"></div>
-      <code>--shadow-xl</code><span class="text-sm text-muted-foreground ml-auto">shadow-xl</span>
+      <code>--shadow-xl</code><span class="text-sm text-muted-foreground ml-auto">var(--shadow-xl)</span>
     </div>
     <div class="swatch-row">
       <div style="width:4rem;height:2rem;background:var(--background);border-radius:var(--radius-md);box-shadow:var(--shadow-2xl);flex-shrink:0;"></div>
-      <code>--shadow-2xl</code><span class="text-sm text-muted-foreground ml-auto">shadow-2xl</span>
+      <code>--shadow-2xl</code><span class="text-sm text-muted-foreground ml-auto">var(--shadow-2xl)</span>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Shadow composition</h2>
+  <p class="text-sm text-muted-foreground mb-5">Low-level tokens that let themes adjust shadow direction and intensity.</p>
+  <div class="flex flex-col gap-2 mb-10">
+    <div class="swatch-row">
+      <code>--shadow-x</code><span class="dim text-sm ml-auto">0</span>
+    </div>
+    <div class="swatch-row">
+      <code>--shadow-y</code><span class="dim text-sm ml-auto">1px</span>
+    </div>
+    <div class="swatch-row">
+      <code>--shadow-blur</code><span class="dim text-sm ml-auto">3px</span>
+    </div>
+    <div class="swatch-row">
+      <code>--shadow-spread</code><span class="dim text-sm ml-auto">0px</span>
+    </div>
+    <div class="swatch-row">
+      <code>--shadow-opacity</code><span class="dim text-sm ml-auto">0.1</span>
+    </div>
+    <div class="swatch-row">
+      <code>--shadow-color</code><span class="dim text-sm ml-auto">oklch(0 0 0)</span>
     </div>
   </div>
 

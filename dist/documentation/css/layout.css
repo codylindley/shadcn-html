@@ -74,6 +74,8 @@ code {
   border: 1px solid var(--border);
 }
 pre code { background: none; padding: 0; border: none; font-size: inherit; }
+/* Override highlight.js background — use token-based muted bg instead */
+pre code.hljs { background: transparent; padding: 0; }
 .dim { color: var(--muted-foreground); }
 
 /* ── Doc tabs (preview/pattern/html switcher) ────────────── */

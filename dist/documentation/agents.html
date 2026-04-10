@@ -8,9 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../tokens/tokens.css">
+  <link rel="stylesheet" href="../theme/semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
+  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <link rel="stylesheet" href="css/components/button.css">
   <link rel="stylesheet" href="css/components/card.css">
   <link rel="stylesheet" href="css/components/dialog.css">
@@ -110,7 +113,7 @@
         <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
            style="letter-spacing: 0.08em;">Overview</p>
         <a class="nav-link" href="index.html">Introduction</a>
-        <a class="nav-link" href="tokens.html">Token System</a>
+        <a class="nav-link" href="tokens.html">Semantic Tokens</a>
         <a class="nav-link" href="setup.html">Setup</a>
         <a class="nav-link active" href="agents.html">agents.md</a>
       </div>
@@ -135,7 +138,7 @@
   <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">agents.md</h1>
   <p class="text-muted-foreground leading-relaxed mb-8" style="max-width:38rem;">
     The AI's operating contract. Drop it in the project root. Any agent that reads it
-    knows the token system, the component model, the interactivity priority, and what to avoid.
+    knows the semantic tokens, the component model, the interactivity priority, and what to avoid.
   </p>
   <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
     <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
@@ -147,7 +150,7 @@
       <div style="display:flex;flex-direction:column;gap:0.625rem;">
         <div class="flex items-start gap-3">
           <span style="color:var(--primary);font-weight:600;flex-shrink:0;">→</span>
-          <span class="text-muted-foreground">Token table — every semantic pair with its Tailwind utility equivalent</span>
+          <span class="text-muted-foreground">Token table — every semantic color pair with its CSS custom property name</span>
         </div>
         <div class="flex items-start gap-3">
           <span style="color:var(--primary);font-weight:600;flex-shrink:0;">→</span>
@@ -163,7 +166,7 @@
         </div>
         <div class="flex items-start gap-3">
           <span style="color:var(--primary);font-weight:600;flex-shrink:0;">→</span>
-          <span class="text-muted-foreground">Pattern reference table — which patterns/ file to read before implementing</span>
+          <span class="text-muted-foreground">Specification reference table — which component-specifications/ file to read before implementing</span>
         </div>
         <div class="flex items-start gap-3">
           <span style="color:var(--primary);font-weight:600;flex-shrink:0;">→</span>

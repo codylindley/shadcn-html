@@ -8,9 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../tokens/tokens.css">
+  <link rel="stylesheet" href="../theme/semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
+  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <link rel="stylesheet" href="css/components/button.css">
   <link rel="stylesheet" href="css/components/card.css">
   <link rel="stylesheet" href="css/components/dialog.css">
@@ -110,7 +113,7 @@
         <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
            style="letter-spacing: 0.08em;">Overview</p>
         <a class="nav-link" href="index.html">Introduction</a>
-        <a class="nav-link" href="tokens.html">Token System</a>
+        <a class="nav-link" href="tokens.html">Semantic Tokens</a>
         <a class="nav-link" href="setup.html">Setup</a>
         <a class="nav-link" href="agents.html">agents.md</a>
       </div>
@@ -141,11 +144,11 @@
           roving <code>tabindex</code> and arrow key navigation. Available in pill and line variants.
         </p>
 
-        <!-- Pattern Reference -->
+        <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Pattern Reference — patterns/tabs.md
+            Component Specification — component-specifications/tabs.md
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
@@ -512,6 +515,83 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
         </div>
+
+        <!-- ── JavaScript ──────────────────────────────── -->
+        <section style="margin-top:3rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript</h2>
+          <p class="text-muted-foreground text-sm mb-4">Panel switching + WAI-ARIA keyboard navigation. Arrow keys cycle tabs, Home/End jump to first/last, disabled tabs are skipped automatically.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code>// Tabs — ARIA keyboard navigation + panel switching
+function activateTab(tab, triggers) {
+  triggers.forEach(function (t) {
+    t.setAttribute('aria-selected', 'false');
+    t.setAttribute('tabindex', '-1');
+    var panel = document.getElementById(t.getAttribute('aria-controls'));
+    if (panel) panel.hidden = true;
+  });
+  tab.setAttribute('aria-selected', 'true');
+  tab.removeAttribute('tabindex');
+  var panel = document.getElementById(tab.getAttribute('aria-controls'));
+  if (panel) panel.hidden = false;
+}
+
+document.querySelectorAll('[role="tablist"]').forEach(function (tablist) {
+  var triggers = Array.from(tablist.querySelectorAll('[role="tab"]'));
+  var orientation = tablist.getAttribute('aria-orientation') || 'horizontal';
+
+  triggers.forEach(function (trigger) {
+    trigger.addEventListener('click', function () {
+      activateTab(trigger, triggers);
+    });
+
+    trigger.addEventListener('keydown', function (e) {
+      var current = triggers.indexOf(trigger);
+      var next;
+      var forward  = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
+      var backward = orientation === 'horizontal' ? 'ArrowLeft'  : 'ArrowUp';
+
+      switch (e.key) {
+        case forward:
+          e.preventDefault();
+          for (var i = 1; i &lt;= triggers.length; i++) {
+            var c = triggers[(current + i) % triggers.length];
+            if (!c.disabled) { next = c; break; }
+          }
+          break;
+        case backward:
+          e.preventDefault();
+          for (var i = 1; i &lt;= triggers.length; i++) {
+            var c = triggers[(current - i + triggers.length) % triggers.length];
+            if (!c.disabled) { next = c; break; }
+          }
+          break;
+        case 'Home':
+          e.preventDefault();
+          next = triggers.find(function (t) { return !t.disabled; });
+          break;
+        case 'End':
+          e.preventDefault();
+          next = triggers.slice().reverse().find(function (t) {
+            return !t.disabled;
+          });
+          break;
+      }
+      if (next &amp;&amp; !next.disabled) {
+        activateTab(next, triggers);
+        next.focus();
+      }
+    });
+  });
+});</code></pre>
+          </div>
+          <p class="text-xs text-muted-foreground" style="margin-top:1rem;">
+            Full specification → <a href="../component-specifications/tabs.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">component-specifications/tabs.md</a>
+          </p>
+        </section>
     </main>
   </div>
 

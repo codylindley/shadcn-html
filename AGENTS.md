@@ -11,18 +11,17 @@ The consumer-facing system lives in `dist/`. Everything outside `dist/` is build
 ai-web-prototyper/
 ├── dist/                              ← the distributable (drop into any project)
 │   ├── AGENTS.md                      ← consumer AI instructions
-│   ├── tokens/tokens.css              ← design tokens (source of truth for colors, radius, shadows)
-│   ├── theme/theme.css                ← Tailwind v4 @theme bridge (reference template)
-│   ├── patterns/*.md                  ← behavioral specs + CSS (source of truth for components)
+│   ├── theme/semantic-tokens.css      ← design tokens (source of truth for colors, radius, shadows)
+│   ├── component-specifications/*.md             ← component specifications + CSS (source of truth for components)
 │   └── documentation/                 ← reference implementations + public website
 │       ├── *.html                     ← one page per component + overview pages
 │       ├── css/docs-theme.css         ← doc-site font overrides (not part of the system)
 │       ├── css/layout.css             ← doc-site layout (not part of the system)
-│       ├── css/components/*.css       ← GENERATED from patterns — do not edit directly
+│       ├── css/components/*.css       ← GENERATED from component specifications — do not edit directly
 │       └── js/site.js                 ← doc-site JS + component interaction wiring
 │
 ├── scripts/
-│   └── sync-css.py                    ← extracts CSS from patterns into component CSS files
+│   └── sync-css.py                    ← extracts CSS from component specifications into component CSS files
 │
 └── AGENTS.md                          ← this file (maintainer instructions)
 ```
@@ -31,24 +30,24 @@ ai-web-prototyper/
 
 ## Critical rules
 
-### Patterns are the source of truth for component CSS
+### Specifications are the source of truth for component CSS
 
-The CSS in `dist/patterns/*.md` is the canonical source. The files in
+The CSS in `dist/component-specifications/*.md` is the canonical source. The files in
 `dist/documentation/css/components/*.css` are **generated outputs**.
 
 **Never edit component CSS files directly.** Edit the CSS code block in the
-pattern markdown file, then run:
+specification markdown file, then run:
 
 ```
 python3 scripts/sync-css.py
 ```
 
-This extracts all ```css blocks from each pattern and writes them to the
+This extracts all ```css blocks from each specification and writes them to the
 corresponding component CSS file. The script is idempotent.
 
 ### Tokens are the source of truth for design values
 
-`dist/tokens/tokens.css` defines all CSS custom properties. These must match
+`dist/theme/semantic-tokens.css` defines all CSS custom properties. These must match
 the shape of tweakcn.com theme exports so themes are drop-in compatible.
 
 The token file provides:
@@ -57,14 +56,6 @@ The token file provides:
 - Shadow scale and composition tokens
 - Font stacks (generic — overridden by doc site)
 - Spacing and tracking
-
-### The inline theme bridge is duplicated
-
-`dist/theme/theme.css` is a reference template. The Tailwind CDN browser build
-requires the `@theme inline` block inside a `<style type="text/tailwindcss">` tag.
-Each HTML file in `dist/documentation/` contains this block inline.
-
-**If you update `theme/theme.css`, update the inline blocks in all HTML files too.**
 
 ### Documentation HTML files share boilerplate
 
@@ -81,7 +72,7 @@ can cause `sed` patterns to miss that file (as happened with dialog.html).
 
 ## Adding a new component
 
-1. **Write the pattern** → `dist/patterns/{name}.md`
+1. **Write the specification** → `dist/component-specifications/{name}.md`
    - Follow the template: Native basis → Structure → CSS → JavaScript → ARIA → Notes
    - Include the complete CSS in a ```css code block
    - Reference shadcn/ui (ui.shadcn.com) for the expected behavior
@@ -99,7 +90,7 @@ can cause `sed` patterns to miss that file (as happened with dialog.html).
 5. **Update sidebar nav** → add link in ALL HTML files
    - Also add the CSS import to all HTML files
 
-6. **Update AGENTS.md** → add row to pattern reference table in `dist/AGENTS.md`
+6. **Update AGENTS.md** → add row to specification reference table in `dist/AGENTS.md`
 
 ---
 
@@ -108,11 +99,11 @@ can cause `sed` patterns to miss that file (as happened with dialog.html).
 - **Dialog/Sheet centering**: Tailwind preflight strips `margin: auto` from `<dialog>`.
   Always set `margin: auto; position: fixed; inset: 0;` explicitly for centered dialogs.
 - **CSS drift**: If you edit a component CSS file directly, the next `sync-css.py` run
-  will overwrite your changes. Always edit the pattern.
+  will overwrite your changes. Always edit the specification.
 - **Nav link sed failures**: Pages where the component has `class="nav-link active"`
   won't match a sed pattern looking for `class="nav-link"`. Check all files after bulk updates.
 - **Font stacks**: The system tokens use generic font stacks. The doc site overrides
-  them in `css/docs-theme.css`. Don't put custom fonts in `tokens.css`.
+  them in `css/docs-theme.css`. Don't put custom fonts in `semantic-tokens.css`.
 # shadcn-html — Agent Instructions
 
 You are working inside the **shadcn-html** prototyping system. Read this file completely
@@ -122,7 +113,7 @@ before writing any HTML, CSS, or JavaScript. These rules are non-negotiable.
 
 ## What this system is
 
-A semantic HTML / Tailwind v4 / vanilla JS component system using the shadcn/ui
+A semantic HTML / CSS custom property / vanilla JS component system using the shadcn/ui
 token model. No React. No Vue. No Web Components. No runtime CSS-in-JS.
 The output is plain HTML that runs directly in any browser with no build step.
 
@@ -131,76 +122,76 @@ The output is plain HTML that runs directly in any browser with no build step.
 ## Design System Contract
 
 ### Colors
-All colors are CSS custom properties defined in `tokens/tokens.css`.
+All colors are CSS custom properties defined in `theme/semantic-tokens.css`.
 They follow the shadcn semantic pair model:
 
-| Surface token         | Text/icon token              | Tailwind utility          |
-|-----------------------|------------------------------|---------------------------|
-| `--background`        | `--foreground`               | `bg-background text-foreground` |
-| `--primary`           | `--primary-foreground`       | `bg-primary text-primary-foreground` |
-| `--secondary`         | `--secondary-foreground`     | `bg-secondary text-secondary-foreground` |
-| `--muted`             | `--muted-foreground`         | `bg-muted text-muted-foreground` |
-| `--accent`            | `--accent-foreground`        | `bg-accent text-accent-foreground` |
-| `--destructive`       | `--destructive-foreground`   | `bg-destructive text-destructive-foreground` |
-| `--card`              | `--card-foreground`          | `bg-card text-card-foreground` |
-| `--popover`           | `--popover-foreground`       | `bg-popover text-popover-foreground` |
+| Surface token         | Text/icon token              | CSS usage                  |
+|-----------------------|------------------------------|----------------------------|
+| `--background`        | `--foreground`               | `var(--background)` `var(--foreground)` |
+| `--primary`           | `--primary-foreground`       | `var(--primary)` `var(--primary-foreground)` |
+| `--secondary`         | `--secondary-foreground`     | `var(--secondary)` `var(--secondary-foreground)` |
+| `--muted`             | `--muted-foreground`         | `var(--muted)` `var(--muted-foreground)` |
+| `--accent`            | `--accent-foreground`        | `var(--accent)` `var(--accent-foreground)` |
+| `--destructive`       | `--destructive-foreground`   | `var(--destructive)` `var(--destructive-foreground)` |
+| `--card`              | `--card-foreground`          | `var(--card)` `var(--card-foreground)` |
+| `--popover`           | `--popover-foreground`       | `var(--popover)` `var(--popover-foreground)` |
 
 **NEVER** use raw color values (hex, rgb, hsl, oklch literals).
-**ALWAYS** use token utilities: `bg-primary`, `text-muted-foreground`, etc.
+**ALWAYS** use token references: `var(--primary)`, `var(--muted-foreground)`, etc.
 
 ### Sidebar tokens
 Full sidebar token set for sidebar-specific theming:
 
-| Token                         | Tailwind utility                     |
+| Token                         | CSS usage                            |
 |-------------------------------|--------------------------------------|
-| `--sidebar`                   | `bg-sidebar`                         |
-| `--sidebar-foreground`        | `text-sidebar-foreground`            |
-| `--sidebar-primary`           | `bg-sidebar-primary`                 |
-| `--sidebar-primary-foreground`| `text-sidebar-primary-foreground`    |
-| `--sidebar-accent`            | `bg-sidebar-accent`                  |
-| `--sidebar-accent-foreground` | `text-sidebar-accent-foreground`     |
-| `--sidebar-border`            | `border-sidebar-border`              |
-| `--sidebar-ring`              | `ring-sidebar-ring`                  |
+| `--sidebar`                   | `var(--sidebar)`                     |
+| `--sidebar-foreground`        | `var(--sidebar-foreground)`          |
+| `--sidebar-primary`           | `var(--sidebar-primary)`             |
+| `--sidebar-primary-foreground`| `var(--sidebar-primary-foreground)`  |
+| `--sidebar-accent`            | `var(--sidebar-accent)`              |
+| `--sidebar-accent-foreground` | `var(--sidebar-accent-foreground)`   |
+| `--sidebar-border`            | `var(--sidebar-border)`              |
+| `--sidebar-ring`              | `var(--sidebar-ring)`                |
 
 ### Chart tokens
 Five chart colors for data visualization:
-`--chart-1` through `--chart-5` → `bg-chart-1`, `text-chart-1`, etc.
+`--chart-1` through `--chart-5` → `var(--chart-1)`, `var(--chart-2)`, etc.
 
 ### Utility-only tokens
-- `--border` → `border-border`
-- `--input` → `border-input`
-- `--ring` → `ring-ring` (focus rings)
+- `--border` → `var(--border)`
+- `--input` → `var(--input)`
+- `--ring` → `var(--ring)` (focus rings)
 
 ### Typography tokens
 Font stacks are CSS custom properties that can be overridden by themes:
-- `--font-sans` → `font-sans`
-- `--font-serif` → `font-serif`
-- `--font-mono` → `font-mono`
+- `--font-sans` → `var(--font-sans)`
+- `--font-serif` → `var(--font-serif)`
+- `--font-mono` → `var(--font-mono)`
 
 ### Radius scale
-- `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-xl`
+- `var(--radius-sm)`, `var(--radius-md)`, `var(--radius-lg)`, `var(--radius-xl)`
 - Derived from `--radius` using subtraction: `sm = radius - 4px`, `md = radius - 2px`, `lg = radius`, `xl = radius + 4px`
-- Never hardcode border-radius values. Use `rounded-*` utilities or `var(--radius-*)` in CSS.
+- Never hardcode border-radius values. Use `var(--radius-*)` in CSS.
 
 ### Shadow scale
-Theme-aware shadows are available as both tokens and utilities:
-- `shadow-2xs`, `shadow-xs`, `shadow-sm`, `shadow`, `shadow-md`, `shadow-lg`, `shadow-xl`, `shadow-2xl`
+Theme-aware shadows available as CSS custom properties:
+- `var(--shadow-2xs)`, `var(--shadow-xs)`, `var(--shadow-sm)`, `var(--shadow)`, `var(--shadow-md)`, `var(--shadow-lg)`, `var(--shadow-xl)`, `var(--shadow-2xl)`
 - Shadow composition tokens (`--shadow-x`, `--shadow-y`, `--shadow-blur`, `--shadow-spread`, `--shadow-opacity`, `--shadow-color`) allow themes to adjust shadow direction and intensity.
 
 ### Spacing and tracking
-- `--spacing` — base spacing unit (default `0.25rem`), controls all `p-*`, `m-*`, `gap-*` utilities
+- `--spacing` — base spacing unit (default `0.25rem`)
 - `--tracking-normal` — default letter-spacing
 
 ---
 
 ## Styling rules
 
-1. Use Tailwind v4 utility classes for all styling
+1. Use CSS custom properties (`var(--*)`) from `semantic-tokens.css` for all design values
 2. Use `data-variant` attributes for component variants — not separate CSS classes
 3. Use `data-size` attributes for size variants
-4. CSS `@apply` is acceptable inside component stylesheets for compound patterns
-5. Dark mode is handled automatically by the token cascade — never add `dark:` color overrides
-6. The token layer handles dark mode. Just use semantic utilities.
+4. Component CSS uses `var(--*)` references to tokens
+5. Dark mode is handled automatically by the token cascade — never add separate dark mode overrides
+6. The token layer handles dark mode. Just use semantic token references.
 
 ---
 
@@ -209,9 +200,9 @@ Theme-aware shadows are available as both tokens and utilities:
 There is **no component library**. When building UI:
 
 1. Use semantic HTML elements (`<button>`, `<dialog>`, `<details>`, `<article>`)
-2. Apply Tailwind utility classes from the token bridge
+2. Apply component CSS classes and use `var(--*)` token references
 3. Set variants via `data-*` attributes
-4. Read the relevant `patterns/*.md` file before implementing interactivity
+4. Read the relevant `component-specifications/*.md` file before implementing interactivity
 5. Build the interaction from scratch using vanilla JS
 
 ### Variant pattern
@@ -275,25 +266,25 @@ Always prefer the simplest approach that achieves correct, accessible behavior:
 
 ---
 
-## Pattern reference
+## Specification reference
 
-Before implementing any component, read the spec in `patterns/`:
+Before implementing any component, read the spec in `component-specifications/`:
 
-| Component   | Pattern file             | Native basis                   |
-|-------------|--------------------------|--------------------------------|
-| Accordion   | `patterns/accordion.md`  | `<details>/<summary>`          |
-| Badge       | `patterns/badge.md`      | `<span>`                       |
-| Button      | `patterns/button.md`     | `<button>`                     |
-| Card        | `patterns/card.md`       | `<div>` / `<article>`          |
-| Combobox    | `patterns/combobox.md`   | `<input>` + `role="listbox"`   |
-| Dialog      | `patterns/dialog.md`     | `<dialog>` + `showModal()`     |
-| Dropdown    | `patterns/dropdown.md`   | `popover` API                  |
-| Input       | `patterns/input.md`      | `<input>`                      |
-| Sheet       | `patterns/sheet.md`      | `<dialog>` + `showModal()`     |
-| Tabs        | `patterns/tabs.md`       | `role="tablist"` + aria        |
-| Toast       | `patterns/toast.md`      | `popover` API                  |
+| Component   | Specification file             | Native basis                   |
+|-------------|--------------------------------|--------------------------------|
+| Accordion   | `component-specifications/accordion.md`  | `<details>/<summary>`          |
+| Badge       | `component-specifications/badge.md`      | `<span>`                       |
+| Button      | `component-specifications/button.md`     | `<button>`                     |
+| Card        | `component-specifications/card.md`       | `<div>` / `<article>`          |
+| Combobox    | `component-specifications/combobox.md`   | `<input>` + `role="listbox"`   |
+| Dialog      | `component-specifications/dialog.md`     | `<dialog>` + `showModal()`     |
+| Dropdown    | `component-specifications/dropdown.md`   | `popover` API                  |
+| Input       | `component-specifications/input.md`      | `<input>`                      |
+| Sheet       | `component-specifications/sheet.md`      | `<dialog>` + `showModal()`     |
+| Tabs        | `component-specifications/tabs.md`       | `role="tablist"` + aria        |
+| Toast       | `component-specifications/toast.md`      | `popover` API                  |
 
-The pattern file defines: structure, ARIA attributes, event wiring, state model,
+The specification file defines: structure, ARIA attributes, event wiring, state model,
 and token usage. Read it and implement from scratch. Do not import libraries.
 
 ---
@@ -303,9 +294,8 @@ and token usage. Read it and implement from scratch. Do not import libraries.
 ```
 shadcn-html/
 ├── AGENTS.md                          ← this file
-├── tokens/tokens.css                  ← CSS custom property definitions (the source of truth)
-├── theme/theme.css                    ← Tailwind v4 @theme inline bridge (reference/template)
-├── patterns/*.md                      ← behavioral specs (read before building)
+├── theme/semantic-tokens.css          ← CSS custom property definitions (the source of truth)
+├── component-specifications/*.md                      ← component specifications (read before building)
 └── documentation/                     ← reference implementations (working examples)
     ├── *.html                         ← one page per component + index, setup, tokens
     ├── css/
@@ -317,12 +307,6 @@ shadcn-html/
 ```
 
 ### Notes on specific files
-
-- **`theme/theme.css`** — This is a reference template for the `@theme inline` block.
-  When using Tailwind v4's CDN browser build, the `@theme` block must be inlined
-  in a `<style type="text/tailwindcss">` tag (it cannot be `<link>`-ed). Each HTML
-  file in `documentation/` contains this block inline. If you update `theme/theme.css`,
-  update the inline blocks too.
 
 - **`documentation/css/components/*.css`** — These are the actual component stylesheets.
   Copy the ones you need into your project. They use `var(--*)` references to tokens

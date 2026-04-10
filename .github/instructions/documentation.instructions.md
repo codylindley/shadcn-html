@@ -43,6 +43,6 @@ components used in demos on other pages render correctly.
 
 ## The inline theme bridge
 
-The `<style type="text/tailwindcss">` block in each file IS the theme bridge.
+The `<style type="text/tailwindcss">` block in each file IS the Tailwind theme bridge.
 It cannot be `<link>`-ed — the Tailwind CDN browser build requires it inline.
-If `dist/theme/theme.css` changes, update this block in every HTML file.
+If the token set changes, update this block in every HTML file.

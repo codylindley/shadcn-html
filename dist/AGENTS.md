@@ -7,7 +7,7 @@ before writing any HTML, CSS, or JavaScript. These rules are non-negotiable.
 
 ## What this system is
 
-A semantic HTML / Tailwind v4 / vanilla JS component system using the shadcn/ui
+A semantic HTML / CSS custom property / vanilla JS component system using the shadcn/ui
 token model. No React. No Vue. No Web Components. No runtime CSS-in-JS.
 The output is plain HTML that runs directly in any browser with no build step.
 
@@ -16,76 +16,76 @@ The output is plain HTML that runs directly in any browser with no build step.
 ## Design System Contract
 
 ### Colors
-All colors are CSS custom properties defined in `tokens/tokens.css`.
+All colors are CSS custom properties defined in `theme/semantic-tokens.css`.
 They follow the shadcn semantic pair model:
 
-| Surface token         | Text/icon token              | Tailwind utility          |
-|-----------------------|------------------------------|---------------------------|
-| `--background`        | `--foreground`               | `bg-background text-foreground` |
-| `--primary`           | `--primary-foreground`       | `bg-primary text-primary-foreground` |
-| `--secondary`         | `--secondary-foreground`     | `bg-secondary text-secondary-foreground` |
-| `--muted`             | `--muted-foreground`         | `bg-muted text-muted-foreground` |
-| `--accent`            | `--accent-foreground`        | `bg-accent text-accent-foreground` |
-| `--destructive`       | `--destructive-foreground`   | `bg-destructive text-destructive-foreground` |
-| `--card`              | `--card-foreground`          | `bg-card text-card-foreground` |
-| `--popover`           | `--popover-foreground`       | `bg-popover text-popover-foreground` |
+| Surface token         | Text/icon token              | CSS usage                  |
+|-----------------------|------------------------------|----------------------------|
+| `--background`        | `--foreground`               | `var(--background)` `var(--foreground)` |
+| `--primary`           | `--primary-foreground`       | `var(--primary)` `var(--primary-foreground)` |
+| `--secondary`         | `--secondary-foreground`     | `var(--secondary)` `var(--secondary-foreground)` |
+| `--muted`             | `--muted-foreground`         | `var(--muted)` `var(--muted-foreground)` |
+| `--accent`            | `--accent-foreground`        | `var(--accent)` `var(--accent-foreground)` |
+| `--destructive`       | `--destructive-foreground`   | `var(--destructive)` `var(--destructive-foreground)` |
+| `--card`              | `--card-foreground`          | `var(--card)` `var(--card-foreground)` |
+| `--popover`           | `--popover-foreground`       | `var(--popover)` `var(--popover-foreground)` |
 
 **NEVER** use raw color values (hex, rgb, hsl, oklch literals).
-**ALWAYS** use token utilities: `bg-primary`, `text-muted-foreground`, etc.
+**ALWAYS** use token references: `var(--primary)`, `var(--muted-foreground)`, etc.
 
 ### Sidebar tokens
 Full sidebar token set for sidebar-specific theming:
 
-| Token                         | Tailwind utility                     |
+| Token                         | CSS usage                            |
 |-------------------------------|--------------------------------------|
-| `--sidebar`                   | `bg-sidebar`                         |
-| `--sidebar-foreground`        | `text-sidebar-foreground`            |
-| `--sidebar-primary`           | `bg-sidebar-primary`                 |
-| `--sidebar-primary-foreground`| `text-sidebar-primary-foreground`    |
-| `--sidebar-accent`            | `bg-sidebar-accent`                  |
-| `--sidebar-accent-foreground` | `text-sidebar-accent-foreground`     |
-| `--sidebar-border`            | `border-sidebar-border`              |
-| `--sidebar-ring`              | `ring-sidebar-ring`                  |
+| `--sidebar`                   | `var(--sidebar)`                     |
+| `--sidebar-foreground`        | `var(--sidebar-foreground)`          |
+| `--sidebar-primary`           | `var(--sidebar-primary)`             |
+| `--sidebar-primary-foreground`| `var(--sidebar-primary-foreground)`  |
+| `--sidebar-accent`            | `var(--sidebar-accent)`              |
+| `--sidebar-accent-foreground` | `var(--sidebar-accent-foreground)`   |
+| `--sidebar-border`            | `var(--sidebar-border)`              |
+| `--sidebar-ring`              | `var(--sidebar-ring)`                |
 
 ### Chart tokens
 Five chart colors for data visualization:
-`--chart-1` through `--chart-5` → `bg-chart-1`, `text-chart-1`, etc.
+`--chart-1` through `--chart-5` → `var(--chart-1)`, `var(--chart-2)`, etc.
 
 ### Utility-only tokens
-- `--border` → `border-border`
-- `--input` → `border-input`
-- `--ring` → `ring-ring` (focus rings)
+- `--border` → `var(--border)`
+- `--input` → `var(--input)`
+- `--ring` → `var(--ring)` (focus rings)
 
 ### Typography tokens
 Font stacks are CSS custom properties that can be overridden by themes:
-- `--font-sans` → `font-sans`
-- `--font-serif` → `font-serif`
-- `--font-mono` → `font-mono`
+- `--font-sans` → `var(--font-sans)`
+- `--font-serif` → `var(--font-serif)`
+- `--font-mono` → `var(--font-mono)`
 
 ### Radius scale
-- `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-xl`
+- `var(--radius-sm)`, `var(--radius-md)`, `var(--radius-lg)`, `var(--radius-xl)`
 - Derived from `--radius` using subtraction: `sm = radius - 4px`, `md = radius - 2px`, `lg = radius`, `xl = radius + 4px`
-- Never hardcode border-radius values. Use `rounded-*` utilities or `var(--radius-*)` in CSS.
+- Never hardcode border-radius values. Use `var(--radius-*)` in CSS.
 
 ### Shadow scale
-Theme-aware shadows are available as both tokens and utilities:
-- `shadow-2xs`, `shadow-xs`, `shadow-sm`, `shadow`, `shadow-md`, `shadow-lg`, `shadow-xl`, `shadow-2xl`
+Theme-aware shadows available as CSS custom properties:
+- `var(--shadow-2xs)`, `var(--shadow-xs)`, `var(--shadow-sm)`, `var(--shadow)`, `var(--shadow-md)`, `var(--shadow-lg)`, `var(--shadow-xl)`, `var(--shadow-2xl)`
 - Shadow composition tokens (`--shadow-x`, `--shadow-y`, `--shadow-blur`, `--shadow-spread`, `--shadow-opacity`, `--shadow-color`) allow themes to adjust shadow direction and intensity.
 
 ### Spacing and tracking
-- `--spacing` — base spacing unit (default `0.25rem`), controls all `p-*`, `m-*`, `gap-*` utilities
+- `--spacing` — base spacing unit (default `0.25rem`)
 - `--tracking-normal` — default letter-spacing
 
 ---
 
 ## Styling rules
 
-1. Use Tailwind v4 utility classes for all styling
+1. Use CSS custom properties (`var(--*)`) from `semantic-tokens.css` for all design values
 2. Use `data-variant` attributes for component variants — not separate CSS classes
 3. Use `data-size` attributes for size variants
-4. CSS `@apply` is acceptable inside component stylesheets for compound patterns
-5. Dark mode is handled automatically by the token cascade — never add `dark:` color overrides
-6. The token layer handles dark mode. Just use semantic utilities.
+4. Component CSS uses `var(--*)` references to tokens
+5. Dark mode is handled automatically by the token cascade — never add separate dark mode overrides
+6. The token layer handles dark mode. Just use semantic token references.
 
 ---
 
@@ -94,9 +94,9 @@ Theme-aware shadows are available as both tokens and utilities:
 There is **no component library**. When building UI:
 
 1. Use semantic HTML elements (`<button>`, `<dialog>`, `<details>`, `<article>`)
-2. Apply Tailwind utility classes from the token bridge
+2. Apply component CSS classes and use `var(--*)` token references
 3. Set variants via `data-*` attributes
-4. Read the relevant `patterns/*.md` file before implementing interactivity
+4. Read the relevant `component-specifications/*.md` file before implementing interactivity
 5. Build the interaction from scratch using vanilla JS
 
 ### Variant pattern
@@ -160,26 +160,26 @@ Always prefer the simplest approach that achieves correct, accessible behavior:
 
 ---
 
-## Pattern reference
+## Specification reference
 
-Before implementing any component, read the spec in `patterns/`:
+Before implementing any component, read the spec in `component-specifications/`:
 
-| Component   | Pattern file             | Native basis                   |
-|-------------|--------------------------|--------------------------------|
-| Accordion   | `patterns/accordion.md`  | `<details>/<summary>`          |
-| Badge       | `patterns/badge.md`      | `<span>`                       |
-| Button      | `patterns/button.md`     | `<button>`                     |
-| Card        | `patterns/card.md`       | `<div>` / `<article>`          |
-| Combobox    | `patterns/combobox.md`   | `<input>` + `role="listbox"`   |
-| Dialog      | `patterns/dialog.md`     | `<dialog>` + `showModal()`     |
-| Dropdown    | `patterns/dropdown.md`   | `popover` API                  |
-| Input       | `patterns/input.md`      | `<input>`                      |
-| Sheet       | `patterns/sheet.md`      | `<dialog>` + `showModal()`     |
-| Tabs        | `patterns/tabs.md`       | `role="tablist"` + aria        |
-| Toast       | `patterns/toast.md`      | `popover` API                  |
-| Toggle      | `patterns/toggle.md`     | `<button>` + `aria-pressed`    |
+| Component   | Specification file             | Native basis                   |
+|-------------|--------------------------------|--------------------------------|
+| Accordion   | `component-specifications/accordion.md`  | `<details>/<summary>`          |
+| Badge       | `component-specifications/badge.md`      | `<span>`                       |
+| Button      | `component-specifications/button.md`     | `<button>`                     |
+| Card        | `component-specifications/card.md`       | `<div>` / `<article>`          |
+| Combobox    | `component-specifications/combobox.md`   | `<input>` + `role="listbox"`   |
+| Dialog      | `component-specifications/dialog.md`     | `<dialog>` + `showModal()`     |
+| Dropdown    | `component-specifications/dropdown.md`   | `popover` API                  |
+| Input       | `component-specifications/input.md`      | `<input>`                      |
+| Sheet       | `component-specifications/sheet.md`      | `<dialog>` + `showModal()`     |
+| Tabs        | `component-specifications/tabs.md`       | `role="tablist"` + aria        |
+| Toast       | `component-specifications/toast.md`      | `popover` API                  |
+| Toggle      | `component-specifications/toggle.md`     | `<button>` + `aria-pressed`    |
 
-The pattern file defines: structure, ARIA attributes, event wiring, state model,
+The specification file defines: structure, ARIA attributes, event wiring, state model,
 and token usage. Read it and implement from scratch. Do not import libraries.
 
 ---
@@ -189,9 +189,8 @@ and token usage. Read it and implement from scratch. Do not import libraries.
 ```
 shadcn-html/
 ├── AGENTS.md                          ← this file
-├── tokens/tokens.css                  ← CSS custom property definitions (the source of truth)
-├── theme/theme.css                    ← Tailwind v4 @theme inline bridge (reference/template)
-├── patterns/*.md                      ← behavioral specs (read before building)
+├── theme/semantic-tokens.css          ← CSS custom property definitions (the source of truth)
+├── component-specifications/*.md                      ← component specifications (read before building)
 └── documentation/                     ← reference implementations (working examples)
     ├── *.html                         ← one page per component + index, setup, tokens
     ├── css/
@@ -203,12 +202,6 @@ shadcn-html/
 ```
 
 ### Notes on specific files
-
-- **`theme/theme.css`** — This is a reference template for the `@theme inline` block.
-  When using Tailwind v4's CDN browser build, the `@theme` block must be inlined
-  in a `<style type="text/tailwindcss">` tag (it cannot be `<link>`-ed). Each HTML
-  file in `documentation/` contains this block inline. If you update `theme/theme.css`,
-  update the inline blocks too.
 
 - **`documentation/css/components/*.css`** — These are the actual component stylesheets.
   Copy the ones you need into your project. They use `var(--*)` references to tokens

@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""
-sync-css.py — Extract CSS from pattern markdown files into component CSS files.
+"""sync-css.py -- Extract CSS from specification markdown files into component CSS files.
 
-Reads all patterns/*.md files, extracts ```css code blocks, and writes them
+Reads all component-specifications/*.md files, extracts ```css code blocks, and writes them
 to documentation/css/components/{name}.css.
 
 Run from the project root:
@@ -16,7 +15,7 @@ import sys
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(SCRIPT_DIR)
 DIST = os.path.join(ROOT, 'dist')
-PATTERNS_DIR = os.path.join(DIST, 'patterns')
+PATTERNS_DIR = os.path.join(DIST, 'component-specifications')
 CSS_DIR = os.path.join(DIST, 'documentation', 'css', 'components')
 
 # Regex to match ```css ... ``` blocks
@@ -48,7 +47,7 @@ def format_css(name, css_content):
 
 def main():
     if not os.path.isdir(PATTERNS_DIR):
-        print(f'Error: patterns directory not found: {PATTERNS_DIR}', file=sys.stderr)
+        print(f'Error: component-specifications directory not found: {PATTERNS_DIR}', file=sys.stderr)
         sys.exit(1)
 
     os.makedirs(CSS_DIR, exist_ok=True)

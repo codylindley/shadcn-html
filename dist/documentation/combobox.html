@@ -8,9 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../tokens/tokens.css">
+  <link rel="stylesheet" href="../theme/semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
+  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <link rel="stylesheet" href="css/components/button.css">
   <link rel="stylesheet" href="css/components/card.css">
   <link rel="stylesheet" href="css/components/dialog.css">
@@ -110,7 +113,7 @@
         <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
            style="letter-spacing: 0.08em;">Overview</p>
         <a class="nav-link" href="index.html">Introduction</a>
-        <a class="nav-link" href="tokens.html">Token System</a>
+        <a class="nav-link" href="tokens.html">Semantic Tokens</a>
         <a class="nav-link" href="setup.html">Setup</a>
         <a class="nav-link" href="agents.html">agents.md</a>
       </div>
@@ -141,11 +144,11 @@
           Filters as you type, keyboard navigable via <code>aria-activedescendant</code>. Uses <code>popover</code> for the dropdown.
         </p>
 
-        <!-- Pattern Reference -->
+        <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Pattern Reference — patterns/combobox.md
+            Component Specification — component-specifications/combobox.md
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;border-top:1px solid var(--border);">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
@@ -368,6 +371,168 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
           </div>
+        </section>
+
+        <!-- ── JavaScript ──────────────────────────────── -->
+        <section style="margin-top:3rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript</h2>
+          <p class="text-muted-foreground text-sm mb-4">Input filtering, popover lifecycle, keyboard navigation via <code>aria-activedescendant</code>, option selection, and group/separator visibility management.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code>// Combobox — searchable select with popover listbox
+document.querySelectorAll('.combobox').forEach(function (wrapper) {
+  var input   = wrapper.querySelector('[role="combobox"]');
+  var listbox = wrapper.querySelector('[role="listbox"]');
+  var trigger = wrapper.querySelector('.combobox-trigger');
+  var empty   = wrapper.querySelector('.combobox-empty');
+  if (!input || !listbox) return;
+
+  var allItems    = Array.from(listbox.querySelectorAll('[role="option"]'));
+  var highlighted = -1;
+
+  function getVisibleItems() {
+    return allItems.filter(function (item) {
+      return !item.hidden &amp;&amp; item.getAttribute('aria-disabled') !== 'true';
+    });
+  }
+
+  function positionListbox() {
+    var rect = wrapper.getBoundingClientRect();
+    listbox.style.position = 'fixed';
+    listbox.style.top   = rect.bottom + 4 + 'px';
+    listbox.style.left  = rect.left + 'px';
+    listbox.style.width = rect.width + 'px';
+  }
+
+  function open() {
+    positionListbox();
+    listbox.showPopover();
+    listbox.setAttribute('data-open', '');
+    input.setAttribute('aria-expanded', 'true');
+  }
+
+  function close() {
+    listbox.removeAttribute('data-open');
+    listbox.hidePopover();
+    input.setAttribute('aria-expanded', 'false');
+    input.setAttribute('aria-activedescendant', '');
+    clearHighlight();
+  }
+
+  function isOpen() { return listbox.matches(':popover-open'); }
+
+  function filter(query) {
+    var q = query.toLowerCase();
+    var hasVisible = false;
+    allItems.forEach(function (item) {
+      var match = !q || item.textContent.trim().toLowerCase().includes(q);
+      item.hidden = !match;
+      if (match) hasVisible = true;
+    });
+    // Hide empty group labels and separators
+    listbox.querySelectorAll('.combobox-group-label').forEach(function (label) {
+      var next = label.nextElementSibling;
+      var groupHasVisible = false;
+      while (next &amp;&amp; !next.classList.contains('combobox-group-label')
+                   &amp;&amp; !next.classList.contains('combobox-separator')) {
+        if (next.getAttribute('role') === 'option' &amp;&amp; !next.hidden)
+          groupHasVisible = true;
+        next = next.nextElementSibling;
+      }
+      label.hidden = !groupHasVisible;
+    });
+    listbox.querySelectorAll('.combobox-separator').forEach(function (sep) {
+      var prev = sep.previousElementSibling;
+      var next = sep.nextElementSibling;
+      sep.hidden = (prev &amp;&amp; prev.hidden) || (next &amp;&amp; next.hidden);
+    });
+    if (empty) empty.hidden = hasVisible;
+  }
+
+  function clearHighlight() {
+    allItems.forEach(function (item) { delete item.dataset.highlighted; });
+    highlighted = -1;
+  }
+
+  function doHighlight(index) {
+    var items = getVisibleItems();
+    clearHighlight();
+    if (index &lt; 0 || index &gt;= items.length) return;
+    highlighted = index;
+    items[index].dataset.highlighted = '';
+    items[index].scrollIntoView({ block: 'nearest' });
+    input.setAttribute('aria-activedescendant', items[index].id);
+  }
+
+  function selectItem(item) {
+    if (item.getAttribute('aria-disabled') === 'true') return;
+    allItems.forEach(function (i) { i.setAttribute('aria-selected', 'false'); });
+    item.setAttribute('aria-selected', 'true');
+    input.value = item.textContent.trim();
+    close();
+  }
+
+  input.addEventListener('input', function () {
+    filter(input.value);
+    if (!isOpen()) open();
+    doHighlight(0);
+  });
+
+  input.addEventListener('focus', function () {
+    if (!isOpen()) { filter(input.value); open(); }
+  });
+
+  input.addEventListener('keydown', function (e) {
+    var items = getVisibleItems();
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        if (!isOpen()) { open(); doHighlight(0); return; }
+        doHighlight(Math.min(highlighted + 1, items.length - 1));
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        if (!isOpen()) { open(); doHighlight(items.length - 1); return; }
+        doHighlight(Math.max(highlighted - 1, 0));
+        break;
+      case 'Enter':
+        e.preventDefault();
+        if (highlighted &gt;= 0 &amp;&amp; items[highlighted]) selectItem(items[highlighted]);
+        break;
+      case 'Escape':
+        if (isOpen()) { e.preventDefault(); close(); }
+        break;
+      case 'Tab': close(); break;
+    }
+  });
+
+  if (trigger) {
+    trigger.addEventListener('click', function () {
+      if (isOpen()) { close(); } else { filter(''); open(); doHighlight(-1); }
+      input.focus();
+    });
+  }
+
+  listbox.addEventListener('click', function (e) {
+    var item = e.target.closest('[role="option"]');
+    if (item &amp;&amp; !item.hidden) selectItem(item);
+  });
+
+  listbox.addEventListener('mousemove', function (e) {
+    var item = e.target.closest('[role="option"]');
+    if (item &amp;&amp; !item.hidden) {
+      var items = getVisibleItems();
+      doHighlight(items.indexOf(item));
+    }
+  });
+});</code></pre>
+          </div>
+          <p class="text-xs text-muted-foreground" style="margin-top:1rem;">
+            Full specification → <a href="../component-specifications/combobox.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">component-specifications/combobox.md</a>
+          </p>
         </section>
     </main>
   </div>

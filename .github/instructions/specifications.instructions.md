@@ -1,6 +1,6 @@
 ---
-description: "Use when editing, creating, or updating component specification files in dist/specifications/. Covers specification template structure, CSS extraction, and sync workflow."
-applyTo: "dist/specifications/**"
+description: "Use when editing, creating, or updating component specification files in dist/component-specifications/. Covers specification template structure, CSS extraction, and sync workflow."
+applyTo: "dist/component-specifications/**"
 ---
 # Specification Editing
 
