@@ -14,6 +14,10 @@
     document.getElementById('icon-sun').style.display  = isDark ? 'block' : 'none';
     document.getElementById('icon-moon').style.display = isDark ? 'none'  : 'block';
     localStorage.setItem('shadcn-html-theme', isDark ? 'light' : 'dark');
+    // Re-apply color theme for the new mode
+    if (window.__activeColorTheme && window.__activeColorTheme !== 'default' && window.applyTheme) {
+      window.applyTheme(window.__activeColorTheme);
+    }
   }
 
   // -- Token swatches (theming page only) ------------------

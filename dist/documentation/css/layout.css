@@ -370,6 +370,100 @@ html.dark pre.shiki span {
   margin-bottom: 0 !important;
 }
 
+/* -- Theme selector popover -------------------------------- */
+.theme-popover {
+  position: fixed;
+  inset: unset;
+  top: 3.5rem;
+  right: 0.75rem;
+  width: 20rem;
+  max-height: calc(100vh - 4.5rem);
+  overflow-y: auto;
+  margin: 0;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--popover);
+  color: var(--popover-foreground);
+  box-shadow: var(--shadow-lg);
+}
+.theme-popover::backdrop {
+  background: transparent;
+}
+.theme-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding: 0 0.25rem;
+}
+.theme-popover-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--foreground);
+}
+.theme-reset-btn {
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+  color: var(--muted-foreground);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: color 150ms, background 150ms;
+}
+.theme-reset-btn:hover {
+  color: var(--foreground);
+  background: var(--accent);
+}
+.theme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.375rem;
+}
+.theme-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  text-align: left;
+  transition: border-color 150ms, background 150ms;
+  color: var(--foreground);
+  width: 100%;
+}
+.theme-swatch:hover {
+  border-color: var(--foreground);
+}
+.theme-swatch.active {
+  border-color: var(--primary);
+  background: var(--accent);
+}
+.theme-swatch-label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.theme-swatch-colors {
+  display: flex;
+  gap: 0.25rem;
+}
+.theme-swatch-dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 1px solid oklch(0 0 0 / 0.12);
+  flex-shrink: 0;
+}
+
 /* -- Separator --------------------------------------------- */
 .sep {
   height: 1px;

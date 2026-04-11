@@ -166,8 +166,77 @@
               '<svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>' +
               '<svg id="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>' +
             '</button>' +
+            '<button id="theme-selector-btn" class="header-action theme-toggle-btn" aria-label="Change color theme" popovertarget="theme-popover">' +
+              '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="17.5" cy="10.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="7.5" r="0.5" fill="currentColor"/><circle cx="6.5" cy="12" r="0.5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>' +
+            '</button>' +
           '</nav>' +
-        '</header>';
+        '</header>' +
+        '<div id="theme-popover" popover class="theme-popover">' +
+          '<div class="theme-popover-header">' +
+            '<span class="theme-popover-title">Theme</span>' +
+            '<button class="theme-reset-btn" id="theme-reset-btn">Reset</button>' +
+          '</div>' +
+          '<div class="theme-grid" id="theme-grid"></div>' +
+        '</div>';
+
+      /* Build theme swatches */
+      var grid = this.querySelector('#theme-grid');
+      if (grid && window.THEMES) {
+        var activeId = window.__activeColorTheme || 'default';
+        window.THEMES.forEach(function (t) {
+          var btn = document.createElement('button');
+          btn.className = 'theme-swatch' + (t.id === activeId ? ' active' : '');
+          btn.setAttribute('data-theme-id', t.id);
+
+          var label = document.createElement('span');
+          label.className = 'theme-swatch-label';
+          label.textContent = t.label;
+          btn.appendChild(label);
+
+          var colors = document.createElement('div');
+          colors.className = 'theme-swatch-colors';
+
+          // Show 5 color dots: primary, secondary, accent, destructive, muted
+          var dotKeys = ['primary', 'secondary', 'accent', 'destructive', 'muted'];
+          var isDark = document.documentElement.classList.contains('dark');
+          var mode = isDark ? 'dark' : 'light';
+          dotKeys.forEach(function (key) {
+            var dot = document.createElement('span');
+            dot.className = 'theme-swatch-dot';
+            var color = null;
+            if (t.styles && t.styles[mode]) {
+              color = t.styles[mode][key];
+            }
+            if (!color && t.id === 'default') {
+              // Default theme colors from semantic-tokens.css
+              var defaults = {
+                light: { primary: 'oklch(0.205 0.005 285)', secondary: 'oklch(0.94 0.003 247)', accent: 'oklch(0.94 0.003 247)', destructive: 'oklch(0.577 0.245 27.325)', muted: 'oklch(0.94 0.003 247)' },
+                dark: { primary: 'oklch(0.985 0.002 247)', secondary: 'oklch(0.22 0.006 285)', accent: 'oklch(0.22 0.006 285)', destructive: 'oklch(0.396 0.141 25.723)', muted: 'oklch(0.22 0.006 285)' }
+              };
+              color = defaults[mode][key];
+            }
+            if (color) dot.style.background = color;
+            colors.appendChild(dot);
+          });
+          btn.appendChild(colors);
+
+          btn.addEventListener('click', function () {
+            if (window.applyTheme) window.applyTheme(t.id);
+            var popover = document.getElementById('theme-popover');
+            if (popover) popover.hidePopover();
+          });
+
+          grid.appendChild(btn);
+        });
+      }
+
+      /* Reset button */
+      var resetBtn = this.querySelector('#theme-reset-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+          if (window.applyTheme) window.applyTheme('default');
+        });
+      }
     }
   }
 
