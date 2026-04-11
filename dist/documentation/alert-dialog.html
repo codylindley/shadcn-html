@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -83,13 +84,56 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / alert-dialog</p>
-          <span class="badge" data-variant="secondary">JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Alert Dialog</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A modal dialog that interrupts the user and requires a response. Unlike a standard dialog, users cannot dismiss it by clicking the backdrop or pressing Escape — they must choose an action. Built on native <code>&lt;dialog&gt;</code>.
         </p>
+        <!-- Component Specification -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Component Specification — <span data-spec-href="../components/alert-dialog/alert-dialog.md" style="text-decoration:underline;text-underline-offset:3px;">components/alert-dialog/alert-dialog.md</span>
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;dialog&gt;</code> element used as a modal that requires user response. Unlike a standard dialog, it has no backdrop-close and no close button — the user must choose an action.</p>
 
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" target="_blank" rel="noopener" title="native modal with focus trap and Escape-to-close" class="api-pill"><code>&lt;dialog&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal" target="_blank" rel="noopener" title="opens as modal with backdrop" class="api-pill"><code>showModal()</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop" target="_blank" rel="noopener" title="native backdrop pseudo-element" class="api-pill"><code>::backdrop</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" title="entry animation starting values" class="api-pill"><code>@starting-style</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.alert-dialog</code>
+              <code>.alert-dialog-content</code>
+              <code>.alert-dialog-header</code>
+              <code>.alert-dialog-title</code>
+              <code>.alert-dialog-description</code>
+              <code>.alert-dialog-footer</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-alert-dialog-trigger</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-alert-dialog-close</code></p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Wiring conventions</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-alert-dialog-trigger</code> on any element — opens the component</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-alert-dialog-close</code> on any element inside — closes the component</p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Uses <code>role=&quot;alertdialog&quot;</code> instead of <code>role=&quot;dialog&quot;</code> — signals interruption</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>aria-labelledby</code> and <code>aria-describedby</code> link to title and description</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• No backdrop click dismiss — user must make an explicit choice</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Escape key is disabled — user must use the action buttons</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• Focus is trapped inside the dialog via native <code>showModal()</code></p>
+          </div>
+        </details>
         <!-- Basic -->
         <p class="text-sm font-medium mb-2 mt-6">Basic</p>
         <p class="text-xs text-muted-foreground mb-3">Confirm/cancel pattern with title and description.</p>
@@ -175,9 +219,144 @@
 &lt;/dialog&gt;</code></pre>
         </div>
 
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/alert-dialog/alert-dialog.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/alert-dialog/alert-dialog.md</a>
-        </p>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/alert-dialog/alert-dialog.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Entry/exit animation</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">@layer components {
+  dialog.alert-dialog {
+    border: none;
+    border-radius: var(--radius-xl);
+    background: var(--background);
+    color: var(--foreground);
+    padding: 0;
+    max-width: 28rem;
+    width: calc(100% - 2rem);
+    box-shadow: var(--shadow-lg);
+    margin: auto;
+    position: fixed;
+    inset: 0;
+
+    /* Entry/exit animation */
+    opacity: 0;
+    transform: translateY(-0.5rem) scale(0.98);
+    transition: opacity 200ms ease, transform 200ms ease, display 200ms allow-discrete;
+
+    &amp;[open] {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    &amp;::backdrop {
+      background: oklch(0 0 0 / 0);
+      backdrop-filter: blur(0px);
+      transition: all 200ms ease, display 200ms allow-discrete;
+    }
+
+    &amp;[open]::backdrop {
+      background: oklch(0 0 0 / 0.45);
+      backdrop-filter: blur(3px);
+    }
+
+    /* Block Escape key — user must choose an action */
+    &amp;::backdrop {
+      pointer-events: auto;
+    }
+  }
+
+  @starting-style {
+    dialog.alert-dialog[open] {
+      opacity: 0;
+      transform: translateY(-0.5rem) scale(0.98);
+    }
+    dialog.alert-dialog[open]::backdrop {
+      background: oklch(0 0 0 / 0);
+      backdrop-filter: blur(0px);
+    }
+  }
+
+  .alert-dialog-content {
+    padding: 1.5rem;
+  }
+
+  .alert-dialog-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .alert-dialog-title {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .alert-dialog-description {
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    line-height: 1.5;
+  }
+
+  .alert-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- ── JavaScript ──────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-js">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/alert-dialog/alert-dialog.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Alert Dialog</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-javascript">// ── Alert Dialog ──────────────────────────────────────────────
+// Wires [data-alert-dialog-trigger] buttons to &lt;dialog class=&quot;alert-dialog&quot;&gt;.
+// Unlike regular dialogs: no backdrop-close, Escape key blocked.
+// Include via &lt;script src=&quot;components/alert-dialog/alert-dialog.js&quot; defer&gt;&lt;/script&gt;
+
+(function () {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    /* Wire triggers */
+    document.querySelectorAll('[data-alert-dialog-trigger]').forEach(function (trigger) {
+      var dialog = document.getElementById(trigger.dataset.alertDialogTrigger);
+      if (!dialog) return;
+      trigger.addEventListener('click', function () {
+        dialog._trigger = trigger;
+        dialog.showModal();
+      });
+    });
+
+    /* Wire close buttons and block Escape */
+    document.querySelectorAll('dialog.alert-dialog').forEach(function (dialog) {
+      /* Block Escape key */
+      dialog.addEventListener('cancel', function (e) {
+        e.preventDefault();
+      });
+
+      /* Wire close buttons */
+      dialog.querySelectorAll('[data-alert-dialog-close]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          dialog.close();
+        });
+      });
+
+      /* Return focus to trigger */
+      dialog.addEventListener('close', function () {
+        if (dialog._trigger) dialog._trigger.focus();
+      });
+    });
+  });
+})();</code></pre>
+          </div>
+        </section>
     </main>
   </div>
   <script src="js/site.js" defer></script>
@@ -207,5 +386,50 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Alert Dialog
+
+## Native basis
+
+`<dialog>` element used as a modal that requires user response. Unlike a standard dialog, it has no backdrop-close and no close button — the user must choose an action.
+
+## Native Web APIs
+
+- [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) — native modal with focus trap and Escape-to-close
+- [`showModal()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) — opens as modal with backdrop
+- [`::backdrop`](https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop) — native backdrop pseudo-element
+- [`@starting-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style) — entry animation starting values
+
+## Structure
+
+```html
+<button class="btn" data-variant="outline" data-alert-dialog-trigger="my-alert-dialog">
+  Delete Account
+</button>
+
+<dialog id="my-alert-dialog" class="alert-dialog" role="alertdialog" aria-modal="true"
+        aria-labelledby="ad-title" aria-describedby="ad-desc">
+  <div class="alert-dialog-content">
+    <div class="alert-dialog-header">
+      <h2 class="alert-dialog-title" id="ad-title">Are you absolutely sure?</h2>
+      <p class="alert-dialog-description" id="ad-desc">
+        This action cannot be undone. This will permanently delete your account.
+      </p>
+    </div>
+    <div class="alert-dialog-footer">
+      <button class="btn" data-variant="outline" data-alert-dialog-close>Cancel</button>
+      <button class="btn" data-variant="destructive" data-alert-dialog-close>Delete</button>
+    </div>
+  </div>
+</dialog>
+```
+
+## Accessibility
+
+- Uses `role="alertdialog"` instead of `role="dialog"` — signals interruption
+- `aria-labelledby` and `aria-describedby` link to title and description
+- No backdrop click dismiss — user must make an explicit choice
+- Escape key is disabled — user must use the action buttons
+- Focus is trapped inside the dialog via native `showModal()`
+</script>
 </body>
 </html>

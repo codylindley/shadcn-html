@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -85,47 +86,62 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / dropdown-menu</p>
-          <span class="badge" data-variant="secondary">Minimal JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Dropdown Menu</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           Context menu built on the <code>popover</code> API. Light-dismiss is automatic.
           Supports groups, shortcuts, separators, and destructive items. Animated with <code>@starting-style</code>.
         </p>
-
-        <!-- ─── Component Specification ─── -->
+        <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — components/dropdown/dropdown.md
+            Component Specification — <span data-spec-href="../components/dropdown/dropdown.md" style="text-decoration:underline;text-underline-offset:3px;">components/dropdown/dropdown.md</span>
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>popover</code> API + <code>&lt;button&gt;</code> trigger. Light-dismiss and top-layer rendering are automatic.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>popover</code> API + <code>&lt;button&gt;</code> trigger. The browser provides light-dismiss</p>
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API" target="_blank" rel="noopener" title="Top-layer rendering and light-dismiss (click outside to close)" class="api-pill"><code>Popover API</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning" target="_blank" rel="noopener" title="Positions dropdown relative to trigger without JavaScript" class="api-pill"><code>CSS Anchor Positioning</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/" target="_blank" rel="noopener" title="Keyboard navigation and role contract for menu items" class="api-pill"><code>WAI-ARIA Menu</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API" target="_blank" rel="noopener" title="top-layer rendering and light-dismiss (click outside to close)" class="api-pill"><code>Popover API</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning" target="_blank" rel="noopener" title="positions dropdown relative to trigger without JavaScript" class="api-pill"><code>CSS Anchor Positioning</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://www.w3.org/WAI/ARIA/apg/patterns/menubar/" target="_blank" rel="noopener" title="keyboard navigation and role contract for menu items" class="api-pill"><code>WAI-ARIA Menu pattern</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Item types</p>
-            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>role="menuitem"</code><span class="text-muted-foreground">Standard item — click activates, menu closes</span>
-              <code>role="menuitemcheckbox"</code><span class="text-muted-foreground">Toggleable item with <code>.dropdown-check</code> class</span>
-              <code>role="menuitemradio"</code><span class="text-muted-foreground">Exclusive choice with <code>.dropdown-radio</code> class</span>
-              <code>disabled</code><span class="text-muted-foreground">Greyed out, not focusable via keyboard</span>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.dropdown-content</code>
+              <code>.dropdown-item</code>
+              <code>.dropdown-separator</code>
+              <code>.dropdown-label</code>
+              <code>.dropdown-shortcut</code>
             </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Variants (data-variant)</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>destructive</code><span class="text-muted-foreground">Alternate background styling</span>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-dropdown-trigger</code></p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">State attributes (managed by JS)</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-highlighted</code></p>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Wiring conventions</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">&#8226; <code>data-dropdown-trigger="[id]"</code> on button &rarr; opens that menu</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">&#8226; <code>role="menu"</code> with <code>popover</code> attribute on menu container</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">&#8226; <code>tabindex="-1"</code> on all items — JS manages highlight via <code>data-highlighted</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-dropdown-trigger</code> on any element — opens the component</p>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Keyboard</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;"><code>ArrowDown/Up</code> cycle items. <code>Enter/Space</code> activate or toggle checkbox/radio. <code>Escape</code> closes.</p>
-            <p class="text-muted-foreground" style="margin:0;">Typeahead: pressing a letter focuses the first matching item.</p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Always use <code>popover</code> attribute for the menu — it renders in the top layer and avoids overflow clipping</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• CSS anchor positioning (<code>position-anchor</code>, <code>anchor()</code>) handles placement — no JS positioning needed</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>position-try: flip-block</code> automatically flips the menu above the trigger if there's no room below</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The <code>popover</code> API handles light-dismiss (click outside) automatically</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• For submenus, nest another <code>[popover]</code> element triggered by a <code>menuitem</code> with <code>aria-haspopup=&quot;menu&quot;</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Escape closes the menu and returns focus to the trigger</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• Menu items use <code>tabindex=&quot;-1&quot;</code> — only arrow keys move focus (roving focus pattern)</p>
           </div>
         </details>
 
@@ -406,10 +422,117 @@
           data-variant="destructive" tabindex="-1"&gt;Delete&lt;/button&gt;
 &lt;/div&gt;</code></pre>
         </div>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/dropdown/dropdown.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">── Dropdown component ────────────────────────────────────────</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">/* ── Dropdown component ──────────────────────────────────────── */
+
+@layer components {
+  /* ── Trigger anchor ───────────────────────────────────────── */
+  [data-dropdown-trigger] {
+    anchor-name: --dropdown-trigger;
+  }
+
+  .dropdown-content {
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0.25rem;
+    min-width: 8rem;
+    box-shadow: 0 4px 16px oklch(0 0 0 / 0.12), 0 0 0 1px var(--border);
+
+    /* ── Anchor positioning ──────────────────────────────────── */
+    position-anchor: --dropdown-trigger;
+    top: anchor(bottom);
+    left: anchor(left);
+    margin: 0;
+    margin-top: 4px;
+    position-try: flip-block;
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.375rem 0.5rem;
+    border-radius: calc(var(--radius) * 0.6);
+    font-size: 0.875rem;
+    border: none;
+    background: transparent;
+    color: var(--foreground);
+    cursor: pointer;
+    outline: none;
+    text-align: left;
+
+    &amp;:hover, &amp;[data-highlighted] {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+
+    &amp;[data-variant=&quot;destructive&quot;] {
+      &amp;:hover, &amp;[data-highlighted] {
+        background-color: var(--destructive);
+        color: var(--destructive-foreground);
+      }
+    }
+
+    &amp;:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+
+  .dropdown-separator {
+    height: 1px;
+    background: var(--border);
+    margin: 0.25rem -0.25rem;
+  }
+
+  .dropdown-label {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted-foreground);
+  }
+
+  .dropdown-shortcut {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    letter-spacing: 0.05em;
+  }
+}
+@layer components {
+  .dropdown-content {
+    opacity: 0;
+    transform: scale(0.96) translateY(-0.25rem);
+    transition: opacity 150ms ease, transform 150ms ease,
+                display 150ms allow-discrete;
+
+    &amp;:popover-open {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @starting-style {
+    .dropdown-content:popover-open {
+      opacity: 0;
+      transform: scale(0.96) translateY(-0.25rem);
+    }
+  }
+}</code></pre>
+          </div>
+        </section>
 
         <!-- ── JavaScript ──────────────────────────────── -->
         <section style="margin-top:3rem;">
-          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript</h2>
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/dropdown/dropdown.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
           <p class="text-muted-foreground text-sm mb-4">Popover toggle, fixed positioning below trigger, keyboard navigation (Arrow keys, Home/End, Escape, Enter/Space), typeahead, and checkbox/radio state management.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn">
@@ -516,9 +639,6 @@ document.querySelectorAll('[data-dropdown-trigger]').forEach(function (trigger) 
   });
 });</code></pre>
           </div>
-          <p class="text-xs text-muted-foreground" style="margin-top:1rem;">
-            Full specification → <a href="../components/dropdown/dropdown.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/dropdown/dropdown.md</a>
-          </p>
         </section>
     </main>
   </div>
@@ -550,5 +670,153 @@ document.querySelectorAll('[data-dropdown-trigger]').forEach(function (trigger) 
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Pattern: Dropdown Menu
+
+## Native basis
+`popover` API + `<button>` trigger. The browser provides light-dismiss
+(click outside to close) and top-layer rendering.
+Requires JavaScript for keyboard navigation and ARIA management.
+
+---
+
+## Native Web APIs
+- [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) — top-layer rendering and light-dismiss (click outside to close)
+- [CSS Anchor Positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning) — positions dropdown relative to trigger without JavaScript
+- [WAI-ARIA Menu pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/) — keyboard navigation and role contract for menu items
+
+---
+
+## Structure
+
+```html
+<!-- Trigger -->
+<button class="btn" data-variant="outline"
+        aria-haspopup="menu"
+        aria-expanded="false"
+        aria-controls="my-menu"
+        data-dropdown-trigger="my-menu">
+  Options
+  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24"
+       fill="none" stroke="currentColor" stroke-width="2">
+    <path d="m6 9 6 6 6-6"/>
+  </svg>
+</button>
+
+<!-- Menu -->
+<div id="my-menu" role="menu" popover
+     class="dropdown-content"
+     aria-label="Options menu">
+
+  <div role="group" aria-label="Navigation">
+    <button role="menuitem" class="dropdown-item" tabindex="-1">
+      Profile
+    </button>
+    <button role="menuitem" class="dropdown-item" tabindex="-1">
+      Settings
+    </button>
+  </div>
+
+  <div class="dropdown-separator" role="separator"></div>
+
+  <div role="group" aria-label="Actions">
+    <button role="menuitem" class="dropdown-item" tabindex="-1">
+      <svg aria-hidden="true" width="16" height="16">...</svg>
+      Export
+      <span class="dropdown-shortcut">⌘E</span>
+    </button>
+    <button role="menuitem" class="dropdown-item" data-variant="destructive" tabindex="-1">
+      Delete
+    </button>
+  </div>
+</div>
+```
+
+---
+
+## ARIA
+
+| Attribute                  | Where            | Value                         |
+|----------------------------|------------------|-------------------------------|
+| `role="menu"`              | menu container   | Always                        |
+| `role="menuitem"`          | each item        | Always                        |
+| `role="separator"`         | dividers         | Always                        |
+| `role="group"`             | item groups      | Optional, with `aria-label`   |
+| `aria-haspopup="menu"`    | trigger button   | Always                        |
+| `aria-expanded`            | trigger button   | `true` when open, `false` when closed |
+| `aria-controls`            | trigger button   | ID of menu element            |
+| `aria-label`               | menu container   | Description of menu purpose   |
+| `tabindex="-1"`            | each menuitem    | Items not in tab order — use arrow keys |
+| `data-highlighted`         | focused item     | Set by JS for styling          |
+
+---
+
+## Animations
+
+```css
+@layer components {
+  .dropdown-content {
+    opacity: 0;
+    transform: scale(0.96) translateY(-0.25rem);
+    transition: opacity 150ms ease, transform 150ms ease,
+                display 150ms allow-discrete;
+
+    &:popover-open {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @starting-style {
+    .dropdown-content:popover-open {
+      opacity: 0;
+      transform: scale(0.96) translateY(-0.25rem);
+    }
+  }
+}
+```
+
+---
+
+## Checkbox and radio items
+
+For checkbox/radio items in the menu, use `aria-checked`:
+
+```html
+<!-- Checkbox item -->
+<button role="menuitemcheckbox" class="dropdown-item"
+        aria-checked="true" tabindex="-1">
+  <svg class="dropdown-check" aria-hidden="true" width="16" height="16">
+    <path d="M20 6 9 17l-5-5"/>
+  </svg>
+  Show Sidebar
+</button>
+
+<!-- Radio group -->
+<div role="group" aria-label="Sort order">
+  <div class="dropdown-label">Sort by</div>
+  <button role="menuitemradio" class="dropdown-item"
+          aria-checked="true" tabindex="-1">
+    <svg class="dropdown-check" aria-hidden="true">...</svg>
+    Date
+  </button>
+  <button role="menuitemradio" class="dropdown-item"
+          aria-checked="false" tabindex="-1">
+    Name
+  </button>
+</div>
+```
+
+---
+
+## Notes
+
+- Always use `popover` attribute for the menu — it renders in the top layer and avoids overflow clipping
+- CSS anchor positioning (`position-anchor`, `anchor()`) handles placement — no JS positioning needed
+- `position-try: flip-block` automatically flips the menu above the trigger if there's no room below
+- The `popover` API handles light-dismiss (click outside) automatically
+- For submenus, nest another `[popover]` element triggered by a `menuitem` with `aria-haspopup="menu"`
+- Escape closes the menu and returns focus to the trigger
+- Menu items use `tabindex="-1"` — only arrow keys move focus (roving focus pattern)
+</script>
 </body>
 </html>

@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -85,29 +86,51 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / avatar</p>
-          <span class="badge" data-variant="secondary">JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Avatar</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           An image element with a fallback for representing the user. Supports sizes, status badges, and avatar groups.
         </p>
-
         <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — components/avatar/avatar.md
+            Component Specification — <span data-spec-href="../components/avatar/avatar.md" style="text-decoration:underline;text-underline-offset:3px;">components/avatar/avatar.md</span>
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;img&gt;</code> element wrapped in a container <code>&lt;span&gt;</code> with a text fallback.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;img&gt;</code> element wrapped in a container <code>&lt;span&gt;</code> with a text fallback for when the image fails to load.</p>
 
-            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Sizes (data-size)</p>
-            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>sm</code><span class="text-muted-foreground">2rem (32px)</span>
-              <code>default</code><span class="text-muted-foreground">2.5rem (40px)</span>
-              <code>lg</code><span class="text-muted-foreground">3rem (48px)</span>
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img" target="_blank" rel="noopener" title="image element with `onerror` fallback" class="api-pill"><code>&lt;img&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has" target="_blank" rel="noopener" title="toggle fallback visibility based on image state" class="api-pill"><code>:has() selector</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.avatar</code>
+              <code>.avatar-image</code>
+              <code>.avatar-fallback</code>
+              <code>.avatar-badge</code>
+              <code>.avatar-group</code>
+              <code>.avatar-group-count</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Sizes (data-size)</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>sm</code><span class="text-muted-foreground">Height: 2rem</span>
+              <code>lg</code><span class="text-muted-foreground">Height: 3rem</span>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-error</code></p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>&lt;img&gt;</code> must have an <code>alt</code> attribute describing the user</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Fallback text should be initials or a meaningful abbreviation</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• Avatar badge should use <code>aria-label</code> to convey status when meaningful</p>
           </div>
         </details>
 
@@ -269,9 +292,129 @@
         </div>
 
         <!-- Spec link -->
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/avatar/avatar.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/avatar/avatar.md</a>
-        </p>
+
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/avatar/avatar.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Hide fallback when image is loaded</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">@layer components {
+  .avatar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: var(--muted);
+
+    &amp;[data-size=&quot;sm&quot;] {
+      width: 2rem;
+      height: 2rem;
+      font-size: 0.6875rem;
+    }
+
+    &amp;[data-size=&quot;lg&quot;] {
+      width: 3rem;
+      height: 3rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  .avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
+  .avatar-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--muted-foreground);
+    background-color: var(--muted);
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Hide fallback when image is loaded */
+  .avatar:has(.avatar-image:not([data-error])) .avatar-fallback {
+    display: none;
+  }
+
+  .avatar-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 9999px;
+    background-color: #16a34a;
+    border: 2px solid var(--background);
+  }
+
+  /* Avatar group */
+  .avatar-group {
+    display: flex;
+    align-items: center;
+
+    &amp; .avatar {
+      border: 2px solid var(--background);
+      margin-left: -0.5rem;
+
+      &amp;:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .avatar-group-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background-color: var(--muted);
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 2px solid var(--background);
+    margin-left: -0.5rem;
+  }
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- ── JavaScript ──────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-js">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/avatar/avatar.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Interaction logic for the avatar component. Uses data attributes for wiring.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-javascript">(function () {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.avatar-image').forEach(function (img) {
+      img.addEventListener('error', function () {
+        img.setAttribute('data-error', '');
+        img.style.display = 'none';
+      });
+    });
+  });
+})();</code></pre>
+          </div>
+        </section>
 
     </main>
   </div>
@@ -303,5 +446,65 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Avatar
+
+## Native basis
+
+`<img>` element wrapped in a container `<span>` with a text fallback for when the image fails to load.
+
+## Native Web APIs
+
+- [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) — image element with `onerror` fallback
+- [`:has()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) — toggle fallback visibility based on image state
+
+## Structure
+
+```html
+<!-- Avatar with image -->
+<span class="avatar" data-size="default">
+  <img class="avatar-image" src="https://example.com/photo.jpg" alt="@username" />
+  <span class="avatar-fallback">CN</span>
+</span>
+
+<!-- Avatar with fallback only -->
+<span class="avatar" data-size="default">
+  <span class="avatar-fallback">CN</span>
+</span>
+
+<!-- Avatar with badge (status indicator) -->
+<span class="avatar" data-size="default">
+  <img class="avatar-image" src="https://example.com/photo.jpg" alt="@username" />
+  <span class="avatar-fallback">CN</span>
+  <span class="avatar-badge"></span>
+</span>
+
+<!-- Avatar group -->
+<div class="avatar-group">
+  <span class="avatar">
+    <img class="avatar-image" src="..." alt="..." />
+    <span class="avatar-fallback">A</span>
+  </span>
+  <span class="avatar">
+    <img class="avatar-image" src="..." alt="..." />
+    <span class="avatar-fallback">B</span>
+  </span>
+  <span class="avatar-group-count">+3</span>
+</div>
+```
+
+## Sizes (`data-size`)
+
+| Value     | Dimensions |
+|-----------|------------|
+| `sm`      | 2rem       |
+| `default` | 2.5rem     |
+| `lg`      | 3rem       |
+
+## Accessibility
+
+- `<img>` must have an `alt` attribute describing the user
+- Fallback text should be initials or a meaningful abbreviation
+- Avatar badge should use `aria-label` to convey status when meaningful
+</script>
 </body>
 </html>

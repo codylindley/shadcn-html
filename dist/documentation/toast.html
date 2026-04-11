@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -85,51 +86,68 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / toast</p>
-          <span class="badge" data-variant="secondary">Minimal JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Toast</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           Transient notification using <code>popover="manual"</code>. Imperative <code>toast.show()</code> API
           with auto-dismiss, stacking, destructive variant, and action buttons.
         </p>
-
-        <!-- ── Component Specification ────────────────────────────────── -->
+        <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — components/toast/toast.md
+            Component Specification — <span data-spec-href="../components/toast/toast.md" style="text-decoration:underline;text-underline-offset:3px;">components/toast/toast.md</span>
           </summary>
-          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;border-top:1px solid var(--border);">
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>popover</code> API for top-layer rendering and non-modal behavior.</p>
+
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API" target="_blank" rel="noopener" title="Top-layer rendering without light-dismiss for persistent notifications" class="api-pill"><code>Popover API</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-live" target="_blank" rel="noopener" title="Announces toast content changes to screen readers" class="api-pill"><code>aria-live</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API" target="_blank" rel="noopener" title="top-layer rendering without light-dismiss for persistent notifications" class="api-pill"><code>Popover API (popover=&quot;manual&quot;)</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-live" target="_blank" rel="noopener" title="announces toast content changes to screen readers" class="api-pill"><code>aria-live regions</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">API</p>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.toast-container</code>
+              <code>.toast</code>
+              <code>.toast-description</code>
+              <code>.toast-icon</code>
+              <code>.toast-content</code>
+              <code>.toast-text</code>
+              <code>.toast-title</code>
+              <code>.toast-close</code>
+              <code>.toast-actions</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Variants (data-variant)</p>
             <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>toast.show(opts)</code><span class="text-muted-foreground">Default toast with title, description, action</span>
-              <code>toast.success(opts)</code><span class="text-muted-foreground">Green border + check icon</span>
-              <code>toast.warning(opts)</code><span class="text-muted-foreground">Amber border + triangle icon</span>
-              <code>toast.info(opts)</code><span class="text-muted-foreground">Blue border + info icon</span>
-              <code>toast.error(opts)</code><span class="text-muted-foreground">Red destructive variant + x-circle icon</span>
-              <code>toast.dismiss()</code><span class="text-muted-foreground">Dismiss all visible toasts</span>
+              <code>destructive</code><span class="text-muted-foreground">Alternate background styling</span>
+              <code>success</code><span class="text-muted-foreground">Color variation</span>
+              <code>warning</code><span class="text-muted-foreground">Color variation</span>
+              <code>info</code><span class="text-muted-foreground">Color variation</span>
             </div>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Options</p>
-            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>title</code><span class="text-muted-foreground">string — main toast text (or pass string directly)</span>
-              <code>description</code><span class="text-muted-foreground">string — secondary detail</span>
-              <code>variant</code><span class="text-muted-foreground">"success" | "warning" | "info" | "destructive"</span>
-              <code>duration</code><span class="text-muted-foreground">ms (default 4000, Infinity for persistent)</span>
-              <code>action</code><span class="text-muted-foreground">{ label, onClick } — adds action button</span>
-            </div>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-position</code> — values: <code>bottom-right</code>, <code>bottom-left</code>, <code>top-right</code>, <code>top-left</code>, <code>top-center</code>, <code>bottom-center</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-toast-close</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-toast-action</code></p>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Container</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">Place once in the page: <code>&lt;div id="toast-container" class="toast-container" aria-label="Notifications" data-position="bottom-right"&gt;&lt;/div&gt;</code>. Positions: <code>bottom-right</code>, <code>bottom-left</code>, <code>bottom-center</code>, <code>top-right</code>, <code>top-left</code>, <code>top-center</code>.</p>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Wiring conventions</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-toast-close</code> on any element inside — closes the component</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-toast-action</code> identifies an interactive action element</p>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">ARIA</p>
-            <p class="text-muted-foreground" style="margin:0;">Each toast uses <code>role="status"</code> + <code>aria-live="polite"</code> (destructive uses <code>role="alert"</code> + <code>aria-live="assertive"</code>). Container uses <code>aria-label="Notifications"</code>.</p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The toast container should be a direct child of <code>&lt;body&gt;</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Toasts use <code>popover=&quot;manual&quot;</code> so they don't auto-dismiss on outside click</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The stacking order is newest on top (CSS <code>flex-direction: column-reverse</code> for bottom positions)</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Maximum visible toasts defaults to 3 — older toasts are dismissed</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Swipe-to-dismiss can be added with touch event handling but is not required for MVP</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• For forms, show success/error toasts after submission rather than inline messages</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• The <code>toast()</code> API is imperative — call it from any event handler</p>
           </div>
         </details>
 
@@ -279,10 +297,156 @@ toast.show({
 &lt;/script&gt;</code></pre>
           </div>
         </section>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/toast/toast.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">── Toast component ───────────────────────────────────────────</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">/* ── Toast component ─────────────────────────────────────────── */
+
+@layer components {
+  /* ── Container ──────────────────────────────────────────────── */
+  .toast-container {
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+    padding: 1rem;
+    max-height: 100vh;
+    pointer-events: none;
+
+    &amp;[data-position=&quot;bottom-right&quot;] { bottom: 0; right: 0; }
+    &amp;[data-position=&quot;bottom-left&quot;]  { bottom: 0; left: 0; }
+    &amp;[data-position=&quot;top-right&quot;]    { top: 0; right: 0; flex-direction: column; }
+    &amp;[data-position=&quot;top-left&quot;]     { top: 0; left: 0; flex-direction: column; }
+    &amp;[data-position=&quot;top-center&quot;]   { top: 0; left: 50%; transform: translateX(-50%); flex-direction: column; align-items: center; }
+    &amp;[data-position=&quot;bottom-center&quot;]{ bottom: 0; left: 50%; transform: translateX(-50%); align-items: center; }
+  }
+
+  /* ── Toast ──────────────────────────────────────────────────── */
+  .toast {
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    min-width: 20rem;
+    max-width: 26rem;
+    box-shadow: 0 4px 16px oklch(0 0 0 / 0.12);
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateY(0.5rem);
+    transition: opacity 200ms ease, transform 200ms ease;
+
+    &amp;:popover-open {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Variants ───────────────────────────────────────────────── */
+    &amp;[data-variant=&quot;destructive&quot;] {
+      background-color: var(--destructive);
+      color: var(--destructive-foreground);
+      border-color: var(--destructive);
+
+      &amp; .toast-description {
+        color: var(--destructive-foreground);
+        opacity: 0.85;
+      }
+    }
+
+    /* ── Semantic variants (border + icon color) ───────────────── */
+    &amp;[data-variant=&quot;success&quot;] {
+      border-color: oklch(0.65 0.2 145);
+
+      &amp; .toast-icon { color: oklch(0.65 0.2 145); }
+    }
+
+    &amp;[data-variant=&quot;warning&quot;] {
+      border-color: oklch(0.75 0.18 75);
+
+      &amp; .toast-icon { color: oklch(0.75 0.18 75); }
+    }
+
+    &amp;[data-variant=&quot;info&quot;] {
+      border-color: oklch(0.6 0.15 250);
+
+      &amp; .toast-icon { color: oklch(0.6 0.15 250); }
+    }
+  }
+
+  @starting-style {
+    .toast:popover-open {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+  }
+
+  /* ── Inner elements ─────────────────────────────────────────── */
+  .toast-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .toast-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .toast-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .toast-description {
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+    margin: 0.125rem 0 0;
+    line-height: 1.5;
+  }
+
+  .toast-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: none;
+    background: transparent;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    flex-shrink: 0;
+    border-radius: calc(var(--radius) * 0.5);
+    transition: color 150ms, background 150ms;
+
+    &amp;:hover {
+      color: var(--foreground);
+      background: var(--accent);
+    }
+  }
+
+  .toast-icon {
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  .toast-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+}</code></pre>
+          </div>
+        </section>
 
         <!-- ── JavaScript ──────────────────────────────── -->
         <section style="margin-top:3rem;">
-          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript</h2>
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/toast/toast.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
           <p class="text-muted-foreground text-sm mb-4">Imperative <code>toast.show()</code> API with auto-dismiss, stacking (max 3 visible), variant icons, and action buttons. Container is auto-created if not present in the DOM.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn">
@@ -408,9 +572,6 @@ window.toast = {
   }
 };</code></pre>
           </div>
-          <p class="text-xs text-muted-foreground" style="margin-top:1rem;">
-            Full specification → <a href="../components/toast/toast.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/toast/toast.md</a> · Full SVG icons → <a href="../components/toast/toast.js" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">../components/toast/toast.js</a>
-          </p>
         </section>
     </main>
   </div>
@@ -442,5 +603,116 @@ window.toast = {
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Pattern: Toast
+
+## Native basis
+`popover` API for top-layer rendering and non-modal behavior.
+Requires JavaScript for triggering, auto-dismiss, stacking, and ARIA live
+region announcements. Follows `role="status"` with `aria-live="polite"`.
+
+---
+
+## Native Web APIs
+- [Popover API (`popover="manual"`)](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) — top-layer rendering without light-dismiss for persistent notifications
+- [`aria-live` regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-live) — announces toast content changes to screen readers
+
+---
+
+## Structure
+
+```html
+<!-- Toast container — place once in the page -->
+<div id="toast-container"
+     class="toast-container"
+     aria-label="Notifications"
+     data-position="bottom-right">
+</div>
+
+<!-- Individual toast (injected by JS) -->
+<div class="toast" role="status" aria-live="polite" aria-atomic="true"
+     popover="manual">
+  <div class="toast-content">
+    <div class="toast-text">
+      <p class="toast-title">Event created</p>
+      <p class="toast-description">Monday, January 3rd at 6:00pm</p>
+    </div>
+    <button class="toast-close" aria-label="Dismiss" data-toast-close>
+      <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6 6 18M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+  <div class="toast-actions">
+    <button class="btn" data-variant="outline" data-size="sm"
+            data-toast-action>Undo</button>
+  </div>
+</div>
+```
+
+### Variant: with icon
+
+```html
+<div class="toast" data-variant="success" role="status"
+     aria-live="polite" popover="manual">
+  <div class="toast-content">
+    <svg class="toast-icon" aria-hidden="true" width="16" height="16">
+      <path d="M20 6 9 17l-5-5"/>
+    </svg>
+    <div class="toast-text">
+      <p class="toast-title">Saved successfully</p>
+    </div>
+    <button class="toast-close" aria-label="Dismiss" data-toast-close>
+      <svg aria-hidden="true" width="14" height="14">...</svg>
+    </button>
+  </div>
+</div>
+```
+
+---
+
+## ARIA
+
+| Attribute           | Where            | Value                       |
+|---------------------|------------------|-----------------------------|
+| `role="status"`     | each toast       | Implicit live region        |
+| `aria-live="polite"`| each toast       | Screen reader announces it  |
+| `aria-atomic="true"`| each toast       | Announce entire toast, not just changes |
+| `aria-label`        | toast container  | e.g. "Notifications"       |
+
+---
+
+## Positions
+
+Set `data-position` on the `.toast-container`:
+- `bottom-right` (default)
+- `bottom-left`
+- `bottom-center`
+- `top-right`
+- `top-left`
+- `top-center`
+
+---
+
+## Auto-dismiss timing
+
+| Behavior    | Duration value     |
+|-------------|-------------------|
+| Default     | `4000` (4 seconds)|
+| Long        | `8000`            |
+| Persistent  | `Infinity`        |
+
+---
+
+## Notes
+
+- The toast container should be a direct child of `<body>`
+- Toasts use `popover="manual"` so they don't auto-dismiss on outside click
+- The stacking order is newest on top (CSS `flex-direction: column-reverse` for bottom positions)
+- Maximum visible toasts defaults to 3 — older toasts are dismissed
+- Swipe-to-dismiss can be added with touch event handling but is not required for MVP
+- For forms, show success/error toasts after submission rather than inline messages
+- The `toast()` API is imperative — call it from any event handler
+</script>
 </body>
 </html>

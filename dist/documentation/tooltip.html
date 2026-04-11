@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -83,13 +84,40 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / tooltip</p>
-          <span class="badge" data-variant="secondary">JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Tooltip</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A popup showing information on hover or focus. Uses the Popover API.
         </p>
+        <!-- Component Specification -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Component Specification — <span data-spec-href="../components/tooltip/tooltip.md" style="text-decoration:underline;text-underline-offset:3px;">components/tooltip/tooltip.md</span>
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">Popover API for hover/focus hints.</p>
 
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/popover" target="_blank" rel="noopener" title="native popover" class="api-pill"><code>popover attribute</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" title="entry animation" class="api-pill"><code>@starting-style</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.tooltip</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-tooltip-trigger</code></p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Wiring conventions</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-tooltip-trigger</code> on any element — opens the component</p>
+          </div>
+        </details>
         <p class="text-sm font-medium mb-2 mt-6">Default</p>
         <div class="preview">
           <div class="flex gap-4">
@@ -106,9 +134,68 @@
 &lt;div class="tooltip" id="my-tip" popover="hint" role="tooltip"&gt;Tooltip text&lt;/div&gt;</code></pre>
         </div>
 
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/tooltip/tooltip.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/tooltip/tooltip.md</a>
-        </p>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/tooltip/tooltip.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Styles for the tooltip component. Uses design tokens for colors, spacing, and radius.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">@layer components {
+  .tooltip {
+    margin: 0;
+    border: none;
+    border-radius: var(--radius-md);
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    box-shadow: var(--shadow-sm);
+    pointer-events: none;
+    max-width: 16rem;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 100ms ease, transform 100ms ease, display 100ms allow-discrete;
+
+    &amp;:popover-open { opacity: 1; transform: translateY(0); }
+  }
+
+  @starting-style {
+    .tooltip:popover-open { opacity: 0; transform: translateY(-2px); }
+  }
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- ── JavaScript ──────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-js">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/tooltip/tooltip.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Interaction logic for the tooltip component. Uses data attributes for wiring.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-javascript">(function () {
+  'use strict';
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-tooltip-trigger]').forEach(function (trigger) {
+      var tip = document.getElementById(trigger.dataset.tooltipTrigger);
+      if (!tip) return;
+      function show() {
+        var rect = trigger.getBoundingClientRect();
+        tip.style.position = 'fixed';
+        tip.style.top = (rect.top - tip.offsetHeight - 6) + 'px';
+        tip.style.left = (rect.left + rect.width / 2 - tip.offsetWidth / 2) + 'px';
+        tip.showPopover();
+      }
+      function hide() { try { tip.hidePopover(); } catch(e) {} }
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      trigger.addEventListener('focus', show);
+      trigger.addEventListener('blur', hide);
+    });
+  });
+})();</code></pre>
+          </div>
+        </section>
     </main>
   </div>
   <script src="js/site.js" defer></script>
@@ -138,5 +225,23 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Tooltip
+
+## Native basis
+
+Popover API for hover/focus hints.
+
+## Native Web APIs
+
+- [`popover` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/popover) — native popover
+- [`@starting-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style) — entry animation
+
+## Structure
+
+```html
+<button class="btn" data-tooltip-trigger="my-tip">Hover me</button>
+<div class="tooltip" id="my-tip" popover="hint" role="tooltip">Tooltip text</div>
+```
+</script>
 </body>
 </html>

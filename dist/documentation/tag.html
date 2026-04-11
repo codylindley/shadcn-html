@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -85,28 +86,39 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / tag</p>
-          <span class="badge" data-variant="secondary">JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Tag</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A dismissible label for categorization and filtering. Like a badge, but with an optional remove button.
         </p>
-
         <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — components/tag/tag.md
+            Component Specification — <span data-spec-href="../components/tag/tag.md" style="text-decoration:underline;text-underline-offset:3px;">components/tag/tag.md</span>
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;span&gt;</code> element containing text and an optional dismiss <code>&lt;button&gt;</code>.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;span&gt;</code> element containing text and an optional dismiss <code>&lt;button&gt;</code>. A tag is a badge with a removable action.</p>
 
-            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Variants (data-variant)</p>
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span" target="_blank" rel="noopener" title="inline container for phrasing content" class="api-pill"><code>&lt;span&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button" target="_blank" rel="noopener" title="native dismiss trigger" class="api-pill"><code>&lt;button&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.tag</code>
+              <code>.tag-dismiss</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Variants (data-variant)</p>
             <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>default</code><span class="text-muted-foreground">Primary background, high emphasis</span>
-              <code>secondary</code><span class="text-muted-foreground">Secondary background, medium emphasis</span>
-              <code>outline</code><span class="text-muted-foreground">Border only, low emphasis</span>
+              <code>default</code><span class="text-muted-foreground">Alternate background styling</span>
+              <code>secondary</code><span class="text-muted-foreground">Alternate background styling</span>
+              <code>outline</code><span class="text-muted-foreground">Alternate background styling</span>
             </div>
           </div>
         </details>
@@ -242,9 +254,118 @@
         </div>
 
         <!-- Spec link -->
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/tag/tag.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/tag/tag.md</a>
-        </p>
+
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/tag/tag.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Styles for the tag component. Uses design tokens for colors, spacing, and radius.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">@layer components {
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: var(--radius-md);
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background-color 150ms ease, color 150ms ease;
+
+    &amp;[data-variant=&quot;default&quot;] {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+
+      &amp; .tag-dismiss {
+        color: var(--primary-foreground);
+        opacity: 0.6;
+
+        &amp;:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    &amp;[data-variant=&quot;secondary&quot;] {
+      background-color: var(--secondary);
+      color: var(--secondary-foreground);
+
+      &amp; .tag-dismiss {
+        color: var(--secondary-foreground);
+        opacity: 0.6;
+
+        &amp;:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    &amp;[data-variant=&quot;outline&quot;] {
+      border: 1px solid var(--border);
+      color: var(--foreground);
+      background-color: transparent;
+
+      &amp; .tag-dismiss {
+        color: var(--foreground);
+        opacity: 0.6;
+
+        &amp;:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .tag-dismiss {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+
+    &amp; svg {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+
+    &amp;:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 1px;
+    }
+  }
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- ── JavaScript ──────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-js">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/tag/tag.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Interaction logic for the tag component. Uses data attributes for wiring.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-javascript">(function () {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.tag-dismiss');
+      if (!btn) return;
+      var tag = btn.closest('.tag');
+      if (!tag) return;
+      tag.remove();
+    });
+  });
+})();</code></pre>
+          </div>
+        </section>
 
     </main>
   </div>
@@ -276,5 +397,46 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Tag
+
+## Native basis
+
+`<span>` element containing text and an optional dismiss `<button>`. A tag is a badge with a removable action.
+
+## Native Web APIs
+
+- [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span) — inline container for phrasing content
+- [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) — native dismiss trigger
+
+## Structure
+
+```html
+<!-- Basic tag -->
+<span class="tag" data-variant="default">
+  Label
+</span>
+
+<!-- Dismissible tag -->
+<span class="tag" data-variant="default">
+  Label
+  <button class="tag-dismiss" aria-label="Remove Label">
+    <svg><!-- X icon --></svg>
+  </button>
+</span>
+```
+
+## Variants (`data-variant`)
+
+| Value         | Description                              |
+|---------------|------------------------------------------|
+| `default`     | Primary background, high emphasis        |
+| `secondary`   | Secondary background, medium emphasis    |
+| `outline`     | Border only, low emphasis                |
+
+## Accessibility
+
+- Dismiss button must have `aria-label` describing the action (e.g., "Remove Label")
+- If purely decorative, add `aria-hidden="true"` to the tag
+</script>
 </body>
 </html>

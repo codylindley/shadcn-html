@@ -167,8 +167,8 @@
     connectedCallback() {
       this.style.display = 'contents';
       var html = '<aside class="site-sidebar">';
-      NAV.forEach(function (section) {
-        html += '<div style="margin-bottom:1.25rem;">';
+      NAV.forEach(function (section, i) {
+        html += '<div class="nav-section" style="margin-bottom:1.25rem;">';
         html += '<p class="nav-heading">' + section.heading + '</p>';
         section.items.forEach(function (item) {
           var cls = 'nav-link';
@@ -177,6 +177,23 @@
           html += '<a class="' + cls + '" href="' + item.href + '">' + item.label + '</a>';
         });
         html += '</div>';
+        /* Insert filter input after Overview section */
+        if (i === 0) {
+          html += '<div class="nav-filter-wrap" style="padding:0 0.375rem 0.75rem;">' +
+            '<input type="text" class="nav-filter-input" placeholder="Filter components..." ' +
+              'aria-label="Filter components" autocomplete="off" spellcheck="false" ' +
+              'style="' +
+                'width:100%;box-sizing:border-box;' +
+                'padding:0.375rem 0.625rem;' +
+                'font-size:0.8125rem;font-family:var(--font-sans);' +
+                'border:1px solid var(--sidebar-border);' +
+                'border-radius:var(--radius-md);' +
+                'background:var(--sidebar);' +
+                'color:var(--foreground);' +
+                'outline:none;' +
+              '">' +
+          '</div>';
+        }
       });
       html += '<div class="sidebar-author">' +
         '<hr style="border:none;border-top:1px solid var(--sidebar-border);margin:0.75rem 0.75rem 0.875rem;">' +
@@ -186,6 +203,35 @@
       '</div>';
       html += '</aside>';
       this.innerHTML = html;
+
+      /* ── Filter logic ─────────────────────────────────────── */
+      var input = this.querySelector('.nav-filter-input');
+      var sections = this.querySelectorAll('.nav-section');
+      if (input && sections.length) {
+        input.addEventListener('input', function () {
+          var q = input.value.toLowerCase().trim();
+          /* Skip the first section (Overview) — always visible */
+          for (var s = 1; s < sections.length; s++) {
+            var sec = sections[s];
+            var links = sec.querySelectorAll('.nav-link');
+            var anyVisible = false;
+            for (var l = 0; l < links.length; l++) {
+              var match = !q || links[l].textContent.toLowerCase().indexOf(q) !== -1;
+              links[l].style.display = match ? '' : 'none';
+              if (match) anyVisible = true;
+            }
+            sec.style.display = anyVisible ? '' : 'none';
+          }
+        });
+        /* Focus shortcut: Cmd/Ctrl+K focuses the filter */
+        document.addEventListener('keydown', function (e) {
+          if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            input.focus();
+            input.select();
+          }
+        });
+      }
     }
   }
 

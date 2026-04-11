@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -85,30 +86,42 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / image</p>
-          <span class="badge" data-variant="secondary">CSS Only</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Image</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A responsive image component with aspect ratio control and optional caption. Built on <code>&lt;figure&gt;</code> and CSS <code>aspect-ratio</code>.
         </p>
-
         <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — components/image/image.md
+            Component Specification — <span data-spec-href="../components/image/image.md" style="text-decoration:underline;text-underline-offset:3px;">components/image/image.md</span>
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;figure&gt;</code> + <code>&lt;img&gt;</code> with CSS <code>aspect-ratio</code>.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;img&gt;</code> element wrapped in a <code>&lt;figure&gt;</code> with optional <code>&lt;figcaption&gt;</code>. Uses CSS <code>aspect-ratio</code> for controlled dimensions.</p>
 
-            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Ratios (data-ratio)</p>
-            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>1/1</code><span class="text-muted-foreground">Square</span>
-              <code>4/3</code><span class="text-muted-foreground">Standard</span>
-              <code>16/9</code><span class="text-muted-foreground">Widescreen</span>
-              <code>21/9</code><span class="text-muted-foreground">Ultra-wide</span>
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure" target="_blank" rel="noopener" title="self-contained content with optional caption" class="api-pill"><code>&lt;figure&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption" target="_blank" rel="noopener" title="caption for the figure" class="api-pill"><code>&lt;figcaption&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio" target="_blank" rel="noopener" title="intrinsic aspect ratio control" class="api-pill"><code>aspect-ratio</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.image</code>
+              <code>.image-caption</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-ratio</code> — values: <code>1/1</code>, <code>4/3</code>, <code>16/9</code>, <code>21/9</code></p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>&lt;img&gt;</code> must have a descriptive <code>alt</code> attribute</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Decorative images should use <code>alt=&quot;&quot;</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>&lt;figcaption&gt;</code> provides visible caption text</p>
           </div>
         </details>
 
@@ -176,9 +189,52 @@
 &lt;figure class="image" data-ratio="16/9"&gt;...&lt;/figure&gt;</code></pre>
         </div>
 
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/image/image.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/image/image.md</a>
-        </p>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/image/image.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Styles for the image component. Uses design tokens for colors, spacing, and radius.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">@layer components {
+  .image {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    margin: 0;
+
+    &amp; img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &amp;[data-ratio=&quot;1/1&quot;] {
+      aspect-ratio: 1 / 1;
+    }
+
+    &amp;[data-ratio=&quot;4/3&quot;] {
+      aspect-ratio: 4 / 3;
+    }
+
+    &amp;[data-ratio=&quot;16/9&quot;] {
+      aspect-ratio: 16 / 9;
+    }
+
+    &amp;[data-ratio=&quot;21/9&quot;] {
+      aspect-ratio: 21 / 9;
+    }
+  }
+
+  .image-caption {
+    padding: 0.5rem 0;
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+    text-align: center;
+  }
+}</code></pre>
+          </div>
+        </section>
 
     </main>
   </div>
@@ -210,5 +266,52 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Image
+
+## Native basis
+
+`<img>` element wrapped in a `<figure>` with optional `<figcaption>`. Uses CSS `aspect-ratio` for controlled dimensions.
+
+## Native Web APIs
+
+- [`<figure>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) — self-contained content with optional caption
+- [`<figcaption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption) — caption for the figure
+- [`aspect-ratio`](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) — intrinsic aspect ratio control
+
+## Structure
+
+```html
+<!-- Basic image -->
+<figure class="image">
+  <img src="https://example.com/photo.jpg" alt="Description" />
+</figure>
+
+<!-- Image with caption -->
+<figure class="image">
+  <img src="https://example.com/photo.jpg" alt="Description" />
+  <figcaption class="image-caption">Photo caption text</figcaption>
+</figure>
+
+<!-- Image with aspect ratio -->
+<figure class="image" data-ratio="16/9">
+  <img src="https://example.com/photo.jpg" alt="Description" />
+</figure>
+```
+
+## Ratios (`data-ratio`)
+
+| Value   | Aspect ratio |
+|---------|-------------|
+| `1/1`   | Square       |
+| `4/3`   | Standard     |
+| `16/9`  | Widescreen   |
+| `21/9`  | Ultra-wide   |
+
+## Accessibility
+
+- `<img>` must have a descriptive `alt` attribute
+- Decorative images should use `alt=""`
+- `<figcaption>` provides visible caption text
+</script>
 </body>
 </html>

@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -85,28 +86,39 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / list</p>
-          <span class="badge" data-variant="secondary">CSS Only</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">List</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           Styled unordered and ordered lists with support for icon-prefixed items. Built on native <code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code> elements.
         </p>
-
         <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — components/list/list.md
+            Component Specification — <span data-spec-href="../components/list/list.md" style="text-decoration:underline;text-underline-offset:3px;">components/list/list.md</span>
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code> elements with styled list items.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code> elements with styled list items. Supports icon-prefixed items.</p>
 
-            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Variants (data-variant)</p>
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul" target="_blank" rel="noopener" title="unordered list" class="api-pill"><code>&lt;ul&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol" target="_blank" rel="noopener" title="ordered list" class="api-pill"><code>&lt;ol&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li" target="_blank" rel="noopener" title="list item" class="api-pill"><code>&lt;li&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.list</code>
+              <code>.list-item</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Variants (data-variant)</p>
             <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>default</code><span class="text-muted-foreground">Standard bullet/number list</span>
-              <code>icon</code><span class="text-muted-foreground">Icon-prefixed items, no bullets</span>
-              <code>none</code><span class="text-muted-foreground">No markers, clean layout</span>
+              <code>none</code><span class="text-muted-foreground">None styling</span>
+              <code>icon</code><span class="text-muted-foreground">Height: 1rem</span>
             </div>
           </div>
         </details>
@@ -209,9 +221,63 @@
 &lt;/ul&gt;</code></pre>
         </div>
 
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/list/list.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/list/list.md</a>
-        </p>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/list/list.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Styles for the list component. Uses design tokens for colors, spacing, and radius.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">@layer components {
+  .list {
+    margin: 0;
+    padding: 0 0 0 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    color: var(--foreground);
+
+    &amp;[data-variant=&quot;none&quot;] {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    &amp;[data-variant=&quot;icon&quot;] {
+      list-style: none;
+      padding-left: 0;
+
+      &amp; .list-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+
+        &amp; svg {
+          width: 1rem;
+          height: 1rem;
+          flex-shrink: 0;
+          margin-top: 0.25rem;
+        }
+      }
+    }
+  }
+
+  ol.list {
+    list-style: decimal;
+  }
+
+  ul.list {
+    list-style: disc;
+  }
+
+  .list-item {
+    padding: 0.125rem 0;
+    color: var(--foreground);
+
+    &amp;::marker {
+      color: var(--muted-foreground);
+    }
+  }
+}</code></pre>
+          </div>
+        </section>
 
     </main>
   </div>
@@ -243,5 +309,56 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># List
+
+## Native basis
+
+`<ul>` and `<ol>` elements with styled list items. Supports icon-prefixed items.
+
+## Native Web APIs
+
+- [`<ul>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul) — unordered list
+- [`<ol>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol) — ordered list
+- [`<li>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) — list item
+
+## Structure
+
+```html
+<!-- Basic unordered list -->
+<ul class="list">
+  <li class="list-item">Item one</li>
+  <li class="list-item">Item two</li>
+  <li class="list-item">Item three</li>
+</ul>
+
+<!-- Ordered list -->
+<ol class="list">
+  <li class="list-item">First step</li>
+  <li class="list-item">Second step</li>
+  <li class="list-item">Third step</li>
+</ol>
+
+<!-- List with icons -->
+<ul class="list" data-variant="icon">
+  <li class="list-item">
+    <svg><!-- check icon --></svg>
+    <span>Feature included</span>
+  </li>
+</ul>
+```
+
+## Variants (`data-variant`)
+
+| Value    | Description                              |
+|----------|------------------------------------------|
+| `default`| Standard bullet/number list              |
+| `icon`   | Icon-prefixed items, no bullets          |
+| `none`   | No markers, clean layout                 |
+
+## Accessibility
+
+- Lists convey structure to screen readers automatically
+- Use `<ul>` for unordered content, `<ol>` for sequential/ranked content
+</script>
 </body>
 </html>

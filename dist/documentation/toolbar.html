@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -85,36 +86,45 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / toolbar</p>
-          <span class="badge" data-variant="secondary">JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Toolbar</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           Groups related controls into a single keyboard-navigable bar. Composes Toggle Groups,
           Buttons, and Separators with roving tabindex navigation.
         </p>
-
         <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — components/toolbar/toolbar.md
+            Component Specification — <span data-spec-href="../components/toolbar/toolbar.md" style="text-decoration:underline;text-underline-offset:3px;">components/toolbar/toolbar.md</span>
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>role="toolbar"</code> container with roving tabindex keyboard navigation.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>role=&quot;toolbar&quot;</code> container. Groups related controls (buttons, toggles, separators) into a single keyboard-navigable bar.</p>
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/toolbar_role" target="_blank" rel="noopener" title="Container for grouped controls" class="api-pill"><code>role="toolbar"</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/" target="_blank" rel="noopener" title="WAI-ARIA Toolbar pattern" class="api-pill"><code>Toolbar APG</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/toolbar_role" target="_blank" rel="noopener" title="a container for grouped controls" class="api-pill"><code>role=&quot;toolbar&quot;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-orientation" target="_blank" rel="noopener" title="declares layout direction" class="api-pill"><code>aria-orientation</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/" target="_blank" rel="noopener" title="keyboard navigation specification" class="api-pill"><code>WAI-ARIA Toolbar Pattern</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Keyboard</p>
-            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>Tab</code><span class="text-muted-foreground">Moves focus into/out of the toolbar</span>
-              <code>→ / ←</code><span class="text-muted-foreground">Moves focus between items</span>
-              <code>Home / End</code><span class="text-muted-foreground">First / last item</span>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.toolbar</code>
+              <code>.separator</code>
             </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-orientation</code> — values: <code>vertical</code></p>
+
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Toolbars compose Toggle Groups, Button Groups, Buttons, and Separators.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The toolbar handles roving tabindex — only one item is in the tab order at a time.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use vertical separators between logical groups of controls.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• The toolbar does not enforce selection logic — that's handled by the child components.</p>
           </div>
         </details>
 
@@ -184,9 +194,107 @@
         </div>
 
         <!-- Spec link -->
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/toolbar/toolbar.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/toolbar/toolbar.md</a>
-        </p>
+
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/toolbar/toolbar.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">── Toolbar component ──────────────────────────────────────────</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">/* ── Toolbar component ────────────────────────────────────────── */
+
+@layer components {
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--background);
+    width: fit-content;
+
+    /* Vertical separators auto-size in the toolbar context */
+    &amp; &gt; .separator[data-orientation=&quot;vertical&quot;] {
+      height: 1.5rem;
+      margin: 0 0.25rem;
+    }
+
+    /* Vertical toolbar */
+    &amp;[aria-orientation=&quot;vertical&quot;] {
+      flex-direction: column;
+
+      &amp; &gt; .separator[data-orientation=&quot;vertical&quot;] {
+        height: 1px;
+        width: 1.5rem;
+        margin: 0.25rem 0;
+      }
+    }
+  }
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- ── JavaScript ──────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-js">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/toolbar/toolbar.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">── Toolbar ──────────────────────────────────────────────────</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-javascript">// ── Toolbar ──────────────────────────────────────────────────
+// Roving tabindex for role=&quot;toolbar&quot; containers.
+// Arrow keys move focus between focusable children.
+// Include via &lt;script src=&quot;components/toolbar/toolbar.js&quot; defer&gt;&lt;/script&gt;
+
+(function () {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.toolbar[role=&quot;toolbar&quot;]').forEach(function (toolbar) {
+      var items = Array.from(
+        toolbar.querySelectorAll('button:not(:disabled), a[href], [tabindex]:not([tabindex=&quot;-1&quot;])')
+      );
+      if (items.length === 0) return;
+
+      // Set initial roving tabindex
+      items.forEach(function (item, i) {
+        item.setAttribute('tabindex', i === 0 ? '0' : '-1');
+      });
+
+      toolbar.addEventListener('keydown', function (e) {
+        var current = items.indexOf(document.activeElement);
+        if (current === -1) return;
+
+        var vertical = toolbar.getAttribute('aria-orientation') === 'vertical';
+        var fwd = vertical ? 'ArrowDown' : 'ArrowRight';
+        var bwd = vertical ? 'ArrowUp' : 'ArrowLeft';
+        var next;
+
+        if (e.key === fwd) {
+          e.preventDefault();
+          next = (current + 1) % items.length;
+        } else if (e.key === bwd) {
+          e.preventDefault();
+          next = (current - 1 + items.length) % items.length;
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          next = 0;
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          next = items.length - 1;
+        }
+
+        if (next !== undefined) {
+          items[current].setAttribute('tabindex', '-1');
+          items[next].setAttribute('tabindex', '0');
+          items[next].focus();
+        }
+      });
+    });
+  });
+})();</code></pre>
+          </div>
+        </section>
 
     </main>
   </div>
@@ -218,5 +326,73 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Pattern: Toolbar
+
+## Native basis
+`role="toolbar"` container. Groups related controls (buttons, toggles, separators) into a single keyboard-navigable bar.
+
+---
+
+## Native Web APIs
+- [`role="toolbar"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/toolbar_role) — a container for grouped controls
+- [`aria-orientation`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-orientation) — declares layout direction
+- [WAI-ARIA Toolbar Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/) — keyboard navigation specification
+
+---
+
+## Structure
+
+```html
+<div class="toolbar" role="toolbar" aria-label="Formatting" aria-orientation="horizontal">
+  <div class="toggle-group" role="group" aria-label="Text style" data-type="multiple">
+    <button class="toggle" aria-pressed="false">
+      <svg aria-hidden="true" ...><!-- bold --></svg>
+    </button>
+    <button class="toggle" aria-pressed="false">
+      <svg aria-hidden="true" ...><!-- italic --></svg>
+    </button>
+  </div>
+  <div class="separator" data-orientation="vertical" role="separator"></div>
+  <div class="toggle-group" role="group" aria-label="Alignment" data-type="single">
+    <button class="toggle" aria-pressed="true">
+      <svg aria-hidden="true" ...><!-- align-left --></svg>
+    </button>
+    <button class="toggle" aria-pressed="false">
+      <svg aria-hidden="true" ...><!-- align-center --></svg>
+    </button>
+  </div>
+  <div class="separator" data-orientation="vertical" role="separator"></div>
+  <a class="btn" data-variant="link" href="#" target="_blank">Link</a>
+</div>
+```
+
+---
+
+## Accessibility
+
+| Attribute | Element | Purpose |
+|-----------|---------|---------|
+| `role="toolbar"` | Container | Identifies the toolbar pattern |
+| `aria-label` | Container | Accessible name |
+| `aria-orientation` | Container | `horizontal` (default) or `vertical` |
+
+### Keyboard
+
+| Key | Action |
+|-----|--------|
+| `Tab` | Moves focus into/out of the toolbar (roving tabindex) |
+| `→` / `←` | Moves focus between toolbar items (horizontal) |
+| `↓` / `↑` | Moves focus between toolbar items (vertical) |
+| `Home` / `End` | First / last item |
+
+---
+
+## Notes
+
+- Toolbars compose Toggle Groups, Button Groups, Buttons, and Separators.
+- The toolbar handles roving tabindex — only one item is in the tab order at a time.
+- Use vertical separators between logical groups of controls.
+- The toolbar does not enforce selection logic — that's handled by the child components.
+</script>
 </body>
 </html>

@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -85,61 +86,63 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / tabs</p>
-          <span class="badge" data-variant="secondary">Minimal JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Tabs</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           Organize content into switchable panels. Uses WAI-ARIA Tabs pattern with
           roving <code>tabindex</code> and arrow key navigation. Available in pill and line variants.
         </p>
-
         <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — components/tabs/tabs.md
+            Component Specification — <span data-spec-href="../components/tabs/tabs.md" style="text-decoration:underline;text-underline-offset:3px;">components/tabs/tabs.md</span>
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>role="tablist"</code> + <code>role="tab"</code> + <code>role="tabpanel"</code>. No native HTML element — requires JS for keyboard navigation and panel switching.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>role=&quot;tablist&quot;</code> + <code>role=&quot;tab&quot;</code> + <code>role=&quot;tabpanel&quot;</code>. No native HTML element</p>
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
-              <a href="https://www.w3.org/WAI/ARIA/apg/patterns/tabs/" target="_blank" rel="noopener" title="WAI-ARIA Tabs pattern — role contract and roving tabindex keyboard navigation" class="api-pill"><code>WAI-ARIA Tabs</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://www.w3.org/WAI/ARIA/apg/patterns/tabs/" target="_blank" rel="noopener" title="role contract (`tablist`, `tab`, `tabpanel`) and roving tabindex keyboard navigation" class="api-pill"><code>WAI-ARIA Tabs pattern</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">CSS classes</p>
-            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>.tabs</code><span class="text-muted-foreground">Wrapper — no visual styling</span>
-              <code>.tab-list</code><span class="text-muted-foreground">--muted bg, border-radius: var(--radius-lg), inline-flex</span>
-              <code>.tab-trigger</code><span class="text-muted-foreground">--muted-foreground text; active: --background bg, --foreground text, shadow</span>
-              <code>.tab-content</code><span class="text-muted-foreground">margin-top: 0.75rem, focus-visible ring</span>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.tab-list</code>
+              <code>.tab-trigger</code>
+              <code>.tabs</code>
+              <code>.tab-content</code>
             </div>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Variants (data-variant on .tab-list)</p>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Variants (data-variant)</p>
             <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>pill (default)</code><span class="text-muted-foreground">--muted bg, active tab has --background bg + shadow</span>
-              <code>data-variant="line"</code><span class="text-muted-foreground">transparent bg, --border bottom, active: --primary underline</span>
+              <code>line</code><span class="text-muted-foreground">Alternate background styling</span>
             </div>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Orientation</p>
-            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>horizontal (default)</code><span class="text-muted-foreground">ArrowRight/Left navigate. Tabs above panels.</span>
-              <code>aria-orientation="vertical"</code><span class="text-muted-foreground">ArrowDown/Up navigate. Tabs beside panels (CSS via <code>:has()</code>).</span>
-            </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Keyboard</p>
             <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>ArrowRight / ArrowLeft</code><span class="text-muted-foreground">Cycle tabs (horizontal orientation)</span>
-              <code>ArrowDown / ArrowUp</code><span class="text-muted-foreground">Cycle tabs (vertical orientation)</span>
-              <code>Home / End</code><span class="text-muted-foreground">Jump to first / last tab</span>
-              <code>Tab</code><span class="text-muted-foreground">Move focus into the active panel</span>
+              <code>Key</code><span class="text-muted-foreground">Behavior</span>
+              <code>Tab</code><span class="text-muted-foreground">Move focus to active tab, then into the active panel</span>
+              <code>ArrowRight</code><span class="text-muted-foreground">Move to next tab (horizontal) and activate</span>
+              <code>ArrowLeft</code><span class="text-muted-foreground">Move to previous tab (horizontal) and activate</span>
+              <code>ArrowDown</code><span class="text-muted-foreground">Move to next tab (vertical) and activate</span>
+              <code>ArrowUp</code><span class="text-muted-foreground">Move to previous tab (vertical) and activate</span>
+              <code>Home</code><span class="text-muted-foreground">Move to first tab and activate</span>
+              <code>End</code><span class="text-muted-foreground">Move to last tab and activate</span>
+              <code>Space/Enter</code><span class="text-muted-foreground">Activate focused tab (manual activation mode)</span>
             </div>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">ARIA</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">Roving <code>tabindex</code>: active tab = <code>tabindex="0"</code>, others = <code>-1</code>.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">Panels use <code>aria-labelledby</code> pointing to their tab. Inactive panels get <code>hidden</code>.</p>
-            <p class="text-muted-foreground" style="margin:0;">Disabled tabs use the <code>disabled</code> attribute — keyboard navigation skips them automatically.</p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Only the active tab is in the tab order (<code>tabindex=&quot;0&quot;</code>) — inactive tabs use <code>tabindex=&quot;-1&quot;</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Arrow keys cycle through tabs (wrap around) — this is the roving tabindex pattern</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The active panel uses <code>tabindex=&quot;0&quot;</code> so it can receive focus from the tab trigger</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>hidden</code> attribute on inactive panels for accessibility (screen readers skip them)</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Disabled tabs should have <code>disabled</code> attribute and be skipped by keyboard navigation</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• For lazy-loaded content, panels can be rendered empty and populated on activation</p>
           </div>
         </details>
 
@@ -469,10 +472,123 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
         </div>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/tabs/tabs.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">── Tabs component ────────────────────────────────────────────</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">/* ── Tabs component ──────────────────────────────────────────── */
+
+@layer components {
+  /* ── Default (pill) variant ─────────────────────────────────── */
+  .tab-list {
+    display: inline-flex;
+    align-items: center;
+    background: var(--muted);
+    border-radius: var(--radius-lg);
+    padding: 0.25rem;
+    gap: 0.125rem;
+
+    /* ── Line variant ───────────────────────────────────────────── */
+    &amp;[data-variant=&quot;line&quot;] {
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+
+      &amp; .tab-trigger {
+        border-radius: 0;
+        padding: 0.5rem 1rem;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+
+        &amp;[aria-selected=&quot;true&quot;] {
+          background: transparent;
+          color: var(--foreground);
+          border-bottom-color: var(--primary);
+          box-shadow: none;
+        }
+      }
+    }
+
+    /* ── Vertical orientation ──────────────────────────────────── */
+    &amp;[aria-orientation=&quot;vertical&quot;] {
+      flex-direction: column;
+      width: auto;
+
+      &amp; .tab-trigger {
+        justify-content: flex-start;
+        width: 100%;
+      }
+    }
+  }
+
+  .tab-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: calc(var(--radius) * 0.6);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    transition: all 150ms ease;
+    white-space: nowrap;
+    outline: none;
+
+    &amp;[aria-selected=&quot;true&quot;] {
+      background: var(--background);
+      color: var(--foreground);
+      box-shadow: 0 1px 3px oklch(0 0 0 / 0.08), 0 0 0 1px var(--border);
+    }
+
+    &amp;:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    &amp;:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+
+  /* ── Vertical layout container ───────────────────────────── */
+  .tabs:has(.tab-list[aria-orientation=&quot;vertical&quot;]) {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+
+    &amp; &gt; .tab-content {
+      margin-top: 0;
+      flex: 1;
+    }
+  }
+
+  /* ── Panel ──────────────────────────────────────────────────── */
+  .tab-content {
+    margin-top: 0.75rem;
+
+    &amp;:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    &amp;[hidden] { display: none; }
+  }
+}</code></pre>
+          </div>
+        </section>
 
         <!-- ── JavaScript ──────────────────────────────── -->
         <section style="margin-top:3rem;">
-          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript</h2>
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/tabs/tabs.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
           <p class="text-muted-foreground text-sm mb-4">Panel switching + WAI-ARIA keyboard navigation. Arrow keys cycle tabs, Home/End jump to first/last, disabled tabs are skipped automatically.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn">
@@ -542,9 +658,6 @@ document.querySelectorAll('[role="tablist"]').forEach(function (tablist) {
   });
 });</code></pre>
           </div>
-          <p class="text-xs text-muted-foreground" style="margin-top:1rem;">
-            Full specification → <a href="../components/tabs/tabs.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/tabs/tabs.md</a>
-          </p>
         </section>
     </main>
   </div>
@@ -576,5 +689,142 @@ document.querySelectorAll('[role="tablist"]').forEach(function (tablist) {
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Pattern: Tabs
+
+## Native basis
+`role="tablist"` + `role="tab"` + `role="tabpanel"`. No native HTML element
+provides this pattern. Requires JavaScript for keyboard navigation and
+panel switching. Follows the WAI-ARIA Tabs design pattern.
+
+---
+
+## Native Web APIs
+- [WAI-ARIA Tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) — role contract (`tablist`, `tab`, `tabpanel`) and roving tabindex keyboard navigation
+
+---
+
+## Structure
+
+```html
+<div class="tabs">
+  <!-- Tab list -->
+  <div class="tab-list" role="tablist" aria-label="Account settings">
+    <button class="tab-trigger" role="tab"
+            aria-selected="true"
+            aria-controls="panel-account"
+            id="tab-account">
+      Account
+    </button>
+    <button class="tab-trigger" role="tab"
+            aria-selected="false"
+            aria-controls="panel-password"
+            id="tab-password"
+            tabindex="-1">
+      Password
+    </button>
+  </div>
+
+  <!-- Tab panels -->
+  <div class="tab-content" role="tabpanel"
+       id="panel-account"
+       aria-labelledby="tab-account"
+       tabindex="0">
+    Account settings content...
+  </div>
+
+  <div class="tab-content" role="tabpanel"
+       id="panel-password"
+       aria-labelledby="tab-password"
+       tabindex="0"
+       hidden>
+    Password settings content...
+  </div>
+</div>
+```
+
+---
+
+## ARIA
+
+| Attribute             | Where          | Value                                    |
+|-----------------------|----------------|------------------------------------------|
+| `role="tablist"`      | tab list       | Always                                   |
+| `role="tab"`          | each trigger   | Always                                   |
+| `role="tabpanel"`     | each panel     | Always                                   |
+| `aria-selected`       | each tab       | `true` for active, `false` for inactive  |
+| `aria-controls`       | each tab       | ID of the associated panel               |
+| `aria-labelledby`     | each panel     | ID of the associated tab                 |
+| `aria-label`          | tablist        | Description of the tab group             |
+| `aria-orientation`    | tablist        | `horizontal` (default) or `vertical`     |
+| `tabindex="0"`        | active tab     | In the tab order                         |
+| `tabindex="-1"`       | inactive tabs  | Removed from tab order (arrow keys only) |
+| `tabindex="0"`        | panels         | Panels are focusable for keyboard users  |
+
+---
+
+## Keyboard interactions
+
+| Key         | Behavior                                              |
+|-------------|-------------------------------------------------------|
+| `Tab`       | Move focus to active tab, then into the active panel  |
+| `ArrowRight`| Move to next tab (horizontal) and activate            |
+| `ArrowLeft` | Move to previous tab (horizontal) and activate        |
+| `ArrowDown` | Move to next tab (vertical) and activate              |
+| `ArrowUp`   | Move to previous tab (vertical) and activate          |
+| `Home`      | Move to first tab and activate                        |
+| `End`       | Move to last tab and activate                         |
+| `Space/Enter`| Activate focused tab (manual activation mode)        |
+
+---
+
+## Vertical layout
+
+For vertical tabs, set `aria-orientation="vertical"` on the tablist. The CSS
+uses `:has()` to detect the orientation and adjust layout automatically — no
+inline styles needed:
+
+```html
+<div class="tabs">
+  <div class="tab-list" role="tablist"
+       aria-orientation="vertical"
+       aria-label="Settings">
+    <button class="tab-trigger" role="tab" aria-selected="true"
+            aria-controls="panel-general" id="tab-general">General</button>
+    <button class="tab-trigger" role="tab" aria-selected="false"
+            aria-controls="panel-security" id="tab-security"
+            tabindex="-1">Security</button>
+  </div>
+
+  <div class="tab-content" role="tabpanel"
+       id="panel-general" aria-labelledby="tab-general" tabindex="0">
+    General settings...
+  </div>
+  <div class="tab-content" role="tabpanel"
+       id="panel-security" aria-labelledby="tab-security" tabindex="0" hidden>
+    Security settings...
+  </div>
+</div>
+```
+
+### Vertical CSS
+
+The vertical layout is handled automatically via `:has()` — when the tablist has
+`aria-orientation="vertical"`, the `.tabs` container switches to flex row layout.
+No additional CSS is needed beyond what's in the main CSS block above.
+
+The JavaScript already handles vertical orientation — arrow keys switch to
+Up/Down based on `aria-orientation`.
+
+---
+
+## Notes
+
+- Only the active tab is in the tab order (`tabindex="0"`) — inactive tabs use `tabindex="-1"`
+- Arrow keys cycle through tabs (wrap around) — this is the roving tabindex pattern
+- The active panel uses `tabindex="0"` so it can receive focus from the tab trigger
+- Use `hidden` attribute on inactive panels for accessibility (screen readers skip them)
+- Disabled tabs should have `disabled` attribute and be skipped by keyboard navigation
+- For lazy-loaded content, panels can be rendered empty and populated on activation
+</script>
 </body>
 </html>

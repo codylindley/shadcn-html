@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -83,13 +84,52 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / command</p>
-          <span class="badge" data-variant="secondary">JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Command</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A searchable command palette for quick actions. Built on native <code>&lt;dialog&gt;</code> with search filtering. Open with <kbd>Cmd+K</kbd>.
         </p>
+        <!-- Component Specification -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Component Specification — <span data-spec-href="../components/command/command.md" style="text-decoration:underline;text-underline-offset:3px;">components/command/command.md</span>
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;dialog&gt;</code> + search input for a command palette.</p>
 
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" target="_blank" rel="noopener" title="modal with focus trap" class="api-pill"><code>&lt;dialog&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" title="entry animation" class="api-pill"><code>@starting-style</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.command</code>
+              <code>.command-input-wrapper</code>
+              <code>.command-input</code>
+              <code>.command-list</code>
+              <code>.command-group</code>
+              <code>.command-group-heading</code>
+              <code>.command-item</code>
+              <code>.command-separator</code>
+              <code>.command-shortcut</code>
+              <code>.command-empty</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-command-trigger</code></p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">State attributes (managed by JS)</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-highlighted</code></p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Wiring conventions</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-command-trigger</code> on any element — opens the component</p>
+          </div>
+        </details>
         <p class="text-sm font-medium mb-2 mt-6">Default</p>
         <div class="preview">
           <button class="btn" data-variant="outline" data-command-trigger="demo-cmd">Open Command Menu</button>
@@ -140,9 +180,121 @@
 &lt;/dialog&gt;</code></pre>
         </div>
 
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/command/command.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/command/command.md</a>
-        </p>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/command/command.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Styles for the command component. Uses design tokens for colors, spacing, and radius.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">@layer components {
+  dialog.command {
+    border: none; border-radius: var(--radius-xl);
+    background: var(--popover); color: var(--popover-foreground);
+    padding: 0; max-width: 32rem; width: calc(100% - 2rem);
+    box-shadow: var(--shadow-lg); margin: auto; position: fixed; inset: 0;
+    top: 15%; bottom: auto; overflow: hidden;
+    opacity: 0; transform: scale(0.98);
+    transition: opacity 150ms ease, transform 150ms ease, display 150ms allow-discrete;
+
+    &amp;[open] { opacity: 1; transform: scale(1); }
+    &amp;::backdrop { background: oklch(0 0 0 / 0); transition: all 150ms ease, display 150ms allow-discrete; }
+    &amp;[open]::backdrop { background: oklch(0 0 0 / 0.45); }
+  }
+
+  @starting-style {
+    dialog.command[open] { opacity: 0; transform: scale(0.98); }
+    dialog.command[open]::backdrop { background: oklch(0 0 0 / 0); }
+  }
+
+  .command-input-wrapper {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1rem; border-bottom: 1px solid var(--border);
+    &amp; svg { width: 1rem; height: 1rem; color: var(--muted-foreground); flex-shrink: 0; }
+  }
+
+  .command-input {
+    flex: 1; border: none; background: transparent;
+    font-size: 0.875rem; color: var(--foreground); outline: none; font-family: inherit;
+    &amp;::placeholder { color: var(--muted-foreground); }
+  }
+
+  .command-list { max-height: 18rem; overflow-y: auto; padding: 0.25rem; }
+  .command-group { padding: 0.25rem 0; }
+  .command-group-heading { margin: 0; padding: 0.375rem 0.5rem; font-size: 0.75rem; font-weight: 500; color: var(--muted-foreground); }
+
+  .command-item {
+    display: flex; align-items: center; gap: 0.5rem; width: 100%;
+    padding: 0.5rem 0.5rem; border: none; border-radius: var(--radius-md);
+    background: transparent; color: var(--foreground); font-size: 0.8125rem;
+    font-family: inherit; text-align: left; cursor: pointer;
+    &amp;:hover, &amp;[data-highlighted] { background-color: var(--accent); }
+    &amp; svg { width: 1rem; height: 1rem; color: var(--muted-foreground); flex-shrink: 0; }
+  }
+
+  .command-separator { height: 1px; background-color: var(--border); margin: 0.25rem -0.25rem; }
+  .command-shortcut { margin-left: auto; font-size: 0.6875rem; color: var(--muted-foreground); font-family: var(--font-mono); }
+  .command-empty { padding: 1.5rem; text-align: center; font-size: 0.875rem; color: var(--muted-foreground); }
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- ── JavaScript ──────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-js">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/command/command.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Interaction logic for the command component. Uses data attributes for wiring.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-javascript">(function () {
+  'use strict';
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('dialog.command').forEach(function (dialog) {
+      var input = dialog.querySelector('.command-input');
+      var list = dialog.querySelector('.command-list');
+      var empty = dialog.querySelector('.command-empty');
+      if (!input || !list) return;
+      var items = Array.from(list.querySelectorAll('.command-item'));
+
+      function filter(q) {
+        var query = q.toLowerCase(); var hasVisible = false;
+        items.forEach(function (item) {
+          var match = !query || item.textContent.toLowerCase().includes(query);
+          item.hidden = !match; if (match) hasVisible = true;
+        });
+        list.querySelectorAll('.command-group').forEach(function (g) {
+          g.hidden = g.querySelectorAll('.command-item:not([hidden])').length === 0;
+        });
+        if (empty) empty.hidden = hasVisible;
+      }
+
+      input.addEventListener('input', function () { filter(input.value); });
+      dialog.addEventListener('click', function (e) {
+        if (e.target === dialog) dialog.close();
+        if (e.target.closest('.command-item')) dialog.close();
+      });
+      dialog.addEventListener('close', function () { input.value = ''; filter(''); });
+
+      document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) &amp;&amp; e.key === 'k') {
+          e.preventDefault();
+          if (dialog.open) dialog.close();
+          else { dialog.showModal(); input.focus(); }
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-command-trigger]').forEach(function (trigger) {
+      var dialog = document.getElementById(trigger.dataset.commandTrigger);
+      if (!dialog) return;
+      trigger.addEventListener('click', function () {
+        dialog.showModal();
+        var input = dialog.querySelector('.command-input');
+        if (input) input.focus();
+      });
+    });
+  });
+})();</code></pre>
+          </div>
+        </section>
     </main>
   </div>
   <script src="js/site.js" defer></script>
@@ -172,5 +324,37 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Command
+
+## Native basis
+
+`<dialog>` + search input for a command palette.
+
+## Native Web APIs
+
+- [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) — modal with focus trap
+- [`@starting-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style) — entry animation
+
+## Structure
+
+```html
+<button class="btn" data-command-trigger="cmd">Open Command</button>
+<dialog id="cmd" class="command" role="dialog" aria-modal="true">
+  <div class="command-content">
+    <div class="command-input-wrapper">
+      <svg><!-- search --></svg>
+      <input class="command-input" type="text" placeholder="Type a command...">
+    </div>
+    <div class="command-list">
+      <div class="command-group">
+        <p class="command-group-heading">Suggestions</p>
+        <button class="command-item">Calendar</button>
+      </div>
+    </div>
+    <div class="command-empty" hidden>No results found.</div>
+  </div>
+</dialog>
+```
+</script>
 </body>
 </html>

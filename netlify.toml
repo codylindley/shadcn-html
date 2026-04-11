@@ -13,3 +13,16 @@
 # Branch deploys: auto-deploy the dev branch
 [context.branch-deploy]
   publish = "dist/"
+
+# Serve .md files as plain text so fetch() can read them
+[[headers]]
+  for = "/*.md"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/components/*/*.md"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Access-Control-Allow-Origin = "*"

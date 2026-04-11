@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -83,13 +84,45 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / timeline</p>
-          <span class="badge" data-variant="secondary">CSS Only</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Timeline</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A vertical timeline for displaying sequential events. Built on <code>&lt;ol&gt;</code> with CSS-generated connector lines.
         </p>
+        <!-- Component Specification -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Component Specification — <span data-spec-href="../components/timeline/timeline.md" style="text-decoration:underline;text-underline-offset:3px;">components/timeline/timeline.md</span>
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;ol&gt;</code> element with timeline items connected by a vertical line.</p>
 
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol" target="_blank" rel="noopener" title="ordered list conveying sequence" class="api-pill"><code>&lt;ol&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::before" target="_blank" rel="noopener" title="pseudo-element for connector line and dot" class="api-pill"><code>::before</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.timeline</code>
+              <code>.timeline-item</code>
+              <code>.timeline-dot</code>
+              <code>.timeline-content</code>
+              <code>.timeline-title</code>
+              <code>.timeline-description</code>
+              <code>.timeline-time</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Variants (data-variant)</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>active</code><span class="text-muted-foreground">Alternate background styling</span>
+            </div>
+          </div>
+        </details>
         <!-- Basic -->
         <p class="text-sm font-medium mb-2 mt-6">Basic</p>
         <p class="text-xs text-muted-foreground mb-3">Vertical timeline with title, description, and time.</p>
@@ -196,9 +229,92 @@
           </ol>
         </div>
 
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/timeline/timeline.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/timeline/timeline.md</a>
-        </p>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/timeline/timeline.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Connector line</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">@layer components {
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    position: relative;
+
+    /* Connector line */
+    &amp;::before {
+      content: '';
+      position: absolute;
+      left: 0.3125rem;
+      top: 1rem;
+      bottom: 0;
+      width: 1px;
+      background-color: var(--border);
+    }
+
+    &amp;:last-child::before {
+      display: none;
+    }
+
+    &amp;:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  .timeline-dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 9999px;
+    background-color: var(--border);
+    flex-shrink: 0;
+    margin-top: 0.375rem;
+    position: relative;
+    z-index: 1;
+
+    &amp;[data-variant=&quot;active&quot;] {
+      background-color: var(--primary);
+    }
+  }
+
+  .timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .timeline-title {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--foreground);
+    line-height: 1.4;
+  }
+
+  .timeline-description {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+    line-height: 1.5;
+  }
+
+  .timeline-time {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    margin-top: 0.125rem;
+  }
+}</code></pre>
+          </div>
+        </section>
     </main>
   </div>
   <script src="js/site.js" defer></script>
@@ -228,5 +344,51 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Timeline
+
+## Native basis
+
+`<ol>` element with timeline items connected by a vertical line.
+
+## Native Web APIs
+
+- [`<ol>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol) — ordered list conveying sequence
+- [`::before`](https://developer.mozilla.org/en-US/docs/Web/CSS/::before) — pseudo-element for connector line and dot
+
+## Structure
+
+```html
+<ol class="timeline">
+  <li class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div class="timeline-content">
+      <p class="timeline-title">Event title</p>
+      <p class="timeline-description">Event description text.</p>
+      <time class="timeline-time">January 2024</time>
+    </div>
+  </li>
+  <li class="timeline-item">
+    <div class="timeline-dot" data-variant="active"></div>
+    <div class="timeline-content">
+      <p class="timeline-title">Current event</p>
+      <p class="timeline-description">This is the current step.</p>
+      <time class="timeline-time">March 2024</time>
+    </div>
+  </li>
+</ol>
+```
+
+## Dot variants (`data-variant`)
+
+| Value     | Description                     |
+|-----------|---------------------------------|
+| `default` | Muted dot (default)             |
+| `active`  | Primary-colored dot             |
+
+## Accessibility
+
+- `<ol>` provides sequential ordering for screen readers
+- `<time>` element used for machine-readable dates
+</script>
 </body>
 </html>

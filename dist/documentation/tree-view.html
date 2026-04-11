@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -83,13 +84,47 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / tree-view</p>
-          <span class="badge" data-variant="secondary">JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Tree View</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A hierarchical tree for browsing nested data like file systems. Uses native <code>&lt;details&gt;</code> for expand/collapse with ARIA tree roles.
         </p>
+        <!-- Component Specification -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Component Specification — <span data-spec-href="../components/tree-view/tree-view.md" style="text-decoration:underline;text-underline-offset:3px;">components/tree-view/tree-view.md</span>
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">Nested <code>&lt;ul&gt;</code> elements with <code>role=&quot;tree&quot;</code> / <code>role=&quot;treeitem&quot;</code> ARIA pattern for hierarchical data.</p>
 
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul" target="_blank" rel="noopener" title="nested list structure" class="api-pill"><code>&lt;ul&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://www.w3.org/WAI/ARIA/apg/patterns/treeview/" target="_blank" rel="noopener" title="ARIA tree roles and keyboard navigation" class="api-pill"><code>Tree View WAI-ARIA pattern</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details" target="_blank" rel="noopener" title="native expand/collapse for branches" class="api-pill"><code>&lt;details&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.tree</code>
+              <code>.tree-group</code>
+              <code>.tree-item</code>
+              <code>.tree-branch</code>
+              <code>.tree-branch-trigger</code>
+              <code>.tree-leaf</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Root <code>&lt;ul&gt;</code> has <code>role=&quot;tree&quot;</code> and <code>aria-label</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Branch items have <code>role=&quot;treeitem&quot;</code> and <code>aria-expanded</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Leaf items have <code>role=&quot;treeitem&quot;</code> without <code>aria-expanded</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Nested groups use <code>role=&quot;group&quot;</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• Keyboard: Arrow keys navigate, Enter/Space toggles branches</p>
+          </div>
+        </details>
         <!-- File Explorer -->
         <p class="text-sm font-medium mb-2 mt-6">File Explorer</p>
         <p class="text-xs text-muted-foreground mb-3">Nested tree with folders and files.</p>
@@ -183,9 +218,184 @@
 &lt;/ul&gt;</code></pre>
         </div>
 
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/tree-view/tree-view.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/tree-view/tree-view.md</a>
-        </p>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/tree-view/tree-view.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Styles for the tree-view component. Uses design tokens for colors, spacing, and radius.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">@layer components {
+  .tree {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+  }
+
+  .tree-group {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 1.25rem;
+  }
+
+  .tree-item {
+    padding: 0;
+  }
+
+  .tree-branch {
+    border: none;
+
+    &amp; ::details-content {
+      block-size: 0;
+      overflow-y: clip;
+      transition: block-size 200ms ease, content-visibility 200ms allow-discrete;
+    }
+
+    &amp;[open] ::details-content {
+      block-size: auto;
+    }
+  }
+
+  @starting-style {
+    .tree-branch[open] ::details-content {
+      block-size: 0;
+    }
+  }
+
+  .tree-branch-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    color: var(--foreground);
+    list-style: none;
+
+    &amp;:hover {
+      background-color: var(--accent);
+    }
+
+    &amp;:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: -2px;
+    }
+
+    &amp;::-webkit-details-marker {
+      display: none;
+    }
+
+    &amp; svg {
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+    }
+
+    &amp; svg:first-child {
+      width: 0.875rem;
+      height: 0.875rem;
+      color: var(--muted-foreground);
+      transition: transform 200ms ease;
+    }
+  }
+
+  details[open] &gt; .tree-branch-trigger &gt; svg:first-child {
+    transform: rotate(90deg);
+  }
+
+  .tree-leaf {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.5rem;
+    padding-left: calc(0.5rem + 0.875rem + 0.375rem);
+    border-radius: var(--radius-md);
+    color: var(--foreground);
+    cursor: default;
+
+    &amp;:hover {
+      background-color: var(--accent);
+    }
+
+    &amp; svg {
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+      color: var(--muted-foreground);
+    }
+  }
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- ── JavaScript ──────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-js">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/tree-view/tree-view.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Interaction logic for the tree-view component. Uses data attributes for wiring.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-javascript">(function () {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.tree[role=&quot;tree&quot;]').forEach(function (tree) {
+      /* Keep aria-expanded in sync with &lt;details&gt; open state */
+      tree.querySelectorAll('.tree-branch').forEach(function (details) {
+        var treeitem = details.closest('[role=&quot;treeitem&quot;]');
+        if (!treeitem) return;
+
+        details.addEventListener('toggle', function () {
+          treeitem.setAttribute('aria-expanded', String(details.open));
+        });
+      });
+
+      /* Keyboard navigation */
+      tree.addEventListener('keydown', function (e) {
+        var target = e.target.closest('.tree-branch-trigger, .tree-leaf');
+        if (!target) return;
+
+        var allItems = Array.from(tree.querySelectorAll('.tree-branch-trigger, .tree-leaf'));
+        var visibleItems = allItems.filter(function (item) {
+          return item.offsetParent !== null;
+        });
+        var index = visibleItems.indexOf(target);
+
+        switch (e.key) {
+          case 'ArrowDown':
+            e.preventDefault();
+            if (index &lt; visibleItems.length - 1) visibleItems[index + 1].focus();
+            break;
+          case 'ArrowUp':
+            e.preventDefault();
+            if (index &gt; 0) visibleItems[index - 1].focus();
+            break;
+          case 'ArrowRight':
+            e.preventDefault();
+            var detailsR = target.closest('details.tree-branch');
+            if (detailsR &amp;&amp; !detailsR.open) detailsR.open = true;
+            break;
+          case 'ArrowLeft':
+            e.preventDefault();
+            var detailsL = target.closest('details.tree-branch');
+            if (detailsL &amp;&amp; detailsL.open) {
+              detailsL.open = false;
+            }
+            break;
+          case 'Home':
+            e.preventDefault();
+            if (visibleItems.length) visibleItems[0].focus();
+            break;
+          case 'End':
+            e.preventDefault();
+            if (visibleItems.length) visibleItems[visibleItems.length - 1].focus();
+            break;
+        }
+      });
+    });
+  });
+})();</code></pre>
+          </div>
+        </section>
     </main>
   </div>
   <script src="js/site.js" defer></script>
@@ -215,5 +425,55 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Tree View
+
+## Native basis
+
+Nested `<ul>` elements with `role="tree"` / `role="treeitem"` ARIA pattern for hierarchical data.
+
+## Native Web APIs
+
+- [`<ul>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul) — nested list structure
+- [Tree View WAI-ARIA pattern](https://www.w3.org/WAI/ARIA/apg/patterns/treeview/) — ARIA tree roles and keyboard navigation
+- [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) — native expand/collapse for branches
+
+## Structure
+
+```html
+<ul class="tree" role="tree" aria-label="File explorer">
+  <li class="tree-item" role="treeitem" aria-expanded="true">
+    <details class="tree-branch" open>
+      <summary class="tree-branch-trigger">
+        <svg><!-- chevron --></svg>
+        <svg><!-- folder icon --></svg>
+        <span>src</span>
+      </summary>
+      <ul class="tree-group" role="group">
+        <li class="tree-item" role="treeitem">
+          <span class="tree-leaf">
+            <svg><!-- file icon --></svg>
+            <span>index.ts</span>
+          </span>
+        </li>
+      </ul>
+    </details>
+  </li>
+  <li class="tree-item" role="treeitem">
+    <span class="tree-leaf">
+      <svg><!-- file icon --></svg>
+      <span>package.json</span>
+    </span>
+  </li>
+</ul>
+```
+
+## Accessibility
+
+- Root `<ul>` has `role="tree"` and `aria-label`
+- Branch items have `role="treeitem"` and `aria-expanded`
+- Leaf items have `role="treeitem"` without `aria-expanded`
+- Nested groups use `role="group"`
+- Keyboard: Arrow keys navigate, Enter/Space toggles branches
+</script>
 </body>
 </html>

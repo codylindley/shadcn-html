@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -85,46 +86,51 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
 <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / toggle</p>
-          <span class="badge" data-variant="secondary">Minimal JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Toggle</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A two-state button that can be either on or off. Uses <code>&lt;button&gt;</code> with
           <code>aria-pressed</code>. Common for toolbar formatting buttons (bold, italic) or feature toggles.
         </p>
-
         <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — components/toggle/toggle.md
+            Component Specification — <span data-spec-href="../components/toggle/toggle.md" style="text-decoration:underline;text-underline-offset:3px;">components/toggle/toggle.md</span>
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;button&gt;</code> with <code>aria-pressed</code>. Click and keyboard (Enter/Space) handling are browser-native.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;button&gt;</code> element with <code>aria-pressed</code>. The browser provides click and keyboard</p>
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button" target="_blank" rel="noopener" title="Native clickable element with built-in keyboard handling" class="api-pill"><code>&lt;button&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed" target="_blank" rel="noopener" title="Communicates toggle on/off state to assistive technology" class="api-pill"><code>aria-pressed</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button" target="_blank" rel="noopener" title="native clickable element with built-in keyboard handling" class="api-pill"><code>&lt;button&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed" target="_blank" rel="noopener" title="communicates toggle on/off state to assistive technology" class="api-pill"><code>aria-pressed</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.toggle</code>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Variants (data-variant)</p>
             <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>default</code><span class="text-muted-foreground">Transparent, hover: --muted, pressed: --accent bg</span>
-              <code>outline</code><span class="text-muted-foreground">Border + shadow-xs, hover: --accent, pressed: --accent bg</span>
+              <code>outline</code><span class="text-muted-foreground">Alternate background styling</span>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Sizes (data-size)</p>
-            <div style="display:grid;grid-template-columns:auto auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>sm</code><span>2rem</span><span class="text-muted-foreground">0 0.375rem padding</span>
-              <code>default</code><span>2.25rem</span><span class="text-muted-foreground">0 0.5rem padding</span>
-              <code>lg</code><span>2.5rem</span><span class="text-muted-foreground">0 0.625rem padding</span>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>sm</code><span class="text-muted-foreground">Height: 2rem</span>
+              <code>lg</code><span class="text-muted-foreground">Height: 2.5rem</span>
             </div>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>aria-pressed="true|false"</code> — toggled on click via JS</p>
-            <p class="text-muted-foreground" style="margin:0;">• <code>aria-label</code> — required for icon-only toggles</p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The toggle is just a button with <code>aria-pressed</code> — no custom elements needed.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Icon-only toggles must have <code>aria-label</code> for screen readers.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• For toggle groups (e.g., text alignment), wrap in a container with <code>role=&quot;group&quot;</code> and <code>aria-label</code>.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• The pressed state uses <code>--accent</code> / <code>--accent-foreground</code> to match shadcn conventions.</p>
           </div>
         </details>
 
@@ -252,10 +258,92 @@
 &lt;button class="toggle" data-variant="outline"
         aria-pressed="true" disabled&gt;Disabled&lt;/button&gt;</code></pre>
         </div>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/toggle/toggle.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">── Toggle component ──────────────────────────────────────────</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">/* ── Toggle component ────────────────────────────────────────── */
+
+@layer components {
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    transition: color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+    outline: none;
+    flex-shrink: 0;
+    height: 2.25rem;
+    padding: 0 0.5rem;
+    min-width: 2.25rem;
+
+    &amp;:hover {
+      background-color: var(--muted);
+      color: var(--muted-foreground);
+    }
+
+    &amp;[aria-pressed=&quot;true&quot;] {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+
+    &amp;:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    &amp;:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    &amp; svg {
+      pointer-events: none;
+      flex-shrink: 0;
+
+      &amp;:not([class*=&quot;size-&quot;]) { width: 1rem; height: 1rem; }
+    }
+
+    /* ── Variants ──────────────────────────────────────────── */
+    &amp;[data-variant=&quot;outline&quot;] {
+      border: 1px solid var(--input);
+      background: transparent;
+      box-shadow: var(--shadow-xs);
+
+      &amp;:hover {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+      }
+
+      &amp;[aria-pressed=&quot;true&quot;] {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+      }
+    }
+
+    /* ── Sizes ─────────────────────────────────────────────── */
+    &amp;[data-size=&quot;sm&quot;]  { height: 2rem;  padding: 0 0.375rem; min-width: 2rem; }
+    &amp;[data-size=&quot;lg&quot;]  { height: 2.5rem; padding: 0 0.625rem; min-width: 2.5rem; }
+  }
+}</code></pre>
+          </div>
+        </section>
 
         <!-- ── JavaScript ──────────────────────────────── -->
         <section style="margin-top:3rem;">
-          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript</h2>
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/toggle/toggle.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
           <p class="text-muted-foreground text-sm mb-4">Single click handler toggles <code>aria-pressed</code> between <code>"true"</code> and <code>"false"</code>.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn">
@@ -270,9 +358,6 @@ document.querySelectorAll('.toggle').forEach(function (toggle) {
   });
 });</code></pre>
           </div>
-          <p class="text-xs text-muted-foreground" style="margin-top:1rem;">
-            Full specification → <a href="../components/toggle/toggle.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/toggle/toggle.md</a>
-          </p>
         </section>
 
     </main>
@@ -305,5 +390,89 @@ document.querySelectorAll('.toggle').forEach(function (toggle) {
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Pattern: Toggle
+
+## Native basis
+`<button>` element with `aria-pressed`. The browser provides click and keyboard
+(Enter/Space) handling automatically. No extra JavaScript needed for basic usage.
+
+A two-state button that can be either on or off. Common for toolbar formatting
+buttons (bold, italic, underline) or feature toggles.
+
+---
+
+## Native Web APIs
+- [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) — native clickable element with built-in keyboard handling
+- [`aria-pressed`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed) — communicates toggle on/off state to assistive technology
+
+---
+
+## Structure
+
+```html
+<button class="toggle" aria-pressed="false" aria-label="Toggle bold">
+  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8"/>
+  </svg>
+</button>
+```
+
+### With text
+```html
+<button class="toggle" aria-pressed="false">
+  <svg aria-hidden="true" width="16" height="16" ...>...</svg>
+  Italic
+</button>
+```
+
+---
+
+## Variants
+
+| `data-variant` | Purpose                              |
+|----------------|--------------------------------------|
+| *(default)*    | Transparent background, subtle hover |
+| `outline`      | Border, transparent background       |
+
+```html
+<button class="toggle" aria-pressed="false">Default</button>
+<button class="toggle" data-variant="outline" aria-pressed="false">Outline</button>
+```
+
+---
+
+## Sizes
+
+| `data-size`  | Height    | Padding        | Min-width   |
+|-------------|-----------|----------------|-------------|
+| `sm`        | `2rem`    | `0 0.375rem`   | `2rem`      |
+| *(default)* | `2.25rem` | `0 0.5rem`     | `2.25rem`   |
+| `lg`        | `2.5rem`  | `0 0.625rem`   | `2.5rem`    |
+
+```html
+<button class="toggle" data-size="sm" aria-pressed="false" aria-label="Bold">
+  <svg aria-hidden="true" ...>...</svg>
+</button>
+```
+
+---
+
+## ARIA
+
+| Attribute         | Element    | Value               |
+|--------------------|-----------|----------------------|
+| `aria-pressed`     | `<button>` | `"true"` or `"false"` — toggled on click |
+| `aria-label`       | `<button>` | Required for icon-only toggles |
+
+---
+
+## Notes
+
+- The toggle is just a button with `aria-pressed` — no custom elements needed.
+- Icon-only toggles must have `aria-label` for screen readers.
+- For toggle groups (e.g., text alignment), wrap in a container with `role="group"` and `aria-label`.
+- The pressed state uses `--accent` / `--accent-foreground` to match shadcn conventions.
+</script>
 </body>
 </html>

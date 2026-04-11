@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -85,38 +86,52 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / input</p>
-          <span class="badge" data-variant="secondary">No JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Input</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A styled text input built on the native <code>&lt;input&gt;</code> element. Includes label, description, error, sizes, file input, textarea auto-grow, and focus ring. Zero JavaScript.
         </p>
-
         <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — components/input/input.md
+            Component Specification — <span data-spec-href="../components/input/input.md" style="text-decoration:underline;text-underline-offset:3px;">components/input/input.md</span>
           </summary>
-          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;border-top:1px solid var(--border);">
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;input&gt;</code> element with built-in validation, autofill. <code>&lt;textarea&gt;</code> with <code>field-sizing: content</code> for auto-grow.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;input&gt;</code> element. Browser provides built-in validation, autofill, and accessibility.</p>
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" target="_blank" rel="noopener" title="Native form control" class="api-pill"><code>&lt;input&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea" target="_blank" rel="noopener" title="Multi-line text input" class="api-pill"><code>&lt;textarea&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has" target="_blank" rel="noopener" title="Parent styling reacting to child state" class="api-pill"><code>:has()</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing" target="_blank" rel="noopener" title="Auto-growing textarea" class="api-pill"><code>field-sizing</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid" target="_blank" rel="noopener" title="Native validation styling" class="api-pill"><code>:user-invalid</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" target="_blank" rel="noopener" title="native form control with built-in validation and autofill" class="api-pill"><code>&lt;input&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea" target="_blank" rel="noopener" title="multi-line text input" class="api-pill"><code>&lt;textarea&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has" target="_blank" rel="noopener" title="parent styling that reacts to child input state (focus, disabled)" class="api-pill"><code>:has() selector</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing" target="_blank" rel="noopener" title="auto-growing textarea without JavaScript" class="api-pill"><code>field-sizing: content</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid" target="_blank" rel="noopener" title="native validation styling after user interaction" class="api-pill"><code>:user-invalid</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">States</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Default — border <code>--input</code>, shadow-xs</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Focus — ring <code>--ring</code> with glow</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Disabled — <code>disabled</code> attribute, 50% opacity</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Invalid — <code>aria-invalid="true"</code>, border <code>--destructive</code></p>
-            <p class="text-muted-foreground" style="margin:0;">• Required — <code>required</code> attribute, native validation</p>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.input</code>
+              <code>.label</code>
+              <code>.field-description</code>
+              <code>.field-error</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Sizes (data-size)</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>sm</code><span class="text-muted-foreground">Height: 2rem</span>
+              <code>lg</code><span class="text-muted-foreground">Height: 2.75rem</span>
+            </div>
+
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Always pair inputs with <code>&lt;label&gt;</code> using matching <code>for</code>/<code>id</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>type=&quot;file&quot;</code> for file inputs — styled via the <code>.input</code> class</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Textarea auto-grows via <code>field-sizing: content</code> — zero JavaScript</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The <code>:has()</code> selector highlights the label when its input is focused</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• For hidden labels, use <code>sr-only</code> class on the label element</p>
           </div>
         </details>
 
@@ -355,6 +370,117 @@
           </div>
         </section>
 
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/input/input.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">── Input component ───────────────────────────────────────────</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">/* ── Input component ─────────────────────────────────────────── */
+
+@layer components {
+  .input {
+    height: 2.5rem;
+    width: 100%;
+    border: 1px solid var(--input);
+    border-radius: var(--radius-md);
+    background: var(--background);
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+    font-family: var(--font-sans);
+    color: var(--foreground);
+    outline: none;
+    box-shadow: var(--shadow-xs);
+    transition: border-color 150ms, box-shadow 150ms;
+
+    &amp;:focus {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 2px oklch(from var(--ring) l c h / 0.2);
+    }
+
+    &amp;::placeholder { color: var(--muted-foreground); }
+
+    &amp;:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* ── Invalid state ─────────────────────────────────────── */
+    &amp;[aria-invalid=&quot;true&quot;] {
+      border-color: var(--destructive);
+
+      &amp;:focus {
+        border-color: var(--destructive);
+        box-shadow: 0 0 0 2px oklch(from var(--destructive) l c h / 0.2);
+      }
+    }
+
+    /* ── File input ────────────────────────────────────────── */
+    &amp;[type=&quot;file&quot;] {
+      padding: 0;
+      font-size: 0.875rem;
+
+      &amp;::file-selector-button {
+        height: 100%;
+        border: none;
+        border-right: 1px solid var(--input);
+        background: var(--muted);
+        color: var(--foreground);
+        font-size: 0.875rem;
+        font-weight: 500;
+        font-family: var(--font-sans);
+        padding: 0 0.75rem;
+        margin-right: 0.75rem;
+        cursor: pointer;
+        transition: background 150ms;
+
+        &amp;:hover { background: var(--accent); }
+      }
+    }
+
+    /* ── Sizes ─────────────────────────────────────────────── */
+    &amp;[data-size=&quot;sm&quot;] { height: 2rem;    padding: 0 0.625rem; font-size: 0.8125rem; }
+    &amp;[data-size=&quot;lg&quot;] { height: 2.75rem; padding: 0 1rem;     font-size: 1rem; }
+  }
+
+  /* ── Auto-growing textarea ───────────────────────────────── */
+  textarea.input {
+    field-sizing: content;
+    min-height: 5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* ── Label ───────────────────────────────────────────────── */
+  label.label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.375rem;
+
+    /* Highlight label when its associated input is focused */
+    &amp;:has(+ .input:focus) {
+      color: var(--foreground);
+    }
+  }
+
+  /* ── Field description ───────────────────────────────────── */
+  .field-description {
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+    margin: 0.375rem 0 0;
+  }
+
+  /* ── Field error ─────────────────────────────────────────── */
+  .field-error {
+    font-size: 0.8125rem;
+    color: var(--destructive);
+    margin: 0.375rem 0 0;
+  }
+}</code></pre>
+          </div>
+        </section>
+
     </main>
   </div>
 
@@ -385,5 +511,118 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Pattern: Input
+
+## Native basis
+`<input>` element. Browser provides built-in validation, autofill, and accessibility.
+Also covers `<textarea>` with auto-grow via `field-sizing: content`.
+
+---
+
+## Native Web APIs
+- [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) — native form control with built-in validation and autofill
+- [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) — multi-line text input
+- [`:has()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) — parent styling that reacts to child input state (focus, disabled)
+- [`field-sizing: content`](https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing) — auto-growing textarea without JavaScript
+- [`:user-invalid`](https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid) — native validation styling after user interaction
+
+---
+
+## Structure
+
+### Basic
+```html
+<label class="label" for="email">Email</label>
+<input class="input" type="email" id="email" placeholder="you@example.com">
+```
+
+### With description
+```html
+<div>
+  <label class="label" for="username">Username</label>
+  <input class="input" type="text" id="username" placeholder="codylindley">
+  <p class="field-description">Choose a unique username for your account.</p>
+</div>
+```
+
+### Required
+```html
+<label class="label" for="name">
+  Name <span class="text-destructive">*</span>
+</label>
+<input class="input" type="text" id="name" required placeholder="Jane Doe">
+```
+
+### Invalid
+```html
+<label class="label" for="bad-email">Email</label>
+<input class="input" type="email" id="bad-email" aria-invalid="true" value="not-an-email">
+<p class="field-error">Please enter a valid email address.</p>
+```
+
+### With icon
+```html
+<div class="relative">
+  <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4"></i>
+  <input class="input pl-9" type="search" placeholder="Search...">
+</div>
+```
+
+### File
+```html
+<label class="label" for="avatar">Picture</label>
+<input class="input" type="file" id="avatar">
+```
+
+### Textarea (auto-grow)
+```html
+<label class="label" for="message">Message</label>
+<textarea class="input" id="message" placeholder="Your message..."></textarea>
+```
+
+---
+
+## Sizes
+
+| `data-size` | Height    | Padding       | Font size    |
+|-------------|-----------|---------------|--------------|
+| `sm`        | `2rem`    | `0 0.625rem`  | `0.8125rem`  |
+| *(default)* | `2.5rem`  | `0 0.75rem`   | `0.875rem`   |
+| `lg`        | `2.75rem` | `0 1rem`      | `1rem`       |
+
+---
+
+## States
+
+| State | How to apply | Visual |
+|-------|-------------|--------|
+| Default | — | Border `--input`, shadow-xs |
+| Focus | Native `:focus` | Ring `--ring` with glow |
+| Disabled | `disabled` attribute | 50% opacity |
+| Invalid | `aria-invalid="true"` | Border `--destructive`, red ring on focus |
+| Required | `required` attribute | Works with native validation |
+
+---
+
+## ARIA
+
+| Attribute | When | Value |
+|-----------|------|-------|
+| `id` + `for` | Always | Links label to input |
+| `aria-invalid="true"` | Validation error | Marks input as invalid |
+| `aria-describedby` | Has description or error | Points to description/error element |
+| `required` | Required field | Native browser validation |
+| `type` | Always | Use semantic types: `email`, `tel`, `url`, `search`, `password`, `number` |
+
+---
+
+## Notes
+
+- Always pair inputs with `<label>` using matching `for`/`id`
+- Use `type="file"` for file inputs — styled via the `.input` class
+- Textarea auto-grows via `field-sizing: content` — zero JavaScript
+- The `:has()` selector highlights the label when its input is focused
+- For hidden labels, use `sr-only` class on the label element
+</script>
 </body>
 </html>

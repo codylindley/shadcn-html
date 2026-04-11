@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -85,13 +86,47 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / slider</p>
-          <span class="badge" data-variant="secondary">CSS Only</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Slider</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           An input for selecting a value from a range. Built on native <code>&lt;input type="range"&gt;</code> with custom track and thumb styling.
         </p>
+        <!-- Component Specification -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Component Specification — <span data-spec-href="../components/slider/slider.md" style="text-decoration:underline;text-underline-offset:3px;">components/slider/slider.md</span>
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;input type=&quot;range&quot;&gt;</code> element with custom styling.</p>
 
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range" target="_blank" rel="noopener" title="native range control with keyboard and touch support" class="api-pill"><code>&lt;input type=&quot;range&quot;&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-thumb" target="_blank" rel="noopener" title="custom thumb styling" class="api-pill"><code>::-webkit-slider-thumb</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-runnable-track" target="_blank" rel="noopener" title="custom track styling" class="api-pill"><code>::-webkit-slider-runnable-track</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.slider</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Native <code>&lt;input type=&quot;range&quot;&gt;</code> provides full keyboard support (arrow keys, Home, End).</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>&lt;label&gt;</code> with <code>for</code> for description.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>min</code>, <code>max</code>, <code>step</code> attributes define the range.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>aria-valuetext</code> for custom value descriptions (e.g., "50%").</p>
+
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Styled with <code>-webkit-appearance: none</code> and custom pseudo-elements.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Uses CSS accent-color as fallback for unsupported browsers.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• The track fill effect is achieved via a gradient trick.</p>
+          </div>
+        </details>
         <p class="text-sm font-medium mb-2 mt-6">Default</p>
         <p class="text-xs text-muted-foreground mb-3">Range slider with default value.</p>
         <div class="preview">
@@ -137,9 +172,96 @@
           <pre><code>&lt;input class="slider" type="range" disabled&gt;</code></pre>
         </div>
 
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/slider/slider.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/slider/slider.md</a>
-        </p>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/slider/slider.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">── Slider component ───────────────────────────────────────────</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">/* ── Slider component ─────────────────────────────────────────── */
+
+@layer components {
+  .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: var(--secondary);
+    cursor: pointer;
+    outline: none;
+    border: none;
+    accent-color: var(--primary);
+
+    /* Track — WebKit */
+    &amp;::-webkit-slider-runnable-track {
+      height: 0.5rem;
+      border-radius: 9999px;
+      background: var(--secondary);
+    }
+
+    /* Track — Firefox */
+    &amp;::-moz-range-track {
+      height: 0.5rem;
+      border-radius: 9999px;
+      background: var(--secondary);
+      border: none;
+    }
+
+    /* Filled portion — Firefox */
+    &amp;::-moz-range-progress {
+      height: 0.5rem;
+      border-radius: 9999px;
+      background: var(--primary);
+    }
+
+    /* Thumb — WebKit */
+    &amp;::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: var(--background);
+      border: 2px solid var(--primary);
+      margin-top: -0.375rem;
+      cursor: pointer;
+      transition: box-shadow 150ms;
+    }
+
+    /* Thumb — Firefox */
+    &amp;::-moz-range-thumb {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: var(--background);
+      border: 2px solid var(--primary);
+      cursor: pointer;
+      transition: box-shadow 150ms;
+    }
+
+    &amp;:focus-visible {
+      &amp;::-webkit-slider-thumb {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+      }
+
+      &amp;::-moz-range-thumb {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+      }
+    }
+
+    &amp;:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &amp;::-webkit-slider-thumb { cursor: not-allowed; }
+      &amp;::-moz-range-thumb { cursor: not-allowed; }
+    }
+  }
+}</code></pre>
+          </div>
+        </section>
 
     </main>
   </div>
@@ -171,5 +293,43 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Pattern: Slider
+
+## Native basis
+`<input type="range">` element with custom styling.
+
+---
+
+## Native Web APIs
+- [`<input type="range">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range) — native range control with keyboard and touch support
+- [`::-webkit-slider-thumb`](https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-thumb) — custom thumb styling
+- [`::-webkit-slider-runnable-track`](https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-runnable-track) — custom track styling
+
+---
+
+## Structure
+
+```html
+<label class="label" for="volume">Volume</label>
+<input class="slider" type="range" id="volume" min="0" max="100" value="50">
+```
+
+---
+
+## Accessibility
+
+- Native `<input type="range">` provides full keyboard support (arrow keys, Home, End).
+- Use `<label>` with `for` for description.
+- `min`, `max`, `step` attributes define the range.
+- `aria-valuetext` for custom value descriptions (e.g., "50%").
+
+---
+
+## Notes
+
+- Styled with `-webkit-appearance: none` and custom pseudo-elements.
+- Uses CSS accent-color as fallback for unsupported browsers.
+- The track fill effect is achieved via a gradient trick.
+</script>
 </body>
 </html>

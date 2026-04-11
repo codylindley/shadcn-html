@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -85,35 +86,57 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / toggle-group</p>
-          <span class="badge" data-variant="secondary">JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Toggle Group</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A set of two-state buttons that can be toggled on or off. Supports single (radio-like) and
           multiple (checkbox-like) selection modes with arrow key navigation.
         </p>
-
         <!-- Component Specification -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — components/toggle-group/toggle-group.md
+            Component Specification — <span data-spec-href="../components/toggle-group/toggle-group.md" style="text-decoration:underline;text-underline-offset:3px;">components/toggle-group/toggle-group.md</span>
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>role="group"</code> container with <code>.toggle</code> buttons. Single or multiple selection.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>role=&quot;group&quot;</code> container with <code>.toggle</code> buttons. Supports single and multiple selection modes.</p>
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/group_role" target="_blank" rel="noopener" title="Groups related interactive elements" class="api-pill"><code>role="group"</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed" target="_blank" rel="noopener" title="Toggle state" class="api-pill"><code>aria-pressed</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/group_role" target="_blank" rel="noopener" title="groups related interactive elements" class="api-pill"><code>role=&quot;group&quot;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed" target="_blank" rel="noopener" title="toggle state on each item" class="api-pill"><code>aria-pressed</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label" target="_blank" rel="noopener" title="accessible name for the group" class="api-pill"><code>aria-label</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Type</p>
-            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>single</code><span class="text-muted-foreground">One item at a time (radio-like)</span>
-              <code>multiple</code><span class="text-muted-foreground">Any combination (checkbox-like)</span>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.toggle-group</code>
+              <code>.toggle</code>
             </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Variants (data-variant)</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>outline</code><span class="text-muted-foreground">Outline styling</span>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Sizes (data-size)</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>sm</code><span class="text-muted-foreground">SM</span>
+              <code>lg</code><span class="text-muted-foreground">LG</span>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-spacing</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-type</code></p>
+
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-type=&quot;single&quot;</code> enforces one-at-a-time selection (radio-like behavior).</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-type=&quot;multiple&quot;</code> allows any combination of pressed states (checkbox-like).</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The group propagates <code>data-variant</code> and <code>data-size</code> to child toggles via CSS.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• Keyboard: Tab focuses the group, arrow keys navigate between items.</p>
           </div>
         </details>
 
@@ -234,9 +257,153 @@
         </div>
 
         <!-- Spec link -->
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/toggle-group/toggle-group.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/toggle-group/toggle-group.md</a>
-        </p>
+
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/toggle-group/toggle-group.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">── Toggle Group component ─────────────────────────────────────</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">/* ── Toggle Group component ───────────────────────────────────── */
+
+@layer components {
+  .toggle-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.0625rem;
+
+    /* Propagate outline variant to child toggles */
+    &amp;[data-variant=&quot;outline&quot;] &gt; .toggle {
+      border: 1px solid var(--input);
+      background: transparent;
+      box-shadow: var(--shadow-xs);
+
+      &amp;:hover {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+      }
+
+      &amp;[aria-pressed=&quot;true&quot;] {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+      }
+    }
+
+    /* Propagate sizes to child toggles */
+    &amp;[data-size=&quot;sm&quot;] &gt; .toggle  { height: 2rem;  padding: 0 0.375rem; min-width: 2rem; }
+    &amp;[data-size=&quot;lg&quot;] &gt; .toggle  { height: 2.5rem; padding: 0 0.625rem; min-width: 2.5rem; }
+
+    /* Vertical orientation */
+    &amp;[aria-orientation=&quot;vertical&quot;] {
+      flex-direction: column;
+    }
+
+    /* Connected borders: merge adjacent toggle borders */
+    &amp; &gt; .toggle:not(:first-child) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &amp; &gt; .toggle:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &amp;[aria-orientation=&quot;vertical&quot;] {
+      &amp; &gt; .toggle:not(:first-child) {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: var(--radius-md);
+      }
+
+      &amp; &gt; .toggle:not(:last-child) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: var(--radius-md);
+      }
+    }
+
+    /* Spacing variant — adds gap and restores individual radii */
+    &amp;[data-spacing] {
+      gap: 0.25rem;
+
+      &amp; &gt; .toggle {
+        border-radius: var(--radius-md);
+      }
+    }
+  }
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- ── JavaScript ──────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-js">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/toggle-group/toggle-group.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Toggle Group</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-javascript">// ── Toggle Group ─────────────────────────────────────────────
+// Manages single/multiple selection across .toggle buttons in a group.
+// Include via &lt;script src=&quot;components/toggle-group/toggle-group.js&quot; defer&gt;&lt;/script&gt;
+
+(function () {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.toggle-group').forEach(function (group) {
+      var type = group.getAttribute('data-type') || 'single';
+      var toggles = Array.from(group.querySelectorAll('.toggle'));
+
+      toggles.forEach(function (toggle) {
+        toggle.addEventListener('click', function () {
+          var pressed = toggle.getAttribute('aria-pressed') === 'true';
+
+          if (type === 'single') {
+            // Depress all others, press this one (or depress if already pressed)
+            toggles.forEach(function (t) {
+              t.setAttribute('aria-pressed', 'false');
+            });
+            if (!pressed) {
+              toggle.setAttribute('aria-pressed', 'true');
+            }
+          } else {
+            // Multiple: just toggle this one
+            toggle.setAttribute('aria-pressed', String(!pressed));
+          }
+        });
+
+        // Keyboard navigation: arrow keys move focus between items
+        toggle.addEventListener('keydown', function (e) {
+          var idx = toggles.indexOf(toggle);
+          var next;
+          var vertical = group.getAttribute('aria-orientation') === 'vertical';
+          var fwd = vertical ? 'ArrowDown' : 'ArrowRight';
+          var bwd = vertical ? 'ArrowUp' : 'ArrowLeft';
+
+          if (e.key === fwd) {
+            e.preventDefault();
+            next = toggles[(idx + 1) % toggles.length];
+          } else if (e.key === bwd) {
+            e.preventDefault();
+            next = toggles[(idx - 1 + toggles.length) % toggles.length];
+          } else if (e.key === 'Home') {
+            e.preventDefault();
+            next = toggles[0];
+          } else if (e.key === 'End') {
+            e.preventDefault();
+            next = toggles[toggles.length - 1];
+          }
+
+          if (next &amp;&amp; !next.disabled) {
+            next.focus();
+          }
+        });
+      });
+    });
+  });
+})();</code></pre>
+          </div>
+        </section>
 
     </main>
   </div>
@@ -268,5 +435,92 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Pattern: Toggle Group
+
+## Native basis
+`role="group"` container with `.toggle` buttons. Supports single and multiple selection modes.
+
+---
+
+## Native Web APIs
+- [`role="group"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/group_role) — groups related interactive elements
+- [`aria-pressed`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed) — toggle state on each item
+- [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) — accessible name for the group
+
+---
+
+## Structure
+
+### Single selection
+```html
+<div class="toggle-group" role="group" aria-label="Text alignment" data-type="single">
+  <button class="toggle" aria-pressed="true" value="left">
+    <svg aria-hidden="true" ...>...</svg>
+  </button>
+  <button class="toggle" aria-pressed="false" value="center">
+    <svg aria-hidden="true" ...>...</svg>
+  </button>
+  <button class="toggle" aria-pressed="false" value="right">
+    <svg aria-hidden="true" ...>...</svg>
+  </button>
+</div>
+```
+
+### Multiple selection
+```html
+<div class="toggle-group" role="group" aria-label="Text formatting" data-type="multiple">
+  <button class="toggle" aria-pressed="true" value="bold">
+    <svg aria-hidden="true" ...>...</svg>
+  </button>
+  <button class="toggle" aria-pressed="false" value="italic">
+    <svg aria-hidden="true" ...>...</svg>
+  </button>
+  <button class="toggle" aria-pressed="false" value="underline">
+    <svg aria-hidden="true" ...>...</svg>
+  </button>
+</div>
+```
+
+---
+
+## Variants
+
+Inherits variants from `.toggle`:
+
+| `data-variant` (on group) | Visual |
+|---------------------------|--------|
+| *(default)*               | Transparent background toggles |
+| `outline`                 | Border + shadow on each toggle |
+
+---
+
+## Sizes
+
+| `data-size` (on group) | Effect |
+|------------------------|--------|
+| `sm`                   | Smaller toggles |
+| *(default)*            | Standard size |
+| `lg`                   | Larger toggles |
+
+---
+
+## ARIA
+
+| Attribute | Element | Purpose |
+|-----------|---------|---------|
+| `role="group"` | Container | Groups related toggles |
+| `aria-label` | Container | Accessible name for the group |
+| `aria-pressed` | Each button | Toggle state |
+| `aria-orientation` | Container | `vertical` for vertical layout |
+
+---
+
+## Notes
+
+- `data-type="single"` enforces one-at-a-time selection (radio-like behavior).
+- `data-type="multiple"` allows any combination of pressed states (checkbox-like).
+- The group propagates `data-variant` and `data-size` to child toggles via CSS.
+- Keyboard: Tab focuses the group, arrow keys navigate between items.
+</script>
 </body>
 </html>

@@ -76,6 +76,85 @@
 
     // ── Token swatches (tokens page only) ───────────────
     var swatchContainer = document.getElementById('swatch-container');
+
+    // ── Spec modal viewer ───────────────────────────────
+    // Clicking spec links (data-spec-href) opens a modal with rendered markdown
+    (function () {
+      // Create the dialog once
+      var specDialog = document.createElement('dialog');
+      specDialog.className = 'dialog spec-modal';
+      specDialog.setAttribute('role', 'dialog');
+      specDialog.setAttribute('aria-modal', 'true');
+      specDialog.setAttribute('aria-label', 'Component Specification');
+      specDialog.innerHTML =
+        '<div class="dialog-content spec-modal-content">' +
+          '<div class="dialog-header" style="display:flex;justify-content:space-between;align-items:center;">' +
+            '<h2 class="dialog-title" id="spec-modal-title">Component Specification</h2>' +
+            '<button class="btn" data-variant="ghost" data-size="sm" data-dialog-close aria-label="Close" style="padding:0.25rem;">' +
+              '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>' +
+            '</button>' +
+          '</div>' +
+          '<div id="spec-modal-body" class="spec-modal-body" style="margin-top:1rem;overflow-y:auto;max-height:calc(80vh - 5rem);"></div>' +
+        '</div>';
+      document.body.appendChild(specDialog);
+
+      // Close on backdrop click
+      specDialog.addEventListener('click', function (e) {
+        if (e.target === specDialog) specDialog.close();
+      });
+      specDialog.querySelector('[data-dialog-close]').addEventListener('click', function () {
+        specDialog.close();
+      });
+
+      // Handle spec link clicks
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('[data-spec-href]');
+        if (!link) return;
+        e.preventDefault();
+        e.stopPropagation(); // Don't toggle the <details>
+
+        var body = document.getElementById('spec-modal-body');
+        var title = document.getElementById('spec-modal-title');
+        var href = link.getAttribute('data-spec-href');
+        title.textContent = href.split('/').pop();
+
+        // Try embedded content first (works with file:// protocol)
+        var embedded = document.getElementById('spec-md-content');
+        if (embedded) {
+          var md = embedded.textContent;
+          renderSpec(md, body);
+          specDialog.showModal();
+          return;
+        }
+
+        // Fallback: fetch from server
+        body.innerHTML = '<p class="text-muted-foreground text-sm">Loading…</p>';
+        specDialog.showModal();
+        fetch(href)
+          .then(function (r) { return r.text(); })
+          .then(function (md) { renderSpec(md, body); })
+          .catch(function () {
+            body.innerHTML = '<p class="text-muted-foreground text-sm">Failed to load specification.</p>';
+          });
+      });
+
+      function renderSpec(md, body) {
+        if (window.marked) {
+          body.innerHTML = marked.parse(md);
+          body.querySelectorAll('pre code').forEach(function (block) {
+            if (window.hljs) hljs.highlightElement(block);
+          });
+        } else {
+          var pre = document.createElement('pre');
+          pre.style.whiteSpace = 'pre-wrap';
+          pre.style.fontSize = '0.8125rem';
+          pre.textContent = md;
+          body.innerHTML = '';
+          body.appendChild(pre);
+        }
+      }
+    })();
+
     if (swatchContainer) {
       var pairs = [['background','foreground'],['primary','primary-foreground'],['secondary','secondary-foreground'],['muted','muted-foreground'],['accent','accent-foreground'],['card','card-foreground'],['popover','popover-foreground'],['destructive','destructive-foreground']];
       pairs.forEach(function (p) {

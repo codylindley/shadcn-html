@@ -13,6 +13,7 @@
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
   <link rel="stylesheet" href="../components/dialog/dialog.css">
@@ -83,13 +84,51 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / calendar</p>
-          <span class="badge" data-variant="secondary">JS</span>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Calendar</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A month-view calendar for date selection. Features navigation, today highlighting, and day selection. Built with vanilla JS rendering into a <code>&lt;table&gt;</code> grid.
         </p>
+        <!-- Component Specification -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Component Specification — <span data-spec-href="../components/calendar/calendar.md" style="text-decoration:underline;text-underline-offset:3px;">components/calendar/calendar.md</span>
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;table&gt;</code> element rendered as a month grid with navigation controls. Uses <code>role=&quot;grid&quot;</code> for accessible day cell navigation.</p>
 
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table" target="_blank" rel="noopener" title="tabular grid for the month" class="api-pill"><code>&lt;table&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/grid_role" target="_blank" rel="noopener" title="ARIA grid pattern for 2D keyboard navigation" class="api-pill"><code>role=&quot;grid&quot;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button" target="_blank" rel="noopener" title="navigation and day selection buttons" class="api-pill"><code>&lt;button&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.calendar</code>
+              <code>.calendar-header</code>
+              <code>.calendar-heading</code>
+              <code>.calendar-nav</code>
+              <code>.calendar-grid</code>
+              <code>.calendar-day-label</code>
+              <code>.calendar-day</code>
+              <code>.calendar-day-today</code>
+              <code>.calendar-day-selected</code>
+              <code>.calendar-day-outside</code>
+              <code>.calendar-day-disabled</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Month heading uses <code>aria-live=&quot;polite&quot;</code> for navigation announcements</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Day cells are focusable buttons within the grid</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Arrow keys navigate the grid, Enter/Space selects a day</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• Previous/next navigation buttons have <code>aria-label</code></p>
+          </div>
+        </details>
         <!-- Basic -->
         <p class="text-sm font-medium mb-2 mt-6">Basic Calendar</p>
         <p class="text-xs text-muted-foreground mb-3">Interactive calendar with month navigation and date selection.</p>
@@ -160,9 +199,304 @@
           </div>
         </div>
 
-        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/calendar/calendar.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/calendar/calendar.md</a>
-        </p>
+        <!-- ── CSS ─────────────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-css">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/calendar/calendar.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Styles for the calendar component. Uses design tokens for colors, spacing, and radius.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-css">@layer components {
+  .calendar {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background-color: var(--card);
+    user-select: none;
+  }
+
+  .calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.25rem 0.5rem;
+  }
+
+  .calendar-heading {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--foreground);
+  }
+
+  .calendar-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background-color: transparent;
+    color: var(--foreground);
+    cursor: pointer;
+    transition: background-color 150ms ease;
+
+    &amp;:hover {
+      background-color: var(--accent);
+    }
+
+    &amp;:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    &amp; svg {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+  }
+
+  .calendar-grid {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .calendar-day-label {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--muted-foreground);
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .calendar-day {
+    width: 2.25rem;
+    height: 2.25rem;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+
+    &amp; button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      font-size: 0.8125rem;
+      border: none;
+      border-radius: var(--radius-md);
+      background-color: transparent;
+      color: var(--foreground);
+      cursor: pointer;
+      transition: background-color 150ms ease, color 150ms ease;
+
+      &amp;:hover {
+        background-color: var(--accent);
+      }
+
+      &amp;:focus-visible {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+      }
+    }
+
+    &amp;.calendar-day-today button {
+      background-color: var(--accent);
+      font-weight: 600;
+    }
+
+    &amp;.calendar-day-selected button {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+
+      &amp;:hover {
+        opacity: 0.9;
+      }
+    }
+
+    &amp;.calendar-day-outside button {
+      color: var(--muted-foreground);
+      opacity: 0.5;
+    }
+
+    &amp;.calendar-day-disabled button {
+      color: var(--muted-foreground);
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+  }
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- ── JavaScript ──────────────────────────────── -->
+        <section style="margin-top:3rem;" id="source-js">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/calendar/calendar.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Interaction logic for the calendar component. Uses data attributes for wiring.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-javascript">(function () {
+  'use strict';
+
+  var DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+  var MONTHS = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  function daysInMonth(year, month) {
+    return new Date(year, month + 1, 0).getDate();
+  }
+
+  function firstDayOfMonth(year, month) {
+    return new Date(year, month, 1).getDay();
+  }
+
+  function isToday(year, month, day) {
+    var now = new Date();
+    return now.getFullYear() === year &amp;&amp; now.getMonth() === month &amp;&amp; now.getDate() === day;
+  }
+
+  function renderCalendar(el, year, month, selectedDay) {
+    var total = daysInMonth(year, month);
+    var startDay = firstDayOfMonth(year, month);
+    var prevTotal = daysInMonth(year, month - 1);
+
+    /* Header */
+    var heading = el.querySelector('.calendar-heading');
+    if (heading) heading.textContent = MONTHS[month] + ' ' + year;
+
+    /* Grid */
+    var grid = el.querySelector('.calendar-grid');
+    if (!grid) return;
+
+    var html = '&lt;thead&gt;&lt;tr&gt;';
+    for (var d = 0; d &lt; 7; d++) {
+      html += '&lt;th class=&quot;calendar-day-label&quot; scope=&quot;col&quot;&gt;' + DAYS[d] + '&lt;/th&gt;';
+    }
+    html += '&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;';
+
+    var dayNum = 1;
+    var nextDayNum = 1;
+    var rows = Math.ceil((startDay + total) / 7);
+
+    for (var r = 0; r &lt; rows; r++) {
+      html += '&lt;tr&gt;';
+      for (var c = 0; c &lt; 7; c++) {
+        var cellIndex = r * 7 + c;
+        if (cellIndex &lt; startDay) {
+          var prevDay = prevTotal - startDay + cellIndex + 1;
+          html += '&lt;td class=&quot;calendar-day calendar-day-outside&quot;&gt;&lt;button tabindex=&quot;-1&quot; data-day=&quot;' + prevDay + '&quot; data-outside=&quot;prev&quot;&gt;' + prevDay + '&lt;/button&gt;&lt;/td&gt;';
+        } else if (dayNum &gt; total) {
+          html += '&lt;td class=&quot;calendar-day calendar-day-outside&quot;&gt;&lt;button tabindex=&quot;-1&quot; data-day=&quot;' + nextDayNum + '&quot; data-outside=&quot;next&quot;&gt;' + nextDayNum + '&lt;/button&gt;&lt;/td&gt;';
+          nextDayNum++;
+        } else {
+          var cls = 'calendar-day';
+          if (isToday(year, month, dayNum)) cls += ' calendar-day-today';
+          if (dayNum === selectedDay) cls += ' calendar-day-selected';
+          html += '&lt;td class=&quot;' + cls + '&quot;&gt;&lt;button data-day=&quot;' + dayNum + '&quot;&gt;' + dayNum + '&lt;/button&gt;&lt;/td&gt;';
+          dayNum++;
+        }
+      }
+      html += '&lt;/tr&gt;';
+    }
+    html += '&lt;/tbody&gt;';
+    grid.innerHTML = html;
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.calendar').forEach(function (cal) {
+      var now = new Date();
+      var state = {
+        year: now.getFullYear(),
+        month: now.getMonth(),
+        selected: null
+      };
+
+      renderCalendar(cal, state.year, state.month, state.selected);
+
+      /* Navigation */
+      cal.addEventListener('click', function (e) {
+        var nav = e.target.closest('.calendar-nav');
+        if (nav) {
+          var action = nav.dataset.action;
+          if (action === 'prev-month') {
+            state.month--;
+            if (state.month &lt; 0) { state.month = 11; state.year--; }
+            state.selected = null;
+          } else if (action === 'next-month') {
+            state.month++;
+            if (state.month &gt; 11) { state.month = 0; state.year++; }
+            state.selected = null;
+          }
+          renderCalendar(cal, state.year, state.month, state.selected);
+          return;
+        }
+
+        /* Day selection */
+        var dayBtn = e.target.closest('.calendar-day button');
+        if (dayBtn &amp;&amp; !dayBtn.closest('.calendar-day-disabled')) {
+          var day = parseInt(dayBtn.dataset.day, 10);
+          var outside = dayBtn.dataset.outside;
+          if (outside === 'prev') {
+            state.month--;
+            if (state.month &lt; 0) { state.month = 11; state.year--; }
+            state.selected = day;
+          } else if (outside === 'next') {
+            state.month++;
+            if (state.month &gt; 11) { state.month = 0; state.year++; }
+            state.selected = day;
+          } else {
+            state.selected = day;
+          }
+          renderCalendar(cal, state.year, state.month, state.selected);
+
+          /* Dispatch custom event */
+          cal.dispatchEvent(new CustomEvent('calendar:select', {
+            detail: { date: new Date(state.year, state.month, state.selected) },
+            bubbles: true
+          }));
+        }
+      });
+
+      /* Keyboard navigation in grid */
+      cal.addEventListener('keydown', function (e) {
+        var dayBtn = e.target.closest('.calendar-day button');
+        if (!dayBtn) return;
+
+        var allBtns = Array.from(cal.querySelectorAll('.calendar-day button'));
+        var idx = allBtns.indexOf(dayBtn);
+        var next = null;
+
+        switch (e.key) {
+          case 'ArrowRight':
+            e.preventDefault();
+            next = allBtns[idx + 1];
+            break;
+          case 'ArrowLeft':
+            e.preventDefault();
+            next = allBtns[idx - 1];
+            break;
+          case 'ArrowDown':
+            e.preventDefault();
+            next = allBtns[idx + 7];
+            break;
+          case 'ArrowUp':
+            e.preventDefault();
+            next = allBtns[idx - 7];
+            break;
+        }
+        if (next) next.focus();
+      });
+    });
+  });
+})();</code></pre>
+          </div>
+        </section>
     </main>
   </div>
   <script src="js/site.js" defer></script>
@@ -192,5 +526,66 @@
   <script src="../components/sortable/sortable.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+<script type="text/plain" id="spec-md-content"># Calendar
+
+## Native basis
+
+`<table>` element rendered as a month grid with navigation controls. Uses `role="grid"` for accessible day cell navigation.
+
+## Native Web APIs
+
+- [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) — tabular grid for the month
+- [`role="grid"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/grid_role) — ARIA grid pattern for 2D keyboard navigation
+- [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) — navigation and day selection buttons
+
+## Structure
+
+```html
+<div class="calendar">
+  <div class="calendar-header">
+    <button class="calendar-nav" data-action="prev-month" aria-label="Previous month">
+      <svg><!-- chevron left --></svg>
+    </button>
+    <span class="calendar-heading" aria-live="polite">April 2026</span>
+    <button class="calendar-nav" data-action="next-month" aria-label="Next month">
+      <svg><!-- chevron right --></svg>
+    </button>
+  </div>
+  <table class="calendar-grid" role="grid">
+    <thead>
+      <tr>
+        <th class="calendar-day-label" abbr="Sunday" scope="col">Su</th>
+        <th class="calendar-day-label" abbr="Monday" scope="col">Mo</th>
+        <!-- ... -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="calendar-day calendar-day-outside">29</td>
+        <td class="calendar-day">1</td>
+        <!-- ... -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
+## Day cell states
+
+| Class                   | Description                        |
+|-------------------------|------------------------------------|
+| `calendar-day`          | Base day cell                      |
+| `calendar-day-today`    | Today's date                       |
+| `calendar-day-selected` | Selected date                      |
+| `calendar-day-outside`  | Day from adjacent month            |
+| `calendar-day-disabled` | Non-selectable date                |
+
+## Accessibility
+
+- Month heading uses `aria-live="polite"` for navigation announcements
+- Day cells are focusable buttons within the grid
+- Arrow keys navigate the grid, Enter/Space selects a day
+- Previous/next navigation buttons have `aria-label`
+</script>
 </body>
 </html>

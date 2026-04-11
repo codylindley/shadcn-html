@@ -28,7 +28,7 @@
   font-size: 0.75rem; font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--foreground);
+  color: var(--primary);
   padding: 0 0.75rem;
   margin: 0 0 0.375rem;
 }
@@ -90,12 +90,58 @@
   line-height: 1.6;
 }
 .nav-link:hover { color: var(--foreground); background: var(--accent); }
-.nav-link.active { color: var(--foreground); font-weight: 500; background: var(--accent); }
+.nav-link.active { color: var(--primary); font-weight: 500; background: var(--accent); }
 .nav-link.disabled {
   opacity: 0.4;
   pointer-events: none;
   cursor: default;
 }
+
+/* ── Nav filter input ────────────────────────────────────── */
+.nav-filter-input:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px oklch(from var(--ring) l c h / 0.18);
+}
+.nav-filter-input::placeholder {
+  color: var(--muted-foreground);
+  opacity: 0.65;
+}
+
+/* ── Built-with pills ────────────────────────────────────── */
+a.built-with-pill {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 120ms, border-color 120ms;
+}
+a.built-with-pill:hover {
+  background: var(--accent);
+  border-color: var(--foreground);
+}
+
+/* ── Details chevron rotation ────────────────────────────── */
+details[open] > summary svg:first-child {
+  transform: rotate(90deg);
+}
+
+/* ── Spec modal ──────────────────────────────────────────── */
+.spec-modal { max-width: 48rem; width: calc(100vw - 2rem); }
+.spec-modal-content { padding: 1.5rem 2rem 2rem; }
+.spec-modal-body { font-size: 0.875rem; line-height: 1.85; color: var(--foreground); }
+.spec-modal-body h1 { font-size: 1.5rem; font-weight: 600; margin: 0 0 1rem; letter-spacing: -0.02em; }
+.spec-modal-body h2 { font-size: 1.125rem; font-weight: 600; margin: 2rem 0 0.625rem; padding-bottom: 0.375rem; border-bottom: 1px solid var(--border); }
+.spec-modal-body h3 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+.spec-modal-body p { margin: 0 0 0.75rem; }
+.spec-modal-body ul, .spec-modal-body ol { margin: 0 0 0.75rem; padding-left: 1.5rem; }
+.spec-modal-body li { margin-bottom: 0.25rem; }
+.spec-modal-body code { font-family: var(--font-mono); font-size: 0.8125em; background: var(--muted); padding: 0.125em 0.375em; border-radius: var(--radius-sm); }
+.spec-modal-body pre { background: var(--muted); border-radius: var(--radius-lg); padding: 1rem; margin: 0.5rem 0 1rem; overflow-x: auto; }
+.spec-modal-body pre code { background: none; padding: 0; font-size: 0.8125rem; }
+.spec-modal-body a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+.spec-modal-body hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+.spec-modal-body table { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; font-size: 0.8125rem; }
+.spec-modal-body th, .spec-modal-body td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+.spec-modal-body th { font-weight: 600; background: var(--muted); }
+[data-spec-href] { cursor: pointer; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--muted-foreground); }
 
 /* ── Preview box ─────────────────────────────────────────── */
 .preview {
