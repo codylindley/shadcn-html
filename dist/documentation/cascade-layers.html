@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Cascade Layers — shadcn-html</title>
+  <script src="js/layout.js"></script>
+  <link rel="stylesheet" href="../theme/semantic-tokens.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
+  <link rel="stylesheet" href="../components/button/button.css">
+  <link rel="stylesheet" href="../components/card/card.css">
+  <link rel="stylesheet" href="../components/dialog/dialog.css">
+  <link rel="stylesheet" href="../components/badge/badge.css">
+  <link rel="stylesheet" href="../components/input/input.css">
+  <link rel="stylesheet" href="../components/accordion/accordion.css">
+  <link rel="stylesheet" href="../components/tabs/tabs.css">
+  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
+  <link rel="stylesheet" href="../components/toast/toast.css">
+  <link rel="stylesheet" href="../components/combobox/combobox.css">
+  <link rel="stylesheet" href="../components/sheet/sheet.css">
+  <link rel="stylesheet" href="../components/toggle/toggle.css">
+  <link rel="stylesheet" href="../components/icon/icon.css">
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/separator/separator.css">
+  <link rel="stylesheet" href="../components/link/link.css">
+  <link rel="stylesheet" href="../components/label/label.css">
+  <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
+  <link rel="stylesheet" href="../components/button-group/button-group.css">
+  <link rel="stylesheet" href="../components/toolbar/toolbar.css">
+  <link rel="stylesheet" href="../components/textarea/textarea.css">
+  <link rel="stylesheet" href="../components/checkbox/checkbox.css">
+  <link rel="stylesheet" href="../components/radio/radio.css">
+  <link rel="stylesheet" href="../components/switch/switch.css">
+  <link rel="stylesheet" href="../components/slider/slider.css">
+  <link rel="stylesheet" href="../components/select/select.css">
+  <link rel="stylesheet" href="../components/number-input/number-input.css">
+  <link rel="stylesheet" href="../components/file-input/file-input.css">
+  <link rel="stylesheet" href="../components/color-picker/color-picker.css">
+  <link rel="stylesheet" href="../components/date-picker/date-picker.css">
+  <link rel="stylesheet" href="../components/form/form.css">
+  <link rel="stylesheet" href="../components/tag/tag.css">
+  <link rel="stylesheet" href="../components/avatar/avatar.css">
+  <link rel="stylesheet" href="../components/image/image.css">
+  <link rel="stylesheet" href="../components/list/list.css">
+  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
+  <link rel="stylesheet" href="../components/statistic/statistic.css">
+  <link rel="stylesheet" href="../components/table/table.css">
+  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
+  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
+  <link rel="stylesheet" href="../components/timeline/timeline.css">
+  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="../components/calendar/calendar.css">
+  <link rel="stylesheet" href="../components/spinner/spinner.css">
+  <link rel="stylesheet" href="../components/skeleton/skeleton.css">
+  <link rel="stylesheet" href="../components/progress/progress.css">
+  <link rel="stylesheet" href="../components/alert/alert.css">
+  <link rel="stylesheet" href="../components/alert-dialog/alert-dialog.css">
+  <link rel="stylesheet" href="../components/popover/popover.css">
+  <link rel="stylesheet" href="../components/tooltip/tooltip.css">
+  <link rel="stylesheet" href="../components/context-menu/context-menu.css">
+  <link rel="stylesheet" href="../components/command/command.css">
+  <link rel="stylesheet" href="../components/breadcrumb/breadcrumb.css">
+  <link rel="stylesheet" href="../components/pagination/pagination.css">
+  <link rel="stylesheet" href="../components/steps/steps.css">
+  <link rel="stylesheet" href="../components/navigation-menu/navigation-menu.css">
+  <link rel="stylesheet" href="../components/aspect-ratio/aspect-ratio.css">
+  <link rel="stylesheet" href="../components/container/container.css">
+  <link rel="stylesheet" href="../components/scroll-area/scroll-area.css">
+  <link rel="stylesheet" href="../components/carousel/carousel.css">
+  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
+  <link rel="stylesheet" href="../components/sortable/sortable.css">
+</head>
+<body>
+  <site-header></site-header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <site-nav></site-nav>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
+<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / cascade-layers</p>
+  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Cascade Layers</h1>
+  <p class="text-muted-foreground leading-relaxed mb-10" style="max-width:38rem;">
+    Every component stylesheet wraps its rules in <code>@layer components</code>.
+    This is a single architectural decision that gives you guaranteed override power —
+    your own CSS always wins over component defaults, without <code>!important</code>.
+  </p>
+
+  <!-- ── What is @layer? ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">What is <code>@layer</code>?</h2>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@layer" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">CSS Cascade Layers</a>
+    are a native browser feature that lets stylesheets declare <em>which bucket</em> their rules belong to.
+    When two selectors have the same specificity, the browser uses layer order to decide which one wins.
+    The key insight: <strong>unlayered styles always beat layered styles</strong>, regardless of selector specificity.
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">the rule in one sentence</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">/* Layered — from a component stylesheet */</span>
+@layer components {
+  .btn { background: var(--primary); }
+}
+
+<span class="dim">/* Unlayered — your CSS */</span>
+.btn { background: tomato; }
+
+<span class="dim">/* Result: tomato wins. Always. No !important needed. */</span></code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ── How shadcn-html uses it ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">How shadcn-html uses it</h2>
+  <p class="text-sm text-muted-foreground mb-5">Every component CSS file — button, card, dialog, all of them — wraps all of its rules inside a single layer declaration:</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">components/button/button.css</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;"><code>@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border-radius: var(--radius-md);
+    /* ... all button rules ... */
+  }
+
+  .btn[data-variant="outline"] {
+    background: transparent;
+    border: 1px solid var(--border);
+  }
+}</code></pre>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">components/card/card.css</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;"><code>@layer components {
+  .card {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    /* ... all card rules ... */
+  }
+
+  .card-header {
+    padding: 1.5rem;
+  }
+}</code></pre>
+    </div>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-8">The design tokens file (<code>semantic-tokens.css</code>) is intentionally <strong>not</strong> layered — token values sit at the top of the cascade so they're always available to both component and user styles.</p>
+
+  <div class="sep"></div>
+
+  <!-- ── The cascade order ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">The cascade order</h2>
+  <p class="text-sm text-muted-foreground mb-5">Here's what the browser sees, from lowest to highest priority:</p>
+
+  <div style="display:flex;flex-direction:column;gap:0;margin-bottom:2.5rem;">
+    <!-- Layer: components -->
+    <div style="display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border:1px solid var(--border);border-radius:var(--radius-xl) var(--radius-xl) 0 0;background:var(--muted);">
+      <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--muted-foreground);color:var(--background);font-size:0.6875rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</span>
+      <div>
+        <code style="font-size:0.8125rem;font-weight:600;">@layer components</code>
+        <span class="text-sm text-muted-foreground" style="display:block;margin-top:0.125rem;">All component CSS — button, card, dialog, etc. Lowest priority.</span>
+      </div>
+    </div>
+    <!-- Tokens -->
+    <div style="display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border:1px solid var(--border);border-top:0;">
+      <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--muted-foreground);color:var(--background);font-size:0.6875rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</span>
+      <div>
+        <code style="font-size:0.8125rem;font-weight:600;">semantic-tokens.css</code>
+        <span class="text-sm text-muted-foreground" style="display:block;margin-top:0.125rem;">Design tokens (<code>:root</code> custom properties). Unlayered — always available.</span>
+      </div>
+    </div>
+    <!-- User styles -->
+    <div style="display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border:1px solid var(--primary);border-top:0;border-radius:0 0 var(--radius-xl) var(--radius-xl);background:var(--primary);color:var(--primary-foreground);">
+      <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary-foreground);color:var(--primary);font-size:0.6875rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</span>
+      <div>
+        <span style="font-size:0.8125rem;font-weight:600;">Your styles</span>
+        <span style="display:block;margin-top:0.125rem;font-size:0.8125rem;opacity:0.85;">Any unlayered CSS you write. Highest priority — always wins.</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-8">
+    Because component rules live inside <code>@layer components</code> and your CSS is unlayered,
+    the browser gives your styles higher cascade priority automatically. You never need
+    to out-specifiy a component selector or reach for <code>!important</code>.
+  </p>
+
+  <div class="sep"></div>
+
+  <!-- ── Overriding component styles ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Overriding component styles</h2>
+  <p class="text-sm text-muted-foreground mb-5">Write your overrides in a regular, unlayered stylesheet. They'll always take precedence.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">components/button/button.css (layered)</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;"><code>@layer components {
+  .btn {
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    height: 2.25rem;
+  }
+}</code></pre>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--chart-1);">my-overrides.css (unlayered — wins)</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">/* Make buttons fully rounded */</span>
+.btn {
+  border-radius: 9999px;
+}
+
+<span class="dim">/* Make outline buttons thicker */</span>
+.btn[data-variant="outline"] {
+  border-width: 2px;
+}</code></pre>
+    </div>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-3">Include your override file <strong>after</strong> the component stylesheets:</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">HTML — load order</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;"><code>&lt;link rel="stylesheet" href="theme/semantic-tokens.css"&gt;
+&lt;link rel="stylesheet" href="components/button/button.css"&gt;
+&lt;link rel="stylesheet" href="components/card/card.css"&gt;
+
+<span class="dim">&lt;!-- Your overrides — unlayered, always wins --&gt;</span>
+&lt;link rel="stylesheet" href="my-overrides.css"&gt;</code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ── Using with Tailwind ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Using with Tailwind CSS</h2>
+  <p class="text-sm text-muted-foreground mb-5">
+    Tailwind v4 uses its own <code>@layer</code> declarations. If you're mixing shadcn-html components with Tailwind utilities,
+    you can declare an explicit layer order at the top of your main stylesheet to control priority:
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">main.css — explicit layer order</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">/* Declare layer order: first listed = lowest priority */</span>
+@layer components, utilities;
+
+<span class="dim">/* Now Tailwind utilities beat shadcn-html component styles,
+   and your unlayered CSS beats everything. */</span></code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-8">
+    Without an explicit order declaration, layers are ordered by first appearance in the stylesheet.
+    The explicit declaration gives you full control regardless of import order.
+  </p>
+
+  <div class="sep"></div>
+
+  <!-- ── Why not unlayered? ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Why not just write unlayered CSS?</h2>
+  <p class="text-sm text-muted-foreground mb-5">Traditional CSS libraries (Bootstrap, Bulma) ship unlayered styles. That creates problems when you try to customize them.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--destructive);">Without @layer</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">/* Library: high specificity */</span>
+.btn.btn-primary { background: blue; }
+
+<span class="dim">/* Your override: same specificity — loses
+   unless loaded after AND matches specificity */</span>
+.btn { background: tomato; }  <span class="dim">/* ✗ ignored */</span>
+
+<span class="dim">/* Forced to escalate */</span>
+.btn { background: tomato !important; } <span class="dim">/* ugly */</span></code></pre>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--chart-1);">With @layer (shadcn-html)</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">/* Library: layered */</span>
+@layer components {
+  .btn { background: var(--primary); }
+}
+
+<span class="dim">/* Your override: unlayered — wins automatically */</span>
+.btn { background: tomato; }  <span class="dim">/* ✓ applied */</span>
+
+<span class="dim">/* No !important. No specificity war. */</span></code></pre>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:2.5rem;align-items:baseline;">
+    <span style="font-weight:600;font-size:0.8125rem;">Clean overrides</span>
+    <span class="text-sm text-muted-foreground">Your CSS always wins without <code>!important</code> or specificity hacks.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Predictable cascade</span>
+    <span class="text-sm text-muted-foreground">Component internals can use any selector complexity — it won't leak into your layer.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Composable layers</span>
+    <span class="text-sm text-muted-foreground">Works cleanly alongside Tailwind, other libraries, or your own <code>@layer</code> declarations.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Future-proof</span>
+    <span class="text-sm text-muted-foreground"><code>@layer</code> is a W3C standard, built into every modern browser. Not a framework convention.</span>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ── Browser support ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Browser support</h2>
+  <p class="text-sm text-muted-foreground mb-5">
+    <code>@layer</code> is supported in all modern browsers. No polyfill needed.
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">browser support</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th>Browser</th><th>Supported since</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Chrome / Edge</td><td>99 (March 2022)</td></tr>
+          <tr><td>Firefox</td><td>97 (February 2022)</td></tr>
+          <tr><td>Safari</td><td>15.4 (March 2022)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-3">
+    See <a href="https://caniuse.com/css-cascade-layers" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">caniuse.com/css-cascade-layers</a>
+    and the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@layer" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">MDN @layer reference</a> for full details.
+  </p>
+
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+  <script type="module" src="js/shiki-highlight.js"></script>
+  <script src="../components/accordion/accordion.js" defer></script>
+  <script src="../components/combobox/combobox.js" defer></script>
+  <script src="../components/dialog/dialog.js" defer></script>
+  <script src="../components/dropdown/dropdown.js" defer></script>
+  <script src="../components/sheet/sheet.js" defer></script>
+  <script src="../components/tabs/tabs.js" defer></script>
+  <script src="../components/toast/toast.js" defer></script>
+  <script src="../components/toggle/toggle.js" defer></script>
+  <script src="../components/toggle-group/toggle-group.js" defer></script>
+  <script src="../components/toolbar/toolbar.js" defer></script>
+  <script src="../components/number-input/number-input.js" defer></script>
+  <script src="../components/color-picker/color-picker.js" defer></script>
+  <script src="../components/tag/tag.js" defer></script>
+  <script src="../components/avatar/avatar.js" defer></script>
+  <script src="../components/tree-view/tree-view.js" defer></script>
+  <script src="../components/calendar/calendar.js" defer></script>
+  <script src="../components/alert-dialog/alert-dialog.js" defer></script>
+    <script src="../components/popover/popover.js" defer></script>
+  <script src="../components/tooltip/tooltip.js" defer></script>
+  <script src="../components/context-menu/context-menu.js" defer></script>
+  <script src="../components/command/command.js" defer></script>
+  <script src="../components/navigation-menu/navigation-menu.js" defer></script>
+  <script src="../components/carousel/carousel.js" defer></script>
+  <script src="../components/sortable/sortable.js" defer></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

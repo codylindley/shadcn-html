@@ -91,7 +91,7 @@ for (const file of htmlFiles) {
           <p class="text-muted-foreground text-sm mb-4">${escapeHtml(desc)}</p>
           <div style="position:relative;margin-top:0.5rem;">
             ${copyBtnHtml}
-            <pre><code class="language-css">${escapeHtml(cssContent.trimEnd())}</code></pre>
+            <pre><code class="language-scss">${escapeHtml(cssContent.trimEnd())}</code></pre>
           </div>
         </section>`;
     stats.cssAdded++;

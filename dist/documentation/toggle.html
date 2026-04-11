@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/docs-tailwind.css">
   <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
-  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
@@ -153,7 +150,7 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code>&lt;button class="toggle" aria-pressed="false"
+          <pre><code class="language-markup">&lt;button class="toggle" aria-pressed="false"
         aria-label="Bookmark"&gt;
   &lt;svg aria-hidden="true" width="16" height="16"
        viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -182,7 +179,7 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code>&lt;button class="toggle" data-variant="outline"
+          <pre><code class="language-markup">&lt;button class="toggle" data-variant="outline"
         aria-pressed="true" aria-label="Toggle italic"&gt;
   &lt;svg aria-hidden="true" width="16" height="16" ...&gt;...&lt;/svg&gt;
 &lt;/button&gt;
@@ -207,7 +204,7 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code>&lt;button class="toggle" aria-pressed="false"&gt;
+          <pre><code class="language-markup">&lt;button class="toggle" aria-pressed="false"&gt;
   &lt;svg aria-hidden="true" width="16" height="16" ...&gt;...&lt;/svg&gt;
   Italic
 &lt;/button&gt;</code></pre>
@@ -228,7 +225,7 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code>&lt;button class="toggle" data-variant="outline" data-size="sm"
+          <pre><code class="language-markup">&lt;button class="toggle" data-variant="outline" data-size="sm"
         aria-pressed="false"&gt;Small&lt;/button&gt;
 
 &lt;button class="toggle" data-variant="outline"
@@ -252,7 +249,7 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code>&lt;button class="toggle" data-variant="outline"
+          <pre><code class="language-markup">&lt;button class="toggle" data-variant="outline"
         aria-pressed="false" disabled&gt;Disabled&lt;/button&gt;
 
 &lt;button class="toggle" data-variant="outline"
@@ -264,7 +261,7 @@
           <p class="text-muted-foreground text-sm mb-4">── Toggle component ──────────────────────────────────────────</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-css">/* ── Toggle component ────────────────────────────────────────── */
+            <pre><code class="language-scss">/* ── Toggle component ────────────────────────────────────────── */
 
 @layer components {
   .toggle {
@@ -342,7 +339,7 @@
         </section>
 
         <!-- ── JavaScript ──────────────────────────────── -->
-        <section style="margin-top:3rem;">
+        <section style="margin-top:3rem;" id="source-js">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/toggle/toggle.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
           <p class="text-muted-foreground text-sm mb-4">Single click handler toggles <code>aria-pressed</code> between <code>"true"</code> and <code>"false"</code>.</p>
           <div style="position:relative;margin-top:0.5rem;">
@@ -350,7 +347,7 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>// Toggle — aria-pressed state
+            <pre><code class="language-javascript">// Toggle — aria-pressed state
 document.querySelectorAll('.toggle').forEach(function (toggle) {
   toggle.addEventListener('click', function () {
     var pressed = toggle.getAttribute('aria-pressed') === 'true';
@@ -364,6 +361,7 @@ document.querySelectorAll('.toggle').forEach(function (toggle) {
   </div>
 
   <script src="js/site.js" defer></script>
+  <script type="module" src="js/shiki-highlight.js"></script>
   <script src="../components/accordion/accordion.js" defer></script>
   <script src="../components/combobox/combobox.js" defer></script>
   <script src="../components/dialog/dialog.js" defer></script>

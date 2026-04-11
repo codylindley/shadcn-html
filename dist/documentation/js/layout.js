@@ -15,16 +15,6 @@
     document.documentElement.style.colorScheme = 'dark';
   }
 
-  /* Sync highlight.js theme sheets */
-  function syncHljsTheme() {
-    var isDark = document.documentElement.classList.contains('dark');
-    var light = document.getElementById('hljs-light');
-    var dark  = document.getElementById('hljs-dark');
-    if (light) light.disabled = isDark;
-    if (dark)  dark.disabled  = !isDark;
-  }
-  syncHljsTheme();
-
   /* ── SPA page-ready helper ─────────────────────────────────── */
   /* Components call window.onPageReady(fn) instead of           */
   /* DOMContentLoaded. fn runs on initial load AND after each     */
@@ -48,6 +38,7 @@
       { label: 'Installation', href: 'installation.html' },
       { label: 'Theming', href: 'theming.html' },
       { label: 'Data Attribute API', href: 'data-attribute-api.html' },
+      { label: 'Cascade Layers', href: 'cascade-layers.html' },
       { label: 'Changelog', href: 'changelog.html' },
     ]},
     { heading: 'Primitives', items: [
@@ -132,7 +123,7 @@
 
   /* Pages that have been built (have a real doc page) */
   var BUILT = new Set([
-    'index.html', 'installation.html', 'theming.html', 'data-attribute-api.html', 'changelog.html',
+    'index.html', 'installation.html', 'theming.html', 'data-attribute-api.html', 'cascade-layers.html', 'changelog.html',
     'typography.html', 'separator.html', 'icon.html', 'link.html', 'label.html',
     'button.html', 'toggle.html', 'toggle-group.html', 'button-group.html', 'toolbar.html',
     'input.html', 'textarea.html', 'checkbox.html', 'radio.html', 'switch.html',

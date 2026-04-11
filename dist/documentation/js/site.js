@@ -7,15 +7,6 @@
 (function () {
   'use strict';
 
-  // ── Dark mode + hljs sync (handled by layout.js in <head>) ─
-  function syncHljsTheme() {
-    var isDark = document.documentElement.classList.contains('dark');
-    var light = document.getElementById('hljs-light');
-    var dark = document.getElementById('hljs-dark');
-    if (light) light.disabled = isDark;
-    if (dark) dark.disabled = !isDark;
-  }
-
   function toggleDark() {
     var isDark = document.documentElement.classList.contains('dark');
     document.documentElement.classList.toggle('dark', !isDark);
@@ -23,7 +14,6 @@
     document.getElementById('icon-sun').style.display  = isDark ? 'block' : 'none';
     document.getElementById('icon-moon').style.display = isDark ? 'none'  : 'block';
     localStorage.setItem('shadcn-html-theme', isDark ? 'light' : 'dark');
-    syncHljsTheme();
   }
 
   // ── Token swatches (theming page only) ──────────────────
@@ -58,8 +48,7 @@
   // ── Reusable page content initializer ───────────────────
   // Called on initial load AND after each SPA navigation.
   function initPageContent() {
-    // Syntax highlighting
-    if (window.hljs) hljs.highlightAll();
+    // Syntax highlighting handled by shiki-highlight.js module
 
     // Doc tabs (Preview / Pattern / HTML)
     document.querySelectorAll('.doc-tablist[role="tablist"]').forEach(function (tabList) {
@@ -160,9 +149,8 @@
     function renderSpec(md, body) {
       if (window.marked) {
         body.innerHTML = marked.parse(md);
-        body.querySelectorAll('pre code').forEach(function (block) {
-          if (window.hljs) hljs.highlightElement(block);
-        });
+        // Shiki highlighting for spec modal code blocks
+        if (window.__shikiHighlightAll) window.__shikiHighlightAll();
       } else {
         var pre = document.createElement('pre');
         pre.style.whiteSpace = 'pre-wrap';
@@ -189,5 +177,19 @@
 
     // Create spec modal (once — persists across SPA navs)
     initSpecModal();
+
+    // Handle hash-link clicks (built-with pills, etc.)
+    // Default anchor scroll doesn't always work after SPA navigation
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      var id = link.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', '#' + id);
+      }
+    });
   });
 })();

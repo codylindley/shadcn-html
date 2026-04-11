@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/docs-tailwind.css">
   <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
-  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
@@ -156,7 +153,7 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>&lt;!-- Trigger --&gt;
+            <pre><code class="language-markup">&lt;!-- Trigger --&gt;
 &lt;button class="btn" data-variant="outline"
         data-sheet-trigger="sheet-right"
         aria-haspopup="dialog"&gt;Open Right Sheet&lt;/button&gt;
@@ -209,7 +206,7 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>&lt;!-- Trigger --&gt;
+            <pre><code class="language-markup">&lt;!-- Trigger --&gt;
 &lt;button class="btn" data-variant="outline"
         data-sheet-trigger="sheet-left"
         aria-haspopup="dialog"&gt;Open Left Sheet&lt;/button&gt;
@@ -254,7 +251,7 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>&lt;!-- Trigger --&gt;
+            <pre><code class="language-markup">&lt;!-- Trigger --&gt;
 &lt;button class="btn" data-variant="outline"
         data-sheet-trigger="sheet-top"
         aria-haspopup="dialog"&gt;Open Top Sheet&lt;/button&gt;
@@ -310,7 +307,7 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>&lt;!-- Trigger --&gt;
+            <pre><code class="language-markup">&lt;!-- Trigger --&gt;
 &lt;button class="btn" data-variant="outline"
         data-sheet-trigger="sheet-bottom"
         aria-haspopup="dialog"&gt;Open Bottom Sheet&lt;/button&gt;
@@ -360,7 +357,7 @@
           <p class="text-muted-foreground text-sm mb-4">── Sheet component ───────────────────────────────────────────</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-css">/* ── Sheet component ─────────────────────────────────────────── */
+            <pre><code class="language-scss">/* ── Sheet component ─────────────────────────────────────────── */
 
 @layer components {
   /* ── Base ────────────────────────────────────────────────── */
@@ -517,7 +514,7 @@
         </section>
 
         <!-- ── JavaScript ──────────────────────────────── -->
-        <section style="margin-top:3rem;">
+        <section style="margin-top:3rem;" id="source-js">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/sheet/sheet.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
           <p class="text-muted-foreground text-sm mb-4">Identical pattern to Dialog. Wire triggers via <code>data-sheet-trigger</code>, close buttons via <code>data-sheet-close</code>, and backdrop click. Targets <code>dialog.sheet</code> elements.</p>
           <div style="position:relative;margin-top:0.5rem;">
@@ -525,7 +522,7 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>// Sheet wiring — same pattern as Dialog, targets dialog.sheet
+            <pre><code class="language-javascript">// Sheet wiring — same pattern as Dialog, targets dialog.sheet
 document.querySelectorAll('[data-sheet-trigger]').forEach(function (trigger) {
   var sheet = document.getElementById(trigger.dataset.sheetTrigger);
   if (!sheet) return;
@@ -670,6 +667,7 @@ document.querySelectorAll('dialog.sheet').forEach(function (sheet) {
   </dialog>
 
   <script src="js/site.js" defer></script>
+  <script type="module" src="js/shiki-highlight.js"></script>
   <script src="../components/accordion/accordion.js" defer></script>
   <script src="../components/combobox/combobox.js" defer></script>
   <script src="../components/dialog/dialog.js" defer></script>

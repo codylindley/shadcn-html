@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/docs-tailwind.css">
   <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
-  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
@@ -126,7 +123,7 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code>&lt;div class="scroll-area" style="height:12rem;"&gt;
+          <pre><code class="language-markup">&lt;div class="scroll-area" style="height:12rem;"&gt;
   &lt;!-- long content --&gt;
 &lt;/div&gt;</code></pre>
         </div>
@@ -137,7 +134,7 @@
           <p class="text-muted-foreground text-sm mb-4">Styles for the scroll-area component. Uses design tokens for colors, spacing, and radius.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-css">@layer components {
+            <pre><code class="language-scss">@layer components {
   .scroll-area {
     overflow: auto; position: relative;
     &amp;::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -151,6 +148,7 @@
     </main>
   </div>
   <script src="js/site.js" defer></script>
+  <script type="module" src="js/shiki-highlight.js"></script>
   <script src="../components/accordion/accordion.js" defer></script>
   <script src="../components/combobox/combobox.js" defer></script>
   <script src="../components/dialog/dialog.js" defer></script>

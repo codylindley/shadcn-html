@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/docs-tailwind.css">
   <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
-  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
@@ -99,7 +96,7 @@
         <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</span>
         <h3 style="margin:0;font-size:1rem;font-weight:500;">Include the theme</h3>
       </div>
-      <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/theme/semantic-tokens.css"&gt;</code></pre>
+      <pre><code class="language-markup">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/theme/semantic-tokens.css"&gt;</code></pre>
       <p class="text-sm text-muted-foreground mt-2">This defines every design token (colors, radius, shadows, typography, spacing) for light and dark mode. Swap this file to retheme everything. Compatible with <a href="https://tweakcn.com" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">tweakcn.com</a> theme exports.</p>
     </div>
 
@@ -108,7 +105,7 @@
         <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</span>
         <h3 style="margin:0;font-size:1rem;font-weight:500;">Include component CSS &amp; JS</h3>
       </div>
-      <pre><code>&lt;!-- CSS — pick what you need --&gt;
+      <pre><code class="language-markup">&lt;!-- CSS — pick what you need --&gt;
 &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/components/button/button.css"&gt;
 &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/components/dialog/dialog.css"&gt;
 
@@ -122,7 +119,7 @@
         <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</span>
         <h3 style="margin:0;font-size:1rem;font-weight:500;">Include Lucide icons</h3>
       </div>
-      <pre><code>&lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;
+      <pre><code class="language-markup">&lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;
 &lt;script&gt;lucide.createIcons();&lt;/script&gt;</code></pre>
       <p class="text-sm text-muted-foreground mt-2"><a href="https://lucide.dev" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">Lucide</a> provides ~1,500 icons via CDN. Use <code>&lt;i data-lucide="name"&gt;&lt;/i&gt;</code> anywhere in your HTML. The script replaces each element with an inline SVG on page load. See the <a href="icon.html" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">Icon</a> page for details.</p>
     </div>
@@ -132,7 +129,7 @@
         <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</span>
         <h3 style="margin:0;font-size:1rem;font-weight:500;">Read the spec, write the HTML</h3>
       </div>
-      <pre><code>&lt;button class="btn" data-variant="default"
+      <pre><code class="language-markup">&lt;button class="btn" data-variant="default"
         data-dialog-trigger="confirm"
         aria-haspopup="dialog"&gt;
   Open Dialog
@@ -168,7 +165,7 @@
   <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);">
     <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.75rem;">Pinning a version</h2>
     <p class="text-sm text-muted-foreground mb-3">Replace <code>@latest</code> with a specific version tag to lock your project to a release:</p>
-    <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@v0.1.1/dist/theme/semantic-tokens.css"&gt;</code></pre>
+    <pre><code class="language-markup">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@v0.1.1/dist/theme/semantic-tokens.css"&gt;</code></pre>
     <p class="text-sm text-muted-foreground mt-2">This ensures your project won't break when new versions are published. Check the <a href="https://github.com/codylindley/shadcn-html/tags" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">releases page</a> for available versions.</p>
   </div>
 
@@ -177,7 +174,7 @@
     <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.75rem;">Self-hosting</h2>
     <p class="text-sm text-muted-foreground mb-3">Prefer local files? Download everything and reference files with relative paths:</p>
     <p class="mb-4"><a href="https://github.com/codylindley/shadcn-html/archive/refs/heads/main.zip" class="btn" data-variant="outline" style="text-decoration:none;"><i data-lucide="download" style="width:1rem;height:1rem;"></i> Download latest (.zip)</a></p>
-    <pre><code>&lt;link rel="stylesheet" href="theme/semantic-tokens.css"&gt;
+    <pre><code class="language-markup">&lt;link rel="stylesheet" href="theme/semantic-tokens.css"&gt;
 &lt;link rel="stylesheet" href="components/button/button.css"&gt;
 &lt;script src="components/dialog/dialog.js" defer&gt;&lt;/script&gt;</code></pre>
   </div>
@@ -196,6 +193,7 @@
   </div>
 
   <script src="js/site.js" defer></script>
+  <script type="module" src="js/shiki-highlight.js"></script>
   <script src="../components/accordion/accordion.js" defer></script>
   <script src="../components/combobox/combobox.js" defer></script>
   <script src="../components/dialog/dialog.js" defer></script>

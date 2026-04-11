@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/docs-tailwind.css">
   <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
-  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
   <link rel="stylesheet" href="../components/button/button.css">
   <link rel="stylesheet" href="../components/card/card.css">
@@ -196,7 +193,7 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>&lt;div class="combobox" style="width:14rem;"&gt;
+            <pre><code class="language-markup">&lt;div class="combobox" style="width:14rem;"&gt;
   &lt;label class="label" id="framework-label"&gt;Framework&lt;/label&gt;
   &lt;button class="btn combobox-trigger" data-variant="outline"
           aria-haspopup="listbox"
@@ -281,7 +278,7 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>&lt;!-- Groups use .combobox-group-label and .combobox-separator --&gt;
+            <pre><code class="language-markup">&lt;!-- Groups use .combobox-group-label and .combobox-separator --&gt;
 &lt;div class="combobox-group-label"&gt;North America&lt;/div&gt;
 &lt;div role="option" class="combobox-item"
      data-value="est"&gt;Eastern (EST)&lt;/div&gt;
@@ -301,7 +298,7 @@
           <p class="text-muted-foreground text-sm mb-4">── Combobox component ────────────────────────────────────────</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-css">/* ── Combobox component ──────────────────────────────────────── */
+            <pre><code class="language-scss">/* ── Combobox component ──────────────────────────────────────── */
 
 @layer components {
   .combobox {
@@ -430,7 +427,7 @@
         </section>
 
         <!-- ── JavaScript ──────────────────────────────── -->
-        <section style="margin-top:3rem;">
+        <section style="margin-top:3rem;" id="source-js">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/combobox/combobox.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
           <p class="text-muted-foreground text-sm mb-4">Trigger opens/closes the popover. Search input filters the list. Arrow keys navigate, Enter selects, Escape closes. Focus moves to search input on open and back to trigger on close.</p>
           <div style="position:relative;margin-top:0.5rem;">
@@ -438,7 +435,7 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>document.querySelectorAll('.combobox').forEach(function (wrapper) {
+            <pre><code class="language-javascript">document.querySelectorAll('.combobox').forEach(function (wrapper) {
   var trigger     = wrapper.querySelector('.combobox-trigger');
   var valueEl     = wrapper.querySelector('.combobox-value');
   var popover     = wrapper.querySelector('.combobox-content');
@@ -559,6 +556,7 @@
   </div>
 
   <script src="js/site.js" defer></script>
+  <script type="module" src="js/shiki-highlight.js"></script>
   <script src="../components/accordion/accordion.js" defer></script>
   <script src="../components/combobox/combobox.js" defer></script>
   <script src="../components/dialog/dialog.js" defer></script>

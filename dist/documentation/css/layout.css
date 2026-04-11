@@ -1,6 +1,9 @@
 /* ── Site layout styles ──────────────────────────────────── */
 /* Nav, sidebar, preview box, code blocks, swatches, etc.    */
 
+/* ── Scroll offset for fixed header ──────────────────────── */
+html { scroll-padding-top: 4rem; }
+
 /* ── Site header ─────────────────────────────────────────── */
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
@@ -58,28 +61,30 @@
   color: var(--foreground);
 }
 
-/* ── Cross-document view transitions ─────────────────────── */
-/* Holds the old page visually until the new page is ready.  */
-/* No animation — just prevents the white gap between pages. */
-@view-transition {
-  navigation: auto;
-}
-::view-transition-old(root) {
-  animation: none;
-}
-::view-transition-new(root) {
-  animation: none;
-}
-
 /* ── SPA view transition for main content ────────────────── */
 main {
   view-transition-name: main-content;
 }
+
+/* Old page fades out, new page fades in — subtle crossfade */
 ::view-transition-old(main-content) {
-  animation: none;
+  animation: vt-fade-out 150ms ease-out both;
 }
 ::view-transition-new(main-content) {
+  animation: vt-fade-in 150ms ease-in 50ms both;
+}
+
+/* Keep header/sidebar stable — instant swap, no animation */
+::view-transition-old(root),
+::view-transition-new(root) {
   animation: none;
+}
+
+@keyframes vt-fade-out {
+  to { opacity: 0; }
+}
+@keyframes vt-fade-in {
+  from { opacity: 0; }
 }
 
 /* ── Nav link ────────────────────────────────────────────── */
@@ -193,8 +198,33 @@ code {
   border: 1px solid var(--border);
 }
 pre code { background: none; padding: 0; border: none; font-size: inherit; }
-/* Override highlight.js background — use token-based muted bg instead */
-pre code.hljs { background: transparent; padding: 0; }
+
+/* ── Shiki dual-theme: light default, dark via html.dark ─── */
+pre.shiki {
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem 1.5rem;
+  overflow: hidden;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.8;
+}
+pre.shiki code {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+pre.shiki,
+pre.shiki span {
+  color: var(--shiki-light) !important;
+  background-color: transparent !important;
+}
+html.dark pre.shiki,
+html.dark pre.shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: transparent !important;
+}
 .dim { color: var(--muted-foreground); }
 
 /* ── Doc tabs (preview/pattern/html switcher) ────────────── */

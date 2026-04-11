@@ -18,9 +18,11 @@ ai-web-prototyper/
 │   │       └── {name}.js              ← interaction JS (only for interactive components)
 │   └── documentation/                 ← reference implementations + public website
 │       ├── *.html                     ← one page per component + overview pages
+│       ├── css/docs-tailwind.css      ← compiled Tailwind utilities for doc pages
 │       ├── css/docs-theme.css         ← doc-site font overrides (not part of the system)
 │       ├── css/layout.css             ← doc-site layout (not part of the system)
-│       └── js/site.js                 ← doc-site-only JS (dark mode, hljs, copy buttons)
+│       ├── js/layout.js               ← SPA router, <site-header>/<site-nav> web components
+│       └── js/site.js                 ← doc-site-only JS (hljs, tabs, copy buttons, spec modal)
 │
 └── AGENTS.md                          ← this file (maintainer instructions)
 ```
@@ -70,16 +72,23 @@ The token file provides:
 - Font stacks (generic — overridden by doc site)
 - Spacing and tracking
 
-### Documentation HTML files share boilerplate
+### Documentation site architecture
 
-All HTML files in `dist/documentation/` share:
-- The same `<head>` (CSS links, component imports)
-- The same header (logo, GitHub link, dark mode toggle)
-- The same sidebar navigation
+The doc site is a **SPA-style multi-page app**. `layout.js` loads synchronously in
+`<head>` and provides:
 
-When adding a new component, update the sidebar nav in **every** HTML file.
-Use `sed` or a script — the `active` class on the current page's nav link
-can cause `sed` patterns to miss that file (as happened with dialog.html).
+- `<site-header>` — renders the fixed header (logo, GitHub link, dark mode toggle)
+- `<site-nav>` — renders the sidebar from a centralized `NAV` array, auto-detecting the active page
+- **SPA router** — intercepts nav clicks, fetches HTML, swaps `<main>` content
+  without full-page reloads (uses View Transitions API for smooth crossfade)
+
+**Sidebar nav is centralized in `layout.js`.** To add or reorder nav links, edit
+the `NAV` array and the `BUILT` set in that one file — individual HTML pages
+do not contain nav markup.
+
+Each HTML page duplicates the full list of component CSS `<link>` tags in `<head>`
+and component JS `<script>` tags at end of `<body>`. When adding a new component,
+these imports must be added to **every** HTML file.
 
 ---
 
@@ -123,19 +132,22 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
    - Self-contained IIFE, no ES modules
 
 5. **Create the doc page** → `dist/documentation/{name}.html`
-   - Copy an existing component page as template (e.g., dialog.html)
+   - Copy an existing component page as template (e.g., badge.html)
    - Add `<link rel="stylesheet" href="../components/{name}/{name}.css">` to the head
    - Add `<script src="../components/{name}/{name}.js" defer></script>` if interactive
    - Replace demo content with working examples
 
-6. **Update sidebar nav** → add link in ALL HTML files
-   - Also add the CSS/JS imports to all HTML files
+6. **Update layout.js** → add the component to the `NAV` array and `BUILT` set
+   in `dist/documentation/js/layout.js` (this is the single source of truth for sidebar nav)
 
-7. **Update README.md** → add the component to the appropriate category in the Components section
+7. **Add CSS/JS imports to all HTML pages** → add the new component's `<link>` and
+   `<script>` tags to every HTML file in `dist/documentation/`
 
-8. **Update component-list.md** → mark the component as ✅
+8. **Update README.md** → add the component to the appropriate category in the Components section
 
-9. **Rebuild doc CSS** (if new Tailwind classes were used) → `npm run docs:build-css`
+9. **Update component-list.md** → mark the component as ✅
+
+10. **Rebuild doc CSS** (if new Tailwind classes were used) → `npm run docs:build-css`
 
 ---
 
@@ -145,8 +157,12 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
   explicitly for centered dialogs.
 - **CSS drift**: If the spec's variant/size tables don't match the `.css` file,
   update the spec to stay in sync — the `.css` file is the source of truth for styles.
-- **Nav link sed failures**: Pages where the component has `class="nav-link active"`
-  won't match a sed pattern looking for `class="nav-link"`. Check all files after bulk updates.
+- **CSS/JS import drift**: When adding a component, you must add its `<link>` and
+  `<script>` tags to ALL HTML pages. Missing imports cause components in cross-page
+  demos to break silently.
+- **SPA re-initialization**: Component JS that binds event listeners must be
+  idempotent — the SPA router calls `window.__spaInits` after each navigation.
+  Register init functions via `window.onPageReady(fn)` defined in `layout.js`.
 - **Font stacks**: The system tokens use generic font stacks. The doc site overrides
   them in `css/docs-theme.css`. Don't put custom fonts in `semantic-tokens.css`.
 
