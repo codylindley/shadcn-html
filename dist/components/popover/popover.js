@@ -1,4 +1,4 @@
-// ── Popover ──────────────────────────────────────────────────
+// -- Popover --------------------------------------------------
 // Positions popover content relative to its trigger.
 
 document.querySelectorAll('[popovertarget]').forEach((trigger) => {

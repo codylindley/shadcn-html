@@ -1,4 +1,4 @@
-// ── Number Input ─────────────────────────────────────────────
+// -- Number Input ---------------------------------------------
 // Increment/decrement buttons for .number-input containers.
 
 document.querySelectorAll('.number-input').forEach((wrapper) => {

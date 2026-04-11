@@ -1,4 +1,4 @@
-// ── Navigation Menu ─────────────────────────────────────────
+// -- Navigation Menu -----------------------------------------
 // Popover positioning for dropdown navigation menus.
 
 document.querySelectorAll('.nav-menu').forEach((nav) => {

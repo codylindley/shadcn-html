@@ -1,4 +1,4 @@
-// ── Toolbar ──────────────────────────────────────────────────
+// -- Toolbar --------------------------------------------------
 // Roving tabindex for role="toolbar" containers.
 // Arrow keys move focus between focusable children.
 

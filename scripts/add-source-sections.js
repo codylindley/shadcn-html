@@ -83,12 +83,10 @@ for (const file of htmlFiles) {
   // ── CSS section ──
   if (!hasCssSection && hasCss) {
     const cssContent = fs.readFileSync(cssFile, 'utf8');
-    const desc = cssDescription(compName, cssContent);
     insertHtml += `
         <!-- ── CSS ─────────────────────────────────────── -->
         <section style="margin-top:3rem;" id="source-css">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS</h2>
-          <p class="text-muted-foreground text-sm mb-4">${escapeHtml(desc)}</p>
           <div style="position:relative;margin-top:0.5rem;">
             ${copyBtnHtml}
             <pre><code class="language-scss">${escapeHtml(cssContent.trimEnd())}</code></pre>

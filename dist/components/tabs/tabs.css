@@ -1,7 +1,7 @@
-/* ── Tabs component ──────────────────────────────────────────── */
+/* -- Tabs component -------------------------------------------- */
 
 @layer components {
-  /* ── Default (pill) variant ─────────────────────────────────── */
+  /* -- Default (pill) variant ----------------------------------- */
   .tab-list {
     display: inline-flex;
     align-items: center;
@@ -10,7 +10,7 @@
     padding: 0.25rem;
     gap: 0.125rem;
 
-    /* ── Line variant ───────────────────────────────────────────── */
+    /* -- Line variant --------------------------------------------- */
     &[data-variant="line"] {
       background: transparent;
       border-radius: 0;
@@ -33,7 +33,7 @@
       }
     }
 
-    /* ── Vertical orientation ──────────────────────────────────── */
+    /* -- Vertical orientation ------------------------------------ */
     &[aria-orientation="vertical"] {
       flex-direction: column;
       width: auto;
@@ -79,7 +79,7 @@
     }
   }
 
-  /* ── Vertical layout container ───────────────────────────── */
+  /* -- Vertical layout container ----------------------------- */
   .tabs:has(.tab-list[aria-orientation="vertical"]) {
     display: flex;
     gap: 1rem;
@@ -91,7 +91,7 @@
     }
   }
 
-  /* ── Panel ──────────────────────────────────────────────────── */
+  /* -- Panel ---------------------------------------------------- */
   .tab-content {
     margin-top: 0.75rem;
 

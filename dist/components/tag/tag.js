@@ -1,4 +1,4 @@
-// ── Tag ──────────────────────────────────────────────────────
+// -- Tag ------------------------------------------------------
 // Dismiss behavior for removable tags.
 
 document.addEventListener('click', (e) => {

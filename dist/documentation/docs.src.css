@@ -1,4 +1,4 @@
-/* ── Tailwind source file for the documentation site ─────── */
+/* -- Tailwind source file for the documentation site ------- */
 /* Run: npx tailwindcss -i docs.src.css -o css/docs-tailwind.css */
 
 @import "tailwindcss";

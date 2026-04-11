@@ -1,4 +1,4 @@
-// ── Combobox ─────────────────────────────────────────────────
+// -- Combobox -------------------------------------------------
 // Searchable select with keyboard navigation and popover positioning.
 
 document.querySelectorAll('.combobox').forEach((wrapper) => {

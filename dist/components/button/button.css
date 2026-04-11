@@ -1,4 +1,4 @@
-/* ── Button component ────────────────────────────────────────── */
+/* -- Button component ------------------------------------------ */
 
 @layer components {
   .btn {
@@ -40,7 +40,7 @@
       opacity: 0.5;
     }
 
-    /* ── Variants ──────────────────────────────────────────── */
+    /* -- Variants -------------------------------------------- */
     &[data-variant="default"] {
       background-color: var(--primary);
       color: var(--primary-foreground);
@@ -95,7 +95,7 @@
       &:hover { text-decoration: underline; }
     }
 
-    /* ── Sizes ─────────────────────────────────────────────── */
+    /* -- Sizes ----------------------------------------------- */
     &[data-size="xs"]      { height: 1.75rem; padding: 0 0.5rem;  font-size: 0.75rem; border-radius: var(--radius-sm); }
     &[data-size="sm"]      { height: 2rem;    padding: 0 0.75rem; font-size: 0.8125rem; }
     &[data-size="lg"]      { height: 2.75rem; padding: 0 2rem;    font-size: 1rem; }

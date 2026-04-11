@@ -1,4 +1,4 @@
-// ── Dropdown Menu ────────────────────────────────────────────
+// -- Dropdown Menu --------------------------------------------
 // Wires [data-dropdown-trigger] buttons to popover menus with
 // full keyboard navigation and ARIA support.
 

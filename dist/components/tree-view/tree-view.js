@@ -1,4 +1,4 @@
-// ── Tree View ────────────────────────────────────────────────
+// -- Tree View ------------------------------------------------
 // Keyboard navigation and ARIA state for tree views.
 
 document.querySelectorAll('.tree[role="tree"]').forEach((tree) => {

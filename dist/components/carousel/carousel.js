@@ -1,4 +1,4 @@
-// ── Carousel ─────────────────────────────────────────────────
+// -- Carousel -------------------------------------------------
 // Previous/next slide navigation for carousels.
 
 document.querySelectorAll('.carousel').forEach((carousel) => {

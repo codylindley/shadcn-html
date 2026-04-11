@@ -1,4 +1,4 @@
-// ── Alert Dialog ──────────────────────────────────────────────
+// -- Alert Dialog ----------------------------------------------
 // Wires [data-alert-dialog-trigger] buttons to <dialog class="alert-dialog">.
 // Unlike regular dialogs: no backdrop-close, Escape key blocked.
 

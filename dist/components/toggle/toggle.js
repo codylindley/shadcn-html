@@ -1,4 +1,4 @@
-// ── Toggle ───────────────────────────────────────────────────
+// -- Toggle ---------------------------------------------------
 // Toggles aria-pressed on .toggle buttons.
 
 document.querySelectorAll('.toggle').forEach((toggle) => {

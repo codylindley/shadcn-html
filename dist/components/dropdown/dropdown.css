@@ -1,7 +1,7 @@
-/* ── Dropdown component ──────────────────────────────────────── */
+/* -- Dropdown component ---------------------------------------- */
 
 @layer components {
-  /* ── Trigger anchor ───────────────────────────────────────── */
+  /* -- Trigger anchor ----------------------------------------- */
   [data-dropdown-trigger] {
     anchor-name: --dropdown-trigger;
   }
@@ -15,7 +15,7 @@
     min-width: 8rem;
     box-shadow: 0 4px 16px oklch(0 0 0 / 0.12), 0 0 0 1px var(--border);
 
-    /* ── Anchor positioning ──────────────────────────────────── */
+    /* -- Anchor positioning ------------------------------------ */
     position-anchor: --dropdown-trigger;
     top: anchor(bottom);
     left: anchor(left);

@@ -1,4 +1,4 @@
-/* ── Label component ──────────────────────────────────────────── */
+/* -- Label component -------------------------------------------- */
 
 @layer components {
   .label {
@@ -23,7 +23,7 @@
     }
   }
 
-  /* ── Hint text (optional, required indicators) ─────────── */
+  /* -- Hint text (optional, required indicators) ----------- */
   .label-hint {
     font-weight: 400;
     font-size: 0.8125rem;

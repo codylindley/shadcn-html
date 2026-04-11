@@ -1,4 +1,4 @@
-// ── Calendar ─────────────────────────────────────────────────
+// -- Calendar -------------------------------------------------
 // Interactive calendar grid with month navigation and day selection.
 
 const DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];

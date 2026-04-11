@@ -1,8 +1,8 @@
-/* ── Documentation site overrides ────────────────────────── */
+/* -- Documentation site overrides -------------------------- */
 /* Custom fonts and styles specific to the docs site.        */
 /* These override the system's generic font stacks.          */
 
-/* ── Self-hosted fonts (no external requests) ────────────── */
+/* -- Self-hosted fonts (no external requests) -------------- */
 @font-face { font-family: 'Geist'; font-weight: 300; font-style: normal; font-display: swap; src: url('../fonts/geist-300.woff2') format('woff2'); }
 @font-face { font-family: 'Geist'; font-weight: 400; font-style: normal; font-display: swap; src: url('../fonts/geist-400.woff2') format('woff2'); }
 @font-face { font-family: 'Geist'; font-weight: 500; font-style: normal; font-display: swap; src: url('../fonts/geist-500.woff2') format('woff2'); }
@@ -22,14 +22,14 @@
   --font-display:            'Fraunces', serif;
 }
 
-/* ── Minimal base (Tailwind preflight handles the rest) ─── */
+/* -- Minimal base (Tailwind preflight handles the rest) --- */
 body {
   font-family: var(--font-sans);
   margin: 0;
   line-height: 1.6;
 }
 
-/* ── Scrollbar ───────────────────────────────────────────── */
+/* -- Scrollbar --------------------------------------------- */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }

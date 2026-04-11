@@ -1,4 +1,4 @@
-// ── Dialog ───────────────────────────────────────────────────
+// -- Dialog ---------------------------------------------------
 // Wires [data-dialog-trigger] buttons to <dialog> elements.
 
 document.querySelectorAll('[data-dialog-trigger]').forEach((trigger) => {

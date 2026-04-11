@@ -1,4 +1,4 @@
-/* ── Separator component ──────────────────────────────────────── */
+/* -- Separator component ---------------------------------------- */
 
 @layer components {
   .separator {
@@ -19,7 +19,7 @@
     }
   }
 
-  /* ── Labeled separator ───────────────────────────────────── */
+  /* -- Labeled separator ------------------------------------- */
   .separator-label {
     display: flex;
     align-items: center;

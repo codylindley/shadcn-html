@@ -1,7 +1,7 @@
-/* ── Toast component ─────────────────────────────────────────── */
+/* -- Toast component ------------------------------------------- */
 
 @layer components {
-  /* ── Container ──────────────────────────────────────────────── */
+  /* -- Container ------------------------------------------------ */
   .toast-container {
     position: fixed;
     z-index: 100;
@@ -20,7 +20,7 @@
     &[data-position="bottom-center"]{ bottom: 0; left: 50%; transform: translateX(-50%); align-items: center; }
   }
 
-  /* ── Toast ──────────────────────────────────────────────────── */
+  /* -- Toast ---------------------------------------------------- */
   .toast {
     background-color: var(--popover);
     color: var(--popover-foreground);
@@ -40,7 +40,7 @@
       transform: translateY(0);
     }
 
-    /* ── Variants ───────────────────────────────────────────────── */
+    /* -- Variants ------------------------------------------------- */
     &[data-variant="destructive"] {
       background-color: var(--destructive);
       color: var(--destructive-foreground);
@@ -52,7 +52,7 @@
       }
     }
 
-    /* ── Semantic variants (border + icon color) ───────────────── */
+    /* -- Semantic variants (border + icon color) ----------------- */
     &[data-variant="success"] {
       border-color: oklch(0.65 0.2 145);
 
@@ -79,7 +79,7 @@
     }
   }
 
-  /* ── Inner elements ─────────────────────────────────────────── */
+  /* -- Inner elements ------------------------------------------- */
   .toast-content {
     display: flex;
     align-items: flex-start;

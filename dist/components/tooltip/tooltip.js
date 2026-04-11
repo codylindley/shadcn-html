@@ -1,4 +1,4 @@
-// ── Tooltip ──────────────────────────────────────────────────
+// -- Tooltip --------------------------------------------------
 // Positions and shows/hides tooltip popovers on hover and focus.
 
 document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {

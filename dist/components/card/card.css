@@ -1,4 +1,4 @@
-/* ── Card component ──────────────────────────────────────────── */
+/* -- Card component -------------------------------------------- */
 
 @layer components {
   .card {
@@ -45,7 +45,7 @@
     padding-top: 0;
   }
 
-  /* ── Container query: compact card in narrow containers ── */
+  /* -- Container query: compact card in narrow containers -- */
   @container (max-width: 280px) {
     .card-header { padding: 1rem; padding-bottom: 0; }
     .card-content { padding: 1rem; }

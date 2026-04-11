@@ -1,4 +1,4 @@
-/* ── Select component ─────────────────────────────────────────── */
+/* -- Select component ------------------------------------------- */
 
 @layer components {
   .select {
@@ -42,7 +42,7 @@
       }
     }
 
-    /* ── Sizes ─────────────────────────────────────────────── */
+    /* -- Sizes ----------------------------------------------- */
     &[data-size="sm"] { height: 2rem;    padding-left: 0.625rem; font-size: 0.8125rem; }
     &[data-size="lg"] { height: 2.75rem; padding-left: 1rem;     font-size: 1rem; }
   }

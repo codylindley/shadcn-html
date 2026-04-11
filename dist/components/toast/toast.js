@@ -1,4 +1,4 @@
-// ── Toast ─────────────────────────────────────────────────────
+// -- Toast -----------------------------------------------------
 // Programmatic toast notification API.
 // Exposes window.toast with show/success/warning/info/error/dismiss.
 

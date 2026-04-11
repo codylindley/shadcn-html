@@ -1,4 +1,4 @@
-/* ── Button Group component ───────────────────────────────────── */
+/* -- Button Group component ------------------------------------- */
 
 @layer components {
   .btn-group {
@@ -28,7 +28,7 @@
       z-index: 1;
     }
 
-    /* ── Vertical orientation ──────────────────────────────── */
+    /* -- Vertical orientation -------------------------------- */
     &[data-orientation="vertical"] {
       flex-direction: column;
 

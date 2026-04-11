@@ -1,4 +1,4 @@
-/* ── Link component ───────────────────────────────────────────── */
+/* -- Link component --------------------------------------------- */
 
 @layer components {
   .link {
@@ -31,7 +31,7 @@
       &:not([class*="size-"]) { width: 0.875em; height: 0.875em; }
     }
 
-    /* ── Variants ──────────────────────────────────────────── */
+    /* -- Variants -------------------------------------------- */
     &[data-variant="muted"] {
       color: var(--muted-foreground);
       text-decoration-color: oklch(from var(--muted-foreground) l c h / 0.3);

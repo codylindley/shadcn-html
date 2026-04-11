@@ -1,4 +1,4 @@
-// ── shiki-highlight.js ────────────────────────────────────────
+// -- shiki-highlight.js ----------------------------------------
 // Doc-site syntax highlighting via Shiki CDN.
 // Loaded as <script type="module"> — highlights all <pre><code> blocks.
 // Uses dual themes (github-light / github-dark) with CSS-variable output

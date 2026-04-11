@@ -1,4 +1,4 @@
-// ── Sortable ─────────────────────────────────────────────────
+// -- Sortable -------------------------------------------------
 // Drag-and-drop reordering for sortable lists.
 
 document.querySelectorAll('.sortable').forEach((list) => {

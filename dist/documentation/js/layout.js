@@ -1,4 +1,4 @@
-// ── layout.js ────────────────────────────────────────────────
+// -- layout.js ------------------------------------------------
 // Web Components for the shared site header and sidebar nav.
 // SPA client-side router for flash-free navigation.
 // Loaded synchronously in <head> so elements render without FOUC.
@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  /* ── Dark mode (must run before first paint) ───────────────── */
+  /* -- Dark mode (must run before first paint) ----------------- */
   var saved = localStorage.getItem('shadcn-html-theme');
   var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   if (saved === 'dark' || (!saved && prefersDark)) {
@@ -14,7 +14,7 @@
     document.documentElement.style.colorScheme = 'dark';
   }
 
-  /* ── SPA page-ready helper ─────────────────────────────────── */
+  /* -- SPA page-ready helper ----------------------------------- */
   /* Doc-site scripts (site.js) call window.onPageReady(fn)      */
   /* to register functions that run on initial load AND after     */
   /* each SPA navigation. Component modules run at top level     */
@@ -31,7 +31,7 @@
     (window.__spaInits = window.__spaInits || []).push(fn);
   };
 
-  /* ── Navigation data ──────────────────────────────────────── */
+  /* -- Navigation data ---------------------------------------- */
   var NAV = [
     { heading: 'Overview', items: [
       { label: 'Introduction', href: 'index.html' },
@@ -146,7 +146,7 @@
   /* Detect current filename */
   var currentPage = location.pathname.split('/').pop() || 'index.html';
 
-  /* ── <site-header> ────────────────────────────────────────── */
+  /* -- <site-header> ------------------------------------------ */
   class SiteHeader extends HTMLElement {
     connectedCallback() {
       this.style.display = 'contents';
@@ -171,7 +171,7 @@
     }
   }
 
-  /* ── <site-nav> ───────────────────────────────────────────── */
+  /* -- <site-nav> --------------------------------------------- */
   class SiteNav extends HTMLElement {
     connectedCallback() {
       this.style.display = 'contents';
@@ -213,7 +213,7 @@
       html += '</aside>';
       this.innerHTML = html;
 
-      /* ── Filter logic ─────────────────────────────────────── */
+      /* -- Filter logic --------------------------------------- */
       var input = this.querySelector('.nav-filter-input');
       var sections = this.querySelectorAll('.nav-section');
       if (input && sections.length) {
@@ -247,7 +247,7 @@
   customElements.define('site-header', SiteHeader);
   customElements.define('site-nav', SiteNav);
 
-  /* ── Sidebar scroll persistence ───────────────────────────── */
+  /* -- Sidebar scroll persistence ----------------------------- */
   /* Save scroll position before navigating, restore on load.   */
   /* (With SPA router, sidebar persists — this handles fallback */
   /* cases: first load, hard refresh, external navigation.)     */
@@ -275,7 +275,7 @@
     }
   });
 
-  /* ── Hover prefetch ───────────────────────────────────────── */
+  /* -- Hover prefetch ----------------------------------------- */
   var prefetched = {};
   document.addEventListener('mouseover', function (e) {
     var link = e.target.closest('a.nav-link:not(.disabled)');
@@ -290,7 +290,7 @@
     }
   });
 
-  /* ── SPA Client-Side Router ───────────────────────────────── */
+  /* -- SPA Client-Side Router --------------------------------- */
   /* Intercepts nav link clicks and swaps <main> content         */
   /* without full-page reloads. Sidebar & header persist.        */
 

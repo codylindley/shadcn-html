@@ -1,4 +1,4 @@
-// ── site.js ─────────────────────────────────────────────────
+// -- site.js -------------------------------------------------
 // Doc-site-only script for the shadcn-html documentation site.
 // Component behavior lives in dist/components/*.js.
 // No ES modules — works with file:// protocol.
@@ -16,7 +16,7 @@
     localStorage.setItem('shadcn-html-theme', isDark ? 'light' : 'dark');
   }
 
-  // ── Token swatches (theming page only) ──────────────────
+  // -- Token swatches (theming page only) ------------------
   function initTokenSwatches() {
     var swatchContainer = document.getElementById('swatch-container');
     if (swatchContainer && !swatchContainer.hasChildNodes()) {
@@ -45,7 +45,7 @@
     }
   }
 
-  // ── Code collapse/expand ─────────────────────────────────
+  // -- Code collapse/expand ---------------------------------
   var CODE_ICON = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>';
 
   function initCodeCollapse() {
@@ -121,7 +121,7 @@
     });
   }
 
-  // ── Reusable page content initializer ───────────────────
+  // -- Reusable page content initializer -------------------
   // Called on initial load AND after each SPA navigation.
   function initPageContent() {
     // Syntax highlighting handled by shiki-highlight.js module
@@ -170,7 +170,7 @@
   // (runs on initial load AND after each SPA navigation)
   window.onPageReady(initPageContent);
 
-  // ── Spec modal viewer (runs once, uses delegation) ──────
+  // -- Spec modal viewer (runs once, uses delegation) ------
   function initSpecModal() {
     var specDialog = document.createElement('dialog');
     specDialog.className = 'dialog spec-modal';
@@ -241,7 +241,7 @@
     }
   }
 
-  // ── On DOM ready (one-time setup + initial content init) ─
+  // -- On DOM ready (one-time setup + initial content init) -
   document.addEventListener('DOMContentLoaded', function () {
     // Sync dark mode icon state
     var isDark = document.documentElement.classList.contains('dark');

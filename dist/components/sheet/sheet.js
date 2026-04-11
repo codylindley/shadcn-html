@@ -1,4 +1,4 @@
-// ── Sheet ────────────────────────────────────────────────────
+// -- Sheet ----------------------------------------------------
 // Wires [data-sheet-trigger] buttons to <dialog class="sheet"> elements.
 
 document.querySelectorAll('[data-sheet-trigger]').forEach((trigger) => {

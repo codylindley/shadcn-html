@@ -1,4 +1,4 @@
-// ── Command ──────────────────────────────────────────────────
+// -- Command --------------------------------------------------
 // Command palette dialog with search filtering and Cmd/Ctrl+K shortcut.
 
 /* Cmd/Ctrl+K handler — added once at module level */

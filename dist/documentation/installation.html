@@ -87,7 +87,7 @@
   <p class="text-muted-foreground leading-relaxed mb-10">Each component is a self-contained folder with a spec, stylesheet, and optional JS. No npm. No build step. Just add <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code> tags.</p>
       </div>
 
-  <!-- ── Installation ────────────────────────────────────── -->
+  <!-- -- Installation -------------------------------------- -->
   <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 1rem;">Installation</h2>
 
   <p class="text-sm text-muted-foreground mb-6">All files are served via <a href="https://www.jsdelivr.com" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">jsDelivr</a> CDN directly from the GitHub repo. No download or install required — just reference the URLs in your HTML.</p>
@@ -163,7 +163,7 @@
     </div>
   </div>
 
-  <!-- ── Pinning a version ───────────────────────────────── -->
+  <!-- -- Pinning a version --------------------------------- -->
   <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);">
     <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.75rem;">Pinning a version</h2>
     <p class="text-sm text-muted-foreground mb-3">Replace <code>@latest</code> with a specific version tag to lock your project to a release:</p>
@@ -171,7 +171,7 @@
     <p class="text-sm text-muted-foreground mt-2">This ensures your project won't break when new versions are published. Check the <a href="https://github.com/codylindley/shadcn-html/tags" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">releases page</a> for available versions.</p>
   </div>
 
-  <!-- ── Self-hosting ────────────────────────────────────── -->
+  <!-- -- Self-hosting -------------------------------------- -->
   <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);">
     <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.75rem;">Self-hosting</h2>
     <p class="text-sm text-muted-foreground mb-3">Prefer local files? Download everything and reference files with relative paths:</p>
@@ -181,14 +181,14 @@
 &lt;script type="module" src="components/dialog/dialog.js"&gt;&lt;/script&gt;</code></pre>
   </div>
 
-  <!-- ── Component folder structure ──────────────────────── -->
+  <!-- -- Component folder structure ------------------------ -->
   <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);">
     <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.75rem;">Component folder structure</h2>
     <pre><code>components/
-└── dialog/
-    ├── dialog.md    ← HTML structure, attributes, ARIA (read this first)
-    ├── dialog.css   ← stylesheet (include via &lt;link&gt;)
-    └── dialog.js    ← interaction behavior (include via &lt;script type="module"&gt;)</code></pre>
+└-- dialog/
+    ├-- dialog.md    ← HTML structure, attributes, ARIA (read this first)
+    ├-- dialog.css   ← stylesheet (include via &lt;link&gt;)
+    └-- dialog.js    ← interaction behavior (include via &lt;script type="module"&gt;)</code></pre>
     <p class="text-sm text-muted-foreground mt-2">Non-interactive components like Button and Badge only have <code>.md</code> and <code>.css</code> — no JS needed.</p>
   </div>
     </main>

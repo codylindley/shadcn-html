@@ -146,7 +146,7 @@
         </details>
       </div>
 
-        <!-- ── Example 1: Multi-open ── -->
+        <!-- -- Example 1: Multi-open -- -->
         <section style="margin-bottom:3rem;">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">Multi-open</h2>
           <p class="text-muted-foreground text-sm mb-4">Default behavior — multiple items can be open simultaneously. Uses native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> with zero JavaScript.</p>
@@ -220,7 +220,7 @@
           </div>
         </section>
 
-        <!-- ── Example 2: Single-open ── -->
+        <!-- -- Example 2: Single-open -- -->
         <section style="margin-bottom:3rem;">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">Single-open</h2>
           <p class="text-muted-foreground text-sm mb-4">Only one item can be open at a time. Add <code>data-type="single"</code> to the wrapper — a small JS handler closes siblings on toggle.</p>
@@ -293,13 +293,12 @@
 &lt;/div&gt;</code></pre>
           </div>
         </section>
-        <!-- ── CSS ─────────────────────────────────────── -->
+        <!-- -- CSS --------------------------------------- -->
         <section style="margin-top:3rem;" id="source-css">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/accordion/accordion.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
-          <p class="text-muted-foreground text-sm mb-4">── Accordion component ───────────────────────────────────────</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-scss">/* ── Accordion component ─────────────────────────────────────── */
+            <pre><code class="language-scss">/* -- Accordion component --------------------------------------- */
 
 @layer components {
   .accordion {
@@ -312,7 +311,7 @@
 
     &amp;:last-child { border-bottom: none; }
 
-    /* ── Content animation (CSS-only) ───────────────────────── */
+    /* -- Content animation (CSS-only) ------------------------- */
     &amp; ::details-content {
       block-size: 0;
       overflow-y: clip;
@@ -375,7 +374,7 @@
           </div>
         </section>
 
-        <!-- ── JavaScript ──────────────────────────────── -->
+        <!-- -- JavaScript -------------------------------- -->
         <section style="margin-top:3rem;" id="source-js">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/accordion/accordion.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
           <p class="text-muted-foreground text-sm mb-4">Only needed for single-open mode (when <code>data-type="single"</code> is set). Multi-open accordions use zero JavaScript — native <code>&lt;details&gt;</code> handles everything.</p>

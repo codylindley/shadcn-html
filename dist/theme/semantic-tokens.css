@@ -10,7 +10,7 @@
 :root {
   color-scheme: light;
 
-  /* ── Surface / Foreground pairs ────────────────────────────── */
+  /* -- Surface / Foreground pairs ------------------------------ */
   --background:              oklch(0.985 0.002 247);
   --foreground:              oklch(0.145 0.005 285);
 
@@ -35,12 +35,12 @@
   --destructive:             oklch(0.577 0.245 27.325);
   --destructive-foreground:  oklch(0.985 0.002 247);
 
-  /* ── Utility tokens ─────────────────────────────────────────── */
+  /* -- Utility tokens ------------------------------------------- */
   --border:                  oklch(0.88 0.004 247);
   --input:                   oklch(0.88 0.004 247);
   --ring:                    oklch(0.205 0.005 285);
 
-  /* ── Sidebar tokens ─────────────────────────────────────────── */
+  /* -- Sidebar tokens ------------------------------------------- */
   --sidebar:                 oklch(0.97 0.002 247);
   --sidebar-foreground:      oklch(0.145 0.005 285);
   --sidebar-primary:         oklch(0.205 0.005 285);
@@ -51,19 +51,19 @@
   --sidebar-ring:            oklch(0.205 0.005 285);
 
 
-  /* ── Chart tokens ───────────────────────────────────────────── */
+  /* -- Chart tokens --------------------------------------------- */
   --chart-1:                 oklch(0.646 0.222 41.116);
   --chart-2:                 oklch(0.6 0.118 184.704);
   --chart-3:                 oklch(0.398 0.07 227.392);
   --chart-4:                 oklch(0.828 0.189 84.429);
   --chart-5:                 oklch(0.769 0.188 70.08);
 
-  /* ── Typography tokens ──────────────────────────────────────── */
+  /* -- Typography tokens ---------------------------------------- */
   --font-sans:  ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono:  ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  /* ── Radius ─────────────────────────────────────────────────── */
+  /* -- Radius --------------------------------------------------- */
   --radius:                  0.625rem;
   /* Derived — needed as real custom properties because @theme inline
      only creates Tailwind utilities, not CSS vars for var() access. */
@@ -72,13 +72,13 @@
   --radius-lg:               var(--radius);
   --radius-xl:               calc(var(--radius) + 4px);
 
-  /* ── Spacing ────────────────────────────────────────────────── */
+  /* -- Spacing -------------------------------------------------- */
   --spacing:                 0.25rem;
 
-  /* ── Tracking ───────────────────────────────────────────────── */
+  /* -- Tracking ------------------------------------------------- */
   --tracking-normal:         0em;
 
-  /* ── Shadow composition ─────────────────────────────────────── */
+  /* -- Shadow composition --------------------------------------- */
   --shadow-x:       0;
   --shadow-y:       1px;
   --shadow-blur:    3px;
@@ -86,7 +86,7 @@
   --shadow-opacity: 0.1;
   --shadow-color:   oklch(0 0 0);
 
-  /* ── Shadow scale ───────────────────────────────────────────── */
+  /* -- Shadow scale --------------------------------------------- */
   --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --shadow-xs:  0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --shadow-sm:  0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
@@ -97,7 +97,7 @@
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
 }
 
-/* ── Dark mode ────────────────────────────────────────────────── */
+/* -- Dark mode -------------------------------------------------- */
 .dark {
   color-scheme: dark;
 

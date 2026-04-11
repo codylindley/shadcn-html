@@ -1,4 +1,4 @@
-// ── Accordion ───────────────────────────────────────────────
+// -- Accordion -----------------------------------------------
 // Single-open accordion behavior using native <details> elements.
 
 document.querySelectorAll('.accordion[data-type="single"]').forEach((accordion) => {

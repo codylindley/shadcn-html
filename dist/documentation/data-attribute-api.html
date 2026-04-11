@@ -90,7 +90,7 @@
   </p>
       </div>
 
-  <!-- ── The Mental Model ── -->
+  <!-- -- The Mental Model -- -->
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Props → Data Attributes</h2>
   <p class="text-sm text-muted-foreground mb-5">If you came from a component framework, this mapping should feel familiar.</p>
 
@@ -121,7 +121,7 @@
 
   <div class="sep"></div>
 
-  <!-- ── How it works ── -->
+  <!-- -- How it works -- -->
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">How it works</h2>
   <p class="text-sm text-muted-foreground mb-5">Every component has exactly two layers in its markup: a class and its data attributes.</p>
 
@@ -143,7 +143,7 @@
 
   <div class="sep"></div>
 
-  <!-- ── Why not modifier classes? ── -->
+  <!-- -- Why not modifier classes? -- -->
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Why data attributes instead of modifier classes?</h2>
   <p class="text-sm text-muted-foreground mb-5">Traditional systems like Bootstrap and BEM use modifier classes: <code>.btn-primary</code>, <code>.btn--lg</code>, <code>.btn-outline-danger</code>. Here's why we don't.</p>
 
@@ -193,7 +193,7 @@
 
   <div class="sep"></div>
 
-  <!-- ── Styling Attributes ── -->
+  <!-- -- Styling Attributes -- -->
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Styling attributes</h2>
   <p class="text-sm text-muted-foreground mb-5">These are set in your HTML and read by CSS. They control the visual appearance of components.</p>
 
@@ -298,7 +298,7 @@
 
   <div class="sep"></div>
 
-  <!-- ── Behavioral Attributes ── -->
+  <!-- -- Behavioral Attributes -- -->
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Behavioral attributes</h2>
   <p class="text-sm text-muted-foreground mb-5">These wire up JavaScript interactions. They follow the pattern <code>data-{component}-trigger</code> and <code>data-{component}-close</code> — connecting a button to the element it controls.</p>
 
@@ -348,7 +348,7 @@
 
   <div class="sep"></div>
 
-  <!-- ── State Attributes ── -->
+  <!-- -- State Attributes -- -->
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">State attributes</h2>
   <p class="text-sm text-muted-foreground mb-5">These are set and removed by JavaScript at runtime to represent UI state. CSS reads them to apply state-specific styles. You don't write these in markup — the JS manages them.</p>
 
@@ -372,7 +372,7 @@
 
   <div class="sep"></div>
 
-  <!-- ── ARIA Attributes ── -->
+  <!-- -- ARIA Attributes -- -->
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">ARIA attributes as styling hooks</h2>
   <p class="text-sm text-muted-foreground mb-5">Where the browser natively provides state APIs — like <code>aria-selected</code>, <code>aria-expanded</code>, or <code>disabled</code> — we style against those directly. No data attributes are needed because the browser already exposes the state.</p>
 
@@ -405,7 +405,7 @@
 
   <div class="sep"></div>
 
-  <!-- ── Quick reference cheat sheet ── -->
+  <!-- -- Quick reference cheat sheet -- -->
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">The pattern at a glance</h2>
   <p class="text-sm text-muted-foreground mb-5">Every component follows this structure. Once you learn one, you know them all.</p>
 

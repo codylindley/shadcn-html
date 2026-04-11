@@ -1,4 +1,4 @@
-// ── Toggle Group ─────────────────────────────────────────────
+// -- Toggle Group ---------------------------------------------
 // Manages single/multiple selection across .toggle buttons in a group.
 
 document.querySelectorAll('.toggle-group').forEach((group) => {

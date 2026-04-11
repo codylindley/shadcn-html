@@ -1,4 +1,4 @@
-// ── Color Picker ─────────────────────────────────────────────
+// -- Color Picker ---------------------------------------------
 // Syncs the hex value display with the color input.
 
 document.querySelectorAll('.color-picker').forEach((picker) => {

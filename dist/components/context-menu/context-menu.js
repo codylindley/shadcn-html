@@ -1,4 +1,4 @@
-// ── Context Menu ─────────────────────────────────────────────
+// -- Context Menu ---------------------------------------------
 // Right-click context menu using the Popover API.
 
 document.querySelectorAll('[data-context-menu]').forEach((trigger) => {

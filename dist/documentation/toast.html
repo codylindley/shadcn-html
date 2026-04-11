@@ -150,7 +150,7 @@
         </details>
       </div>
 
-        <!-- ── Example: Default ─────────────────────────────────── -->
+        <!-- -- Example: Default ----------------------------------- -->
         <section style="margin-bottom:2.5rem;">
           <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Default</h2>
           <p class="text-muted-foreground text-sm mb-3">Basic toast with title and description via <code>toast.show()</code>.</p>
@@ -179,7 +179,7 @@ toast.show({
           </div>
         </section>
 
-        <!-- ── Example: Variants ────────────────────────────────── -->
+        <!-- -- Example: Variants ---------------------------------- -->
         <section style="margin-bottom:2.5rem;">
           <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Variants</h2>
           <p class="text-muted-foreground text-sm mb-3">Semantic variants add a colored border and icon. Use <code>toast.success()</code>, <code>toast.warning()</code>, <code>toast.info()</code>, or <code>toast.error()</code>.</p>
@@ -235,7 +235,7 @@ toast.error({ title: 'Error', description: 'Something went wrong.' });
           </div>
         </section>
 
-        <!-- ── Example: With Description ────────────────────────── -->
+        <!-- -- Example: With Description -------------------------- -->
         <section style="margin-bottom:2.5rem;">
           <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">With Description</h2>
           <p class="text-muted-foreground text-sm mb-3">Pass a <code>description</code> for a secondary line of detail below the title.</p>
@@ -264,7 +264,7 @@ toast.show({
           </div>
         </section>
 
-        <!-- ── Example: With Action ─────────────────────────────── -->
+        <!-- -- Example: With Action ------------------------------- -->
         <section style="margin-bottom:2.5rem;">
           <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">With Action</h2>
           <p class="text-muted-foreground text-sm mb-3">Add an <code>action</code> object with <code>label</code> and <code>onClick</code> to render an action button inside the toast.</p>
@@ -296,16 +296,15 @@ toast.show({
 &lt;/script&gt;</code></pre>
           </div>
         </section>
-        <!-- ── CSS ─────────────────────────────────────── -->
+        <!-- -- CSS --------------------------------------- -->
         <section style="margin-top:3rem;" id="source-css">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/toast/toast.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
-          <p class="text-muted-foreground text-sm mb-4">── Toast component ───────────────────────────────────────────</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-scss">/* ── Toast component ─────────────────────────────────────────── */
+            <pre><code class="language-scss">/* -- Toast component ------------------------------------------- */
 
 @layer components {
-  /* ── Container ──────────────────────────────────────────────── */
+  /* -- Container ------------------------------------------------ */
   .toast-container {
     position: fixed;
     z-index: 100;
@@ -324,7 +323,7 @@ toast.show({
     &amp;[data-position=&quot;bottom-center&quot;]{ bottom: 0; left: 50%; transform: translateX(-50%); align-items: center; }
   }
 
-  /* ── Toast ──────────────────────────────────────────────────── */
+  /* -- Toast ---------------------------------------------------- */
   .toast {
     background-color: var(--popover);
     color: var(--popover-foreground);
@@ -344,7 +343,7 @@ toast.show({
       transform: translateY(0);
     }
 
-    /* ── Variants ───────────────────────────────────────────────── */
+    /* -- Variants ------------------------------------------------- */
     &amp;[data-variant=&quot;destructive&quot;] {
       background-color: var(--destructive);
       color: var(--destructive-foreground);
@@ -356,7 +355,7 @@ toast.show({
       }
     }
 
-    /* ── Semantic variants (border + icon color) ───────────────── */
+    /* -- Semantic variants (border + icon color) ----------------- */
     &amp;[data-variant=&quot;success&quot;] {
       border-color: oklch(0.65 0.2 145);
 
@@ -383,7 +382,7 @@ toast.show({
     }
   }
 
-  /* ── Inner elements ─────────────────────────────────────────── */
+  /* -- Inner elements ------------------------------------------- */
   .toast-content {
     display: flex;
     align-items: flex-start;
@@ -443,7 +442,7 @@ toast.show({
           </div>
         </section>
 
-        <!-- ── JavaScript ──────────────────────────────── -->
+        <!-- -- JavaScript -------------------------------- -->
         <section style="margin-top:3rem;" id="source-js">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/toast/toast.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
           <p class="text-muted-foreground text-sm mb-4">Imperative <code>toast.show()</code> API with auto-dismiss, stacking (max 3 visible), variant icons, and action buttons. Container is auto-created if not present in the DOM.</p>

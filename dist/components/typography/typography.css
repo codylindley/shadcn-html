@@ -1,7 +1,7 @@
-/* ── Typography component ─────────────────────────────────────── */
+/* -- Typography component --------------------------------------- */
 
 @layer components {
-  /* ── Headings ────────────────────────────────────────────── */
+  /* -- Headings ---------------------------------------------- */
   .h1 {
     scroll-margin-top: 5rem;
     font-size: 2.25rem;
@@ -43,7 +43,7 @@
     color: var(--foreground);
   }
 
-  /* ── Paragraph ───────────────────────────────────────────── */
+  /* -- Paragraph --------------------------------------------- */
   .p {
     line-height: 1.75;
     color: var(--foreground);
@@ -51,21 +51,21 @@
     &:not(:first-child) { margin-top: 1.5rem; }
   }
 
-  /* ── Lead ─────────────────────────────────────────────────── */
+  /* -- Lead --------------------------------------------------- */
   .lead {
     font-size: 1.25rem;
     line-height: 1.6;
     color: var(--muted-foreground);
   }
 
-  /* ── Large ────────────────────────────────────────────────── */
+  /* -- Large -------------------------------------------------- */
   .large {
     font-size: 1.125rem;
     font-weight: 600;
     color: var(--foreground);
   }
 
-  /* ── Small ────────────────────────────────────────────────── */
+  /* -- Small -------------------------------------------------- */
   .small {
     font-size: 0.875rem;
     font-weight: 500;
@@ -73,13 +73,13 @@
     color: var(--foreground);
   }
 
-  /* ── Muted ────────────────────────────────────────────────── */
+  /* -- Muted -------------------------------------------------- */
   .muted {
     font-size: 0.875rem;
     color: var(--muted-foreground);
   }
 
-  /* ── Blockquote ───────────────────────────────────────────── */
+  /* -- Blockquote --------------------------------------------- */
   .blockquote {
     margin-top: 1.5rem;
     border-left: 2px solid var(--border);
@@ -90,7 +90,7 @@
     & p { margin: 0; }
   }
 
-  /* ── Inline code ──────────────────────────────────────────── */
+  /* -- Inline code -------------------------------------------- */
   .code {
     position: relative;
     border-radius: var(--radius-sm);
@@ -103,7 +103,7 @@
     border: 1px solid var(--border);
   }
 
-  /* ── List ──────────────────────────────────────────────────── */
+  /* -- List ---------------------------------------------------- */
   .list {
     margin: 1.5rem 0;
     margin-left: 1.5rem;

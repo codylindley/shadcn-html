@@ -1,4 +1,4 @@
-/* ── Dialog component ────────────────────────────────────────── */
+/* -- Dialog component ------------------------------------------ */
 
 @layer components {
   dialog.dialog {
@@ -23,13 +23,13 @@
       transform: translateY(0) scale(1);
     }
 
-    /* ── Sizes ──────────────────────────────────────────────── */
+    /* -- Sizes ------------------------------------------------ */
     &[data-size="sm"]   { max-width: 24rem; }
     &[data-size="lg"]   { max-width: 32rem; }
     &[data-size="xl"]   { max-width: 40rem; }
     &[data-size="full"] { max-width: calc(100vw - 2rem); }
 
-    /* ── Backdrop ───────────────────────────────────────────── */
+    /* -- Backdrop --------------------------------------------- */
     &::backdrop {
       background: oklch(0 0 0 / 0);
       backdrop-filter: blur(0px);
@@ -54,7 +54,7 @@
     }
   }
 
-  /* ── Content sections ───────────────────────────────────── */
+  /* -- Content sections ------------------------------------- */
   .dialog-content { padding: 1.5rem; }
   .dialog-header  { margin-bottom: 1rem; }
   .dialog-title   { font-size: 1.0625rem; font-weight: 600; margin: 0 0 0.375rem; letter-spacing: -0.01em; }
