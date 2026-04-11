@@ -119,6 +119,44 @@
 &lt;/ol&gt;</code></pre>
         </div>
 
+        <!-- With Descriptions + Form -->
+        <p class="text-sm font-medium mb-2 mt-8">With Form Content</p>
+        <p class="text-xs text-muted-foreground mb-3">Steps with descriptions, composed with a <code>.card</code> form panel and <code>.btn</code> navigation.</p>
+        <div class="preview" style="flex-direction:column;align-items:stretch;">
+          <div style="max-width:32rem;width:100%;">
+            <ol class="steps" style="margin-bottom:1.5rem;">
+              <li class="step" data-status="complete">
+                <div class="step-indicator">1</div>
+                <div class="step-content"><p class="step-title">Account</p><p class="step-description">Create credentials</p></div>
+              </li>
+              <li class="step" data-status="current">
+                <div class="step-indicator">2</div>
+                <div class="step-content"><p class="step-title">Profile</p><p class="step-description">Personal details</p></div>
+              </li>
+              <li class="step">
+                <div class="step-indicator">3</div>
+                <div class="step-content"><p class="step-title">Complete</p><p class="step-description">Review &amp; confirm</p></div>
+              </li>
+            </ol>
+            <article class="card">
+              <div class="card-header">
+                <p class="card-title">Profile Information</p>
+                <p class="card-description">Tell us about yourself.</p>
+              </div>
+              <div class="card-content">
+                <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                  <div><label class="label" style="margin-bottom:0.375rem;display:block;">Full Name</label><input class="input" type="text" placeholder="Jordan Davis"></div>
+                  <div><label class="label" style="margin-bottom:0.375rem;display:block;">Bio</label><textarea class="textarea" placeholder="Tell us about yourself..." rows="3"></textarea></div>
+                </div>
+              </div>
+              <div class="card-footer" style="justify-content:space-between;">
+                <button class="btn" data-variant="outline">Back</button>
+                <button class="btn" data-variant="default">Continue</button>
+              </div>
+            </article>
+          </div>
+        </div>
+
         <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
           Full specification → <a href="../components/steps/steps.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/steps/steps.md</a>
         </p>

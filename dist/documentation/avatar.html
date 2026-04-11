@@ -229,6 +229,45 @@
 &lt;/div&gt;</code></pre>
         </div>
 
+        <!-- Profile Card -->
+        <p class="text-sm font-medium mb-2 mt-8">In a Card</p>
+        <p class="text-xs text-muted-foreground mb-3">Avatar composed with <code>.card</code>, <code>.badge</code>, and <code>.btn</code> for a user profile pattern.</p>
+        <div class="preview">
+          <article class="card" style="width:18rem;">
+            <div class="card-header" style="display:flex;flex-direction:row;align-items:center;gap:0.75rem;">
+              <span class="avatar">
+                <img class="avatar-image" src="https://github.com/shadcn.png" alt="@shadcn" />
+                <span class="avatar-fallback">CN</span>
+                <span class="avatar-badge"></span>
+              </span>
+              <div style="flex:1;min-width:0;">
+                <p style="margin:0;font-weight:500;font-size:0.875rem;">Cody Lindley</p>
+                <p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);">cody@example.com</p>
+              </div>
+              <span class="badge" data-variant="secondary">Admin</span>
+            </div>
+            <div class="card-footer" style="padding-top:0;">
+              <button class="btn" data-variant="outline" data-size="sm" style="width:100%;">View Profile</button>
+            </div>
+          </article>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;article class="card"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;span class="avatar"&gt;...&lt;/span&gt;
+    &lt;div&gt;Name / Email&lt;/div&gt;
+    &lt;span class="badge" data-variant="secondary"&gt;Admin&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="card-footer"&gt;
+    &lt;button class="btn" data-variant="outline"&gt;View Profile&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+        </div>
+
         <!-- Spec link -->
         <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
           Full specification → <a href="../components/avatar/avatar.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/avatar/avatar.md</a>

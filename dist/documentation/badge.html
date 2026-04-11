@@ -213,6 +213,51 @@
       aria-hidden="true"&gt;5&lt;/span&gt;</code></pre>
         </div>
 
+        <!-- In Button -->
+        <p class="text-sm font-medium mb-2 mt-8">On a Button</p>
+        <p class="text-xs text-muted-foreground mb-3">Badge inside a <code>.btn</code> for notification counts.</p>
+        <div class="preview">
+          <div class="flex gap-3 items-center">
+            <button class="btn" data-variant="outline">
+              Inbox
+              <span class="badge" data-variant="default">3</span>
+            </button>
+            <button class="btn" data-variant="default">
+              Notifications
+              <span class="badge" data-variant="secondary">12</span>
+            </button>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;button class="btn" data-variant="outline"&gt;
+  Inbox
+  &lt;span class="badge" data-variant="default"&gt;3&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+        </div>
+
+        <!-- In Card Header -->
+        <p class="text-sm font-medium mb-2 mt-8">In a Card</p>
+        <p class="text-xs text-muted-foreground mb-3">Badge in a <code>.card</code> header for status display.</p>
+        <div class="preview">
+          <article class="card" style="width:20rem;">
+            <div class="card-header" style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;">
+              <div>
+                <p class="card-title">API Usage</p>
+                <p class="card-description">Current billing period</p>
+              </div>
+              <span class="badge" data-variant="outline">Active</span>
+            </div>
+            <div class="card-content">
+              <p style="margin:0;font-size:1.5rem;font-weight:700;">12,489</p>
+              <p style="margin:0.25rem 0 0;font-size:0.75rem;color:var(--muted-foreground);">requests this month</p>
+            </div>
+          </article>
+        </div>
+
         <!-- Spec link -->
         <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
           Full specification → <a href="../components/badge/badge.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/badge/badge.md</a>

@@ -94,48 +94,36 @@
 
         <!-- Basic -->
         <p class="text-sm font-medium mb-2 mt-6">Basic Table</p>
-        <p class="text-xs text-muted-foreground mb-3">Standard table with header and body rows.</p>
+        <p class="text-xs text-muted-foreground mb-3">Standard table with header and body rows. Uses <code>.badge</code> for status and <code>.avatar</code> for user display.</p>
         <div class="preview">
-          <div class="table-container" style="max-width:36rem;">
+          <div class="table-container" style="max-width:42rem;">
             <table class="table">
               <thead>
                 <tr class="table-row">
-                  <th class="table-head">Invoice</th>
+                  <th class="table-head">User</th>
                   <th class="table-head">Status</th>
-                  <th class="table-head">Method</th>
+                  <th class="table-head">Role</th>
                   <th class="table-head" style="text-align:right">Amount</th>
                 </tr>
               </thead>
               <tbody>
                 <tr class="table-row">
-                  <td class="table-cell" style="font-weight:500">INV001</td>
-                  <td class="table-cell">Paid</td>
-                  <td class="table-cell">Credit Card</td>
+                  <td class="table-cell"><div style="display:flex;align-items:center;gap:0.5rem;"><span class="avatar" data-size="sm"><img class="avatar-image" src="https://github.com/shadcn.png" alt="@shadcn"/><span class="avatar-fallback">CN</span></span><span style="font-weight:500;">Cody Lindley</span></div></td>
+                  <td class="table-cell"><span class="badge" data-variant="default">Paid</span></td>
+                  <td class="table-cell">Admin</td>
                   <td class="table-cell" style="text-align:right">$250.00</td>
                 </tr>
                 <tr class="table-row">
-                  <td class="table-cell" style="font-weight:500">INV002</td>
-                  <td class="table-cell">Pending</td>
-                  <td class="table-cell">PayPal</td>
+                  <td class="table-cell"><div style="display:flex;align-items:center;gap:0.5rem;"><span class="avatar" data-size="sm"><span class="avatar-fallback">JD</span></span><span style="font-weight:500;">Jordan Davis</span></div></td>
+                  <td class="table-cell"><span class="badge" data-variant="outline">Pending</span></td>
+                  <td class="table-cell">Editor</td>
                   <td class="table-cell" style="text-align:right">$150.00</td>
                 </tr>
                 <tr class="table-row">
-                  <td class="table-cell" style="font-weight:500">INV003</td>
-                  <td class="table-cell">Unpaid</td>
-                  <td class="table-cell">Bank Transfer</td>
+                  <td class="table-cell"><div style="display:flex;align-items:center;gap:0.5rem;"><span class="avatar" data-size="sm"><span class="avatar-fallback">AS</span></span><span style="font-weight:500;">Alex Smith</span></div></td>
+                  <td class="table-cell"><span class="badge" data-variant="secondary">Unpaid</span></td>
+                  <td class="table-cell">Viewer</td>
                   <td class="table-cell" style="text-align:right">$350.00</td>
-                </tr>
-                <tr class="table-row">
-                  <td class="table-cell" style="font-weight:500">INV004</td>
-                  <td class="table-cell">Paid</td>
-                  <td class="table-cell">Credit Card</td>
-                  <td class="table-cell" style="text-align:right">$450.00</td>
-                </tr>
-                <tr class="table-row">
-                  <td class="table-cell" style="font-weight:500">INV005</td>
-                  <td class="table-cell">Paid</td>
-                  <td class="table-cell">PayPal</td>
-                  <td class="table-cell" style="text-align:right">$550.00</td>
                 </tr>
               </tbody>
             </table>
@@ -146,24 +134,20 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code>&lt;div class="table-container"&gt;
-  &lt;table class="table"&gt;
-    &lt;thead&gt;
-      &lt;tr class="table-row"&gt;
-        &lt;th class="table-head"&gt;Invoice&lt;/th&gt;
-        &lt;th class="table-head"&gt;Status&lt;/th&gt;
-        &lt;th class="table-head" style="text-align:right"&gt;Amount&lt;/th&gt;
-      &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-      &lt;tr class="table-row"&gt;
-        &lt;td class="table-cell"&gt;INV001&lt;/td&gt;
-        &lt;td class="table-cell"&gt;Paid&lt;/td&gt;
-        &lt;td class="table-cell" style="text-align:right"&gt;$250.00&lt;/td&gt;
-      &lt;/tr&gt;
-    &lt;/tbody&gt;
-  &lt;/table&gt;
-&lt;/div&gt;</code></pre>
+          <pre><code>&lt;tr class="table-row"&gt;
+  &lt;td class="table-cell"&gt;
+    &lt;div style="display:flex;align-items:center;gap:0.5rem;"&gt;
+      &lt;span class="avatar" data-size="sm"&gt;
+        &lt;img class="avatar-image" src="..." alt="..." /&gt;
+        &lt;span class="avatar-fallback"&gt;CN&lt;/span&gt;
+      &lt;/span&gt;
+      &lt;span&gt;Cody Lindley&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/td&gt;
+  &lt;td class="table-cell"&gt;
+    &lt;span class="badge" data-variant="default"&gt;Paid&lt;/span&gt;
+  &lt;/td&gt;
+&lt;/tr&gt;</code></pre>
         </div>
 
         <!-- With Footer -->

@@ -143,6 +143,41 @@
           <pre><code>&lt;progress class="progress" max="100"&gt;Loading...&lt;/progress&gt;</code></pre>
         </div>
 
+        <!-- Dashboard Cards -->
+        <p class="text-sm font-medium mb-2 mt-8">In Cards</p>
+        <p class="text-xs text-muted-foreground mb-3">Progress bars composed with <code>.card</code> and <code>.statistic</code> for a dashboard layout.</p>
+        <div class="preview" style="flex-direction:column;align-items:stretch;">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:42rem;">
+            <article class="card">
+              <div class="card-content" style="padding:1.5rem;">
+                <div class="statistic" style="margin-bottom:0.75rem;">
+                  <p class="statistic-title">Storage</p>
+                  <p class="statistic-value" style="font-size:1.25rem;">75%</p>
+                </div>
+                <progress class="progress" value="75" max="100">75%</progress>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-content" style="padding:1.5rem;">
+                <div class="statistic" style="margin-bottom:0.75rem;">
+                  <p class="statistic-title">Bandwidth</p>
+                  <p class="statistic-value" style="font-size:1.25rem;">42%</p>
+                </div>
+                <progress class="progress" value="42" max="100">42%</progress>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-content" style="padding:1.5rem;">
+                <div class="statistic" style="margin-bottom:0.75rem;">
+                  <p class="statistic-title">CPU</p>
+                  <p class="statistic-value" style="font-size:1.25rem;">91%</p>
+                </div>
+                <progress class="progress" value="91" max="100">91%</progress>
+              </div>
+            </article>
+          </div>
+        </div>
+
         <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
           Full specification → <a href="../components/progress/progress.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/progress/progress.md</a>
         </p>

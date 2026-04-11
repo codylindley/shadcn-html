@@ -152,6 +152,50 @@
 &lt;/ol&gt;</code></pre>
         </div>
 
+        <!-- With Avatars + Badges -->
+        <p class="text-sm font-medium mb-2 mt-8">Activity Feed</p>
+        <p class="text-xs text-muted-foreground mb-3">Timeline composed with <code>.avatar</code> and <code>.badge</code> for an activity feed pattern.</p>
+        <div class="preview">
+          <ol class="timeline" style="max-width:28rem;">
+            <li class="timeline-item">
+              <div class="timeline-dot" data-variant="active"></div>
+              <div class="timeline-content">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem;">
+                  <span class="avatar" data-size="sm"><img class="avatar-image" src="https://github.com/shadcn.png" alt="@shadcn"/><span class="avatar-fallback">CN</span></span>
+                  <span style="font-weight:500;font-size:0.8125rem;">Cody Lindley</span>
+                  <span class="badge" data-variant="default" style="margin-left:auto;">Merged</span>
+                </div>
+                <p class="timeline-description">Merged pull request #42 — Add new components</p>
+                <time class="timeline-time">2 hours ago</time>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem;">
+                  <span class="avatar" data-size="sm"><span class="avatar-fallback">JD</span></span>
+                  <span style="font-weight:500;font-size:0.8125rem;">Jordan Davis</span>
+                  <span class="badge" data-variant="outline" style="margin-left:auto;">Review</span>
+                </div>
+                <p class="timeline-description">Requested changes on the sidebar layout</p>
+                <time class="timeline-time">5 hours ago</time>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem;">
+                  <span class="avatar" data-size="sm"><span class="avatar-fallback">AS</span></span>
+                  <span style="font-weight:500;font-size:0.8125rem;">Alex Smith</span>
+                  <span class="badge" data-variant="secondary" style="margin-left:auto;">Comment</span>
+                </div>
+                <p class="timeline-description">Commented on issue #38</p>
+                <time class="timeline-time">Yesterday</time>
+              </div>
+            </li>
+          </ol>
+        </div>
+
         <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
           Full specification → <a href="../components/timeline/timeline.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/timeline/timeline.md</a>
         </p>
