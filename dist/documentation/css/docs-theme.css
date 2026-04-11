@@ -2,6 +2,19 @@
 /* Custom fonts and styles specific to the docs site.        */
 /* These override the system's generic font stacks.          */
 
+/* ── Self-hosted fonts (no external requests) ────────────── */
+@font-face { font-family: 'Geist'; font-weight: 300; font-style: normal; font-display: swap; src: url('../fonts/geist-300.woff2') format('woff2'); }
+@font-face { font-family: 'Geist'; font-weight: 400; font-style: normal; font-display: swap; src: url('../fonts/geist-400.woff2') format('woff2'); }
+@font-face { font-family: 'Geist'; font-weight: 500; font-style: normal; font-display: swap; src: url('../fonts/geist-500.woff2') format('woff2'); }
+@font-face { font-family: 'Geist'; font-weight: 600; font-style: normal; font-display: swap; src: url('../fonts/geist-600.woff2') format('woff2'); }
+@font-face { font-family: 'Geist Mono'; font-weight: 400; font-style: normal; font-display: swap; src: url('../fonts/geist-mono-400.woff2') format('woff2'); }
+@font-face { font-family: 'Geist Mono'; font-weight: 500; font-style: normal; font-display: swap; src: url('../fonts/geist-mono-500.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-weight: 300; font-style: normal; font-display: swap; src: url('../fonts/fraunces-300.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-weight: 400; font-style: normal; font-display: swap; src: url('../fonts/fraunces-400.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-weight: 500; font-style: normal; font-display: swap; src: url('../fonts/fraunces-500.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-weight: 300; font-style: italic; font-display: swap; src: url('../fonts/fraunces-300i.woff2') format('woff2'); }
+@font-face { font-family: 'Fraunces'; font-weight: 400; font-style: italic; font-display: swap; src: url('../fonts/fraunces-400i.woff2') format('woff2'); }
+
 :root {
   --font-sans:               'Geist', sans-serif;
   --font-serif:              'Fraunces', serif;

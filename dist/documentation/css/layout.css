@@ -58,6 +58,19 @@
   color: var(--foreground);
 }
 
+/* ── Cross-document view transitions ─────────────────────── */
+/* Holds the old page visually until the new page is ready.  */
+/* No animation — just prevents the white gap between pages. */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root) {
+  animation: none;
+}
+::view-transition-new(root) {
+  animation: none;
+}
+
 /* ── Nav link ────────────────────────────────────────────── */
 .nav-link {
   display: block;
