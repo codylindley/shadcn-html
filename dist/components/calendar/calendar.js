@@ -67,7 +67,7 @@
     grid.innerHTML = html;
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('.calendar').forEach(function (cal) {
       var now = new Date();
       var state = {

@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('[data-tooltip-trigger]').forEach(function (trigger) {
       var tip = document.getElementById(trigger.dataset.tooltipTrigger);
       if (!tip) return;

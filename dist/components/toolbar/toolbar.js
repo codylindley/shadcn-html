@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('.toolbar[role="toolbar"]').forEach(function (toolbar) {
       var items = Array.from(
         toolbar.querySelectorAll('button:not(:disabled), a[href], [tabindex]:not([tabindex="-1"])')

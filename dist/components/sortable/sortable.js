@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('.sortable').forEach(function (list) {
       var dragged = null;
       list.querySelectorAll('.sortable-item').forEach(function (item) {

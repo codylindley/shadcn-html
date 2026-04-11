@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('.nav-menu').forEach(function (nav) {
       nav.querySelectorAll('.nav-menu-trigger[popovertarget]').forEach(function (trigger) {
         var content = document.getElementById(trigger.getAttribute('popovertarget'));

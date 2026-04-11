@@ -8,7 +8,7 @@
 
   var DURATION = 4000, MAX_VISIBLE = 3;
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     var toastContainer = document.getElementById('toast-container');
     if (!toastContainer) {
       toastContainer = document.createElement('div');

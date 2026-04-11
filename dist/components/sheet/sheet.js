@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('[data-sheet-trigger]').forEach(function (trigger) {
       var sheet = document.getElementById(trigger.dataset.sheetTrigger);
       if (!sheet) return;

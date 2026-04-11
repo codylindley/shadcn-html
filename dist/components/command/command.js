@@ -1,6 +1,21 @@
 (function () {
   'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
+
+  /* Cmd/Ctrl+K handler — added once, re-queries dialog each time */
+  if (!window.__commandKeydownAdded) {
+    window.__commandKeydownAdded = true;
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        var dialog = document.querySelector('dialog.command');
+        if (!dialog) return;
+        e.preventDefault();
+        if (dialog.open) { dialog.close(); }
+        else { dialog.showModal(); var input = dialog.querySelector('.command-input'); if (input) input.focus(); }
+      }
+    });
+  }
+
+  window.onPageReady(function () {
     document.querySelectorAll('dialog.command').forEach(function (dialog) {
       var input = dialog.querySelector('.command-input');
       var list = dialog.querySelector('.command-list');
@@ -26,14 +41,6 @@
         if (e.target.closest('.command-item')) dialog.close();
       });
       dialog.addEventListener('close', function () { input.value = ''; filter(''); });
-
-      document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-          e.preventDefault();
-          if (dialog.open) dialog.close();
-          else { dialog.showModal(); input.focus(); }
-        }
-      });
     });
 
     document.querySelectorAll('[data-command-trigger]').forEach(function (trigger) {

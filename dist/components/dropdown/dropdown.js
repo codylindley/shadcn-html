@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('[data-dropdown-trigger]').forEach(function (trigger) {
       var menu = document.getElementById(trigger.dataset.dropdownTrigger);
       if (!menu) return;

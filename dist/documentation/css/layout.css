@@ -71,6 +71,17 @@
   animation: none;
 }
 
+/* ── SPA view transition for main content ────────────────── */
+main {
+  view-transition-name: main-content;
+}
+::view-transition-old(main-content) {
+  animation: none;
+}
+::view-transition-new(main-content) {
+  animation: none;
+}
+
 /* ── Nav link ────────────────────────────────────────────── */
 .nav-link {
   display: block;

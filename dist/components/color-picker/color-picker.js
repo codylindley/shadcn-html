@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('.color-picker').forEach(function (picker) {
       var input = picker.querySelector('input[type="color"]');
       var display = picker.querySelector('.color-picker-value');

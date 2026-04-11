@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     /* Wire triggers */
     document.querySelectorAll('[data-alert-dialog-trigger]').forEach(function (trigger) {
       var dialog = document.getElementById(trigger.dataset.alertDialogTrigger);

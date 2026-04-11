@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('.tree[role="tree"]').forEach(function (tree) {
       /* Keep aria-expanded in sync with <details> open state */
       tree.querySelectorAll('.tree-branch').forEach(function (details) {

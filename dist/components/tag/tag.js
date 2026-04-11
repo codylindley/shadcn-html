@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.addEventListener('click', function (e) {
       var btn = e.target.closest('.tag-dismiss');
       if (!btn) return;

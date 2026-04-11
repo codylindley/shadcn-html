@@ -1,14 +1,13 @@
 // ── site.js ─────────────────────────────────────────────────
 // Doc-site-only script for the shadcn-html documentation site.
-// Component behavior lives in js/components/*.js (importable individually).
+// Component behavior lives in dist/components/*.js.
 // No ES modules — works with file:// protocol.
 // Include via <script src="js/site.js" defer></script>
 
 (function () {
   'use strict';
 
-  // ── Dark mode + hljs sync now handled by layout.js ──────
-  // (runs synchronously in <head> to prevent FOUC)
+  // ── Dark mode + hljs sync (handled by layout.js in <head>) ─
   function syncHljsTheme() {
     var isDark = document.documentElement.classList.contains('dark');
     var light = document.getElementById('hljs-light');
@@ -27,24 +26,42 @@
     syncHljsTheme();
   }
 
-  // ── On DOM ready ────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', function () {
+  // ── Token swatches (theming page only) ──────────────────
+  function initTokenSwatches() {
+    var swatchContainer = document.getElementById('swatch-container');
+    if (swatchContainer && !swatchContainer.hasChildNodes()) {
+      var pairs = [['background','foreground'],['primary','primary-foreground'],['secondary','secondary-foreground'],['muted','muted-foreground'],['accent','accent-foreground'],['card','card-foreground'],['popover','popover-foreground'],['destructive','destructive-foreground']];
+      pairs.forEach(function (p) {
+        var surface = p[0], fg = p[1];
+        var row = document.createElement('div'); row.className = 'swatch-row';
+        row.innerHTML = '<div style="display:flex;gap:0.375rem;flex-shrink:0;"><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + surface + ');border:1px solid var(--border);"></div><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + fg + ');border:1px solid var(--border);"></div></div><div><p style="margin:0;font-size:0.8125rem;font-family:var(--font-mono);">--' + surface + '</p><p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">--' + fg + '</p></div><span style="margin-left:auto;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">var(--' + surface + ') var(--' + fg + ')</span>';
+        swatchContainer.appendChild(row);
+      });
+    }
+    var sidebarSwatchContainer = document.getElementById('sidebar-swatch-container');
+    if (sidebarSwatchContainer && !sidebarSwatchContainer.hasChildNodes()) {
+      [['sidebar','sidebar-foreground'],['sidebar-primary','sidebar-primary-foreground'],['sidebar-accent','sidebar-accent-foreground']].forEach(function (p) {
+        var surface = p[0], fg = p[1];
+        var row = document.createElement('div'); row.className = 'swatch-row';
+        row.innerHTML = '<div style="display:flex;gap:0.375rem;flex-shrink:0;"><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + surface + ');border:1px solid var(--border);"></div><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + fg + ');border:1px solid var(--border);"></div></div><div><p style="margin:0;font-size:0.8125rem;font-family:var(--font-mono);">--' + surface + '</p><p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">--' + fg + '</p></div><span style="margin-left:auto;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">var(--' + surface + ') var(--' + fg + ')</span>';
+        sidebarSwatchContainer.appendChild(row);
+      });
+      [['sidebar-border','border-sidebar-border'],['sidebar-ring','ring-sidebar-ring']].forEach(function (p) {
+        var token = p[0], utility = p[1];
+        var row = document.createElement('div'); row.className = 'swatch-row';
+        row.innerHTML = '<div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + token + ');border:1px solid var(--border);flex-shrink:0;"></div><code>--' + token + '</code><span class="text-sm text-muted-foreground ml-auto">var(--' + token + ')</span>';
+        sidebarSwatchContainer.appendChild(row);
+      });
+    }
+  }
 
-    // Sync dark mode icon state
-    var isDark = document.documentElement.classList.contains('dark');
-    var sun = document.getElementById('icon-sun');
-    var moon = document.getElementById('icon-moon');
-    if (sun) sun.style.display = isDark ? 'none' : 'block';
-    if (moon) moon.style.display = isDark ? 'block' : 'none';
-
-    // Bind toggle button
-    var themeBtn = document.getElementById('theme-toggle');
-    if (themeBtn) themeBtn.addEventListener('click', toggleDark);
-
-    // ── Syntax highlighting (highlight.js) ──────────────
+  // ── Reusable page content initializer ───────────────────
+  // Called on initial load AND after each SPA navigation.
+  function initPageContent() {
+    // Syntax highlighting
     if (window.hljs) hljs.highlightAll();
 
-    // ── Doc tabs (Preview / Pattern / HTML) ─────────────
+    // Doc tabs (Preview / Pattern / HTML)
     document.querySelectorAll('.doc-tablist[role="tablist"]').forEach(function (tabList) {
       var buttons = Array.from(tabList.querySelectorAll('.tab-btn'));
       buttons.forEach(function (btn) {
@@ -60,7 +77,7 @@
       });
     });
 
-    // ── Copy buttons ────────────────────────────────────
+    // Copy buttons
     document.querySelectorAll('.copy-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var pre = btn.nextElementSibling;
@@ -74,110 +91,103 @@
       });
     });
 
-    // ── Token swatches (tokens page only) ───────────────
-    var swatchContainer = document.getElementById('swatch-container');
+    // Lucide icons
+    if (window.lucide) lucide.createIcons();
 
-    // ── Spec modal viewer ───────────────────────────────
-    // Clicking spec links (data-spec-href) opens a modal with rendered markdown
-    (function () {
-      // Create the dialog once
-      var specDialog = document.createElement('dialog');
-      specDialog.className = 'dialog spec-modal';
-      specDialog.setAttribute('role', 'dialog');
-      specDialog.setAttribute('aria-modal', 'true');
-      specDialog.setAttribute('aria-label', 'Component Specification');
-      specDialog.innerHTML =
-        '<div class="dialog-content spec-modal-content">' +
-          '<div class="dialog-header" style="display:flex;justify-content:space-between;align-items:center;">' +
-            '<h2 class="dialog-title" id="spec-modal-title">Component Specification</h2>' +
-            '<button class="btn" data-variant="ghost" data-size="sm" data-dialog-close aria-label="Close" style="padding:0.25rem;">' +
-              '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>' +
-            '</button>' +
-          '</div>' +
-          '<div id="spec-modal-body" class="spec-modal-body" style="margin-top:1rem;overflow-y:auto;max-height:calc(80vh - 5rem);"></div>' +
-        '</div>';
-      document.body.appendChild(specDialog);
+    // Token swatches
+    initTokenSwatches();
+  }
 
-      // Close on backdrop click
-      specDialog.addEventListener('click', function (e) {
-        if (e.target === specDialog) specDialog.close();
-      });
-      specDialog.querySelector('[data-dialog-close]').addEventListener('click', function () {
-        specDialog.close();
-      });
+  // Register content initializer with SPA router
+  // (runs on initial load AND after each SPA navigation)
+  window.onPageReady(initPageContent);
 
-      // Handle spec link clicks
-      document.addEventListener('click', function (e) {
-        var link = e.target.closest('[data-spec-href]');
-        if (!link) return;
-        e.preventDefault();
-        e.stopPropagation(); // Don't toggle the <details>
+  // ── Spec modal viewer (runs once, uses delegation) ──────
+  function initSpecModal() {
+    var specDialog = document.createElement('dialog');
+    specDialog.className = 'dialog spec-modal';
+    specDialog.setAttribute('role', 'dialog');
+    specDialog.setAttribute('aria-modal', 'true');
+    specDialog.setAttribute('aria-label', 'Component Specification');
+    specDialog.innerHTML =
+      '<div class="dialog-content spec-modal-content">' +
+        '<div class="dialog-header" style="display:flex;justify-content:space-between;align-items:center;">' +
+          '<h2 class="dialog-title" id="spec-modal-title">Component Specification</h2>' +
+          '<button class="btn" data-variant="ghost" data-size="sm" data-dialog-close aria-label="Close" style="padding:0.25rem;">' +
+            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>' +
+          '</button>' +
+        '</div>' +
+        '<div id="spec-modal-body" class="spec-modal-body" style="margin-top:1rem;overflow-y:auto;max-height:calc(80vh - 5rem);"></div>' +
+      '</div>';
+    document.body.appendChild(specDialog);
 
-        var body = document.getElementById('spec-modal-body');
-        var title = document.getElementById('spec-modal-title');
-        var href = link.getAttribute('data-spec-href');
-        title.textContent = href.split('/').pop();
+    specDialog.addEventListener('click', function (e) {
+      if (e.target === specDialog) specDialog.close();
+    });
+    specDialog.querySelector('[data-dialog-close]').addEventListener('click', function () {
+      specDialog.close();
+    });
 
-        // Try embedded content first (works with file:// protocol)
-        var embedded = document.getElementById('spec-md-content');
-        if (embedded) {
-          var md = embedded.textContent;
-          renderSpec(md, body);
-          specDialog.showModal();
-          return;
-        }
+    // Uses document-level delegation — works automatically with SPA
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('[data-spec-href]');
+      if (!link) return;
+      e.preventDefault();
+      e.stopPropagation();
 
-        // Fallback: fetch from server
-        body.innerHTML = '<p class="text-muted-foreground text-sm">Loading…</p>';
+      var body = document.getElementById('spec-modal-body');
+      var title = document.getElementById('spec-modal-title');
+      var href = link.getAttribute('data-spec-href');
+      title.textContent = href.split('/').pop();
+
+      var embedded = document.getElementById('spec-md-content');
+      if (embedded) {
+        renderSpec(embedded.textContent, body);
         specDialog.showModal();
-        fetch(href)
-          .then(function (r) { return r.text(); })
-          .then(function (md) { renderSpec(md, body); })
-          .catch(function () {
-            body.innerHTML = '<p class="text-muted-foreground text-sm">Failed to load specification.</p>';
-          });
-      });
-
-      function renderSpec(md, body) {
-        if (window.marked) {
-          body.innerHTML = marked.parse(md);
-          body.querySelectorAll('pre code').forEach(function (block) {
-            if (window.hljs) hljs.highlightElement(block);
-          });
-        } else {
-          var pre = document.createElement('pre');
-          pre.style.whiteSpace = 'pre-wrap';
-          pre.style.fontSize = '0.8125rem';
-          pre.textContent = md;
-          body.innerHTML = '';
-          body.appendChild(pre);
-        }
+        return;
       }
-    })();
 
-    if (swatchContainer) {
-      var pairs = [['background','foreground'],['primary','primary-foreground'],['secondary','secondary-foreground'],['muted','muted-foreground'],['accent','accent-foreground'],['card','card-foreground'],['popover','popover-foreground'],['destructive','destructive-foreground']];
-      pairs.forEach(function (p) {
-        var surface = p[0], fg = p[1];
-        var row = document.createElement('div'); row.className = 'swatch-row';
-        row.innerHTML = '<div style="display:flex;gap:0.375rem;flex-shrink:0;"><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + surface + ');border:1px solid var(--border);"></div><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + fg + ');border:1px solid var(--border);"></div></div><div><p style="margin:0;font-size:0.8125rem;font-family:var(--font-mono);">--' + surface + '</p><p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">--' + fg + '</p></div><span style="margin-left:auto;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">var(--' + surface + ') var(--' + fg + ')</span>';
-        swatchContainer.appendChild(row);
-      });
+      body.innerHTML = '<p class="text-muted-foreground text-sm">Loading…</p>';
+      specDialog.showModal();
+      fetch(href)
+        .then(function (r) { return r.text(); })
+        .then(function (md) { renderSpec(md, body); })
+        .catch(function () {
+          body.innerHTML = '<p class="text-muted-foreground text-sm">Failed to load specification.</p>';
+        });
+    });
+
+    function renderSpec(md, body) {
+      if (window.marked) {
+        body.innerHTML = marked.parse(md);
+        body.querySelectorAll('pre code').forEach(function (block) {
+          if (window.hljs) hljs.highlightElement(block);
+        });
+      } else {
+        var pre = document.createElement('pre');
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.fontSize = '0.8125rem';
+        pre.textContent = md;
+        body.innerHTML = '';
+        body.appendChild(pre);
+      }
     }
-    var sidebarSwatchContainer = document.getElementById('sidebar-swatch-container');
-    if (sidebarSwatchContainer) {
-      [['sidebar','sidebar-foreground'],['sidebar-primary','sidebar-primary-foreground'],['sidebar-accent','sidebar-accent-foreground']].forEach(function (p) {
-        var surface = p[0], fg = p[1];
-        var row = document.createElement('div'); row.className = 'swatch-row';
-        row.innerHTML = '<div style="display:flex;gap:0.375rem;flex-shrink:0;"><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + surface + ');border:1px solid var(--border);"></div><div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + fg + ');border:1px solid var(--border);"></div></div><div><p style="margin:0;font-size:0.8125rem;font-family:var(--font-mono);">--' + surface + '</p><p style="margin:0;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">--' + fg + '</p></div><span style="margin-left:auto;font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">var(--' + surface + ') var(--' + fg + ')</span>';
-        sidebarSwatchContainer.appendChild(row);
-      });
-      [['sidebar-border','border-sidebar-border'],['sidebar-ring','ring-sidebar-ring']].forEach(function (p) {
-        var token = p[0], utility = p[1];
-        var row = document.createElement('div'); row.className = 'swatch-row';
-        row.innerHTML = '<div style="width:1.875rem;height:1.875rem;border-radius:var(--radius-sm);background:var(--' + token + ');border:1px solid var(--border);flex-shrink:0;"></div><code>--' + token + '</code><span class="text-sm text-muted-foreground ml-auto">var(--' + token + ')</span>';
-        sidebarSwatchContainer.appendChild(row);
-      });
-    }
+  }
+
+  // ── On DOM ready (one-time setup + initial content init) ─
+  document.addEventListener('DOMContentLoaded', function () {
+    // Sync dark mode icon state
+    var isDark = document.documentElement.classList.contains('dark');
+    var sun = document.getElementById('icon-sun');
+    var moon = document.getElementById('icon-moon');
+    if (sun) sun.style.display = isDark ? 'none' : 'block';
+    if (moon) moon.style.display = isDark ? 'block' : 'none';
+
+    // Bind theme toggle (once — header persists across SPA navs)
+    var themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) themeBtn.addEventListener('click', toggleDark);
+
+    // Create spec modal (once — persists across SPA navs)
+    initSpecModal();
   });
 })();

@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('.toggle-group').forEach(function (group) {
       var type = group.getAttribute('data-type') || 'single';
       var toggles = Array.from(group.querySelectorAll('.toggle'));

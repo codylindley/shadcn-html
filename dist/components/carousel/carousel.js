@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('.carousel').forEach(function (carousel) {
       var viewport = carousel.querySelector('.carousel-viewport');
       var prev = carousel.querySelector('.carousel-prev');

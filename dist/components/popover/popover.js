@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('[popovertarget]').forEach(function (trigger) {
       var id = trigger.getAttribute('popovertarget');
       var popover = document.getElementById(id);

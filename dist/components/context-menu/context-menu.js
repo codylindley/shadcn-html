@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('[data-context-menu]').forEach(function (trigger) {
       var menu = document.getElementById(trigger.dataset.contextMenu);
       if (!menu) return;

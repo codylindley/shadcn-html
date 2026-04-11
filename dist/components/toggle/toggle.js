@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('.toggle').forEach(function (toggle) {
       toggle.addEventListener('click', function () {
         var pressed = toggle.getAttribute('aria-pressed') === 'true';

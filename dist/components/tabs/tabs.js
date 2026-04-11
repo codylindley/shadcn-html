@@ -18,7 +18,7 @@
     if (panel) panel.hidden = false;
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('[role="tablist"]').forEach(function (tablist) {
       if (!tablist.querySelector('.tab-trigger')) return;
       var triggers = Array.from(tablist.querySelectorAll('[role="tab"]'));

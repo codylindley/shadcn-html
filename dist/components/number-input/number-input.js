@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('.number-input').forEach(function (wrapper) {
       var input = wrapper.querySelector('input[type="number"]');
       var decBtn = wrapper.querySelector('[data-action="decrement"]');

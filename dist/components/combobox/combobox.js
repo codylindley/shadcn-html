@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('.combobox').forEach(function (wrapper) {
       var trigger = wrapper.querySelector('.combobox-trigger');
       var valueEl = wrapper.querySelector('.combobox-value');

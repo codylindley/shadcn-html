@@ -1,5 +1,6 @@
 // ── layout.js ────────────────────────────────────────────────
 // Web Components for the shared site header and sidebar nav.
+// SPA client-side router for flash-free navigation.
 // Loaded synchronously in <head> so elements render without FOUC.
 // No ES modules — works with file:// protocol.
 
@@ -23,6 +24,22 @@
     if (dark)  dark.disabled  = !isDark;
   }
   syncHljsTheme();
+
+  /* ── SPA page-ready helper ─────────────────────────────────── */
+  /* Components call window.onPageReady(fn) instead of           */
+  /* DOMContentLoaded. fn runs on initial load AND after each     */
+  /* SPA navigation (re-queries elements, binds fresh handlers). */
+  var domReady = false;
+  document.addEventListener('DOMContentLoaded', function () { domReady = true; });
+
+  window.onPageReady = function (fn) {
+    if (domReady) {
+      fn();
+    } else {
+      document.addEventListener('DOMContentLoaded', fn);
+    }
+    (window.__spaInits = window.__spaInits || []).push(fn);
+  };
 
   /* ── Navigation data ──────────────────────────────────────── */
   var NAV = [
@@ -240,21 +257,15 @@
 
   /* ── Sidebar scroll persistence ───────────────────────────── */
   /* Save scroll position before navigating, restore on load.   */
+  /* (With SPA router, sidebar persists — this handles fallback */
+  /* cases: first load, hard refresh, external navigation.)     */
   var SCROLL_KEY = 'shadcn-nav-scroll';
 
   document.addEventListener('click', function (e) {
-    var link = e.target.closest('a.nav-link');
+    var link = e.target.closest('a.nav-link, .site-header a[href="index.html"]');
     if (!link) return;
     var sidebar = document.querySelector('.site-sidebar');
     if (sidebar) sessionStorage.setItem(SCROLL_KEY, sidebar.scrollTop);
-  });
-
-  /* Also save on logo click */
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('.site-header a[href="index.html"]')) {
-      var sidebar = document.querySelector('.site-sidebar');
-      if (sidebar) sessionStorage.setItem(SCROLL_KEY, sidebar.scrollTop);
-    }
   });
 
   /* Restore sidebar scroll & scroll active link into view */
@@ -285,5 +296,93 @@
       l.href = href;
       document.head.appendChild(l);
     }
+  });
+
+  /* ── SPA Client-Side Router ───────────────────────────────── */
+  /* Intercepts nav link clicks and swaps <main> content         */
+  /* without full-page reloads. Sidebar & header persist.        */
+
+  var navigating = false;
+
+  function navigateTo(href, pushState) {
+    if (navigating) return;
+    if (href === currentPage && pushState !== false) return;
+    navigating = true;
+
+    fetch(href)
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.text();
+      })
+      .then(function (html) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+        var newMain = doc.querySelector('main');
+        var oldMain = document.querySelector('main');
+
+        if (!newMain || !oldMain) {
+          location.href = href;
+          return;
+        }
+
+        var swap = function () {
+          /* Swap main content */
+          oldMain.innerHTML = newMain.innerHTML;
+
+          /* Update document title */
+          document.title = doc.title;
+
+          /* Update current page tracker */
+          currentPage = href;
+
+          /* Update active nav link */
+          document.querySelectorAll('.nav-link').forEach(function (link) {
+            link.classList.toggle('active', link.getAttribute('href') === currentPage);
+          });
+
+          /* Push browser history */
+          if (pushState !== false) {
+            history.pushState({ page: href }, '', href);
+          }
+
+          /* Scroll main to top */
+          window.scrollTo(0, 0);
+
+          /* Re-initialize all page-ready handlers */
+          /* (components, doc tabs, hljs, copy buttons, lucide, etc.) */
+          (window.__spaInits || []).forEach(function (fn) { fn(); });
+
+          navigating = false;
+        };
+
+        /* Use View Transitions API if available */
+        if (document.startViewTransition) {
+          document.startViewTransition(swap);
+        } else {
+          swap();
+        }
+      })
+      .catch(function () {
+        location.href = href;
+        navigating = false;
+      });
+  }
+
+  /* Intercept nav clicks (sidebar links + header logo) */
+  document.addEventListener('click', function (e) {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (e.defaultPrevented) return;
+    var link = e.target.closest('a.nav-link:not(.disabled), .site-header a[href="index.html"]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto:')) return;
+    e.preventDefault();
+    navigateTo(href, true);
+  });
+
+  /* Handle browser back/forward */
+  window.addEventListener('popstate', function () {
+    var page = location.pathname.split('/').pop() || 'index.html';
+    navigateTo(page, false);
   });
 })();

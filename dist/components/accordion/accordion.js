@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
+  window.onPageReady(function () {
     document.querySelectorAll('.accordion[data-type="single"]').forEach(function (accordion) {
       var items = accordion.querySelectorAll('.accordion-item');
       var collapsible = accordion.hasAttribute('data-collapsible');
