@@ -1,0 +1,125 @@
+@layer components {
+  .calendar {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background-color: var(--card);
+    user-select: none;
+  }
+
+  .calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.25rem 0.5rem;
+  }
+
+  .calendar-heading {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--foreground);
+  }
+
+  .calendar-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background-color: transparent;
+    color: var(--foreground);
+    cursor: pointer;
+    transition: background-color 150ms ease;
+
+    &:hover {
+      background-color: var(--accent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    & svg {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+  }
+
+  .calendar-grid {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .calendar-day-label {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--muted-foreground);
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .calendar-day {
+    width: 2.25rem;
+    height: 2.25rem;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+
+    & button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      font-size: 0.8125rem;
+      border: none;
+      border-radius: var(--radius-md);
+      background-color: transparent;
+      color: var(--foreground);
+      cursor: pointer;
+      transition: background-color 150ms ease, color 150ms ease;
+
+      &:hover {
+        background-color: var(--accent);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+      }
+    }
+
+    &.calendar-day-today button {
+      background-color: var(--accent);
+      font-weight: 600;
+    }
+
+    &.calendar-day-selected button {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    &.calendar-day-outside button {
+      color: var(--muted-foreground);
+      opacity: 0.5;
+    }
+
+    &.calendar-day-disabled button {
+      color: var(--muted-foreground);
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+  }
+}

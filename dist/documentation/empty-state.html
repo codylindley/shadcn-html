@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Empty State — shadcn-html</title>
+  <script src="js/layout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../theme/semantic-tokens.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
+  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <link rel="stylesheet" href="../components/button/button.css">
+  <link rel="stylesheet" href="../components/card/card.css">
+  <link rel="stylesheet" href="../components/dialog/dialog.css">
+  <link rel="stylesheet" href="../components/badge/badge.css">
+  <link rel="stylesheet" href="../components/input/input.css">
+  <link rel="stylesheet" href="../components/accordion/accordion.css">
+  <link rel="stylesheet" href="../components/tabs/tabs.css">
+  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
+  <link rel="stylesheet" href="../components/toast/toast.css">
+  <link rel="stylesheet" href="../components/combobox/combobox.css">
+  <link rel="stylesheet" href="../components/sheet/sheet.css">
+  <link rel="stylesheet" href="../components/toggle/toggle.css">
+  <link rel="stylesheet" href="../components/icon/icon.css">
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/separator/separator.css">
+  <link rel="stylesheet" href="../components/link/link.css">
+  <link rel="stylesheet" href="../components/label/label.css">
+  <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
+  <link rel="stylesheet" href="../components/button-group/button-group.css">
+  <link rel="stylesheet" href="../components/toolbar/toolbar.css">
+  <link rel="stylesheet" href="../components/textarea/textarea.css">
+  <link rel="stylesheet" href="../components/checkbox/checkbox.css">
+  <link rel="stylesheet" href="../components/radio/radio.css">
+  <link rel="stylesheet" href="../components/switch/switch.css">
+  <link rel="stylesheet" href="../components/slider/slider.css">
+  <link rel="stylesheet" href="../components/select/select.css">
+  <link rel="stylesheet" href="../components/number-input/number-input.css">
+  <link rel="stylesheet" href="../components/file-input/file-input.css">
+  <link rel="stylesheet" href="../components/color-picker/color-picker.css">
+  <link rel="stylesheet" href="../components/date-picker/date-picker.css">
+  <link rel="stylesheet" href="../components/form/form.css">
+  <link rel="stylesheet" href="../components/tag/tag.css">
+  <link rel="stylesheet" href="../components/avatar/avatar.css">
+  <link rel="stylesheet" href="../components/image/image.css">
+  <link rel="stylesheet" href="../components/list/list.css">
+  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
+  <link rel="stylesheet" href="../components/statistic/statistic.css">
+  <link rel="stylesheet" href="../components/table/table.css">
+  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
+  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
+  <link rel="stylesheet" href="../components/timeline/timeline.css">
+  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="../components/calendar/calendar.css">
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:is(.dark *));
+    @theme inline {
+      --color-background: var(--background); --color-foreground: var(--foreground);
+      --color-card: var(--card); --color-card-foreground: var(--card-foreground);
+      --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground);
+      --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+      --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground);
+      --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground);
+      --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground);
+      --color-destructive: var(--destructive); --color-destructive-foreground: var(--destructive-foreground);
+      --color-border: var(--border); --color-input: var(--input); --color-ring: var(--ring);
+      --color-chart-1: var(--chart-1); --color-chart-2: var(--chart-2); --color-chart-3: var(--chart-3);
+      --color-chart-4: var(--chart-4); --color-chart-5: var(--chart-5);
+      --color-sidebar: var(--sidebar); --color-sidebar-foreground: var(--sidebar-foreground);
+      --color-sidebar-primary: var(--sidebar-primary); --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+      --color-sidebar-accent: var(--sidebar-accent); --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+      --color-sidebar-border: var(--sidebar-border); --color-sidebar-ring: var(--sidebar-ring);
+      --font-sans: var(--font-sans); --font-serif: var(--font-serif); --font-mono: var(--font-mono);
+      --radius-sm: calc(var(--radius) - 4px); --radius-md: calc(var(--radius) - 2px);
+      --radius-lg: var(--radius); --radius-xl: calc(var(--radius) + 4px);
+      --shadow-2xs: var(--shadow-2xs); --shadow-xs: var(--shadow-xs); --shadow-sm: var(--shadow-sm);
+      --shadow: var(--shadow); --shadow-md: var(--shadow-md); --shadow-lg: var(--shadow-lg);
+      --shadow-xl: var(--shadow-xl); --shadow-2xl: var(--shadow-2xl);
+    }
+    @layer base {
+      * { @apply border-border outline-ring/50; }
+      body { @apply bg-background text-foreground; }
+    }
+  </style>
+</head>
+<body>
+  <site-header></site-header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <site-nav></site-nav>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
+        <div class="flex items-baseline justify-between mb-1">
+          <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / empty-state</p>
+          <span class="badge" data-variant="secondary">CSS Only</span>
+        </div>
+        <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Empty State</h1>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          A placeholder for when there is no data to display. Includes icon, title, description, and optional actions.
+        </p>
+
+        <!-- Basic -->
+        <p class="text-sm font-medium mb-2 mt-6">Basic</p>
+        <p class="text-xs text-muted-foreground mb-3">Simple empty state with icon, title, and description.</p>
+        <div class="preview">
+          <div class="empty-state" style="border:1px solid var(--border);border-radius:var(--radius-xl);">
+            <div class="empty-state-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+            </div>
+            <h3 class="empty-state-title">No documents</h3>
+            <p class="empty-state-description">You haven't created any documents yet. Get started by creating your first one.</p>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;div class="empty-state"&gt;
+  &lt;div class="empty-state-icon"&gt;
+    &lt;svg&gt;...&lt;/svg&gt;
+  &lt;/div&gt;
+  &lt;h3 class="empty-state-title"&gt;No documents&lt;/h3&gt;
+  &lt;p class="empty-state-description"&gt;Description text.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- With Action -->
+        <p class="text-sm font-medium mb-2 mt-8">With Action</p>
+        <p class="text-xs text-muted-foreground mb-3">Empty state with a call-to-action button.</p>
+        <div class="preview">
+          <div class="empty-state" style="border:1px solid var(--border);border-radius:var(--radius-xl);">
+            <div class="empty-state-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+            <h3 class="empty-state-title">No results found</h3>
+            <p class="empty-state-description">Try adjusting your search or filter to find what you're looking for.</p>
+            <div class="empty-state-actions">
+              <button class="btn" data-variant="outline" data-size="sm">Clear filters</button>
+              <button class="btn" data-variant="default" data-size="sm">New search</button>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;div class="empty-state"&gt;
+  &lt;div class="empty-state-icon"&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/div&gt;
+  &lt;h3 class="empty-state-title"&gt;No results found&lt;/h3&gt;
+  &lt;p class="empty-state-description"&gt;Description...&lt;/p&gt;
+  &lt;div class="empty-state-actions"&gt;
+    &lt;button class="btn" data-variant="outline"&gt;Clear&lt;/button&gt;
+    &lt;button class="btn" data-variant="default"&gt;New search&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
+          Full specification → <a href="../components/empty-state/empty-state.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/empty-state/empty-state.md</a>
+        </p>
+
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+  <script src="../components/accordion/accordion.js" defer></script>
+  <script src="../components/combobox/combobox.js" defer></script>
+  <script src="../components/dialog/dialog.js" defer></script>
+  <script src="../components/dropdown/dropdown.js" defer></script>
+  <script src="../components/sheet/sheet.js" defer></script>
+  <script src="../components/tabs/tabs.js" defer></script>
+  <script src="../components/toast/toast.js" defer></script>
+  <script src="../components/toggle/toggle.js" defer></script>
+  <script src="../components/toggle-group/toggle-group.js" defer></script>
+  <script src="../components/toolbar/toolbar.js" defer></script>
+  <script src="../components/number-input/number-input.js" defer></script>
+  <script src="../components/color-picker/color-picker.js" defer></script>
+  <script src="../components/tag/tag.js" defer></script>
+  <script src="../components/avatar/avatar.js" defer></script>
+  <script src="../components/tree-view/tree-view.js" defer></script>
+  <script src="../components/calendar/calendar.js" defer></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

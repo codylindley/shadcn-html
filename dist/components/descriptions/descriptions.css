@@ -1,0 +1,41 @@
+@layer components {
+  .descriptions {
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+  }
+
+  .descriptions-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .descriptions[data-layout="horizontal"] .descriptions-item {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .descriptions-term {
+    font-weight: 500;
+    color: var(--foreground);
+    font-size: 0.8125rem;
+    flex-shrink: 0;
+  }
+
+  .descriptions[data-layout="horizontal"] .descriptions-term {
+    width: 10rem;
+  }
+
+  .descriptions-detail {
+    margin: 0;
+    color: var(--muted-foreground);
+    line-height: 1.5;
+  }
+}

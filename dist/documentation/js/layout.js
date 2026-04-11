@@ -28,8 +28,9 @@
   var NAV = [
     { heading: 'Overview', items: [
       { label: 'Introduction', href: 'index.html' },
-      { label: 'Semantic Tokens', href: 'tokens.html' },
-      { label: 'Setup', href: 'setup.html' },
+      { label: 'Installation', href: 'installation.html' },
+      { label: 'Theming', href: 'theming.html' },
+      { label: 'Changelog', href: 'changelog.html' },
     ]},
     { heading: 'Primitives', items: [
       { label: 'Typography', href: 'typography.html' },
@@ -113,13 +114,15 @@
 
   /* Pages that have been built (have a real doc page) */
   var BUILT = new Set([
-    'index.html', 'tokens.html', 'setup.html',
+    'index.html', 'installation.html', 'theming.html', 'changelog.html',
     'typography.html', 'separator.html', 'icon.html', 'link.html', 'label.html',
     'button.html', 'toggle.html', 'toggle-group.html', 'button-group.html', 'toolbar.html',
     'input.html', 'textarea.html', 'checkbox.html', 'radio.html', 'switch.html',
     'slider.html', 'select.html', 'number-input.html', 'file-input.html',
     'color-picker.html', 'date-picker.html', 'combobox.html', 'form.html',
-    'badge.html', 'card.html',
+    'badge.html', 'tag.html', 'avatar.html', 'card.html', 'image.html',
+    'list.html', 'descriptions.html', 'statistic.html', 'table.html',
+    'empty-state.html', 'collapsible.html', 'timeline.html', 'tree-view.html', 'calendar.html',
     'toast.html',
     'dialog.html', 'sheet.html', 'accordion.html',
     'tabs.html', 'dropdown.html',

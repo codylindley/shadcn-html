@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>Setup — shadcn-html</title>
+  <title>Changelog — shadcn-html</title>
   <script src="js/layout.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,6 +47,18 @@
   <link rel="stylesheet" href="../components/color-picker/color-picker.css">
   <link rel="stylesheet" href="../components/date-picker/date-picker.css">
   <link rel="stylesheet" href="../components/form/form.css">
+  <link rel="stylesheet" href="../components/tag/tag.css">
+  <link rel="stylesheet" href="../components/avatar/avatar.css">
+  <link rel="stylesheet" href="../components/image/image.css">
+  <link rel="stylesheet" href="../components/list/list.css">
+  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
+  <link rel="stylesheet" href="../components/statistic/statistic.css">
+  <link rel="stylesheet" href="../components/table/table.css">
+  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
+  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
+  <link rel="stylesheet" href="../components/timeline/timeline.css">
+  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="../components/calendar/calendar.css">
   <style type="text/tailwindcss">
     @custom-variant dark (&:is(.dark *));
     @theme inline {
@@ -111,90 +123,12 @@
     <site-nav></site-nav>
 
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
-<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / setup</p>
-  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Setup</h1>
-  <p class="text-muted-foreground leading-relaxed mb-10">Each component is a self-contained folder with a spec, stylesheet, and optional JS. No npm. No build step. Just files.</p>
+<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / changelog</p>
+  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Changelog</h1>
+  <p class="text-muted-foreground leading-relaxed mb-10">All notable changes to shadcn-html, auto-generated on each release.</p>
 
-  <div class="flex flex-col gap-8">
-    <div>
-      <div class="flex items-center gap-3 mb-3">
-        <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</span>
-        <h3 style="margin:0;font-size:1rem;font-weight:500;">Include the theme</h3>
-      </div>
-      <pre><code>&lt;link rel="stylesheet" href="theme/semantic-tokens.css"&gt;</code></pre>
-      <p class="text-sm text-muted-foreground mt-2">This defines every design token (colors, radius, shadows, typography, spacing) for light and dark mode. Swap this file to retheme everything. Compatible with <a href="https://tweakcn.com" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">tweakcn.com</a> theme exports.</p>
-    </div>
+  <!-- CHANGELOG_ENTRIES -->
 
-    <div>
-      <div class="flex items-center gap-3 mb-3">
-        <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</span>
-        <h3 style="margin:0;font-size:1rem;font-weight:500;">Include component CSS &amp; JS</h3>
-      </div>
-      <pre><code>&lt;!-- CSS — pick what you need --&gt;
-&lt;link rel="stylesheet" href="components/button/button.css"&gt;
-&lt;link rel="stylesheet" href="components/dialog/dialog.css"&gt;
-
-&lt;!-- JS — only for interactive components --&gt;
-&lt;script src="components/dialog/dialog.js" defer&gt;&lt;/script&gt;</code></pre>
-      <p class="text-sm text-muted-foreground mt-2">Each component lives in <code>components/{name}/</code> with its own <code>.css</code> and optional <code>.js</code>. Include only the components you use — they're independent of each other.</p>
-    </div>
-
-    <div>
-      <div class="flex items-center gap-3 mb-3">
-        <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</span>
-        <h3 style="margin:0;font-size:1rem;font-weight:500;">Include Lucide icons</h3>
-      </div>
-      <pre><code>&lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;
-&lt;script&gt;lucide.createIcons();&lt;/script&gt;</code></pre>
-      <p class="text-sm text-muted-foreground mt-2"><a href="https://lucide.dev" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">Lucide</a> provides ~1,500 icons via CDN. Use <code>&lt;i data-lucide="name"&gt;&lt;/i&gt;</code> anywhere in your HTML. The script replaces each element with an inline SVG on page load. See the <a href="icon.html" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">Icon</a> page for details.</p>
-    </div>
-
-    <div>
-      <div class="flex items-center gap-3 mb-3">
-        <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</span>
-        <h3 style="margin:0;font-size:1rem;font-weight:500;">Read the spec, write the HTML</h3>
-      </div>
-      <pre><code>&lt;button class="btn" data-variant="default"
-        data-dialog-trigger="confirm"
-        aria-haspopup="dialog"&gt;
-  Open Dialog
-&lt;/button&gt;
-
-&lt;dialog id="confirm" class="dialog"
-        role="dialog" aria-modal="true"
-        aria-labelledby="confirm-title"&gt;
-  &lt;div class="dialog-content"&gt;
-    &lt;div class="dialog-header"&gt;
-      &lt;h2 class="dialog-title" id="confirm-title"&gt;Are you sure?&lt;/h2&gt;
-      &lt;p class="dialog-description"&gt;This action cannot be undone.&lt;/p&gt;
-    &lt;/div&gt;
-    &lt;div class="dialog-footer"&gt;
-      &lt;button class="btn" data-variant="outline" data-dialog-close&gt;Cancel&lt;/button&gt;
-      &lt;button class="btn" data-variant="default"&gt;Confirm&lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/dialog&gt;</code></pre>
-      <p class="text-sm text-muted-foreground mt-2">Each component folder has a <code>{name}.md</code> spec that documents the exact HTML structure, attributes, variants, and ARIA. Read it, copy the pattern, fill in your content. The CSS and JS handle the rest.</p>
-    </div>
-
-    <div>
-      <div class="flex items-center gap-3 mb-3">
-        <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</span>
-        <h3 style="margin:0;font-size:1rem;font-weight:500;">That's it</h3>
-      </div>
-      <p class="text-sm text-muted-foreground">Open your HTML file in a browser. No server required — works with <code>file://</code>. Dark mode toggles automatically when you add <code>class="dark"</code> to <code>&lt;html&gt;</code>.</p>
-    </div>
-  </div>
-
-  <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);">
-    <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.75rem;">Component folder structure</h2>
-    <pre><code>components/
-└── dialog/
-    ├── dialog.md    ← HTML structure, attributes, ARIA (read this first)
-    ├── dialog.css   ← stylesheet (include via &lt;link&gt;)
-    └── dialog.js    ← interaction behavior (include via &lt;script defer&gt;)</code></pre>
-    <p class="text-sm text-muted-foreground mt-2">Non-interactive components like Button and Badge only have <code>.md</code> and <code>.css</code> — no JS needed.</p>
-  </div>
     </main>
   </div>
 
@@ -211,6 +145,10 @@
   <script src="../components/toolbar/toolbar.js" defer></script>
   <script src="../components/number-input/number-input.js" defer></script>
   <script src="../components/color-picker/color-picker.js" defer></script>
+  <script src="../components/tag/tag.js" defer></script>
+  <script src="../components/avatar/avatar.js" defer></script>
+  <script src="../components/tree-view/tree-view.js" defer></script>
+  <script src="../components/calendar/calendar.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
 </body>

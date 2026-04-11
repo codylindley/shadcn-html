@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>Semantic Tokens — shadcn-html</title>
+  <title>Theming — shadcn-html</title>
   <script src="js/layout.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,6 +47,18 @@
   <link rel="stylesheet" href="../components/color-picker/color-picker.css">
   <link rel="stylesheet" href="../components/date-picker/date-picker.css">
   <link rel="stylesheet" href="../components/form/form.css">
+  <link rel="stylesheet" href="../components/tag/tag.css">
+  <link rel="stylesheet" href="../components/avatar/avatar.css">
+  <link rel="stylesheet" href="../components/image/image.css">
+  <link rel="stylesheet" href="../components/list/list.css">
+  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
+  <link rel="stylesheet" href="../components/statistic/statistic.css">
+  <link rel="stylesheet" href="../components/table/table.css">
+  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
+  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
+  <link rel="stylesheet" href="../components/timeline/timeline.css">
+  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="../components/calendar/calendar.css">
   <style type="text/tailwindcss">
     @custom-variant dark (&:is(.dark *));
     @theme inline {
@@ -111,11 +123,11 @@
     <site-nav></site-nav>
 
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
-<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / semantic-tokens</p>
-  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Semantic Tokens</h1>
+<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / theming</p>
+  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Theming</h1>
   <p class="text-muted-foreground leading-relaxed mb-10" style="max-width:38rem;">
-    These tokens define the theme. They are 100% compatible with shadcn/ui's semantic
-    token model — same CSS custom property names, same surface/foreground pair convention.
+    The theme is defined by semantic tokens — CSS custom properties that follow the shadcn/ui naming convention.
+    Same property names, same surface/foreground pair convention.
     Export a theme from <a href="https://tweakcn.com" target="_blank" style="text-decoration:underline;">tweakcn.com</a>, drop it into <code>semantic-tokens.css</code>, and every component rethemes instantly.
   </p>
 
@@ -303,6 +315,34 @@
       <code>--tracking-normal</code><span class="dim text-sm ml-auto">0em</span>
     </div>
   </div>
+
+  <div class="sep"></div>
+
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Customization</h2>
+  <p class="text-sm text-muted-foreground mb-5">There are three ways to customize the theme:</p>
+
+  <div class="flex flex-col gap-6 mb-10">
+    <div>
+      <h3 style="font-size:1rem;font-weight:500;margin:0 0 0.375rem;">1. Swap the entire theme</h3>
+      <p class="text-sm text-muted-foreground mb-3">Go to <a href="https://tweakcn.com" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">tweakcn.com</a>, design a theme, copy the CSS variables, and replace the contents of <code>semantic-tokens.css</code>. Every component updates instantly.</p>
+    </div>
+    <div>
+      <h3 style="font-size:1rem;font-weight:500;margin:0 0 0.375rem;">2. Override individual tokens</h3>
+      <p class="text-sm text-muted-foreground mb-3">Add a stylesheet <strong>after</strong> <code>semantic-tokens.css</code> and override specific variables:</p>
+      <pre><code>&lt;link rel="stylesheet" href="semantic-tokens.css"&gt;
+&lt;style&gt;
+  :root {
+    --primary: oklch(0.55 0.2 250);
+    --primary-foreground: oklch(1 0 0);
+    --radius: 0.5rem;
+  }
+&lt;/style&gt;</code></pre>
+    </div>
+    <div>
+      <h3 style="font-size:1rem;font-weight:500;margin:0 0 0.375rem;">3. Use a shadcn/ui theme</h3>
+      <p class="text-sm text-muted-foreground mb-3">Any shadcn/ui-compatible theme works. Go to <a href="https://ui.shadcn.com/themes" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">ui.shadcn.com/themes</a>, copy the CSS variables, and paste them into <code>semantic-tokens.css</code>. The token names are identical.</p>
+    </div>
+  </div>
     </main>
   </div>
 
@@ -319,6 +359,10 @@
   <script src="../components/toolbar/toolbar.js" defer></script>
   <script src="../components/number-input/number-input.js" defer></script>
   <script src="../components/color-picker/color-picker.js" defer></script>
+  <script src="../components/tag/tag.js" defer></script>
+  <script src="../components/avatar/avatar.js" defer></script>
+  <script src="../components/tree-view/tree-view.js" defer></script>
+  <script src="../components/calendar/calendar.js" defer></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
 </body>

@@ -45,19 +45,19 @@
 | Component | Status | Native basis |
 |-----------|--------|-------------|
 | Badge | ✅ | `<span>` |
-| Tag | ❌ | `<span>` |
-| Avatar | ❌ | `<img>` + fallback |
+| Tag | ✅ | `<span>` |
+| Avatar | ✅ | `<img>` + fallback |
 | Card | ✅ | `<article>` |
-| Image | ❌ | `<img>` + aspect ratio |
-| List | ❌ | `<ul>` / `<ol>` |
-| Descriptions | ❌ | `<dl>` |
-| Statistic | ❌ | `<div>` |
-| Table | ❌ | `<table>` |
-| Empty State | ❌ | `<div>` |
-| Collapsible | ❌ | `<details>` |
-| Timeline | ❌ | `<ol>` |
-| Tree View | ❌ | `<ul>` nested + ARIA |
-| Calendar | ❌ | `<table>` or grid |
+| Image | ✅ | `<img>` + aspect ratio |
+| List | ✅ | `<ul>` / `<ol>` |
+| Descriptions | ✅ | `<dl>` |
+| Statistic | ✅ | `<div>` |
+| Table | ✅ | `<table>` |
+| Empty State | ✅ | `<div>` |
+| Collapsible | ✅ | `<details>` |
+| Timeline | ✅ | `<ol>` |
+| Tree View | ✅ | `<ul>` nested + ARIA |
+| Calendar | ✅ | `<table>` or grid |
 
 ## Feedback & Status
 

@@ -47,8 +47,47 @@ sed -i '' "s/v${OLD_VERSION}/v${NEW_VERSION}/g" dist/documentation/js/layout.js
 
 echo "✅ Updated version in package.json and layout.js"
 
+# Generate changelog entry from git commits since last tag
+CHANGELOG_FILE="dist/documentation/changelog.html"
+LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+DATE=$(date +"%B %d, %Y")
+
+# Collect commit messages (skip merge commits and version bumps)
+if [[ -n "$LAST_TAG" ]]; then
+  COMMITS=$(git log "${LAST_TAG}..HEAD" --pretty=format:"%s" --no-merges | grep -v "^chore: bump version" || true)
+else
+  COMMITS=$(git log --pretty=format:"%s" --no-merges | grep -v "^chore: bump version" || true)
+fi
+
+# Build the HTML entry
+ENTRY="  <div style=\"margin-bottom:2.5rem;\">\n"
+ENTRY+="    <div class=\"flex items-center gap-3 mb-2\">\n"
+ENTRY+="      <h2 style=\"font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0;\">v${NEW_VERSION}</h2>\n"
+ENTRY+="      <span class=\"badge\" data-variant=\"outline\" style=\"font-family:var(--font-mono);\">${DATE}</span>\n"
+ENTRY+="    </div>\n"
+ENTRY+="    <ul style=\"margin:0;padding-left:1.25rem;\" class=\"text-sm text-muted-foreground flex flex-col gap-1\">\n"
+
+if [[ -n "$COMMITS" ]]; then
+  while IFS= read -r msg; do
+    # Escape HTML characters
+    safe_msg=$(echo "$msg" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')
+    ENTRY+="      <li>${safe_msg}</li>\n"
+  done <<< "$COMMITS"
+else
+  ENTRY+="      <li>Maintenance release</li>\n"
+fi
+
+ENTRY+="    </ul>\n"
+ENTRY+="  </div>\n"
+
+# Insert the entry after the marker comment
+sed -i '' "s|<!-- CHANGELOG_ENTRIES -->|<!-- CHANGELOG_ENTRIES -->\\
+$(echo -e "$ENTRY" | sed 's/$/\\/' | sed '$ s/\\$//')|" "$CHANGELOG_FILE"
+
+echo "✅ Added changelog entry for v${NEW_VERSION}"
+
 # Commit the version bump on dev and push
-git add package.json dist/documentation/js/layout.js
+git add package.json dist/documentation/js/layout.js dist/documentation/changelog.html
 git commit -m "chore: bump version to v${NEW_VERSION}"
 git push origin dev
 

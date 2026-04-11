@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>List — shadcn-html</title>
+  <script src="js/layout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../theme/semantic-tokens.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
+  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <link rel="stylesheet" href="../components/button/button.css">
+  <link rel="stylesheet" href="../components/card/card.css">
+  <link rel="stylesheet" href="../components/dialog/dialog.css">
+  <link rel="stylesheet" href="../components/badge/badge.css">
+  <link rel="stylesheet" href="../components/input/input.css">
+  <link rel="stylesheet" href="../components/accordion/accordion.css">
+  <link rel="stylesheet" href="../components/tabs/tabs.css">
+  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
+  <link rel="stylesheet" href="../components/toast/toast.css">
+  <link rel="stylesheet" href="../components/combobox/combobox.css">
+  <link rel="stylesheet" href="../components/sheet/sheet.css">
+  <link rel="stylesheet" href="../components/toggle/toggle.css">
+  <link rel="stylesheet" href="../components/icon/icon.css">
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/separator/separator.css">
+  <link rel="stylesheet" href="../components/link/link.css">
+  <link rel="stylesheet" href="../components/label/label.css">
+  <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
+  <link rel="stylesheet" href="../components/button-group/button-group.css">
+  <link rel="stylesheet" href="../components/toolbar/toolbar.css">
+  <link rel="stylesheet" href="../components/textarea/textarea.css">
+  <link rel="stylesheet" href="../components/checkbox/checkbox.css">
+  <link rel="stylesheet" href="../components/radio/radio.css">
+  <link rel="stylesheet" href="../components/switch/switch.css">
+  <link rel="stylesheet" href="../components/slider/slider.css">
+  <link rel="stylesheet" href="../components/select/select.css">
+  <link rel="stylesheet" href="../components/number-input/number-input.css">
+  <link rel="stylesheet" href="../components/file-input/file-input.css">
+  <link rel="stylesheet" href="../components/color-picker/color-picker.css">
+  <link rel="stylesheet" href="../components/date-picker/date-picker.css">
+  <link rel="stylesheet" href="../components/form/form.css">
+  <link rel="stylesheet" href="../components/tag/tag.css">
+  <link rel="stylesheet" href="../components/avatar/avatar.css">
+  <link rel="stylesheet" href="../components/image/image.css">
+  <link rel="stylesheet" href="../components/list/list.css">
+  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
+  <link rel="stylesheet" href="../components/statistic/statistic.css">
+  <link rel="stylesheet" href="../components/table/table.css">
+  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
+  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
+  <link rel="stylesheet" href="../components/timeline/timeline.css">
+  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="../components/calendar/calendar.css">
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:is(.dark *));
+    @theme inline {
+      --color-background:              var(--background);
+      --color-foreground:              var(--foreground);
+      --color-card:                    var(--card);
+      --color-card-foreground:         var(--card-foreground);
+      --color-popover:                 var(--popover);
+      --color-popover-foreground:      var(--popover-foreground);
+      --color-primary:                 var(--primary);
+      --color-primary-foreground:      var(--primary-foreground);
+      --color-secondary:               var(--secondary);
+      --color-secondary-foreground:    var(--secondary-foreground);
+      --color-muted:                   var(--muted);
+      --color-muted-foreground:        var(--muted-foreground);
+      --color-accent:                  var(--accent);
+      --color-accent-foreground:       var(--accent-foreground);
+      --color-destructive:             var(--destructive);
+      --color-destructive-foreground:  var(--destructive-foreground);
+      --color-border:                  var(--border);
+      --color-input:                   var(--input);
+      --color-ring:                    var(--ring);
+      --color-chart-1:                 var(--chart-1);
+      --color-chart-2:                 var(--chart-2);
+      --color-chart-3:                 var(--chart-3);
+      --color-chart-4:                 var(--chart-4);
+      --color-chart-5:                 var(--chart-5);
+      --color-sidebar:                 var(--sidebar);
+      --color-sidebar-foreground:      var(--sidebar-foreground);
+      --color-sidebar-primary:         var(--sidebar-primary);
+      --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+      --color-sidebar-accent:          var(--sidebar-accent);
+      --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+      --color-sidebar-border:          var(--sidebar-border);
+      --color-sidebar-ring:            var(--sidebar-ring);
+      --font-sans:    var(--font-sans);
+      --font-serif:   var(--font-serif);
+      --font-mono:    var(--font-mono);
+      --radius-sm:   calc(var(--radius) - 4px);
+      --radius-md:   calc(var(--radius) - 2px);
+      --radius-lg:   var(--radius);
+      --radius-xl:   calc(var(--radius) + 4px);
+      --shadow-2xs:  var(--shadow-2xs);
+      --shadow-xs:   var(--shadow-xs);
+      --shadow-sm:   var(--shadow-sm);
+      --shadow:      var(--shadow);
+      --shadow-md:   var(--shadow-md);
+      --shadow-lg:   var(--shadow-lg);
+      --shadow-xl:   var(--shadow-xl);
+      --shadow-2xl:  var(--shadow-2xl);
+    }
+    @layer base {
+      * { @apply border-border outline-ring/50; }
+      body { @apply bg-background text-foreground; }
+    }
+  </style>
+</head>
+<body>
+  <site-header></site-header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <site-nav></site-nav>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
+        <div class="flex items-baseline justify-between mb-1">
+          <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / list</p>
+          <span class="badge" data-variant="secondary">CSS Only</span>
+        </div>
+        <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">List</h1>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Styled unordered and ordered lists with support for icon-prefixed items. Built on native <code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code> elements.
+        </p>
+
+        <!-- Component Specification -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Component Specification — components/list/list.md
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code> elements with styled list items.</p>
+
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Variants (data-variant)</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>default</code><span class="text-muted-foreground">Standard bullet/number list</span>
+              <code>icon</code><span class="text-muted-foreground">Icon-prefixed items, no bullets</span>
+              <code>none</code><span class="text-muted-foreground">No markers, clean layout</span>
+            </div>
+          </div>
+        </details>
+
+        <!-- Unordered -->
+        <p class="text-sm font-medium mb-2 mt-6">Unordered List</p>
+        <p class="text-xs text-muted-foreground mb-3">Standard bulleted list.</p>
+        <div class="preview">
+          <ul class="list">
+            <li class="list-item">First item in the list</li>
+            <li class="list-item">Second item with more detail</li>
+            <li class="list-item">Third item to complete the set</li>
+          </ul>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;ul class="list"&gt;
+  &lt;li class="list-item"&gt;First item&lt;/li&gt;
+  &lt;li class="list-item"&gt;Second item&lt;/li&gt;
+  &lt;li class="list-item"&gt;Third item&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+
+        <!-- Ordered -->
+        <p class="text-sm font-medium mb-2 mt-8">Ordered List</p>
+        <p class="text-xs text-muted-foreground mb-3">Numbered sequential list.</p>
+        <div class="preview">
+          <ol class="list">
+            <li class="list-item">Clone the repository</li>
+            <li class="list-item">Install dependencies</li>
+            <li class="list-item">Start the development server</li>
+          </ol>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;ol class="list"&gt;
+  &lt;li class="list-item"&gt;Clone the repository&lt;/li&gt;
+  &lt;li class="list-item"&gt;Install dependencies&lt;/li&gt;
+  &lt;li class="list-item"&gt;Start the development server&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+        </div>
+
+        <!-- Icon list -->
+        <p class="text-sm font-medium mb-2 mt-8">Icon List</p>
+        <p class="text-xs text-muted-foreground mb-3">Items prefixed with icons instead of bullets.</p>
+        <div class="preview">
+          <ul class="list" data-variant="icon">
+            <li class="list-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Unlimited projects</span>
+            </li>
+            <li class="list-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Priority support</span>
+            </li>
+            <li class="list-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Custom analytics</span>
+            </li>
+          </ul>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;ul class="list" data-variant="icon"&gt;
+  &lt;li class="list-item"&gt;
+    &lt;svg&gt;...&lt;/svg&gt;
+    &lt;span&gt;Unlimited projects&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+
+        <!-- No markers -->
+        <p class="text-sm font-medium mb-2 mt-8">No Markers</p>
+        <p class="text-xs text-muted-foreground mb-3">Clean list without any bullet or number markers.</p>
+        <div class="preview">
+          <ul class="list" data-variant="none">
+            <li class="list-item">Dashboard</li>
+            <li class="list-item">Settings</li>
+            <li class="list-item">Profile</li>
+          </ul>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code>&lt;ul class="list" data-variant="none"&gt;
+  &lt;li class="list-item"&gt;Dashboard&lt;/li&gt;
+  &lt;li class="list-item"&gt;Settings&lt;/li&gt;
+  &lt;li class="list-item"&gt;Profile&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+
+        <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
+          Full specification → <a href="../components/list/list.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/list/list.md</a>
+        </p>
+
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+  <script src="../components/accordion/accordion.js" defer></script>
+  <script src="../components/combobox/combobox.js" defer></script>
+  <script src="../components/dialog/dialog.js" defer></script>
+  <script src="../components/dropdown/dropdown.js" defer></script>
+  <script src="../components/sheet/sheet.js" defer></script>
+  <script src="../components/tabs/tabs.js" defer></script>
+  <script src="../components/toast/toast.js" defer></script>
+  <script src="../components/toggle/toggle.js" defer></script>
+  <script src="../components/toggle-group/toggle-group.js" defer></script>
+  <script src="../components/toolbar/toolbar.js" defer></script>
+  <script src="../components/number-input/number-input.js" defer></script>
+  <script src="../components/color-picker/color-picker.js" defer></script>
+  <script src="../components/tag/tag.js" defer></script>
+  <script src="../components/avatar/avatar.js" defer></script>
+  <script src="../components/tree-view/tree-view.js" defer></script>
+  <script src="../components/calendar/calendar.js" defer></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
