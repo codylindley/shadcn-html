@@ -1,0 +1,40 @@
+/* ── Date Picker component ────────────────────────────────────── */
+/* Uses the .input class with type="date" or type="datetime-local" */
+/* This file adds date-specific overrides only.                     */
+
+@layer components {
+  .date-input {
+    height: 2.5rem;
+    width: 100%;
+    border: 1px solid var(--input);
+    border-radius: var(--radius-md);
+    background: var(--background);
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+    font-family: var(--font-sans);
+    color: var(--foreground);
+    outline: none;
+    box-shadow: var(--shadow-xs);
+    transition: border-color 150ms, box-shadow 150ms;
+    cursor: pointer;
+
+    &:focus {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 2px oklch(from var(--ring) l c h / 0.2);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Style the calendar icon */
+    &::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 150ms;
+
+      &:hover { opacity: 1; }
+    }
+  }
+}

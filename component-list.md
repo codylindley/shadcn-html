@@ -27,18 +27,18 @@
 | Component | Status | Native basis |
 |-----------|--------|-------------|
 | Input | ✅ | `<input>` |
-| Textarea | ❌ | `<textarea>` |
-| Checkbox | ❌ | `<input type="checkbox">` |
-| Radio Group | ❌ | `<input type="radio">` |
-| Switch | ❌ | `<input type="checkbox">` |
-| Slider | ❌ | `<input type="range">` |
-| Select | ❌ | `<select>` or custom |
-| Number Input | ❌ | `<input type="number">` |
-| File Input | ❌ | `<input type="file">` |
-| Color Picker | ❌ | `<input type="color">` or custom |
-| Date Picker | ❌ | `<input type="date">` or custom |
+| Textarea | ✅ | `<textarea>` |
+| Checkbox | ✅ | `<input type="checkbox">` |
+| Radio Group | ✅ | `<input type="radio">` |
+| Switch | ✅ | `<input type="checkbox">` |
+| Slider | ✅ | `<input type="range">` |
+| Select | ✅ | `<select>` or custom |
+| Number Input | ✅ | `<input type="number">` |
+| File Input | ✅ | `<input type="file">` |
+| Color Picker | ✅ | `<input type="color">` or custom |
+| Date Picker | ✅ | `<input type="date">` or custom |
 | Combobox | ✅ | `<input>` + `role="listbox"` |
-| Form | ❌ | `<form>` + field layout |
+| Form | ✅ | `<form>` + field layout |
 
 ## Data Display
 

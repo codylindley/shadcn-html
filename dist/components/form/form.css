@@ -1,0 +1,33 @@
+/* ── Form component ───────────────────────────────────────────── */
+
+@layer components {
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding-top: 0.5rem;
+  }
+
+  /* ── Inline field (checkbox, switch, radio inline) ──────── */
+  .form-field-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    & > .label {
+      margin-bottom: 0;
+    }
+  }
+}

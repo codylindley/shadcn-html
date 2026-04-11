@@ -1,0 +1,42 @@
+/* ── Color Picker component ───────────────────────────────────── */
+
+@layer components {
+  .color-picker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--input);
+    border-radius: var(--radius-md);
+    background: var(--background);
+    padding: 0.25rem 0.75rem 0.25rem 0.25rem;
+    box-shadow: var(--shadow-xs);
+
+    & input[type="color"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      padding: 0;
+      background: none;
+
+      &::-webkit-color-swatch-wrapper { padding: 0; }
+      &::-webkit-color-swatch {
+        border: none;
+        border-radius: calc(var(--radius-sm) - 1px);
+      }
+      &::-moz-color-swatch {
+        border: none;
+        border-radius: calc(var(--radius-sm) - 1px);
+      }
+    }
+
+    & .color-picker-value {
+      font-size: 0.8125rem;
+      font-family: var(--font-mono);
+      color: var(--muted-foreground);
+    }
+  }
+}
