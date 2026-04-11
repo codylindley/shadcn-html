@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   <title>Dialog — shadcn-html</title>
+  <script src="js/layout.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +29,10 @@
   <link rel="stylesheet" href="../components/sheet/sheet.css">
   <link rel="stylesheet" href="../components/toggle/toggle.css">
   <link rel="stylesheet" href="../components/icon/icon.css">
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/separator/separator.css">
+  <link rel="stylesheet" href="../components/link/link.css">
+  <link rel="stylesheet" href="../components/label/label.css">
   <style type="text/tailwindcss">
     @custom-variant dark (&:is(.dark *));
     @theme inline {
@@ -85,129 +91,10 @@
   </style>
 </head>
 <body>
-  <header class="fixed top-0 left-0 right-0 z-50 h-14 border-b border-border flex items-center px-6 gap-4"
-          style="background: oklch(from var(--background) l c h / 0.88); backdrop-filter: blur(14px);">
-    <a href="index.html" class="flex items-center gap-2.5 no-underline">
-      <span style="font-family: var(--font-display); font-size: 1.1875rem; font-weight: 500; letter-spacing: -0.03em; color: var(--foreground);">shadcn<em>-html</em></span>
-      <span class="badge" data-variant="outline" style="font-family: var(--font-mono);">v0.1.0</span>
-    </a>
-    <div class="flex-1"></div>
-    <nav class="flex items-center gap-1">
-      <a href="https://github.com" target="_blank"
-         class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors no-underline">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        GitHub
-      </a>
-      <button id="theme-toggle"
-              class="w-9 h-9 rounded-lg border border-border flex items-center justify-center text-foreground hover:bg-accent transition-colors bg-transparent cursor-pointer"
-              aria-label="Toggle dark mode">
-        <svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        <svg id="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-      </button>
-    </nav>
-  </header>
+  <site-header></site-header>
 
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
-    <aside class="w-56 flex-shrink-0 border-r border-sidebar-border overflow-y-auto"
-           style="position: sticky; top: 3.5rem; height: calc(100vh - 3.5rem); background: var(--sidebar); padding: 1.25rem 0.75rem;">
-      <div style="margin-bottom: 1.25rem;">
-        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
-           style="letter-spacing: 0.08em;">Overview</p>
-        <a class="nav-link" href="index.html">Introduction</a>
-        <a class="nav-link" href="tokens.html">Semantic Tokens</a>
-        <a class="nav-link" href="setup.html">Setup</a>
-      </div>
-      <div style="margin-bottom: 1.25rem;">
-        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
-           style="letter-spacing: 0.08em;">Forms &amp; Inputs</p>
-        <a class="nav-link" href="input.html">Input</a>
-        <a class="nav-link" href="combobox.html">Combobox</a>
-        <a class="nav-link disabled" href="textarea.html">Textarea</a>
-        <a class="nav-link disabled" href="select.html">Select</a>
-        <a class="nav-link disabled" href="checkbox.html">Checkbox</a>
-        <a class="nav-link disabled" href="radio.html">Radio Group</a>
-        <a class="nav-link disabled" href="switch.html">Switch</a>
-        <a class="nav-link disabled" href="slider.html">Slider</a>
-        <a class="nav-link disabled" href="label.html">Label</a>
-        <a class="nav-link disabled" href="number-input.html">Number Input</a>
-        <a class="nav-link disabled" href="date-picker.html">Date Picker</a>
-        <a class="nav-link disabled" href="file-input.html">File Input</a>
-        <a class="nav-link disabled" href="color-picker.html">Color Picker</a>
-        <a class="nav-link disabled" href="form.html">Form</a>
-      </div>
-      <div style="margin-bottom: 1.25rem;">
-        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
-           style="letter-spacing: 0.08em;">Data Display</p>
-        <a class="nav-link" href="badge.html">Badge</a>
-        <a class="nav-link" href="card.html">Card</a>
-        <a class="nav-link" href="icon.html">Icon</a>
-        <a class="nav-link disabled" href="table.html">Table</a>
-        <a class="nav-link disabled" href="avatar.html">Avatar</a>
-        <a class="nav-link disabled" href="separator.html">Separator</a>
-        <a class="nav-link disabled" href="list.html">List</a>
-        <a class="nav-link disabled" href="descriptions.html">Descriptions</a>
-        <a class="nav-link disabled" href="empty-state.html">Empty State</a>
-        <a class="nav-link disabled" href="collapsible.html">Collapsible</a>
-        <a class="nav-link disabled" href="typography.html">Typography</a>
-        <a class="nav-link disabled" href="image.html">Image</a>
-        <a class="nav-link disabled" href="tag.html">Tag</a>
-        <a class="nav-link disabled" href="statistic.html">Statistic</a>
-        <a class="nav-link disabled" href="timeline.html">Timeline</a>
-        <a class="nav-link disabled" href="tree-view.html">Tree View</a>
-        <a class="nav-link disabled" href="calendar.html">Calendar</a>
-      </div>
-      <div style="margin-bottom: 1.25rem;">
-        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
-           style="letter-spacing: 0.08em;">Feedback &amp; Status</p>
-        <a class="nav-link" href="toast.html">Toast</a>
-        <a class="nav-link disabled" href="alert.html">Alert</a>
-        <a class="nav-link disabled" href="progress.html">Progress</a>
-        <a class="nav-link disabled" href="skeleton.html">Skeleton</a>
-        <a class="nav-link disabled" href="spinner.html">Spinner</a>
-        <a class="nav-link disabled" href="alert-dialog.html">Alert Dialog</a>
-      </div>
-      <div style="margin-bottom: 1.25rem;">
-        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
-           style="letter-spacing: 0.08em;">Overlays</p>
-        <a class="nav-link active" href="dialog.html">Dialog</a>
-        <a class="nav-link" href="sheet.html">Sheet</a>
-        <a class="nav-link" href="accordion.html">Accordion</a>
-        <a class="nav-link disabled" href="popover.html">Popover</a>
-        <a class="nav-link disabled" href="tooltip.html">Tooltip</a>
-        <a class="nav-link disabled" href="command.html">Command</a>
-        <a class="nav-link disabled" href="context-menu.html">Context Menu</a>
-      </div>
-      <div style="margin-bottom: 1.25rem;">
-        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
-           style="letter-spacing: 0.08em;">Navigation</p>
-        <a class="nav-link" href="tabs.html">Tabs</a>
-        <a class="nav-link" href="dropdown.html">Dropdown Menu</a>
-        <a class="nav-link disabled" href="breadcrumb.html">Breadcrumb</a>
-        <a class="nav-link disabled" href="pagination.html">Pagination</a>
-        <a class="nav-link disabled" href="steps.html">Steps</a>
-        <a class="nav-link disabled" href="navigation-menu.html">Navigation Menu</a>
-        <a class="nav-link disabled" href="link.html">Link</a>
-      </div>
-      <div style="margin-bottom: 1.25rem;">
-        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
-           style="letter-spacing: 0.08em;">Actions</p>
-        <a class="nav-link" href="button.html">Button</a>
-        <a class="nav-link" href="toggle.html">Toggle</a>
-        <a class="nav-link disabled" href="toggle-group.html">Toggle Group</a>
-        <a class="nav-link disabled" href="button-group.html">Button Group</a>
-        <a class="nav-link disabled" href="toolbar.html">Toolbar</a>
-      </div>
-      <div style="margin-bottom: 1.25rem;">
-        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
-           style="letter-spacing: 0.08em;">Layout</p>
-        <a class="nav-link disabled" href="sidebar.html">Sidebar</a>
-        <a class="nav-link disabled" href="container.html">Container</a>
-        <a class="nav-link disabled" href="scroll-area.html">Scroll Area</a>
-        <a class="nav-link disabled" href="carousel.html">Carousel</a>
-        <a class="nav-link disabled" href="sortable.html">Sortable</a>
-        <a class="nav-link disabled" href="aspect-ratio.html">Aspect Ratio</a>
-      </div>
-    </aside>
+    <site-nav></site-nav>
 
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
 <div class="flex items-baseline justify-between mb-1">

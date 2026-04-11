@@ -1,80 +1,16 @@
 # Component List
 
-## Forms & Inputs
+> **Ordered by dependency** — primitives first, then categories that build on them.
+
+## Primitives
 
 | Component | Status | Native basis |
 |-----------|--------|-------------|
-| Input | ✅ | `<input>` |
-| Textarea | ❌ | `<textarea>` |
-| Select | ❌ | `<select>` or custom |
-| Checkbox | ❌ | `<input type="checkbox">` |
-| Radio Group | ❌ | `<input type="radio">` |
-| Switch | ❌ | `<input type="checkbox">` |
-| Slider | ❌ | `<input type="range">` |
-| Label | ❌ | `<label>` |
-| Combobox | ✅ | `<input>` + `role="listbox"` |
-| Number Input | ❌ | `<input type="number">` |
-| Date Picker | ❌ | `<input type="date">` or custom |
-| File Input | ❌ | `<input type="file">` |
-| Color Picker | ❌ | `<input type="color">` or custom |
-| Form | ❌ | `<form>` + field layout |
-
-## Data Display
-
-| Component | Status | Native basis |
-|-----------|--------|-------------|
-| Badge | ✅ | `<span>` |
-| Card | ✅ | `<article>` |
-| Table | ❌ | `<table>` |
-| Avatar | ❌ | `<img>` + fallback |
-| Separator | ❌ | `<hr>` |
-| List | ❌ | `<ul>` / `<ol>` |
-| Descriptions | ❌ | `<dl>` |
-| Empty State | ❌ | `<div>` |
-| Collapsible | ❌ | `<details>` |
-| Typography | ❌ | `<h1>`–`<h6>`, `<p>`, `<code>` |
-| Image | ❌ | `<img>` + aspect ratio |
+| Typography | ✅ | `<h1>`–`<h6>`, `<p>`, `<code>` |
+| Separator | ✅ | `<hr>` |
 | Icon | ✅ | `<svg>` wrapper |
-| Tag | ❌ | `<span>` |
-| Statistic | ❌ | `<div>` |
-| Timeline | ❌ | `<ol>` |
-| Tree View | ❌ | `<ul>` nested + ARIA |
-| Calendar | ❌ | `<table>` or grid |
-
-## Feedback & Status
-
-| Component | Status | Native basis |
-|-----------|--------|-------------|
-| Toast | ✅ | `popover` API |
-| Alert | ❌ | `<div role="alert">` |
-| Progress | ❌ | `<progress>` |
-| Skeleton | ❌ | CSS animation |
-| Spinner | ❌ | CSS animation |
-| Alert Dialog | ❌ | `<dialog>` |
-
-## Overlays
-
-| Component | Status | Native basis |
-|-----------|--------|-------------|
-| Dialog | ✅ | `<dialog>` |
-| Sheet | ✅ | `<dialog>` |
-| Accordion | ✅ | `<details>` |
-| Popover | ❌ | `popover` API |
-| Tooltip | ❌ | `popover` API |
-| Command | ❌ | `<dialog>` + search |
-| Context Menu | ❌ | `popover` API |
-
-## Navigation
-
-| Component | Status | Native basis |
-|-----------|--------|-------------|
-| Tabs | ✅ | `role="tablist"` |
-| Dropdown Menu | ✅ | `popover` API |
-| Breadcrumb | ❌ | `<nav>` + `<ol>` |
-| Pagination | ❌ | `<nav>` + links |
-| Steps | ❌ | `<ol>` + ARIA |
-| Navigation Menu | ❌ | `<nav>` + `<ul>` |
-| Link | ❌ | `<a>` |
+| Link | ✅ | `<a>` |
+| Label | ✅ | `<label>` |
 
 ## Actions
 
@@ -86,13 +22,84 @@
 | Button Group | ❌ | `<div>` + buttons |
 | Toolbar | ❌ | `role="toolbar"` |
 
+## Forms & Inputs
+
+| Component | Status | Native basis |
+|-----------|--------|-------------|
+| Input | ✅ | `<input>` |
+| Textarea | ❌ | `<textarea>` |
+| Checkbox | ❌ | `<input type="checkbox">` |
+| Radio Group | ❌ | `<input type="radio">` |
+| Switch | ❌ | `<input type="checkbox">` |
+| Slider | ❌ | `<input type="range">` |
+| Select | ❌ | `<select>` or custom |
+| Number Input | ❌ | `<input type="number">` |
+| File Input | ❌ | `<input type="file">` |
+| Color Picker | ❌ | `<input type="color">` or custom |
+| Date Picker | ❌ | `<input type="date">` or custom |
+| Combobox | ✅ | `<input>` + `role="listbox"` |
+| Form | ❌ | `<form>` + field layout |
+
+## Data Display
+
+| Component | Status | Native basis |
+|-----------|--------|-------------|
+| Badge | ✅ | `<span>` |
+| Tag | ❌ | `<span>` |
+| Avatar | ❌ | `<img>` + fallback |
+| Card | ✅ | `<article>` |
+| Image | ❌ | `<img>` + aspect ratio |
+| List | ❌ | `<ul>` / `<ol>` |
+| Descriptions | ❌ | `<dl>` |
+| Statistic | ❌ | `<div>` |
+| Table | ❌ | `<table>` |
+| Empty State | ❌ | `<div>` |
+| Collapsible | ❌ | `<details>` |
+| Timeline | ❌ | `<ol>` |
+| Tree View | ❌ | `<ul>` nested + ARIA |
+| Calendar | ❌ | `<table>` or grid |
+
+## Feedback & Status
+
+| Component | Status | Native basis |
+|-----------|--------|-------------|
+| Spinner | ❌ | CSS animation |
+| Skeleton | ❌ | CSS animation |
+| Progress | ❌ | `<progress>` |
+| Alert | ❌ | `<div role="alert">` |
+| Alert Dialog | ❌ | `<dialog>` |
+| Toast | ✅ | `popover` API |
+
+## Overlays
+
+| Component | Status | Native basis |
+|-----------|--------|-------------|
+| Popover | ❌ | `popover` API |
+| Tooltip | ❌ | `popover` API |
+| Context Menu | ❌ | `popover` API |
+| Dialog | ✅ | `<dialog>` |
+| Sheet | ✅ | `<dialog>` |
+| Accordion | ✅ | `<details>` |
+| Command | ❌ | `<dialog>` + search |
+
+## Navigation
+
+| Component | Status | Native basis |
+|-----------|--------|-------------|
+| Breadcrumb | ❌ | `<nav>` + `<ol>` |
+| Pagination | ❌ | `<nav>` + links |
+| Steps | ❌ | `<ol>` + ARIA |
+| Tabs | ✅ | `role="tablist"` |
+| Dropdown Menu | ✅ | `popover` API |
+| Navigation Menu | ❌ | `<nav>` + `<ul>` |
+
 ## Layout
 
 | Component | Status | Native basis |
 |-----------|--------|-------------|
-| Sidebar | ❌ | `<aside>` + `<nav>` |
+| Aspect Ratio | ❌ | CSS `aspect-ratio` |
 | Container | ❌ | `<div>` |
 | Scroll Area | ❌ | CSS overflow + custom scrollbar |
 | Carousel | ❌ | scroll snap + buttons |
+| Sidebar | ❌ | `<aside>` + `<nav>` |
 | Sortable | ❌ | Drag and Drop API |
-| Aspect Ratio | ❌ | CSS `aspect-ratio` |

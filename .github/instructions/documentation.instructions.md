@@ -4,38 +4,49 @@ applyTo: "dist/documentation/**/*.html"
 ---
 # Documentation Pages
 
-## Shared boilerplate
+## Shared layout (Web Components)
 
-All HTML files share identical:
-- `<head>` block (Tailwind CDN, Google Fonts, CSS imports, inline `@theme` block)
-- Header (logo, GitHub link, dark mode toggle)
-- Sidebar navigation
+The header and sidebar navigation are centralized in `dist/documentation/js/layout.js`
+using two custom elements:
 
-When modifying any of these, update ALL HTML files — not just the current one.
+- `<site-header>` — renders the fixed header (logo, GitHub link, dark mode toggle)
+- `<site-nav>` — renders the sidebar with navigation links, auto-detecting the active page
+
+**To add/remove/reorder nav links or change the header, edit `layout.js` only.**
+No need to touch individual HTML files for navigation changes.
+
+`layout.js` is loaded **synchronously** in `<head>` (no `defer`) so the custom
+elements render without FOUC when the parser encounters them in `<body>`.
+
+### layout.js data structures
+
+- `NAV` — array of `{ heading, items: [{ label, href }] }` defining the sidebar sections
+- `BUILT` — `Set` of page filenames that have real doc pages (non-built pages render as disabled links)
 
 ## Adding a component page
 
-1. Copy an existing component page (e.g., `dialog.html`) as the template
-2. Change the `<title>`, `<h1>`, breadcrumb, and `active` class on the sidebar nav link
+1. Copy an existing component page (e.g., `badge.html`) as the template
+2. Change the `<title>`, `<h1>`, breadcrumb, and main content
 3. Add `<link rel="stylesheet" href="../components/{name}/{name}.css">` to the head
 4. Add `<script src="../components/{name}/{name}.js" defer></script>` if interactive
-5. Add the sidebar nav link to ALL other HTML files
-5. The inline `@theme` block must remain unchanged — it's the Tailwind theme bridge
+5. In `layout.js`: add the page href to the `BUILT` set
+6. The inline `@theme` block must remain unchanged — it's the Tailwind theme bridge
+
+No need to update sidebar nav links in other files — `<site-nav>` handles it globally.
 
 ## Sidebar nav order
 
-Components are listed after the Overview section:
-1. Button
-2. Dialog
-3. Sheet
-4. Card
-5. Accordion
-6. Tabs
-7. Dropdown
-8. Toast
-9. Combobox
+The sidebar is ordered by dependency (primitives first):
+1. Primitives (Typography, Separator, Icon, Link, Label)
+2. Actions (Button, Toggle, Toggle Group, Button Group, Toolbar)
+3. Forms & Inputs
+4. Data Display
+5. Feedback & Status
+6. Overlays
+7. Navigation
+8. Layout
 
-New components: add alphabetically or group logically after existing entries.
+To reorder, edit the `NAV` array in `layout.js`.
 
 ## CSS and JS imports
 

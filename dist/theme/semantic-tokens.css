@@ -8,6 +8,8 @@
  */
 
 :root {
+  color-scheme: light;
+
   /* ── Surface / Foreground pairs ────────────────────────────── */
   --background:              oklch(0.985 0.002 247);
   --foreground:              oklch(0.145 0.005 285);
@@ -97,6 +99,8 @@
 
 /* ── Dark mode ────────────────────────────────────────────────── */
 .dark {
+  color-scheme: dark;
+
   --background:              oklch(0.145 0.005 285);
   --foreground:              oklch(0.985 0.002 247);
 

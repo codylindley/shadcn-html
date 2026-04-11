@@ -7,14 +7,8 @@
 (function () {
   'use strict';
 
-  // ── Dark mode ───────────────────────────────────────────
-  var saved = localStorage.getItem('shadcn-html-theme');
-  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if (saved === 'dark' || (!saved && prefersDark)) {
-    document.documentElement.classList.add('dark');
-  }
-
-  // ── Highlight.js theme sync ─────────────────────────────
+  // ── Dark mode + hljs sync now handled by layout.js ──────
+  // (runs synchronously in <head> to prevent FOUC)
   function syncHljsTheme() {
     var isDark = document.documentElement.classList.contains('dark');
     var light = document.getElementById('hljs-light');
@@ -22,11 +16,11 @@
     if (light) light.disabled = isDark;
     if (dark) dark.disabled = !isDark;
   }
-  syncHljsTheme(); // sync on initial load (before DOMContentLoaded)
 
   function toggleDark() {
     var isDark = document.documentElement.classList.contains('dark');
     document.documentElement.classList.toggle('dark', !isDark);
+    document.documentElement.style.colorScheme = isDark ? 'light' : 'dark';
     document.getElementById('icon-sun').style.display  = isDark ? 'block' : 'none';
     document.getElementById('icon-moon').style.display = isDark ? 'none'  : 'block';
     localStorage.setItem('shadcn-html-theme', isDark ? 'light' : 'dark');

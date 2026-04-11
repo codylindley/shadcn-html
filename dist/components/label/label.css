@@ -1,0 +1,32 @@
+/* ── Label component ──────────────────────────────────────────── */
+
+@layer components {
+  .label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    line-height: 1;
+    color: var(--foreground);
+    display: block;
+    margin-bottom: 0.375rem;
+    cursor: default;
+
+    /* Highlight label when its associated input is focused */
+    &:has(+ .input:focus, + .input:focus-within) {
+      color: var(--foreground);
+    }
+
+    /* Disabled state */
+    &.label-disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+
+  /* ── Hint text (optional, required indicators) ─────────── */
+  .label-hint {
+    font-weight: 400;
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+  }
+}

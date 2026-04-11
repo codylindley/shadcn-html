@@ -1,0 +1,45 @@
+/* ── Link component ───────────────────────────────────────────── */
+
+@layer components {
+  .link {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: oklch(from var(--primary) l c h / 0.4);
+    font-weight: 500;
+    transition: text-decoration-color 150ms;
+    cursor: pointer;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    &:hover {
+      text-decoration-color: var(--primary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    & svg {
+      flex-shrink: 0;
+
+      &:not([class*="size-"]) { width: 0.875em; height: 0.875em; }
+    }
+
+    /* ── Variants ──────────────────────────────────────────── */
+    &[data-variant="muted"] {
+      color: var(--muted-foreground);
+      text-decoration-color: oklch(from var(--muted-foreground) l c h / 0.3);
+
+      &:hover {
+        color: var(--foreground);
+        text-decoration-color: var(--foreground);
+      }
+    }
+  }
+}
