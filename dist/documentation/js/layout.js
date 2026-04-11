@@ -2,7 +2,6 @@
 // Web Components for the shared site header and sidebar nav.
 // SPA client-side router for flash-free navigation.
 // Loaded synchronously in <head> so elements render without FOUC.
-// No ES modules — works with file:// protocol.
 
 (function () {
   'use strict';
@@ -16,9 +15,10 @@
   }
 
   /* ── SPA page-ready helper ─────────────────────────────────── */
-  /* Components call window.onPageReady(fn) instead of           */
-  /* DOMContentLoaded. fn runs on initial load AND after each     */
-  /* SPA navigation (re-queries elements, binds fresh handlers). */
+  /* Doc-site scripts (site.js) call window.onPageReady(fn)      */
+  /* to register functions that run on initial load AND after     */
+  /* each SPA navigation. Component modules run at top level     */
+  /* and are re-imported by the SPA router after navigation.     */
   var domReady = false;
   document.addEventListener('DOMContentLoaded', function () { domReady = true; });
 
@@ -39,6 +39,7 @@
       { label: 'Theming', href: 'theming.html' },
       { label: 'Data Attribute API', href: 'data-attribute-api.html' },
       { label: 'Cascade Layers', href: 'cascade-layers.html' },
+      { label: 'ES Modules', href: 'es-modules.html' },
       { label: 'Changelog', href: 'changelog.html' },
     ]},
     { heading: 'Primitives', items: [
@@ -123,7 +124,7 @@
 
   /* Pages that have been built (have a real doc page) */
   var BUILT = new Set([
-    'index.html', 'installation.html', 'theming.html', 'data-attribute-api.html', 'cascade-layers.html', 'changelog.html',
+    'index.html', 'installation.html', 'theming.html', 'data-attribute-api.html', 'cascade-layers.html', 'es-modules.html', 'changelog.html',
     'typography.html', 'separator.html', 'icon.html', 'link.html', 'label.html',
     'button.html', 'toggle.html', 'toggle-group.html', 'button-group.html', 'toolbar.html',
     'input.html', 'textarea.html', 'checkbox.html', 'radio.html', 'switch.html',
@@ -340,8 +341,16 @@
           window.scrollTo(0, 0);
 
           /* Re-initialize all page-ready handlers */
-          /* (components, doc tabs, hljs, copy buttons, lucide, etc.) */
+          /* (doc tabs, hljs, copy buttons, lucide, etc.) */
           (window.__spaInits || []).forEach(function (fn) { fn(); });
+
+          /* Re-run component ES modules so they bind to new DOM */
+          document.querySelectorAll('script[type="module"][src*="components/"]').forEach(function (s) {
+            var el = document.createElement('script');
+            el.type = 'module';
+            el.src = s.getAttribute('src') + '?t=' + Date.now();
+            document.body.appendChild(el);
+          });
 
           navigating = false;
         };

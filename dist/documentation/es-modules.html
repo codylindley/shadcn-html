@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>ES Modules — shadcn-html</title>
+  <script src="js/layout.js"></script>
+  <link rel="stylesheet" href="../theme/semantic-tokens.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
+  <link rel="stylesheet" href="../components/button/button.css">
+  <link rel="stylesheet" href="../components/card/card.css">
+  <link rel="stylesheet" href="../components/dialog/dialog.css">
+  <link rel="stylesheet" href="../components/badge/badge.css">
+  <link rel="stylesheet" href="../components/input/input.css">
+  <link rel="stylesheet" href="../components/accordion/accordion.css">
+  <link rel="stylesheet" href="../components/tabs/tabs.css">
+  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
+  <link rel="stylesheet" href="../components/toast/toast.css">
+  <link rel="stylesheet" href="../components/combobox/combobox.css">
+  <link rel="stylesheet" href="../components/sheet/sheet.css">
+  <link rel="stylesheet" href="../components/toggle/toggle.css">
+  <link rel="stylesheet" href="../components/icon/icon.css">
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/separator/separator.css">
+  <link rel="stylesheet" href="../components/link/link.css">
+  <link rel="stylesheet" href="../components/label/label.css">
+  <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
+  <link rel="stylesheet" href="../components/button-group/button-group.css">
+  <link rel="stylesheet" href="../components/toolbar/toolbar.css">
+  <link rel="stylesheet" href="../components/textarea/textarea.css">
+  <link rel="stylesheet" href="../components/checkbox/checkbox.css">
+  <link rel="stylesheet" href="../components/radio/radio.css">
+  <link rel="stylesheet" href="../components/switch/switch.css">
+  <link rel="stylesheet" href="../components/slider/slider.css">
+  <link rel="stylesheet" href="../components/select/select.css">
+  <link rel="stylesheet" href="../components/number-input/number-input.css">
+  <link rel="stylesheet" href="../components/file-input/file-input.css">
+  <link rel="stylesheet" href="../components/color-picker/color-picker.css">
+  <link rel="stylesheet" href="../components/date-picker/date-picker.css">
+  <link rel="stylesheet" href="../components/form/form.css">
+  <link rel="stylesheet" href="../components/tag/tag.css">
+  <link rel="stylesheet" href="../components/avatar/avatar.css">
+  <link rel="stylesheet" href="../components/image/image.css">
+  <link rel="stylesheet" href="../components/list/list.css">
+  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
+  <link rel="stylesheet" href="../components/statistic/statistic.css">
+  <link rel="stylesheet" href="../components/table/table.css">
+  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
+  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
+  <link rel="stylesheet" href="../components/timeline/timeline.css">
+  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="../components/calendar/calendar.css">
+  <link rel="stylesheet" href="../components/spinner/spinner.css">
+  <link rel="stylesheet" href="../components/skeleton/skeleton.css">
+  <link rel="stylesheet" href="../components/progress/progress.css">
+  <link rel="stylesheet" href="../components/alert/alert.css">
+  <link rel="stylesheet" href="../components/alert-dialog/alert-dialog.css">
+  <link rel="stylesheet" href="../components/popover/popover.css">
+  <link rel="stylesheet" href="../components/tooltip/tooltip.css">
+  <link rel="stylesheet" href="../components/context-menu/context-menu.css">
+  <link rel="stylesheet" href="../components/command/command.css">
+  <link rel="stylesheet" href="../components/breadcrumb/breadcrumb.css">
+  <link rel="stylesheet" href="../components/pagination/pagination.css">
+  <link rel="stylesheet" href="../components/steps/steps.css">
+  <link rel="stylesheet" href="../components/navigation-menu/navigation-menu.css">
+  <link rel="stylesheet" href="../components/aspect-ratio/aspect-ratio.css">
+  <link rel="stylesheet" href="../components/container/container.css">
+  <link rel="stylesheet" href="../components/scroll-area/scroll-area.css">
+  <link rel="stylesheet" href="../components/carousel/carousel.css">
+  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
+  <link rel="stylesheet" href="../components/sortable/sortable.css">
+</head>
+<body>
+  <site-header></site-header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <site-nav></site-nav>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
+<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / es-modules</p>
+  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">ES Modules</h1>
+  <p class="text-muted-foreground leading-relaxed mb-10" style="max-width:38rem;">
+    Interactive components ship as native
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">ES modules</a>.
+    Load them with <code>&lt;script type="module"&gt;</code> — no bundler, no build step, no framework.
+  </p>
+
+  <!-- ── What changes ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">What is <code>type="module"</code>?</h2>
+  <p class="text-sm text-muted-foreground mb-5">
+    Adding <code>type="module"</code> to a <code>&lt;script&gt;</code> tag tells the browser to treat the file as an
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">ECMAScript module</a>
+    instead of a classic script. The key differences:
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <table class="table" data-variant="simple" style="margin:0;">
+      <thead>
+        <tr><th style="width:40%;">Classic script</th><th>ES module</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>&lt;script src="..." defer&gt;</code></td>
+          <td><code>&lt;script type="module" src="..."&gt;</code></td>
+        </tr>
+        <tr>
+          <td>Variables leak to global scope</td>
+          <td>Module scope — nothing leaks</td>
+        </tr>
+        <tr>
+          <td>Must add <code>'use strict'</code> manually</td>
+          <td>Strict mode by default</td>
+        </tr>
+        <tr>
+          <td>Executes once, synchronously</td>
+          <td>Deferred by default (like <code>defer</code>)</td>
+        </tr>
+        <tr>
+          <td>IIFE wrappers needed for isolation</td>
+          <td>Each file is its own scope — no wrappers needed</td>
+        </tr>
+        <tr>
+          <td>Works from <code>file://</code></td>
+          <td>Requires HTTP server (CORS policy)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ── How shadcn-html uses it ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">How shadcn-html uses it</h2>
+  <p class="text-sm text-muted-foreground mb-5">
+    Every interactive component ships a <code>.js</code> file that runs at the top level when loaded.
+    No wrapper functions, no exports, no initialization hooks — just executable code that queries the DOM
+    and binds event listeners.
+  </p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">your HTML</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;"><code class="language-markup">&lt;script type="module"
+  src="components/dialog/dialog.js"&gt;
+&lt;/script&gt;</code></pre>
+    </div>
+
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">dialog.js (simplified)</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;"><code class="language-javascript">document.querySelectorAll(
+  '[data-dialog-trigger]'
+).forEach((trigger) => {
+  const dialog = document.getElementById(
+    trigger.dataset.dialogTrigger
+  );
+  trigger.addEventListener('click', () => {
+    dialog.showModal();
+  });
+});</code></pre>
+    </div>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5">
+    The module runs once after the DOM is ready (modules are deferred automatically).
+    It finds every trigger, wires up listeners, and that's it. No framework, no lifecycle hooks.
+  </p>
+
+  <div class="sep"></div>
+
+  <!-- ── Which components need JS ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Which components need JS?</h2>
+  <p class="text-sm text-muted-foreground mb-5">
+    Most components are CSS-only. JavaScript is only used when HTML and CSS can't express the behavior —
+    things like keyboard navigation, focus management, and state coordination.
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <table class="table" data-variant="simple" style="margin:0;">
+      <thead>
+        <tr><th>Pattern</th><th>Examples</th><th>JS needed?</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Static display</td>
+          <td>Badge, Card, Alert, Spinner</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>Native interactive</td>
+          <td>Checkbox, Radio, Select, Switch</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>Native with <code>&lt;details&gt;</code></td>
+          <td>Collapsible</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>Single-open constraint</td>
+          <td>Accordion (single mode)</td>
+          <td>Yes — small</td>
+        </tr>
+        <tr>
+          <td>Keyboard navigation</td>
+          <td>Tabs, Dropdown, Combobox, Toolbar</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>Modal coordination</td>
+          <td>Dialog, Sheet, Alert Dialog, Command</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>Programmatic API</td>
+          <td>Toast</td>
+          <td>Yes — exposes <code>window.toast</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ── Serving locally ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Serving locally</h2>
+  <p class="text-sm text-muted-foreground mb-5">
+    ES modules require HTTP due to browser CORS policy — they won't load from <code>file://</code> URLs.
+    Use any local server:
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">any of these work</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;"><code class="language-bash">npx serve .
+npx vite .
+python3 -m http.server</code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ── Browser support ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Browser support</h2>
+  <p class="text-sm text-muted-foreground mb-5">ES modules have been supported in all major browsers since 2018:</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">browser support</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th>Browser</th><th>Supported since</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Chrome / Edge</td><td>61 (September 2017)</td></tr>
+          <tr><td>Firefox</td><td>60 (May 2018)</td></tr>
+          <tr><td>Safari</td><td>11 (September 2017)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-3">
+    See <a href="https://caniuse.com/es6-module" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">caniuse.com/es6-module</a>
+    and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">MDN Modules guide</a> for full details.
+  </p>
+
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+  <script type="module" src="js/shiki-highlight.js"></script>
+  <script type="module" src="../components/accordion/accordion.js"></script>
+  <script type="module" src="../components/combobox/combobox.js"></script>
+  <script type="module" src="../components/dialog/dialog.js"></script>
+  <script type="module" src="../components/dropdown/dropdown.js"></script>
+  <script type="module" src="../components/sheet/sheet.js"></script>
+  <script type="module" src="../components/tabs/tabs.js"></script>
+  <script type="module" src="../components/toast/toast.js"></script>
+  <script type="module" src="../components/toggle/toggle.js"></script>
+  <script type="module" src="../components/toggle-group/toggle-group.js"></script>
+  <script type="module" src="../components/toolbar/toolbar.js"></script>
+  <script type="module" src="../components/number-input/number-input.js"></script>
+  <script type="module" src="../components/color-picker/color-picker.js"></script>
+  <script type="module" src="../components/tag/tag.js"></script>
+  <script type="module" src="../components/avatar/avatar.js"></script>
+  <script type="module" src="../components/tree-view/tree-view.js"></script>
+  <script type="module" src="../components/calendar/calendar.js"></script>
+  <script type="module" src="../components/alert-dialog/alert-dialog.js"></script>
+  <script type="module" src="../components/popover/popover.js"></script>
+  <script type="module" src="../components/tooltip/tooltip.js"></script>
+  <script type="module" src="../components/context-menu/context-menu.js"></script>
+  <script type="module" src="../components/command/command.js"></script>
+  <script type="module" src="../components/navigation-menu/navigation-menu.js"></script>
+  <script type="module" src="../components/carousel/carousel.js"></script>
+  <script type="module" src="../components/sortable/sortable.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

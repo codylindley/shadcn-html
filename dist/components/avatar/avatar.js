@@ -1,12 +1,9 @@
-(function () {
-  'use strict';
+// ── Avatar ───────────────────────────────────────────────────
+// Hides broken avatar images and shows the fallback.
 
-  window.onPageReady(function () {
-    document.querySelectorAll('.avatar-image').forEach(function (img) {
-      img.addEventListener('error', function () {
-        img.setAttribute('data-error', '');
-        img.style.display = 'none';
-      });
-    });
+document.querySelectorAll('.avatar-image').forEach((img) => {
+  img.addEventListener('error', () => {
+    img.setAttribute('data-error', '');
+    img.style.display = 'none';
   });
-})();
+});

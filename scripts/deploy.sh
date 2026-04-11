@@ -74,7 +74,7 @@ node -e "
   const fs = require('fs');
   const version = '${NEW_VERSION}';
   const date = '${DATE}';
-  const commits = \`${COMMITS}\`.split('\n').filter(Boolean);
+  const commits = [...new Set(\`${COMMITS}\`.split('\n').filter(Boolean))];
 
   const items = commits.length
     ? commits.map(m => {

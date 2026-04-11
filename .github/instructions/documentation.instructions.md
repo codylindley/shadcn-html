@@ -28,7 +28,7 @@ elements render without FOUC when the parser encounters them in `<body>`.
 1. Copy an existing component page (e.g., `badge.html`) as the template
 2. Change the `<title>`, `<h1>`, breadcrumb, and main content
 3. Add `<link rel="stylesheet" href="../components/{name}/{name}.css">` to the head
-4. Add `<script src="../components/{name}/{name}.js" defer></script>` if interactive
+4. Add `<script type="module" src="../components/{name}/{name}.js"></script>` if interactive
 5. In `layout.js`: add the page href to the `BUILT` set
 
 No need to update sidebar nav links in other files — `<site-nav>` handles it globally.

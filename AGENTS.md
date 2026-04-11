@@ -48,7 +48,8 @@ can do it, we don't write JavaScript for it.
 
 JavaScript is only for behavior that HTML and CSS cannot express: keyboard
 navigation patterns, focus management, and state coordination between elements.
-Even then, prefer the smallest possible vanilla JS — no libraries, no frameworks.
+Use modern ECMAScript (ES modules, arrow functions, `const`/`let`, etc.) —
+no libraries, no frameworks.
 
 ### Each component is a self-contained folder
 
@@ -73,6 +74,9 @@ The token file provides:
 - Spacing and tracking
 
 ### Documentation site architecture
+
+The doc site dev server runs on `http://localhost:3000/` via `npm run dev` (Vite).
+When testing, use the existing dev server — don't start a new one.
 
 The doc site is a **SPA-style multi-page app**. `layout.js` loads synchronously in
 `<head>` and provides:
@@ -129,12 +133,14 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
    - Edit directly — no build step
 
 4. **Write the JS** (if interactive) → `dist/components/{name}/{name}.js`
-   - Self-contained IIFE, no ES modules
+   - Plain ES module — initialization code runs at top level, no wrapper function
+   - No `export`, no `init()`, no `window.onPageReady` — just top-level code
+   - The doc site SPA router re-imports component modules after navigation
 
 5. **Create the doc page** → `dist/documentation/{name}.html`
    - Copy an existing component page as template (e.g., badge.html)
    - Add `<link rel="stylesheet" href="../components/{name}/{name}.css">` to the head
-   - Add `<script src="../components/{name}/{name}.js" defer></script>` if interactive
+   - Add `<script type="module" src="../components/{name}/{name}.js"></script>` if interactive
    - Replace demo content with working examples
 
 6. **Update layout.js** → add the component to the `NAV` array and `BUILT` set
@@ -160,9 +166,9 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
 - **CSS/JS import drift**: When adding a component, you must add its `<link>` and
   `<script>` tags to ALL HTML pages. Missing imports cause components in cross-page
   demos to break silently.
-- **SPA re-initialization**: Component JS that binds event listeners must be
-  idempotent — the SPA router calls `window.__spaInits` after each navigation.
-  Register init functions via `window.onPageReady(fn)` defined in `layout.js`.
+- **SPA re-initialization**: Component JS modules run at top level and are
+  re-imported by the SPA router after navigation (with cache-busting). Doc-site-only
+  scripts (site.js) use `window.onPageReady(fn)` for their own re-init.
 - **Font stacks**: The system tokens use generic font stacks. The doc site overrides
   them in `css/docs-theme.css`. Don't put custom fonts in `semantic-tokens.css`.
 
