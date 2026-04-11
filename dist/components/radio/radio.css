@@ -1,0 +1,73 @@
+/* ── Radio Group component ────────────────────────────────────── */
+
+@layer components {
+  .radio-group {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    & > legend {
+      margin-bottom: 0.375rem;
+    }
+  }
+
+  .radio-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    & > label {
+      font-size: 0.875rem;
+      font-weight: 400;
+      cursor: pointer;
+    }
+  }
+
+  .radio {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--background);
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    transition: border-color 150ms;
+
+    &:checked {
+      border-color: var(--primary);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background: var(--primary);
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      & + label { opacity: 0.5; cursor: not-allowed; }
+    }
+
+    &[aria-invalid="true"] {
+      border-color: var(--destructive);
+    }
+  }
+}

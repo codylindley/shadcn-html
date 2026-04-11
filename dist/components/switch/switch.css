@@ -1,0 +1,64 @@
+/* ── Switch component ─────────────────────────────────────────── */
+
+@layer components {
+  .switch {
+    appearance: none;
+    width: 2.25rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+    background: var(--input);
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: background-color 150ms;
+    border: none;
+    outline: none;
+
+    /* Thumb */
+    &::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: calc(1.25rem - 4px);
+      height: calc(1.25rem - 4px);
+      border-radius: 50%;
+      background: var(--background);
+      transition: transform 150ms;
+      box-shadow: 0 1px 2px oklch(0 0 0 / 0.15);
+    }
+
+    &:checked {
+      background: var(--primary);
+
+      &::after {
+        transform: translateX(1rem);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* ── Sizes ─────────────────────────────────────────────── */
+    &[data-size="sm"] {
+      width: 1.75rem;
+      height: 1rem;
+
+      &::after {
+        width: calc(1rem - 4px);
+        height: calc(1rem - 4px);
+      }
+
+      &:checked::after {
+        transform: translateX(0.75rem);
+      }
+    }
+  }
+}

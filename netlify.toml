@@ -1,0 +1,15 @@
+[build]
+  publish = "dist/"
+  command = "echo 'No build step needed'"
+
+# Production: auto-deploy on push to main
+[context.production]
+  publish = "dist/"
+
+# Deploy Previews: auto-generated for every PR
+[context.deploy-preview]
+  publish = "dist/"
+
+# Branch deploys: auto-deploy the dev branch
+[context.branch-deploy]
+  publish = "dist/"
