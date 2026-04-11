@@ -1,0 +1,32 @@
+@layer components {
+  .popover {
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    padding: 1rem;
+    box-shadow: var(--shadow-md);
+    width: 20rem;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 150ms ease, transform 150ms ease, display 150ms allow-discrete;
+
+    &:popover-open {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @starting-style {
+    .popover:popover-open {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+  }
+
+  .popover-header { margin-bottom: 0.75rem; }
+  .popover-title { margin: 0; font-size: 0.875rem; font-weight: 500; color: var(--foreground); }
+  .popover-description { margin: 0.25rem 0 0; font-size: 0.8125rem; color: var(--muted-foreground); }
+  .popover-content { font-size: 0.875rem; }
+}

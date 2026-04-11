@@ -63,43 +63,43 @@
 
 | Component | Status | Native basis |
 |-----------|--------|-------------|
-| Spinner | ❌ | CSS animation |
-| Skeleton | ❌ | CSS animation |
-| Progress | ❌ | `<progress>` |
-| Alert | ❌ | `<div role="alert">` |
-| Alert Dialog | ❌ | `<dialog>` |
+| Spinner | ✅ | CSS animation |
+| Skeleton | ✅ | CSS animation |
+| Progress | ✅ | `<progress>` |
+| Alert | ✅ | `<div role="alert">` |
+| Alert Dialog | ✅ | `<dialog>` |
 | Toast | ✅ | `popover` API |
 
 ## Overlays
 
 | Component | Status | Native basis |
 |-----------|--------|-------------|
-| Popover | ❌ | `popover` API |
-| Tooltip | ❌ | `popover` API |
-| Context Menu | ❌ | `popover` API |
+| Popover | ✅ | `popover` API |
+| Tooltip | ✅ | `popover` API |
+| Context Menu | ✅ | `popover` API |
 | Dialog | ✅ | `<dialog>` |
 | Sheet | ✅ | `<dialog>` |
 | Accordion | ✅ | `<details>` |
-| Command | ❌ | `<dialog>` + search |
+| Command | ✅ | `<dialog>` + search |
 
 ## Navigation
 
 | Component | Status | Native basis |
 |-----------|--------|-------------|
-| Breadcrumb | ❌ | `<nav>` + `<ol>` |
-| Pagination | ❌ | `<nav>` + links |
-| Steps | ❌ | `<ol>` + ARIA |
+| Breadcrumb | ✅ | `<nav>` + `<ol>` |
+| Pagination | ✅ | `<nav>` + links |
+| Steps | ✅ | `<ol>` + ARIA |
 | Tabs | ✅ | `role="tablist"` |
 | Dropdown Menu | ✅ | `popover` API |
-| Navigation Menu | ❌ | `<nav>` + `<ul>` |
+| Navigation Menu | ✅ | `<nav>` + `<ul>` |
 
 ## Layout
 
 | Component | Status | Native basis |
 |-----------|--------|-------------|
-| Aspect Ratio | ❌ | CSS `aspect-ratio` |
-| Container | ❌ | `<div>` |
-| Scroll Area | ❌ | CSS overflow + custom scrollbar |
-| Carousel | ❌ | scroll snap + buttons |
-| Sidebar | ❌ | `<aside>` + `<nav>` |
-| Sortable | ❌ | Drag and Drop API |
+| Aspect Ratio | ✅ | CSS `aspect-ratio` |
+| Container | ✅ | `<div>` |
+| Scroll Area | ✅ | CSS overflow + custom scrollbar |
+| Carousel | ✅ | scroll snap + buttons |
+| Sidebar | ✅ | `<aside>` + `<nav>` |
+| Sortable | ✅ | Drag and Drop API |

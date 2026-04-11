@@ -1,0 +1,24 @@
+@layer components {
+  .tooltip {
+    margin: 0;
+    border: none;
+    border-radius: var(--radius-md);
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    box-shadow: var(--shadow-sm);
+    pointer-events: none;
+    max-width: 16rem;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 100ms ease, transform 100ms ease, display 100ms allow-discrete;
+
+    &:popover-open { opacity: 1; transform: translateY(0); }
+  }
+
+  @starting-style {
+    .tooltip:popover-open { opacity: 0; transform: translateY(-2px); }
+  }
+}

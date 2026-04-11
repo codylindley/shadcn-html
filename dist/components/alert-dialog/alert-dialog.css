@@ -1,0 +1,81 @@
+@layer components {
+  dialog.alert-dialog {
+    border: none;
+    border-radius: var(--radius-xl);
+    background: var(--background);
+    color: var(--foreground);
+    padding: 0;
+    max-width: 28rem;
+    width: calc(100% - 2rem);
+    box-shadow: var(--shadow-lg);
+    margin: auto;
+    position: fixed;
+    inset: 0;
+
+    /* Entry/exit animation */
+    opacity: 0;
+    transform: translateY(-0.5rem) scale(0.98);
+    transition: opacity 200ms ease, transform 200ms ease, display 200ms allow-discrete;
+
+    &[open] {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    &::backdrop {
+      background: oklch(0 0 0 / 0);
+      backdrop-filter: blur(0px);
+      transition: all 200ms ease, display 200ms allow-discrete;
+    }
+
+    &[open]::backdrop {
+      background: oklch(0 0 0 / 0.45);
+      backdrop-filter: blur(3px);
+    }
+
+    /* Block Escape key — user must choose an action */
+    &::backdrop {
+      pointer-events: auto;
+    }
+  }
+
+  @starting-style {
+    dialog.alert-dialog[open] {
+      opacity: 0;
+      transform: translateY(-0.5rem) scale(0.98);
+    }
+    dialog.alert-dialog[open]::backdrop {
+      background: oklch(0 0 0 / 0);
+      backdrop-filter: blur(0px);
+    }
+  }
+
+  .alert-dialog-content {
+    padding: 1.5rem;
+  }
+
+  .alert-dialog-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .alert-dialog-title {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .alert-dialog-description {
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    line-height: 1.5;
+  }
+
+  .alert-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+}

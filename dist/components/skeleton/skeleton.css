@@ -1,0 +1,16 @@
+@layer components {
+  .skeleton {
+    background-color: var(--accent);
+    border-radius: var(--radius-md);
+    animation: skeleton-pulse 2s ease-in-out infinite;
+  }
+
+  .skeleton-round {
+    border-radius: 9999px;
+  }
+
+  @keyframes skeleton-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+}

@@ -1,0 +1,18 @@
+@layer components {
+  .steps { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+  .step {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; position: relative; text-align: center;
+    &:not(:last-child)::after { content: ''; position: absolute; top: 1rem; left: calc(50% + 1.25rem); right: calc(-50% + 1.25rem); height: 2px; background-color: var(--border); }
+    &[data-status='complete']::after { background-color: var(--primary); }
+  }
+  .step-indicator {
+    display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem;
+    border-radius: 9999px; font-size: 0.75rem; font-weight: 500;
+    border: 2px solid var(--border); color: var(--muted-foreground); background-color: var(--background); position: relative; z-index: 1;
+    .step[data-status='current'] & { border-color: var(--primary); color: var(--primary); }
+    .step[data-status='complete'] & { border-color: var(--primary); background-color: var(--primary); color: var(--primary-foreground); }
+  }
+  .step-content { display: flex; flex-direction: column; gap: 0.125rem; }
+  .step-title { margin: 0; font-size: 0.8125rem; font-weight: 500; color: var(--foreground); }
+  .step-description { margin: 0; font-size: 0.75rem; color: var(--muted-foreground); }
+}

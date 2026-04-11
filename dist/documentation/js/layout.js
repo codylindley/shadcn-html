@@ -30,6 +30,7 @@
       { label: 'Introduction', href: 'index.html' },
       { label: 'Installation', href: 'installation.html' },
       { label: 'Theming', href: 'theming.html' },
+      { label: 'Data Attribute API', href: 'data-attribute-api.html' },
       { label: 'Changelog', href: 'changelog.html' },
     ]},
     { heading: 'Primitives', items: [
@@ -114,7 +115,7 @@
 
   /* Pages that have been built (have a real doc page) */
   var BUILT = new Set([
-    'index.html', 'installation.html', 'theming.html', 'changelog.html',
+    'index.html', 'installation.html', 'theming.html', 'data-attribute-api.html', 'changelog.html',
     'typography.html', 'separator.html', 'icon.html', 'link.html', 'label.html',
     'button.html', 'toggle.html', 'toggle-group.html', 'button-group.html', 'toolbar.html',
     'input.html', 'textarea.html', 'checkbox.html', 'radio.html', 'switch.html',
@@ -123,9 +124,14 @@
     'badge.html', 'tag.html', 'avatar.html', 'card.html', 'image.html',
     'list.html', 'descriptions.html', 'statistic.html', 'table.html',
     'empty-state.html', 'collapsible.html', 'timeline.html', 'tree-view.html', 'calendar.html',
+    'spinner.html', 'skeleton.html', 'progress.html', 'alert.html', 'alert-dialog.html',
     'toast.html',
-    'dialog.html', 'sheet.html', 'accordion.html',
-    'tabs.html', 'dropdown.html',
+    'popover.html', 'tooltip.html', 'context-menu.html',
+    'dialog.html', 'sheet.html', 'accordion.html', 'command.html',
+    'breadcrumb.html', 'pagination.html', 'steps.html',
+    'tabs.html', 'dropdown.html', 'navigation-menu.html',
+    'aspect-ratio.html', 'container.html', 'scroll-area.html',
+    'carousel.html', 'sidebar.html', 'sortable.html',
   ]);
 
   /* Detect current filename */

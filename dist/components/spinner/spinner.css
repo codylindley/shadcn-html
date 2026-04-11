@@ -1,0 +1,28 @@
+@layer components {
+  .spinner {
+    width: 1rem;
+    height: 1rem;
+    animation: spinner-rotate 1s linear infinite;
+    color: var(--muted-foreground);
+    flex-shrink: 0;
+
+    &[data-size="sm"] {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+
+    &[data-size="md"] {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    &[data-size="lg"] {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  @keyframes spinner-rotate {
+    to { transform: rotate(360deg); }
+  }
+}

@@ -75,6 +75,7 @@
 .nav-link {
   display: block;
   padding: 0.3125rem 0.75rem;
+  margin-bottom: 2px;
   border-radius: var(--radius-md);
   font-size: 0.875rem;
   color: var(--muted-foreground);

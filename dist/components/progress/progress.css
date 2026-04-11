@@ -1,0 +1,56 @@
+@layer components {
+  .progress {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    height: 0.5rem;
+    border: none;
+    border-radius: 9999px;
+    overflow: hidden;
+    background-color: var(--secondary);
+  }
+
+  /* WebKit (Chrome, Safari, Edge) */
+  .progress::-webkit-progress-bar {
+    background-color: var(--secondary);
+    border-radius: 9999px;
+  }
+
+  .progress::-webkit-progress-value {
+    background-color: var(--primary);
+    border-radius: 9999px;
+    transition: width 300ms ease;
+  }
+
+  /* Firefox */
+  .progress::-moz-progress-bar {
+    background-color: var(--primary);
+    border-radius: 9999px;
+  }
+
+  /* Indeterminate state */
+  .progress:indeterminate {
+    background: linear-gradient(
+      90deg,
+      var(--secondary) 0%,
+      var(--primary) 50%,
+      var(--secondary) 100%
+    );
+    background-size: 200% 100%;
+    animation: progress-indeterminate 1.5s linear infinite;
+  }
+
+  .progress:indeterminate::-webkit-progress-bar {
+    background-color: transparent;
+  }
+
+  .progress:indeterminate::-moz-progress-bar {
+    background-color: transparent;
+  }
+
+  @keyframes progress-indeterminate {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+}

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Data Attribute API — shadcn-html</title>
+  <script src="js/layout.js"></script>
+  <link rel="stylesheet" href="../theme/semantic-tokens.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
+  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <link rel="stylesheet" href="../components/button/button.css">
+  <link rel="stylesheet" href="../components/card/card.css">
+  <link rel="stylesheet" href="../components/dialog/dialog.css">
+  <link rel="stylesheet" href="../components/badge/badge.css">
+  <link rel="stylesheet" href="../components/input/input.css">
+  <link rel="stylesheet" href="../components/accordion/accordion.css">
+  <link rel="stylesheet" href="../components/tabs/tabs.css">
+  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
+  <link rel="stylesheet" href="../components/toast/toast.css">
+  <link rel="stylesheet" href="../components/combobox/combobox.css">
+  <link rel="stylesheet" href="../components/sheet/sheet.css">
+  <link rel="stylesheet" href="../components/toggle/toggle.css">
+  <link rel="stylesheet" href="../components/icon/icon.css">
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/separator/separator.css">
+  <link rel="stylesheet" href="../components/link/link.css">
+  <link rel="stylesheet" href="../components/label/label.css">
+  <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
+  <link rel="stylesheet" href="../components/button-group/button-group.css">
+  <link rel="stylesheet" href="../components/toolbar/toolbar.css">
+  <link rel="stylesheet" href="../components/textarea/textarea.css">
+  <link rel="stylesheet" href="../components/checkbox/checkbox.css">
+  <link rel="stylesheet" href="../components/radio/radio.css">
+  <link rel="stylesheet" href="../components/switch/switch.css">
+  <link rel="stylesheet" href="../components/slider/slider.css">
+  <link rel="stylesheet" href="../components/select/select.css">
+  <link rel="stylesheet" href="../components/number-input/number-input.css">
+  <link rel="stylesheet" href="../components/file-input/file-input.css">
+  <link rel="stylesheet" href="../components/color-picker/color-picker.css">
+  <link rel="stylesheet" href="../components/date-picker/date-picker.css">
+  <link rel="stylesheet" href="../components/form/form.css">
+  <link rel="stylesheet" href="../components/tag/tag.css">
+  <link rel="stylesheet" href="../components/avatar/avatar.css">
+  <link rel="stylesheet" href="../components/image/image.css">
+  <link rel="stylesheet" href="../components/list/list.css">
+  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
+  <link rel="stylesheet" href="../components/statistic/statistic.css">
+  <link rel="stylesheet" href="../components/table/table.css">
+  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
+  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
+  <link rel="stylesheet" href="../components/timeline/timeline.css">
+  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="../components/calendar/calendar.css">
+  <link rel="stylesheet" href="../components/spinner/spinner.css">
+  <link rel="stylesheet" href="../components/skeleton/skeleton.css">
+  <link rel="stylesheet" href="../components/progress/progress.css">
+  <link rel="stylesheet" href="../components/alert/alert.css">
+  <link rel="stylesheet" href="../components/alert-dialog/alert-dialog.css">
+  <link rel="stylesheet" href="../components/popover/popover.css">
+  <link rel="stylesheet" href="../components/tooltip/tooltip.css">
+  <link rel="stylesheet" href="../components/context-menu/context-menu.css">
+  <link rel="stylesheet" href="../components/command/command.css">
+  <link rel="stylesheet" href="../components/breadcrumb/breadcrumb.css">
+  <link rel="stylesheet" href="../components/pagination/pagination.css">
+  <link rel="stylesheet" href="../components/steps/steps.css">
+  <link rel="stylesheet" href="../components/navigation-menu/navigation-menu.css">
+  <link rel="stylesheet" href="../components/aspect-ratio/aspect-ratio.css">
+  <link rel="stylesheet" href="../components/container/container.css">
+  <link rel="stylesheet" href="../components/scroll-area/scroll-area.css">
+  <link rel="stylesheet" href="../components/carousel/carousel.css">
+  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
+  <link rel="stylesheet" href="../components/sortable/sortable.css">
+</head>
+<body>
+  <site-header></site-header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <site-nav></site-nav>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
+<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / data-attribute-api</p>
+  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Data Attribute API</h1>
+  <p class="text-muted-foreground leading-relaxed mb-10" style="max-width:38rem;">
+    In React or Solid, you configure components with props. In shadcn-html, data attributes are your props.
+    Every component uses a single CSS class to declare <em>what</em> it is, and <code>data-*</code> attributes to declare <em>which version</em> — variant, size, orientation, and behavior.
+  </p>
+
+  <!-- ── The Mental Model ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Props → Data Attributes</h2>
+  <p class="text-sm text-muted-foreground mb-5">If you came from a component framework, this mapping should feel familiar.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">React / Solid (props)</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;"><code>&lt;Button
+  variant="destructive"
+  size="lg"
+&gt;
+  Delete
+&lt;/Button&gt;</code></pre>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">shadcn-html (data attributes)</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;"><code>&lt;button class="btn"
+  data-variant="destructive"
+  data-size="lg"
+&gt;
+  Delete
+&lt;/button&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ── How it works ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">How it works</h2>
+  <p class="text-sm text-muted-foreground mb-5">Every component has exactly two layers in its markup: a class and its data attributes.</p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.75rem 1.5rem;margin-bottom:1.5rem;align-items:baseline;">
+    <code style="font-size:0.8125rem;font-weight:600;">class</code>
+    <span class="text-sm text-muted-foreground">Identifies <strong>what</strong> the element is — <code>.btn</code>, <code>.badge</code>, <code>.card</code>, <code>.dialog</code>. One class per component. This is the base selector in CSS.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">data-variant</code>
+    <span class="text-sm text-muted-foreground">Selects the visual style — <code>default</code>, <code>outline</code>, <code>ghost</code>, <code>destructive</code>, etc. Think of it as the component's "skin."</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">data-size</code>
+    <span class="text-sm text-muted-foreground">Selects the size — <code>sm</code>, <code>lg</code>, <code>icon</code>, etc. Controls height, padding, and font-size.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">data-*</code>
+    <span class="text-sm text-muted-foreground">Additional axes like <code>data-orientation</code>, <code>data-side</code>, <code>data-position</code> — each controls one
+    independent dimension. Compose freely.</span>
+  </div>
+  <p class="text-sm text-muted-foreground mb-8">The CSS combines these with attribute selectors: <code>.btn[data-variant="outline"]</code>. No modifier classes, no BEM suffixes, no utility chains.</p>
+
+  <div class="sep"></div>
+
+  <!-- ── Why not modifier classes? ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Why data attributes instead of modifier classes?</h2>
+  <p class="text-sm text-muted-foreground mb-5">Traditional systems like Bootstrap and BEM use modifier classes: <code>.btn-primary</code>, <code>.btn--lg</code>, <code>.btn-outline-danger</code>. Here's why we don't.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--destructive);">✗ Modifier classes</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;"><code>&lt;button class="btn btn-destructive btn-lg"&gt;
+  Delete
+&lt;/button&gt;
+
+<span class="dim">/* Conflicting specificity, combinatorial explosion */</span>
+.btn-primary { ... }
+.btn-lg { ... }
+.btn-primary.btn-lg { ... }  <span class="dim">/* needed? */</span></code></pre>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--chart-1);">✓ Data attributes</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;"><code>&lt;button class="btn"
+  data-variant="destructive" data-size="lg"&gt;
+  Delete
+&lt;/button&gt;
+
+<span class="dim">/* Flat specificity, independent axes */</span>
+.btn[data-variant="destructive"] { ... }
+.btn[data-size="lg"] { ... }
+<span class="dim">/* no combo selector needed */</span></code></pre>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:2.5rem;align-items:baseline;">
+    <span style="font-weight:600;font-size:0.8125rem;">Flat specificity</span>
+    <span class="text-sm text-muted-foreground">All variant/size selectors have equal weight. No specificity wars, no <code>!important</code>.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Independent axes</span>
+    <span class="text-sm text-muted-foreground">Variant and size combine freely without needing combinatorial class names like <code>.btn-outline-lg</code>.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Uniform API</span>
+    <span class="text-sm text-muted-foreground">Every component follows the same pattern. Learn it once, apply everywhere. Easy for AI to generate.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Clean class attribute</span>
+    <span class="text-sm text-muted-foreground">The <code>class</code> attribute stays a single token — <code>class="btn"</code> — not a long chain of modifiers.</span>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ── Styling Attributes ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Styling attributes</h2>
+  <p class="text-sm text-muted-foreground mb-5">These are set in your HTML and read by CSS. They control the visual appearance of components.</p>
+
+  <!-- data-variant -->
+  <h3 style="font-size:1rem;font-weight:500;margin:0 0 0.5rem;"><code>data-variant</code></h3>
+  <p class="text-sm text-muted-foreground mb-3">The most common attribute. Controls the visual style of a component.</p>
+  <div class="preview mb-4">
+    <div class="flex gap-3 flex-wrap justify-center">
+      <button class="btn" data-variant="default">Default</button>
+      <button class="btn" data-variant="secondary">Secondary</button>
+      <button class="btn" data-variant="outline">Outline</button>
+      <button class="btn" data-variant="ghost">Ghost</button>
+      <button class="btn" data-variant="destructive">Destructive</button>
+      <button class="btn" data-variant="link">Link</button>
+    </div>
+  </div>
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">data-variant values by component</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Component</th><th>Values</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>.btn</code></td><td><code>default</code> · <code>secondary</code> · <code>outline</code> · <code>ghost</code> · <code>destructive</code> · <code>link</code></td></tr>
+          <tr><td><code>.badge</code></td><td><code>default</code> · <code>secondary</code> · <code>outline</code></td></tr>
+          <tr><td><code>.tag</code></td><td><code>default</code> · <code>secondary</code> · <code>outline</code></td></tr>
+          <tr><td><code>.alert</code></td><td><code>default</code> · <code>destructive</code></td></tr>
+          <tr><td><code>.toggle</code></td><td><code>default</code> · <code>outline</code></td></tr>
+          <tr><td><code>.toggle-group</code></td><td><code>default</code> · <code>outline</code></td></tr>
+          <tr><td><code>.toast</code></td><td><code>default</code> · <code>destructive</code> · <code>success</code> · <code>warning</code> · <code>info</code></td></tr>
+          <tr><td><code>.link</code></td><td><code>default</code> · <code>muted</code></td></tr>
+          <tr><td><code>.tab-list</code></td><td><code>default</code> · <code>line</code></td></tr>
+          <tr><td><code>.list</code></td><td><code>default</code> · <code>none</code> · <code>icon</code></td></tr>
+          <tr><td><code>.dropdown-item</code></td><td><code>default</code> · <code>destructive</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- data-size -->
+  <h3 style="font-size:1rem;font-weight:500;margin:0 0 0.5rem;"><code>data-size</code></h3>
+  <p class="text-sm text-muted-foreground mb-3">Controls height, padding, and sometimes font-size.</p>
+  <div class="preview mb-4">
+    <div class="flex gap-3 flex-wrap items-center justify-center">
+      <button class="btn" data-size="xs">Extra Small</button>
+      <button class="btn" data-size="sm">Small</button>
+      <button class="btn">Default</button>
+      <button class="btn" data-size="lg">Large</button>
+    </div>
+  </div>
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">data-size values by component</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Component</th><th>Values</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>.btn</code></td><td><code>xs</code> · <code>sm</code> · default · <code>lg</code> · <code>icon</code> · <code>icon-sm</code> · <code>icon-lg</code></td></tr>
+          <tr><td><code>.input</code></td><td><code>sm</code> · default · <code>lg</code></td></tr>
+          <tr><td><code>.select</code></td><td><code>sm</code> · default · <code>lg</code></td></tr>
+          <tr><td><code>.dialog</code></td><td><code>sm</code> · default · <code>lg</code> · <code>xl</code> · <code>full</code></td></tr>
+          <tr><td><code>.toggle</code></td><td><code>sm</code> · default · <code>lg</code></td></tr>
+          <tr><td><code>.toggle-group</code></td><td><code>sm</code> · default · <code>lg</code></td></tr>
+          <tr><td><code>.avatar</code></td><td><code>sm</code> · default · <code>lg</code></td></tr>
+          <tr><td><code>.spinner</code></td><td><code>sm</code> · default · <code>lg</code></td></tr>
+          <tr><td><code>.switch</code></td><td><code>sm</code> · default</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Other styling attributes -->
+  <h3 style="font-size:1rem;font-weight:500;margin:0 0 0.5rem;">Other styling attributes</h3>
+  <p class="text-sm text-muted-foreground mb-3">Some components have additional axes beyond variant and size.</p>
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">additional styling data attributes</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Attribute</th><th>Component</th><th>Values</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>data-orientation</code></td><td><code>.btn-group</code> · <code>.sep</code> · <code>.toolbar</code></td><td><code>horizontal</code> · <code>vertical</code></td><td>Layout direction</td></tr>
+          <tr><td><code>data-side</code></td><td><code>.sheet</code> (dialog)</td><td><code>left</code> · <code>right</code> · <code>top</code> · <code>bottom</code></td><td>Slide-in direction</td></tr>
+          <tr><td><code>data-position</code></td><td><code>.toast-container</code></td><td><code>top-left</code> · <code>top-right</code> · <code>top-center</code> · <code>bottom-left</code> · <code>bottom-right</code> · <code>bottom-center</code></td><td>Viewport placement</td></tr>
+          <tr><td><code>data-ratio</code></td><td><code>.image</code></td><td><code>1/1</code> · <code>4/3</code> · <code>16/9</code> · <code>21/9</code></td><td>Aspect ratio</td></tr>
+          <tr><td><code>data-layout</code></td><td><code>.descriptions</code></td><td><code>horizontal</code> · <code>vertical</code></td><td>Term/definition layout</td></tr>
+          <tr><td><code>data-trend</code></td><td><code>.stat-trend</code></td><td><code>up</code> · <code>down</code></td><td>Trend indicator color</td></tr>
+          <tr><td><code>data-spacing</code></td><td><code>.toggle-group</code></td><td>(boolean)</td><td>Adds gap between toggles</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ── Behavioral Attributes ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Behavioral attributes</h2>
+  <p class="text-sm text-muted-foreground mb-5">These wire up JavaScript interactions. They follow the pattern <code>data-{component}-trigger</code> and <code>data-{component}-close</code> — connecting a button to the element it controls.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">trigger / close pattern</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">&lt;!-- The trigger: its value is the ID of the target --&gt;</span>
+&lt;button class="btn" data-dialog-trigger="confirm"&gt;
+  Open Dialog
+&lt;/button&gt;
+
+<span class="dim">&lt;!-- The target: matched by ID --&gt;</span>
+&lt;dialog id="confirm" class="dialog"&gt;
+  &lt;div class="dialog-content"&gt;
+    &lt;p&gt;Are you sure?&lt;/p&gt;
+    <span class="dim">&lt;!-- The close: placed inside, closes the nearest parent --&gt;</span>
+    &lt;button class="btn" data-dialog-close&gt;Cancel&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">all behavioral data attributes</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Attribute</th><th>Component</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>data-dialog-trigger</code></td><td>Dialog</td><td>Opens the <code>&lt;dialog&gt;</code> matching the attribute value</td></tr>
+          <tr><td><code>data-dialog-close</code></td><td>Dialog</td><td>Closes the parent dialog</td></tr>
+          <tr><td><code>data-alert-dialog-trigger</code></td><td>Alert Dialog</td><td>Opens an alert dialog by ID</td></tr>
+          <tr><td><code>data-alert-dialog-close</code></td><td>Alert Dialog</td><td>Closes the parent alert dialog</td></tr>
+          <tr><td><code>data-sheet-trigger</code></td><td>Sheet</td><td>Opens a sheet (drawer) by ID</td></tr>
+          <tr><td><code>data-sheet-close</code></td><td>Sheet</td><td>Closes the parent sheet</td></tr>
+          <tr><td><code>data-dropdown-trigger</code></td><td>Dropdown</td><td>Toggles a popover dropdown menu</td></tr>
+          <tr><td><code>data-action</code></td><td>Number Input</td><td><code>increment</code> / <code>decrement</code> buttons</td></tr>
+          <tr><td><code>data-type</code></td><td>Accordion · Toggle Group</td><td><code>single</code> or <code>multiple</code> selection mode</td></tr>
+          <tr><td><code>data-collapsible</code></td><td>Accordion</td><td>Allows all panels to be closed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ── State Attributes ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">State attributes</h2>
+  <p class="text-sm text-muted-foreground mb-5">These are set and removed by JavaScript at runtime to represent UI state. CSS reads them to apply state-specific styles. You don't write these in markup — the JS manages them.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">JS-managed state attributes</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Attribute</th><th>Component</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>data-highlighted</code></td><td>Dropdown · Combobox</td><td>Marks the currently keyboard-highlighted item</td></tr>
+          <tr><td><code>data-error</code></td><td>Avatar</td><td>Set when image fails to load, triggers fallback display</td></tr>
+          <tr><td><code>data-placeholder</code></td><td>Combobox</td><td>Present when no selection has been made</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ── ARIA Attributes ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">ARIA attributes as styling hooks</h2>
+  <p class="text-sm text-muted-foreground mb-5">Where the browser natively provides state APIs — like <code>aria-selected</code>, <code>aria-expanded</code>, or <code>disabled</code> — we style against those directly. No data attributes are needed because the browser already exposes the state.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">native state as CSS selectors</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">/* Tab is selected — use ARIA, not a data attribute */</span>
+.tab-trigger[aria-selected="true"] {
+  color: var(--foreground);
+  border-color: var(--primary);
+}
+
+<span class="dim">/* Toggle is pressed — native ARIA attribute */</span>
+.toggle[aria-pressed="true"] {
+  background: var(--accent);
+}
+
+<span class="dim">/* Button is disabled — native HTML attribute */</span>
+.btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}</code></pre>
+  </div>
+  <p class="text-sm text-muted-foreground mb-8">
+    <strong>Rule of thumb:</strong> if the browser has a native attribute for a state (<code>disabled</code>,
+    <code>aria-selected</code>, <code>aria-expanded</code>, <code>open</code>),
+    we style against that. Data attributes are only used when no native equivalent exists.
+  </p>
+
+  <div class="sep"></div>
+
+  <!-- ── Quick reference cheat sheet ── -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">The pattern at a glance</h2>
+  <p class="text-sm text-muted-foreground mb-5">Every component follows this structure. Once you learn one, you know them all.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">the universal component pattern</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;"><code>&lt;element
+  class="{component}"              <span class="dim">← what it is (CSS base selector)</span>
+  data-variant="{variant}"         <span class="dim">← visual style (optional, has default)</span>
+  data-size="{size}"               <span class="dim">← dimensions (optional, has default)</span>
+  data-{axis}="{value}"            <span class="dim">← other config axes (optional)</span>
+  data-{component}-trigger="{id}"  <span class="dim">← JS behavior wiring (interactive only)</span>
+  aria-*/disabled/open             <span class="dim">← native state (styled by CSS)</span>
+&gt;
+  content
+&lt;/element&gt;</code></pre>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">button</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;font-size:0.75rem;"><code>&lt;button class="btn"
+  data-variant="outline"
+  data-size="sm"&gt;
+  Edit
+&lt;/button&gt;</code></pre>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">badge</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;font-size:0.75rem;"><code>&lt;span class="badge"
+  data-variant="secondary"&gt;
+  New
+&lt;/span&gt;</code></pre>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">sheet</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;font-size:0.75rem;"><code>&lt;dialog class="sheet"
+  data-side="left"
+  id="nav"&gt;
+  ...
+&lt;/dialog&gt;</code></pre>
+    </div>
+  </div>
+
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+  <script src="../components/accordion/accordion.js" defer></script>
+  <script src="../components/combobox/combobox.js" defer></script>
+  <script src="../components/dialog/dialog.js" defer></script>
+  <script src="../components/dropdown/dropdown.js" defer></script>
+  <script src="../components/sheet/sheet.js" defer></script>
+  <script src="../components/tabs/tabs.js" defer></script>
+  <script src="../components/toast/toast.js" defer></script>
+  <script src="../components/toggle/toggle.js" defer></script>
+  <script src="../components/toggle-group/toggle-group.js" defer></script>
+  <script src="../components/toolbar/toolbar.js" defer></script>
+  <script src="../components/number-input/number-input.js" defer></script>
+  <script src="../components/color-picker/color-picker.js" defer></script>
+  <script src="../components/tag/tag.js" defer></script>
+  <script src="../components/avatar/avatar.js" defer></script>
+  <script src="../components/tree-view/tree-view.js" defer></script>
+  <script src="../components/calendar/calendar.js" defer></script>
+  <script src="../components/alert-dialog/alert-dialog.js" defer></script>
+    <script src="../components/popover/popover.js" defer></script>
+  <script src="../components/tooltip/tooltip.js" defer></script>
+  <script src="../components/context-menu/context-menu.js" defer></script>
+  <script src="../components/command/command.js" defer></script>
+  <script src="../components/navigation-menu/navigation-menu.js" defer></script>
+  <script src="../components/carousel/carousel.js" defer></script>
+  <script src="../components/sortable/sortable.js" defer></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

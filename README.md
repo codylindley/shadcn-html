@@ -52,10 +52,16 @@ Input · Textarea · Checkbox · Radio Group · Switch · Slider · Select · Nu
 Badge · Tag · Avatar · Card · Image · List · Descriptions · Statistic · Table · Empty State · Collapsible · Timeline · Tree View · Calendar
 
 ### Feedback & Status
-Toast
+Spinner · Skeleton · Progress · Alert · Alert Dialog · Toast
 
 ### Overlays
-Dialog · Sheet · Accordion · Dropdown Menu · Tabs
+Popover · Tooltip · Context Menu · Dialog · Sheet · Accordion · Command · Dropdown Menu · Tabs
+
+### Navigation
+Breadcrumb · Pagination · Steps · Navigation Menu
+
+### Layout
+Aspect Ratio · Container · Scroll Area · Carousel · Sidebar · Sortable
 
 ## Project structure
 
