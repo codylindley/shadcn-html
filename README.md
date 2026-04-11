@@ -117,4 +117,4 @@ Built by [Cody Lindley](https://codylindley.com)
 
 ## License
 
-Free to use for personal and commercial projects.
+Licensed under the [MIT License](LICENSE).
