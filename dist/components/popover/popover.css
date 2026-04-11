@@ -1,5 +1,7 @@
 @layer components {
   .popover {
+    position: fixed;
+    inset: auto;
     margin: 0;
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
@@ -11,6 +13,12 @@
     opacity: 0;
     transform: translateY(-4px);
     transition: opacity 150ms ease, transform 150ms ease, display 150ms allow-discrete;
+
+    /* -- Anchor positioning -- */
+    top: anchor(bottom);
+    left: anchor(left);
+    margin-top: 4px;
+    position-try-fallbacks: flip-block;
 
     &:popover-open {
       opacity: 1;

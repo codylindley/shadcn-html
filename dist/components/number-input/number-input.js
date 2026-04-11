@@ -7,17 +7,13 @@ document.querySelectorAll('.number-input').forEach((wrapper) => {
   const incBtn = wrapper.querySelector('[data-action="increment"]');
   if (!input) return;
 
-  const update = (delta) => {
-    const step = parseFloat(input.step) || 1;
-    const min = input.min !== '' ? parseFloat(input.min) : -Infinity;
-    const max = input.max !== '' ? parseFloat(input.max) : Infinity;
-    const val = parseFloat(input.value) || 0;
-    const next = Math.round((val + delta * step) * 1e10) / 1e10;
-    if (next >= min && next <= max) {
-      input.value = next;
+  const update = (direction) => {
+    try {
+      if (direction > 0) input.stepUp();
+      else input.stepDown();
       input.dispatchEvent(new Event('input', { bubbles: true }));
       input.dispatchEvent(new Event('change', { bubbles: true }));
-    }
+    } catch(e) { /* min/max boundary */ }
   };
 
   if (decBtn) decBtn.addEventListener('click', () => { update(-1); });

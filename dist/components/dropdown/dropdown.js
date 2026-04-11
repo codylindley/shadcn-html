@@ -6,13 +6,11 @@ document.querySelectorAll('[data-dropdown-trigger]').forEach((trigger) => {
     const menu = document.getElementById(trigger.dataset.dropdownTrigger);
     if (!menu) return;
 
-    const positionMenu = () => {
-      const rect = trigger.getBoundingClientRect();
-      menu.style.position = 'fixed';
-      menu.style.top = `${rect.bottom + 4}px`;
-      menu.style.left = `${rect.left}px`;
-      menu.style.margin = '0';
-    };
+    // CSS anchor positioning - unique name per trigger-menu pair
+    const anchorId = `--dropdown-${menu.id}`;
+    trigger.style.anchorName = anchorId;
+    menu.style.positionAnchor = anchorId;
+
     const getItems = () => {
       return Array.from(menu.querySelectorAll('[role="menuitem"]:not(:disabled), [role="menuitemcheckbox"]:not(:disabled), [role="menuitemradio"]:not(:disabled)'));
     };
@@ -20,7 +18,7 @@ document.querySelectorAll('[data-dropdown-trigger]').forEach((trigger) => {
       getItems().forEach((i) => { i.removeAttribute('data-highlighted'); });
       if (item) { item.setAttribute('data-highlighted', ''); item.focus(); }
     };
-    trigger.addEventListener('click', () => { positionMenu(); menu.togglePopover(); });
+    trigger.addEventListener('click', () => { menu.togglePopover(); });
     menu.addEventListener('toggle', (e) => {
       const open = e.newState === 'open';
       trigger.setAttribute('aria-expanded', open);

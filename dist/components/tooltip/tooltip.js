@@ -1,16 +1,16 @@
 // -- Tooltip --------------------------------------------------
-// Positions and shows/hides tooltip popovers on hover and focus.
+// CSS anchor positioning + hover/focus show/hide for tooltip popovers.
 
 document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
   const tip = document.getElementById(trigger.dataset.tooltipTrigger);
   if (!tip) return;
-  const show = () => {
-    const rect = trigger.getBoundingClientRect();
-    tip.style.position = 'fixed';
-    tip.style.top = `${rect.top - tip.offsetHeight - 6}px`;
-    tip.style.left = `${rect.left + rect.width / 2 - tip.offsetWidth / 2}px`;
-    tip.showPopover();
-  };
+
+  // CSS anchor positioning - unique name per trigger-tooltip pair
+  const anchorId = `--tooltip-${tip.id}`;
+  trigger.style.anchorName = anchorId;
+  tip.style.positionAnchor = anchorId;
+
+  const show = () => { tip.showPopover(); };
   const hide = () => { try { tip.hidePopover(); } catch(e) {} };
   trigger.addEventListener('mouseenter', show);
   trigger.addEventListener('mouseleave', hide);

@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Usage: ./scripts/deploy.sh [patch|minor|major]
-# Default: patch
+# Usage: ./scripts/deploy.sh [patch|minor|major] [alpha|beta|rc|release]
+# Default: patch, preserving current prerelease suffix
+#
+# Examples:
+#   ./scripts/deploy.sh              → 0.3.0-alpha  → 0.3.1-alpha  (patch bump, keep suffix)
+#   ./scripts/deploy.sh minor        → 0.3.1-alpha  → 0.4.0-alpha  (minor bump, keep suffix)
+#   ./scripts/deploy.sh patch beta   → 0.4.0-alpha  → 0.4.1-beta   (patch bump, change to beta)
+#   ./scripts/deploy.sh patch release→ 0.4.1-beta   → 0.4.2        (patch bump, drop suffix)
 #
 # This is a RELEASE deploy. It:
 #   1. Bumps the version in package.json and layout.js
@@ -15,6 +21,7 @@ set -euo pipefail
 #   npm run push
 
 BUMP_TYPE="${1:-patch}"
+PHASE="${2:-}"  # alpha, beta, rc, release, or empty (keep current)
 
 # Ensure we're on dev
 CURRENT_BRANCH=$(git branch --show-current)
@@ -29,20 +36,35 @@ if [[ -n $(git status --porcelain) ]]; then
   exit 1
 fi
 
-# Read current version from package.json
-OLD_VERSION=$(node -p "require('./package.json').version")
+# Read current version from package.json (may include prerelease suffix like -alpha)
+FULL_VERSION=$(node -p "require('./package.json').version")
 
-# Compute new version
-IFS='.' read -r MAJOR MINOR PATCH <<< "$OLD_VERSION"
+# Split into base version and prerelease suffix
+BASE_VERSION=$(echo "$FULL_VERSION" | sed 's/-.*//')
+CURRENT_SUFFIX=$(echo "$FULL_VERSION" | grep -o '\-.*' || true)
+
+# Compute new base version
+IFS='.' read -r MAJOR MINOR PATCH <<< "$BASE_VERSION"
 case "$BUMP_TYPE" in
   major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
   minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
   patch) PATCH=$((PATCH + 1)) ;;
   *) echo "❌ Invalid bump type: $BUMP_TYPE (use patch, minor, or major)"; exit 1 ;;
 esac
-NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+NEW_BASE="${MAJOR}.${MINOR}.${PATCH}"
 
-echo "📦 Bumping version: v${OLD_VERSION} → v${NEW_VERSION} (${BUMP_TYPE})"
+# Determine prerelease suffix for new version
+if [[ "$PHASE" == "release" ]]; then
+  NEW_SUFFIX=""
+elif [[ -n "$PHASE" ]]; then
+  NEW_SUFFIX="-${PHASE}"
+else
+  NEW_SUFFIX="$CURRENT_SUFFIX"  # keep current suffix
+fi
+
+NEW_VERSION="${NEW_BASE}${NEW_SUFFIX}"
+
+echo "📦 Bumping version: v${FULL_VERSION} → v${NEW_VERSION} (${BUMP_TYPE}${PHASE:+, phase: $PHASE})"
 
 # Update package.json
 node -e "
@@ -52,8 +74,8 @@ node -e "
   fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
 "
 
-# Update version in site header (layout.js)
-sed -i '' "s/v${OLD_VERSION}/v${NEW_VERSION}/g" dist/documentation/js/layout.js
+# Update version in site header (layout.js) — replaces full version including suffix
+sed -i '' "s/v${FULL_VERSION}/v${NEW_VERSION}/g" dist/documentation/js/layout.js
 
 echo "✅ Updated version in package.json and layout.js"
 

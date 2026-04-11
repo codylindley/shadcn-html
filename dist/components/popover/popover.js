@@ -1,19 +1,13 @@
 // -- Popover --------------------------------------------------
-// Positions popover content relative to its trigger.
+// CSS anchor positioning for popover components.
 
 document.querySelectorAll('[popovertarget]').forEach((trigger) => {
   const id = trigger.getAttribute('popovertarget');
   const popover = document.getElementById(id);
   if (!popover || !popover.classList.contains('popover')) return;
-  const position = () => {
-    const rect = trigger.getBoundingClientRect();
-    popover.style.position = 'fixed';
-    popover.style.top = `${rect.bottom + 4}px`;
-    popover.style.left = `${rect.left}px`;
-  };
-  trigger.addEventListener('click', (e) => {
-    e.preventDefault();
-    position();
-    popover.togglePopover();
-  });
+
+  // CSS anchor positioning - unique name per trigger-popover pair
+  const anchorId = `--popover-${id}`;
+  trigger.style.anchorName = anchorId;
+  popover.style.positionAnchor = anchorId;
 });

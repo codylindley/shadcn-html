@@ -1,6 +1,6 @@
 {
   "name": "shadcn-html",
-  "version": "0.3.0",
+  "version": "0.3.0-alpha",
   "private": true,
   "description": "The AI prototyping substrate — themeable semantic HTML, modern CSS, vanilla JS",
   "scripts": {
@@ -9,7 +9,10 @@
     "push": "./scripts/push.sh",
     "deploy": "./scripts/deploy.sh",
     "deploy:minor": "./scripts/deploy.sh minor",
-    "deploy:major": "./scripts/deploy.sh major"
+    "deploy:major": "./scripts/deploy.sh major",
+    "deploy:beta": "./scripts/deploy.sh patch beta",
+    "deploy:rc": "./scripts/deploy.sh patch rc",
+    "deploy:release": "./scripts/deploy.sh patch release"
   },
   "devDependencies": {
     "tailwindcss": "^4.2.2",

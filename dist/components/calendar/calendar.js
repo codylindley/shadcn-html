@@ -1,11 +1,12 @@
 // -- Calendar -------------------------------------------------
 // Interactive calendar grid with month navigation and day selection.
 
-const DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-];
+const DAYS = Array.from({ length: 7 }, (_, i) =>
+  new Intl.DateTimeFormat(undefined, { weekday: 'short' }).format(new Date(2024, 0, i))
+);
+const MONTHS = Array.from({ length: 12 }, (_, i) =>
+  new Intl.DateTimeFormat(undefined, { month: 'long' }).format(new Date(2024, i, 1))
+);
 
 const daysInMonth = (year, month) => new Date(year, month + 1, 0).getDate();
 

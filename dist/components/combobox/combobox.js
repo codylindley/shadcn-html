@@ -14,16 +14,13 @@ document.querySelectorAll('.combobox').forEach((wrapper) => {
     const placeholder = valueEl ? valueEl.getAttribute('data-placeholder') || '' : '';
     let highlighted = -1;
 
+    // CSS anchor positioning - unique name per trigger-popover pair
+    const anchorId = `--combobox-${popover.id}`;
+    trigger.style.anchorName = anchorId;
+    popover.style.positionAnchor = anchorId;
+
     const getVisibleItems = () => allItems.filter((item) => !item.hidden && item.getAttribute('aria-disabled') !== 'true');
-    const positionPopover = () => {
-      const rect = trigger.getBoundingClientRect();
-      popover.style.position = 'fixed';
-      popover.style.top = `${rect.bottom + 4}px`;
-      popover.style.left = `${rect.left}px`;
-      popover.style.width = `${rect.width}px`;
-    };
     const open = () => {
-      positionPopover();
       popover.showPopover();
       trigger.setAttribute('aria-expanded', 'true');
       searchInput.value = '';

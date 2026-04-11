@@ -4,6 +4,7 @@
     overflow-x: auto;
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
+    container-type: inline-size;
   }
 
   .table {
@@ -69,5 +70,11 @@
 
   tfoot .table-cell:last-child {
     border-bottom-right-radius: var(--radius-lg);
+  }
+
+  /* -- Container query: compact table in narrow containers -- */
+  @container (max-width: 480px) {
+    .table-head,
+    .table-cell { padding: 0.5rem 0.75rem; font-size: 0.8125rem; }
   }
 }

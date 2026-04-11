@@ -1,5 +1,7 @@
 @layer components {
   .tooltip {
+    position: fixed;
+    inset: auto;
     margin: 0;
     border: none;
     border-radius: var(--radius-md);
@@ -14,6 +16,12 @@
     opacity: 0;
     transform: translateY(-2px);
     transition: opacity 100ms ease, transform 100ms ease, display 100ms allow-discrete;
+
+    /* -- Anchor positioning (above trigger) -- */
+    bottom: anchor(top);
+    justify-self: anchor-center;
+    margin-bottom: 6px;
+    position-try-fallbacks: flip-block;
 
     &:popover-open { opacity: 1; transform: translateY(0); }
   }

@@ -18,7 +18,7 @@ document.querySelectorAll('.tree[role="tree"]').forEach((tree) => {
       if (!target) return;
 
       const allItems = Array.from(tree.querySelectorAll('.tree-branch-trigger, .tree-leaf'));
-      const visibleItems = allItems.filter((item) => item.offsetParent !== null);
+      const visibleItems = allItems.filter((item) => item.checkVisibility());
       const index = visibleItems.indexOf(target);
 
       switch (e.key) {

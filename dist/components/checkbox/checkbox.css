@@ -56,7 +56,7 @@
       cursor: not-allowed;
     }
 
-    &[aria-invalid="true"] {
+    &:is([aria-invalid="true"], :user-invalid) {
       border-color: var(--destructive);
     }
   }

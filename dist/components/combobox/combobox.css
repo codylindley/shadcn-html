@@ -30,6 +30,8 @@
   }
 
   .combobox-content {
+    position: fixed;
+    inset: auto;
     margin: 0;
     padding: 0;
     background-color: var(--popover);
@@ -38,6 +40,13 @@
     border-radius: var(--radius-lg);
     box-shadow: 0 4px 16px oklch(0 0 0 / 0.12);
     overflow: hidden;
+
+    /* -- Anchor positioning -- */
+    top: anchor(bottom);
+    left: anchor(left);
+    width: anchor-size(width);
+    margin-top: 4px;
+    position-try-fallbacks: flip-block;
   }
 
   .combobox-search {

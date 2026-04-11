@@ -28,7 +28,7 @@
     }
 
     /* -- Invalid state --------------------------------------- */
-    &[aria-invalid="true"] {
+    &:is([aria-invalid="true"], :user-invalid) {
       border-color: var(--destructive);
 
       &:focus {
