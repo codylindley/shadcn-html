@@ -44,6 +44,7 @@
       localStorage.removeItem(STORAGE_KEY);
       window.__activeColorTheme = 'default';
       updateActiveState();
+      updateFavicon();
       return;
     }
 
@@ -79,6 +80,7 @@
     localStorage.setItem(STORAGE_KEY, themeId);
     window.__activeColorTheme = themeId;
     updateActiveState();
+    updateFavicon();
   }
 
   function resetTheme() {
@@ -102,6 +104,25 @@
     }
   }
 
+  /* -- Dynamic favicon --------------------------------------- */
+  /* Reads --primary / --primary-foreground from live CSS and   */
+  /* generates an SVG favicon as a data URI so the tab icon     */
+  /* updates when the color theme or dark mode changes.         */
+  var FAVICON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">' +
+    '<rect width="32" height="32" rx="6" fill="{{BG}}"/>' +
+    '<path fill="{{FG}}" d="M11 8h2.8v7.1c.5-.7 1.1-1.2 1.8-1.5.7-.3 1.4-.5 2.1-.5 1.2 0 2.1.4 2.8 1.1.7.8 1 1.8 1 3.1V24h-2.8v-6.3c0-.8-.2-1.4-.6-1.8-.4-.4-.9-.6-1.6-.6-.8 0-1.4.3-1.9.8-.5.5-.8 1.2-.8 2V24H11V8z"/>' +
+    '</svg>';
+
+  function updateFavicon() {
+    var style = getComputedStyle(document.documentElement);
+    var bg = style.getPropertyValue('--primary').trim();
+    var fg = style.getPropertyValue('--primary-foreground').trim();
+    if (!bg || !fg) return;
+    var svg = FAVICON_SVG.replace('{{BG}}', bg).replace('{{FG}}', fg);
+    var link = document.querySelector('link[rel="icon"]');
+    if (link) link.href = 'data:image/svg+xml,' + encodeURIComponent(svg);
+  }
+
   // Apply persisted theme on load (before first paint)
   var saved = localStorage.getItem(STORAGE_KEY);
   if (saved && saved !== 'default') {
@@ -118,12 +139,15 @@
   window.applyTheme = applyTheme;
   window.resetTheme = resetTheme;
   window.updateThemeActiveState = updateActiveState;
+  window.updateFavicon = updateFavicon;
 
   // If themes.js loaded after this, apply pending theme
+  // Also set initial favicon once DOM is ready
   document.addEventListener('DOMContentLoaded', function () {
     if (window.__pendingTheme && window.THEMES) {
       applyTheme(window.__pendingTheme);
       delete window.__pendingTheme;
     }
+    updateFavicon();
   });
 })();

@@ -27,6 +27,7 @@
     if (window.applyTheme && window.__activeColorTheme && window.__activeColorTheme !== 'default') {
       window.applyTheme(window.__activeColorTheme);
     }
+    if (window.updateFavicon) window.updateFavicon();
   });
 
   /* -- SPA page-ready helper ----------------------------------- */
@@ -63,6 +64,14 @@
       { label: 'Icon', href: 'icon.html' },
       { label: 'Link', href: 'link.html' },
       { label: 'Label', href: 'label.html' },
+    ]},
+    { heading: 'Layout', items: [
+      { label: 'Aspect Ratio', href: 'aspect-ratio.html' },
+      { label: 'Container', href: 'container.html' },
+      { label: 'Scroll Area', href: 'scroll-area.html' },
+      { label: 'Carousel', href: 'carousel.html' },
+      { label: 'Sidebar', href: 'sidebar.html' },
+      { label: 'Sortable', href: 'sortable.html' },
     ]},
     { heading: 'Actions', items: [
       { label: 'Button', href: 'button.html' },
@@ -126,14 +135,6 @@
       { label: 'Tabs', href: 'tabs.html' },
       { label: 'Dropdown Menu', href: 'dropdown.html' },
       { label: 'Navigation Menu', href: 'navigation-menu.html' },
-    ]},
-    { heading: 'Layout', items: [
-      { label: 'Aspect Ratio', href: 'aspect-ratio.html' },
-      { label: 'Container', href: 'container.html' },
-      { label: 'Scroll Area', href: 'scroll-area.html' },
-      { label: 'Carousel', href: 'carousel.html' },
-      { label: 'Sidebar', href: 'sidebar.html' },
-      { label: 'Sortable', href: 'sortable.html' },
     ]},
   ];
 

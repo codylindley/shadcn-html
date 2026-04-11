@@ -18,6 +18,8 @@
     if (window.__activeColorTheme && window.__activeColorTheme !== 'default' && window.applyTheme) {
       window.applyTheme(window.__activeColorTheme);
     }
+    // Update favicon for new mode
+    if (window.updateFavicon) window.updateFavicon();
   }
 
   // -- Token swatches (theming page only) ------------------

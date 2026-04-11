@@ -151,9 +151,7 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
 
 8. **Update README.md** → add the component to the appropriate category in the Components section
 
-9. **Update component-list.md** → mark the component as ✅
-
-10. **Rebuild doc CSS** (if new Tailwind classes were used) → `npm run docs:build-css`
+9. **Rebuild doc CSS** (if new Tailwind classes were used) → `npm run docs:build-css`
 
 ---
 

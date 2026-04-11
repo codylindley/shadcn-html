@@ -42,6 +42,9 @@ Visit **[shadcn-html.netlify.app/documentation/](https://shadcn-html.netlify.app
 ### Primitives
 Typography · Separator · Icon · Link · Label
 
+### Layout
+Aspect Ratio · Container · Scroll Area · Carousel · Sidebar · Sortable
+
 ### Actions
 Button · Toggle · Toggle Group · Button Group · Toolbar
 
@@ -55,13 +58,10 @@ Badge · Tag · Avatar · Card · Image · List · Descriptions · Statistic · 
 Spinner · Skeleton · Progress · Alert · Alert Dialog · Toast
 
 ### Overlays
-Popover · Tooltip · Context Menu · Dialog · Sheet · Accordion · Command · Dropdown Menu · Tabs
+Popover · Tooltip · Context Menu · Dialog · Sheet · Accordion · Command
 
 ### Navigation
-Breadcrumb · Pagination · Steps · Navigation Menu
-
-### Layout
-Aspect Ratio · Container · Scroll Area · Carousel · Sidebar · Sortable
+Breadcrumb · Pagination · Steps · Tabs · Dropdown Menu · Navigation Menu
 
 ## Project structure
 
