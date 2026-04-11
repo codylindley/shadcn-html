@@ -1,0 +1,63 @@
+/* ── Button Group component ───────────────────────────────────── */
+
+@layer components {
+  .btn-group {
+    display: inline-flex;
+    align-items: center;
+
+    /* Collapse borders between adjacent buttons */
+    & > .btn + .btn {
+      margin-left: -1px;
+    }
+
+    /* Remove internal radii for connected appearance */
+    & > .btn:not(:first-child) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    & > .btn:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    /* Ensure hovered/focused button stacks above its neighbors */
+    & > .btn:hover,
+    & > .btn:focus-visible {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Vertical orientation ──────────────────────────────── */
+    &[data-orientation="vertical"] {
+      flex-direction: column;
+
+      & > .btn + .btn {
+        margin-left: 0;
+        margin-top: -1px;
+      }
+
+      & > .btn:not(:first-child) {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: var(--radius-md);
+      }
+
+      & > .btn:not(:last-child) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: var(--radius-md);
+      }
+
+      & > .btn:first-child {
+        border-top-left-radius: var(--radius-md);
+        border-top-right-radius: var(--radius-md);
+      }
+
+      & > .btn:last-child {
+        border-bottom-left-radius: var(--radius-md);
+        border-bottom-right-radius: var(--radius-md);
+      }
+    }
+  }
+}

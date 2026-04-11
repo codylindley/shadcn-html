@@ -1,0 +1,69 @@
+/* ── Toggle Group component ───────────────────────────────────── */
+
+@layer components {
+  .toggle-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.0625rem;
+
+    /* Propagate outline variant to child toggles */
+    &[data-variant="outline"] > .toggle {
+      border: 1px solid var(--input);
+      background: transparent;
+      box-shadow: var(--shadow-xs);
+
+      &:hover {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+      }
+
+      &[aria-pressed="true"] {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+      }
+    }
+
+    /* Propagate sizes to child toggles */
+    &[data-size="sm"] > .toggle  { height: 2rem;  padding: 0 0.375rem; min-width: 2rem; }
+    &[data-size="lg"] > .toggle  { height: 2.5rem; padding: 0 0.625rem; min-width: 2.5rem; }
+
+    /* Vertical orientation */
+    &[aria-orientation="vertical"] {
+      flex-direction: column;
+    }
+
+    /* Connected borders: merge adjacent toggle borders */
+    & > .toggle:not(:first-child) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    & > .toggle:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &[aria-orientation="vertical"] {
+      & > .toggle:not(:first-child) {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: var(--radius-md);
+      }
+
+      & > .toggle:not(:last-child) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: var(--radius-md);
+      }
+    }
+
+    /* Spacing variant — adds gap and restores individual radii */
+    &[data-spacing] {
+      gap: 0.25rem;
+
+      & > .toggle {
+        border-radius: var(--radius-md);
+      }
+    }
+  }
+}

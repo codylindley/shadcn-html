@@ -1,0 +1,31 @@
+/* ── Toolbar component ────────────────────────────────────────── */
+
+@layer components {
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--background);
+    width: fit-content;
+
+    /* Vertical separators auto-size in the toolbar context */
+    & > .separator[data-orientation="vertical"] {
+      height: 1.5rem;
+      margin: 0 0.25rem;
+    }
+
+    /* Vertical toolbar */
+    &[aria-orientation="vertical"] {
+      flex-direction: column;
+
+      & > .separator[data-orientation="vertical"] {
+        height: 1px;
+        width: 1.5rem;
+        margin: 0.25rem 0;
+      }
+    }
+  }
+}

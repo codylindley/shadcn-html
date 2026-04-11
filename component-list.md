@@ -18,9 +18,9 @@
 |-----------|--------|-------------|
 | Button | ✅ | `<button>` |
 | Toggle | ✅ | `<button>` |
-| Toggle Group | ❌ | `role="group"` + buttons |
-| Button Group | ❌ | `<div>` + buttons |
-| Toolbar | ❌ | `role="toolbar"` |
+| Toggle Group | ✅ | `role="group"` + buttons |
+| Button Group | ✅ | `<div>` + buttons |
+| Toolbar | ✅ | `role="toolbar"` |
 
 ## Forms & Inputs
 

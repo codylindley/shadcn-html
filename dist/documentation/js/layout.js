@@ -115,7 +115,7 @@
   var BUILT = new Set([
     'index.html', 'tokens.html', 'setup.html',
     'typography.html', 'separator.html', 'icon.html', 'link.html', 'label.html',
-    'button.html', 'toggle.html',
+    'button.html', 'toggle.html', 'toggle-group.html', 'button-group.html', 'toolbar.html',
     'input.html', 'combobox.html',
     'badge.html', 'card.html',
     'toast.html',

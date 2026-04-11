@@ -1,14 +1,14 @@
 # shadcn-html
 
-A semantic HTML / Tailwind v4 / vanilla JS component system using the [shadcn/ui](https://ui.shadcn.com) token model. No React. No build step. Drop it into a project and let an AI build prototypes with it.
+**The AI prototyping substrate.** Themeable, semantic HTML, modern CSS, and vanilla JavaScript. No framework. No build step. No npm install. Just the lowest-level web primitives assembled into a system any AI can understand and build from.
 
 ## What this is
 
-A portable design system that an AI agent can read and use to generate HTML prototypes. The system provides:
+A portable design system built on the [shadcn/ui](https://ui.shadcn.com) token model — designed for AI agents to read and use when generating HTML prototypes. The system provides:
 
-- **Design tokens** — semantic CSS custom properties (colors, radius, shadows, spacing)
-- **Theme bridge** — maps tokens to Tailwind v4 utility classes
-- **Pattern specs** — HTML structure blueprints for each component (markup, attributes, ARIA)
+- **Themeable** — full shadcn semantic token model; swap a [tweakcn](https://tweakcn.com) theme and every component updates instantly
+- **AI Friendly** — no framework abstractions or build tools to get wrong; just HTML, CSS, and JS — the languages AI knows best
+- **Framework Free** — runs in any browser, zero dependencies, no build pipeline required
 - **Documentation site** — working reference implementations that double as a public website
 
 The output is plain HTML that runs directly in any browser with no build step, no framework, and no dependencies beyond the Tailwind v4 CDN.
