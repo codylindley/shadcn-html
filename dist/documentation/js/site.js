@@ -45,6 +45,82 @@
     }
   }
 
+  // ── Code collapse/expand ─────────────────────────────────
+  var CODE_ICON = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>';
+
+  function initCodeCollapse() {
+    // Guard against duplicate init (SPA replaces main innerHTML, so this is a safety net)
+    if (document.querySelector('.code-collapse-toolbar')) return;
+
+    var previews = document.querySelectorAll('.preview');
+    if (!previews.length) return;
+
+    var pairs = [];
+
+    previews.forEach(function (preview) {
+      var wrapper = preview.nextElementSibling;
+      if (!wrapper || wrapper.tagName !== 'DIV' || !wrapper.querySelector('pre')) return;
+
+      wrapper.classList.add('code-block-wrapper');
+
+      var toggle = document.createElement('button');
+      toggle.className = 'code-toggle-btn';
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.innerHTML = CODE_ICON + ' Hide code';
+
+      preview.parentNode.insertBefore(toggle, wrapper);
+
+      toggle.addEventListener('click', function () {
+        var collapsed = wrapper.classList.toggle('code-collapsed');
+        toggle.setAttribute('aria-expanded', String(!collapsed));
+        toggle.innerHTML = CODE_ICON + (collapsed ? ' Show code' : ' Hide code');
+        syncAllBtn();
+      });
+
+      pairs.push({ toggle: toggle, wrapper: wrapper });
+    });
+
+    if (!pairs.length) return;
+
+    // Collapse-all / Expand-all toolbar
+    var toolbar = document.createElement('div');
+    toolbar.className = 'code-collapse-toolbar';
+    var allBtn = document.createElement('button');
+    allBtn.className = 'code-collapse-all-btn';
+    allBtn.innerHTML = CODE_ICON + ' Collapse all code';
+    toolbar.appendChild(allBtn);
+
+    var main = document.querySelector('main');
+    if (!main) return;
+    var details = main.querySelector('details');
+    if (details) {
+      details.insertAdjacentElement('afterend', toolbar);
+    } else {
+      previews[0].insertAdjacentElement('beforebegin', toolbar);
+    }
+
+    function syncAllBtn() {
+      var allCollapsed = pairs.every(function (p) { return p.wrapper.classList.contains('code-collapsed'); });
+      allBtn.innerHTML = CODE_ICON + (allCollapsed ? ' Expand all code' : ' Collapse all code');
+    }
+
+    allBtn.addEventListener('click', function () {
+      var allCollapsed = pairs.every(function (p) { return p.wrapper.classList.contains('code-collapsed'); });
+      pairs.forEach(function (p) {
+        if (allCollapsed) {
+          p.wrapper.classList.remove('code-collapsed');
+          p.toggle.setAttribute('aria-expanded', 'true');
+          p.toggle.innerHTML = CODE_ICON + ' Hide code';
+        } else {
+          p.wrapper.classList.add('code-collapsed');
+          p.toggle.setAttribute('aria-expanded', 'false');
+          p.toggle.innerHTML = CODE_ICON + ' Show code';
+        }
+      });
+      syncAllBtn();
+    });
+  }
+
   // ── Reusable page content initializer ───────────────────
   // Called on initial load AND after each SPA navigation.
   function initPageContent() {
@@ -85,6 +161,9 @@
 
     // Token swatches
     initTokenSwatches();
+
+    // Code collapse/expand toggles
+    initCodeCollapse();
   }
 
   // Register content initializer with SPA router
