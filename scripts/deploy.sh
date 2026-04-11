@@ -59,30 +59,35 @@ else
   COMMITS=$(git log --pretty=format:"%s" --no-merges | grep -v "^chore: bump version" || true)
 fi
 
-# Build the HTML entry
-ENTRY="  <div style=\"margin-bottom:2.5rem;\">\n"
-ENTRY+="    <div class=\"flex items-center gap-3 mb-2\">\n"
-ENTRY+="      <h2 style=\"font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0;\">v${NEW_VERSION}</h2>\n"
-ENTRY+="      <span class=\"badge\" data-variant=\"outline\" style=\"font-family:var(--font-mono);\">${DATE}</span>\n"
-ENTRY+="    </div>\n"
-ENTRY+="    <ul style=\"margin:0;padding-left:1.25rem;\" class=\"text-sm text-muted-foreground flex flex-col gap-1\">\n"
+# Build and inject the changelog entry using Node (avoids sed multi-line issues)
+node -e "
+  const fs = require('fs');
+  const version = '${NEW_VERSION}';
+  const date = '${DATE}';
+  const commits = \`${COMMITS}\`.split('\n').filter(Boolean);
 
-if [[ -n "$COMMITS" ]]; then
-  while IFS= read -r msg; do
-    # Escape HTML characters
-    safe_msg=$(echo "$msg" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')
-    ENTRY+="      <li>${safe_msg}</li>\n"
-  done <<< "$COMMITS"
-else
-  ENTRY+="      <li>Maintenance release</li>\n"
-fi
+  const items = commits.length
+    ? commits.map(m => {
+        const safe = m.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        return '      <li>' + safe + '</li>';
+      }).join('\n')
+    : '      <li>Maintenance release</li>';
 
-ENTRY+="    </ul>\n"
-ENTRY+="  </div>\n"
+  const entry = [
+    '  <div style=\"margin-bottom:2.5rem;\">',
+    '    <div class=\"flex items-center gap-3 mb-2\">',
+    '      <h2 style=\"font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0;\">v' + version + '</h2>',
+    '      <span class=\"badge\" data-variant=\"outline\" style=\"font-family:var(--font-mono);\">' + date + '</span>',
+    '    </div>',
+    '    <ul style=\"margin:0;padding-left:1.25rem;\" class=\"text-sm text-muted-foreground flex flex-col gap-1\">',
+    items,
+    '    </ul>',
+    '  </div>',
+  ].join('\n');
 
-# Insert the entry after the marker comment
-sed -i '' "s|<!-- CHANGELOG_ENTRIES -->|<!-- CHANGELOG_ENTRIES -->\\
-$(echo -e "$ENTRY" | sed 's/$/\\/' | sed '$ s/\\$//')|" "$CHANGELOG_FILE"
+  const file = fs.readFileSync('${CHANGELOG_FILE}', 'utf8');
+  fs.writeFileSync('${CHANGELOG_FILE}', file.replace('<!-- CHANGELOG_ENTRIES -->', '<!-- CHANGELOG_ENTRIES -->\n\n' + entry));
+"
 
 echo "✅ Added changelog entry for v${NEW_VERSION}"
 
