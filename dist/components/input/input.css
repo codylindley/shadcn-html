@@ -1,0 +1,102 @@
+/* ── Input component ─────────────────────────────────────────── */
+
+@layer components {
+  .input {
+    height: 2.5rem;
+    width: 100%;
+    border: 1px solid var(--input);
+    border-radius: var(--radius-md);
+    background: var(--background);
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+    font-family: var(--font-sans);
+    color: var(--foreground);
+    outline: none;
+    box-shadow: var(--shadow-xs);
+    transition: border-color 150ms, box-shadow 150ms;
+
+    &:focus {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 2px oklch(from var(--ring) l c h / 0.2);
+    }
+
+    &::placeholder { color: var(--muted-foreground); }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* ── Invalid state ─────────────────────────────────────── */
+    &[aria-invalid="true"] {
+      border-color: var(--destructive);
+
+      &:focus {
+        border-color: var(--destructive);
+        box-shadow: 0 0 0 2px oklch(from var(--destructive) l c h / 0.2);
+      }
+    }
+
+    /* ── File input ────────────────────────────────────────── */
+    &[type="file"] {
+      padding: 0;
+      font-size: 0.875rem;
+
+      &::file-selector-button {
+        height: 100%;
+        border: none;
+        border-right: 1px solid var(--input);
+        background: var(--muted);
+        color: var(--foreground);
+        font-size: 0.875rem;
+        font-weight: 500;
+        font-family: var(--font-sans);
+        padding: 0 0.75rem;
+        margin-right: 0.75rem;
+        cursor: pointer;
+        transition: background 150ms;
+
+        &:hover { background: var(--accent); }
+      }
+    }
+
+    /* ── Sizes ─────────────────────────────────────────────── */
+    &[data-size="sm"] { height: 2rem;    padding: 0 0.625rem; font-size: 0.8125rem; }
+    &[data-size="lg"] { height: 2.75rem; padding: 0 1rem;     font-size: 1rem; }
+  }
+
+  /* ── Auto-growing textarea ───────────────────────────────── */
+  textarea.input {
+    field-sizing: content;
+    min-height: 5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* ── Label ───────────────────────────────────────────────── */
+  label.label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.375rem;
+
+    /* Highlight label when its associated input is focused */
+    &:has(+ .input:focus) {
+      color: var(--foreground);
+    }
+  }
+
+  /* ── Field description ───────────────────────────────────── */
+  .field-description {
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+    margin: 0.375rem 0 0;
+  }
+
+  /* ── Field error ─────────────────────────────────────────── */
+  .field-error {
+    font-size: 0.8125rem;
+    color: var(--destructive);
+    margin: 0.375rem 0 0;
+  }
+}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accordion — shadcn-html</title>
+  <title>Icon — shadcn-html</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -140,7 +140,7 @@
            style="letter-spacing: 0.08em;">Data Display</p>
         <a class="nav-link" href="badge.html">Badge</a>
         <a class="nav-link" href="card.html">Card</a>
-        <a class="nav-link" href="icon.html">Icon</a>
+        <a class="nav-link active" href="icon.html">Icon</a>
         <a class="nav-link disabled" href="table.html">Table</a>
         <a class="nav-link disabled" href="avatar.html">Avatar</a>
         <a class="nav-link disabled" href="separator.html">Separator</a>
@@ -171,7 +171,7 @@
            style="letter-spacing: 0.08em;">Overlays</p>
         <a class="nav-link" href="dialog.html">Dialog</a>
         <a class="nav-link" href="sheet.html">Sheet</a>
-        <a class="nav-link active" href="accordion.html">Accordion</a>
+        <a class="nav-link" href="accordion.html">Accordion</a>
         <a class="nav-link disabled" href="popover.html">Popover</a>
         <a class="nav-link disabled" href="tooltip.html">Tooltip</a>
         <a class="nav-link disabled" href="command.html">Command</a>
@@ -211,232 +211,170 @@
 
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
-          <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / accordion</p>
-          <span class="badge" data-variant="secondary">No JS *</span>
+          <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / icon</p>
+          <span class="badge" data-variant="secondary">JS (CDN)</span>
         </div>
-        <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Accordion</h1>
+        <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Icon</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
-          Collapsible content sections built on native <code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code>.
-          Multi-open needs zero JS. Single-open adds a small toggle handler.
+          ~1,500 <a href="https://lucide.dev/icons/" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">Lucide</a> icons via CDN. Write <code>&lt;i data-lucide="name"&gt;</code> — the Lucide CDN script replaces it with an inline SVG at page load. Requires the Lucide <code>&lt;script&gt;</code> tag (see <a href="setup.html" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">Setup</a>).
         </p>
 
-        <!-- Component Specification -->
+        <!-- ── Component Specification ─────────────────────────────── -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — components/accordion/accordion.md
+            Component Specification — components/icon/icon.md
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;border-top:1px solid var(--border);">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code>. Browser provides toggle, keyboard, and screen reader support natively.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;i&gt;</code> element with <code>data-lucide</code> attribute. Lucide CDN replaces it with an inline SVG.</p>
 
-            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details" target="_blank" rel="noopener" title="Native disclosure widget with built-in open/close state" class="api-pill"><code>&lt;details&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary" target="_blank" rel="noopener" title="Clickable heading that toggles the parent details element" class="api-pill"><code>&lt;summary&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::details-content" target="_blank" rel="noopener" title="Pseudo-element for styling and animating collapsible content" class="api-pill"><code>::details-content</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDetailsElement/toggle_event" target="_blank" rel="noopener" title="Fires when the open state changes" class="api-pill"><code>toggle event</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" title="Entry animation starting values" class="api-pill"><code>@starting-style</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-            </div>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Usage</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>&lt;i data-lucide="sun"&gt;&lt;/i&gt;</code> — decorative (Lucide adds <code>aria-hidden</code>)</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>&lt;i data-lucide="alert-triangle" role="img" aria-label="Warning"&gt;&lt;/i&gt;</code> — meaningful</p>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
-            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
-              <code>.accordion</code><span class="text-muted-foreground">Flex column wrapper</span>
-              <code>.accordion-item</code><span class="text-muted-foreground"><code>&lt;details&gt;</code> — bottom border (except last child)</span>
-              <code>.accordion-trigger</code><span class="text-muted-foreground"><code>&lt;summary&gt;</code> — full width, space-between, cursor pointer</span>
-              <code>.accordion-content</code><span class="text-muted-foreground">Padding-bottom only, <code>--muted-foreground</code> text</span>
-              <code>.accordion-chevron</code><span class="text-muted-foreground">SVG icon — rotates 180° when <code>[open]</code> (CSS only)</span>
-            </div>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Sizing</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">Default is 24×24. Use Tailwind classes (<code>w-4 h-4</code>) or inline styles to resize.</p>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Single-open JS</p>
-            <p class="text-muted-foreground" style="margin:0;">Add <code>data-type="single"</code> to the <code>.accordion</code> wrapper. A small <code>toggle</code> event listener closes siblings when one opens. Add <code>data-collapsible</code> to allow all items to be closed.</p>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Browse icons</p>
+            <p class="text-muted-foreground" style="margin:0;"><a href="https://lucide.dev/icons/" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">lucide.dev/icons</a> — ~1,500 icons, searchable</p>
           </div>
         </details>
 
-        <!-- ── Example 1: Multi-open ── -->
-        <section style="margin-bottom:3rem;">
-          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">Multi-open</h2>
-          <p class="text-muted-foreground text-sm mb-4">Default behavior — multiple items can be open simultaneously. Uses native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> with zero JavaScript.</p>
+        <!-- ── Example: Basic ──────────────────────────────────── -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Basic usage</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Use <code>data-lucide</code> with any icon name from <a href="https://lucide.dev/icons/" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">lucide.dev/icons</a>.</p>
+          <div class="preview" style="gap:1.5rem;">
+            <i data-lucide="home"></i>
+            <i data-lucide="settings"></i>
+            <i data-lucide="user"></i>
+            <i data-lucide="search"></i>
+            <i data-lucide="bell"></i>
+            <i data-lucide="mail"></i>
+            <i data-lucide="heart"></i>
+            <i data-lucide="star"></i>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code>&lt;i data-lucide="home"&gt;&lt;/i&gt;
+&lt;i data-lucide="settings"&gt;&lt;/i&gt;
+&lt;i data-lucide="user"&gt;&lt;/i&gt;
+&lt;i data-lucide="search"&gt;&lt;/i&gt;</code></pre>
+          </div>
+        </section>
 
-          <div class="preview" style="flex-direction:column;align-items:stretch;padding:2rem 2.5rem;">
-            <div class="accordion" style="max-width:28rem;width:100%;">
-              <details class="accordion-item" open>
-                <summary class="accordion-trigger">
-                  <span>Is it accessible?</span>
-                  <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                </summary>
-                <div class="accordion-content">
-                  <p>Yes. It uses native HTML details/summary elements which are fully accessible by default. Screen reader and keyboard support are built in.</p>
-                </div>
-              </details>
-              <details class="accordion-item" open>
-                <summary class="accordion-trigger">
-                  <span>Is it styled?</span>
-                  <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                </summary>
-                <div class="accordion-content">
-                  <p>Yes. It follows the shadcn/ui token system for consistent theming across light and dark modes.</p>
-                </div>
-              </details>
-              <details class="accordion-item">
-                <summary class="accordion-trigger">
-                  <span>Is it animated?</span>
-                  <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                </summary>
-                <div class="accordion-content">
-                  <p>Yes. Uses <code>::details-content</code> with <code>calc-size(auto, size)</code> for smooth height animation. The chevron rotates via CSS transition.</p>
-                </div>
-              </details>
+        <!-- ── Example: Sizes ──────────────────────────────────── -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Sizes</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Use Tailwind width/height classes to control icon size.</p>
+          <div class="preview" style="gap:2rem;align-items:center;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              <i data-lucide="star" class="w-3 h-3"></i>
+              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">w-3 h-3</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              <i data-lucide="star" class="w-4 h-4"></i>
+              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">w-4 h-4</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              <i data-lucide="star" class="w-5 h-5"></i>
+              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">w-5 h-5</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              <i data-lucide="star" class="w-6 h-6"></i>
+              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">w-6 h-6</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              <i data-lucide="star" class="w-8 h-8"></i>
+              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">w-8 h-8</span>
             </div>
           </div>
-
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>&lt;div class="accordion"&gt;
-  &lt;details class="accordion-item" open&gt;
-    &lt;summary class="accordion-trigger"&gt;
-      &lt;span&gt;Is it accessible?&lt;/span&gt;
-      &lt;svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
-    &lt;/summary&gt;
-    &lt;div class="accordion-content"&gt;
-      &lt;p&gt;Yes. It uses native HTML details/summary elements which are fully accessible by default. Screen reader and keyboard support are built in.&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/details&gt;
-  &lt;details class="accordion-item" open&gt;
-    &lt;summary class="accordion-trigger"&gt;
-      &lt;span&gt;Is it styled?&lt;/span&gt;
-      &lt;svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
-    &lt;/summary&gt;
-    &lt;div class="accordion-content"&gt;
-      &lt;p&gt;Yes. It follows the shadcn/ui token system for consistent theming across light and dark modes.&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/details&gt;
-  &lt;details class="accordion-item"&gt;
-    &lt;summary class="accordion-trigger"&gt;
-      &lt;span&gt;Is it animated?&lt;/span&gt;
-      &lt;svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
-    &lt;/summary&gt;
-    &lt;div class="accordion-content"&gt;
-      &lt;p&gt;Yes. Uses ::details-content with calc-size(auto, size) for smooth height animation. The chevron rotates via CSS transition.&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/details&gt;
-&lt;/div&gt;</code></pre>
+            <pre><code>&lt;i data-lucide="star" class="w-3 h-3"&gt;&lt;/i&gt;
+&lt;i data-lucide="star" class="w-4 h-4"&gt;&lt;/i&gt;
+&lt;i data-lucide="star" class="w-5 h-5"&gt;&lt;/i&gt;
+&lt;i data-lucide="star" class="w-6 h-6"&gt;&lt;/i&gt;
+&lt;i data-lucide="star" class="w-8 h-8"&gt;&lt;/i&gt;</code></pre>
           </div>
         </section>
 
-        <!-- ── Example 2: Single-open ── -->
-        <section style="margin-bottom:3rem;">
-          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">Single-open</h2>
-          <p class="text-muted-foreground text-sm mb-4">Only one item can be open at a time. Add <code>data-type="single"</code> to the wrapper — a small JS handler closes siblings on toggle.</p>
-
-          <div class="preview" style="flex-direction:column;align-items:stretch;padding:2rem 2.5rem;">
-            <div class="accordion" data-type="single" style="max-width:28rem;width:100%;">
-              <details class="accordion-item" open>
-                <summary class="accordion-trigger">
-                  <span>What payment methods do you accept?</span>
-                  <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                </summary>
-                <div class="accordion-content">
-                  <p>We accept all major credit cards (Visa, Mastercard, AmEx), PayPal, and bank transfers for annual plans.</p>
-                </div>
-              </details>
-              <details class="accordion-item">
-                <summary class="accordion-trigger">
-                  <span>Can I cancel my subscription?</span>
-                  <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                </summary>
-                <div class="accordion-content">
-                  <p>Yes, you can cancel at any time from your account settings. Your access continues until the end of the current billing period.</p>
-                </div>
-              </details>
-              <details class="accordion-item">
-                <summary class="accordion-trigger">
-                  <span>Do you offer team pricing?</span>
-                  <svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                </summary>
-                <div class="accordion-content">
-                  <p>Yes. Teams of 5 or more get a 20% discount. Contact our sales team for custom enterprise plans with dedicated support.</p>
-                </div>
-              </details>
-            </div>
+        <!-- ── Example: With Button ────────────────────────────── -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">With buttons</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Icons inside buttons inherit the button's color.</p>
+          <div class="preview">
+            <button class="btn" data-variant="default">
+              <i data-lucide="save"></i>
+              Save
+            </button>
+            <button class="btn" data-variant="outline">
+              <i data-lucide="download"></i>
+              Download
+            </button>
+            <button class="btn" data-variant="destructive">
+              <i data-lucide="trash"></i>
+              Delete
+            </button>
+            <button class="btn" data-variant="outline" data-size="icon" aria-label="Settings">
+              <i data-lucide="settings"></i>
+            </button>
           </div>
-
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>&lt;div class="accordion" data-type="single"&gt;
-  &lt;details class="accordion-item" open&gt;
-    &lt;summary class="accordion-trigger"&gt;
-      &lt;span&gt;What payment methods do you accept?&lt;/span&gt;
-      &lt;svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
-    &lt;/summary&gt;
-    &lt;div class="accordion-content"&gt;
-      &lt;p&gt;We accept all major credit cards (Visa, Mastercard, AmEx), PayPal, and bank transfers for annual plans.&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/details&gt;
-  &lt;details class="accordion-item"&gt;
-    &lt;summary class="accordion-trigger"&gt;
-      &lt;span&gt;Can I cancel my subscription?&lt;/span&gt;
-      &lt;svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
-    &lt;/summary&gt;
-    &lt;div class="accordion-content"&gt;
-      &lt;p&gt;Yes, you can cancel at any time from your account settings. Your access continues until the end of the current billing period.&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/details&gt;
-  &lt;details class="accordion-item"&gt;
-    &lt;summary class="accordion-trigger"&gt;
-      &lt;span&gt;Do you offer team pricing?&lt;/span&gt;
-      &lt;svg class="accordion-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="m6 9 6 6 6-6"/&gt;&lt;/svg&gt;
-    &lt;/summary&gt;
-    &lt;div class="accordion-content"&gt;
-      &lt;p&gt;Yes. Teams of 5 or more get a 20% discount. Contact our sales team for custom enterprise plans with dedicated support.&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/details&gt;
-&lt;/div&gt;</code></pre>
+            <pre><code>&lt;button class="btn" data-variant="default"&gt;
+  &lt;i data-lucide="save"&gt;&lt;/i&gt;
+  Save
+&lt;/button&gt;
+
+&lt;button class="btn" data-variant="outline" data-size="icon" aria-label="Settings"&gt;
+  &lt;i data-lucide="settings"&gt;&lt;/i&gt;
+&lt;/button&gt;</code></pre>
           </div>
         </section>
 
-        <!-- ── JavaScript ──────────────────────────────── -->
-        <section style="margin-top:3rem;">
-          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript</h2>
-          <p class="text-muted-foreground text-sm mb-4">Only needed for single-open mode (when <code>data-type="single"</code> is set). Multi-open accordions use zero JavaScript — native <code>&lt;details&gt;</code> handles everything.</p>
+        <!-- ── Example: Color ──────────────────────────────────── -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Color</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Icons inherit <code>currentColor</code>. Change color with text color utilities.</p>
+          <div class="preview" style="gap:1.5rem;">
+            <i data-lucide="circle-check" class="text-green-500 w-6 h-6"></i>
+            <i data-lucide="alert-triangle" class="text-amber-500 w-6 h-6"></i>
+            <i data-lucide="x-circle" class="text-destructive w-6 h-6"></i>
+            <i data-lucide="info" class="text-blue-500 w-6 h-6"></i>
+          </div>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code>// Accordion — single-open mode
-// Only needed when data-type="single" is set on the wrapper.
-// Multi-open accordions require zero JavaScript.
-document.querySelectorAll('.accordion[data-type="single"]').forEach(function (accordion) {
-  var items = accordion.querySelectorAll('.accordion-item');
-  var collapsible = accordion.hasAttribute('data-collapsible');
-
-  items.forEach(function (item) {
-    item.addEventListener('toggle', function () {
-      if (item.open) {
-        // Close all other items
-        items.forEach(function (sibling) {
-          if (sibling !== item &amp;&amp; sibling.open) sibling.open = false;
-        });
-      } else if (!collapsible) {
-        // Prevent closing last open item unless data-collapsible is set
-        var anyOpen = Array.from(items).some(function (i) { return i.open; });
-        if (!anyOpen) item.open = true;
-      }
-    });
-  });
-});</code></pre>
+            <pre><code>&lt;i data-lucide="circle-check" class="text-green-500 w-6 h-6"&gt;&lt;/i&gt;
+&lt;i data-lucide="alert-triangle" class="text-amber-500 w-6 h-6"&gt;&lt;/i&gt;
+&lt;i data-lucide="x-circle" class="text-destructive w-6 h-6"&gt;&lt;/i&gt;
+&lt;i data-lucide="info" class="text-blue-500 w-6 h-6"&gt;&lt;/i&gt;</code></pre>
           </div>
-          <p class="text-xs text-muted-foreground" style="margin-top:1rem;">
-            Full specification → <a href="../components/accordion/accordion.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/accordion/accordion.md</a>
-          </p>
         </section>
+
+        <!-- ── Browse all icons ────────────────────────────────── -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Browse all icons</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Lucide provides ~1,500 icons. Browse and search the full set at:</p>
+          <a href="https://lucide.dev/icons/" target="_blank" class="btn" data-variant="outline" style="text-decoration:none;">
+            <i data-lucide="external-link"></i>
+            lucide.dev/icons
+          </a>
+        </section>
+
     </main>
   </div>
 

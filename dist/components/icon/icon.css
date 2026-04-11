@@ -1,0 +1,15 @@
+/* ── Icon component ──────────────────────────────────────── */
+/* Styling for Lucide CDN icons (<i data-lucide="name">).     */
+/* Lucide replaces <i> with <svg>, these styles target that.  */
+
+@layer components {
+  [data-lucide] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    vertical-align: middle;
+    width: 1rem;
+    height: 1rem;
+  }
+}

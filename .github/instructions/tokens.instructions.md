@@ -1,6 +1,6 @@
 ---
 description: "Use when editing design tokens in dist/theme/semantic-tokens.css or any component pattern/CSS. Covers token shape, tweakcn compatibility, and the token boundary rule."
-applyTo: ["dist/theme/**", "dist/component-specifications/**", "dist/documentation/css/components/**"]
+applyTo: ["dist/theme/**", "dist/components/**"]
 ---
 # Tokens & Theme
 
@@ -10,7 +10,7 @@ applyTo: ["dist/theme/**", "dist/component-specifications/**", "dist/documentati
 
 - `semantic-tokens.css` defines the complete set of available CSS custom properties.
 - No new custom properties may be added to `semantic-tokens.css` beyond what TweakCN provides.
-- Components CSS (`dist/component-specifications/*.md` and `dist/documentation/css/components/*.css`)
+- Components CSS (`dist/components/{name}/{name}.css`)
   must reference only these tokens via `var(--*)`.
 - If a component needs a color that has no token (e.g., status colors like
   green/amber/blue), use a hardcoded CSS value directly in the component CSS.

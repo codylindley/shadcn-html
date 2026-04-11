@@ -8,7 +8,7 @@ A portable design system that an AI agent can read and use to generate HTML prot
 
 - **Design tokens** — semantic CSS custom properties (colors, radius, shadows, spacing)
 - **Theme bridge** — maps tokens to Tailwind v4 utility classes
-- **Pattern specs** — complete behavioral blueprints for each component (structure, CSS, JS, ARIA)
+- **Pattern specs** — HTML structure blueprints for each component (markup, attributes, ARIA)
 - **Documentation site** — working reference implementations that double as a public website
 
 The output is plain HTML that runs directly in any browser with no build step, no framework, and no dependencies beyond the Tailwind v4 CDN.
@@ -17,10 +17,11 @@ The output is plain HTML that runs directly in any browser with no build step, n
 
 ### For AI prototyping
 
-Copy the `dist/` folder into your project, then point your AI agent at it:
+Copy the `dist/` folder into your project, then point your AI agent at the component specs:
 
 ```
-Read dist/AGENTS.md before writing any UI code.
+Read dist/components/{name}/{name}.md for component HTML patterns.
+Use dist/theme/semantic-tokens.css for design tokens.
 ```
 
 The AI will use the tokens, theme bridge, and pattern specs to build components. The documentation pages serve as reference implementations.
@@ -34,18 +35,17 @@ Open any HTML file in `dist/documentation/` in a browser. No server required (wo
 ```
 ai-web-prototyper/
 ├── dist/                              ← the distributable system
-│   ├── AGENTS.md                      ← AI instructions for consuming the system
 │   ├── theme/semantic-tokens.css      ← design tokens (colors, radius, shadows)
-│   ├── component-specifications/*.md             ← component specifications (source of truth for CSS)
+│   ├── components/                    ← self-contained component folders
+│   │   └── {name}/
+│   │       ├── {name}.md              ← specification (HTML structure & ARIA reference)
+│   │       ├── {name}.css             ← component stylesheet (edit directly)
+│   │       └── {name}.js              ← interaction JS (only for interactive components)
 │   └── documentation/                 ← reference implementations + public website
 │       ├── *.html                     ← one page per component + overview pages
 │       ├── css/docs-theme.css         ← doc-site font overrides
 │       ├── css/layout.css             ← doc-site layout
-│       ├── css/components/*.css       ← component CSS (generated from component specifications)
-│       └── js/site.js                 ← doc-site JS + component interaction wiring
-│
-├── scripts/
-│   └── sync-css.py                    ← extracts CSS from component specifications → component CSS files
+│       └── js/site.js                 ← doc-site-only JS (dark mode, hljs, copy buttons)
 │
 ├── .github/instructions/              ← AI instructions for maintaining this repo
 │   ├── specifications.instructions.md  ← rules for editing component specification files
@@ -60,26 +60,25 @@ ai-web-prototyper/
 
 | File | Who reads it | Purpose |
 |------|-------------|---------|
-| `AGENTS.md` (root) | AI maintaining this repo | How to add, edit, and sync components |
-| `dist/AGENTS.md` | AI consuming the system | How to use tokens, component specifications, and components |
-
-The root instructions are never shipped. The consumer only sees `dist/`.
+| `AGENTS.md` (root) | AI maintaining this repo | How to add and edit components |
 
 ## Components
 
 | Component | Specification | Native basis |
 |-----------|--------------|-------------|
-| Accordion | `dist/component-specifications/accordion.md` | `<details>/<summary>` |
-| Badge | `dist/component-specifications/badge.md` | `<span>` |
-| Button | `dist/component-specifications/button.md` | `<button>` |
-| Card | `dist/component-specifications/card.md` | `<div>` / `<article>` |
-| Combobox | `dist/component-specifications/combobox.md` | `<input>` + `role="listbox"` |
-| Dialog | `dist/component-specifications/dialog.md` | `<dialog>` + `showModal()` |
-| Dropdown | `dist/component-specifications/dropdown.md` | `popover` API |
-| Input | `dist/component-specifications/input.md` | `<input>` |
-| Sheet | `dist/component-specifications/sheet.md` | `<dialog>` + `showModal()` |
-| Tabs | `dist/component-specifications/tabs.md` | `role="tablist"` + ARIA |
-| Toast | `dist/component-specifications/toast.md` | `popover` API |
+| Accordion | `dist/components/accordion/accordion.md` | `<details>/<summary>` |
+| Badge | `dist/components/badge/badge.md` | `<span>` |
+| Button | `dist/components/button/button.md` | `<button>` |
+| Card | `dist/components/card/card.md` | `<div>` / `<article>` |
+| Combobox | `dist/components/combobox/combobox.md` | `<input>` + `role="listbox"` |
+| Dialog | `dist/components/dialog/dialog.md` | `<dialog>` + `showModal()` |
+| Dropdown | `dist/components/dropdown/dropdown.md` | `popover` API |
+| Input | `dist/components/input/input.md` | `<input>` |
+| Sheet | `dist/components/sheet/sheet.md` | `<dialog>` + `showModal()` |
+| Tabs | `dist/components/tabs/tabs.md` | `role="tablist"` + ARIA |
+| Toast | `dist/components/toast/toast.md` | `popover` API |
+| Toggle | `dist/components/toggle/toggle.md` | `<button>` + `aria-pressed` |
+| Icon | `dist/components/icon/icon.md` | `<span>` + Lucide SVGs |
 
 ## Theming
 
@@ -95,33 +94,47 @@ The system uses generic font stacks by default. The documentation site overrides
 
 ### Editing a component
 
-1. Edit the specification file: `dist/component-specifications/{name}.md`
-2. Run: `python3 scripts/sync-css.py`
-3. The component CSS file updates automatically
+Each component lives in `dist/components/{name}/` with three files:
+- `{name}.md` — specification (HTML structure & ARIA reference)
+- `{name}.css` — stylesheet (edit directly)
+- `{name}.js` — interaction JS (only for interactive components, edit directly)
 
-**Never edit `dist/documentation/css/components/*.css` directly.** Those files are generated from the component specifications. Your changes will be overwritten.
+Edit the `.css` and `.js` files directly — no build step. If the spec's variant/size
+tables drift from the CSS, update the spec to match.
 
 ### Adding a new component
 
-1. Write the specification → `dist/component-specifications/{name}.md`
-2. Run `python3 scripts/sync-css.py` to generate the CSS
-3. Create the doc page → `dist/documentation/{name}.html`
-4. Add JS wiring to `dist/documentation/js/site.js` (if interactive)
-5. Add sidebar nav link to ALL HTML files
-6. Add CSS import to ALL HTML files
+1. Create the component folder → `dist/components/{name}/`
+2. Write the specification → `dist/components/{name}/{name}.md`
+3. Write the CSS → `dist/components/{name}/{name}.css`
+4. Write the JS (if interactive) → `dist/components/{name}/{name}.js`
+5. Create the doc page → `dist/documentation/{name}.html`
+6. Add sidebar nav link + CSS/JS imports to ALL HTML files
 7. Add row to `dist/AGENTS.md` specification table
-
-### The sync script
-
-```
-python3 scripts/sync-css.py
-```
-
-Extracts all ` ```css ` code blocks from each pattern markdown file and writes them to the corresponding component CSS file. The script is idempotent — running it when nothing changed produces no output.
 
 ## Design principles
 
-- **Semantic HTML first** — `<dialog>`, `<details>`, `popover`, native form elements
+### Native web platform first
+
+Every component starts from a native HTML element or browser API. If the browser
+can do it, we don't write JavaScript for it.
+
+| Instead of... | We use... |
+|---------------|----------|
+| JS modal with overlay div | `<dialog>` + `showModal()` + `::backdrop` |
+| JS show/hide dropdowns | `popover` API |
+| JS accordion toggle | `<details>` / `<summary>` |
+| JS enter animations | `@starting-style` |
+| Floating UI / Popper.js | CSS anchor positioning |
+| JS class toggling for parent state | `:has()` selector |
+| JS textarea auto-resize | `field-sizing: content` |
+| Sass / Less / PostCSS | Native CSS nesting, `@layer`, container queries |
+
+JavaScript is only for behavior that HTML and CSS cannot express: keyboard
+navigation, focus management, and state coordination between elements.
+
+### Other principles
+
 - **No frameworks** — no React, no Vue, no Alpine, no build tools for the consumer
 - **Token-driven** — every color, radius, and shadow comes from CSS custom properties
 - **AI-optimized** — patterns are structured for machine consumption, not human tutorials

@@ -17,8 +17,9 @@ When modifying any of these, update ALL HTML files — not just the current one.
 
 1. Copy an existing component page (e.g., `dialog.html`) as the template
 2. Change the `<title>`, `<h1>`, breadcrumb, and `active` class on the sidebar nav link
-3. Add `<link rel="stylesheet" href="css/components/{name}.css">` to the head
-4. Add the sidebar nav link to ALL other HTML files
+3. Add `<link rel="stylesheet" href="../components/{name}/{name}.css">` to the head
+4. Add `<script src="../components/{name}/{name}.js" defer></script>` if interactive
+5. Add the sidebar nav link to ALL other HTML files
 5. The inline `@theme` block must remain unchanged — it's the Tailwind theme bridge
 
 ## Sidebar nav order
@@ -36,10 +37,11 @@ Components are listed after the Overview section:
 
 New components: add alphabetically or group logically after existing entries.
 
-## CSS imports
+## CSS and JS imports
 
-Every page imports ALL component CSS files (not just its own). This ensures
-components used in demos on other pages render correctly.
+Every page imports ALL component CSS and JS files (not just its own). This ensures
+components used in demos on other pages render correctly. CSS and JS files live in
+`../components/{name}/{name}.css` and `../components/{name}/{name}.js` respectively.
 
 ## The inline theme bridge
 

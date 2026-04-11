@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input — shadcn-html</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../theme/semantic-tokens.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
+  <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <link rel="stylesheet" href="../components/button/button.css">
+  <link rel="stylesheet" href="../components/card/card.css">
+  <link rel="stylesheet" href="../components/dialog/dialog.css">
+  <link rel="stylesheet" href="../components/badge/badge.css">
+  <link rel="stylesheet" href="../components/input/input.css">
+  <link rel="stylesheet" href="../components/accordion/accordion.css">
+  <link rel="stylesheet" href="../components/tabs/tabs.css">
+  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
+  <link rel="stylesheet" href="../components/toast/toast.css">
+  <link rel="stylesheet" href="../components/combobox/combobox.css">
+  <link rel="stylesheet" href="../components/sheet/sheet.css">
+  <link rel="stylesheet" href="../components/toggle/toggle.css">
+  <link rel="stylesheet" href="../components/icon/icon.css">
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:is(.dark *));
+    @theme inline {
+      --color-background:              var(--background);
+      --color-foreground:              var(--foreground);
+      --color-card:                    var(--card);
+      --color-card-foreground:         var(--card-foreground);
+      --color-popover:                 var(--popover);
+      --color-popover-foreground:      var(--popover-foreground);
+      --color-primary:                 var(--primary);
+      --color-primary-foreground:      var(--primary-foreground);
+      --color-secondary:               var(--secondary);
+      --color-secondary-foreground:    var(--secondary-foreground);
+      --color-muted:                   var(--muted);
+      --color-muted-foreground:        var(--muted-foreground);
+      --color-accent:                  var(--accent);
+      --color-accent-foreground:       var(--accent-foreground);
+      --color-destructive:             var(--destructive);
+      --color-destructive-foreground:  var(--destructive-foreground);
+      --color-border:                  var(--border);
+      --color-input:                   var(--input);
+      --color-ring:                    var(--ring);
+      --color-chart-1:                 var(--chart-1);
+      --color-chart-2:                 var(--chart-2);
+      --color-chart-3:                 var(--chart-3);
+      --color-chart-4:                 var(--chart-4);
+      --color-chart-5:                 var(--chart-5);
+      --color-sidebar:                 var(--sidebar);
+      --color-sidebar-foreground:      var(--sidebar-foreground);
+      --color-sidebar-primary:         var(--sidebar-primary);
+      --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+      --color-sidebar-accent:          var(--sidebar-accent);
+      --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+      --color-sidebar-border:          var(--sidebar-border);
+      --color-sidebar-ring:            var(--sidebar-ring);
+      --font-sans:    var(--font-sans);
+      --font-serif:   var(--font-serif);
+      --font-mono:    var(--font-mono);
+      --radius-sm:   calc(var(--radius) - 4px);
+      --radius-md:   calc(var(--radius) - 2px);
+      --radius-lg:   var(--radius);
+      --radius-xl:   calc(var(--radius) + 4px);
+      --shadow-2xs:  var(--shadow-2xs);
+      --shadow-xs:   var(--shadow-xs);
+      --shadow-sm:   var(--shadow-sm);
+      --shadow:      var(--shadow);
+      --shadow-md:   var(--shadow-md);
+      --shadow-lg:   var(--shadow-lg);
+      --shadow-xl:   var(--shadow-xl);
+      --shadow-2xl:  var(--shadow-2xl);
+    }
+    @layer base {
+      * { @apply border-border outline-ring/50; }
+      body { @apply bg-background text-foreground; }
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed top-0 left-0 right-0 z-50 h-14 border-b border-border flex items-center px-6 gap-4"
+          style="background: oklch(from var(--background) l c h / 0.88); backdrop-filter: blur(14px);">
+    <a href="index.html" class="flex items-center gap-2.5 no-underline">
+      <span style="font-family: var(--font-display); font-size: 1.1875rem; font-weight: 500; letter-spacing: -0.03em; color: var(--foreground);">shadcn<em>-html</em></span>
+      <span class="badge" data-variant="outline" style="font-family: var(--font-mono);">v0.1.0</span>
+    </a>
+    <div class="flex-1"></div>
+    <nav class="flex items-center gap-1">
+      <a href="https://github.com" target="_blank"
+         class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors no-underline">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+      <button id="theme-toggle"
+              class="w-9 h-9 rounded-lg border border-border flex items-center justify-center text-foreground hover:bg-accent transition-colors bg-transparent cursor-pointer"
+              aria-label="Toggle dark mode">
+        <svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg id="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <aside class="w-56 flex-shrink-0 border-r border-sidebar-border overflow-y-auto"
+           style="position: sticky; top: 3.5rem; height: calc(100vh - 3.5rem); background: var(--sidebar); padding: 1.25rem 0.75rem;">
+      <div style="margin-bottom: 1.25rem;">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
+           style="letter-spacing: 0.08em;">Overview</p>
+        <a class="nav-link" href="index.html">Introduction</a>
+        <a class="nav-link" href="tokens.html">Semantic Tokens</a>
+        <a class="nav-link" href="setup.html">Setup</a>
+      </div>
+      <div style="margin-bottom: 1.25rem;">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
+           style="letter-spacing: 0.08em;">Forms &amp; Inputs</p>
+        <a class="nav-link active" href="input.html">Input</a>
+        <a class="nav-link" href="combobox.html">Combobox</a>
+        <a class="nav-link disabled" href="textarea.html">Textarea</a>
+        <a class="nav-link disabled" href="select.html">Select</a>
+        <a class="nav-link disabled" href="checkbox.html">Checkbox</a>
+        <a class="nav-link disabled" href="radio.html">Radio Group</a>
+        <a class="nav-link disabled" href="switch.html">Switch</a>
+        <a class="nav-link disabled" href="slider.html">Slider</a>
+        <a class="nav-link disabled" href="label.html">Label</a>
+        <a class="nav-link disabled" href="number-input.html">Number Input</a>
+        <a class="nav-link disabled" href="date-picker.html">Date Picker</a>
+        <a class="nav-link disabled" href="file-input.html">File Input</a>
+        <a class="nav-link disabled" href="color-picker.html">Color Picker</a>
+        <a class="nav-link disabled" href="form.html">Form</a>
+      </div>
+      <div style="margin-bottom: 1.25rem;">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
+           style="letter-spacing: 0.08em;">Data Display</p>
+        <a class="nav-link" href="badge.html">Badge</a>
+        <a class="nav-link" href="card.html">Card</a>
+        <a class="nav-link" href="icon.html">Icon</a>
+        <a class="nav-link disabled" href="table.html">Table</a>
+        <a class="nav-link disabled" href="avatar.html">Avatar</a>
+        <a class="nav-link disabled" href="separator.html">Separator</a>
+        <a class="nav-link disabled" href="list.html">List</a>
+        <a class="nav-link disabled" href="descriptions.html">Descriptions</a>
+        <a class="nav-link disabled" href="empty-state.html">Empty State</a>
+        <a class="nav-link disabled" href="collapsible.html">Collapsible</a>
+        <a class="nav-link disabled" href="typography.html">Typography</a>
+        <a class="nav-link disabled" href="image.html">Image</a>
+        <a class="nav-link disabled" href="tag.html">Tag</a>
+        <a class="nav-link disabled" href="statistic.html">Statistic</a>
+        <a class="nav-link disabled" href="timeline.html">Timeline</a>
+        <a class="nav-link disabled" href="tree-view.html">Tree View</a>
+        <a class="nav-link disabled" href="calendar.html">Calendar</a>
+      </div>
+      <div style="margin-bottom: 1.25rem;">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
+           style="letter-spacing: 0.08em;">Feedback &amp; Status</p>
+        <a class="nav-link" href="toast.html">Toast</a>
+        <a class="nav-link disabled" href="alert.html">Alert</a>
+        <a class="nav-link disabled" href="progress.html">Progress</a>
+        <a class="nav-link disabled" href="skeleton.html">Skeleton</a>
+        <a class="nav-link disabled" href="spinner.html">Spinner</a>
+        <a class="nav-link disabled" href="alert-dialog.html">Alert Dialog</a>
+      </div>
+      <div style="margin-bottom: 1.25rem;">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
+           style="letter-spacing: 0.08em;">Overlays</p>
+        <a class="nav-link" href="dialog.html">Dialog</a>
+        <a class="nav-link" href="sheet.html">Sheet</a>
+        <a class="nav-link" href="accordion.html">Accordion</a>
+        <a class="nav-link disabled" href="popover.html">Popover</a>
+        <a class="nav-link disabled" href="tooltip.html">Tooltip</a>
+        <a class="nav-link disabled" href="command.html">Command</a>
+        <a class="nav-link disabled" href="context-menu.html">Context Menu</a>
+      </div>
+      <div style="margin-bottom: 1.25rem;">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
+           style="letter-spacing: 0.08em;">Navigation</p>
+        <a class="nav-link" href="tabs.html">Tabs</a>
+        <a class="nav-link" href="dropdown.html">Dropdown Menu</a>
+        <a class="nav-link disabled" href="breadcrumb.html">Breadcrumb</a>
+        <a class="nav-link disabled" href="pagination.html">Pagination</a>
+        <a class="nav-link disabled" href="steps.html">Steps</a>
+        <a class="nav-link disabled" href="navigation-menu.html">Navigation Menu</a>
+        <a class="nav-link disabled" href="link.html">Link</a>
+      </div>
+      <div style="margin-bottom: 1.25rem;">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
+           style="letter-spacing: 0.08em;">Actions</p>
+        <a class="nav-link" href="button.html">Button</a>
+        <a class="nav-link" href="toggle.html">Toggle</a>
+        <a class="nav-link disabled" href="toggle-group.html">Toggle Group</a>
+        <a class="nav-link disabled" href="button-group.html">Button Group</a>
+        <a class="nav-link disabled" href="toolbar.html">Toolbar</a>
+      </div>
+      <div style="margin-bottom: 1.25rem;">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 mb-1.5"
+           style="letter-spacing: 0.08em;">Layout</p>
+        <a class="nav-link disabled" href="sidebar.html">Sidebar</a>
+        <a class="nav-link disabled" href="container.html">Container</a>
+        <a class="nav-link disabled" href="scroll-area.html">Scroll Area</a>
+        <a class="nav-link disabled" href="carousel.html">Carousel</a>
+        <a class="nav-link disabled" href="sortable.html">Sortable</a>
+        <a class="nav-link disabled" href="aspect-ratio.html">Aspect Ratio</a>
+      </div>
+    </aside>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
+        <div class="flex items-baseline justify-between mb-1">
+          <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / input</p>
+          <span class="badge" data-variant="secondary">No JS</span>
+        </div>
+        <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Input</h1>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          A styled text input built on the native <code>&lt;input&gt;</code> element. Includes label, description, error, sizes, file input, textarea auto-grow, and focus ring. Zero JavaScript.
+        </p>
+
+        <!-- Component Specification -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Component Specification — components/input/input.md
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;border-top:1px solid var(--border);">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;input&gt;</code> element with built-in validation, autofill. <code>&lt;textarea&gt;</code> with <code>field-sizing: content</code> for auto-grow.</p>
+
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" target="_blank" rel="noopener" title="Native form control" class="api-pill"><code>&lt;input&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea" target="_blank" rel="noopener" title="Multi-line text input" class="api-pill"><code>&lt;textarea&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has" target="_blank" rel="noopener" title="Parent styling reacting to child state" class="api-pill"><code>:has()</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing" target="_blank" rel="noopener" title="Auto-growing textarea" class="api-pill"><code>field-sizing</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid" target="_blank" rel="noopener" title="Native validation styling" class="api-pill"><code>:user-invalid</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">States</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Default — border <code>--input</code>, shadow-xs</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Focus — ring <code>--ring</code> with glow</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Disabled — <code>disabled</code> attribute, 50% opacity</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Invalid — <code>aria-invalid="true"</code>, border <code>--destructive</code></p>
+            <p class="text-muted-foreground" style="margin:0;">• Required — <code>required</code> attribute, native validation</p>
+          </div>
+        </details>
+
+        <!-- Default -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Default</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Standard text input with label.</p>
+          <div class="preview">
+            <div style="max-width:24rem;">
+              <label class="label" for="demo-email">Email</label>
+              <input class="input" type="email" id="demo-email" placeholder="you@example.com">
+            </div>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copy</button>
+            <pre><code>&lt;label class="label" for="email"&gt;Email&lt;/label&gt;
+&lt;input class="input" type="email" id="email"
+       placeholder="you@example.com"&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- With Description -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">With description</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Use <code>.field-description</code> below the input for help text.</p>
+          <div class="preview">
+            <div style="max-width:24rem;">
+              <label class="label" for="demo-username">Username</label>
+              <input class="input" type="text" id="demo-username" placeholder="codylindley" aria-describedby="demo-username-desc">
+              <p class="field-description" id="demo-username-desc">Choose a unique username for your account.</p>
+            </div>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copy</button>
+            <pre><code>&lt;label class="label" for="username"&gt;Username&lt;/label&gt;
+&lt;input class="input" type="text" id="username"
+       placeholder="codylindley"
+       aria-describedby="username-desc"&gt;
+&lt;p class="field-description" id="username-desc"&gt;
+  Choose a unique username for your account.
+&lt;/p&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- Sizes -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Sizes</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Small, default, and large via <code>data-size</code>.</p>
+          <div class="preview">
+            <div class="flex flex-col gap-3" style="max-width:24rem;">
+              <input class="input" data-size="sm" type="text" placeholder="Small">
+              <input class="input" type="text" placeholder="Default">
+              <input class="input" data-size="lg" type="text" placeholder="Large">
+            </div>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copy</button>
+            <pre><code>&lt;input class="input" data-size="sm" type="text" placeholder="Small"&gt;
+&lt;input class="input" type="text" placeholder="Default"&gt;
+&lt;input class="input" data-size="lg" type="text" placeholder="Large"&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- Disabled -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Disabled</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Non-interactive at 50% opacity.</p>
+          <div class="preview">
+            <div style="max-width:24rem;">
+              <label class="label" for="demo-disabled">Email</label>
+              <input class="input" type="text" id="demo-disabled" disabled placeholder="Disabled">
+              <p class="field-description">This field is currently disabled.</p>
+            </div>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copy</button>
+            <pre><code>&lt;input class="input" type="text" disabled placeholder="Disabled"&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- Invalid -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Invalid</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Use <code>aria-invalid="true"</code> with a <code>.field-error</code> message.</p>
+          <div class="preview">
+            <div style="max-width:24rem;">
+              <label class="label" for="demo-invalid">Email</label>
+              <input class="input" type="email" id="demo-invalid" aria-invalid="true" value="not-an-email" aria-describedby="demo-invalid-err">
+              <p class="field-error" id="demo-invalid-err">Please enter a valid email address.</p>
+            </div>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copy</button>
+            <pre><code>&lt;label class="label" for="email"&gt;Email&lt;/label&gt;
+&lt;input class="input" type="email" id="email"
+       aria-invalid="true" value="not-an-email"
+       aria-describedby="email-err"&gt;
+&lt;p class="field-error" id="email-err"&gt;
+  Please enter a valid email address.
+&lt;/p&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- Required -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Required</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Add <code>required</code> attribute and a visual indicator in the label.</p>
+          <div class="preview">
+            <div style="max-width:24rem;">
+              <label class="label" for="demo-required">Name <span class="text-destructive">*</span></label>
+              <input class="input" type="text" id="demo-required" required placeholder="Jane Doe">
+              <p class="field-description">This field is required.</p>
+            </div>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copy</button>
+            <pre><code>&lt;label class="label" for="name"&gt;
+  Name &lt;span class="text-destructive"&gt;*&lt;/span&gt;
+&lt;/label&gt;
+&lt;input class="input" type="text" id="name"
+       required placeholder="Jane Doe"&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- With Icon -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">With icon</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Wrap in a relative container and position the Lucide icon absolutely.</p>
+          <div class="preview">
+            <div class="relative" style="max-width:24rem;">
+              <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4"></i>
+              <input class="input pl-9" type="search" placeholder="Search...">
+            </div>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copy</button>
+            <pre><code>&lt;div class="relative"&gt;
+  &lt;i data-lucide="search"
+     class="absolute left-3 top-1/2 -translate-y-1/2
+            text-muted-foreground w-4 h-4"&gt;&lt;/i&gt;
+  &lt;input class="input pl-9" type="search"
+         placeholder="Search..."&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- File -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">File</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Use <code>type="file"</code> — the file selector button is styled automatically.</p>
+          <div class="preview">
+            <div style="max-width:24rem;">
+              <label class="label" for="demo-file">Picture</label>
+              <input class="input" type="file" id="demo-file">
+              <p class="field-description">Select a picture to upload.</p>
+            </div>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copy</button>
+            <pre><code>&lt;label class="label" for="avatar"&gt;Picture&lt;/label&gt;
+&lt;input class="input" type="file" id="avatar"&gt;
+&lt;p class="field-description"&gt;Select a picture to upload.&lt;/p&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- Textarea -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Textarea</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Use <code>&lt;textarea&gt;</code> with the <code>.input</code> class. Auto-grows with content via <code>field-sizing: content</code> — zero JS.</p>
+          <div class="preview">
+            <div style="max-width:24rem;">
+              <label class="label" for="demo-message">Message</label>
+              <textarea class="input" id="demo-message" placeholder="Your message..."></textarea>
+            </div>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copy</button>
+            <pre><code>&lt;label class="label" for="message"&gt;Message&lt;/label&gt;
+&lt;textarea class="input" id="message"
+          placeholder="Your message..."&gt;&lt;/textarea&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- Form Example -->
+        <section style="margin-bottom:2.5rem;">
+          <h2 style="font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-0.02em;margin:0 0 0.25rem;">Form composition</h2>
+          <p class="text-muted-foreground text-sm" style="margin:0 0 1rem;">Multiple inputs with labels, descriptions, and a submit button.</p>
+          <div class="preview">
+            <form style="max-width:24rem;display:flex;flex-direction:column;gap:1.25rem;" onsubmit="return false;">
+              <div>
+                <label class="label" for="demo-name">Name <span class="text-destructive">*</span></label>
+                <input class="input" type="text" id="demo-name" required placeholder="Jane Doe">
+              </div>
+              <div>
+                <label class="label" for="demo-email2">Email <span class="text-destructive">*</span></label>
+                <input class="input" type="email" id="demo-email2" required placeholder="jane@example.com">
+                <p class="field-description">We'll never share your email with anyone.</p>
+              </div>
+              <div>
+                <label class="label" for="demo-bio">Bio</label>
+                <textarea class="input" id="demo-bio" placeholder="Tell us about yourself..."></textarea>
+              </div>
+              <div style="display:flex;gap:0.5rem;justify-content:flex-end;">
+                <button class="btn" data-variant="outline" type="reset">Cancel</button>
+                <button class="btn" data-variant="default" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copy</button>
+            <pre><code>&lt;form&gt;
+  &lt;div&gt;
+    &lt;label class="label" for="name"&gt;
+      Name &lt;span class="text-destructive"&gt;*&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;input class="input" type="text" id="name"
+           required placeholder="Jane Doe"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label class="label" for="email"&gt;
+      Email &lt;span class="text-destructive"&gt;*&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;input class="input" type="email" id="email"
+           required placeholder="jane@example.com"&gt;
+    &lt;p class="field-description"&gt;
+      We'll never share your email with anyone.
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label class="label" for="bio"&gt;Bio&lt;/label&gt;
+    &lt;textarea class="input" id="bio"
+              placeholder="Tell us about yourself..."&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  &lt;button class="btn" data-variant="default" type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          </div>
+        </section>
+
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+  <script src="../components/accordion/accordion.js" defer></script>
+  <script src="../components/combobox/combobox.js" defer></script>
+  <script src="../components/dialog/dialog.js" defer></script>
+  <script src="../components/dropdown/dropdown.js" defer></script>
+  <script src="../components/sheet/sheet.js" defer></script>
+  <script src="../components/tabs/tabs.js" defer></script>
+  <script src="../components/toast/toast.js" defer></script>
+  <script src="../components/toggle/toggle.js" defer></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
