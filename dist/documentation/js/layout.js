@@ -139,7 +139,7 @@
         '<header class="site-header">' +
           '<a href="index.html" style="display:flex;align-items:center;gap:0.625rem;text-decoration:none;">' +
             '<span style="font-family:var(--font-display);font-size:1.1875rem;font-weight:500;letter-spacing:-0.03em;color:var(--foreground);">shadcn<em>-html</em></span>' +
-            '<span class="badge" data-variant="outline" style="font-family:var(--font-mono);">v0.1.1</span>' +
+            '<span class="badge" data-variant="outline" style="font-family:var(--font-mono);">v0.2.0</span>' +
           '</a>' +
           '<div style="flex:1;"></div>' +
           '<nav style="display:flex;align-items:center;gap:0.25rem;">' +
