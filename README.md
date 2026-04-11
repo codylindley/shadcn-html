@@ -1,5 +1,10 @@
 # shadcn-html
 
+[![GitHub stars](https://img.shields.io/github/stars/codylindley/shadcn-html?style=flat&logo=github)](https://github.com/codylindley/shadcn-html)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![No dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
+![HTML CSS JS](https://img.shields.io/badge/stack-HTML%20·%20CSS%20·%20JS-orange)
+
 **The AI prototyping substrate.** Themeable, semantic HTML, modern CSS, and vanilla JavaScript. No framework. No build step. No npm install. Just the lowest-level web primitives assembled into a system any AI can understand and build from.
 
 **[Documentation & Live Demos →](https://shadcn-html.netlify.app/documentation/)**
