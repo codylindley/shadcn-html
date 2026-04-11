@@ -115,6 +115,22 @@ git push origin main
 git tag "v${NEW_VERSION}"
 git push origin "v${NEW_VERSION}"
 
+# Create GitHub Release from commit log
+RELEASE_NOTES=$(echo "$COMMITS" | sed 's/^/- /')
+if [[ -z "$RELEASE_NOTES" ]]; then
+  RELEASE_NOTES="- Maintenance release"
+fi
+
+if command -v gh &> /dev/null; then
+  gh release create "v${NEW_VERSION}" \
+    --title "v${NEW_VERSION}" \
+    --notes "$RELEASE_NOTES" \
+    --target main
+  echo "✅ Created GitHub Release for v${NEW_VERSION}"
+else
+  echo "⚠️  gh CLI not found — skipping GitHub Release (install: https://cli.github.com)"
+fi
+
 # Switch back to dev
 git checkout dev
 
@@ -122,4 +138,5 @@ echo ""
 echo "🚀 Deployed v${NEW_VERSION} to production!"
 echo "   • main branch pushed → Netlify will auto-deploy"
 echo "   • Tagged: v${NEW_VERSION}"
+echo "   • GitHub Release created"
 echo "   • Back on dev branch"
