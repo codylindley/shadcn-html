@@ -5,6 +5,7 @@
   "description": "The AI prototyping substrate — themeable semantic HTML, modern CSS, vanilla JS",
   "scripts": {
     "docs:build-css": "npx @tailwindcss/cli -i dist/documentation/docs.src.css -o dist/documentation/css/docs-tailwind.css --minify",
+    "push": "./scripts/push.sh",
     "deploy": "./scripts/deploy.sh",
     "deploy:minor": "./scripts/deploy.sh minor",
     "deploy:major": "./scripts/deploy.sh major"

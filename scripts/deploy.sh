@@ -3,6 +3,16 @@ set -euo pipefail
 
 # Usage: ./scripts/deploy.sh [patch|minor|major]
 # Default: patch
+#
+# This is a RELEASE deploy. It:
+#   1. Bumps the version in package.json and layout.js
+#   2. Generates a changelog entry from git commits
+#   3. Commits and pushes to dev
+#   4. Merges dev → main and pushes
+#   5. Creates a git tag
+#
+# For non-release changes (README, doc fixes, etc.), use:
+#   npm run push
 
 BUMP_TYPE="${1:-patch}"
 
