@@ -8,11 +8,26 @@
 
   /* -- Dark mode (must run before first paint) ----------------- */
   var saved = localStorage.getItem('shadcn-html-theme');
-  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var darkMQ = window.matchMedia('(prefers-color-scheme: dark)');
+  var prefersDark = darkMQ.matches;
   if (saved === 'dark' || (!saved && prefersDark)) {
     document.documentElement.classList.add('dark');
     document.documentElement.style.colorScheme = 'dark';
   }
+
+  /* React to OS theme changes in real time (only if user hasn't set a manual preference) */
+  darkMQ.addEventListener('change', function (e) {
+    if (localStorage.getItem('shadcn-html-theme')) return;   // user chose manually — respect it
+    document.documentElement.classList.toggle('dark', e.matches);
+    document.documentElement.style.colorScheme = e.matches ? 'dark' : 'light';
+    var sun = document.getElementById('icon-sun');
+    var moon = document.getElementById('icon-moon');
+    if (sun) sun.style.display = e.matches ? 'none' : 'block';
+    if (moon) moon.style.display = e.matches ? 'block' : 'none';
+    if (window.applyTheme && window.__activeColorTheme && window.__activeColorTheme !== 'default') {
+      window.applyTheme(window.__activeColorTheme);
+    }
+  });
 
   /* -- SPA page-ready helper ----------------------------------- */
   /* Doc-site scripts (site.js) call window.onPageReady(fn)      */
