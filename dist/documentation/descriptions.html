@@ -10,71 +10,10 @@
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/docs-tailwind.css">
   <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-  <link rel="stylesheet" href="../components/button/button.css">
-  <link rel="stylesheet" href="../components/card/card.css">
-  <link rel="stylesheet" href="../components/dialog/dialog.css">
-  <link rel="stylesheet" href="../components/badge/badge.css">
-  <link rel="stylesheet" href="../components/input/input.css">
-  <link rel="stylesheet" href="../components/accordion/accordion.css">
-  <link rel="stylesheet" href="../components/tabs/tabs.css">
-  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
-  <link rel="stylesheet" href="../components/toast/toast.css">
-  <link rel="stylesheet" href="../components/combobox/combobox.css">
-  <link rel="stylesheet" href="../components/sheet/sheet.css">
-  <link rel="stylesheet" href="../components/toggle/toggle.css">
-  <link rel="stylesheet" href="../components/icon/icon.css">
-  <link rel="stylesheet" href="../components/typography/typography.css">
-  <link rel="stylesheet" href="../components/separator/separator.css">
-  <link rel="stylesheet" href="../components/link/link.css">
-  <link rel="stylesheet" href="../components/label/label.css">
-  <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
-  <link rel="stylesheet" href="../components/button-group/button-group.css">
-  <link rel="stylesheet" href="../components/toolbar/toolbar.css">
-  <link rel="stylesheet" href="../components/textarea/textarea.css">
-  <link rel="stylesheet" href="../components/checkbox/checkbox.css">
-  <link rel="stylesheet" href="../components/radio/radio.css">
-  <link rel="stylesheet" href="../components/switch/switch.css">
-  <link rel="stylesheet" href="../components/slider/slider.css">
-  <link rel="stylesheet" href="../components/select/select.css">
-  <link rel="stylesheet" href="../components/number-input/number-input.css">
-  <link rel="stylesheet" href="../components/file-input/file-input.css">
-  <link rel="stylesheet" href="../components/color-picker/color-picker.css">
-  <link rel="stylesheet" href="../components/date-picker/date-picker.css">
-  <link rel="stylesheet" href="../components/form/form.css">
-  <link rel="stylesheet" href="../components/tag/tag.css">
-  <link rel="stylesheet" href="../components/avatar/avatar.css">
-  <link rel="stylesheet" href="../components/image/image.css">
-  <link rel="stylesheet" href="../components/list/list.css">
-  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
-  <link rel="stylesheet" href="../components/statistic/statistic.css">
-  <link rel="stylesheet" href="../components/table/table.css">
-  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
-  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
-  <link rel="stylesheet" href="../components/timeline/timeline.css">
-  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
-  <link rel="stylesheet" href="../components/calendar/calendar.css">
-  <link rel="stylesheet" href="../components/spinner/spinner.css">
-  <link rel="stylesheet" href="../components/skeleton/skeleton.css">
-  <link rel="stylesheet" href="../components/progress/progress.css">
-  <link rel="stylesheet" href="../components/alert/alert.css">
-  <link rel="stylesheet" href="../components/alert-dialog/alert-dialog.css">
-  <link rel="stylesheet" href="../components/popover/popover.css">
-  <link rel="stylesheet" href="../components/tooltip/tooltip.css">
-  <link rel="stylesheet" href="../components/context-menu/context-menu.css">
-  <link rel="stylesheet" href="../components/command/command.css">
-  <link rel="stylesheet" href="../components/breadcrumb/breadcrumb.css">
-  <link rel="stylesheet" href="../components/pagination/pagination.css">
-  <link rel="stylesheet" href="../components/steps/steps.css">
-  <link rel="stylesheet" href="../components/navigation-menu/navigation-menu.css">
-  <link rel="stylesheet" href="../components/aspect-ratio/aspect-ratio.css">
-  <link rel="stylesheet" href="../components/container/container.css">
-  <link rel="stylesheet" href="../components/scroll-area/scroll-area.css">
-  <link rel="stylesheet" href="../components/carousel/carousel.css">
-  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
-  <link rel="stylesheet" href="../components/sortable/sortable.css">
 </head>
 <body>
   <site-header></site-header>
@@ -85,14 +24,43 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / descriptions</p>
-          <span class="badge" data-variant="secondary">CSS Only</span>
+          <span class="made-from">Made from: <a href="../components/descriptions/descriptions.css" class="made-from-pill">CSS</a></span>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Descriptions</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A key-value display for metadata and details. Built on the native <code>&lt;dl&gt;</code> description list element.
         </p>
 
-        <!-- Vertical -->
+        <!-- Component Specification -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Component Specification — components/descriptions/descriptions.md
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;dl&gt;</code> (description list) element with <code>&lt;dt&gt;</code> (term) and <code>&lt;dd&gt;</code> (details) pairs.</p>
+
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl" target="_blank" rel="noopener" title="description list" class="api-pill"><code>&lt;dl&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dt" target="_blank" rel="noopener" title="term/name" class="api-pill"><code>&lt;dt&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dd" target="_blank" rel="noopener" title="value/details" class="api-pill"><code>&lt;dd&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Layout (data-layout)</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>vertical</code><span class="text-muted-foreground">Terms stacked above details (default)</span>
+              <code>horizontal</code><span class="text-muted-foreground">Terms beside details in a row</span>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>&lt;dl&gt;</code> is natively accessible — screen readers announce term-detail associations</p>
+            <p class="text-muted-foreground" style="margin:0;">• Wrapping <code>&lt;dt&gt;</code>/<code>&lt;dd&gt;</code> pairs in <code>&lt;div&gt;</code> is valid HTML and aids styling</p>
+          </div>
+        </details>
+
+<!-- Vertical -->
         <p class="text-sm font-medium mb-2 mt-6">Vertical (Default)</p>
         <p class="text-xs text-muted-foreground mb-3">Terms stacked above their details.</p>
         <div class="preview">
@@ -162,6 +130,44 @@
     &lt;dd class="descriptions-detail"&gt;Jordan Davis&lt;/dd&gt;
   &lt;/div&gt;
 &lt;/dl&gt;</code></pre>
+        </div>
+
+        <!-- In Card -->
+        <p class="text-sm font-medium mb-2 mt-8">In a Card</p>
+        <p class="text-xs text-muted-foreground mb-3">Descriptions composed with <code>.card</code>, <code>.avatar</code>, and <code>.badge</code> for a user profile detail view.</p>
+        <div class="preview" style="flex-direction:column;align-items:stretch;">
+          <article class="card" style="max-width:28rem;">
+            <div class="card-header" style="display:flex;flex-direction:row;align-items:center;gap:0.75rem;">
+              <span class="avatar">
+                <span class="avatar-fallback">JD</span>
+                <span class="avatar-badge"></span>
+              </span>
+              <div style="flex:1;">
+                <p class="card-title">Jordan Davis</p>
+                <p class="card-description">Account details</p>
+              </div>
+              <span class="badge" data-variant="default">Active</span>
+            </div>
+            <div class="card-content">
+              <dl class="descriptions" data-layout="horizontal">
+                <div class="descriptions-item">
+                  <dt class="descriptions-term">Email</dt>
+                  <dd class="descriptions-detail">jdavis@email.com</dd>
+                </div>
+                <div class="descriptions-item">
+                  <dt class="descriptions-term">Role</dt>
+                  <dd class="descriptions-detail">Administrator</dd>
+                </div>
+                <div class="descriptions-item">
+                  <dt class="descriptions-term">Joined</dt>
+                  <dd class="descriptions-detail">January 15, 2024</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="card-footer">
+              <button class="btn" data-variant="outline" data-size="sm">Edit Profile</button>
+            </div>
+          </article>
         </div>
 
         <p class="text-xs text-muted-foreground" style="margin-top:2rem;">

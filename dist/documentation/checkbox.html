@@ -10,71 +10,10 @@
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/docs-tailwind.css">
   <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" id="hljs-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
   <link rel="stylesheet" id="hljs-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" disabled>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-  <link rel="stylesheet" href="../components/button/button.css">
-  <link rel="stylesheet" href="../components/card/card.css">
-  <link rel="stylesheet" href="../components/dialog/dialog.css">
-  <link rel="stylesheet" href="../components/badge/badge.css">
-  <link rel="stylesheet" href="../components/input/input.css">
-  <link rel="stylesheet" href="../components/accordion/accordion.css">
-  <link rel="stylesheet" href="../components/tabs/tabs.css">
-  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
-  <link rel="stylesheet" href="../components/toast/toast.css">
-  <link rel="stylesheet" href="../components/combobox/combobox.css">
-  <link rel="stylesheet" href="../components/sheet/sheet.css">
-  <link rel="stylesheet" href="../components/toggle/toggle.css">
-  <link rel="stylesheet" href="../components/icon/icon.css">
-  <link rel="stylesheet" href="../components/typography/typography.css">
-  <link rel="stylesheet" href="../components/separator/separator.css">
-  <link rel="stylesheet" href="../components/link/link.css">
-  <link rel="stylesheet" href="../components/label/label.css">
-  <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
-  <link rel="stylesheet" href="../components/button-group/button-group.css">
-  <link rel="stylesheet" href="../components/toolbar/toolbar.css">
-  <link rel="stylesheet" href="../components/textarea/textarea.css">
-  <link rel="stylesheet" href="../components/checkbox/checkbox.css">
-  <link rel="stylesheet" href="../components/radio/radio.css">
-  <link rel="stylesheet" href="../components/switch/switch.css">
-  <link rel="stylesheet" href="../components/slider/slider.css">
-  <link rel="stylesheet" href="../components/select/select.css">
-  <link rel="stylesheet" href="../components/number-input/number-input.css">
-  <link rel="stylesheet" href="../components/file-input/file-input.css">
-  <link rel="stylesheet" href="../components/color-picker/color-picker.css">
-  <link rel="stylesheet" href="../components/date-picker/date-picker.css">
-  <link rel="stylesheet" href="../components/form/form.css">
-  <link rel="stylesheet" href="../components/tag/tag.css">
-  <link rel="stylesheet" href="../components/avatar/avatar.css">
-  <link rel="stylesheet" href="../components/image/image.css">
-  <link rel="stylesheet" href="../components/list/list.css">
-  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
-  <link rel="stylesheet" href="../components/statistic/statistic.css">
-  <link rel="stylesheet" href="../components/table/table.css">
-  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
-  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
-  <link rel="stylesheet" href="../components/timeline/timeline.css">
-  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
-  <link rel="stylesheet" href="../components/calendar/calendar.css">
-  <link rel="stylesheet" href="../components/spinner/spinner.css">
-  <link rel="stylesheet" href="../components/skeleton/skeleton.css">
-  <link rel="stylesheet" href="../components/progress/progress.css">
-  <link rel="stylesheet" href="../components/alert/alert.css">
-  <link rel="stylesheet" href="../components/alert-dialog/alert-dialog.css">
-  <link rel="stylesheet" href="../components/popover/popover.css">
-  <link rel="stylesheet" href="../components/tooltip/tooltip.css">
-  <link rel="stylesheet" href="../components/context-menu/context-menu.css">
-  <link rel="stylesheet" href="../components/command/command.css">
-  <link rel="stylesheet" href="../components/breadcrumb/breadcrumb.css">
-  <link rel="stylesheet" href="../components/pagination/pagination.css">
-  <link rel="stylesheet" href="../components/steps/steps.css">
-  <link rel="stylesheet" href="../components/navigation-menu/navigation-menu.css">
-  <link rel="stylesheet" href="../components/aspect-ratio/aspect-ratio.css">
-  <link rel="stylesheet" href="../components/container/container.css">
-  <link rel="stylesheet" href="../components/scroll-area/scroll-area.css">
-  <link rel="stylesheet" href="../components/carousel/carousel.css">
-  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
-  <link rel="stylesheet" href="../components/sortable/sortable.css">
 </head>
 <body>
   <site-header></site-header>
@@ -85,19 +24,44 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / checkbox</p>
-          <span class="badge" data-variant="secondary">CSS Only</span>
+          <span class="made-from">Made from: <a href="../components/checkbox/checkbox.css" class="made-from-pill">CSS</a></span>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Checkbox</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
           A control that toggles between checked and unchecked. Built on native <code>&lt;input type="checkbox"&gt;</code> with CSS-only checkmark.
         </p>
 
-        <p class="text-sm font-medium mb-2 mt-6">Default</p>
-        <p class="text-xs text-muted-foreground mb-3">Basic checkbox with label.</p>
+        <!-- Component Specification -->
+        <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+          <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
+            Component Specification — components/checkbox/checkbox.md
+          </summary>
+          <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;input type=&quot;checkbox&quot;&gt;</code> element styled with CSS <code>appearance: none</code>.</p>
+
+            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox" target="_blank" rel="noopener" title="native toggle control" class="api-pill"><code>&lt;input type=&quot;checkbox&quot;&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:checked" target="_blank" rel="noopener" title="matches checked state" class="api-pill"><code>:checked</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color" target="_blank" rel="noopener" title="tints native form controls" class="api-pill"><code>accent-color</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The native <code>&lt;input type=&quot;checkbox&quot;&gt;</code> provides all keyboard and screen reader support.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>&lt;label&gt;</code> with <code>for</code> to associate the label text.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>aria-invalid=&quot;true&quot;</code> for validation errors.</p>
+            <p class="text-muted-foreground" style="margin:0;">• Use <code>indeterminate</code> property via JS for the indeterminate state.</p>
+          </div>
+        </details>
+
+<p class="text-sm font-medium mb-2 mt-6">Default</p>
+        <p class="text-xs text-muted-foreground mb-3">Checkbox with <code>.label</code> component.</p>
         <div class="preview">
           <div class="flex items-center gap-2">
             <input class="checkbox" type="checkbox" id="d-terms">
-            <label for="d-terms" style="font-size:0.875rem;">Accept terms and conditions</label>
+            <label class="label" for="d-terms">Accept terms and conditions</label>
           </div>
         </div>
         <div style="position:relative;margin-top:0.5rem;">
@@ -115,7 +79,7 @@
           <div class="flex items-start gap-2">
             <input class="checkbox" type="checkbox" id="d-notify" style="margin-top:0.125rem;">
             <div>
-              <label for="d-notify" style="font-size:0.875rem;font-weight:500;">Enable notifications</label>
+              <label class="label" for="d-notify">Enable notifications</label>
               <p class="field-description">You can enable or disable notifications at any time.</p>
             </div>
           </div>
@@ -136,7 +100,7 @@
         <div class="preview">
           <div class="flex items-center gap-2">
             <input class="checkbox" type="checkbox" id="d-dis" disabled>
-            <label for="d-dis" style="font-size:0.875rem;opacity:0.5;">Disabled</label>
+            <label class="label" for="d-dis" style="opacity:0.5;">Disabled</label>
           </div>
         </div>
         <div style="position:relative;margin-top:0.5rem;">
