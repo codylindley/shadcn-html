@@ -172,6 +172,12 @@
         });
         html += '</div>';
       });
+      html += '<div class="sidebar-author">' +
+        '<hr style="border:none;border-top:1px solid var(--sidebar-border);margin:0.75rem 0.75rem 0.875rem;">' +
+        '<p style="padding:0 0.75rem;margin:0;font-size:0.75rem;color:var(--muted-foreground);line-height:1.6;">' +
+          'Built by <a href="https://codylindley.com" target="_blank" rel="noopener" style="color:var(--foreground);text-decoration:underline;text-underline-offset:3px;font-weight:500;">Cody Lindley</a>' +
+        '</p>' +
+      '</div>';
       html += '</aside>';
       this.innerHTML = html;
     }
@@ -179,4 +185,53 @@
 
   customElements.define('site-header', SiteHeader);
   customElements.define('site-nav', SiteNav);
+
+  /* ── Sidebar scroll persistence ───────────────────────────── */
+  /* Save scroll position before navigating, restore on load.   */
+  var SCROLL_KEY = 'shadcn-nav-scroll';
+
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a.nav-link');
+    if (!link) return;
+    var sidebar = document.querySelector('.site-sidebar');
+    if (sidebar) sessionStorage.setItem(SCROLL_KEY, sidebar.scrollTop);
+  });
+
+  /* Also save on logo click */
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.site-header a[href="index.html"]')) {
+      var sidebar = document.querySelector('.site-sidebar');
+      if (sidebar) sessionStorage.setItem(SCROLL_KEY, sidebar.scrollTop);
+    }
+  });
+
+  /* Restore sidebar scroll & scroll active link into view */
+  document.addEventListener('DOMContentLoaded', function () {
+    var sidebar = document.querySelector('.site-sidebar');
+    if (!sidebar) return;
+    var saved = sessionStorage.getItem(SCROLL_KEY);
+    if (saved) {
+      sidebar.scrollTop = parseInt(saved, 10);
+      sessionStorage.removeItem(SCROLL_KEY);
+    } else {
+      /* First visit — scroll active link into view */
+      var active = sidebar.querySelector('.nav-link.active');
+      if (active) active.scrollIntoView({ block: 'nearest', behavior: 'instant' });
+    }
+  });
+
+  /* ── Hover prefetch ───────────────────────────────────────── */
+  var prefetched = {};
+  document.addEventListener('mouseover', function (e) {
+    var link = e.target.closest('a.nav-link:not(.disabled)');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (href && !prefetched[href] && href !== currentPage && !href.startsWith('http')) {
+      prefetched[href] = true;
+      var l = document.createElement('link');
+      l.rel = 'prefetch';
+      l.href = href;
+      document.head.appendChild(l);
+    }
+  });
 })();

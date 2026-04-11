@@ -58,20 +58,6 @@
   color: var(--foreground);
 }
 
-/* ── Cross-document view transitions ─────────────────────── */
-@view-transition {
-  navigation: auto;
-}
-
-::view-transition-old(root) {
-  animation: fade-out 150ms ease;
-}
-::view-transition-new(root) {
-  animation: fade-in 150ms ease;
-}
-@keyframes fade-out { to { opacity: 0; } }
-@keyframes fade-in  { from { opacity: 0; } }
-
 /* ── Nav link ────────────────────────────────────────────── */
 .nav-link {
   display: block;
