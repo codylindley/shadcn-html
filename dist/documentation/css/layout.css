@@ -28,7 +28,7 @@
   font-size: 0.75rem; font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--muted-foreground);
+  color: var(--foreground);
   padding: 0 0.75rem;
   margin: 0 0 0.375rem;
 }
@@ -217,46 +217,6 @@ pre code.hljs { background: transparent; padding: 0; }
 .api-pill:hover { background: var(--accent); }
 .api-pill code { font-size: inherit; background: none; border: none; padding: 0; }
 .api-pill svg { width: 10px; height: 10px; opacity: 0.4; flex-shrink: 0; }
-
-/* ── Spec details chevron rotation ───────────────────────── */
-details[open] > summary > svg:first-child {
-  transform: rotate(90deg);
-}
-
-/* ── "Made from" pills (component tech indicators) ──────── */
-.made-from {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-size: 0.75rem;
-  color: var(--muted-foreground);
-  font-family: var(--font-mono);
-  white-space: nowrap;
-}
-.made-from-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.125rem 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  font-family: var(--font-mono);
-  color: var(--foreground);
-  text-decoration: none;
-  transition: background 150ms, border-color 150ms;
-  letter-spacing: 0.02em;
-}
-.made-from-pill:hover {
-  background: var(--accent);
-  border-color: var(--foreground);
-}
-.made-from-pill svg {
-  width: 12px;
-  height: 12px;
-  opacity: 0.5;
-}
 
 /* ── Separator ───────────────────────────────────────────── */
 .sep {
