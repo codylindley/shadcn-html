@@ -30,7 +30,6 @@ elements render without FOUC when the parser encounters them in `<body>`.
 3. Add `<link rel="stylesheet" href="../components/{name}/{name}.css">` to the head
 4. Add `<script src="../components/{name}/{name}.js" defer></script>` if interactive
 5. In `layout.js`: add the page href to the `BUILT` set
-6. The inline `@theme` block must remain unchanged — it's the Tailwind theme bridge
 
 No need to update sidebar nav links in other files — `<site-nav>` handles it globally.
 
@@ -54,8 +53,9 @@ Every page imports ALL component CSS and JS files (not just its own). This ensur
 components used in demos on other pages render correctly. CSS and JS files live in
 `../components/{name}/{name}.css` and `../components/{name}/{name}.js` respectively.
 
-## The inline theme bridge
+## Doc-site Tailwind CSS
 
-The `<style type="text/tailwindcss">` block in each file IS the Tailwind theme bridge.
-It cannot be `<link>`-ed — the Tailwind CDN browser build requires it inline.
-If the token set changes, update this block in every HTML file.
+The doc site uses Tailwind utility classes for layout in page content.
+These are compiled to a static CSS file (`css/docs-tailwind.css`) — there is no CDN
+or runtime dependency. If new Tailwind classes are added to HTML, rebuild with:
+`npm run docs:build-css`

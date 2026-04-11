@@ -73,7 +73,7 @@ The token file provides:
 ### Documentation HTML files share boilerplate
 
 All HTML files in `dist/documentation/` share:
-- The same `<head>` (CDN script, font imports, CSS links, inline theme block)
+- The same `<head>` (CSS links, component imports)
 - The same header (logo, GitHub link, dark mode toggle)
 - The same sidebar navigation
 
@@ -120,7 +120,7 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
    - Edit directly — no build step
 
 4. **Write the JS** (if interactive) → `dist/components/{name}/{name}.js`
-   - Self-contained IIFE, no ES modules (works with file:// protocol)
+   - Self-contained IIFE, no ES modules
 
 5. **Create the doc page** → `dist/documentation/{name}.html`
    - Copy an existing component page as template (e.g., dialog.html)
@@ -131,14 +131,18 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
 6. **Update sidebar nav** → add link in ALL HTML files
    - Also add the CSS/JS imports to all HTML files
 
-7. **Update sidebar nav** CSS/JS imports in all HTML files
+7. **Update README.md** → add the component to the appropriate category in the Components section
+
+8. **Update component-list.md** → mark the component as ✅
+
+9. **Rebuild doc CSS** (if new Tailwind classes were used) → `npm run docs:build-css`
 
 ---
 
 ## Common pitfalls
 
-- **Dialog/Sheet centering**: Tailwind preflight strips `margin: auto` from `<dialog>`.
-  Always set `margin: auto; position: fixed; inset: 0;` explicitly for centered dialogs.
+- **Dialog/Sheet centering**: Always set `margin: auto; position: fixed; inset: 0;`
+  explicitly for centered dialogs.
 - **CSS drift**: If the spec's variant/size tables don't match the `.css` file,
   update the spec to stay in sync — the `.css` file is the source of truth for styles.
 - **Nav link sed failures**: Pages where the component has `class="nav-link active"`
