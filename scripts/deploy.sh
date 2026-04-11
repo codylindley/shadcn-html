@@ -47,9 +47,10 @@ sed -i '' "s/v${OLD_VERSION}/v${NEW_VERSION}/g" dist/documentation/js/layout.js
 
 echo "✅ Updated version in package.json and layout.js"
 
-# Commit the version bump on dev
+# Commit the version bump on dev and push
 git add package.json dist/documentation/js/layout.js
 git commit -m "chore: bump version to v${NEW_VERSION}"
+git push origin dev
 
 # Merge into main and push
 git checkout main
