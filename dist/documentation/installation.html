@@ -18,7 +18,7 @@
   <script src="js/themes.js"></script>
   <script src="js/theme-switcher.js"></script>
   <script src="js/layout.js"></script>
-  <link rel="stylesheet" href="../theme/semantic-tokens.css">
+  <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/docs-tailwind.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -96,11 +96,11 @@
       <div class="page-header">
 <p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / installation</p>
   <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Installation</h1>
-  <p class="text-muted-foreground leading-relaxed mb-10">Each component is a self-contained folder with a spec, stylesheet, and optional JS. No npm. No build step. Just add <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code> tags.</p>
+  <p class="text-muted-foreground leading-relaxed mb-10">Each component is a self-contained folder with a static component skill, a stylesheet, and a JavaScript file if needed. No npm. No build step. Just add <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code> tags.</p>
       </div>
 
   <!-- -- Installation -------------------------------------- -->
-  <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 1rem;">Installation</h2>
+  <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 1rem;">Quick start</h2>
 
   <p class="text-sm text-muted-foreground mb-6">All files are served via <a href="https://www.jsdelivr.com" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">jsDelivr</a> CDN directly from the GitHub repo. No download or install required — just reference the URLs in your HTML.</p>
 
@@ -108,30 +108,16 @@
     <div>
       <div class="flex items-center gap-3 mb-3">
         <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</span>
-        <h3 style="margin:0;font-size:1rem;font-weight:500;">Include the theme</h3>
+        <h3 style="margin:0;font-size:1rem;font-weight:500;">Add a theme</h3>
       </div>
-      <pre><code class="language-markup">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/theme/semantic-tokens.css"&gt;</code></pre>
-      <p class="text-sm text-muted-foreground mt-2">This defines every design token (colors, radius, shadows, typography, spacing) for light and dark mode. Swap this file to retheme everything. Compatible with <a href="https://tweakcn.com" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">tweakcn.com</a> theme exports.</p>
+      <pre><code class="language-markup">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/theme/default-semantic-tokens.css"&gt;</code></pre>
+      <p class="text-sm text-muted-foreground mt-2">This defines every token for the default light and dark theme. To switch themes, you just switch this file — that's all the theme selector in this documentation site is doing. Compatible with <a href="https://tweakcn.com" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">tweakcn.com</a> theme exports.</p>
     </div>
 
     <div>
       <div class="flex items-center gap-3 mb-3">
         <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</span>
-        <h3 style="margin:0;font-size:1rem;font-weight:500;">Include component CSS &amp; JS</h3>
-      </div>
-      <pre><code class="language-markup">&lt;!-- CSS — pick what you need --&gt;
-&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/components/button/button.css"&gt;
-&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/components/dialog/dialog.css"&gt;
-
-&lt;!-- JS — only for interactive components --&gt;
-&lt;script type="module" src="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/components/dialog/dialog.js"&gt;&lt;/script&gt;</code></pre>
-      <p class="text-sm text-muted-foreground mt-2">Each component lives in <code>components/{name}/</code> with its own <code>.css</code> and optional <code>.js</code>. Include only the components you use — they're independent of each other.</p>
-    </div>
-
-    <div>
-      <div class="flex items-center gap-3 mb-3">
-        <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</span>
-        <h3 style="margin:0;font-size:1rem;font-weight:500;">Include Lucide icons</h3>
+        <h3 style="margin:0;font-size:1rem;font-weight:500;">Add the icons</h3>
       </div>
       <pre><code class="language-markup">&lt;script src="https://unpkg.com/lucide@1.8.0"&gt;&lt;/script&gt;
 &lt;script&gt;lucide.createIcons();&lt;/script&gt;</code></pre>
@@ -140,8 +126,22 @@
 
     <div>
       <div class="flex items-center gap-3 mb-3">
+        <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</span>
+        <h3 style="margin:0;font-size:1rem;font-weight:500;">Select the components you want</h3>
+      </div>
+      <pre><code class="language-markup">&lt;!-- CSS — pick what you need --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/components/button/button.css"&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/components/dialog/dialog.css"&gt;
+
+&lt;!-- JS — when the component needs it --&gt;
+&lt;script type="module" src="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/components/dialog/dialog.js"&gt;&lt;/script&gt;</code></pre>
+      <p class="text-sm text-muted-foreground mt-2">Each component lives in <code>components/{name}/</code> with its own <code>.css</code> and <code>.js</code> when needed. Include only the components you use — they're independent of each other.</p>
+    </div>
+
+    <div>
+      <div class="flex items-center gap-3 mb-3">
         <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--primary);color:var(--primary-foreground);font-size:0.75rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</span>
-        <h3 style="margin:0;font-size:1rem;font-weight:500;">Read the spec, write the HTML</h3>
+        <h3 style="margin:0;font-size:1rem;font-weight:500;">Read the component skill, write the HTML</h3>
       </div>
       <pre><code class="language-markup">&lt;button class="btn" data-variant="default"
         data-dialog-trigger="confirm"
@@ -163,7 +163,7 @@
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/dialog&gt;</code></pre>
-      <p class="text-sm text-muted-foreground mt-2">Each component folder has a <code>{name}.md</code> spec that documents the exact HTML structure, attributes, variants, and ARIA. Read it, copy the pattern, fill in your content. The CSS and JS handle the rest.</p>
+      <p class="text-sm text-muted-foreground mt-2">Each component folder has a <code>component-skill.md</code> that documents the exact HTML structure, attributes, variants, and ARIA. Read it, copy the pattern, fill in your content. The CSS and JS handle the rest.</p>
     </div>
 
     <div>
@@ -179,18 +179,15 @@
   <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);">
     <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.75rem;">Pinning a version</h2>
     <p class="text-sm text-muted-foreground mb-3">Replace <code>@latest</code> with a specific version tag to lock your project to a release:</p>
-    <pre><code class="language-markup">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@v0.1.1/dist/theme/semantic-tokens.css"&gt;</code></pre>
+    <pre><code class="language-markup">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@v0.1.1/dist/theme/default-semantic-tokens.css"&gt;</code></pre>
     <p class="text-sm text-muted-foreground mt-2">This ensures your project won't break when new versions are published. Check the <a href="https://github.com/codylindley/shadcn-html/tags" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">releases page</a> for available versions.</p>
   </div>
 
   <!-- -- Self-hosting -------------------------------------- -->
   <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);">
     <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.75rem;">Self-hosting</h2>
-    <p class="text-sm text-muted-foreground mb-3">Prefer local files? Download everything and reference files with relative paths:</p>
+    <p class="text-sm text-muted-foreground mb-3">Download the full system and drop it into any project. All the files are static — no build step, no dependencies. Point an AI at the folder and it has everything it needs: component skills to read, CSS to include, JS to wire up, and this entire documentation site with working examples of every component.</p>
     <p class="mb-4"><a href="https://github.com/codylindley/shadcn-html/archive/refs/heads/main.zip" class="btn" data-variant="outline" style="text-decoration:none;"><i data-lucide="download" style="width:1rem;height:1rem;"></i> Download latest (.zip)</a></p>
-    <pre><code class="language-markup">&lt;link rel="stylesheet" href="theme/semantic-tokens.css"&gt;
-&lt;link rel="stylesheet" href="components/button/button.css"&gt;
-&lt;script type="module" src="components/dialog/dialog.js"&gt;&lt;/script&gt;</code></pre>
   </div>
 
   <!-- -- Component folder structure ------------------------ -->
@@ -198,10 +195,10 @@
     <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.75rem;">Component folder structure</h2>
     <pre><code>components/
 └-- dialog/
-    ├-- dialog.md    ← HTML structure, attributes, ARIA (read this first)
+    ├-- component-skill.md    ← HTML structure, attributes, ARIA (read this first)
     ├-- dialog.css   ← stylesheet (include via &lt;link&gt;)
     └-- dialog.js    ← interaction behavior (include via &lt;script type="module"&gt;)</code></pre>
-    <p class="text-sm text-muted-foreground mt-2">Non-interactive components like Button and Badge only have <code>.md</code> and <code>.css</code> — no JS needed.</p>
+    <p class="text-sm text-muted-foreground mt-2">Non-interactive components like Button and Badge only have <code>component-skill.md</code> and <code>.css</code> — no JS needed.</p>
   </div>
     </main>
   </div>

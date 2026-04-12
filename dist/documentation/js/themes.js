@@ -1,7 +1,7 @@
 // -- themes.js -----------------------------------------------
 // All available themes from tweakcn.com built-in presets.
 // Each theme has light and dark token overrides that map
-// directly to the CSS custom properties in semantic-tokens.css.
+// directly to the CSS custom properties in default-semantic-tokens.css.
 // Font, shadow, spacing, and letter-spacing tokens are excluded
 // to avoid layout shifts on the doc site.
 

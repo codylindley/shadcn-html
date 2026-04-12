@@ -18,7 +18,7 @@
   <script src="js/themes.js"></script>
   <script src="js/theme-switcher.js"></script>
   <script src="js/layout.js"></script>
-  <link rel="stylesheet" href="../theme/semantic-tokens.css">
+  <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
   <link rel="stylesheet" href="css/docs-tailwind.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -175,7 +175,7 @@
     </div>
   </div>
 
-  <p class="text-sm text-muted-foreground mb-8">The design tokens file (<code>semantic-tokens.css</code>) is intentionally <strong>not</strong> layered — token values sit at the top of the cascade so they're always available to both component and user styles.</p>
+  <p class="text-sm text-muted-foreground mb-8">The design tokens file (<code>default-semantic-tokens.css</code>) is intentionally <strong>not</strong> layered — token values sit at the top of the cascade so they're always available to both component and user styles.</p>
 
   <div class="sep"></div>
 
@@ -196,7 +196,7 @@
     <div style="display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border:1px solid var(--border);border-top:0;">
       <span style="width:1.625rem;height:1.625rem;border-radius:50%;background:var(--muted-foreground);color:var(--background);font-size:0.6875rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</span>
       <div>
-        <code style="font-size:0.8125rem;font-weight:600;">semantic-tokens.css</code>
+        <code style="font-size:0.8125rem;font-weight:600;">default-semantic-tokens.css</code>
         <span class="text-sm text-muted-foreground" style="display:block;margin-top:0.125rem;">Design tokens (<code>:root</code> custom properties). Unlayered — always available.</span>
       </div>
     </div>
@@ -257,7 +257,7 @@
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">HTML — load order</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;"><code>&lt;link rel="stylesheet" href="theme/semantic-tokens.css"&gt;
+    <pre style="border-radius:0;border:none;margin:0;"><code>&lt;link rel="stylesheet" href="theme/default-semantic-tokens.css"&gt;
 &lt;link rel="stylesheet" href="components/button/button.css"&gt;
 &lt;link rel="stylesheet" href="components/card/card.css"&gt;
 

@@ -59,7 +59,7 @@ Pure CSS — no JavaScript or ARIA required.
 
 ### Inline code
 ```html
-<code class="code">semantic-tokens.css</code>
+<code class="code">default-semantic-tokens.css</code>
 ```
 
 ---

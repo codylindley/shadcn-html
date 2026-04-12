@@ -28,7 +28,7 @@ Copy the `dist/` folder into your project, then point your AI agent at the compo
 
 ```
 Read dist/components/{name}/{name}.md for component HTML patterns.
-Use dist/theme/semantic-tokens.css for design tokens.
+Use dist/theme/default-semantic-tokens.css for design tokens.
 ```
 
 The AI will use the tokens and pattern specs to build components. The documentation pages serve as reference implementations.
@@ -68,7 +68,7 @@ Breadcrumb · Pagination · Steps · Tabs · Dropdown Menu · Navigation Menu
 ```
 shadcn-html/
 ├── dist/                              ← the distributable system
-│   ├── theme/semantic-tokens.css      ← design tokens (colors, radius, shadows)
+│   ├── theme/default-semantic-tokens.css      ← design tokens (colors, radius, shadows)
 │   ├── components/                    ← self-contained component folders
 │   │   └── {name}/
 │   │       ├── component-skill.md      ← component skill (HTML structure & ARIA)
@@ -89,7 +89,7 @@ shadcn-html/
 Tokens are compatible with [tweakcn.com](https://tweakcn.com) theme exports. To retheme:
 
 1. Export a theme from tweakcn.com
-2. Replace the `:root` and `.dark` blocks in `dist/theme/semantic-tokens.css`
+2. Replace the `:root` and `.dark` blocks in `dist/theme/default-semantic-tokens.css`
 3. Everything updates automatically — all components, the doc site, dark mode
 
 ## Design principles

@@ -10,7 +10,7 @@ The consumer-facing system lives in `dist/`.
 ```
 ai-web-prototyper/
 ├── dist/                              ← the distributable (drop into any project)
-│   ├── theme/semantic-tokens.css      ← design tokens (source of truth for colors, radius, shadows)
+│   ├── theme/default-semantic-tokens.css      ← design tokens (source of truth for colors, radius, shadows)
 │   ├── components/                    ← self-contained component folders
 │   │   └── {name}/
 │   │       ├── component-skill.md      ← component skill (HTML structure & ARIA reference)
@@ -63,7 +63,7 @@ are the actual implementation — edit them directly, no build step needed.
 
 ### Tokens are the source of truth for design values
 
-`dist/theme/semantic-tokens.css` defines all CSS custom properties. These must match
+`dist/theme/default-semantic-tokens.css` defines all CSS custom properties. These must match
 the shape of tweakcn.com theme exports so themes are drop-in compatible.
 
 The token file provides:
@@ -168,5 +168,5 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
   re-imported by the SPA router after navigation (with cache-busting). Doc-site-only
   scripts (site.js) use `window.onPageReady(fn)` for their own re-init.
 - **Font stacks**: The system tokens use generic font stacks. The doc site overrides
-  them in `css/docs-theme.css`. Don't put custom fonts in `semantic-tokens.css`.
+  them in `css/docs-theme.css`. Don't put custom fonts in `default-semantic-tokens.css`.
 

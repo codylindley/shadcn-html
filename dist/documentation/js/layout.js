@@ -224,7 +224,7 @@
               color = t.styles[mode][key];
             }
             if (!color && t.id === 'default') {
-              // Default theme colors from semantic-tokens.css
+              // Default theme colors from default-semantic-tokens.css
               var defaults = {
                 light: { primary: 'oklch(0.205 0.005 285)', secondary: 'oklch(0.94 0.003 247)', accent: 'oklch(0.94 0.003 247)', destructive: 'oklch(0.577 0.245 27.325)', muted: 'oklch(0.94 0.003 247)' },
                 dark: { primary: 'oklch(0.985 0.002 247)', secondary: 'oklch(0.22 0.006 285)', accent: 'oklch(0.22 0.006 285)', destructive: 'oklch(0.396 0.141 25.723)', muted: 'oklch(0.22 0.006 285)' }
