@@ -36,13 +36,33 @@ ai-web-prototyper/
 Every component starts from a native HTML element or browser API. If the browser
 can do it, we don't write JavaScript for it.
 
-**HTML & CSS**
+**HTML elements & attributes**
 
 - Use `<dialog>` for modals — not divs with JS show/hide
 - Use `popover` API for dropdowns, tooltips, toasts — not JS positioning
+- Use `popover="hint"` for tooltips — not `popover="auto"` (hints don't
+  close other popovers)
 - Use `<details>/<summary>` for accordions — not JS toggle logic
+- Use `<details name="group">` for exclusive (single-open) accordions — not
+  JS that closes siblings
 - Use `commandfor` / `command` attributes for declarative button→dialog/popover
   triggers — not JS click handlers that call `showModal()` or `togglePopover()`
+- Use `<progress>` for completion indicators — not div-based progress bars
+- Use `<meter>` for scalar values in a range — not custom gauge components
+- Use `<output>` for computed/live results — not manual `aria-live` regions
+- Use `inert` attribute to disable interaction on background content — not
+  JS focus traps or `aria-hidden` toggling
+- Use `loading="lazy"` for images/iframes — not JS lazy load libraries
+- Use `autofocus` in dialogs/popovers — not JS `.focus()` calls
+- Use `inputmode` for mobile keyboard hints — not separate input types
+- Use `enterkeyhint` for mobile Enter key labels (`search`, `send`, `go`)
+- Use `autocomplete` with proper field names — not custom autofill
+- Use `<datalist>` for native type-ahead suggestions — not custom dropdowns
+- Use `fetchpriority` for resource priority hints (`high`/`low`)
+- Use `disabled` / `readonly` for native form states — not JS class toggling
+
+**CSS**
+
 - Use `@starting-style` + `transition-behavior: allow-discrete` for
   enter/exit animations on `display: none` elements — not JS class toggling
 - Use CSS anchor positioning for popover placement — not Floating UI / Popper
@@ -55,9 +75,15 @@ can do it, we don't write JavaScript for it.
 - Use `field-sizing: content` for auto-growing textareas — not JS resize
 - Use `oklch()` and relative color syntax for wide-gamut, derived colors — not
   hardcoded hex/hsl palettes
+- Use `color-mix(in oklch, ...)` for hover/disabled color derivation — not
+  Sass `darken()`/`lighten()` or hardcoded variants
+- Use `light-dark()` for inline dark mode values — not media queries or
+  class toggles when `color-scheme` is already set
 - Use `color-scheme` property for dark mode browser defaults — not all-manual
   dark overrides on every native element
+- Use `accent-color` for theming native form controls — not custom replacements
 - Use `text-wrap: balance` for headings and labels — not JS text-balancing
+- Use `text-wrap: pretty` for body text orphan prevention — not manual `&nbsp;`
 - Use `overscroll-behavior: contain` on scroll containers inside overlays — not
   JS scroll-lock libraries
 - Use `scroll-snap` for carousel/slider snap points — not JS snap calculations
@@ -66,18 +92,58 @@ can do it, we don't write JavaScript for it.
 - Use individual transform properties (`rotate`, `scale`, `translate`) — not
   compound `transform` strings
 - Use CSS nesting, `@layer`, container queries — not preprocessors
+- Use `aspect-ratio` for intrinsic ratios — not padding-bottom hacks
+- Use `content-visibility` for expand/collapse transitions — not JS lazy rendering
+- Use `interpolate-size: allow-keywords` for animating to `auto` height — not
+  JS measurement or `max-height` hacks
+- Use `@property` for typed, animatable custom properties — not JS animation
+  of CSS values
+- Use scroll-driven animations (`animation-timeline: scroll()` / `view()`) for
+  scroll-linked effects — not scroll listeners or IntersectionObserver
+- Use View Transitions API for smooth DOM state changes — not JS crossfades
+- Use `@supports` for CSS feature detection — not Modernizr or JS detection
+- Use logical properties (`margin-inline`, `padding-block`) for RTL support — not
+  separate LTR/RTL stylesheets
+- Use subgrid for aligned child layouts — not manually synchronized columns
+- Use dynamic viewport units (`dvh`, `svh`, `lvh`) — not JS `innerHeight` hacks
+- Use CSS math functions (`clamp()`, `min()`, `max()`) for responsive sizing — not
+  JS resize calculations
+- Use `:is()` / `:where()` for selector grouping — not repeated selectors
+- Use `hanging-punctuation` for optical quote alignment — not negative text-indent
+- Use `@scope` for bounded style scoping — not BEM naming hacks
+- Use `@media (scripting)` for no-JS progressive enhancement — not `<noscript>` alone
+
+**Accessibility (REQUIRED)**
+
+- Use `prefers-reduced-motion: reduce` to suppress/simplify all animations — not
+  ignoring motion preferences (this is an accessibility requirement, not optional)
+- Use `prefers-contrast: more` to increase contrast when requested
+- Use `forced-colors: active` to support Windows High Contrast Mode with system colors
+- Use `prefers-color-scheme` for automatic dark mode defaults
 
 **JavaScript (only when HTML/CSS cannot express it)**
 
 - Use Web Animations API (`el.animate()`) for imperative animations — not CSS
   class toggling when JS needs to coordinate timing
-- Use `Intl` APIs (`DateTimeFormat`, `NumberFormat`, etc.) for locale-aware
-  formatting — not moment.js or date-fns
+- Use `Intl` APIs (`DateTimeFormat`, `NumberFormat`, `RelativeTimeFormat`,
+  `ListFormat`) for locale-aware formatting — not moment.js or date-fns
 - Use native Drag and Drop API for reordering — not SortableJS or drag libraries
 - Use `CustomEvent` for component-to-component communication — not framework
   event systems
 - Use `element.checkVisibility()` for visibility detection — not manual
   offset calculations
+- Use `IntersectionObserver` for viewport-entry detection — not scroll listeners
+  with `getBoundingClientRect()`
+- Use `ResizeObserver` for element size changes — not window resize listeners
+- Use `MutationObserver` for DOM change reactions — not polling loops
+- Use `navigator.clipboard` for clipboard access — not `document.execCommand('copy')`
+- Use `CloseWatcher` for platform close signals in custom UI — not manual
+  Escape key listeners
+- Use `AbortController` for canceling fetches/listeners — not boolean flags
+- Use `FormData` for form serialization — not manual value collection loops
+- Use `structuredClone()` for deep cloning — not `JSON.parse(JSON.stringify())`
+- Use `ElementInternals` for custom form elements — not hidden input proxies
+- Use Navigation API for SPA routing — not History API hacks
 
 JavaScript is only for behavior that HTML and CSS cannot express: keyboard
 navigation patterns, focus management, and state coordination between elements.

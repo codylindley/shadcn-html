@@ -56,9 +56,12 @@ relies on, with MDN links. Use this format:
 ```
 
 ### What to include
-- HTML elements that provide core behavior (`<dialog>`, `<details>`, `<summary>`)
-- Browser APIs (`Popover API`, `showModal()`)
-- Significant CSS features (`CSS Anchor Positioning`, `@starting-style`, `::backdrop`, `::details-content`, Container Queries, `:has()`, `field-sizing: content`)
+- HTML elements that provide core behavior (`<dialog>`, `<details>`, `<summary>`, `<progress>`, `<meter>`, `<output>`)
+- HTML attributes that replace JS (`popover`, `popover="hint"`, `commandfor`/`command`, `inert`, `autofocus`, `loading="lazy"`)
+- Browser APIs (`Popover API`, `showModal()`, `View Transitions API`, `Navigation API`)
+- Significant CSS features (`CSS Anchor Positioning`, `@starting-style`, `::backdrop`, `::details-content`, Container Queries, `:has()`, `field-sizing: content`, `interpolate-size`, `content-visibility`, `@property`, `scroll-driven animations`, `light-dark()`, `color-mix()`)
+- Accessibility features (`prefers-reduced-motion`, `prefers-contrast`, `forced-colors`)
+- JS APIs used (`IntersectionObserver`, `ResizeObserver`, `MutationObserver`, `Clipboard API`, `Intl.*`, `CloseWatcher`, `AbortController`, `FormData`, `structuredClone()`)
 - WAI-ARIA patterns when the component follows a specific APG pattern
 
 ### What to exclude
@@ -90,11 +93,31 @@ element styles inside the base selector:
 ```
 
 ### Modern CSS features (use where applicable)
-- **CSS anchor positioning** — for popover/dropdown/combobox placement (`position-anchor`, `anchor()`, `position-try: flip-block`). No JS positioning code needed.
+- **CSS anchor positioning** — for popover/dropdown/combobox placement (`position-anchor`, `anchor()`, `position-try-fallbacks: flip-block`). No JS positioning code needed.
 - **`:has()` selector** — for parent/sibling state reactions (e.g., label styling when input is focused)
 - **`field-sizing: content`** — for auto-growing textareas with zero JS
 - **Container queries** — for components that adapt to their container width (`container-type: inline-size`, `@container`)
 - **`@starting-style`** — for enter animations on elements added to DOM or moving to top layer
+- **`interpolate-size: allow-keywords`** — for smooth height-to-`auto` transitions (accordion, collapsible)
+- **`content-visibility`** — for expand/collapse transitions with `allow-discrete`
+- **`@property`** — for typed, animatable custom properties (progress rings, gradient transitions)
+- **`color-mix(in oklch, ...)`** — for deriving hover/disabled states from token colors
+- **`light-dark()`** — for inline dark mode values when `color-scheme` is set
+- **`accent-color`** — for theming native form controls (checkbox, radio, range, progress)
+- **Scroll-driven animations** — `animation-timeline: scroll()` / `view()` for scroll-linked effects
+- **View Transitions API** — `startViewTransition()` for smooth DOM state changes
+- **Logical properties** — `margin-inline`, `padding-block`, `inset-inline-start` for RTL support
+- **Subgrid** — `grid-template-columns: subgrid` for child alignment to parent grid tracks
+- **`:is()` / `:where()`** — selector grouping; `:where()` has zero specificity (ideal for resets)
+- **`@scope`** — bounded style scoping with upper and lower boundaries
+- **Dynamic viewport units** — `dvh`, `svh`, `lvh` for mobile browser chrome awareness
+- **CSS math** — `clamp()`, `min()`, `max()`, `round()` for responsive sizing
+
+### Accessibility CSS (REQUIRED for all components)
+- **`prefers-reduced-motion: reduce`** — suppress/simplify all transitions and animations
+- **`prefers-contrast: more`** — increase contrast when requested by the user
+- **`forced-colors: active`** — support Windows High Contrast Mode with system colors
+- **`prefers-color-scheme`** — automatic dark mode defaults from OS preference
 
 ## Accuracy requirements
 
