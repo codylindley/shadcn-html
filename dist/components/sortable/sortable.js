@@ -1,7 +1,8 @@
 // -- Sortable -------------------------------------------------
 // Drag-and-drop reordering for sortable lists.
 
-document.querySelectorAll('.sortable').forEach((list) => {
+document.querySelectorAll('.sortable:not([data-init])').forEach((list) => {
+  list.dataset.init = '';
   let dragged = null;
   list.querySelectorAll('.sortable-item').forEach((item) => {
     item.addEventListener('dragstart', (e) => { dragged = item; item.setAttribute('data-dragging', ''); e.dataTransfer.effectAllowed = 'move'; });

@@ -16,7 +16,8 @@ if (!commandKeydownAdded) {
   });
 }
 
-document.querySelectorAll('dialog.command').forEach((dialog) => {
+document.querySelectorAll('dialog.command:not([data-init])').forEach((dialog) => {
+    dialog.dataset.init = '';
     const input = dialog.querySelector('.command-input');
     const list = dialog.querySelector('.command-list');
     const empty = dialog.querySelector('.command-empty');
@@ -43,7 +44,8 @@ document.querySelectorAll('dialog.command').forEach((dialog) => {
     dialog.addEventListener('close', () => { input.value = ''; filter(''); });
   });
 
-document.querySelectorAll('[data-command-trigger]').forEach((trigger) => {
+document.querySelectorAll('[data-command-trigger]:not([data-init])').forEach((trigger) => {
+  trigger.dataset.init = '';
   const dialog = document.getElementById(trigger.dataset.commandTrigger);
   if (!dialog) return;
   trigger.addEventListener('click', () => {

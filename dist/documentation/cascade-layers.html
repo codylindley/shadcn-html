@@ -116,7 +116,7 @@
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">the rule in one sentence</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code><span class="dim">/* Layered — from a component stylesheet */</span>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css"><span class="dim">/* Layered — from a component stylesheet */</span>
 @layer components {
   .btn { background: var(--primary); }
 }
@@ -138,7 +138,7 @@
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">components/button/button.css</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>@layer components {
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css">@layer components {
   .btn {
     display: inline-flex;
     align-items: center;
@@ -159,7 +159,7 @@
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">components/card/card.css</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>@layer components {
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css">@layer components {
   .card {
     background-color: var(--card);
     color: var(--card-foreground);
@@ -227,7 +227,7 @@
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">components/button/button.css (layered)</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>@layer components {
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css">@layer components {
   .btn {
     border-radius: var(--radius-md);
     font-weight: 500;
@@ -239,7 +239,7 @@
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">my-overrides.css (unlayered — wins)</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code><span class="dim">/* Make buttons fully rounded */</span>
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css"><span class="dim">/* Make buttons fully rounded */</span>
 .btn {
   border-radius: 9999px;
 }
@@ -257,7 +257,7 @@
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">HTML — load order</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>&lt;link rel="stylesheet" href="theme/default-semantic-tokens.css"&gt;
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup">&lt;link rel="stylesheet" href="theme/default-semantic-tokens.css"&gt;
 &lt;link rel="stylesheet" href="components/button/button.css"&gt;
 &lt;link rel="stylesheet" href="components/card/card.css"&gt;
 
@@ -278,7 +278,7 @@
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">main.css — explicit layer order</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code><span class="dim">/* Declare layer order: first listed = lowest priority */</span>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css"><span class="dim">/* Declare layer order: first listed = lowest priority */</span>
 @layer components, utilities;
 
 <span class="dim">/* Now Tailwind utilities beat shadcn-html component styles,
@@ -301,7 +301,7 @@
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">Without @layer</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code><span class="dim">/* Library: high specificity */</span>
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css"><span class="dim">/* Library: high specificity */</span>
 .btn.btn-primary { background: blue; }
 
 <span class="dim">/* Your override: loses */</span>
@@ -314,7 +314,7 @@
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">With @layer (shadcn-html)</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code><span class="dim">/* Library: layered */</span>
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css"><span class="dim">/* Library: layered */</span>
 @layer components {
   .btn { background: var(--primary); }
 }

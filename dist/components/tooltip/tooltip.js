@@ -1,7 +1,8 @@
 // -- Tooltip --------------------------------------------------
 // CSS anchor positioning + hover/focus show/hide for tooltip popovers.
 
-document.querySelectorAll('[data-tooltip-trigger]').forEach((trigger) => {
+document.querySelectorAll('[data-tooltip-trigger]:not([data-init])').forEach((trigger) => {
+  trigger.dataset.init = '';
   const tip = document.getElementById(trigger.dataset.tooltipTrigger);
   if (!tip) return;
 

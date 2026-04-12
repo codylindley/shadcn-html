@@ -14,7 +14,8 @@ const activateTab = (tab, triggers) => {
   if (panel) panel.hidden = false;
 };
 
-document.querySelectorAll('[role="tablist"]').forEach((tablist) => {
+document.querySelectorAll('[role="tablist"]:not([data-init])').forEach((tablist) => {
+    tablist.dataset.init = '';
     if (!tablist.querySelector('.tab-trigger')) return;
     const triggers = Array.from(tablist.querySelectorAll('[role="tab"]'));
     const orientation = tablist.getAttribute('aria-orientation') || 'horizontal';

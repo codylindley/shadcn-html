@@ -1,7 +1,8 @@
 // -- Number Input ---------------------------------------------
 // Increment/decrement buttons for .number-input containers.
 
-document.querySelectorAll('.number-input').forEach((wrapper) => {
+document.querySelectorAll('.number-input:not([data-init])').forEach((wrapper) => {
+  wrapper.dataset.init = '';
   const input = wrapper.querySelector('input[type="number"]');
   const decBtn = wrapper.querySelector('[data-action="decrement"]');
   const incBtn = wrapper.querySelector('[data-action="increment"]');

@@ -170,7 +170,7 @@
     <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">1 — semantic tokens</span>
     </div>
-    <pre style="border-radius:0;border:none;"><code><span class="dim">/* default-semantic-tokens.css — the design system */</span>
+    <pre style="border-radius:0;border:none;"><code class="language-css"><span class="dim">/* default-semantic-tokens.css — the design system */</span>
 :root {
   --background:         oklch(1 0 0);
   --foreground:         oklch(0.145 0.005 285);
@@ -188,7 +188,7 @@
     <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">2 — component CSS</span>
     </div>
-    <pre style="border-radius:0;border:none;"><code><span class="dim">/* button.css — styled with tokens */</span>
+    <pre style="border-radius:0;border:none;"><code class="language-css"><span class="dim">/* button.css — styled with tokens */</span>
 .btn {
   display: inline-flex;
   align-items: center;
@@ -206,7 +206,7 @@
     <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">3 — semantic HTML</span>
     </div>
-    <pre style="border-radius:0;border:none;"><code>&lt;button class="btn" data-variant="default"
+    <pre style="border-radius:0;border:none;"><code class="language-markup">&lt;button class="btn" data-variant="default"
         data-dialog-trigger="confirm"&gt;
   Open Dialog
 &lt;/button&gt;
@@ -221,7 +221,7 @@
     <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">4 — vanilla JavaScript</span>
     </div>
-    <pre style="border-radius:0;border:none;"><code><span class="dim">// dialog.js — wire interactivity</span>
+    <pre style="border-radius:0;border:none;"><code class="language-javascript"><span class="dim">// dialog.js — wire interactivity</span>
 document.querySelectorAll('[data-dialog-trigger]')
   .forEach(btn =&gt; {
     const dialog = document.getElementById(
@@ -236,7 +236,7 @@ document.querySelectorAll('[data-dialog-trigger]')
     <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">5 — component skill</span>
     </div>
-    <pre style="border-radius:0;border:none;"><code><span class="dim"># component-skill.md — the instruction set AI reads to build correctly</span>
+    <pre style="border-radius:0;border:none;"><code class="language-markup"><span class="dim"># component-skill.md — the instruction set AI reads to build correctly</span>
 
 ## Structure
 &lt;button class="btn" data-variant="default"&gt;Click me&lt;/button&gt;

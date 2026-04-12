@@ -12,7 +12,9 @@ var langMap = {
   'language-javascript': 'javascript',
   'language-js': 'javascript',
   'language-markup': 'html',
-  'language-html': 'html'
+  'language-html': 'html',
+  'language-bash': 'bash',
+  'language-shell': 'bash'
 }
 
 var opts = {

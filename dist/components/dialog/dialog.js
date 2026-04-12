@@ -1,7 +1,8 @@
 // -- Dialog ---------------------------------------------------
 // Wires [data-dialog-trigger] buttons to <dialog> elements.
 
-document.querySelectorAll('[data-dialog-trigger]').forEach((trigger) => {
+document.querySelectorAll('[data-dialog-trigger]:not([data-init])').forEach((trigger) => {
+  trigger.dataset.init = '';
   const dialog = document.getElementById(trigger.dataset.dialogTrigger);
   if (!dialog) return;
   trigger.addEventListener('click', () => {
@@ -9,7 +10,8 @@ document.querySelectorAll('[data-dialog-trigger]').forEach((trigger) => {
     dialog.showModal();
   });
 });
-document.querySelectorAll('dialog').forEach((dialog) => {
+document.querySelectorAll('dialog:not(.alert-dialog):not(.sheet):not([data-init])').forEach((dialog) => {
+  dialog.dataset.init = '';
   dialog.addEventListener('click', (e) => {
     if (e.target === dialog) dialog.close();
   });

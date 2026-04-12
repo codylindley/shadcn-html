@@ -1,7 +1,8 @@
 // -- Tree View ------------------------------------------------
 // Keyboard navigation and ARIA state for tree views.
 
-document.querySelectorAll('.tree[role="tree"]').forEach((tree) => {
+document.querySelectorAll('.tree[role="tree"]:not([data-init])').forEach((tree) => {
+    tree.dataset.init = '';
     /* Keep aria-expanded in sync with <details> open state */
     tree.querySelectorAll('.tree-branch').forEach((details) => {
       const treeitem = details.closest('[role="treeitem"]');

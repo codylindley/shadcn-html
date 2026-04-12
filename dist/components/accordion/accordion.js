@@ -1,7 +1,8 @@
 // -- Accordion -----------------------------------------------
 // Single-open accordion behavior using native <details> elements.
 
-document.querySelectorAll('.accordion[data-type="single"]').forEach((accordion) => {
+document.querySelectorAll('.accordion[data-type="single"]:not([data-init])').forEach((accordion) => {
+  accordion.dataset.init = '';
   const items = accordion.querySelectorAll('.accordion-item');
   const collapsible = accordion.hasAttribute('data-collapsible');
   items.forEach((item) => {

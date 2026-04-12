@@ -65,7 +65,8 @@ const renderCalendar = (el, year, month, selectedDay) => {
   grid.innerHTML = html;
 };
 
-document.querySelectorAll('.calendar').forEach((cal) => {
+document.querySelectorAll('.calendar:not([data-init])').forEach((cal) => {
+    cal.dataset.init = '';
     const now = new Date();
     const state = {
       year: now.getFullYear(),

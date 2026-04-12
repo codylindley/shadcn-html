@@ -51,6 +51,25 @@ navigation patterns, focus management, and state coordination between elements.
 Use modern ECMAScript (ES modules, arrow functions, `const`/`let`, etc.) —
 no libraries, no frameworks.
 
+All `querySelectorAll` loops that add event listeners **must** guard against
+double-initialization using `:not([data-init])` in the selector and setting
+`element.dataset.init = ''` as the first line inside the loop:
+
+```js
+document.querySelectorAll('.my-component:not([data-init])').forEach((el) => {
+  el.dataset.init = '';
+  el.addEventListener('click', () => { /* … */ });
+});
+```
+
+For document-level event delegation (no per-element loop), use a global flag:
+```js
+if (!document.__myComponentInit) {
+  document.__myComponentInit = true;
+  document.addEventListener('click', (e) => { /* … */ });
+}
+```
+
 ### Each component is a self-contained folder
 
 Each component at `dist/components/{name}/` contains:

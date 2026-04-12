@@ -1,7 +1,8 @@
 // -- Carousel -------------------------------------------------
 // Previous/next slide navigation for carousels.
 
-document.querySelectorAll('.carousel').forEach((carousel) => {
+document.querySelectorAll('.carousel:not([data-init])').forEach((carousel) => {
+  carousel.dataset.init = '';
   const viewport = carousel.querySelector('.carousel-viewport');
   const prev = carousel.querySelector('.carousel-prev');
   const next = carousel.querySelector('.carousel-next');

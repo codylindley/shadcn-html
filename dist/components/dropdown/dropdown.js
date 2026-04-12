@@ -2,7 +2,8 @@
 // Wires [data-dropdown-trigger] buttons to popover menus with
 // full keyboard navigation and ARIA support.
 
-document.querySelectorAll('[data-dropdown-trigger]').forEach((trigger) => {
+document.querySelectorAll('[data-dropdown-trigger]:not([data-init])').forEach((trigger) => {
+    trigger.dataset.init = '';
     const menu = document.getElementById(trigger.dataset.dropdownTrigger);
     if (!menu) return;
 

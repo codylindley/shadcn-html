@@ -2,7 +2,8 @@
 // Roving tabindex for role="toolbar" containers.
 // Arrow keys move focus between focusable children.
 
-document.querySelectorAll('.toolbar[role="toolbar"]').forEach((toolbar) => {
+document.querySelectorAll('.toolbar[role="toolbar"]:not([data-init])').forEach((toolbar) => {
+  toolbar.dataset.init = '';
   const items = Array.from(
     toolbar.querySelectorAll('button:not(:disabled), a[href], [tabindex]:not([tabindex="-1"])')
   );

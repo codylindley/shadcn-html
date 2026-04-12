@@ -1,7 +1,8 @@
 // -- Toggle Group ---------------------------------------------
 // Manages single/multiple selection across .toggle buttons in a group.
 
-document.querySelectorAll('.toggle-group').forEach((group) => {
+document.querySelectorAll('.toggle-group:not([data-init])').forEach((group) => {
+  group.dataset.init = '';
   const type = group.getAttribute('data-type') || 'single';
   const toggles = Array.from(group.querySelectorAll('.toggle'));
 

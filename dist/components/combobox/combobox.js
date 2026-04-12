@@ -1,7 +1,8 @@
 // -- Combobox -------------------------------------------------
 // Searchable select with keyboard navigation and popover positioning.
 
-document.querySelectorAll('.combobox').forEach((wrapper) => {
+document.querySelectorAll('.combobox:not([data-init])').forEach((wrapper) => {
+    wrapper.dataset.init = '';
     const trigger = wrapper.querySelector('.combobox-trigger');
     const valueEl = wrapper.querySelector('.combobox-value');
     const popover = wrapper.querySelector('.combobox-content');
