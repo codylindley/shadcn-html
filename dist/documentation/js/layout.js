@@ -574,20 +574,7 @@
     if (main) main.insertAdjacentHTML('beforeend', html);
   }
 
-  function buildEditLink() {
-    var existing = document.querySelector('.edit-page-link');
-    if (existing) existing.remove();
-    var main = document.querySelector('main');
-    if (!main) return;
-    main.insertAdjacentHTML('beforeend',
-      '<div class="edit-page-link">' +
-        '<a href="https://github.com/codylindley/shadcn-html/edit/main/dist/documentation/' + currentPage + '" target="_blank" rel="noopener">' +
-          '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>' +
-          'Edit this page on GitHub' +
-        '</a>' +
-      '</div>'
-    );
-  }
+
 
   function updateStarCount(count) {
     var el = document.querySelector('.github-stars');
@@ -608,7 +595,8 @@
     if (layoutWrap) {
       layoutWrap.insertAdjacentHTML('afterend',
         '<footer class="site-footer">' +
-          '<p class="site-footer-tagline">Written entirely by AI, directed entirely by a human. The future is weird.</p>' +
+          '<p class="site-footer-tagline">v0.7.0 — Written in two days, entirely by an AI, directed entirely by a human. The future is weird!</p>' +
+          '<p class="site-footer-tagline" style="margin-top:0;">My AIs are open to your AIs\' <a href="https://github.com/codylindley/shadcn-html/pulls" target="_blank" rel="noopener">PRs</a> — but that doesn\'t mean this dumb human will accept them.</p>' +
           '<p>' +
             'MIT Licensed' +
             '<span class="site-footer-dot"> · </span>' +
@@ -639,7 +627,6 @@
   /* Per-page init (runs on DOMContentLoaded + after each SPA navigation) */
   window.onPageReady(function () {
     buildToc();
-    buildEditLink();
     buildPrevNext();
   });
 })();

@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <meta name="description" content="shadcn-html uses native browser APIs — Popover, Anchor Positioning, Dialog, Details — instead of JavaScript libraries.">
+  <meta name="description" content="shadcn-html uses 25+ native browser APIs — Popover, Anchor Positioning, Dialog, Invoker Commands, oklch(), @starting-style — instead of JavaScript libraries.">
   <meta property="og:title" content="Native Web APIs — shadcn-html">
-  <meta property="og:description" content="shadcn-html uses native browser APIs — Popover, Anchor Positioning, Dialog, Details — instead of JavaScript libraries.">
+  <meta property="og:description" content="shadcn-html uses 25+ native browser APIs — Popover, Anchor Positioning, Dialog, Invoker Commands, oklch(), @starting-style — instead of JavaScript libraries.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://shadcn-html.netlify.app/documentation/native-web-apis.html">
   <meta property="og:site_name" content="shadcn-html">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Native Web APIs — shadcn-html">
-  <meta name="twitter:description" content="shadcn-html uses native browser APIs — Popover, Anchor Positioning, Dialog, Details — instead of JavaScript libraries.">
+  <meta name="twitter:description" content="shadcn-html uses 25+ native browser APIs — Popover, Anchor Positioning, Dialog, Invoker Commands, oklch(), @starting-style — instead of JavaScript libraries.">
   <title>Native Web APIs — shadcn-html</title>
   <script src="js/themes.js"></script>
   <script src="js/theme-switcher.js"></script>
@@ -392,6 +392,228 @@ popover.style.positionAnchor = `--popover-${id}`;</code></pre>
 
   <div class="sep"></div>
 
+  <!-- -- Invoker Commands API -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Invoker Commands API</h2>
+  <p class="text-sm text-muted-foreground mb-3">The Invoker Commands API (<code>commandfor</code> / <code>command</code>) lets buttons declaratively control dialogs, popovers, and other interactive elements — no JavaScript click handlers needed. The browser handles <code>showModal()</code>, <code>togglePopover()</code>, and <code>close()</code> automatically.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API" target="_blank" rel="noopener" class="link">MDN: Invoker Commands API</a>
+  </p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:1.5rem;align-items:baseline;">
+    <code style="font-size:0.8125rem;font-weight:600;">commandfor</code>
+    <span class="text-sm text-muted-foreground">HTML attribute on a <code>&lt;button&gt;</code>. Points to the ID of the element to control.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">command</code>
+    <span class="text-sm text-muted-foreground">Specifies the action: <code>show-modal</code>, <code>close</code>, <code>toggle-popover</code>, <code>show-popover</code>, <code>hide-popover</code>.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">CommandEvent</code>
+    <span class="text-sm text-muted-foreground">Fires on the target element. Use custom commands (<code>--my-action</code>) for app-specific behavior.</span>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">declarative dialog trigger — zero JavaScript</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup"><span class="dim">&lt;!-- No JS click handler needed --&gt;</span>
+&lt;button class="btn" commandfor="my-dialog" command="show-modal"&gt;
+  Open Dialog
+&lt;/button&gt;
+
+&lt;dialog id="my-dialog" class="dialog"&gt;
+  &lt;div class="dialog-content"&gt;
+    &lt;h2 class="dialog-title"&gt;Title&lt;/h2&gt;
+    &lt;button class="btn" commandfor="my-dialog" command="close"&gt;
+      Close
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Used by:</strong> Dialog, Alert Dialog, Sheet, Popover</p>
+
+  <div class="sep"></div>
+
+  <!-- -- @starting-style + transition-behavior: allow-discrete -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">@starting-style &amp; Discrete Transitions</h2>
+  <p class="text-sm text-muted-foreground mb-3"><code>@starting-style</code> defines the initial state for enter animations on elements transitioning from <code>display: none</code>. Combined with <code>transition-behavior: allow-discrete</code>, it enables smooth enter <em>and</em> exit animations on dialogs, popovers, and tooltips — entirely in CSS, no JavaScript class toggling.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" class="link">MDN: @starting-style</a>
+  </p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:1.5rem;align-items:baseline;">
+    <code style="font-size:0.8125rem;font-weight:600;">@starting-style</code>
+    <span class="text-sm text-muted-foreground">At-rule defining initial property values before the first frame of an enter animation.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">transition-behavior: allow-discrete</code>
+    <span class="text-sm text-muted-foreground">Allows <code>display</code> and <code>overlay</code> to participate in transitions — enabling exit animations.</span>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">enter/exit animations — CSS only</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css">dialog.dialog {
+  opacity: 0; transform: scale(0.98);
+  transition: opacity 150ms, transform 150ms,
+              display 150ms allow-discrete;
+
+  &amp;[open] { opacity: 1; transform: scale(1); }
+}
+
+<span class="dim">/* Enter animation starts from these values */</span>
+@starting-style {
+  dialog.dialog[open] {
+    opacity: 0; transform: scale(0.98);
+  }
+}</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Used by:</strong> Dialog, Alert Dialog, Sheet, Dropdown, Tooltip, Command, Accordion</p>
+
+  <div class="sep"></div>
+
+  <!-- -- oklch() & Relative Color Syntax -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">oklch() &amp; Relative Color Syntax</h2>
+  <p class="text-sm text-muted-foreground mb-3">All design tokens use <code>oklch()</code> for perceptually uniform, wide-gamut colors. Relative color syntax (<code>oklch(from var(--color) l c h / alpha)</code>) derives focus rings, hover states, and alpha variants directly from token values — no separate color definitions needed.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch" target="_blank" rel="noopener" class="link">MDN: oklch()</a>
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">derive colors from tokens with relative syntax</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css"><span class="dim">/* Focus ring with 20% opacity — derived from token */</span>
+.input:focus {
+  box-shadow: 0 0 0 2px oklch(from var(--ring) l c h / 0.2);
+}
+
+<span class="dim">/* Destructive focus ring — same pattern, different token */</span>
+.input:user-invalid:focus {
+  box-shadow: 0 0 0 2px oklch(from var(--destructive) l c h / 0.2);
+}</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Used by:</strong> All design tokens, Input, Button, and any component with focus/hover states</p>
+
+  <div class="sep"></div>
+
+  <!-- -- CSS Utility Features -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">CSS Utility Features</h2>
+  <p class="text-sm text-muted-foreground mb-5">Modern CSS properties used throughout the system to replace common JavaScript workarounds.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Feature</th><th>What it does</th><th>Replaces</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>:focus-visible</code></td>
+            <td>Shows focus rings only for keyboard navigation, not mouse clicks</td>
+            <td>JS focus-ring detection libraries</td>
+          </tr>
+          <tr>
+            <td><code>:user-valid</code> / <code>:user-invalid</code></td>
+            <td>Validation styling that activates only after user interaction — not on page load</td>
+            <td>JS blur listeners + class toggling</td>
+          </tr>
+          <tr>
+            <td><code>color-scheme</code></td>
+            <td>Tells the browser to render native controls (scrollbars, inputs) in light or dark mode</td>
+            <td>Manual dark overrides on every native element</td>
+          </tr>
+          <tr>
+            <td><code>text-wrap: balance</code></td>
+            <td>Balances line lengths in headings so no line is much shorter than the others</td>
+            <td>JS text-balancing libraries</td>
+          </tr>
+          <tr>
+            <td><code>overscroll-behavior: contain</code></td>
+            <td>Prevents scroll chaining — scrolling inside a dropdown won't scroll the page behind it</td>
+            <td>JS scroll-lock libraries</td>
+          </tr>
+          <tr>
+            <td><code>scroll-snap</code></td>
+            <td>Snaps carousel slides to grid points during scroll</td>
+            <td>JS snap-to-slide calculations</td>
+          </tr>
+          <tr>
+            <td><code>scrollbar-gutter: stable</code></td>
+            <td>Reserves space for scrollbars to prevent layout shift when content overflows</td>
+            <td>Padding hacks for scrollbar width</td>
+          </tr>
+          <tr>
+            <td><code>backdrop-filter: blur()</code></td>
+            <td>Glass-morphism blur effect on <code>::backdrop</code> overlays</td>
+            <td>JS-managed overlay divs with canvas blur</td>
+          </tr>
+          <tr>
+            <td>Individual transforms</td>
+            <td><code>rotate</code>, <code>scale</code>, <code>translate</code> as separate properties that compose without overwriting</td>
+            <td>Compound <code>transform</code> strings</td>
+          </tr>
+          <tr>
+            <td>CSS nesting / <code>@layer</code></td>
+            <td>Native selector nesting and cascade layer ordering — no build step</td>
+            <td>Sass, Less, PostCSS preprocessors</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- JavaScript APIs -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">JavaScript APIs</h2>
+  <p class="text-sm text-muted-foreground mb-5">When behavior requires JavaScript, we use native browser APIs — never third-party libraries.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">API</th><th>What it does</th><th>Replaces</th><th>Components</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Web Animations API</td>
+            <td><code>el.animate()</code> for imperative, JS-coordinated animations with <code>.finished</code> promise</td>
+            <td>CSS class toggling for sequenced animations</td>
+            <td>Toast</td>
+          </tr>
+          <tr>
+            <td><code>Intl.DateTimeFormat</code></td>
+            <td>Locale-aware date and time formatting with no external dependencies</td>
+            <td>moment.js, date-fns</td>
+            <td>Calendar</td>
+          </tr>
+          <tr>
+            <td>Drag and Drop API</td>
+            <td>Native drag events (<code>dragstart</code>, <code>dragover</code>, <code>drop</code>) with <code>dataTransfer</code></td>
+            <td>SortableJS, drag libraries</td>
+            <td>Sortable</td>
+          </tr>
+          <tr>
+            <td><code>CustomEvent</code></td>
+            <td>Component-to-component communication via the DOM event system</td>
+            <td>Framework event buses</td>
+            <td>Calendar</td>
+          </tr>
+          <tr>
+            <td><code>checkVisibility()</code></td>
+            <td>Detects if an element is visible in the DOM (handles <code>display: none</code>, <code>visibility</code>, etc.)</td>
+            <td>Manual offset/dimension calculations</td>
+            <td>Tree View</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
   <!-- -- Summary Table -- -->
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">API reference</h2>
   <p class="text-sm text-muted-foreground mb-5">Every native API used in the component library, what it replaces, and which components depend on it.</p>
@@ -408,22 +630,37 @@ popover.style.positionAnchor = `--popover-${id}`;</code></pre>
         <tbody>
           <tr><td>Popover API</td><td>JS show/hide, z-index management, click-outside</td><td>Popover, Dropdown, Tooltip, Toast, Combobox, Context Menu, Nav Menu</td></tr>
           <tr><td>CSS Anchor Positioning</td><td>Floating UI, Popper.js</td><td>Dropdown, Popover, Tooltip, Combobox, Nav Menu</td></tr>
-          <tr><td><code>&lt;dialog&gt;</code></td><td>JS modal + overlay + focus trap</td><td>Dialog, Alert Dialog, Sheet</td></tr>
+          <tr><td>Invoker Commands (<code>commandfor</code>/<code>command</code>)</td><td>JS click handlers calling <code>showModal()</code>/<code>togglePopover()</code></td><td>Dialog, Alert Dialog, Sheet, Popover</td></tr>
+          <tr><td><code>&lt;dialog&gt;</code></td><td>JS modal + overlay + focus trap</td><td>Dialog, Alert Dialog, Sheet, Command</td></tr>
           <tr><td><code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code></td><td>JS toggle + height animation</td><td>Accordion, Collapsible</td></tr>
-          <tr><td><code>@starting-style</code></td><td>JS class toggling for enter animations</td><td>All overlays (Popover, Dialog, Sheet, Dropdown, Toast, Accordion)</td></tr>
-          <tr><td><code>::backdrop</code></td><td>JS-managed overlay divs</td><td>Dialog, Alert Dialog, Sheet</td></tr>
+          <tr><td><code>@starting-style</code> + <code>allow-discrete</code></td><td>JS class toggling for enter/exit animations</td><td>All overlays (Dialog, Sheet, Dropdown, Tooltip, Command, Accordion)</td></tr>
+          <tr><td><code>::backdrop</code> + <code>backdrop-filter</code></td><td>JS-managed overlay divs, canvas blur</td><td>Dialog, Alert Dialog, Sheet, Command</td></tr>
           <tr><td><code>::details-content</code></td><td>JS measured height + animation</td><td>Accordion, Collapsible</td></tr>
+          <tr><td><code>oklch()</code> + relative color syntax</td><td>Hardcoded hex/hsl, manual color derivation</td><td>All tokens, all focus/hover states</td></tr>
           <tr><td><code>field-sizing: content</code></td><td>JS auto-resize scripts</td><td>Textarea</td></tr>
-          <tr><td><code>:has()</code></td><td>JS class propagation</td><td>Label, Tabs, Avatar</td></tr>
+          <tr><td><code>:has()</code></td><td>JS class propagation</td><td>Label, Tabs, Avatar, Form</td></tr>
           <tr><td>Container Queries</td><td>Viewport media queries</td><td>Card, Table</td></tr>
           <tr><td><code>:focus-visible</code></td><td>JS focus-ring detection</td><td>All interactive components</td></tr>
+          <tr><td><code>:user-valid</code> / <code>:user-invalid</code></td><td>JS blur + class toggling for validation</td><td>Input, Textarea, Checkbox</td></tr>
+          <tr><td><code>color-scheme</code></td><td>Manual dark overrides on native controls</td><td>Design tokens (global)</td></tr>
+          <tr><td><code>text-wrap: balance</code></td><td>JS text-balancing libraries</td><td>Typography</td></tr>
+          <tr><td><code>overscroll-behavior: contain</code></td><td>JS scroll-lock libraries</td><td>Command, Dropdown, Sheet, Scroll Area</td></tr>
+          <tr><td><code>scroll-snap</code></td><td>JS snap-to-slide calculations</td><td>Carousel</td></tr>
+          <tr><td><code>scrollbar-gutter: stable</code></td><td>Padding hacks for scrollbar width</td><td>Command, Scroll Area</td></tr>
+          <tr><td>Individual transforms</td><td>Compound <code>transform</code> strings</td><td>Accordion, and composable animations</td></tr>
+          <tr><td>CSS nesting / <code>@layer</code></td><td>Sass, Less, PostCSS</td><td>All components</td></tr>
+          <tr><td>Web Animations API</td><td>CSS class toggling for sequenced animations</td><td>Toast</td></tr>
+          <tr><td><code>Intl.DateTimeFormat</code></td><td>moment.js, date-fns</td><td>Calendar</td></tr>
+          <tr><td>Drag and Drop API</td><td>SortableJS, drag libraries</td><td>Sortable</td></tr>
+          <tr><td><code>CustomEvent</code></td><td>Framework event buses</td><td>Calendar</td></tr>
+          <tr><td><code>checkVisibility()</code></td><td>Manual offset/dimension calculations</td><td>Tree View</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <p class="text-sm text-muted-foreground mb-8">
-    These APIs are supported in the latest versions of Chrome, Edge, Firefox, and Safari. Some newer features (CSS Anchor Positioning, <code>::details-content</code>, <code>field-sizing</code>) reached cross-browser support more recently. See <a href="https://web.dev/baseline" target="_blank" rel="noopener" class="link">Baseline</a> for current compatibility status and each component's <code>component-skill.md</code> for the specific APIs used.
+    These APIs are supported in the latest versions of Chrome, Edge, Firefox, and Safari. Some newer features (Invoker Commands, CSS Anchor Positioning, <code>::details-content</code>, <code>field-sizing</code>) reached cross-browser support more recently. See <a href="https://web.dev/baseline" target="_blank" rel="noopener" class="link">Baseline</a> for current compatibility status and each component's <code>component-skill.md</code> for the specific APIs used.
   </p>
 
     </main>

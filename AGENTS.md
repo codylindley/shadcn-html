@@ -36,15 +36,48 @@ ai-web-prototyper/
 Every component starts from a native HTML element or browser API. If the browser
 can do it, we don't write JavaScript for it.
 
+**HTML & CSS**
+
 - Use `<dialog>` for modals — not divs with JS show/hide
 - Use `popover` API for dropdowns, tooltips, toasts — not JS positioning
 - Use `<details>/<summary>` for accordions — not JS toggle logic
-- Use `@starting-style` for enter animations — not JS class toggling
+- Use `commandfor` / `command` attributes for declarative button→dialog/popover
+  triggers — not JS click handlers that call `showModal()` or `togglePopover()`
+- Use `@starting-style` + `transition-behavior: allow-discrete` for
+  enter/exit animations on `display: none` elements — not JS class toggling
 - Use CSS anchor positioning for popover placement — not Floating UI / Popper
-- Use `::backdrop` for overlays — not JS-managed overlay divs
+- Use `::backdrop` + `backdrop-filter` for dialog/sheet overlays — not
+  JS-managed overlay divs or canvas blur
 - Use `:has()` for parent-state reactions — not JS class propagation
+- Use `:focus-visible` for keyboard-only focus rings — not JS focus detection
+- Use `:user-valid` / `:user-invalid` for post-interaction validation
+  styling — not JS blur listeners with class toggling
 - Use `field-sizing: content` for auto-growing textareas — not JS resize
+- Use `oklch()` and relative color syntax for wide-gamut, derived colors — not
+  hardcoded hex/hsl palettes
+- Use `color-scheme` property for dark mode browser defaults — not all-manual
+  dark overrides on every native element
+- Use `text-wrap: balance` for headings and labels — not JS text-balancing
+- Use `overscroll-behavior: contain` on scroll containers inside overlays — not
+  JS scroll-lock libraries
+- Use `scroll-snap` for carousel/slider snap points — not JS snap calculations
+- Use `scrollbar-gutter: stable` to prevent layout shift from scrollbars — not
+  padding hacks
+- Use individual transform properties (`rotate`, `scale`, `translate`) — not
+  compound `transform` strings
 - Use CSS nesting, `@layer`, container queries — not preprocessors
+
+**JavaScript (only when HTML/CSS cannot express it)**
+
+- Use Web Animations API (`el.animate()`) for imperative animations — not CSS
+  class toggling when JS needs to coordinate timing
+- Use `Intl` APIs (`DateTimeFormat`, `NumberFormat`, etc.) for locale-aware
+  formatting — not moment.js or date-fns
+- Use native Drag and Drop API for reordering — not SortableJS or drag libraries
+- Use `CustomEvent` for component-to-component communication — not framework
+  event systems
+- Use `element.checkVisibility()` for visibility detection — not manual
+  offset calculations
 
 JavaScript is only for behavior that HTML and CSS cannot express: keyboard
 navigation patterns, focus management, and state coordination between elements.
