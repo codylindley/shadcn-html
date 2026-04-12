@@ -140,36 +140,109 @@
     </div>
   </div>
 
+  <p class="text-sm text-muted-foreground mb-5">
+    Module scope, strict mode, and deferred execution — with a classic script you'd need an IIFE,
+    a <code>'use strict'</code> directive, and a <code>DOMContentLoaded</code> listener to get all three.
+    With <code>type="module"</code>, the browser handles them automatically.
+  </p>
+
   <div class="sep"></div>
 
-  <!-- -- How shadcn-html uses it -- -->
-  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">How shadcn-html uses it</h2>
+  <!-- -- No imports, no exports -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">No <code>import</code>, no <code>export</code></h2>
   <p class="text-sm text-muted-foreground mb-5">
-    Every interactive component ships a <code>.js</code> file that runs at the top level when loaded.
-    No wrapper functions, no exports, no initialization hooks — just executable code that queries the DOM
-    and binds event listeners.
+    You'll notice our component modules don't use <code>import</code> or <code>export</code> at all. This is intentional.
+    Each <code>.js</code> file is a <strong>side-effect module</strong> — its entire job is to query the DOM and bind
+    event listeners. There's nothing to export because the module's purpose <em>is</em> its side effect:
+    wiring behavior to HTML elements.
   </p>
 
   <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
-      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">your HTML + what the module does</span>
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">dialog.js — the entire file is top-level code</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup">&lt;!-- Include the module --&gt;
-&lt;script type="module" src="components/dialog/dialog.js"&gt;&lt;/script&gt;</code></pre>
-    <div style="border-top:1px solid var(--border);">
-    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript">// dialog.js — runs at top level, wires triggers to dialogs
-document.querySelectorAll('[data-dialog-trigger]').forEach((trigger) => {
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript">// No imports — this component has no dependencies
+// No exports — the side effect IS the module
+
+document.querySelectorAll('[data-dialog-trigger]:not([data-init])').forEach((trigger) => {
+  trigger.dataset.init = '';
   const dialog = document.getElementById(trigger.dataset.dialogTrigger);
   if (!dialog) return;
-  trigger.addEventListener('click', () => dialog.showModal());
+  trigger.addEventListener('click', () => {
+    dialog._trigger = trigger;
+    dialog.showModal();
+  });
 });</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-3">
+    There are no <code>import</code> statements either, because each component is fully self-contained.
+    A dialog doesn't depend on a tooltip. A dropdown doesn't share code with a combobox.
+    Each component works on its own — include only the <code>&lt;script&gt;</code> tags you need.
+  </p>
+  <p class="text-sm text-muted-foreground mb-5">
+    This is the key advantage of the pattern: <strong>no bundler, no import maps, no dependency resolution</strong>.
+    Drop a <code>&lt;script type="module"&gt;</code> tag onto the page and the component works. Remove it
+    and nothing breaks. You're composing at the HTML level, not the JavaScript level.
+  </p>
+
+  <div class="sep"></div>
+
+  <!-- -- Static vs SPA usage -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Static pages vs. SPAs</h2>
+  <p class="text-sm text-muted-foreground mb-5">
+    How you load component JS depends on whether your pages are static or dynamically updated.
+  </p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">Static page</span>
+      </div>
+      <div style="padding:1.25rem;font-size:0.8125rem;display:flex;flex-direction:column;gap:0.75rem;">
+        <div class="text-muted-foreground">Add <code>&lt;script type="module"&gt;</code> tags and you're done</div>
+        <div class="text-muted-foreground">Modules run once after the HTML is parsed</div>
+        <div class="text-muted-foreground">All components initialize automatically</div>
+        <div class="text-muted-foreground">Nothing else to think about</div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">SPA / dynamic content</span>
+      </div>
+      <div style="padding:1.25rem;font-size:0.8125rem;display:flex;flex-direction:column;gap:0.75rem;">
+        <div class="text-muted-foreground">New HTML inserted after page load has no listeners</div>
+        <div class="text-muted-foreground">Re-import the module to initialize new elements</div>
+        <div class="text-muted-foreground">Append <code>?t=Date.now()</code> so the browser re-executes it</div>
+        <div class="text-muted-foreground">Already-initialized elements are skipped automatically</div>
+      </div>
     </div>
   </div>
 
-  <p class="text-sm text-muted-foreground mb-5">
-    The module runs once after the DOM is ready (modules are deferred automatically).
-    It finds every trigger, wires up listeners, and that's it. No framework, no lifecycle hooks.
+  <p class="text-sm text-muted-foreground mb-3">
+    On a static page, the <code>&lt;script&gt;</code> tags run once after the DOM is ready and every component
+    just works. No setup, no configuration.
   </p>
+  <p class="text-sm text-muted-foreground mb-5">
+    In an SPA or any page that dynamically updates its HTML, the new elements arrive without event
+    listeners. To wire them up, re-import the component module with a cache-busting timestamp —
+    the browser treats the new URL as a fresh module and re-executes the code. Elements that were
+    already initialized are skipped, so nothing gets double-bound:
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">reinitialize after inserting new component HTML</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript">// After swapping page content or injecting new HTML:
+document.querySelectorAll('script[type="module"][src*="components/"]')
+  .forEach((s) => {
+    const el = document.createElement('script');
+    el.type = 'module';
+    el.src = s.getAttribute('src') + '?t=' + Date.now();
+    document.body.appendChild(el);
+  });</code></pre>
+  </div>
 
   <div class="sep"></div>
 
