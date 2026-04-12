@@ -38,7 +38,6 @@
   <link rel="stylesheet" href="../components/icon/icon.css">
   <link rel="stylesheet" href="../components/typography/typography.css">
   <link rel="stylesheet" href="../components/separator/separator.css">
-  <link rel="stylesheet" href="../components/link/link.css">
   <link rel="stylesheet" href="../components/label/label.css">
   <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
   <link rel="stylesheet" href="../components/button-group/button-group.css">
@@ -54,14 +53,10 @@
   <link rel="stylesheet" href="../components/color-picker/color-picker.css">
   <link rel="stylesheet" href="../components/date-picker/date-picker.css">
   <link rel="stylesheet" href="../components/form/form.css">
-  <link rel="stylesheet" href="../components/tag/tag.css">
   <link rel="stylesheet" href="../components/avatar/avatar.css">
   <link rel="stylesheet" href="../components/image/image.css">
-  <link rel="stylesheet" href="../components/list/list.css">
-  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
   <link rel="stylesheet" href="../components/statistic/statistic.css">
   <link rel="stylesheet" href="../components/table/table.css">
-  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
   <link rel="stylesheet" href="../components/collapsible/collapsible.css">
   <link rel="stylesheet" href="../components/timeline/timeline.css">
   <link rel="stylesheet" href="../components/tree-view/tree-view.css">
@@ -79,8 +74,6 @@
   <link rel="stylesheet" href="../components/pagination/pagination.css">
   <link rel="stylesheet" href="../components/steps/steps.css">
   <link rel="stylesheet" href="../components/navigation-menu/navigation-menu.css">
-  <link rel="stylesheet" href="../components/aspect-ratio/aspect-ratio.css">
-  <link rel="stylesheet" href="../components/container/container.css">
   <link rel="stylesheet" href="../components/scroll-area/scroll-area.css">
   <link rel="stylesheet" href="../components/carousel/carousel.css">
   <link rel="stylesheet" href="../components/sidebar/sidebar.css">
@@ -113,7 +106,7 @@
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">@starting-style</h2>
   <p class="text-sm text-muted-foreground mb-3">The <code>@starting-style</code> at-rule defines the values a property should start from when the element first appears (enters the top layer, gains <code>display</code>, gets inserted into the DOM). The browser applies these values first, then transitions to the element's actual computed styles.</p>
   <p class="text-sm text-muted-foreground mb-5">
-    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" class="link">MDN: @starting-style</a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" class="btn" data-variant="link">MDN: @starting-style</a>
   </p>
 
   <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
@@ -144,7 +137,7 @@
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">allow-discrete transitions</h2>
   <p class="text-sm text-muted-foreground mb-3">The <code>display</code> property was historically not animatable — it snaps between <code>none</code> and <code>block</code> instantly. The <code>allow-discrete</code> keyword in the <code>transition</code> shorthand tells the browser to keep the element visible during the exit transition before hiding it.</p>
   <p class="text-sm text-muted-foreground mb-5">
-    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-behavior" target="_blank" rel="noopener" class="link">MDN: transition-behavior</a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-behavior" target="_blank" rel="noopener" class="btn" data-variant="link">MDN: transition-behavior</a>
   </p>
 
   <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
@@ -269,7 +262,7 @@
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Accordion animations</h2>
   <p class="text-sm text-muted-foreground mb-3">Accordions animate their height using the <code>::details-content</code> pseudo-element and the <code>block-size</code> property. This is one of the most-requested CSS features — animating <code>height: 0</code> to <code>height: auto</code> — now possible natively.</p>
   <p class="text-sm text-muted-foreground mb-5">
-    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::details-content" target="_blank" rel="noopener" class="link">MDN: ::details-content</a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::details-content" target="_blank" rel="noopener" class="btn" data-variant="link">MDN: ::details-content</a>
   </p>
 
   <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
@@ -365,7 +358,7 @@ el.animate(
   </div>
 
   <p class="text-sm text-muted-foreground mb-8">
-    All of these techniques are pure CSS (except toast exit). No animation libraries, no <code>requestAnimationFrame</code> hacks, no JS class toggling. See the <a href="native-web-apis.html" class="link">Native Web APIs</a> page for the broader set of platform APIs used across the system.
+    All of these techniques are pure CSS (except toast exit). No animation libraries, no <code>requestAnimationFrame</code> hacks, no JS class toggling. See the <a href="native-web-apis.html" class="btn" data-variant="link">Native Web APIs</a> page for the broader set of platform APIs used across the system.
   </p>
 
     </main>
@@ -385,8 +378,8 @@ el.animate(
   <script type="module" src="../components/toolbar/toolbar.js"></script>
   <script type="module" src="../components/number-input/number-input.js"></script>
   <script type="module" src="../components/color-picker/color-picker.js"></script>
-  <script type="module" src="../components/tag/tag.js"></script>
   <script type="module" src="../components/avatar/avatar.js"></script>
+  <script type="module" src="../components/image/image.js"></script>
   <script type="module" src="../components/tree-view/tree-view.js"></script>
   <script type="module" src="../components/calendar/calendar.js"></script>
   <script type="module" src="../components/alert-dialog/alert-dialog.js"></script>
@@ -395,6 +388,7 @@ el.animate(
   <script type="module" src="../components/context-menu/context-menu.js"></script>
   <script type="module" src="../components/command/command.js"></script>
   <script type="module" src="../components/navigation-menu/navigation-menu.js"></script>
+  <script type="module" src="../components/sidebar/sidebar.js"></script>
   <script type="module" src="../components/carousel/carousel.js"></script>
   <script type="module" src="../components/sortable/sortable.js"></script>
   <script src="https://unpkg.com/lucide@1.8.0" integrity="sha384-+8nbzwDAyu5kAjqtR/XKxIgPHQD2TflvbZgeDZn5t3JP+OOogNH1jXnfel8ZAgzS" crossorigin="anonymous"></script>

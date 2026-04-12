@@ -103,4 +103,8 @@
     &[data-size="icon-sm"] { height: 2rem;    width: 2rem;     padding: 0; }
     &[data-size="icon-lg"] { height: 2.75rem; width: 2.75rem;  padding: 0; }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+  }
 }

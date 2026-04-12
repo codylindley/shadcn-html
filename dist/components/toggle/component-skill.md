@@ -12,6 +12,8 @@ buttons (bold, italic, underline) or feature toggles.
 ## Native Web APIs
 - [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) — native clickable element with built-in keyboard handling
 - [`aria-pressed`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed) — communicates toggle on/off state to assistive technology
+- [`color-mix()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix) — derived hover color for pressed state
+- [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses color/background transitions
 
 ---
 

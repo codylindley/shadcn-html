@@ -73,10 +73,10 @@ Tokens are compatible with [tweakcn.com](https://tweakcn.com) theme exports. To 
 ## Components
 
 ### Primitives
-Typography · Separator · Icon · Link · Label
+Typography · Separator · Icon · Label
 
 ### Layout
-Aspect Ratio · Container · Scroll Area · Carousel · Sidebar · Sortable
+Scroll Area · Carousel · Sidebar · Sortable
 
 ### Actions
 Button · Toggle · Toggle Group · Button Group · Toolbar
@@ -85,7 +85,7 @@ Button · Toggle · Toggle Group · Button Group · Toolbar
 Input · Textarea · Checkbox · Radio Group · Switch · Slider · Select · Number Input · File Input · Color Picker · Date Picker · Combobox · Form
 
 ### Data Display
-Badge · Tag · Avatar · Card · Image · List · Descriptions · Statistic · Table · Empty State · Collapsible · Timeline · Tree View · Calendar
+Badge · Avatar · Card · Image · Statistic · Table · Collapsible · Timeline · Tree View · Calendar
 
 ### Feedback & Status
 Spinner · Skeleton · Progress · Alert · Alert Dialog · Toast

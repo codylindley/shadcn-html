@@ -67,15 +67,10 @@
       { label: 'Typography', href: 'typography.html' },
       { label: 'Separator', href: 'separator.html' },
       { label: 'Icon', href: 'icon.html' },
-      { label: 'Link', href: 'link.html' },
-      { label: 'Label', href: 'label.html' },
     ]},
     { heading: 'Layout', items: [
-      { label: 'Aspect Ratio', href: 'aspect-ratio.html' },
-      { label: 'Container', href: 'container.html' },
       { label: 'Scroll Area', href: 'scroll-area.html' },
       { label: 'Carousel', href: 'carousel.html' },
-      { label: 'Sidebar', href: 'sidebar.html' },
       { label: 'Sortable', href: 'sortable.html' },
     ]},
     { heading: 'Actions', items: [
@@ -86,6 +81,7 @@
       { label: 'Toolbar', href: 'toolbar.html' },
     ]},
     { heading: 'Forms &amp; Inputs', items: [
+      { label: 'Label', href: 'label.html' },
       { label: 'Input', href: 'input.html' },
       { label: 'Textarea', href: 'textarea.html' },
       { label: 'Checkbox', href: 'checkbox.html' },
@@ -102,15 +98,11 @@
     ]},
     { heading: 'Data Display', items: [
       { label: 'Badge', href: 'badge.html' },
-      { label: 'Tag', href: 'tag.html' },
       { label: 'Avatar', href: 'avatar.html' },
       { label: 'Card', href: 'card.html' },
       { label: 'Image', href: 'image.html' },
-      { label: 'List', href: 'list.html' },
-      { label: 'Descriptions', href: 'descriptions.html' },
       { label: 'Statistic', href: 'statistic.html' },
       { label: 'Table', href: 'table.html' },
-      { label: 'Empty State', href: 'empty-state.html' },
       { label: 'Collapsible', href: 'collapsible.html' },
       { label: 'Timeline', href: 'timeline.html' },
       { label: 'Tree View', href: 'tree-view.html' },
@@ -141,26 +133,29 @@
       { label: 'Dropdown Menu', href: 'dropdown.html' },
       { label: 'Navigation Menu', href: 'navigation-menu.html' },
     ]},
+    { heading: 'Application', items: [
+      { label: 'Sidebar', href: 'sidebar.html' },
+    ]},
   ];
 
   /* Pages that have been built (have a real doc page) */
   var BUILT = new Set([
     'index.html', 'installation.html', 'theming.html', 'dark-mode.html', 'data-attribute-api.html', 'cascade-layers.html', 'es-modules.html', 'native-web-apis.html', 'animations.html', 'accessibility.html', 'component-skills.html', 'changelog.html',
-    'typography.html', 'separator.html', 'icon.html', 'link.html', 'label.html',
+    'typography.html', 'separator.html', 'icon.html', 'label.html',
     'button.html', 'toggle.html', 'toggle-group.html', 'button-group.html', 'toolbar.html',
     'input.html', 'textarea.html', 'checkbox.html', 'radio.html', 'switch.html',
     'slider.html', 'select.html', 'number-input.html', 'file-input.html',
     'color-picker.html', 'date-picker.html', 'combobox.html', 'form.html',
-    'badge.html', 'tag.html', 'avatar.html', 'card.html', 'image.html',
-    'list.html', 'descriptions.html', 'statistic.html', 'table.html',
-    'empty-state.html', 'collapsible.html', 'timeline.html', 'tree-view.html', 'calendar.html',
+    'badge.html', 'avatar.html', 'card.html', 'image.html',
+    'statistic.html', 'table.html',
+    'collapsible.html', 'timeline.html', 'tree-view.html', 'calendar.html',
     'spinner.html', 'skeleton.html', 'progress.html', 'alert.html', 'alert-dialog.html',
     'toast.html',
     'popover.html', 'tooltip.html', 'context-menu.html',
     'dialog.html', 'sheet.html', 'accordion.html', 'command.html',
     'breadcrumb.html', 'pagination.html', 'steps.html',
     'tabs.html', 'dropdown.html', 'navigation-menu.html',
-    'aspect-ratio.html', 'container.html', 'scroll-area.html',
+    'scroll-area.html',
     'carousel.html', 'sidebar.html', 'sortable.html',
   ]);
 
@@ -271,11 +266,15 @@
       NAV.forEach(function (section, i) {
         html += '<div class="nav-section" style="margin-bottom:1.25rem;">';
         html += '<p class="nav-heading">' + section.heading + '</p>';
+        var isComponentSection = (i > 0);
         section.items.forEach(function (item) {
           var cls = 'nav-link';
           if (item.href === currentPage) cls += ' active';
           else if (!BUILT.has(item.href)) cls += ' disabled';
-          html += '<a class="' + cls + '" href="' + item.href + '">' + item.label + '</a>';
+          var badge = isComponentSection
+            ? ' <span style="font-size:0.5625rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted-foreground);opacity:0.7;margin-left:auto;flex-shrink:0;">PREVIEW</span>'
+            : '';
+          html += '<a class="' + cls + '" href="' + item.href + '" style="display:flex;align-items:center;gap:0.375rem;">' + item.label + badge + '</a>';
         });
         html += '</div>';
         /* Insert filter input after Overview section */

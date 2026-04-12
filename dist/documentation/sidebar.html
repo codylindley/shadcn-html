@@ -38,7 +38,6 @@
   <link rel="stylesheet" href="../components/icon/icon.css">
   <link rel="stylesheet" href="../components/typography/typography.css">
   <link rel="stylesheet" href="../components/separator/separator.css">
-  <link rel="stylesheet" href="../components/link/link.css">
   <link rel="stylesheet" href="../components/label/label.css">
   <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
   <link rel="stylesheet" href="../components/button-group/button-group.css">
@@ -54,14 +53,10 @@
   <link rel="stylesheet" href="../components/color-picker/color-picker.css">
   <link rel="stylesheet" href="../components/date-picker/date-picker.css">
   <link rel="stylesheet" href="../components/form/form.css">
-  <link rel="stylesheet" href="../components/tag/tag.css">
   <link rel="stylesheet" href="../components/avatar/avatar.css">
   <link rel="stylesheet" href="../components/image/image.css">
-  <link rel="stylesheet" href="../components/list/list.css">
-  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
   <link rel="stylesheet" href="../components/statistic/statistic.css">
   <link rel="stylesheet" href="../components/table/table.css">
-  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
   <link rel="stylesheet" href="../components/collapsible/collapsible.css">
   <link rel="stylesheet" href="../components/timeline/timeline.css">
   <link rel="stylesheet" href="../components/tree-view/tree-view.css">
@@ -79,8 +74,6 @@
   <link rel="stylesheet" href="../components/pagination/pagination.css">
   <link rel="stylesheet" href="../components/steps/steps.css">
   <link rel="stylesheet" href="../components/navigation-menu/navigation-menu.css">
-  <link rel="stylesheet" href="../components/aspect-ratio/aspect-ratio.css">
-  <link rel="stylesheet" href="../components/container/container.css">
   <link rel="stylesheet" href="../components/scroll-area/scroll-area.css">
   <link rel="stylesheet" href="../components/carousel/carousel.css">
   <link rel="stylesheet" href="../components/sidebar/sidebar.css">
@@ -94,11 +87,11 @@
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / sidebar</p>
-          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a></div>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Sidebar</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
-          Application sidebar navigation with links, sections, and collapsible state.
+          A composable, themeable application sidebar with collapsible state, mobile sheet overlay, collapsible groups, submenus, badges, and keyboard shortcut (Cmd+B).
         </p>
         <!-- Component Skill -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
@@ -108,42 +101,102 @@
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;aside&gt;</code> + <code>&lt;nav&gt;</code> for application sidebar navigation.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;aside&gt;</code> + <code>&lt;nav&gt;</code> + <code>&lt;dialog&gt;</code> for a full application sidebar with collapsible state, mobile overlay, collapsible groups, and submenus.</p>
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside" target="_blank" rel="noopener" title="complementary content landmark" class="api-pill"><code>&lt;aside&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav" target="_blank" rel="noopener" title="navigation landmark" class="api-pill"><code>&lt;nav&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" target="_blank" rel="noopener" title="native modal for mobile overlay" class="api-pill"><code>&lt;dialog&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details" target="_blank" rel="noopener" title="collapsible groups and submenus" class="api-pill"><code>&lt;details&gt; / &lt;summary&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" title="slide-in animation" class="api-pill"><code>@starting-style</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible" target="_blank" rel="noopener" title="keyboard-only focus ring" class="api-pill"><code>:focus-visible</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior" target="_blank" rel="noopener" title="prevents scroll chaining in nav" class="api-pill"><code>overscroll-behavior</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank" rel="noopener" title="suppresses width transition" class="api-pill"><code>prefers-reduced-motion</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank" rel="noopener" title="suppresses all transitions" class="api-pill"><code>prefers-reduced-motion</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>.sidebar-layout</code>
               <code>.app-sidebar</code>
               <code>.sidebar-header</code>
               <code>.sidebar-logo</code>
+              <code>.sidebar-content</code>
               <code>.sidebar-nav</code>
               <code>.sidebar-link</code>
+              <code>.sidebar-badge</code>
               <code>.sidebar-section-title</code>
+              <code>.sidebar-group</code>
+              <code>.sidebar-submenu</code>
               <code>.sidebar-footer</code>
+              <code>.sidebar-trigger</code>
+              <code>.sidebar-mobile</code>
             </div>
           </div>
         </details>
       </div>
         <p class="text-sm font-medium mb-2 mt-6">Default</p>
-        <div class="preview">
-          <div style="border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;height:16rem;width:16rem;">
-            <aside class="app-sidebar" style="width:100%;border-right:none;">
-              <div class="sidebar-header"><span class="sidebar-logo">MyApp</span></div>
-              <nav class="sidebar-nav">
-                <a class="sidebar-link" data-active="true" href="#">Dashboard</a>
-                <a class="sidebar-link" href="#">Projects</a>
-                <a class="sidebar-link" href="#">Settings</a>
-              </nav>
-              <div class="sidebar-footer"><p>v1.0</p></div>
+        <p class="text-muted-foreground text-sm mb-4">Full sidebar with collapsible groups, submenus, badges, and toggle button. Press <kbd style="font-size:0.6875rem;padding:0.125rem 0.25rem;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--muted);font-family:var(--font-mono);">⌘B</kbd> to toggle.</p>
+        <div class="preview" style="padding:0;overflow:hidden;height:24rem;">
+          <div style="display:flex;height:100%;border-radius:var(--radius-lg);overflow:hidden;">
+            <aside class="app-sidebar" id="demo-sidebar" data-state="expanded" style="position:relative;height:100%;">
+              <div class="sidebar-header">
+                <a class="sidebar-logo" href="#">
+                  <i data-lucide="command" style="width:1rem;height:1rem;"></i>
+                  <span class="sidebar-logo-text">MyApp</span>
+                </a>
+              </div>
+              <div class="sidebar-content">
+                <details class="sidebar-group" open>
+                  <summary>
+                    <span>Platform</span>
+                    <i data-lucide="chevron-right" style="width:0.875rem;height:0.875rem;"></i>
+                  </summary>
+                  <nav class="sidebar-nav">
+                    <a class="sidebar-link" href="#" aria-current="page">
+                      <i data-lucide="home"></i> <span>Dashboard</span>
+                    </a>
+                    <a class="sidebar-link" href="#">
+                      <i data-lucide="inbox"></i> <span>Inbox</span>
+                      <span class="sidebar-badge">12</span>
+                    </a>
+                    <details class="sidebar-submenu">
+                      <summary>
+                        <i data-lucide="settings"></i> <span>Settings</span>
+                        <i data-lucide="chevron-right" style="width:0.875rem;height:0.875rem;"></i>
+                      </summary>
+                      <nav class="sidebar-nav">
+                        <a class="sidebar-link" href="#"><span>General</span></a>
+                        <a class="sidebar-link" href="#"><span>Team</span></a>
+                        <a class="sidebar-link" href="#"><span>Billing</span></a>
+                      </nav>
+                    </details>
+                  </nav>
+                </details>
+                <details class="sidebar-group" open>
+                  <summary>
+                    <span>Projects</span>
+                    <i data-lucide="chevron-right" style="width:0.875rem;height:0.875rem;"></i>
+                  </summary>
+                  <nav class="sidebar-nav">
+                    <a class="sidebar-link" href="#">
+                      <i data-lucide="folder"></i> <span>Design System</span>
+                    </a>
+                    <a class="sidebar-link" href="#">
+                      <i data-lucide="folder"></i> <span>Marketing</span>
+                    </a>
+                  </nav>
+                </details>
+              </div>
+              <div class="sidebar-footer">
+                <span>user@example.com</span>
+              </div>
             </aside>
+            <div style="flex:1;padding:1rem;display:flex;align-items:flex-start;gap:0.5rem;background:var(--background);">
+              <button class="sidebar-trigger" data-sidebar-trigger="demo-sidebar" aria-label="Toggle sidebar">
+                <i data-lucide="panel-left"></i>
+              </button>
+              <span class="text-sm text-muted-foreground" style="padding-top:0.375rem;">Main content area</span>
+            </div>
           </div>
         </div>
         <div style="position:relative;margin-top:0.5rem;">
@@ -151,42 +204,86 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;aside class="app-sidebar"&gt;
-  &lt;div class="sidebar-header"&gt;&lt;span class="sidebar-logo"&gt;App&lt;/span&gt;&lt;/div&gt;
-  &lt;nav class="sidebar-nav"&gt;
-    &lt;a class="sidebar-link" data-active="true" href="#"&gt;Dashboard&lt;/a&gt;
-    &lt;a class="sidebar-link" href="#"&gt;Settings&lt;/a&gt;
-  &lt;/nav&gt;
-&lt;/aside&gt;</code></pre>
+          <pre><code class="language-markup">&lt;div class="sidebar-layout"&gt;
+  &lt;aside class="app-sidebar" id="my-sidebar" data-state="expanded"&gt;
+    &lt;div class="sidebar-header"&gt;
+      &lt;a class="sidebar-logo" href="/"&gt;MyApp&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="sidebar-content"&gt;
+      &lt;details class="sidebar-group" open&gt;
+        &lt;summary&gt;&lt;span&gt;Platform&lt;/span&gt; &lt;i data-lucide="chevron-right"&gt;&lt;/i&gt;&lt;/summary&gt;
+        &lt;nav class="sidebar-nav"&gt;
+          &lt;a class="sidebar-link" href="#" aria-current="page"&gt;
+            &lt;i data-lucide="home"&gt;&lt;/i&gt; &lt;span&gt;Dashboard&lt;/span&gt;
+          &lt;/a&gt;
+          &lt;a class="sidebar-link" href="#"&gt;
+            &lt;i data-lucide="inbox"&gt;&lt;/i&gt; &lt;span&gt;Inbox&lt;/span&gt;
+            &lt;span class="sidebar-badge"&gt;12&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/nav&gt;
+      &lt;/details&gt;
+    &lt;/div&gt;
+    &lt;div class="sidebar-footer"&gt;user@example.com&lt;/div&gt;
+  &lt;/aside&gt;
+  &lt;main style="flex:1"&gt;
+    &lt;button class="sidebar-trigger" data-sidebar-trigger="my-sidebar"&gt;
+      &lt;i data-lucide="panel-left"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+  &lt;/main&gt;
+&lt;/div&gt;</code></pre>
         </div>
 
         <!-- -- CSS --------------------------------------- -->
         <section style="margin-top:3rem;" id="source-css">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/sidebar/sidebar.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
-          <p class="text-muted-foreground text-sm mb-4">Styles for the sidebar component. Uses design tokens for colors, spacing, and radius.</p>
+          <p class="text-muted-foreground text-sm mb-4">Full sidebar layout with collapsible state, mobile dialog overlay, collapsible groups, submenus, badges, and responsive behavior.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-scss">@layer components {
-  .app-sidebar {
-    display: flex; flex-direction: column; width: 16rem; height: 100%;
-    background-color: var(--sidebar); border-right: 1px solid var(--sidebar-border);
-    flex-shrink: 0; transition: width 200ms ease;
-    &amp;[data-state='collapsed'] { width: 3.5rem; overflow: hidden; }
+            <pre><code class="language-scss">/* See sidebar.css for full source — key patterns: */
+
+.sidebar-layout { display: flex; min-height: 100dvh; }
+
+.app-sidebar {
+  width: var(--sidebar-width, 16rem);
+  position: sticky; top: 0; height: 100dvh;
+  transition: width 200ms ease;
+  &amp;[data-state="collapsed"] { width: 3.5rem; /* hide labels */ }
+  @media (max-width: 767px) { display: none; }
+}
+
+.sidebar-group { /* &lt;details&gt; */ }
+.sidebar-submenu { /* nested &lt;details&gt; */ }
+.sidebar-mobile { /* &lt;dialog&gt; sheet overlay for mobile */ }</code></pre>
+          </div>
+        </section>
+
+        <!-- -- JavaScript -------------------------------- -->
+        <section style="margin-top:3rem;" id="source-js">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/sidebar/sidebar.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <p class="text-muted-foreground text-sm mb-4">Toggle collapse, keyboard shortcut (Cmd+B / Ctrl+B), and mobile dialog management.</p>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-javascript">// Toggle collapse via trigger buttons
+document.querySelectorAll('.app-sidebar:not([data-init])').forEach((sidebar) =&gt; {
+  sidebar.dataset.init = '';
+  const sel = sidebar.id ? `[data-sidebar-trigger="${sidebar.id}"]` : '.sidebar-trigger';
+  document.querySelectorAll(sel).forEach((trigger) =&gt; {
+    trigger.addEventListener('click', () =&gt; {
+      sidebar.dataset.state = sidebar.dataset.state === 'collapsed'
+        ? 'expanded' : 'collapsed';
+    });
+  });
+});
+
+// Keyboard shortcut: Cmd+B / Ctrl+B
+document.addEventListener('keydown', (e) =&gt; {
+  if ((e.metaKey || e.ctrlKey) &amp;&amp; e.key === 'b') {
+    e.preventDefault();
+    const sidebar = document.querySelector('.app-sidebar');
+    if (sidebar) sidebar.dataset.state =
+      sidebar.dataset.state === 'collapsed' ? 'expanded' : 'collapsed';
   }
-  .sidebar-header { display: flex; align-items: center; padding: 1rem; gap: 0.5rem; border-bottom: 1px solid var(--sidebar-border); }
-  .sidebar-logo { font-size: 0.875rem; font-weight: 600; color: var(--sidebar-foreground); }
-  .sidebar-nav { display: flex; flex-direction: column; padding: 0.5rem; gap: 0.125rem; flex: 1; overflow-y: auto; }
-  .sidebar-link {
-    display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem;
-    border-radius: var(--radius-md); font-size: 0.875rem; color: var(--sidebar-foreground);
-    text-decoration: none; transition: background-color 150ms ease;
-    &amp;:hover { background-color: var(--sidebar-accent); color: var(--sidebar-accent-foreground); }
-    &amp;[data-active='true'] { background-color: var(--sidebar-accent); color: var(--sidebar-accent-foreground); font-weight: 500; }
-    &amp; svg { width: 1rem; height: 1rem; flex-shrink: 0; }
-  }
-  .sidebar-section-title { padding: 0.75rem 0.75rem 0.375rem; font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground); }
-  .sidebar-footer { padding: 1rem; border-top: 1px solid var(--sidebar-border); font-size: 0.75rem; color: var(--muted-foreground); &amp; p { margin: 0; } }
-}</code></pre>
+});</code></pre>
           </div>
         </section>
     </main>
@@ -205,8 +302,8 @@
   <script type="module" src="../components/toolbar/toolbar.js"></script>
   <script type="module" src="../components/number-input/number-input.js"></script>
   <script type="module" src="../components/color-picker/color-picker.js"></script>
-  <script type="module" src="../components/tag/tag.js"></script>
   <script type="module" src="../components/avatar/avatar.js"></script>
+  <script type="module" src="../components/image/image.js"></script>
   <script type="module" src="../components/tree-view/tree-view.js"></script>
   <script type="module" src="../components/calendar/calendar.js"></script>
   <script type="module" src="../components/alert-dialog/alert-dialog.js"></script>
@@ -215,6 +312,7 @@
   <script type="module" src="../components/context-menu/context-menu.js"></script>
   <script type="module" src="../components/command/command.js"></script>
   <script type="module" src="../components/navigation-menu/navigation-menu.js"></script>
+  <script type="module" src="../components/sidebar/sidebar.js"></script>
   <script type="module" src="../components/carousel/carousel.js"></script>
   <script type="module" src="../components/sortable/sortable.js"></script>
   <script src="https://unpkg.com/lucide@1.8.0" integrity="sha384-+8nbzwDAyu5kAjqtR/XKxIgPHQD2TflvbZgeDZn5t3JP+OOogNH1jXnfel8ZAgzS" crossorigin="anonymous"></script>
@@ -223,27 +321,17 @@
 
 ## Native basis
 
-`<aside>` + `<nav>` for application sidebar navigation with collapsible state.
+`<aside>` + `<nav>` + `<dialog>` for a full application sidebar with collapsible state, mobile sheet overlay, collapsible groups, submenus, and keyboard shortcut.
 
 ## Native Web APIs
 
 - [`<aside>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside) — complementary content landmark
 - [`<nav>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav) — navigation landmark
-- [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) — keyboard-only focus ring on nav links
-- [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior) — prevents scroll chaining in nav area
-- [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses width transition
-
-## Structure
-
-```html
-<aside class="app-sidebar">
-  <div class="sidebar-header"><span class="sidebar-logo">App</span></div>
-  <nav class="sidebar-nav">
-    <a class="sidebar-link" data-active="true" href="#">Dashboard</a>
-    <a class="sidebar-link" href="#">Settings</a>
-  </nav>
-</aside>
-```
+- [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) — native modal for mobile sidebar overlay
+- [`<details>/<summary>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) — collapsible groups and submenus
+- [`@starting-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style) — slide-in animation for mobile dialog
+- [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) — keyboard-only focus ring
+- [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses all transitions
 </script>
 </body>
 </html>
