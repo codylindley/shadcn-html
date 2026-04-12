@@ -348,7 +348,7 @@ for (const file of fs.readdirSync(docDir).filter(f => f.endsWith('.html'))) {
   const compName = file.replace('.html', '');
   if (ORIGINALS.has(compName)) continue;
   
-  const mdFile = path.join(compDir, compName, `${compName}.md`);
+  const mdFile = path.join(compDir, compName, `component-skill.md`);
   const cssFile = path.join(compDir, compName, `${compName}.css`);
   const jsFile = path.join(compDir, compName, `${compName}.js`);
   
@@ -356,7 +356,7 @@ for (const file of fs.readdirSync(docDir).filter(f => f.endsWith('.html'))) {
 
   const filePath = path.join(docDir, file);
   let html = fs.readFileSync(filePath, 'utf8');
-  if (!html.includes('Component Specification')) continue;
+  if (!html.includes('Component Skill')) continue;
 
   const md = fs.readFileSync(mdFile, 'utf8');
   const css = fs.readFileSync(cssFile, 'utf8');
@@ -365,17 +365,17 @@ for (const file of fs.readdirSync(docDir).filter(f => f.endsWith('.html'))) {
   const specContent = buildSpecHtml(compName, md, css, js);
   if (!specContent.trim()) { console.log(`  SKIP ${file}`); continue; }
 
-  const newDetails = `        <!-- Component Specification -->
+  const newDetails = `        <!-- Component Skill -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — <span data-spec-href="../components/${compName}/${compName}.md" style="text-decoration:underline;text-underline-offset:3px;">components/${compName}/${compName}.md</span>
+            Component Skill — <span data-spec-href="../components/${compName}/component-skill.md" style="text-decoration:underline;text-underline-offset:3px;">components/${compName}/component-skill.md</span>
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
 ${specContent}          </div>
         </details>`;
 
-  const oldRe = /\s*<!--[─ ]*Component Specification[─ ]*-->[\s\S]*?<\/details>/;
+  const oldRe = /\s*<!--[─ ]*Component Skill[─ ]*-->[\s\S]*?<\/details>/;
   if (oldRe.test(html)) {
     html = html.replace(oldRe, '\n' + newDetails);
     fs.writeFileSync(filePath, html, 'utf8');

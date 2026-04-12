@@ -1,7 +1,7 @@
 # Pattern: Typography
 
 ## Native basis
-Native HTML text elements: `<h1>`–`<h4>`, `<p>`, `<blockquote>`, `<code>`, `<small>`, `<ul>`, `<ol>`.
+Native HTML text elements: `<h1>`–`<h4>`, `<p>`, `<blockquote>`, `<code>`, `<small>`.
 Pure CSS — no JavaScript or ARIA required.
 
 ---
@@ -59,16 +59,7 @@ Pure CSS — no JavaScript or ARIA required.
 
 ### Inline code
 ```html
-<code class="code">@radix-ui/react-alert-dialog</code>
-```
-
-### Unordered list
-```html
-<ul class="list">
-  <li>1st level of puns: 5 gold coins</li>
-  <li>2nd level of jokes: 10 gold coins</li>
-  <li>3rd level of one-liners: 20 gold coins</li>
-</ul>
+<code class="code">semantic-tokens.css</code>
 ```
 
 ---
@@ -88,3 +79,5 @@ Pure CSS — no JavaScript or ARIA required.
 - The `.h1`–`.h4` classes allow applying heading styles to non-heading elements when semantic headings aren't appropriate.
 - Typography classes compose freely with other components (Card content, Dialog body, Alert description).
 - `text-wrap: balance` is used on headings for better visual line distribution.
+- For lists, use the List component (`list.css`) — typography does not ship its own list styles.
+- For prose tables, use the Table component (`table.css`) — typography does not ship its own table styles.

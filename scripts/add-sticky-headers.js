@@ -54,7 +54,7 @@ for (const file of files) {
   const afterMain = content.slice(mainEnd);
 
   // Is this a component page with a spec block?
-  const hasSpec = afterMain.includes('Component Specification');
+  const hasSpec = afterMain.includes('Component Skill');
 
   let headerEndOffset;
 

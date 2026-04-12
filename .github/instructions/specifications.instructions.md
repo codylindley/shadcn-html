@@ -1,19 +1,19 @@
 ---
-description: "Use when editing, creating, or updating component specification files in dist/components/. Covers specification template structure and HTML pattern documentation."
+description: "Use when editing, creating, or updating component skill files in dist/components/. Covers component skill template structure and HTML pattern documentation."
 applyTo: "dist/components/**"
 ---
-# Specification Editing
+# Component Skill Editing
 
 ## Reference sites (REQUIRED)
 
-Before writing or updating any specification, fetch and review the component:
+Before writing or updating any component skill, fetch and review the component:
 
 ### Feature checklist (what to build)
 1. **shadcn/ui** → `https://ui.shadcn.com/docs/components/{name}`
 2. **Basecoat UI** → `https://basecoatui.com/components/{name}/`
 
 Every variant, size, state, and composition pattern shown on those pages must be
-accounted for in the specification — adapted to our semantic HTML / CSS custom property /
+accounted for in the component skill — adapted to our semantic HTML / CSS custom property /
 vanilla JS model.
 
 ### Native implementation (how to build it)
@@ -25,12 +25,12 @@ vanilla JS model.
 Always prefer native browser APIs over JS workarounds. Check MDN for support
 status of newer APIs (`popover`, anchor positioning, `@starting-style`, etc.).
 
-## Specification template
+## Component skill template
 
-Specifications document **how to build the HTML** for a component. CSS and JS live in
-their own files alongside the spec — edit `.css` and `.js` directly.
+Component skills document **how to build the HTML** for a component. CSS and JS live in
+their own files alongside the skill — edit `.css` and `.js` directly.
 
-Every specification must include these sections in order:
+Every component skill must include these sections in order:
 
 1. **Native basis** — which HTML element/API it builds on
 2. **Native Web APIs** — bulleted list of significant platform APIs with MDN links (see format below)
@@ -40,12 +40,12 @@ Every specification must include these sections in order:
 6. **ARIA** — accessibility attributes table
 7. **Notes** — edge cases, composition tips, caveats
 
-Do NOT include CSS or JavaScript code blocks in the spec. The `.css` and `.js` files
+Do NOT include CSS or JavaScript code blocks in the component skill. The `.css` and `.js` files
 in the same folder are the source of truth for styles and behavior.
 
 ## Native Web APIs section format
 
-Every specification must include a `## Native Web APIs` section immediately after
+Every component skill must include a `## Native Web APIs` section immediately after
 `## Native basis`. This section lists the significant web platform APIs the component
 relies on, with MDN links. Use this format:
 

@@ -71,7 +71,7 @@ shadcn-html/
 │   ├── theme/semantic-tokens.css      ← design tokens (colors, radius, shadows)
 │   ├── components/                    ← self-contained component folders
 │   │   └── {name}/
-│   │       ├── {name}.md              ← specification (HTML structure & ARIA)
+│   │       ├── component-skill.md      ← component skill (HTML structure & ARIA)
 │   │       ├── {name}.css             ← component stylesheet
 │   │       └── {name}.js              ← interaction JS (interactive components only)
 │   └── documentation/                 ← reference implementations + public website

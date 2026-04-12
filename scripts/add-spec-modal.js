@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // 1. Add marked.js CDN to all doc pages (if not already present)
-// 2. Turn "Component Specification — components/X/X.md" into a clickable link
+// 2. Turn "Component Skill — components/X/component-skill.md" into a clickable link
 
 const fs = require('fs');
 const path = require('path');
@@ -27,11 +27,11 @@ for (const file of htmlFiles) {
   }
 
   // 2. Turn spec path into a clickable link
-  // Match: "Component Specification — components/X/X.md" inside summary
-  const specPathRe = /(Component Specification\s*—\s*)(components\/[a-z-]+\/[a-z-]+\.md)/g;
+  // Match: "Component Skill — components/X/component-skill.md" inside summary
+  const specPathRe = /(Component Skill\s*—\s*)(components\/[a-z-]+\/component-skill\.md)/g;
   if (specPathRe.test(html) && !html.includes('data-spec-href')) {
     html = html.replace(
-      /(Component Specification\s*—\s*)(components\/[a-z-]+\/[a-z-]+\.md)/g,
+      /(Component Skill\s*—\s*)(components\/[a-z-]+\/component-skill\.md)/g,
       function (match, prefix, mdPath) {
         return prefix + '<span data-spec-href="../' + mdPath + '" style="text-decoration:underline;text-underline-offset:3px;">' + mdPath + '</span>';
       }
@@ -39,13 +39,13 @@ for (const file of htmlFiles) {
     changed = true;
   }
 
-  // 3. Turn "Full specification → <a href=...>" links into modal triggers
-  const fullSpecRe = /Full specification → <a href="(\.\.\/components\/[a-z-]+\/[a-z-]+\.md)"[^>]*>(components\/[a-z-]+\/[a-z-]+\.md)<\/a>/g;
+  // 3. Turn "Full component skill → <a href=...>" links into modal triggers
+  const fullSpecRe = /Full component skill → <a href="(\.\.\/components\/[a-z-]+\/component-skill\.md)"[^>]*>(components\/[a-z-]+\/component-skill\.md)<\/a>/g;
   if (fullSpecRe.test(html) && !html.includes('data-spec-full')) {
     html = html.replace(
-      /Full specification → <a href="(\.\.\/components\/[a-z-]+\/[a-z-]+\.md)"[^>]*>(components\/[a-z-]+\/[a-z-]+\.md)<\/a>/g,
+      /Full component skill → <a href="(\.\.\/components\/[a-z-]+\/component-skill\.md)"[^>]*>(components\/[a-z-]+\/component-skill\.md)<\/a>/g,
       function (match, href, label) {
-        return 'Full specification → <a href="' + href + '" data-spec-href="' + href + '" data-spec-full style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">' + label + '</a>';
+        return 'Full component skill → <a href="' + href + '" data-spec-href="' + href + '" data-spec-full style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">' + label + '</a>';
       }
     );
     changed = true;

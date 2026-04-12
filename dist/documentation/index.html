@@ -95,13 +95,12 @@
     <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 3rem 3.5rem 8rem;">
 <p class="text-sm text-muted-foreground mb-3" style="font-family: var(--font-mono);">shadcn-html / introduction</p>
   <h1 style="font-family: var(--font-display); font-size: 3.25rem; font-weight: 400; line-height: 1.05; letter-spacing: -0.04em; margin: 0 0 1.25rem; color: var(--foreground);">
-    The AI prototyping<br><em style="font-style: italic; font-weight: 300;">substrate.</em>
+    A design system AI<br><em style="font-style: italic; font-weight: 300;">can actually use.</em>
   </h1>
   <p class="text-lg text-muted-foreground leading-relaxed mb-8" style="max-width: 36rem;">
-    Themeable, semantic HTML, modern CSS, and vanilla JavaScript.
-    No framework. No build step. No npm install. Just the lowest-level web
-    stuff assembled into a system any AI can understand and build from.
-    Why? Because you can speak things into existence — so the substrate should be simple.
+    Themeable components built on semantic HTML, modern CSS, and vanilla JavaScript.
+    No framework. No build step. No abstraction layers to get wrong.
+    The simplest possible substrate for AI-driven prototyping.
   </p>
 
   <div class="flex gap-3 mb-14 flex-wrap">
@@ -148,14 +147,16 @@
     </div>
   </div>
 
-  <!-- The contract code block -->
-  <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.875rem;">The contract.</h2>
-  <p class="text-sm text-muted-foreground mb-4">Tokens. CSS. Markup. JavaScript. Four layers — that's the whole system.</p>
-  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+  <!-- The five layers -->
+  <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.875rem;">Five layers.</h2>
+  <p class="text-sm text-muted-foreground mb-4">Tokens. CSS. HTML. JavaScript. Component skill. That's the whole system.</p>
+
+  <!-- Layer 1 — Tokens -->
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:0.75rem;">
     <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
-      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">the full system</span>
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">1 — semantic tokens</span>
     </div>
-    <pre style="border-radius:0;border:none;"><code><span class="dim">/* 1 — semantic-tokens.css: the design system */</span>
+    <pre style="border-radius:0;border:none;"><code><span class="dim">/* semantic-tokens.css — the design system */</span>
 :root {
   --background:         oklch(1 0 0);
   --foreground:         oklch(0.145 0.005 285);
@@ -163,12 +164,17 @@
   --primary-foreground: oklch(0.985 0.002 247);
   --border:             oklch(0.88 0.004 247);
   --radius:             0.625rem;
-  --font-sans:          ui-sans-serif, system-ui, sans-serif;
   <span class="dim">/* ...all color pairs, shadows, spacing */</span>
 }
-.dark { <span class="dim">/* same keys, dark values */</span> }
+.dark { <span class="dim">/* same keys, dark values */</span> }</code></pre>
+  </div>
 
-<span class="dim">/* 2 — components/*.css: styled with tokens */</span>
+  <!-- Layer 2 — CSS -->
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:0.75rem;">
+    <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">2 — component CSS</span>
+    </div>
+    <pre style="border-radius:0;border:none;"><code><span class="dim">/* button.css — styled with tokens */</span>
 .btn {
   display: inline-flex;
   align-items: center;
@@ -178,19 +184,30 @@
 .btn[data-variant="default"] {
   background: var(--primary);
   color: var(--primary-foreground);
-}
+}</code></pre>
+  </div>
 
-<span class="dim">&lt;!-- 3 — semantic HTML markup --&gt;</span>
-&lt;button class="btn" data-variant="default"
+  <!-- Layer 3 — HTML -->
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:0.75rem;">
+    <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">3 — semantic HTML</span>
+    </div>
+    <pre style="border-radius:0;border:none;"><code>&lt;button class="btn" data-variant="default"
         data-dialog-trigger="confirm"&gt;
   Open Dialog
 &lt;/button&gt;
 
 &lt;dialog id="confirm" class="dialog"&gt;
   &lt;div class="dialog-content"&gt;...&lt;/div&gt;
-&lt;/dialog&gt;
+&lt;/dialog&gt;</code></pre>
+  </div>
 
-<span class="dim">// 4 — vanilla JS: wire interactivity</span>
+  <!-- Layer 4 — JavaScript -->
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:0.75rem;">
+    <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">4 — vanilla JavaScript</span>
+    </div>
+    <pre style="border-radius:0;border:none;"><code><span class="dim">// dialog.js — wire interactivity</span>
 document.querySelectorAll('[data-dialog-trigger]')
   .forEach(btn =&gt; {
     const dialog = document.getElementById(
@@ -198,6 +215,30 @@ document.querySelectorAll('[data-dialog-trigger]')
     );
     btn.addEventListener('click', () =&gt; dialog.showModal());
   });</code></pre>
+  </div>
+
+  <!-- Layer 5 — Component Skill -->
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">5 — component skill</span>
+    </div>
+    <pre style="border-radius:0;border:none;"><code><span class="dim"># button.md — the instruction set AI reads to build correctly</span>
+
+## Structure
+&lt;button class="btn" data-variant="default"&gt;Click me&lt;/button&gt;
+
+## Variants
+| data-variant  | Surface     | Text                   |
+|---------------|-------------|------------------------|
+| default       | --primary   | --primary-foreground   |
+| secondary     | --secondary | --secondary-foreground |
+| destructive   | --destructive | --destructive-foreground |
+| outline       | --background + border | --foreground |
+| ghost         | transparent | --foreground           |
+
+## Accessibility
+- Icon-only buttons require aria-label.
+- Use &lt;button&gt; for actions, &lt;a&gt; for navigation.</code></pre>
   </div>
     </main>
   </div>

@@ -170,11 +170,33 @@
 
     // Code collapse/expand toggles
     initCodeCollapse();
+
+    // Auto-close spec <details> on page scroll
+    initSpecAutoClose();
   }
 
   // Register content initializer with SPA router
   // (runs on initial load AND after each SPA navigation)
   window.onPageReady(initPageContent);
+
+  // -- Auto-close spec <details> on page scroll ------------
+  var _specScrollHandler = null;
+  function initSpecAutoClose() {
+    // Remove previous listener (SPA nav)
+    if (_specScrollHandler) {
+      window.removeEventListener('scroll', _specScrollHandler);
+      _specScrollHandler = null;
+    }
+    var main = document.querySelector('main');
+    if (!main) return;
+    var specDetails = main.querySelector('details');
+    if (!specDetails) return;
+
+    _specScrollHandler = function () {
+      if (specDetails.open) specDetails.removeAttribute('open');
+    };
+    window.addEventListener('scroll', _specScrollHandler, { passive: true });
+  }
 
   // -- Spec modal viewer (runs once, uses delegation) ------
   function initSpecModal() {
@@ -182,11 +204,11 @@
     specDialog.className = 'dialog spec-modal';
     specDialog.setAttribute('role', 'dialog');
     specDialog.setAttribute('aria-modal', 'true');
-    specDialog.setAttribute('aria-label', 'Component Specification');
+    specDialog.setAttribute('aria-label', 'Component Skill');
     specDialog.innerHTML =
       '<div class="dialog-content spec-modal-content">' +
         '<div class="dialog-header" style="display:flex;justify-content:space-between;align-items:center;">' +
-          '<h2 class="dialog-title" id="spec-modal-title">Component Specification</h2>' +
+          '<h2 class="dialog-title" id="spec-modal-title">Component Skill</h2>' +
           '<button class="btn" data-variant="ghost" data-size="sm" data-dialog-close aria-label="Close" style="padding:0.25rem;">' +
             '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>' +
           '</button>' +
@@ -227,7 +249,7 @@
         .then(function (r) { return r.text(); })
         .then(function (md) { renderSpec(md, body); })
         .catch(function () {
-          body.innerHTML = '<p class="text-muted-foreground text-sm">Failed to load specification.</p>';
+          body.innerHTML = '<p class="text-muted-foreground text-sm">Failed to load component skill.</p>';
         });
     });
 

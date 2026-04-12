@@ -190,7 +190,7 @@ const htmlFiles = fs.readdirSync(docDir).filter(f => f.endsWith('.html'));
 
 for (const file of htmlFiles) {
   const compName = file.replace('.html', '');
-  const mdFile = path.join(compDir, compName, `${compName}.md`);
+  const mdFile = path.join(compDir, compName, `component-skill.md`);
   if (!fs.existsSync(mdFile)) continue;
 
   const filePath = path.join(docDir, file);
@@ -201,14 +201,14 @@ for (const file of htmlFiles) {
   // For re-runs: match the details block we generated (doesn't have spec-inline-body anymore)
   if (html.includes('spec-inline-body')) {
     // Still has the auto-rendered version
-    var oldRe = /\s*<!-- Component Specification -->[\s\S]*?<div class="spec-inline-body"[^>]*><\/div>\s*<\/details>/;
+    var oldRe = /\s*<!-- Component Skill -->[\s\S]*?<div class="spec-inline-body"[^>]*><\/div>\s*<\/details>/;
   } else {
     // Already replaced once — skip the 24 originals by checking for hand-crafted content
     // Original 24 don't have backtick issues in api-pill code
     // We'll match any details block that has our generated content
     // Skip if this is one of the original 24 (they have specific hand-crafted patterns)
     if (!needsRegeneration(html, compName)) continue;
-    var oldRe = /\s*<!-- Component Specification -->[\s\S]*?<\/details>/;
+    var oldRe = /\s*<!-- Component Skill -->[\s\S]*?<\/details>/;
   }
 
   const md = fs.readFileSync(mdFile, 'utf8');
@@ -221,18 +221,18 @@ for (const file of htmlFiles) {
   }
 
   // Build the full details block
-  const newDetails = `        <!-- Component Specification -->
+  const newDetails = `        <!-- Component Skill -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — <span data-spec-href="../components/${compName}/${compName}.md" style="text-decoration:underline;text-underline-offset:3px;">components/${compName}/${compName}.md</span>
+            Component Skill — <span data-spec-href="../components/${compName}/component-skill.md" style="text-decoration:underline;text-underline-offset:3px;">components/${compName}/component-skill.md</span>
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
 ${specContent}          </div>
         </details>`;
 
   // Replace the old auto-rendered details block
-  const oldRe = /\s*<!-- Component Specification -->[\s\S]*?<div class="spec-inline-body"[^>]*><\/div>\s*<\/details>/;
+  const oldRe = /\s*<!-- Component Skill -->[\s\S]*?<div class="spec-inline-body"[^>]*><\/div>\s*<\/details>/;
   if (oldRe.test(html)) {
     html = html.replace(oldRe, '\n' + newDetails);
     fs.writeFileSync(filePath, html, 'utf8');

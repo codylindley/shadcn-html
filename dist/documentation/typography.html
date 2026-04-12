@@ -103,15 +103,15 @@
           Styles for headings, paragraphs, lists, blockquotes, and inline code. Built on native HTML text elements
           with utility classes. No JavaScript required.
         </p>
-        <!-- Component Specification -->
+        <!-- Component Skill -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
           <summary style="padding:0.875rem 1.25rem;background:var(--muted);cursor:pointer;font-size:0.8125rem;font-weight:600;font-family:var(--font-mono);color:var(--muted-foreground);list-style:none;display:flex;align-items:center;gap:0.5rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 200ms;"><path d="m9 18 6-6-6-6"/></svg>
-            Component Specification — <span data-spec-href="../components/typography/typography.md" style="text-decoration:underline;text-underline-offset:3px;">components/typography/typography.md</span>
+            Component Skill — <span data-spec-href="../components/typography/component-skill.md" style="text-decoration:underline;text-underline-offset:3px;">components/typography/component-skill.md</span>
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">Native HTML text elements: <code>&lt;h1&gt;</code>–<code>&lt;h4&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;blockquote&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;small&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">Native HTML text elements: <code>&lt;h1&gt;</code>–<code>&lt;h4&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;blockquote&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;small&gt;</code>.</p>
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
@@ -135,7 +135,6 @@
               <code>.muted</code>
               <code>.blockquote</code>
               <code>.code</code>
-              <code>.list</code>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
@@ -149,65 +148,33 @@
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• These are utility classes for prose content — not a component with variants/sizes.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The <code>.h1</code>–<code>.h4</code> classes allow applying heading styles to non-heading elements when semantic headings aren't appropriate.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Typography classes compose freely with other components (Card content, Dialog body, Alert description).</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>text-wrap: balance</code> is used on headings for better visual line distribution.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>text-wrap: balance</code> is used on headings for better visual line distribution.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• For lists, use the List component (<code>list.css</code>) — typography does not ship its own list styles.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• For prose tables, use the Table component (<code>table.css</code>) — typography does not ship its own table styles.</p>
           </div>
         </details>
       </div>
 
-        <!-- h1 -->
-        <p class="text-sm font-medium mb-2 mt-6">h1</p>
-        <p class="text-xs text-muted-foreground mb-3">Page title — extrabold with balanced wrapping.</p>
-        <div class="preview">
-          <h1 class="h1">Taxing Laughter: The Joke Tax Chronicles</h1>
+        <!-- Headings -->
+        <p class="text-sm font-medium mb-2 mt-6">Headings</p>
+        <p class="text-xs text-muted-foreground mb-3">Four heading levels — h1 is extrabold, h2 includes a bottom border, h3 and h4 are semibold.</p>
+        <div class="preview" style="text-align:left;padding:2.5rem;">
+          <div style="max-width:32rem;margin:0 auto;display:flex;flex-direction:column;gap:1.5rem;">
+            <h1 class="h1">h1 — Taxing Laughter</h1>
+            <h2 class="h2" style="margin:0;">h2 — The People of the Kingdom</h2>
+            <h3 class="h3">h3 — The Joke Tax</h3>
+            <h4 class="h4">h4 — People stopped telling jokes</h4>
+          </div>
         </div>
         <div style="position:relative;margin-top:0.5rem;">
           <button class="copy-btn">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;h1 class="h1"&gt;Taxing Laughter: The Joke Tax Chronicles&lt;/h1&gt;</code></pre>
-        </div>
-
-        <!-- h2 -->
-        <p class="text-sm font-medium mb-2 mt-8">h2</p>
-        <p class="text-xs text-muted-foreground mb-3">Section heading with bottom border.</p>
-        <div class="preview">
-          <h2 class="h2" style="width:100%;max-width:32rem;margin:0 auto;">The People of the Kingdom</h2>
-        </div>
-        <div style="position:relative;margin-top:0.5rem;">
-          <button class="copy-btn">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-            Copy
-          </button>
-          <pre><code class="language-markup">&lt;h2 class="h2"&gt;The People of the Kingdom&lt;/h2&gt;</code></pre>
-        </div>
-
-        <!-- h3 -->
-        <p class="text-sm font-medium mb-2 mt-8">h3</p>
-        <p class="text-xs text-muted-foreground mb-3">Subsection heading.</p>
-        <div class="preview">
-          <h3 class="h3">The Joke Tax</h3>
-        </div>
-        <div style="position:relative;margin-top:0.5rem;">
-          <button class="copy-btn">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-            Copy
-          </button>
-          <pre><code class="language-markup">&lt;h3 class="h3"&gt;The Joke Tax&lt;/h3&gt;</code></pre>
-        </div>
-
-        <!-- h4 -->
-        <p class="text-sm font-medium mb-2 mt-8">h4</p>
-        <p class="text-xs text-muted-foreground mb-3">Minor heading.</p>
-        <div class="preview">
-          <h4 class="h4">People stopped telling jokes</h4>
-        </div>
-        <div style="position:relative;margin-top:0.5rem;">
-          <button class="copy-btn">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-            Copy
-          </button>
-          <pre><code class="language-markup">&lt;h4 class="h4"&gt;People stopped telling jokes&lt;/h4&gt;</code></pre>
+          <pre><code class="language-markup">&lt;h1 class="h1"&gt;Taxing Laughter&lt;/h1&gt;
+&lt;h2 class="h2"&gt;The People of the Kingdom&lt;/h2&gt;
+&lt;h3 class="h3"&gt;The Joke Tax&lt;/h3&gt;
+&lt;h4 class="h4"&gt;People stopped telling jokes&lt;/h4&gt;</code></pre>
         </div>
 
         <!-- Paragraph -->
@@ -221,7 +188,7 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;p class="p"&gt;The king, seeing how much happier his subjects were...&lt;/p&gt;</code></pre>
+          <pre><code class="language-markup">&lt;p class="p"&gt;The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax.&lt;/p&gt;</code></pre>
         </div>
 
         <!-- Lead -->
@@ -280,36 +247,14 @@
         <p class="text-sm font-medium mb-2 mt-8">Inline code</p>
         <p class="text-xs text-muted-foreground mb-3">Monospace code snippet within text.</p>
         <div class="preview">
-          <p>Install the <code class="code">@radix-ui/react-alert-dialog</code> package.</p>
+          <p>Edit the <code class="code">semantic-tokens.css</code> file to customize your theme.</p>
         </div>
         <div style="position:relative;margin-top:0.5rem;">
           <button class="copy-btn">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;code class="code"&gt;@radix-ui/react-alert-dialog&lt;/code&gt;</code></pre>
-        </div>
-
-        <!-- List -->
-        <p class="text-sm font-medium mb-2 mt-8">List</p>
-        <p class="text-xs text-muted-foreground mb-3">Bulleted list with spacing between items.</p>
-        <div class="preview" style="text-align:left;padding:2.5rem;">
-          <ul class="list" style="max-width:24rem;margin:0 auto;">
-            <li>1st level of puns: 5 gold coins</li>
-            <li>2nd level of jokes: 10 gold coins</li>
-            <li>3rd level of one-liners: 20 gold coins</li>
-          </ul>
-        </div>
-        <div style="position:relative;margin-top:0.5rem;">
-          <button class="copy-btn">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-            Copy
-          </button>
-          <pre><code class="language-markup">&lt;ul class="list"&gt;
-  &lt;li&gt;1st level of puns: 5 gold coins&lt;/li&gt;
-  &lt;li&gt;2nd level of jokes: 10 gold coins&lt;/li&gt;
-  &lt;li&gt;3rd level of one-liners: 20 gold coins&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
+          <pre><code class="language-markup">&lt;code class="code"&gt;semantic-tokens.css&lt;/code&gt;</code></pre>
         </div>
 
         <!-- Spec link -->
@@ -320,6 +265,14 @@
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
             <pre><code class="language-scss">/* -- Typography component --------------------------------------- */
+
+/* -- Base text ---------------------------------------------- */
+@layer base {
+  body {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+}
 
 @layer components {
   /* -- Headings ---------------------------------------------- */
@@ -353,6 +306,7 @@
     font-weight: 600;
     letter-spacing: -0.01em;
     line-height: 1.3;
+    text-wrap: balance;
     color: var(--foreground);
   }
 
@@ -366,6 +320,7 @@
 
   /* -- Paragraph --------------------------------------------- */
   .p {
+    font-size: 0.875rem;
     line-height: 1.75;
     color: var(--foreground);
 
@@ -416,22 +371,11 @@
     position: relative;
     border-radius: var(--radius-sm);
     background: var(--muted);
-    padding: 0.125rem 0.375rem;
+    padding: 0.2rem 0.3rem;
     font-family: var(--font-mono);
-    font-size: 0.8125em;
+    font-size: 0.875em;
     font-weight: 600;
     color: var(--foreground);
-    border: 1px solid var(--border);
-  }
-
-  /* -- List ---------------------------------------------------- */
-  .list {
-    margin: 1.5rem 0;
-    margin-left: 1.5rem;
-    list-style: disc;
-    color: var(--foreground);
-
-    &amp; &gt; li { margin-top: 0.5rem; }
   }
 }</code></pre>
           </div>
@@ -471,7 +415,7 @@
 <script type="text/plain" id="spec-md-content"># Pattern: Typography
 
 ## Native basis
-Native HTML text elements: `<h1>`–`<h4>`, `<p>`, `<blockquote>`, `<code>`, `<small>`, `<ul>`, `<ol>`.
+Native HTML text elements: `<h1>`–`<h4>`, `<p>`, `<blockquote>`, `<code>`, `<small>`.
 Pure CSS — no JavaScript or ARIA required.
 
 ---
@@ -529,16 +473,7 @@ Pure CSS — no JavaScript or ARIA required.
 
 ### Inline code
 ```html
-<code class="code">@radix-ui/react-alert-dialog</code>
-```
-
-### Unordered list
-```html
-<ul class="list">
-  <li>1st level of puns: 5 gold coins</li>
-  <li>2nd level of jokes: 10 gold coins</li>
-  <li>3rd level of one-liners: 20 gold coins</li>
-</ul>
+<code class="code">semantic-tokens.css</code>
 ```
 
 ---
@@ -558,6 +493,8 @@ Pure CSS — no JavaScript or ARIA required.
 - The `.h1`–`.h4` classes allow applying heading styles to non-heading elements when semantic headings aren't appropriate.
 - Typography classes compose freely with other components (Card content, Dialog body, Alert description).
 - `text-wrap: balance` is used on headings for better visual line distribution.
+- For lists, use the List component (`list.css`) — typography does not ship its own list styles.
+- For prose tables, use the Table component (`table.css`) — typography does not ship its own table styles.
 </script>
 </body>
 </html>

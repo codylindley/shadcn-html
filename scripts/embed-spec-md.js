@@ -19,7 +19,7 @@ let count = 0;
 for (const file of htmlFiles) {
   if (overviewPages.has(file)) continue;
   const compName = file.replace('.html', '');
-  const mdFile = path.join(compDir, compName, `${compName}.md`);
+  const mdFile = path.join(compDir, compName, `component-skill.md`);
   if (!fs.existsSync(mdFile)) continue;
 
   const filePath = path.join(docDir, file);

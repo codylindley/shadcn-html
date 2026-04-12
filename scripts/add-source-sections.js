@@ -2,7 +2,7 @@
 // Add CSS source and JS source sections to the bottom of each component doc page.
 // CSS section always comes first (before JS section if present).
 // Skips pages that already have these sections.
-// Also ensures "Full specification" link is present.
+// Also ensures "Full component skill" link is present.
 
 const fs = require('fs');
 const path = require('path');
@@ -69,7 +69,7 @@ for (const file of htmlFiles) {
 
   const hasCssSection = /<!-- ── CSS|<!-- ── Stylesheet/.test(html);
   const hasJsSection = /<!-- ── JavaScript/.test(html);
-  const hasSpecLink = /Full specification/.test(html);
+  const hasSpecLink = /Full component skill/.test(html);
 
   // If everything is already there, skip
   if (hasCssSection && (!hasJs || hasJsSection) && hasSpecLink) {
@@ -117,7 +117,7 @@ for (const file of htmlFiles) {
   if (!hasSpecLink) {
     insertHtml += `
         <p class="text-xs text-muted-foreground" style="margin-top:1rem;">
-            Full specification → <a href="../components/${compName}/${compName}.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/${compName}/${compName}.md</a>
+            Full component skill → <a href="../components/${compName}/component-skill.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/${compName}/component-skill.md</a>
           </p>`;
     stats.specAdded++;
   }
@@ -129,7 +129,7 @@ for (const file of htmlFiles) {
 
   // Find insertion point: before </main> but after last existing section
   // If there's already a JS section, insert CSS before it
-  // If there's a "Full specification" link, insert before it
+  // If there's a "Full component skill" link, insert before it
   // Otherwise insert before </main>
 
   if (hasCssSection || hasJsSection) {

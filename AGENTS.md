@@ -13,7 +13,7 @@ ai-web-prototyper/
 │   ├── theme/semantic-tokens.css      ← design tokens (source of truth for colors, radius, shadows)
 │   ├── components/                    ← self-contained component folders
 │   │   └── {name}/
-│   │       ├── {name}.md              ← specification (HTML structure & ARIA reference)
+│   │       ├── component-skill.md      ← component skill (HTML structure & ARIA reference)
 │   │       ├── {name}.css             ← component stylesheet (edit directly)
 │   │       └── {name}.js              ← interaction JS (only for interactive components)
 │   └── documentation/                 ← reference implementations + public website
@@ -22,7 +22,7 @@ ai-web-prototyper/
 │       ├── css/docs-theme.css         ← doc-site font overrides (not part of the system)
 │       ├── css/layout.css             ← doc-site layout (not part of the system)
 │       ├── js/layout.js               ← SPA router, <site-header>/<site-nav> web components
-│       └── js/site.js                 ← doc-site-only JS (hljs, tabs, copy buttons, spec modal)
+│       └── js/site.js                 ← doc-site-only JS (hljs, tabs, copy buttons, skill modal)
 │
 └── AGENTS.md                          ← this file (maintainer instructions)
 ```
@@ -54,11 +54,11 @@ no libraries, no frameworks.
 ### Each component is a self-contained folder
 
 Each component at `dist/components/{name}/` contains:
-- `{name}.md` — specification: HTML structure, attributes, ARIA, and usage notes
+- `component-skill.md` — component skill: HTML structure, attributes, ARIA, and usage notes
 - `{name}.css` — the component stylesheet (edit directly)
 - `{name}.js` — interaction JS (only for interactive components, edit directly)
 
-The spec `.md` file documents **how to build the HTML**. The `.css` and `.js` files
+The component skill `.md` file documents **how to build the HTML**. The `.css` and `.js` files
 are the actual implementation — edit them directly, no build step needed.
 
 ### Tokens are the source of truth for design values
@@ -100,14 +100,14 @@ these imports must be added to **every** HTML file.
 
 ### Reference sites (REQUIRED)
 
-Before writing any specification or documentation page, **fetch and review** the component on these sites:
+Before writing any component skill or documentation page, **fetch and review** the component on these sites:
 
 #### Feature checklist (what to build)
 1. **shadcn/ui** → `https://ui.shadcn.com/docs/components/{name}`
 2. **Basecoat UI** → `https://basecoatui.com/components/{name}/`
 
 These define the completeness bar. Every variant, size, state, and composition pattern
-shown on those pages must be accounted for in the specification and doc page — adapted
+shown on those pages must be accounted for in the component skill and doc page — adapted
 to our semantic HTML / CSS custom property / vanilla JS model. Do not copy their markup;
 use them as a feature checklist.
 
@@ -124,7 +124,7 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
 
 1. **Create the component folder** → `dist/components/{name}/`
 
-2. **Write the specification** → `dist/components/{name}/{name}.md`
+2. **Write the component skill** → `dist/components/{name}/component-skill.md`
    - Follow the template: Native basis → Native Web APIs → Structure → Variants → Sizes → ARIA → Notes
    - Documents the HTML pattern, not CSS/JS (those are the actual files)
    - Cross-check variants, sizes, and states against the reference sites above
@@ -159,8 +159,8 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
 
 - **Dialog/Sheet centering**: Always set `margin: auto; position: fixed; inset: 0;`
   explicitly for centered dialogs.
-- **CSS drift**: If the spec's variant/size tables don't match the `.css` file,
-  update the spec to stay in sync — the `.css` file is the source of truth for styles.
+- **CSS drift**: If the component skill's variant/size tables don't match the `.css` file,
+  update the component skill to stay in sync — the `.css` file is the source of truth for styles.
 - **CSS/JS import drift**: When adding a component, you must add its `<link>` and
   `<script>` tags to ALL HTML pages. Missing imports cause components in cross-page
   demos to break silently.

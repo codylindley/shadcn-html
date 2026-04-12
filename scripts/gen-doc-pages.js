@@ -109,7 +109,7 @@ newPages.forEach(p => {
         </div>
 
         <p class="text-xs text-muted-foreground" style="margin-top:2rem;">
-          Full specification → <a href="../components/${p.name}/${p.name}.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/${p.name}/${p.name}.md</a>
+          Full component skill → <a href="../components/${p.name}/component-skill.md" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">components/${p.name}/component-skill.md</a>
         </p>
     </main>
   </div>
