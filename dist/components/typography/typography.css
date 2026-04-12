@@ -58,6 +58,7 @@
   .p {
     font-size: 0.875rem;
     line-height: 1.75;
+    text-wrap: pretty;
     color: var(--foreground);
 
     &:not(:first-child) { margin-top: 1.5rem; }
@@ -97,6 +98,7 @@
     border-left: 2px solid var(--border);
     padding-left: 1.5rem;
     font-style: italic;
+    hanging-punctuation: first last;
     color: var(--foreground);
 
     & p { margin: 0; }
