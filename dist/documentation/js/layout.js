@@ -179,9 +179,10 @@
           '</a>' +
           '<div style="flex:1;"></div>' +
           '<nav style="display:flex;align-items:center;gap:0.25rem;">' +
-            '<a href="https://github.com" target="_blank" rel="noopener" class="header-action">' +
+            '<a href="https://github.com/codylindley/shadcn-html" target="_blank" rel="noopener" class="header-action">' +
               '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>' +
               'GitHub' +
+              '<span class="github-stars"></span>' +
             '</a>' +
             '<button id="theme-toggle" class="header-action theme-toggle-btn" aria-label="Toggle dark mode">' +
               '<svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>' +
@@ -460,11 +461,11 @@
       });
   }
 
-  /* Intercept nav clicks (sidebar links + header logo) */
+  /* Intercept nav clicks (sidebar links, header logo, prev/next) */
   document.addEventListener('click', function (e) {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     if (e.defaultPrevented) return;
-    var link = e.target.closest('a.nav-link:not(.disabled), .site-header a[href="index.html"]');
+    var link = e.target.closest('a.nav-link:not(.disabled), .site-header a[href="index.html"], a.page-nav-link');
     if (!link) return;
     var href = link.getAttribute('href');
     if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto:')) return;
@@ -476,5 +477,169 @@
   window.addEventListener('popstate', function () {
     var page = location.pathname.split('/').pop() || 'index.html';
     navigateTo(page, false);
+  });
+
+  /* -- Page extras: footer, TOC, prev/next, edit link, stars -- */
+
+  /* Flat ordered list of all navigable pages */
+  var allPages = [];
+  NAV.forEach(function (section) {
+    section.items.forEach(function (item) {
+      if (BUILT.has(item.href)) allPages.push(item);
+    });
+  });
+
+  var tocObserver = null;
+
+  function getHeadingText(el) {
+    var clone = el.cloneNode(true);
+    clone.querySelectorAll('a, span.badge, svg').forEach(function (c) { c.remove(); });
+    return clone.textContent.trim();
+  }
+
+  function buildToc() {
+    var tocContent = document.querySelector('.site-toc-content');
+    if (!tocContent) return;
+    var main = document.querySelector('main');
+    if (!main) return;
+    if (tocObserver) { tocObserver.disconnect(); tocObserver = null; }
+
+    /* Collect heading-like elements in document order */
+    var candidates = main.querySelectorAll('h2, p.text-sm.font-medium');
+    var headings = [];
+    candidates.forEach(function (el) {
+      /* Skip headings inside collapsed details/page-header */
+      if (el.closest('.page-header details')) return;
+      var text = getHeadingText(el);
+      if (text) headings.push({ el: el, text: text });
+    });
+
+    if (headings.length < 2) {
+      tocContent.innerHTML = '';
+      tocContent.parentElement.style.display = 'none';
+      return;
+    }
+
+    tocContent.parentElement.style.display = '';
+    var html = '<p class="toc-title">On This Page</p>';
+    headings.forEach(function (item) {
+      var id = item.el.id || 'toc-' + item.text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      if (!item.el.id) item.el.id = id;
+      html += '<a class="toc-link" href="#' + id + '">' + item.text + '</a>';
+    });
+    tocContent.innerHTML = html;
+
+    /* Active tracking via IntersectionObserver */
+    var tocLinks = tocContent.querySelectorAll('.toc-link');
+    tocObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(function (l) { l.classList.remove('active'); });
+          var active = tocContent.querySelector('.toc-link[href="#' + entry.target.id + '"]');
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-80px 0px -60% 0px' });
+    headings.forEach(function (item) { tocObserver.observe(item.el); });
+  }
+
+  function buildPrevNext() {
+    var existing = document.querySelector('.page-nav');
+    if (existing) existing.remove();
+    var idx = -1;
+    for (var i = 0; i < allPages.length; i++) {
+      if (allPages[i].href === currentPage) { idx = i; break; }
+    }
+    if (idx === -1) return;
+    var prev = idx > 0 ? allPages[idx - 1] : null;
+    var next = idx < allPages.length - 1 ? allPages[idx + 1] : null;
+    if (!prev && !next) return;
+    var html = '<nav class="page-nav">';
+    if (prev) {
+      html += '<a class="page-nav-link page-nav-prev" href="' + prev.href + '">' +
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>' +
+        '<div><span class="page-nav-label">Previous</span>' +
+        '<span class="page-nav-title">' + prev.label + '</span></div></a>';
+    } else {
+      html += '<div></div>';
+    }
+    if (next) {
+      html += '<a class="page-nav-link page-nav-next" href="' + next.href + '">' +
+        '<div><span class="page-nav-label">Next</span>' +
+        '<span class="page-nav-title">' + next.label + '</span></div>' +
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>';
+    }
+    html += '</nav>';
+    var main = document.querySelector('main');
+    if (main) main.insertAdjacentHTML('beforeend', html);
+  }
+
+  function buildEditLink() {
+    var existing = document.querySelector('.edit-page-link');
+    if (existing) existing.remove();
+    var main = document.querySelector('main');
+    if (!main) return;
+    main.insertAdjacentHTML('beforeend',
+      '<div class="edit-page-link">' +
+        '<a href="https://github.com/codylindley/shadcn-html/edit/main/dist/documentation/' + currentPage + '" target="_blank" rel="noopener">' +
+          '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>' +
+          'Edit this page on GitHub' +
+        '</a>' +
+      '</div>'
+    );
+  }
+
+  function updateStarCount(count) {
+    var el = document.querySelector('.github-stars');
+    if (el) el.textContent = count;
+  }
+
+  /* One-time setup on DOMContentLoaded */
+  document.addEventListener('DOMContentLoaded', function () {
+    /* Inject TOC sidebar */
+    var layoutWrap = document.querySelector('main') && document.querySelector('main').parentElement;
+    if (layoutWrap) {
+      layoutWrap.insertAdjacentHTML('beforeend',
+        '<aside class="site-toc"><div class="site-toc-content"></div></aside>'
+      );
+    }
+
+    /* Inject footer */
+    if (layoutWrap) {
+      layoutWrap.insertAdjacentHTML('afterend',
+        '<footer class="site-footer">' +
+          '<p class="site-footer-tagline">Written entirely by AI, directed entirely by a human. The future is weird.</p>' +
+          '<p>' +
+            'MIT Licensed' +
+            '<span class="site-footer-dot"> · </span>' +
+            '<a href="https://github.com/codylindley/shadcn-html" target="_blank" rel="noopener">Source on GitHub</a>' +
+          '</p>' +
+        '</footer>'
+      );
+    }
+
+    /* Fetch GitHub star count (cached in sessionStorage) */
+    var cached = sessionStorage.getItem('gh-stars');
+    if (cached) {
+      updateStarCount(cached);
+    } else {
+      fetch('https://api.github.com/repos/codylindley/shadcn-html')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.stargazers_count != null) {
+            var count = String(data.stargazers_count);
+            sessionStorage.setItem('gh-stars', count);
+            updateStarCount(count);
+          }
+        })
+        .catch(function () { /* silent fail — star count is non-essential */ });
+    }
+  });
+
+  /* Per-page init (runs on DOMContentLoaded + after each SPA navigation) */
+  window.onPageReady(function () {
+    buildToc();
+    buildEditLink();
+    buildPrevNext();
   });
 })();
