@@ -126,10 +126,10 @@
               <code>.calendar-grid</code>
               <code>.calendar-day-label</code>
               <code>.calendar-day</code>
-              <code>.calendar-day-today</code>
-              <code>.calendar-day-selected</code>
-              <code>.calendar-day-outside</code>
-              <code>.calendar-day-disabled</code>
+              <code>[data-today]</code>
+              <code>[data-selected]</code>
+              <code>[data-outside]</code>
+              <code>[data-disabled]</code>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
@@ -315,12 +315,12 @@
       }
     }
 
-    &amp;.calendar-day-today button {
+    &amp;[data-today] button {
       background-color: var(--accent);
       font-weight: 600;
     }
 
-    &amp;.calendar-day-selected button {
+    &amp;[data-selected] button {
       background-color: var(--primary);
       color: var(--primary-foreground);
 
@@ -329,12 +329,12 @@
       }
     }
 
-    &amp;.calendar-day-outside button {
+    &amp;[data-outside] button {
       color: var(--muted-foreground);
       opacity: 0.5;
     }
 
-    &amp;.calendar-day-disabled button {
+    &amp;[data-disabled] button {
       color: var(--muted-foreground);
       opacity: 0.35;
       cursor: not-allowed;
@@ -401,14 +401,14 @@
         var cellIndex = r * 7 + c;
         if (cellIndex &lt; startDay) {
           var prevDay = prevTotal - startDay + cellIndex + 1;
-          html += '&lt;td class=&quot;calendar-day calendar-day-outside&quot;&gt;&lt;button tabindex=&quot;-1&quot; data-day=&quot;' + prevDay + '&quot; data-outside=&quot;prev&quot;&gt;' + prevDay + '&lt;/button&gt;&lt;/td&gt;';
+          html += '&lt;td class=&quot;calendar-day" data-outside="&quot;&gt;&lt;button tabindex=&quot;-1&quot; data-day=&quot;' + prevDay + '&quot; data-outside=&quot;prev&quot;&gt;' + prevDay + '&lt;/button&gt;&lt;/td&gt;';
         } else if (dayNum &gt; total) {
-          html += '&lt;td class=&quot;calendar-day calendar-day-outside&quot;&gt;&lt;button tabindex=&quot;-1&quot; data-day=&quot;' + nextDayNum + '&quot; data-outside=&quot;next&quot;&gt;' + nextDayNum + '&lt;/button&gt;&lt;/td&gt;';
+          html += '&lt;td class=&quot;calendar-day" data-outside="&quot;&gt;&lt;button tabindex=&quot;-1&quot; data-day=&quot;' + nextDayNum + '&quot; data-outside=&quot;next&quot;&gt;' + nextDayNum + '&lt;/button&gt;&lt;/td&gt;';
           nextDayNum++;
         } else {
           var cls = 'calendar-day';
-          if (isToday(year, month, dayNum)) cls += ' calendar-day-today';
-          if (dayNum === selectedDay) cls += ' calendar-day-selected';
+          if (isToday(year, month, dayNum)) attrs += ' data-today';
+          if (dayNum === selectedDay) attrs += ' data-selected';
           html += '&lt;td class=&quot;' + cls + '&quot;&gt;&lt;button data-day=&quot;' + dayNum + '&quot;&gt;' + dayNum + '&lt;/button&gt;&lt;/td&gt;';
           dayNum++;
         }
@@ -450,7 +450,7 @@
 
         /* Day selection */
         var dayBtn = e.target.closest('.calendar-day button');
-        if (dayBtn &amp;&amp; !dayBtn.closest('.calendar-day-disabled')) {
+        if (dayBtn &amp;&amp; !dayBtn.closest('[data-disabled]')) {
           var day = parseInt(dayBtn.dataset.day, 10);
           var outside = dayBtn.dataset.outside;
           if (outside === 'prev') {
@@ -573,7 +573,7 @@
     </thead>
     <tbody>
       <tr>
-        <td class="calendar-day calendar-day-outside">29</td>
+        <td class="calendar-day" data-outside="">29</td>
         <td class="calendar-day">1</td>
         <!-- ... -->
       </tr>
@@ -587,10 +587,10 @@
 | Class                   | Description                        |
 |-------------------------|------------------------------------|
 | `calendar-day`          | Base day cell                      |
-| `calendar-day-today`    | Today's date                       |
-| `calendar-day-selected` | Selected date                      |
-| `calendar-day-outside`  | Day from adjacent month            |
-| `calendar-day-disabled` | Non-selectable date                |
+| `data-today`    | Today's date                       |
+| `data-selected` | Selected date                      |
+| `data-outside`  | Day from adjacent month            |
+| `data-disabled` | Non-selectable date                |
 
 ## Accessibility
 

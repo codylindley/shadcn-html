@@ -211,6 +211,14 @@ pre.shiki {
   font-size: 0.8125rem;
   line-height: 1.8;
 }
+/* Nested pre inside a card/container — remove its own border/radius/bg */
+pre.shiki[style*="border-radius:0"],
+div[style*="overflow:hidden"] > pre.shiki,
+div[style*="overflow:hidden"] > div > pre.shiki {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
 pre.shiki code {
   white-space: pre-wrap;
   word-break: break-all;
@@ -265,6 +273,8 @@ html.dark pre.shiki span {
   padding: 0.625rem 1rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
+  min-width: 0;
+  overflow: hidden;
 }
 
 /* -- Copy button ------------------------------------------- */

@@ -17,7 +17,7 @@
     }
 
     /* Disabled state */
-    &.label-disabled {
+    &[data-disabled] {
       opacity: 0.7;
       cursor: not-allowed;
     }

@@ -37,7 +37,7 @@
 
 ### Disabled
 ```html
-<label class="label label-disabled" for="disabled-field">Disabled field</label>
+<label class="label" data-disabled for="disabled-field">Disabled field</label>
 <input class="input" id="disabled-field" disabled>
 ```
 

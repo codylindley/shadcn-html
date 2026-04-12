@@ -5,37 +5,70 @@
 ![No dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
 ![HTML CSS JS](https://img.shields.io/badge/stack-HTML%20·%20CSS%20·%20JS-orange)
 
-**The AI prototyping substrate.** Themeable, semantic HTML, modern CSS, and vanilla JavaScript. No framework. No build step. No npm install. Just the lowest-level web stuff assembled into a system any AI can understand and build from. Why? Because you can speak things into existence — so the substrate should be simple.
+**A UI component system that scales with AI.** Themeable components built on semantic HTML, modern CSS, and vanilla JavaScript. No framework. No build step. No abstraction layers to get wrong. The simplest possible foundation for AI-driven prototyping.
 
 **[Documentation & Live Demos →](https://shadcn-html.netlify.app/documentation/)**
 
 ## What this is
 
-A portable design system built on the [shadcn/ui](https://ui.shadcn.com) token model — designed for AI agents to read and use when generating HTML prototypes. The system provides:
+A portable UI component system built on the [shadcn/ui](https://ui.shadcn.com) token model.
 
-- **Themeable** — full shadcn semantic token model; swap a [tweakcn](https://tweakcn.com) theme and every component updates instantly
-- **AI Friendly** — no framework abstractions or build tools to get wrong; just HTML, CSS, and JS — the languages AI knows best
+- **Themeable** — full shadcn semantic token model. Swap a [tweakcn](https://tweakcn.com) theme and every component updates instantly
+- **Component Skills** — every component includes a structured skill — markup, variants, ARIA, and wiring conventions — grounded in web standards
+- **Accessible** — built on native HTML elements and WAI-ARIA patterns. Keyboard navigation, focus management, and screen reader support by default
 - **Framework Free** — runs in any browser, zero dependencies, no build pipeline required
-- **Documentation site** — working reference implementations with live demos
-
-The output is plain HTML that runs directly in any browser with no build step, no framework, and no dependencies.
 
 ## Quick start
 
-### For AI prototyping
+### Via CDN
 
-Copy the `dist/` folder into your project, then point your AI agent at the component specs:
+```html
+<!-- 1. Add a theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/theme/default-semantic-tokens.css">
+
+<!-- 2. Add the icons -->
+<script src="https://unpkg.com/lucide@1.8.0"></script>
+<script>lucide.createIcons();</script>
+
+<!-- 3. Select the components you want -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/components/button/button.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/components/dialog/dialog.css">
+<script type="module" src="https://cdn.jsdelivr.net/gh/codylindley/shadcn-html@latest/dist/components/dialog/dialog.js"></script>
+```
+
+### Self-hosting
+
+Download the full system and drop it into any project. All the files are static — no build step, no dependencies. Point an AI at the folder and it has everything it needs: component skills to read, CSS to include, JS to wire up, and the entire documentation site with working examples of every component.
+
+**[Download latest (.zip)](https://github.com/codylindley/shadcn-html/archive/refs/heads/main.zip)**
+
+## Built on five layers
+
+Each component is a self-contained folder with up to five layers:
 
 ```
-Read dist/components/{name}/{name}.md for component HTML patterns.
-Use dist/theme/default-semantic-tokens.css for design tokens.
+components/
+└── dialog/
+    ├── component-skill.md    ← structured skill: HTML structure, attributes, ARIA
+    ├── dialog.css            ← stylesheet (uses design tokens)
+    └── dialog.js             ← interaction behavior (when needed)
 ```
 
-The AI will use the tokens and pattern specs to build components. The documentation pages serve as reference implementations.
+1. **Semantic tokens** — `default-semantic-tokens.css` defines every design token for the default light and dark theme. To switch themes, you just switch this file.
+2. **Component CSS** — each component's stylesheet, built entirely on tokens.
+3. **Semantic HTML** — native HTML elements with data attributes for variants and wiring.
+4. **Vanilla JavaScript** — interaction logic, only when HTML and CSS can't express the behavior.
+5. **Component skill** — a structured instruction set that documents how to build the component: markup, variants, ARIA, and wiring conventions.
 
-### For browsing the documentation
+Some components — like Button and Badge — are CSS-only. No JavaScript needed.
 
-Visit **[shadcn-html.netlify.app/documentation/](https://shadcn-html.netlify.app/documentation/)** or open any HTML file in `dist/documentation/` locally.
+## Theming
+
+Tokens are compatible with [tweakcn.com](https://tweakcn.com) theme exports. To switch themes, you just switch the token file — that's all the theme selector in the documentation site is doing.
+
+1. Export a theme from tweakcn.com
+2. Replace the `:root` and `.dark` blocks in `dist/theme/default-semantic-tokens.css`
+3. Everything updates automatically — all components, the doc site, dark mode
 
 ## Components
 
@@ -63,35 +96,6 @@ Popover · Tooltip · Context Menu · Dialog · Sheet · Accordion · Command
 ### Navigation
 Breadcrumb · Pagination · Steps · Tabs · Dropdown Menu · Navigation Menu
 
-## Project structure
-
-```
-shadcn-html/
-├── dist/                              ← the distributable system
-│   ├── theme/default-semantic-tokens.css      ← design tokens (colors, radius, shadows)
-│   ├── components/                    ← self-contained component folders
-│   │   └── {name}/
-│   │       ├── component-skill.md      ← component skill (HTML structure & ARIA)
-│   │       ├── {name}.css             ← component stylesheet
-│   │       └── {name}.js              ← interaction JS (interactive components only)
-│   └── documentation/                 ← reference implementations + public website
-│       ├── *.html                     ← one page per component + overview pages
-│       ├── css/                       ← doc-site styles (not part of the system)
-│       ├── fonts/                     ← self-hosted web fonts
-│       └── js/                        ← doc-site JS (layout, dark mode, copy buttons)
-│
-├── AGENTS.md                          ← AI instructions for maintaining this repo
-└── README.md                          ← this file
-```
-
-## Theming
-
-Tokens are compatible with [tweakcn.com](https://tweakcn.com) theme exports. To retheme:
-
-1. Export a theme from tweakcn.com
-2. Replace the `:root` and `.dark` blocks in `dist/theme/default-semantic-tokens.css`
-3. Everything updates automatically — all components, the doc site, dark mode
-
 ## Design principles
 
 ### Native web platform first
@@ -111,10 +115,8 @@ Every component starts from a native HTML element or browser API. If the browser
 
 ### Other principles
 
-- **No frameworks** — no React, no Vue, no Alpine, no build tools for the consumer
 - **Token-driven** — every color, radius, and shadow comes from CSS custom properties
-- **AI-optimized** — patterns are structured for machine consumption, not human tutorials
-- **Dark mode automatic** — the token cascade handles it, no `dark:` overrides needed
+- **Dark mode automatic** — the token cascade handles it, no overrides needed
 - **Variant via data attributes** — `data-variant="primary"`, not `btn-primary`
 
 ## Author

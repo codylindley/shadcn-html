@@ -123,7 +123,7 @@
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <code>.label</code>
               <code>.input</code>
-              <code>.label-disabled</code>
+              <code>[data-disabled]</code>
               <code>.label-hint</code>
             </div>
 
@@ -207,7 +207,7 @@
         <p class="text-xs text-muted-foreground mb-3">Dimmed label for disabled fields.</p>
         <div class="preview">
           <div style="width:100%;max-width:20rem;">
-            <label class="label label-disabled" for="demo-disabled">Disabled field</label>
+            <label class="label" data-disabled for="demo-disabled">Disabled field</label>
             <input class="input" type="text" id="demo-disabled" disabled placeholder="Cannot edit">
           </div>
         </div>
@@ -216,7 +216,7 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;label class="label label-disabled" for="disabled"&gt;Disabled field&lt;/label&gt;
+          <pre><code class="language-markup">&lt;label class="label" data-disabled for="disabled"&gt;Disabled field&lt;/label&gt;
 &lt;input class="input" type="text" id="disabled" disabled&gt;</code></pre>
         </div>
 
@@ -246,7 +246,7 @@
     }
 
     /* Disabled state */
-    &amp;.label-disabled {
+    &amp;[data-disabled] {
       opacity: 0.7;
       cursor: not-allowed;
     }
@@ -332,7 +332,7 @@
 
 ### Disabled
 ```html
-<label class="label label-disabled" for="disabled-field">Disabled field</label>
+<label class="label" data-disabled for="disabled-field">Disabled field</label>
 <input class="input" id="disabled-field" disabled>
 ```
 

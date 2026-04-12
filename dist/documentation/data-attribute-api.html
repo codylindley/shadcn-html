@@ -107,22 +107,22 @@
   <p class="text-sm text-muted-foreground mb-5">If you came from a component framework, this mapping should feel familiar.</p>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">React / Solid (props)</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;"><code>&lt;Button
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>&lt;Button
   variant="destructive"
   size="lg"
 &gt;
   Delete
 &lt;/Button&gt;</code></pre>
     </div>
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">shadcn-html (data attributes)</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;"><code>&lt;button class="btn"
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>&lt;button class="btn"
   data-variant="destructive"
   data-size="lg"
 &gt;
@@ -160,32 +160,33 @@
   <p class="text-sm text-muted-foreground mb-5">Traditional systems like Bootstrap and BEM use modifier classes: <code>.btn-primary</code>, <code>.btn--lg</code>, <code>.btn-outline-danger</code>. Here's why we don't.</p>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
-        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--destructive);">✗ Modifier classes</span>
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">Modifier classes</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;"><code>&lt;button class="btn btn-destructive btn-lg"&gt;
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>&lt;button class="btn btn-destructive btn-lg"&gt;
   Delete
 &lt;/button&gt;
 
-<span class="dim">/* Conflicting specificity, combinatorial explosion */</span>
+<span class="dim">/* Conflicting specificity */</span>
 .btn-primary { ... }
 .btn-lg { ... }
-.btn-primary.btn-lg { ... }  <span class="dim">/* needed? */</span></code></pre>
+.btn-primary.btn-lg { ... }</code></pre>
     </div>
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
-        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--chart-1);">✓ Data attributes</span>
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">Data attributes</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;"><code>&lt;button class="btn"
-  data-variant="destructive" data-size="lg"&gt;
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>&lt;button class="btn"
+  data-variant="destructive"
+  data-size="lg"&gt;
   Delete
 &lt;/button&gt;
 
-<span class="dim">/* Flat specificity, independent axes */</span>
+<span class="dim">/* Flat specificity */</span>
 .btn[data-variant="destructive"] { ... }
 .btn[data-size="lg"] { ... }
-<span class="dim">/* no combo selector needed */</span></code></pre>
+<span class="dim">/* no combo needed */</span></code></pre>
     </div>
   </div>
 
@@ -318,7 +319,7 @@
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">trigger / close pattern</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">&lt;!-- The trigger: its value is the ID of the target --&gt;</span>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code><span class="dim">&lt;!-- The trigger: its value is the ID of the target --&gt;</span>
 &lt;button class="btn" data-dialog-trigger="confirm"&gt;
   Open Dialog
 &lt;/button&gt;
@@ -392,7 +393,7 @@
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">native state as CSS selectors</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">/* Tab is selected — use ARIA, not a data attribute */</span>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code><span class="dim">/* Tab is selected — use ARIA, not a data attribute */</span>
 .tab-trigger[aria-selected="true"] {
   color: var(--foreground);
   border-color: var(--primary);
@@ -425,49 +426,52 @@
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">the universal component pattern</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;"><code>&lt;element
-  class="{component}"              <span class="dim">← what it is (CSS base selector)</span>
-  data-variant="{variant}"         <span class="dim">← visual style (optional, has default)</span>
-  data-size="{size}"               <span class="dim">← dimensions (optional, has default)</span>
-  data-{axis}="{value}"            <span class="dim">← other config axes (optional)</span>
-  data-{component}-trigger="{id}"  <span class="dim">← JS behavior wiring (interactive only)</span>
-  aria-*/disabled/open             <span class="dim">← native state (styled by CSS)</span>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>&lt;element
+  class="{component}"             <span class="dim">← what it is</span>
+  data-variant="{variant}"        <span class="dim">← visual style</span>
+  data-size="{size}"              <span class="dim">← dimensions</span>
+  data-{axis}="{value}"           <span class="dim">← other config</span>
+  data-{component}-trigger="{id}" <span class="dim">← JS wiring</span>
+  aria-*/disabled/open            <span class="dim">← native state</span>
 &gt;
   content
 &lt;/element&gt;</code></pre>
   </div>
 
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">button</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;font-size:0.75rem;"><code>&lt;button class="btn"
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;font-size:0.75rem;"><code>&lt;button class="btn"
   data-variant="outline"
   data-size="sm"&gt;
   Edit
 &lt;/button&gt;</code></pre>
     </div>
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">badge</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;font-size:0.75rem;"><code>&lt;span class="badge"
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;font-size:0.75rem;"><code>&lt;span class="badge"
   data-variant="secondary"&gt;
   New
-&lt;/span&gt;</code></pre>
+&lt;/span&gt;
+</code></pre>
     </div>
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">sheet</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;font-size:0.75rem;"><code>&lt;dialog class="sheet"
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;font-size:0.75rem;"><code>&lt;dialog class="sheet"
   data-side="left"
   id="nav"&gt;
   ...
 &lt;/dialog&gt;</code></pre>
     </div>
   </div>
+
+  <p class="text-sm text-muted-foreground mb-8">Each component's <code>component-skill.md</code> lists the complete set of supported data attributes, variants, sizes, and ARIA requirements.</p>
 
     </main>
   </div>

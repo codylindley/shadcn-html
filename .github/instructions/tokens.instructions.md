@@ -43,8 +43,6 @@ The token file must be a pure subset of what TweakCN produces.
 
 **Shadow scale**: `--shadow-2xs` through `--shadow-2xl`
 
-**Shadow composition**: `--shadow-x`, `--shadow-y`, `--shadow-blur`, `--shadow-spread`, `--shadow-opacity`, `--shadow-color`
-
 **Spacing**: `--spacing`
 
 **Tracking**: `--tracking-normal`
@@ -64,7 +62,6 @@ in component CSS. Use a literal CSS value instead.
 - Font stacks: `--font-sans`, `--font-serif`, `--font-mono` (generic defaults)
 - Base radius: `--radius`
 - Derived radius: `--radius-sm`, `--radius-md`, `--radius-lg`, `--radius-xl` (computed from `var(--radius)`)
-- Shadow composition: `--shadow-x`, `--shadow-y`, `--shadow-blur`, etc.
 - Shadow scale: `--shadow-2xs` through `--shadow-2xl`
 - Spacing: `--spacing`
 - Tracking: `--tracking-normal`
@@ -75,7 +72,7 @@ in component CSS. Use a literal CSS value instead.
 
 ### Derived radius values
 
-Tweakcn themes only provide `--radius`. The derived values must use `var(--radius)`:
+Tweakcn themes provide `--radius` and derived values. The derived values use additive offsets:
 ```css
 --radius-sm: calc(var(--radius) - 4px);
 --radius-md: calc(var(--radius) - 2px);

@@ -97,12 +97,12 @@
       }
     }
 
-    &.calendar-day-today button {
+    &[data-today] button {
       background-color: var(--accent);
       font-weight: 600;
     }
 
-    &.calendar-day-selected button {
+    &[data-selected] button {
       background-color: var(--primary);
       color: var(--primary-foreground);
 
@@ -111,12 +111,12 @@
       }
     }
 
-    &.calendar-day-outside button {
+    &[data-outside] button {
       color: var(--muted-foreground);
       opacity: 0.5;
     }
 
-    &.calendar-day-disabled button {
+    &[data-disabled] button {
       color: var(--muted-foreground);
       opacity: 0.35;
       cursor: not-allowed;

@@ -116,7 +116,7 @@
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">the rule in one sentence</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">/* Layered — from a component stylesheet */</span>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code><span class="dim">/* Layered — from a component stylesheet */</span>
 @layer components {
   .btn { background: var(--primary); }
 }
@@ -134,11 +134,11 @@
   <p class="text-sm text-muted-foreground mb-5">Every component CSS file — button, card, dialog, all of them — wraps all of its rules inside a single layer declaration:</p>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">components/button/button.css</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;"><code>@layer components {
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>@layer components {
   .btn {
     display: inline-flex;
     align-items: center;
@@ -155,11 +155,11 @@
   }
 }</code></pre>
     </div>
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">components/card/card.css</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;"><code>@layer components {
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>@layer components {
   .card {
     background-color: var(--card);
     color: var(--card-foreground);
@@ -223,11 +223,11 @@
   <p class="text-sm text-muted-foreground mb-5">Write your overrides in a regular, unlayered stylesheet. They'll always take precedence.</p>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">components/button/button.css (layered)</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;"><code>@layer components {
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>@layer components {
   .btn {
     border-radius: var(--radius-md);
     font-weight: 500;
@@ -235,11 +235,11 @@
   }
 }</code></pre>
     </div>
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
-        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--chart-1);">my-overrides.css (unlayered — wins)</span>
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">my-overrides.css (unlayered — wins)</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">/* Make buttons fully rounded */</span>
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code><span class="dim">/* Make buttons fully rounded */</span>
 .btn {
   border-radius: 9999px;
 }
@@ -257,7 +257,7 @@
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">HTML — load order</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;"><code>&lt;link rel="stylesheet" href="theme/default-semantic-tokens.css"&gt;
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code>&lt;link rel="stylesheet" href="theme/default-semantic-tokens.css"&gt;
 &lt;link rel="stylesheet" href="components/button/button.css"&gt;
 &lt;link rel="stylesheet" href="components/card/card.css"&gt;
 
@@ -278,7 +278,7 @@
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">main.css — explicit layer order</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">/* Declare layer order: first listed = lowest priority */</span>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code><span class="dim">/* Declare layer order: first listed = lowest priority */</span>
 @layer components, utilities;
 
 <span class="dim">/* Now Tailwind utilities beat shadcn-html component styles,
@@ -297,33 +297,32 @@
   <p class="text-sm text-muted-foreground mb-5">Traditional CSS libraries (Bootstrap, Bulma) ship unlayered styles. That creates problems when you try to customize them.</p>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
-        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--destructive);">Without @layer</span>
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">Without @layer</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">/* Library: high specificity */</span>
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code><span class="dim">/* Library: high specificity */</span>
 .btn.btn-primary { background: blue; }
 
-<span class="dim">/* Your override: same specificity — loses
-   unless loaded after AND matches specificity */</span>
-.btn { background: tomato; }  <span class="dim">/* ✗ ignored */</span>
+<span class="dim">/* Your override: loses */</span>
+.btn { background: tomato; }  <span class="dim">/* ✗ */</span>
 
 <span class="dim">/* Forced to escalate */</span>
-.btn { background: tomato !important; } <span class="dim">/* ugly */</span></code></pre>
+.btn { background: tomato !important; }</code></pre>
     </div>
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
-        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--chart-1);">With @layer (shadcn-html)</span>
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">With @layer (shadcn-html)</span>
       </div>
-      <pre style="border-radius:0;border:none;margin:0;"><code><span class="dim">/* Library: layered */</span>
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code><span class="dim">/* Library: layered */</span>
 @layer components {
   .btn { background: var(--primary); }
 }
 
-<span class="dim">/* Your override: unlayered — wins automatically */</span>
-.btn { background: tomato; }  <span class="dim">/* ✓ applied */</span>
+<span class="dim">/* Your override: unlayered */</span>
+.btn { background: tomato; }  <span class="dim">/* ✓ wins */</span>
 
-<span class="dim">/* No !important. No specificity war. */</span></code></pre>
+<span class="dim">/* No !important needed. */</span></code></pre>
     </div>
   </div>
 
@@ -340,6 +339,28 @@
     <span style="font-weight:600;font-size:0.8125rem;">Future-proof</span>
     <span class="text-sm text-muted-foreground"><code>@layer</code> is a W3C standard, built into every modern browser. Not a framework convention.</span>
   </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Why not @scope or Web Components? -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Why not <code>@scope</code> or Web Components?</h2>
+  <p class="text-sm text-muted-foreground mb-5">Every layer of abstraction is a layer AI can get wrong. Web Components add class definitions, lifecycle callbacks, Shadow DOM, and template cloning. <code>@scope</code> strips context from class names. Both make the system harder for AI to read, generate, and modify — so we use neither.</p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:1.5rem;align-items:baseline;">
+    <span style="font-weight:600;font-size:0.8125rem;">Plain HTML is the simplest target</span>
+    <span class="text-sm text-muted-foreground">A <code>&lt;button class="btn" data-variant="outline"&gt;</code> is just HTML. No custom element registration, no shadow root, no template cloning. Nothing to misunderstand, nothing to get wrong.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Flat, visible DOM</span>
+    <span class="text-sm text-muted-foreground">Shadow DOM hides structure inside custom elements. An AI can't inspect, modify, or learn from what it can't see. Plain HTML gives full visibility into every component.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Self-documenting class names</span>
+    <span class="text-sm text-muted-foreground">A class like <code>.card-header</code> carries its meaning in the name — an AI can generate it without knowing the surrounding markup. With <code>@scope</code>, a generic <code>.header</code> is ambiguous. Context is everything for AI generation.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">The cascade delivers context for free</span>
+    <span class="text-sm text-muted-foreground"><code>.card-title</code> inherits font and color tokens from its parent <code>.card</code> automatically. This inheritance <em>is</em> the context — the more of it embedded in the structure, the more reliably AI produces correct output.</span>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-8">Simplicity isn't a limitation — it's a deliberate design choice that maximizes the context available to AI. Every pattern in this system was chosen not just to avoid complexity, but to actively give AI more to work with.</p>
 
   <div class="sep"></div>
 

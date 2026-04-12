@@ -1,4 +1,5 @@
 {
+   "editor.accessibilitySupport": "off",
   "github.copilot.chat.commitMessageGeneration.instructions": [
     {
       "text": "Write commit messages using the Conventional Commits format: type(scope): description. Types: feat, fix, refactor, chore, docs, style. Include a blank line then a body that lists specific changes as bullet points. Mention component names, file names, and what was added/changed/removed. Be detailed — summarize every meaningful change, not just the first one. If multiple components or pages were affected, list them all."

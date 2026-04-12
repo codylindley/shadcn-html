@@ -46,15 +46,16 @@ const renderCalendar = (el, year, month, selectedDay) => {
       const cellIndex = r * 7 + c;
       if (cellIndex < startDay) {
         const prevDay = prevTotal - startDay + cellIndex + 1;
-        html += `<td class="calendar-day calendar-day-outside"><button tabindex="-1" data-day="${prevDay}" data-outside="prev">${prevDay}</button></td>`;
+        html += `<td class="calendar-day" data-outside><button tabindex="-1" data-day="${prevDay}" data-outside="prev">${prevDay}</button></td>`;
       } else if (dayNum > total) {
-        html += `<td class="calendar-day calendar-day-outside"><button tabindex="-1" data-day="${nextDayNum}" data-outside="next">${nextDayNum}</button></td>`;
+        html += `<td class="calendar-day" data-outside><button tabindex="-1" data-day="${nextDayNum}" data-outside="next">${nextDayNum}</button></td>`;
         nextDayNum++;
       } else {
         let cls = 'calendar-day';
-        if (isToday(year, month, dayNum)) cls += ' calendar-day-today';
-        if (dayNum === selectedDay) cls += ' calendar-day-selected';
-        html += `<td class="${cls}"><button data-day="${dayNum}">${dayNum}</button></td>`;
+        let attrs = '';
+        if (isToday(year, month, dayNum)) attrs += ' data-today';
+        if (dayNum === selectedDay) attrs += ' data-selected';
+        html += `<td class="${cls}"${attrs}><button data-day="${dayNum}">${dayNum}</button></td>`;
         dayNum++;
       }
     }
@@ -94,7 +95,7 @@ document.querySelectorAll('.calendar').forEach((cal) => {
 
       /* Day selection */
       const dayBtn = e.target.closest('.calendar-day button');
-      if (dayBtn && !dayBtn.closest('.calendar-day-disabled')) {
+      if (dayBtn && !dayBtn.closest('[data-disabled]')) {
         const day = parseInt(dayBtn.dataset.day, 10);
         const outside = dayBtn.dataset.outside;
         if (outside === 'prev') {

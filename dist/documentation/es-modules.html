@@ -111,38 +111,33 @@
     instead of a classic script. The key differences:
   </p>
 
-  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
-    <table class="table" data-variant="simple" style="margin:0;">
-      <thead>
-        <tr><th style="width:40%;">Classic script</th><th>ES module</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>&lt;script src="..." defer&gt;</code></td>
-          <td><code>&lt;script type="module" src="..."&gt;</code></td>
-        </tr>
-        <tr>
-          <td>Variables leak to global scope</td>
-          <td>Module scope — nothing leaks</td>
-        </tr>
-        <tr>
-          <td>Must add <code>'use strict'</code> manually</td>
-          <td>Strict mode by default</td>
-        </tr>
-        <tr>
-          <td>Executes once, synchronously</td>
-          <td>Deferred by default (like <code>defer</code>)</td>
-        </tr>
-        <tr>
-          <td>IIFE wrappers needed for isolation</td>
-          <td>Each file is its own scope — no wrappers needed</td>
-        </tr>
-        <tr>
-          <td>Works from <code>file://</code></td>
-          <td>Requires HTTP server (CORS policy)</td>
-        </tr>
-      </tbody>
-    </table>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">Classic script</span>
+      </div>
+      <div style="padding:1.25rem;font-size:0.8125rem;display:flex;flex-direction:column;gap:0.75rem;">
+        <code style="display:block;font-size:0.75rem;background:var(--muted);padding:0.5rem 0.75rem;border-radius:var(--radius-md);">&lt;script src="..." defer&gt;</code>
+        <div class="text-muted-foreground">Variables leak to global scope</div>
+        <div class="text-muted-foreground">Must add <code>'use strict'</code> manually</div>
+        <div class="text-muted-foreground">Executes once, synchronously</div>
+        <div class="text-muted-foreground">IIFE wrappers needed for isolation</div>
+        <div class="text-muted-foreground">Works from <code>file://</code></div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">ES module</span>
+      </div>
+      <div style="padding:1.25rem;font-size:0.8125rem;display:flex;flex-direction:column;gap:0.75rem;">
+        <code style="display:block;font-size:0.75rem;background:var(--muted);padding:0.5rem 0.75rem;border-radius:var(--radius-md);">&lt;script type="module" src="..."&gt;</code>
+        <div class="text-muted-foreground">Module scope — nothing leaks</div>
+        <div class="text-muted-foreground">Strict mode by default</div>
+        <div class="text-muted-foreground">Deferred by default (like <code>defer</code>)</div>
+        <div class="text-muted-foreground">Each file is its own scope — no wrappers</div>
+        <div class="text-muted-foreground">Requires HTTP server (CORS policy)</div>
+      </div>
+    </div>
   </div>
 
   <div class="sep"></div>
@@ -155,29 +150,18 @@
     and binds event listeners.
   </p>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
-      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
-        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">your HTML</span>
-      </div>
-      <pre style="border-radius:0;border:none;margin:0;"><code class="language-markup">&lt;script type="module"
-  src="components/dialog/dialog.js"&gt;
-&lt;/script&gt;</code></pre>
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">your HTML + what the module does</span>
     </div>
-
-    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
-      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
-        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">dialog.js (simplified)</span>
-      </div>
-      <pre style="border-radius:0;border:none;margin:0;"><code class="language-javascript">document.querySelectorAll(
-  '[data-dialog-trigger]'
-).forEach((trigger) => {
-  const dialog = document.getElementById(
-    trigger.dataset.dialogTrigger
-  );
-  trigger.addEventListener('click', () => {
-    dialog.showModal();
-  });
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup">&lt;!-- Include the module --&gt;
+&lt;script type="module" src="components/dialog/dialog.js"&gt;&lt;/script&gt;</code></pre>
+    <div style="border-top:1px solid var(--border);">
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript">// dialog.js — runs at top level, wires triggers to dialogs
+document.querySelectorAll('[data-dialog-trigger]').forEach((trigger) => {
+  const dialog = document.getElementById(trigger.dataset.dialogTrigger);
+  if (!dialog) return;
+  trigger.addEventListener('click', () => dialog.showModal());
 });</code></pre>
     </div>
   </div>
@@ -196,49 +180,53 @@
     things like keyboard navigation, focus management, and state coordination.
   </p>
 
-  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
-    <table class="table" data-variant="simple" style="margin:0;">
-      <thead>
-        <tr><th>Pattern</th><th>Examples</th><th>JS needed?</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Static display</td>
-          <td>Badge, Card, Alert, Spinner</td>
-          <td>No</td>
-        </tr>
-        <tr>
-          <td>Native interactive</td>
-          <td>Checkbox, Radio, Select, Switch</td>
-          <td>No</td>
-        </tr>
-        <tr>
-          <td>Native with <code>&lt;details&gt;</code></td>
-          <td>Collapsible</td>
-          <td>No</td>
-        </tr>
-        <tr>
-          <td>Single-open constraint</td>
-          <td>Accordion (single mode)</td>
-          <td>Yes — small</td>
-        </tr>
-        <tr>
-          <td>Keyboard navigation</td>
-          <td>Tabs, Dropdown, Combobox, Toolbar</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Modal coordination</td>
-          <td>Dialog, Sheet, Alert Dialog, Command</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Programmatic API</td>
-          <td>Toast</td>
-          <td>Yes — exposes <code>window.toast</code></td>
-        </tr>
-      </tbody>
-    </table>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
+      <div style="padding:0.75rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">CSS-only — no JS needed</span>
+      </div>
+      <div style="padding:1.25rem;font-size:0.8125rem;display:flex;flex-direction:column;gap:1rem;">
+        <div>
+          <div style="font-weight:600;margin-bottom:0.25rem;">Static display</div>
+          <div class="text-muted-foreground">Badge, Card, Alert, Spinner, Skeleton, Separator, Progress, Image, Avatar (fallback needs JS)</div>
+        </div>
+        <div>
+          <div style="font-weight:600;margin-bottom:0.25rem;">Native interactive</div>
+          <div class="text-muted-foreground">Checkbox, Radio, Select, Switch, Slider, Input, Textarea, File Input</div>
+        </div>
+        <div>
+          <div style="font-weight:600;margin-bottom:0.25rem;">Native with <code>&lt;details&gt;</code></div>
+          <div class="text-muted-foreground">Collapsible</div>
+        </div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
+      <div style="padding:0.75rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">Needs JavaScript</span>
+      </div>
+      <div style="padding:1.25rem;font-size:0.8125rem;display:flex;flex-direction:column;gap:1rem;">
+        <div>
+          <div style="font-weight:600;margin-bottom:0.25rem;">Modal coordination</div>
+          <div class="text-muted-foreground">Dialog, Sheet, Alert Dialog, Command</div>
+        </div>
+        <div>
+          <div style="font-weight:600;margin-bottom:0.25rem;">Keyboard navigation</div>
+          <div class="text-muted-foreground">Tabs, Dropdown, Combobox, Toolbar, Navigation Menu</div>
+        </div>
+        <div>
+          <div style="font-weight:600;margin-bottom:0.25rem;">Constraint logic</div>
+          <div class="text-muted-foreground">Accordion (single mode), Toggle, Toggle Group</div>
+        </div>
+        <div>
+          <div style="font-weight:600;margin-bottom:0.25rem;">Positioning &amp; wiring</div>
+          <div class="text-muted-foreground">Tooltip, Popover, Context Menu, Calendar, Carousel, Sortable</div>
+        </div>
+        <div>
+          <div style="font-weight:600;margin-bottom:0.25rem;">Programmatic API</div>
+          <div class="text-muted-foreground">Toast — exposes <code>window.toast()</code></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="sep"></div>
@@ -254,7 +242,7 @@
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
       <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">any of these work</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;"><code class="language-bash">npx serve .
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-bash">npx serve .
 npx vite .
 python3 -m http.server</code></pre>
   </div>

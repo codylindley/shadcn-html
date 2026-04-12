@@ -33,7 +33,7 @@
     </thead>
     <tbody>
       <tr>
-        <td class="calendar-day calendar-day-outside">29</td>
+        <td class="calendar-day" data-outside="">29</td>
         <td class="calendar-day">1</td>
         <!-- ... -->
       </tr>
@@ -47,10 +47,10 @@
 | Class                   | Description                        |
 |-------------------------|------------------------------------|
 | `calendar-day`          | Base day cell                      |
-| `calendar-day-today`    | Today's date                       |
-| `calendar-day-selected` | Selected date                      |
-| `calendar-day-outside`  | Day from adjacent month            |
-| `calendar-day-disabled` | Non-selectable date                |
+| `data-today`    | Today's date                       |
+| `data-selected` | Selected date                      |
+| `data-outside`  | Day from adjacent month            |
+| `data-disabled` | Non-selectable date                |
 
 ## Accessibility
 
