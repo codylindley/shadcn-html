@@ -1,24 +1,79 @@
 @layer components {
   .carousel { position: relative; width: 100%; }
+
   .carousel-viewport {
-    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem;
-    scrollbar-width: none; &::-webkit-scrollbar { display: none; }
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
   }
+
   .carousel-slide {
-    flex: 0 0 100%; scroll-snap-align: start; min-height: 12rem;
-    display: flex; align-items: center; justify-content: center;
-    border: 1px solid var(--border); border-radius: var(--radius-xl);
-    background-color: var(--card); font-size: 0.875rem; color: var(--foreground);
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    min-height: 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background-color: var(--card);
+    font-size: 0.875rem;
+    color: var(--foreground);
   }
+
   .carousel-prev, .carousel-next {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 2rem; height: 2rem; border: 1px solid var(--border); border-radius: 9999px;
-    background-color: var(--background); color: var(--foreground); cursor: pointer;
-    box-shadow: var(--shadow-sm); transition: background-color 150ms ease; font-size: 0.875rem;
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    background-color: var(--background);
+    color: var(--foreground);
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: background-color 150ms ease;
+    font-size: 0.875rem;
+
     &:hover { background-color: var(--accent); }
+    &:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+    &:disabled { opacity: 0.5; cursor: not-allowed; }
     & svg { width: 1rem; height: 1rem; }
   }
+
   .carousel-prev { left: -1rem; }
   .carousel-next { right: -1rem; }
+
+  /* Vertical orientation */
+  &[data-orientation="vertical"] {
+    & .carousel-viewport {
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      overscroll-behavior-y: contain;
+    }
+    & .carousel-slide { flex: 0 0 100%; }
+    & .carousel-prev, & .carousel-next {
+      left: 50%;
+      translate: -50% 0;
+      top: auto;
+    }
+    & .carousel-prev { top: -1rem; }
+    & .carousel-next { bottom: -1rem; }
+  }
+
+  /* Reduced motion: instant scroll, no transitions */
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-viewport { scroll-behavior: auto; }
+    .carousel-prev, .carousel-next { transition: none; }
+  }
 }

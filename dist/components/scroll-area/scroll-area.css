@@ -1,9 +1,21 @@
 @layer components {
   .scroll-area {
-    overflow: auto; position: relative;
+    overflow: auto;
+    position: relative;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+
+    /* Webkit custom scrollbar */
     &::-webkit-scrollbar { width: 6px; height: 6px; }
     &::-webkit-scrollbar-track { background: transparent; }
-    &::-webkit-scrollbar-thumb { background-color: var(--border); border-radius: 3px; &:hover { background-color: var(--muted-foreground); } }
-    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--border);
+      border-radius: 3px;
+      &:hover { background-color: var(--muted-foreground); }
+    }
+
+    /* Standard scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
   }
 }

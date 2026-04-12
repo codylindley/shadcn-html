@@ -113,6 +113,9 @@
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow" target="_blank" rel="noopener" title="scrollable container" class="api-pill"><code>overflow</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-width" target="_blank" rel="noopener" title="standard thin scrollbar" class="api-pill"><code>scrollbar-width</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-gutter" target="_blank" rel="noopener" title="prevents layout shift from scrollbar appearance" class="api-pill"><code>scrollbar-gutter</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior" target="_blank" rel="noopener" title="prevents scroll chaining" class="api-pill"><code>overscroll-behavior</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar" target="_blank" rel="noopener" title="custom scrollbar styling" class="api-pill"><code>::-webkit-scrollbar</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
@@ -193,12 +196,16 @@
 
 ## Native basis
 
-CSS overflow with custom-styled scrollbars.
+CSS overflow with custom-styled scrollbars using both standard and Webkit scrollbar properties.
 
 ## Native Web APIs
 
 - [`overflow`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) — scrollable container
-- [`::-webkit-scrollbar`](https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar) — custom scrollbar styling
+- [`scrollbar-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-width) — standard thin scrollbar
+- [`scrollbar-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color) — standard scrollbar colors
+- [`scrollbar-gutter`](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-gutter) — reserves space for scrollbar to prevent layout shift
+- [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior) — prevents scroll chaining to parent containers
+- [`::-webkit-scrollbar`](https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar) — Webkit custom scrollbar styling
 
 ## Structure
 
