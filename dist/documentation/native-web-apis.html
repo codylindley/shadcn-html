@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="description" content="shadcn-html uses native browser APIs — Popover, Anchor Positioning, Dialog, Details — instead of JavaScript libraries.">
+  <meta property="og:title" content="Native Web APIs — shadcn-html">
+  <meta property="og:description" content="shadcn-html uses native browser APIs — Popover, Anchor Positioning, Dialog, Details — instead of JavaScript libraries.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shadcn-html.netlify.app/documentation/native-web-apis.html">
+  <meta property="og:site_name" content="shadcn-html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Native Web APIs — shadcn-html">
+  <meta name="twitter:description" content="shadcn-html uses native browser APIs — Popover, Anchor Positioning, Dialog, Details — instead of JavaScript libraries.">
+  <title>Native Web APIs — shadcn-html</title>
+  <script src="js/themes.js"></script>
+  <script src="js/theme-switcher.js"></script>
+  <script src="js/layout.js"></script>
+  <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../components/button/button.css">
+  <link rel="stylesheet" href="../components/card/card.css">
+  <link rel="stylesheet" href="../components/dialog/dialog.css">
+  <link rel="stylesheet" href="../components/badge/badge.css">
+  <link rel="stylesheet" href="../components/input/input.css">
+  <link rel="stylesheet" href="../components/accordion/accordion.css">
+  <link rel="stylesheet" href="../components/tabs/tabs.css">
+  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
+  <link rel="stylesheet" href="../components/toast/toast.css">
+  <link rel="stylesheet" href="../components/combobox/combobox.css">
+  <link rel="stylesheet" href="../components/sheet/sheet.css">
+  <link rel="stylesheet" href="../components/toggle/toggle.css">
+  <link rel="stylesheet" href="../components/icon/icon.css">
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/separator/separator.css">
+  <link rel="stylesheet" href="../components/link/link.css">
+  <link rel="stylesheet" href="../components/label/label.css">
+  <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
+  <link rel="stylesheet" href="../components/button-group/button-group.css">
+  <link rel="stylesheet" href="../components/toolbar/toolbar.css">
+  <link rel="stylesheet" href="../components/textarea/textarea.css">
+  <link rel="stylesheet" href="../components/checkbox/checkbox.css">
+  <link rel="stylesheet" href="../components/radio/radio.css">
+  <link rel="stylesheet" href="../components/switch/switch.css">
+  <link rel="stylesheet" href="../components/slider/slider.css">
+  <link rel="stylesheet" href="../components/select/select.css">
+  <link rel="stylesheet" href="../components/number-input/number-input.css">
+  <link rel="stylesheet" href="../components/file-input/file-input.css">
+  <link rel="stylesheet" href="../components/color-picker/color-picker.css">
+  <link rel="stylesheet" href="../components/date-picker/date-picker.css">
+  <link rel="stylesheet" href="../components/form/form.css">
+  <link rel="stylesheet" href="../components/tag/tag.css">
+  <link rel="stylesheet" href="../components/avatar/avatar.css">
+  <link rel="stylesheet" href="../components/image/image.css">
+  <link rel="stylesheet" href="../components/list/list.css">
+  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
+  <link rel="stylesheet" href="../components/statistic/statistic.css">
+  <link rel="stylesheet" href="../components/table/table.css">
+  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
+  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
+  <link rel="stylesheet" href="../components/timeline/timeline.css">
+  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="../components/calendar/calendar.css">
+  <link rel="stylesheet" href="../components/spinner/spinner.css">
+  <link rel="stylesheet" href="../components/skeleton/skeleton.css">
+  <link rel="stylesheet" href="../components/progress/progress.css">
+  <link rel="stylesheet" href="../components/alert/alert.css">
+  <link rel="stylesheet" href="../components/alert-dialog/alert-dialog.css">
+  <link rel="stylesheet" href="../components/popover/popover.css">
+  <link rel="stylesheet" href="../components/tooltip/tooltip.css">
+  <link rel="stylesheet" href="../components/context-menu/context-menu.css">
+  <link rel="stylesheet" href="../components/command/command.css">
+  <link rel="stylesheet" href="../components/breadcrumb/breadcrumb.css">
+  <link rel="stylesheet" href="../components/pagination/pagination.css">
+  <link rel="stylesheet" href="../components/steps/steps.css">
+  <link rel="stylesheet" href="../components/navigation-menu/navigation-menu.css">
+  <link rel="stylesheet" href="../components/aspect-ratio/aspect-ratio.css">
+  <link rel="stylesheet" href="../components/container/container.css">
+  <link rel="stylesheet" href="../components/scroll-area/scroll-area.css">
+  <link rel="stylesheet" href="../components/carousel/carousel.css">
+  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
+  <link rel="stylesheet" href="../components/sortable/sortable.css">
+</head>
+<body>
+  <site-header></site-header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <site-nav></site-nav>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+      <div class="page-header">
+<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / native-web-apis</p>
+  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Native Web APIs</h1>
+  <p class="text-muted-foreground leading-relaxed mb-10" style="max-width:38rem;">
+    If the browser can do it, we don't write JavaScript for it. shadcn-html builds on modern browser APIs instead of third-party libraries.
+  </p>
+      </div>
+
+  <!-- -- Philosophy -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">The native-first principle</h2>
+  <p class="text-sm text-muted-foreground mb-5">Traditional component libraries ship thousands of lines of JavaScript to implement behaviors that browsers now provide natively — dropdown positioning, modal focus trapping, popover light-dismiss, auto-growing textareas. shadcn-html eliminates that JavaScript entirely by building on the platform.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">Traditional approach</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup"><span class="dim">&lt;!-- Dropdown: Floating UI + JS toggle
+     + click-outside + focus trap
+     + scroll lock + virtual positioning --&gt;</span>
+
+&lt;div class="dropdown-trigger" onclick="..."&gt;
+  Open Menu
+&lt;/div&gt;
+&lt;div class="dropdown-panel"
+  style="position:absolute;top:...;left:..."&gt;
+  ...
+&lt;/div&gt;</code></pre>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">shadcn-html approach</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup"><span class="dim">&lt;!-- Popover API + CSS Anchor Positioning
+     Browser handles: positioning, light-dismiss,
+     top-layer, and auto-flip --&gt;</span>
+
+&lt;button popovertarget="menu"&gt;
+  Open Menu
+&lt;/button&gt;
+&lt;div id="menu" popover
+  class="dropdown-content"&gt;
+  ...
+&lt;/div&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Popover API -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Popover API</h2>
+  <p class="text-sm text-muted-foreground mb-3">The Popover API provides native show/hide behavior with light-dismiss (click outside to close), top-layer rendering (no z-index wars), and keyboard dismiss (Escape key) — all without JavaScript.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API" target="_blank" rel="noopener" class="link">MDN: Popover API</a>
+  </p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:1.5rem;align-items:baseline;">
+    <code style="font-size:0.8125rem;font-weight:600;">popover</code>
+    <span class="text-sm text-muted-foreground">HTML attribute that makes any element a popover. Renders in the top layer when shown.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">popovertarget</code>
+    <span class="text-sm text-muted-foreground">On a button, specifies the ID of the popover to toggle. No JavaScript needed for basic show/hide.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">.showPopover()</code>
+    <span class="text-sm text-muted-foreground">JS method to programmatically show a popover (used for keyboard-triggered menus).</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">.hidePopover()</code>
+    <span class="text-sm text-muted-foreground">JS method to programmatically hide a popover.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">:popover-open</code>
+    <span class="text-sm text-muted-foreground">CSS pseudo-class that matches when the popover is visible. Used for enter/exit animations.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">toggle event</code>
+    <span class="text-sm text-muted-foreground">Fires when a popover opens or closes. <code>e.newState</code> is <code>"open"</code> or <code>"closed"</code>.</span>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">basic popover — zero JavaScript</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup">&lt;button class="btn" popovertarget="my-popover"&gt;
+  Open Popover
+&lt;/button&gt;
+
+&lt;div id="my-popover" popover class="popover"&gt;
+  &lt;p&gt;This popover uses the native Popover API.&lt;/p&gt;
+  &lt;p&gt;Click outside or press Escape to close.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Used by:</strong> Popover, Dropdown, Tooltip, Toast, Combobox, Context Menu, Navigation Menu</p>
+
+  <div class="sep"></div>
+
+  <!-- -- CSS Anchor Positioning -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">CSS Anchor Positioning</h2>
+  <p class="text-sm text-muted-foreground mb-3">CSS Anchor Positioning lets a popover attach itself to a trigger element entirely in CSS — no Floating UI, no Popper.js, no JavaScript positioning calculations. The browser automatically handles viewport-edge flipping with <code>position-try-fallbacks</code>.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning" target="_blank" rel="noopener" class="link">MDN: CSS Anchor Positioning</a>
+  </p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:1.5rem;align-items:baseline;">
+    <code style="font-size:0.8125rem;font-weight:600;">anchor-name</code>
+    <span class="text-sm text-muted-foreground">CSS property (or set via JS) on the trigger. Creates a named anchor: <code>anchor-name: --my-anchor</code>.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">position-anchor</code>
+    <span class="text-sm text-muted-foreground">On the positioned element. Points to the named anchor: <code>position-anchor: --my-anchor</code>.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">anchor()</code>
+    <span class="text-sm text-muted-foreground">CSS function to reference anchor edges: <code>top: anchor(bottom)</code> positions the popup below the trigger.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">position-try-fallbacks</code>
+    <span class="text-sm text-muted-foreground">Automatic flip when the popup would overflow the viewport: <code>position-try-fallbacks: flip-block</code>.</span>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">how it works in CSS</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css"><span class="dim">/* Component CSS — no JS positioning needed */</span>
+.popover {
+  position: fixed;
+  inset: auto;
+  top: anchor(bottom);
+  left: anchor(left);
+  margin-top: 4px;
+  position-try-fallbacks: flip-block;
+}
+
+<span class="dim">/* JS only sets the anchor names (unique per instance) */</span></code></pre>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">JS anchor name setup</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript"><span class="dim">// Each trigger-popover pair gets a unique anchor ID</span>
+trigger.style.anchorName = `--popover-${id}`;
+popover.style.positionAnchor = `--popover-${id}`;</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Used by:</strong> Dropdown, Popover, Tooltip, Combobox, Navigation Menu</p>
+
+  <div class="sep"></div>
+
+  <!-- -- <dialog> Element -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">&lt;dialog&gt; Element</h2>
+  <p class="text-sm text-muted-foreground mb-3">The <code>&lt;dialog&gt;</code> element provides native modal behavior: focus trapping, Escape-to-close, <code>::backdrop</code> overlay, and top-layer rendering — all built into the browser.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" target="_blank" rel="noopener" class="link">MDN: &lt;dialog&gt;</a>
+  </p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:1.5rem;align-items:baseline;">
+    <code style="font-size:0.8125rem;font-weight:600;">.showModal()</code>
+    <span class="text-sm text-muted-foreground">Opens the dialog as a modal — traps focus, adds backdrop, blocks interaction with the rest of the page.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">.close()</code>
+    <span class="text-sm text-muted-foreground">Closes the dialog. The browser handles cleanup and fires the <code>close</code> event.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">::backdrop</code>
+    <span class="text-sm text-muted-foreground">CSS pseudo-element for the overlay behind the modal. Style it directly — no extra div needed.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">Escape key</code>
+    <span class="text-sm text-muted-foreground">Browsers close modal dialogs on Escape automatically. No keyboard listener needed.</span>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">dialog pattern</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup">&lt;button class="btn" data-dialog-trigger="my-dialog"&gt;
+  Open Dialog
+&lt;/button&gt;
+
+&lt;dialog id="my-dialog" class="dialog"&gt;
+  &lt;div class="dialog-content"&gt;
+    &lt;h2 class="dialog-title"&gt;Dialog Title&lt;/h2&gt;
+    &lt;p class="dialog-description"&gt;Dialog content here.&lt;/p&gt;
+    &lt;button class="btn" data-dialog-close&gt;Close&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Used by:</strong> Dialog, Alert Dialog, Sheet</p>
+
+  <div class="sep"></div>
+
+  <!-- -- <details>/<summary> -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">&lt;details&gt; / &lt;summary&gt;</h2>
+  <p class="text-sm text-muted-foreground mb-3">The <code>&lt;details&gt;</code> element provides native disclosure (expand/collapse) behavior. The browser handles toggle state, keyboard activation, and accessibility — no JavaScript needed for basic accordions.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details" target="_blank" rel="noopener" class="link">MDN: &lt;details&gt;</a>
+  </p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:1.5rem;align-items:baseline;">
+    <code style="font-size:0.8125rem;font-weight:600;">open</code>
+    <span class="text-sm text-muted-foreground">Boolean attribute that toggles the expanded state. CSS can style with <code>details[open]</code>.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">::details-content</code>
+    <span class="text-sm text-muted-foreground">Pseudo-element for the collapsible content area. Enables <code>block-size</code> animation for smooth open/close.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">toggle event</code>
+    <span class="text-sm text-muted-foreground">Fires when the details element opens or closes.</span>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">accordion using &lt;details&gt;</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup">&lt;div class="accordion"&gt;
+  &lt;details class="accordion-item"&gt;
+    &lt;summary class="accordion-trigger"&gt;
+      Section Title
+      &lt;svg class="accordion-chevron"&gt;...&lt;/svg&gt;
+    &lt;/summary&gt;
+    &lt;div class="accordion-content"&gt;
+      &lt;p&gt;Collapsible content here.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Used by:</strong> Accordion, Collapsible</p>
+
+  <div class="sep"></div>
+
+  <!-- -- field-sizing: content -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">field-sizing: content</h2>
+  <p class="text-sm text-muted-foreground mb-3">The <code>field-sizing: content</code> CSS property makes textareas automatically grow and shrink to fit their content — zero JavaScript, no resize observers, no measuring hidden elements.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing" target="_blank" rel="noopener" class="link">MDN: field-sizing</a>
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">auto-growing textarea — CSS only</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css">textarea.input {
+  field-sizing: content;
+  min-height: 5rem;
+}</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Used by:</strong> Textarea</p>
+
+  <div class="sep"></div>
+
+  <!-- -- :has() Selector -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">:has() Selector</h2>
+  <p class="text-sm text-muted-foreground mb-3">The <code>:has()</code> selector lets CSS react to child or sibling state without JavaScript class propagation. A parent can style itself based on what its children are doing.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has" target="_blank" rel="noopener" class="link">MDN: :has()</a>
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">examples from the component library</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css"><span class="dim">/* Tabs detect vertical orientation from child */</span>
+.tabs:has(.tab-list[aria-orientation="vertical"]) {
+  display: flex;
+}
+
+<span class="dim">/* Avatar hides fallback when image loads */</span>
+.avatar:has(.avatar-image:not([data-error])) .avatar-fallback {
+  display: none;
+}</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Used by:</strong> Label, Tabs, Avatar</p>
+
+  <div class="sep"></div>
+
+  <!-- -- Container Queries -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Container Queries</h2>
+  <p class="text-sm text-muted-foreground mb-3">Container queries let components adapt to their own container width rather than the viewport. This makes components truly portable — they respond to the space they're given, not the screen size.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries" target="_blank" rel="noopener" class="link">MDN: Container queries</a>
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">component-level responsive design</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css"><span class="dim">/* Card becomes a containment context */</span>
+.card {
+  container-type: inline-size;
+}
+
+<span class="dim">/* Card adapts to its own width, not the viewport */</span>
+@container (max-width: 280px) {
+  .card-header { padding: 0.5rem; }
+}</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Used by:</strong> Card, Table</p>
+
+  <div class="sep"></div>
+
+  <!-- -- Summary Table -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">API reference</h2>
+  <p class="text-sm text-muted-foreground mb-5">Every native API used in the component library, what it replaces, and which components depend on it.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">native APIs vs. traditional JS libraries</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Native API</th><th>Replaces</th><th>Components</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Popover API</td><td>JS show/hide, z-index management, click-outside</td><td>Popover, Dropdown, Tooltip, Toast, Combobox, Context Menu, Nav Menu</td></tr>
+          <tr><td>CSS Anchor Positioning</td><td>Floating UI, Popper.js</td><td>Dropdown, Popover, Tooltip, Combobox, Nav Menu</td></tr>
+          <tr><td><code>&lt;dialog&gt;</code></td><td>JS modal + overlay + focus trap</td><td>Dialog, Alert Dialog, Sheet</td></tr>
+          <tr><td><code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code></td><td>JS toggle + height animation</td><td>Accordion, Collapsible</td></tr>
+          <tr><td><code>@starting-style</code></td><td>JS class toggling for enter animations</td><td>All overlays (Popover, Dialog, Sheet, Dropdown, Toast, Accordion)</td></tr>
+          <tr><td><code>::backdrop</code></td><td>JS-managed overlay divs</td><td>Dialog, Alert Dialog, Sheet</td></tr>
+          <tr><td><code>::details-content</code></td><td>JS measured height + animation</td><td>Accordion, Collapsible</td></tr>
+          <tr><td><code>field-sizing: content</code></td><td>JS auto-resize scripts</td><td>Textarea</td></tr>
+          <tr><td><code>:has()</code></td><td>JS class propagation</td><td>Label, Tabs, Avatar</td></tr>
+          <tr><td>Container Queries</td><td>Viewport media queries</td><td>Card, Table</td></tr>
+          <tr><td><code>:focus-visible</code></td><td>JS focus-ring detection</td><td>All interactive components</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-8">
+    These APIs are supported in the latest versions of Chrome, Edge, Firefox, and Safari. Some newer features (CSS Anchor Positioning, <code>::details-content</code>, <code>field-sizing</code>) reached cross-browser support more recently. See <a href="https://web.dev/baseline" target="_blank" rel="noopener" class="link">Baseline</a> for current compatibility status and each component's <code>component-skill.md</code> for the specific APIs used.
+  </p>
+
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+  <script type="module" src="js/shiki-highlight.js"></script>
+  <script type="module" src="../components/accordion/accordion.js"></script>
+  <script type="module" src="../components/combobox/combobox.js"></script>
+  <script type="module" src="../components/dialog/dialog.js"></script>
+  <script type="module" src="../components/dropdown/dropdown.js"></script>
+  <script type="module" src="../components/sheet/sheet.js"></script>
+  <script type="module" src="../components/tabs/tabs.js"></script>
+  <script type="module" src="../components/toast/toast.js"></script>
+  <script type="module" src="../components/toggle/toggle.js"></script>
+  <script type="module" src="../components/toggle-group/toggle-group.js"></script>
+  <script type="module" src="../components/toolbar/toolbar.js"></script>
+  <script type="module" src="../components/number-input/number-input.js"></script>
+  <script type="module" src="../components/color-picker/color-picker.js"></script>
+  <script type="module" src="../components/tag/tag.js"></script>
+  <script type="module" src="../components/avatar/avatar.js"></script>
+  <script type="module" src="../components/tree-view/tree-view.js"></script>
+  <script type="module" src="../components/calendar/calendar.js"></script>
+  <script type="module" src="../components/alert-dialog/alert-dialog.js"></script>
+  <script type="module" src="../components/popover/popover.js"></script>
+  <script type="module" src="../components/tooltip/tooltip.js"></script>
+  <script type="module" src="../components/context-menu/context-menu.js"></script>
+  <script type="module" src="../components/command/command.js"></script>
+  <script type="module" src="../components/navigation-menu/navigation-menu.js"></script>
+  <script type="module" src="../components/carousel/carousel.js"></script>
+  <script type="module" src="../components/sortable/sortable.js"></script>
+  <script src="https://unpkg.com/lucide@1.8.0" integrity="sha384-+8nbzwDAyu5kAjqtR/XKxIgPHQD2TflvbZgeDZn5t3JP+OOogNH1jXnfel8ZAgzS" crossorigin="anonymous"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

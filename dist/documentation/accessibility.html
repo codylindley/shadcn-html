@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Accessibility patterns in shadcn-html: ARIA roles, keyboard navigation, focus management, and screen reader support.">
+  <meta property="og:title" content="Accessibility — shadcn-html">
+  <meta property="og:description" content="Accessibility patterns in shadcn-html: ARIA roles, keyboard navigation, focus management, and screen reader support.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shadcn-html.netlify.app/documentation/accessibility.html">
+  <meta property="og:site_name" content="shadcn-html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Accessibility — shadcn-html">
+  <meta name="twitter:description" content="Accessibility patterns in shadcn-html: ARIA roles, keyboard navigation, focus management, and screen reader support.">
+  <title>Accessibility — shadcn-html</title>
+  <script src="js/themes.js"></script>
+  <script src="js/theme-switcher.js"></script>
+  <script src="js/layout.js"></script>
+  <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../components/button/button.css">
+  <link rel="stylesheet" href="../components/card/card.css">
+  <link rel="stylesheet" href="../components/dialog/dialog.css">
+  <link rel="stylesheet" href="../components/badge/badge.css">
+  <link rel="stylesheet" href="../components/input/input.css">
+  <link rel="stylesheet" href="../components/accordion/accordion.css">
+  <link rel="stylesheet" href="../components/tabs/tabs.css">
+  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
+  <link rel="stylesheet" href="../components/toast/toast.css">
+  <link rel="stylesheet" href="../components/combobox/combobox.css">
+  <link rel="stylesheet" href="../components/sheet/sheet.css">
+  <link rel="stylesheet" href="../components/toggle/toggle.css">
+  <link rel="stylesheet" href="../components/icon/icon.css">
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/separator/separator.css">
+  <link rel="stylesheet" href="../components/link/link.css">
+  <link rel="stylesheet" href="../components/label/label.css">
+  <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
+  <link rel="stylesheet" href="../components/button-group/button-group.css">
+  <link rel="stylesheet" href="../components/toolbar/toolbar.css">
+  <link rel="stylesheet" href="../components/textarea/textarea.css">
+  <link rel="stylesheet" href="../components/checkbox/checkbox.css">
+  <link rel="stylesheet" href="../components/radio/radio.css">
+  <link rel="stylesheet" href="../components/switch/switch.css">
+  <link rel="stylesheet" href="../components/slider/slider.css">
+  <link rel="stylesheet" href="../components/select/select.css">
+  <link rel="stylesheet" href="../components/number-input/number-input.css">
+  <link rel="stylesheet" href="../components/file-input/file-input.css">
+  <link rel="stylesheet" href="../components/color-picker/color-picker.css">
+  <link rel="stylesheet" href="../components/date-picker/date-picker.css">
+  <link rel="stylesheet" href="../components/form/form.css">
+  <link rel="stylesheet" href="../components/tag/tag.css">
+  <link rel="stylesheet" href="../components/avatar/avatar.css">
+  <link rel="stylesheet" href="../components/image/image.css">
+  <link rel="stylesheet" href="../components/list/list.css">
+  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
+  <link rel="stylesheet" href="../components/statistic/statistic.css">
+  <link rel="stylesheet" href="../components/table/table.css">
+  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
+  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
+  <link rel="stylesheet" href="../components/timeline/timeline.css">
+  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="../components/calendar/calendar.css">
+  <link rel="stylesheet" href="../components/spinner/spinner.css">
+  <link rel="stylesheet" href="../components/skeleton/skeleton.css">
+  <link rel="stylesheet" href="../components/progress/progress.css">
+  <link rel="stylesheet" href="../components/alert/alert.css">
+  <link rel="stylesheet" href="../components/alert-dialog/alert-dialog.css">
+  <link rel="stylesheet" href="../components/popover/popover.css">
+  <link rel="stylesheet" href="../components/tooltip/tooltip.css">
+  <link rel="stylesheet" href="../components/context-menu/context-menu.css">
+  <link rel="stylesheet" href="../components/command/command.css">
+  <link rel="stylesheet" href="../components/breadcrumb/breadcrumb.css">
+  <link rel="stylesheet" href="../components/pagination/pagination.css">
+  <link rel="stylesheet" href="../components/steps/steps.css">
+  <link rel="stylesheet" href="../components/navigation-menu/navigation-menu.css">
+  <link rel="stylesheet" href="../components/aspect-ratio/aspect-ratio.css">
+  <link rel="stylesheet" href="../components/container/container.css">
+  <link rel="stylesheet" href="../components/scroll-area/scroll-area.css">
+  <link rel="stylesheet" href="../components/carousel/carousel.css">
+  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
+  <link rel="stylesheet" href="../components/sortable/sortable.css">
+</head>
+<body>
+  <site-header></site-header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <site-nav></site-nav>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+      <div class="page-header">
+<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / accessibility</p>
+  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Accessibility</h1>
+  <p class="text-muted-foreground leading-relaxed mb-10" style="max-width:38rem;">
+    Every component follows WAI-ARIA Authoring Practices. Semantic HTML first, ARIA attributes where native semantics don't exist, full keyboard support throughout.
+  </p>
+      </div>
+
+  <!-- -- Semantic HTML First -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Semantic HTML first</h2>
+  <p class="text-sm text-muted-foreground mb-5">Components start from the most semantic native element available. A <code>&lt;button&gt;</code> is already a button — no <code>role="button"</code> needed. A <code>&lt;dialog&gt;</code> already traps focus and handles Escape. ARIA is only added when the native element doesn't express the full semantics of the widget.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">Avoid: unnecessary ARIA</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup"><span class="dim">&lt;!-- Don't add ARIA roles to native elements --&gt;</span>
+&lt;div role="button" tabindex="0"
+  onclick="..."&gt;
+  Click me
+&lt;/div&gt;</code></pre>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
+      <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+        <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">Prefer: native elements</span>
+      </div>
+      <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup"><span class="dim">&lt;!-- Native button: focusable, keyboard
+     activatable, announced correctly --&gt;</span>
+&lt;button class="btn"&gt;
+  Click me
+&lt;/button&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- ARIA Roles -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">ARIA roles</h2>
+  <p class="text-sm text-muted-foreground mb-5">When no native element expresses the widget semantics, ARIA roles tell assistive technology what the element represents. These follow the <a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank" rel="noopener" class="link">WAI-ARIA Authoring Practices Guide (APG)</a>.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">ARIA roles by component</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Role</th><th>Component</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>menu</code></td><td>Dropdown, Context Menu</td><td>A list of actions or options</td></tr>
+          <tr><td><code>menuitem</code></td><td>Dropdown, Context Menu</td><td>A single action in a menu</td></tr>
+          <tr><td><code>menuitemcheckbox</code></td><td>Dropdown</td><td>A togglable menu item</td></tr>
+          <tr><td><code>menuitemradio</code></td><td>Dropdown</td><td>A mutually exclusive menu option</td></tr>
+          <tr><td><code>tablist</code></td><td>Tabs</td><td>Container for tab triggers</td></tr>
+          <tr><td><code>tab</code></td><td>Tabs</td><td>A single tab trigger</td></tr>
+          <tr><td><code>tabpanel</code></td><td>Tabs</td><td>Content area associated with a tab</td></tr>
+          <tr><td><code>listbox</code></td><td>Combobox</td><td>A list of selectable options</td></tr>
+          <tr><td><code>option</code></td><td>Combobox</td><td>A single option in a listbox</td></tr>
+          <tr><td><code>toolbar</code></td><td>Toolbar</td><td>A container for grouped actions</td></tr>
+          <tr><td><code>treeitem</code></td><td>Tree View</td><td>A node in a hierarchical tree</td></tr>
+          <tr><td><code>dialog</code></td><td>Dialog, Sheet</td><td>A modal or non-modal overlay (native via <code>&lt;dialog&gt;</code>)</td></tr>
+          <tr><td><code>alertdialog</code></td><td>Alert Dialog</td><td>A dialog requiring acknowledgment</td></tr>
+          <tr><td><code>alert</code></td><td>Alert</td><td>An important, time-sensitive message</td></tr>
+          <tr><td><code>status</code></td><td>Toast</td><td>A polite status notification</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- ARIA State Attributes -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">State attributes</h2>
+  <p class="text-sm text-muted-foreground mb-5">ARIA state attributes communicate dynamic state changes to assistive technology. These are managed by JavaScript at runtime.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">ARIA state attributes</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Attribute</th><th>Values</th><th>Usage</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>aria-expanded</code></td><td><code>true</code> / <code>false</code></td><td>Dropdown triggers, popover triggers, accordion headers — indicates whether the controlled content is visible</td></tr>
+          <tr><td><code>aria-selected</code></td><td><code>true</code> / <code>false</code></td><td>Tab triggers, combobox options — indicates the active selection</td></tr>
+          <tr><td><code>aria-checked</code></td><td><code>true</code> / <code>false</code> / <code>mixed</code></td><td>Menu item checkboxes, menu item radios, toggle buttons</td></tr>
+          <tr><td><code>aria-pressed</code></td><td><code>true</code> / <code>false</code></td><td>Toggle buttons — indicates pressed/active state</td></tr>
+          <tr><td><code>aria-disabled</code></td><td><code>true</code></td><td>Non-native disabled elements (menu items, links) where the HTML <code>disabled</code> attribute isn't available</td></tr>
+          <tr><td><code>aria-invalid</code></td><td><code>true</code></td><td>Form inputs with validation errors</td></tr>
+          <tr><td><code>aria-busy</code></td><td><code>true</code></td><td>Loading states — tells screen readers content is still loading</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Relationship Attributes -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Relationship attributes</h2>
+  <p class="text-sm text-muted-foreground mb-5">These attributes create semantic connections between elements, allowing assistive technology to navigate related content.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">relationship attributes</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Attribute</th><th>Purpose</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>aria-controls</code></td><td>Links a trigger to the element it controls</td><td>Tab trigger → tab panel</td></tr>
+          <tr><td><code>aria-labelledby</code></td><td>Labels an element using another element's text</td><td>Tab panel labeled by its tab trigger</td></tr>
+          <tr><td><code>aria-describedby</code></td><td>Provides additional descriptive text</td><td>Input described by its help text</td></tr>
+          <tr><td><code>aria-activedescendant</code></td><td>Points to the visually focused item in a composite widget</td><td>Combobox input → highlighted option</td></tr>
+          <tr><td><code>aria-haspopup</code></td><td>Indicates a trigger will open a popup</td><td><code>menu</code>, <code>dialog</code>, or <code>listbox</code></td></tr>
+          <tr><td><code>aria-owns</code></td><td>Creates parent-child relationship in the accessibility tree</td><td>Combobox input owns the listbox</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">tabs — relationship attributes in action</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup">&lt;div role="tablist" aria-label="Settings"&gt;
+  &lt;button role="tab"
+    id="tab-1"
+    aria-selected="true"
+    aria-controls="panel-1"
+    tabindex="0"&gt;
+    General
+  &lt;/button&gt;
+  &lt;button role="tab"
+    id="tab-2"
+    aria-selected="false"
+    aria-controls="panel-2"
+    tabindex="-1"&gt;
+    Advanced
+  &lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div role="tabpanel"
+  id="panel-1"
+  aria-labelledby="tab-1"&gt;
+  General settings content
+&lt;/div&gt;
+
+&lt;div role="tabpanel"
+  id="panel-2"
+  aria-labelledby="tab-2"
+  hidden&gt;
+  Advanced settings content
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Keyboard Navigation -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Keyboard navigation</h2>
+  <p class="text-sm text-muted-foreground mb-5">Every interactive component is fully keyboard accessible. The keyboard patterns follow WAI-ARIA APG conventions so users get consistent behavior across the web.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">keyboard patterns by component type</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Key</th><th>Menus &amp; Dropdowns</th><th>Tabs</th><th>Dialogs</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Navigate between menu items</td><td>Navigate tabs (vertical)</td><td>—</td></tr>
+          <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>—</td><td>Navigate tabs (horizontal)</td><td>—</td></tr>
+          <tr><td><kbd>Home</kbd></td><td>Jump to first item</td><td>Jump to first tab</td><td>—</td></tr>
+          <tr><td><kbd>End</kbd></td><td>Jump to last item</td><td>Jump to last tab</td><td>—</td></tr>
+          <tr><td><kbd>Enter</kbd> / <kbd>Space</kbd></td><td>Activate item</td><td>Activate tab</td><td>Activate focused button</td></tr>
+          <tr><td><kbd>Escape</kbd></td><td>Close menu, return focus to trigger</td><td>—</td><td>Close dialog, return focus to trigger</td></tr>
+          <tr><td><kbd>Tab</kbd></td><td>Close menu and move to next focusable</td><td>Move into tab panel</td><td>Trapped within dialog</td></tr>
+          <tr><td>Type-ahead</td><td>Jump to item starting with typed character</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Roving Tabindex -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Roving tabindex</h2>
+  <p class="text-sm text-muted-foreground mb-5">Composite widgets (tabs, toolbars, menus) use roving tabindex so the entire widget acts as a single tab stop. Only one item has <code>tabindex="0"</code> at a time — all others have <code>tabindex="-1"</code>. Arrow keys move focus between items.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">roving tabindex pattern</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup"><span class="dim">&lt;!-- Only the active tab is in the tab order --&gt;</span>
+&lt;div role="tablist"&gt;
+  &lt;button role="tab" tabindex="0"  aria-selected="true"&gt;Tab 1&lt;/button&gt;
+  &lt;button role="tab" tabindex="-1" aria-selected="false"&gt;Tab 2&lt;/button&gt;
+  &lt;button role="tab" tabindex="-1" aria-selected="false"&gt;Tab 3&lt;/button&gt;
+&lt;/div&gt;
+
+<span class="dim">&lt;!-- User presses → arrow → focus moves to Tab 2:
+     Tab 1: tabindex="-1", Tab 2: tabindex="0" --&gt;</span></code></pre>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">roving tabindex — JavaScript pattern</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript"><span class="dim">// Move focus to the next item in the group</span>
+function focusItem(items, index) {
+  items.forEach((item, i) => {
+    item.setAttribute('tabindex', i === index ? '0' : '-1');
+  });
+  items[index].focus();
+}</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Used by:</strong> Tabs, Toolbar, Toggle Group, Dropdown Menu, Tree View</p>
+
+  <div class="sep"></div>
+
+  <!-- -- Focus Management -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Focus management</h2>
+  <p class="text-sm text-muted-foreground mb-5">When overlays open and close, focus must move predictably. Dialogs trap focus. When a modal closes, focus returns to the trigger that opened it.</p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:1.5rem;align-items:baseline;">
+    <span style="font-weight:600;font-size:0.8125rem;">Focus trapping</span>
+    <span class="text-sm text-muted-foreground"><code>&lt;dialog&gt;</code> with <code>.showModal()</code> traps focus natively — Tab cycles within the dialog only. No JS focus-trap library needed.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Focus restoration</span>
+    <span class="text-sm text-muted-foreground">When a dialog or menu closes, focus returns to the trigger element that opened it. JS stores a reference to the trigger before opening.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Focus-visible</span>
+    <span class="text-sm text-muted-foreground"><code>:focus-visible</code> shows focus rings only on keyboard navigation, not mouse clicks. Applied to every interactive component.</span>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">focus restoration pattern</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript"><span class="dim">// Store trigger reference before opening</span>
+dialog._trigger = triggerButton;
+dialog.showModal();
+
+<span class="dim">// Restore focus when dialog closes</span>
+dialog.addEventListener('close', () => {
+  if (dialog._trigger) dialog._trigger.focus();
+});</code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Live Regions -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Live regions</h2>
+  <p class="text-sm text-muted-foreground mb-5">Live regions announce dynamic content changes to screen readers without moving focus. Toast notifications and alerts use these to ensure users are informed of updates.</p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:1.5rem;align-items:baseline;">
+    <code style="font-size:0.8125rem;font-weight:600;">aria-live="polite"</code>
+    <span class="text-sm text-muted-foreground">Announced after the screen reader finishes its current output. Used for info and success toasts.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">aria-live="assertive"</code>
+    <span class="text-sm text-muted-foreground">Interrupts the screen reader immediately. Used for error/destructive toasts and alerts.</span>
+
+    <code style="font-size:0.8125rem;font-weight:600;">aria-atomic="true"</code>
+    <span class="text-sm text-muted-foreground">The entire region is announced as a whole, not just the changed parts.</span>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">live region — toast notification</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup"><span class="dim">&lt;!-- Success toast: polite announcement --&gt;</span>
+&lt;div class="toast" role="status"
+  aria-live="polite" aria-atomic="true"&gt;
+  Settings saved successfully.
+&lt;/div&gt;
+
+<span class="dim">&lt;!-- Error toast: assertive (immediate) announcement --&gt;</span>
+&lt;div class="toast" data-variant="destructive"
+  role="alert" aria-live="assertive" aria-atomic="true"&gt;
+  Failed to save. Please try again.
+&lt;/div&gt;</code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Screen Reader Considerations -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Screen reader considerations</h2>
+  <p class="text-sm text-muted-foreground mb-5">A few patterns help screen readers present clean, meaningful content.</p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:1.5rem;align-items:baseline;">
+    <span style="font-weight:600;font-size:0.8125rem;">Decorative icons</span>
+    <span class="text-sm text-muted-foreground">Icons next to text labels get <code>aria-hidden="true"</code> so they're not announced redundantly.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Icon-only buttons</span>
+    <span class="text-sm text-muted-foreground">Buttons with no visible text need <code>aria-label</code> to provide an accessible name: <code>&lt;button aria-label="Close"&gt;</code>.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Visually hidden text</span>
+    <span class="text-sm text-muted-foreground">Text that should be announced but not visible uses a CSS visually-hidden utility (clipped off-screen, still in the accessibility tree).</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Form labels</span>
+    <span class="text-sm text-muted-foreground">Every form input has a visible <code>&lt;label&gt;</code> element with a matching <code>for</code>/<code>id</code> pair, or <code>aria-label</code> for unlabeled inputs.</span>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">icon button accessibility</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup"><span class="dim">&lt;!-- Icon-only button: needs aria-label --&gt;</span>
+&lt;button class="btn" data-size="icon" aria-label="Close"&gt;
+  &lt;svg aria-hidden="true"&gt;...&lt;/svg&gt;
+&lt;/button&gt;
+
+<span class="dim">&lt;!-- Button with text: icon is decorative --&gt;</span>
+&lt;button class="btn"&gt;
+  &lt;svg aria-hidden="true"&gt;...&lt;/svg&gt;
+  Save Changes
+&lt;/button&gt;</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-8">
+    Each component's <code>component-skill.md</code> includes a dedicated ARIA section listing the exact attributes required for that component. See the <a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank" rel="noopener" class="link">WAI-ARIA APG</a> for the full specifications these patterns implement.
+  </p>
+
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+  <script type="module" src="js/shiki-highlight.js"></script>
+  <script type="module" src="../components/accordion/accordion.js"></script>
+  <script type="module" src="../components/combobox/combobox.js"></script>
+  <script type="module" src="../components/dialog/dialog.js"></script>
+  <script type="module" src="../components/dropdown/dropdown.js"></script>
+  <script type="module" src="../components/sheet/sheet.js"></script>
+  <script type="module" src="../components/tabs/tabs.js"></script>
+  <script type="module" src="../components/toast/toast.js"></script>
+  <script type="module" src="../components/toggle/toggle.js"></script>
+  <script type="module" src="../components/toggle-group/toggle-group.js"></script>
+  <script type="module" src="../components/toolbar/toolbar.js"></script>
+  <script type="module" src="../components/number-input/number-input.js"></script>
+  <script type="module" src="../components/color-picker/color-picker.js"></script>
+  <script type="module" src="../components/tag/tag.js"></script>
+  <script type="module" src="../components/avatar/avatar.js"></script>
+  <script type="module" src="../components/tree-view/tree-view.js"></script>
+  <script type="module" src="../components/calendar/calendar.js"></script>
+  <script type="module" src="../components/alert-dialog/alert-dialog.js"></script>
+  <script type="module" src="../components/popover/popover.js"></script>
+  <script type="module" src="../components/tooltip/tooltip.js"></script>
+  <script type="module" src="../components/context-menu/context-menu.js"></script>
+  <script type="module" src="../components/command/command.js"></script>
+  <script type="module" src="../components/navigation-menu/navigation-menu.js"></script>
+  <script type="module" src="../components/carousel/carousel.js"></script>
+  <script type="module" src="../components/sortable/sortable.js"></script>
+  <script src="https://unpkg.com/lucide@1.8.0" integrity="sha384-+8nbzwDAyu5kAjqtR/XKxIgPHQD2TflvbZgeDZn5t3JP+OOogNH1jXnfel8ZAgzS" crossorigin="anonymous"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

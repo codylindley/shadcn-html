@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="description" content="CSS-only enter and exit animations using @starting-style, allow-discrete transitions, and ::details-content.">
+  <meta property="og:title" content="Animations — shadcn-html">
+  <meta property="og:description" content="CSS-only enter and exit animations using @starting-style, allow-discrete transitions, and ::details-content.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shadcn-html.netlify.app/documentation/animations.html">
+  <meta property="og:site_name" content="shadcn-html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Animations — shadcn-html">
+  <meta name="twitter:description" content="CSS-only enter and exit animations using @starting-style, allow-discrete transitions, and ::details-content.">
+  <title>Animations — shadcn-html</title>
+  <script src="js/themes.js"></script>
+  <script src="js/theme-switcher.js"></script>
+  <script src="js/layout.js"></script>
+  <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../components/button/button.css">
+  <link rel="stylesheet" href="../components/card/card.css">
+  <link rel="stylesheet" href="../components/dialog/dialog.css">
+  <link rel="stylesheet" href="../components/badge/badge.css">
+  <link rel="stylesheet" href="../components/input/input.css">
+  <link rel="stylesheet" href="../components/accordion/accordion.css">
+  <link rel="stylesheet" href="../components/tabs/tabs.css">
+  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
+  <link rel="stylesheet" href="../components/toast/toast.css">
+  <link rel="stylesheet" href="../components/combobox/combobox.css">
+  <link rel="stylesheet" href="../components/sheet/sheet.css">
+  <link rel="stylesheet" href="../components/toggle/toggle.css">
+  <link rel="stylesheet" href="../components/icon/icon.css">
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/separator/separator.css">
+  <link rel="stylesheet" href="../components/link/link.css">
+  <link rel="stylesheet" href="../components/label/label.css">
+  <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
+  <link rel="stylesheet" href="../components/button-group/button-group.css">
+  <link rel="stylesheet" href="../components/toolbar/toolbar.css">
+  <link rel="stylesheet" href="../components/textarea/textarea.css">
+  <link rel="stylesheet" href="../components/checkbox/checkbox.css">
+  <link rel="stylesheet" href="../components/radio/radio.css">
+  <link rel="stylesheet" href="../components/switch/switch.css">
+  <link rel="stylesheet" href="../components/slider/slider.css">
+  <link rel="stylesheet" href="../components/select/select.css">
+  <link rel="stylesheet" href="../components/number-input/number-input.css">
+  <link rel="stylesheet" href="../components/file-input/file-input.css">
+  <link rel="stylesheet" href="../components/color-picker/color-picker.css">
+  <link rel="stylesheet" href="../components/date-picker/date-picker.css">
+  <link rel="stylesheet" href="../components/form/form.css">
+  <link rel="stylesheet" href="../components/tag/tag.css">
+  <link rel="stylesheet" href="../components/avatar/avatar.css">
+  <link rel="stylesheet" href="../components/image/image.css">
+  <link rel="stylesheet" href="../components/list/list.css">
+  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
+  <link rel="stylesheet" href="../components/statistic/statistic.css">
+  <link rel="stylesheet" href="../components/table/table.css">
+  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
+  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
+  <link rel="stylesheet" href="../components/timeline/timeline.css">
+  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="../components/calendar/calendar.css">
+  <link rel="stylesheet" href="../components/spinner/spinner.css">
+  <link rel="stylesheet" href="../components/skeleton/skeleton.css">
+  <link rel="stylesheet" href="../components/progress/progress.css">
+  <link rel="stylesheet" href="../components/alert/alert.css">
+  <link rel="stylesheet" href="../components/alert-dialog/alert-dialog.css">
+  <link rel="stylesheet" href="../components/popover/popover.css">
+  <link rel="stylesheet" href="../components/tooltip/tooltip.css">
+  <link rel="stylesheet" href="../components/context-menu/context-menu.css">
+  <link rel="stylesheet" href="../components/command/command.css">
+  <link rel="stylesheet" href="../components/breadcrumb/breadcrumb.css">
+  <link rel="stylesheet" href="../components/pagination/pagination.css">
+  <link rel="stylesheet" href="../components/steps/steps.css">
+  <link rel="stylesheet" href="../components/navigation-menu/navigation-menu.css">
+  <link rel="stylesheet" href="../components/aspect-ratio/aspect-ratio.css">
+  <link rel="stylesheet" href="../components/container/container.css">
+  <link rel="stylesheet" href="../components/scroll-area/scroll-area.css">
+  <link rel="stylesheet" href="../components/carousel/carousel.css">
+  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
+  <link rel="stylesheet" href="../components/sortable/sortable.css">
+</head>
+<body>
+  <site-header></site-header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <site-nav></site-nav>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+      <div class="page-header">
+<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / animations</p>
+  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Animations &amp; Transitions</h1>
+  <p class="text-muted-foreground leading-relaxed mb-10" style="max-width:38rem;">
+    All enter and exit animations are CSS-only. No JavaScript class toggling, no animation libraries — just <code>@starting-style</code>, <code>allow-discrete</code> transitions, and native CSS features.
+  </p>
+      </div>
+
+  <!-- -- The Problem -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">The challenge</h2>
+  <p class="text-sm text-muted-foreground mb-5">Animating elements that go from <code>display: none</code> to visible (popovers, dialogs, accordions) has historically been impossible in CSS. The element either exists or doesn't — there was no in-between state to transition through. Libraries solved this with JS class toggling and <code>requestAnimationFrame</code> hacks.</p>
+
+  <p class="text-sm text-muted-foreground mb-5">Modern CSS solves this with two new features: <code>@starting-style</code> (defines the initial state before an element appears) and <code>allow-discrete</code> (lets <code>display</code> participate in transitions).</p>
+
+  <div class="sep"></div>
+
+  <!-- -- @starting-style -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">@starting-style</h2>
+  <p class="text-sm text-muted-foreground mb-3">The <code>@starting-style</code> at-rule defines the values a property should start from when the element first appears (enters the top layer, gains <code>display</code>, gets inserted into the DOM). The browser applies these values first, then transitions to the element's actual computed styles.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" class="link">MDN: @starting-style</a>
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">how @starting-style works</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css"><span class="dim">/* 1. The element's normal (visible) state */</span>
+.popover:popover-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+<span class="dim">/* 2. The starting state — before the transition begins */</span>
+@starting-style {
+  .popover:popover-open {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+<span class="dim">/* Flow: @starting-style values → transition → :popover-open values
+   Result: a smooth fade-in + slide-up animation */</span></code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- allow-discrete -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">allow-discrete transitions</h2>
+  <p class="text-sm text-muted-foreground mb-3">The <code>display</code> property was historically not animatable — it snaps between <code>none</code> and <code>block</code> instantly. The <code>allow-discrete</code> keyword in the <code>transition</code> shorthand tells the browser to keep the element visible during the exit transition before hiding it.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-behavior" target="_blank" rel="noopener" class="link">MDN: transition-behavior</a>
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">transition with allow-discrete</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css">.popover {
+  <span class="dim">/* Animate opacity, transform, AND display */</span>
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease,
+    display 150ms allow-discrete;
+
+  <span class="dim">/* Exit state: invisible */</span>
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+<span class="dim">/* Without allow-discrete: element disappears instantly on close
+   With allow-discrete: element fades out, THEN display changes to none */</span></code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- The Full Popover/Dialog Pattern -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Popover &amp; dialog animation pattern</h2>
+  <p class="text-sm text-muted-foreground mb-5">Most overlay components (popover, dropdown, tooltip, dialog, sheet, toast) follow the same three-part animation recipe. Here's the complete pattern used by the Popover component:</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">complete popover animation — CSS only</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css">@layer components {
+  .popover {
+    <span class="dim">/* 1. Base state (also the exit target) */</span>
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+      opacity 150ms ease,
+      transform 150ms ease,
+      display 150ms allow-discrete;
+
+    <span class="dim">/* 2. Open state — what it transitions TO */</span>
+    &amp;:popover-open {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  <span class="dim">/* 3. Starting style — what it transitions FROM */</span>
+  @starting-style {
+    .popover:popover-open {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+  }
+}</code></pre>
+  </div>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:2.5rem;align-items:baseline;">
+    <span style="font-weight:600;font-size:0.8125rem;">Enter</span>
+    <span class="text-sm text-muted-foreground"><code>@starting-style</code> values → transition → <code>:popover-open</code> values. The popover fades in and slides up.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Exit</span>
+    <span class="text-sm text-muted-foreground"><code>:popover-open</code> values → transition → base state values. The <code>allow-discrete</code> on <code>display</code> keeps the element visible during the fade-out.</span>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Dialog & Sheet -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Dialog &amp; sheet animations</h2>
+  <p class="text-sm text-muted-foreground mb-5">Dialogs and sheets use the same pattern but with <code>dialog[open]</code> instead of <code>:popover-open</code>, and they also animate the <code>::backdrop</code> pseudo-element.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">dialog with backdrop animation</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css">dialog.dialog {
+  opacity: 0;
+  transform: translateY(-0.5rem) scale(0.98);
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
+    display 200ms allow-discrete;
+
+  &amp;[open] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  <span class="dim">/* Backdrop fades in/out too */</span>
+  &amp;::backdrop {
+    background: oklch(0 0 0 / 0);
+    backdrop-filter: blur(0px);
+    transition: all 200ms ease,
+      display 200ms allow-discrete;
+  }
+
+  &amp;[open]::backdrop {
+    background: oklch(0 0 0 / 0.45);
+    backdrop-filter: blur(3px);
+  }
+}
+
+@starting-style {
+  dialog.dialog[open] {
+    opacity: 0;
+    transform: translateY(-0.5rem) scale(0.98);
+  }
+  dialog.dialog[open]::backdrop {
+    background: oklch(0 0 0 / 0);
+    backdrop-filter: blur(0px);
+  }
+}</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Sheets</strong> use <code>translate</code> instead of <code>scale</code> — a sheet with <code>data-side="right"</code> slides in from <code>translateX(100%)</code>.</p>
+
+  <div class="sep"></div>
+
+  <!-- -- Accordion Animations -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Accordion animations</h2>
+  <p class="text-sm text-muted-foreground mb-3">Accordions animate their height using the <code>::details-content</code> pseudo-element and the <code>block-size</code> property. This is one of the most-requested CSS features — animating <code>height: 0</code> to <code>height: auto</code> — now possible natively.</p>
+  <p class="text-sm text-muted-foreground mb-5">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::details-content" target="_blank" rel="noopener" class="link">MDN: ::details-content</a>
+  </p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">accordion height animation — CSS only</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css">.accordion-item {
+  <span class="dim">/* Target the collapsible content area */</span>
+  &amp; ::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition:
+      block-size 200ms ease,
+      content-visibility 200ms allow-discrete;
+  }
+
+  <span class="dim">/* When open, expand to natural height */</span>
+  &amp;[open] ::details-content {
+    block-size: auto;
+  }
+}
+
+<span class="dim">/* Start from 0 when opening */</span>
+@starting-style {
+  .accordion-item[open] ::details-content {
+    block-size: 0;
+  }
+}</code></pre>
+  </div>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:2.5rem;align-items:baseline;">
+    <span style="font-weight:600;font-size:0.8125rem;">block-size: auto</span>
+    <span class="text-sm text-muted-foreground">The browser calculates the natural height and smoothly transitions from <code>0</code> to that value. No JavaScript height measurement needed.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">content-visibility</span>
+    <span class="text-sm text-muted-foreground">The <code>allow-discrete</code> on <code>content-visibility</code> prevents the content from disappearing before the close animation finishes.</span>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Programmatic Exit -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Programmatic exit animations</h2>
+  <p class="text-sm text-muted-foreground mb-5">Most components handle exit purely through CSS transitions. For cases where you need to run logic <em>after</em> the exit animation completes (like removing a toast element from the DOM), the Web Animations API provides a promise-based approach.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">web animations API — await exit before removal</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript"><span class="dim">// Animate out, then remove from DOM</span>
+el.animate(
+  [
+    { opacity: 1, transform: 'translateY(0)' },
+    { opacity: 0, transform: 'translateY(0.5rem)' }
+  ],
+  { duration: 200, easing: 'ease', fill: 'forwards' }
+).finished.then(() => {
+  el.hidePopover();
+  el.remove();
+});</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Used by:</strong> Toast (dismiss animation before removing the element from the DOM)</p>
+
+  <div class="sep"></div>
+
+  <!-- -- Summary of animations by component -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Animation summary</h2>
+  <p class="text-sm text-muted-foreground mb-5">Which components use animations and what type of animation they use.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">animation patterns by component</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Component</th><th>Animation</th><th>Technique</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Popover</td><td>Fade + slide up</td><td><code>@starting-style</code> + <code>:popover-open</code></td></tr>
+          <tr><td>Dropdown</td><td>Fade + slide up</td><td><code>@starting-style</code> + <code>:popover-open</code></td></tr>
+          <tr><td>Tooltip</td><td>Fade in</td><td><code>@starting-style</code> + <code>:popover-open</code></td></tr>
+          <tr><td>Dialog</td><td>Fade + slide + scale</td><td><code>@starting-style</code> + <code>dialog[open]</code> + <code>::backdrop</code></td></tr>
+          <tr><td>Alert Dialog</td><td>Fade + slide + scale</td><td><code>@starting-style</code> + <code>dialog[open]</code> + <code>::backdrop</code></td></tr>
+          <tr><td>Sheet</td><td>Slide from edge</td><td><code>@starting-style</code> + <code>dialog[open]</code> + <code>::backdrop</code></td></tr>
+          <tr><td>Toast</td><td>Slide in, slide out</td><td><code>@starting-style</code> + Web Animations API for exit</td></tr>
+          <tr><td>Accordion</td><td>Height expand/collapse</td><td><code>@starting-style</code> + <code>::details-content</code> + <code>block-size</code></td></tr>
+          <tr><td>Collapsible</td><td>Height expand/collapse</td><td><code>@starting-style</code> + <code>::details-content</code> + <code>block-size</code></td></tr>
+          <tr><td>Command</td><td>Fade + scale up</td><td><code>@starting-style</code> + <code>dialog[open]</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-8">
+    All of these techniques are pure CSS (except toast exit). No animation libraries, no <code>requestAnimationFrame</code> hacks, no JS class toggling. See the <a href="native-web-apis.html" class="link">Native Web APIs</a> page for the broader set of platform APIs used across the system.
+  </p>
+
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+  <script type="module" src="js/shiki-highlight.js"></script>
+  <script type="module" src="../components/accordion/accordion.js"></script>
+  <script type="module" src="../components/combobox/combobox.js"></script>
+  <script type="module" src="../components/dialog/dialog.js"></script>
+  <script type="module" src="../components/dropdown/dropdown.js"></script>
+  <script type="module" src="../components/sheet/sheet.js"></script>
+  <script type="module" src="../components/tabs/tabs.js"></script>
+  <script type="module" src="../components/toast/toast.js"></script>
+  <script type="module" src="../components/toggle/toggle.js"></script>
+  <script type="module" src="../components/toggle-group/toggle-group.js"></script>
+  <script type="module" src="../components/toolbar/toolbar.js"></script>
+  <script type="module" src="../components/number-input/number-input.js"></script>
+  <script type="module" src="../components/color-picker/color-picker.js"></script>
+  <script type="module" src="../components/tag/tag.js"></script>
+  <script type="module" src="../components/avatar/avatar.js"></script>
+  <script type="module" src="../components/tree-view/tree-view.js"></script>
+  <script type="module" src="../components/calendar/calendar.js"></script>
+  <script type="module" src="../components/alert-dialog/alert-dialog.js"></script>
+  <script type="module" src="../components/popover/popover.js"></script>
+  <script type="module" src="../components/tooltip/tooltip.js"></script>
+  <script type="module" src="../components/context-menu/context-menu.js"></script>
+  <script type="module" src="../components/command/command.js"></script>
+  <script type="module" src="../components/navigation-menu/navigation-menu.js"></script>
+  <script type="module" src="../components/carousel/carousel.js"></script>
+  <script type="module" src="../components/sortable/sortable.js"></script>
+  <script src="https://unpkg.com/lucide@1.8.0" integrity="sha384-+8nbzwDAyu5kAjqtR/XKxIgPHQD2TflvbZgeDZn5t3JP+OOogNH1jXnfel8ZAgzS" crossorigin="anonymous"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

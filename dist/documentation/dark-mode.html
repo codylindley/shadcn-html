@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="description" content="How dark mode works in shadcn-html: token pairs, system preference detection, persistence, and implementation.">
+  <meta property="og:title" content="Dark Mode — shadcn-html">
+  <meta property="og:description" content="How dark mode works in shadcn-html: token pairs, system preference detection, persistence, and implementation.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shadcn-html.netlify.app/documentation/dark-mode.html">
+  <meta property="og:site_name" content="shadcn-html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dark Mode — shadcn-html">
+  <meta name="twitter:description" content="How dark mode works in shadcn-html: token pairs, system preference detection, persistence, and implementation.">
+  <title>Dark Mode — shadcn-html</title>
+  <script src="js/themes.js"></script>
+  <script src="js/theme-switcher.js"></script>
+  <script src="js/layout.js"></script>
+  <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../components/button/button.css">
+  <link rel="stylesheet" href="../components/card/card.css">
+  <link rel="stylesheet" href="../components/dialog/dialog.css">
+  <link rel="stylesheet" href="../components/badge/badge.css">
+  <link rel="stylesheet" href="../components/input/input.css">
+  <link rel="stylesheet" href="../components/accordion/accordion.css">
+  <link rel="stylesheet" href="../components/tabs/tabs.css">
+  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
+  <link rel="stylesheet" href="../components/toast/toast.css">
+  <link rel="stylesheet" href="../components/combobox/combobox.css">
+  <link rel="stylesheet" href="../components/sheet/sheet.css">
+  <link rel="stylesheet" href="../components/toggle/toggle.css">
+  <link rel="stylesheet" href="../components/icon/icon.css">
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/separator/separator.css">
+  <link rel="stylesheet" href="../components/link/link.css">
+  <link rel="stylesheet" href="../components/label/label.css">
+  <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
+  <link rel="stylesheet" href="../components/button-group/button-group.css">
+  <link rel="stylesheet" href="../components/toolbar/toolbar.css">
+  <link rel="stylesheet" href="../components/textarea/textarea.css">
+  <link rel="stylesheet" href="../components/checkbox/checkbox.css">
+  <link rel="stylesheet" href="../components/radio/radio.css">
+  <link rel="stylesheet" href="../components/switch/switch.css">
+  <link rel="stylesheet" href="../components/slider/slider.css">
+  <link rel="stylesheet" href="../components/select/select.css">
+  <link rel="stylesheet" href="../components/number-input/number-input.css">
+  <link rel="stylesheet" href="../components/file-input/file-input.css">
+  <link rel="stylesheet" href="../components/color-picker/color-picker.css">
+  <link rel="stylesheet" href="../components/date-picker/date-picker.css">
+  <link rel="stylesheet" href="../components/form/form.css">
+  <link rel="stylesheet" href="../components/tag/tag.css">
+  <link rel="stylesheet" href="../components/avatar/avatar.css">
+  <link rel="stylesheet" href="../components/image/image.css">
+  <link rel="stylesheet" href="../components/list/list.css">
+  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
+  <link rel="stylesheet" href="../components/statistic/statistic.css">
+  <link rel="stylesheet" href="../components/table/table.css">
+  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
+  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
+  <link rel="stylesheet" href="../components/timeline/timeline.css">
+  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="../components/calendar/calendar.css">
+  <link rel="stylesheet" href="../components/spinner/spinner.css">
+  <link rel="stylesheet" href="../components/skeleton/skeleton.css">
+  <link rel="stylesheet" href="../components/progress/progress.css">
+  <link rel="stylesheet" href="../components/alert/alert.css">
+  <link rel="stylesheet" href="../components/alert-dialog/alert-dialog.css">
+  <link rel="stylesheet" href="../components/popover/popover.css">
+  <link rel="stylesheet" href="../components/tooltip/tooltip.css">
+  <link rel="stylesheet" href="../components/context-menu/context-menu.css">
+  <link rel="stylesheet" href="../components/command/command.css">
+  <link rel="stylesheet" href="../components/breadcrumb/breadcrumb.css">
+  <link rel="stylesheet" href="../components/pagination/pagination.css">
+  <link rel="stylesheet" href="../components/steps/steps.css">
+  <link rel="stylesheet" href="../components/navigation-menu/navigation-menu.css">
+  <link rel="stylesheet" href="../components/aspect-ratio/aspect-ratio.css">
+  <link rel="stylesheet" href="../components/container/container.css">
+  <link rel="stylesheet" href="../components/scroll-area/scroll-area.css">
+  <link rel="stylesheet" href="../components/carousel/carousel.css">
+  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
+  <link rel="stylesheet" href="../components/sortable/sortable.css">
+</head>
+<body>
+  <site-header></site-header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <site-nav></site-nav>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+      <div class="page-header">
+<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / dark-mode</p>
+  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Dark Mode</h1>
+  <p class="text-muted-foreground leading-relaxed mb-10" style="max-width:38rem;">
+    Dark mode is built into the token layer. Add <code>class="dark"</code> to <code>&lt;html&gt;</code> and every component switches automatically — no per-component overrides needed.
+  </p>
+      </div>
+
+  <!-- -- How It Works -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">How it works</h2>
+  <p class="text-sm text-muted-foreground mb-5">The token file (<code>default-semantic-tokens.css</code>) defines two complete sets of color values. The <code>:root</code> block provides light mode values. The <code>.dark</code> selector overrides every color token with its dark mode counterpart.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">default-semantic-tokens.css — simplified</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css"><span class="dim">/* Light mode (default) */</span>
+:root {
+  color-scheme: light;
+  --background: oklch(1 0 0);        <span class="dim">/* white */</span>
+  --foreground: oklch(0.145 0 0);    <span class="dim">/* near-black */</span>
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  <span class="dim">/* ... all other tokens ... */</span>
+}
+
+<span class="dim">/* Dark mode — every token flips */</span>
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.145 0 0);    <span class="dim">/* near-black */</span>
+  --foreground: oklch(0.985 0 0);    <span class="dim">/* near-white */</span>
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  <span class="dim">/* ... all other tokens ... */</span>
+}</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5">Components reference tokens with <code>var(--background)</code>, <code>var(--foreground)</code>, etc. When the <code>.dark</code> class is present on <code>&lt;html&gt;</code>, the CSS cascade replaces every value. No component CSS needs to change.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">toggling dark mode</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup"><span class="dim">&lt;!-- Light mode --&gt;</span>
+&lt;html lang="en"&gt;
+
+<span class="dim">&lt;!-- Dark mode — just add the class --&gt;</span>
+&lt;html lang="en" class="dark"&gt;</code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Token Pairs -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Token pairs</h2>
+  <p class="text-sm text-muted-foreground mb-5">Every surface token has a matching foreground token. When the surface color shifts for dark mode, the foreground shifts to maintain contrast.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">light vs dark token values (OKLCH)</span>
+    </div>
+    <div style="padding:1rem 1.25rem;font-size:0.8125rem;overflow-x:auto;">
+      <table class="table" data-variant="simple" style="margin:0;">
+        <thead>
+          <tr><th style="white-space:nowrap;">Token</th><th>Light</th><th>Dark</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>--background</code></td><td><code>oklch(1 0 0)</code></td><td><code>oklch(0.145 0 0)</code></td></tr>
+          <tr><td><code>--foreground</code></td><td><code>oklch(0.145 0 0)</code></td><td><code>oklch(0.985 0 0)</code></td></tr>
+          <tr><td><code>--primary</code></td><td><code>oklch(0.205 0 0)</code></td><td><code>oklch(0.922 0 0)</code></td></tr>
+          <tr><td><code>--primary-foreground</code></td><td><code>oklch(0.985 0 0)</code></td><td><code>oklch(0.205 0 0)</code></td></tr>
+          <tr><td><code>--card</code></td><td><code>oklch(1 0 0)</code></td><td><code>oklch(0.205 0 0)</code></td></tr>
+          <tr><td><code>--muted</code></td><td><code>oklch(0.970 0 0)</code></td><td><code>oklch(0.269 0 0)</code></td></tr>
+          <tr><td><code>--muted-foreground</code></td><td><code>oklch(0.556 0 0)</code></td><td><code>oklch(0.708 0 0)</code></td></tr>
+          <tr><td><code>--border</code></td><td><code>oklch(0.922 0 0)</code></td><td><code>oklch(0.275 0 0)</code></td></tr>
+          <tr><td><code>--destructive</code></td><td><code>oklch(0.577 0.245 27.325)</code></td><td><code>oklch(0.704 0.191 22.216)</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Color Scheme Meta -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Color scheme declaration</h2>
+  <p class="text-sm text-muted-foreground mb-5">The <code>&lt;meta name="color-scheme"&gt;</code> tag and the <code>color-scheme</code> CSS property tell the browser which color schemes your page supports. This affects native UI elements like scrollbars, form controls, and the default background.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">HTML meta tag</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup"><span class="dim">&lt;!-- In &lt;head&gt; — tells browser both schemes are supported --&gt;</span>
+&lt;meta name="color-scheme" content="light dark"&gt;</code></pre>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">CSS color-scheme property in tokens</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css">:root  { color-scheme: light; }
+.dark  { color-scheme: dark; }</code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- System Preference Detection -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">System preference detection</h2>
+  <p class="text-sm text-muted-foreground mb-5">Use <code>prefers-color-scheme</code> to detect the user's OS-level dark mode preference. The JavaScript <code>matchMedia</code> API provides both initial detection and a live listener for real-time changes.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">detect and react to OS theme</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript"><span class="dim">// Check OS preference at page load</span>
+const darkMQ = window.matchMedia('(prefers-color-scheme: dark)');
+
+if (darkMQ.matches) {
+  document.documentElement.classList.add('dark');
+}
+
+<span class="dim">// React to OS changes in real time
+// Skip if user has set a manual preference</span>
+darkMQ.addEventListener('change', (e) => {
+  if (localStorage.getItem('shadcn-html-theme')) return;
+  document.documentElement.classList.toggle('dark', e.matches);
+  document.documentElement.style.colorScheme =
+    e.matches ? 'dark' : 'light';
+});</code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Persistence -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Persistence</h2>
+  <p class="text-sm text-muted-foreground mb-5">When a user explicitly toggles dark mode, save their choice to <code>localStorage</code>. On page load, check localStorage first — if no preference is saved, fall back to the OS setting.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">persistence logic — runs before first paint</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript"><span class="dim">// This script must be in &lt;head&gt; (synchronous, no defer)
+// to prevent flash of wrong theme</span>
+const saved = localStorage.getItem('shadcn-html-theme');
+const prefersDark = window.matchMedia(
+  '(prefers-color-scheme: dark)'
+).matches;
+
+if (saved === 'dark' || (!saved &amp;&amp; prefersDark)) {
+  document.documentElement.classList.add('dark');
+  document.documentElement.style.colorScheme = 'dark';
+}</code></pre>
+  </div>
+
+  <p class="text-sm text-muted-foreground mb-5"><strong>Key detail:</strong> This script runs synchronously in <code>&lt;head&gt;</code> (no <code>defer</code> or <code>type="module"</code>) so the dark class is applied before the browser paints. This prevents a flash of light theme on page load.</p>
+
+  <div class="sep"></div>
+
+  <!-- -- Implementation Guide -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Adding a toggle button</h2>
+  <p class="text-sm text-muted-foreground mb-5">A minimal dark mode toggle in three parts: the initialization script in <code>&lt;head&gt;</code>, the toggle button, and the click handler.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">step 1 — initialization script (in &lt;head&gt;)</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup">&lt;script&gt;
+  <span class="dim">// Apply saved preference or OS default before paint</span>
+  const saved = localStorage.getItem('shadcn-html-theme');
+  const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  if (saved === 'dark' || (!saved &amp;&amp; prefersDark)) {
+    document.documentElement.classList.add('dark');
+    document.documentElement.style.colorScheme = 'dark';
+  }
+&lt;/script&gt;</code></pre>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">step 2 — toggle button markup</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markup">&lt;button id="theme-toggle" class="btn"
+  data-size="icon" aria-label="Toggle dark mode"&gt;
+  <span class="dim">&lt;!-- Sun icon (visible in dark mode) --&gt;</span>
+  &lt;svg id="icon-sun"&gt;...&lt;/svg&gt;
+  <span class="dim">&lt;!-- Moon icon (visible in light mode) --&gt;</span>
+  &lt;svg id="icon-moon" style="display:none"&gt;...&lt;/svg&gt;
+&lt;/button&gt;</code></pre>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">step 3 — click handler</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript">document.getElementById('theme-toggle')
+  .addEventListener('click', () => {
+    const isDark = document.documentElement
+      .classList.toggle('dark');
+
+    document.documentElement.style.colorScheme =
+      isDark ? 'dark' : 'light';
+
+    localStorage.setItem('shadcn-html-theme',
+      isDark ? 'dark' : 'light');
+  });</code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Custom Themes -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Custom themes</h2>
+  <p class="text-sm text-muted-foreground mb-8">Dark mode is just one dimension of theming. The full token system supports drop-in color themes from <a href="https://tweakcn.com" target="_blank" rel="noopener" class="link">tweakcn.com</a> — each theme includes both light and dark values. See the <a href="theming.html" class="link">Theming</a> page for details on custom themes, token structure, and the OKLCH color space.</p>
+
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+  <script type="module" src="js/shiki-highlight.js"></script>
+  <script type="module" src="../components/accordion/accordion.js"></script>
+  <script type="module" src="../components/combobox/combobox.js"></script>
+  <script type="module" src="../components/dialog/dialog.js"></script>
+  <script type="module" src="../components/dropdown/dropdown.js"></script>
+  <script type="module" src="../components/sheet/sheet.js"></script>
+  <script type="module" src="../components/tabs/tabs.js"></script>
+  <script type="module" src="../components/toast/toast.js"></script>
+  <script type="module" src="../components/toggle/toggle.js"></script>
+  <script type="module" src="../components/toggle-group/toggle-group.js"></script>
+  <script type="module" src="../components/toolbar/toolbar.js"></script>
+  <script type="module" src="../components/number-input/number-input.js"></script>
+  <script type="module" src="../components/color-picker/color-picker.js"></script>
+  <script type="module" src="../components/tag/tag.js"></script>
+  <script type="module" src="../components/avatar/avatar.js"></script>
+  <script type="module" src="../components/tree-view/tree-view.js"></script>
+  <script type="module" src="../components/calendar/calendar.js"></script>
+  <script type="module" src="../components/alert-dialog/alert-dialog.js"></script>
+  <script type="module" src="../components/popover/popover.js"></script>
+  <script type="module" src="../components/tooltip/tooltip.js"></script>
+  <script type="module" src="../components/context-menu/context-menu.js"></script>
+  <script type="module" src="../components/command/command.js"></script>
+  <script type="module" src="../components/navigation-menu/navigation-menu.js"></script>
+  <script type="module" src="../components/carousel/carousel.js"></script>
+  <script type="module" src="../components/sortable/sortable.js"></script>
+  <script src="https://unpkg.com/lucide@1.8.0" integrity="sha384-+8nbzwDAyu5kAjqtR/XKxIgPHQD2TflvbZgeDZn5t3JP+OOogNH1jXnfel8ZAgzS" crossorigin="anonymous"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

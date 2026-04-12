@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Component skill files are structured references that teach AI assistants and humans how to build each component's HTML correctly.">
+  <meta property="og:title" content="Component Skills — shadcn-html">
+  <meta property="og:description" content="Component skill files are structured references that teach AI assistants and humans how to build each component's HTML correctly.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shadcn-html.netlify.app/documentation/component-skills.html">
+  <meta property="og:site_name" content="shadcn-html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Component Skills — shadcn-html">
+  <meta name="twitter:description" content="Component skill files are structured references that teach AI assistants and humans how to build each component's HTML correctly.">
+  <title>Component Skills — shadcn-html</title>
+  <script src="js/themes.js"></script>
+  <script src="js/theme-switcher.js"></script>
+  <script src="js/layout.js"></script>
+  <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
+  <link rel="stylesheet" href="css/docs-theme.css">
+  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../components/button/button.css">
+  <link rel="stylesheet" href="../components/card/card.css">
+  <link rel="stylesheet" href="../components/dialog/dialog.css">
+  <link rel="stylesheet" href="../components/badge/badge.css">
+  <link rel="stylesheet" href="../components/input/input.css">
+  <link rel="stylesheet" href="../components/accordion/accordion.css">
+  <link rel="stylesheet" href="../components/tabs/tabs.css">
+  <link rel="stylesheet" href="../components/dropdown/dropdown.css">
+  <link rel="stylesheet" href="../components/toast/toast.css">
+  <link rel="stylesheet" href="../components/combobox/combobox.css">
+  <link rel="stylesheet" href="../components/sheet/sheet.css">
+  <link rel="stylesheet" href="../components/toggle/toggle.css">
+  <link rel="stylesheet" href="../components/icon/icon.css">
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/separator/separator.css">
+  <link rel="stylesheet" href="../components/link/link.css">
+  <link rel="stylesheet" href="../components/label/label.css">
+  <link rel="stylesheet" href="../components/toggle-group/toggle-group.css">
+  <link rel="stylesheet" href="../components/button-group/button-group.css">
+  <link rel="stylesheet" href="../components/toolbar/toolbar.css">
+  <link rel="stylesheet" href="../components/textarea/textarea.css">
+  <link rel="stylesheet" href="../components/checkbox/checkbox.css">
+  <link rel="stylesheet" href="../components/radio/radio.css">
+  <link rel="stylesheet" href="../components/switch/switch.css">
+  <link rel="stylesheet" href="../components/slider/slider.css">
+  <link rel="stylesheet" href="../components/select/select.css">
+  <link rel="stylesheet" href="../components/number-input/number-input.css">
+  <link rel="stylesheet" href="../components/file-input/file-input.css">
+  <link rel="stylesheet" href="../components/color-picker/color-picker.css">
+  <link rel="stylesheet" href="../components/date-picker/date-picker.css">
+  <link rel="stylesheet" href="../components/form/form.css">
+  <link rel="stylesheet" href="../components/tag/tag.css">
+  <link rel="stylesheet" href="../components/avatar/avatar.css">
+  <link rel="stylesheet" href="../components/image/image.css">
+  <link rel="stylesheet" href="../components/list/list.css">
+  <link rel="stylesheet" href="../components/descriptions/descriptions.css">
+  <link rel="stylesheet" href="../components/statistic/statistic.css">
+  <link rel="stylesheet" href="../components/table/table.css">
+  <link rel="stylesheet" href="../components/empty-state/empty-state.css">
+  <link rel="stylesheet" href="../components/collapsible/collapsible.css">
+  <link rel="stylesheet" href="../components/timeline/timeline.css">
+  <link rel="stylesheet" href="../components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="../components/calendar/calendar.css">
+  <link rel="stylesheet" href="../components/spinner/spinner.css">
+  <link rel="stylesheet" href="../components/skeleton/skeleton.css">
+  <link rel="stylesheet" href="../components/progress/progress.css">
+  <link rel="stylesheet" href="../components/alert/alert.css">
+  <link rel="stylesheet" href="../components/alert-dialog/alert-dialog.css">
+  <link rel="stylesheet" href="../components/popover/popover.css">
+  <link rel="stylesheet" href="../components/tooltip/tooltip.css">
+  <link rel="stylesheet" href="../components/context-menu/context-menu.css">
+  <link rel="stylesheet" href="../components/command/command.css">
+  <link rel="stylesheet" href="../components/breadcrumb/breadcrumb.css">
+  <link rel="stylesheet" href="../components/pagination/pagination.css">
+  <link rel="stylesheet" href="../components/steps/steps.css">
+  <link rel="stylesheet" href="../components/navigation-menu/navigation-menu.css">
+  <link rel="stylesheet" href="../components/aspect-ratio/aspect-ratio.css">
+  <link rel="stylesheet" href="../components/container/container.css">
+  <link rel="stylesheet" href="../components/scroll-area/scroll-area.css">
+  <link rel="stylesheet" href="../components/carousel/carousel.css">
+  <link rel="stylesheet" href="../components/sidebar/sidebar.css">
+  <link rel="stylesheet" href="../components/sortable/sortable.css">
+</head>
+<body>
+  <site-header></site-header>
+
+  <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
+    <site-nav></site-nav>
+
+    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+      <div class="page-header">
+<p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / component-skills</p>
+  <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Component Skills</h1>
+  <p class="text-muted-foreground leading-relaxed mb-10" style="max-width:38rem;">
+    Every component includes a <code>component-skill.md</code> file — a structured reference that teaches both AI assistants and humans how to build that component's HTML correctly.
+  </p>
+      </div>
+
+  <!-- -- What is a Component Skill -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">What is a component skill?</h2>
+  <p class="text-sm text-muted-foreground mb-5">A component skill is a Markdown file that documents the <strong>HTML pattern</strong> for a component — what elements to use, which attributes to set, what variants and sizes are available, and the ARIA requirements. It's the single source of truth for how to write the markup.</p>
+
+  <p class="text-sm text-muted-foreground mb-5">Component skills don't contain CSS or JavaScript code — those live in their own files alongside the skill. The skill focuses purely on the HTML structure and its configuration options.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">file location</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-bash">dist/components/{name}/
+├── component-skill.md   <span class="dim">← the skill file (HTML reference)</span>
+├── {name}.css            <span class="dim">← component stylesheet</span>
+└── {name}.js             <span class="dim">← interaction JS (if needed)</span></code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Skill File Structure -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Skill file structure</h2>
+  <p class="text-sm text-muted-foreground mb-5">Every component skill follows a consistent template with these sections in order:</p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:2.5rem;align-items:baseline;">
+    <span style="font-weight:600;font-size:0.8125rem;">1. Native basis</span>
+    <span class="text-sm text-muted-foreground">Which HTML element or browser API the component builds on. Every component starts from native semantics.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">2. Native Web APIs</span>
+    <span class="text-sm text-muted-foreground">Bulleted list of significant platform APIs used (Popover API, CSS Anchor Positioning, <code>&lt;dialog&gt;</code>, etc.) with MDN links.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">3. Structure</span>
+    <span class="text-sm text-muted-foreground">Complete HTML markup showing the component's element hierarchy, class names, and required attributes.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">4. Variants</span>
+    <span class="text-sm text-muted-foreground">Table of <code>data-variant</code> values with descriptions and example markup.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">5. Sizes</span>
+    <span class="text-sm text-muted-foreground">Table of <code>data-size</code> values (if the component supports them).</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">6. Accessibility</span>
+    <span class="text-sm text-muted-foreground">Required ARIA attributes, keyboard interactions, and screen reader considerations.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">7. Notes</span>
+    <span class="text-sm text-muted-foreground">Edge cases, composition tips, caveats, and integration notes.</span>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Example -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Example: Badge skill file</h2>
+  <p class="text-sm text-muted-foreground mb-5">Here's the complete skill file for the Badge component — one of the simplest components in the system.</p>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">dist/components/badge/component-skill.md</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markdown"># Pattern: Badge
+
+## Native basis
+`&lt;span&gt;` element. No interactivity required —
+pure visual indicator.
+
+---
+
+## Native Web APIs
+- [`&lt;span&gt;`](https://developer.mozilla.org/...)
+  — inline container for phrasing content
+
+---
+
+## Structure
+
+```html
+&lt;span class="badge" data-variant="default"&gt;
+  Badge
+&lt;/span&gt;
+```
+
+---
+
+## Variants
+
+| `data-variant` | Purpose                    |
+|----------------|----------------------------|
+| `default`      | Primary bg, high emphasis  |
+| `secondary`    | Secondary bg, medium       |
+| `outline`      | Border only, low emphasis  |
+
+```html
+&lt;span class="badge" data-variant="default"&gt;
+  New
+&lt;/span&gt;
+&lt;span class="badge" data-variant="secondary"&gt;
+  Draft
+&lt;/span&gt;
+&lt;span class="badge" data-variant="outline"&gt;
+  v0.1.0
+&lt;/span&gt;
+```
+
+---
+
+## Accessibility
+
+- Use descriptive text content — badges are
+  read inline by screen readers.
+- If the badge is purely decorative, add
+  `aria-hidden="true"`.</code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Using with AI -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Using skills with AI assistants</h2>
+  <p class="text-sm text-muted-foreground mb-5">Component skills are designed to give AI assistants everything they need to generate correct, accessible markup in a single reference. Here's how to use them:</p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.75rem 1.5rem;margin-bottom:1.5rem;align-items:baseline;">
+    <span style="font-weight:600;font-size:0.8125rem;">Copy & paste</span>
+    <span class="text-sm text-muted-foreground">Copy the skill file content into your AI chat alongside your request. The AI will use it as context to generate correct markup.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">File reference</span>
+    <span class="text-sm text-muted-foreground">In tools that support file context (Copilot, Cursor, etc.), point the AI at <code>dist/components/{name}/component-skill.md</code>.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Multiple skills</span>
+    <span class="text-sm text-muted-foreground">For pages with multiple components, provide all relevant skill files. The AI will compose them correctly.</span>
+  </div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
+    <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">example AI prompt</span>
+    </div>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-markdown">Using the shadcn-html component system, build a
+settings page with:
+- A card containing a form with two text inputs
+- A destructive button to delete the account
+- A toast notification on save
+
+Here are the component skills:
+[paste card, form, input, button, and toast skills]</code></pre>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- Using as a Human -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Using skills as a human reference</h2>
+  <p class="text-sm text-muted-foreground mb-5">Even without AI, skill files serve as quick references. Need to know what variants a Badge supports? Open <code>component-skill.md</code> and check the variants table. Need the exact ARIA attributes for a Combobox? The accessibility section has them.</p>
+
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1rem;margin-bottom:2.5rem;align-items:baseline;">
+    <span style="font-weight:600;font-size:0.8125rem;">Quick lookup</span>
+    <span class="text-sm text-muted-foreground">Skill files are faster than searching through CSS for which <code>data-variant</code> values exist or scanning JS for keyboard bindings.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">Copy-paste HTML</span>
+    <span class="text-sm text-muted-foreground">The Structure section gives you copy-paste-ready markup with all required attributes already in place.</span>
+
+    <span style="font-weight:600;font-size:0.8125rem;">ARIA checklist</span>
+    <span class="text-sm text-muted-foreground">The Accessibility section doubles as a checklist to verify your implementation covers all accessibility requirements.</span>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- -- All Skills -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Available skills</h2>
+  <p class="text-sm text-muted-foreground mb-8">Every component in the library has a skill file at <code>dist/components/{name}/component-skill.md</code>. Browse the component pages in the sidebar to see the full list. Each component's documentation page includes a link to view its skill file.</p>
+
+    </main>
+  </div>
+
+  <script src="js/site.js" defer></script>
+  <script type="module" src="js/shiki-highlight.js"></script>
+  <script type="module" src="../components/accordion/accordion.js"></script>
+  <script type="module" src="../components/combobox/combobox.js"></script>
+  <script type="module" src="../components/dialog/dialog.js"></script>
+  <script type="module" src="../components/dropdown/dropdown.js"></script>
+  <script type="module" src="../components/sheet/sheet.js"></script>
+  <script type="module" src="../components/tabs/tabs.js"></script>
+  <script type="module" src="../components/toast/toast.js"></script>
+  <script type="module" src="../components/toggle/toggle.js"></script>
+  <script type="module" src="../components/toggle-group/toggle-group.js"></script>
+  <script type="module" src="../components/toolbar/toolbar.js"></script>
+  <script type="module" src="../components/number-input/number-input.js"></script>
+  <script type="module" src="../components/color-picker/color-picker.js"></script>
+  <script type="module" src="../components/tag/tag.js"></script>
+  <script type="module" src="../components/avatar/avatar.js"></script>
+  <script type="module" src="../components/tree-view/tree-view.js"></script>
+  <script type="module" src="../components/calendar/calendar.js"></script>
+  <script type="module" src="../components/alert-dialog/alert-dialog.js"></script>
+  <script type="module" src="../components/popover/popover.js"></script>
+  <script type="module" src="../components/tooltip/tooltip.js"></script>
+  <script type="module" src="../components/context-menu/context-menu.js"></script>
+  <script type="module" src="../components/command/command.js"></script>
+  <script type="module" src="../components/navigation-menu/navigation-menu.js"></script>
+  <script type="module" src="../components/carousel/carousel.js"></script>
+  <script type="module" src="../components/sortable/sortable.js"></script>
+  <script src="https://unpkg.com/lucide@1.8.0" integrity="sha384-+8nbzwDAyu5kAjqtR/XKxIgPHQD2TflvbZgeDZn5t3JP+OOogNH1jXnfel8ZAgzS" crossorigin="anonymous"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

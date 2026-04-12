@@ -53,9 +53,14 @@
       { label: 'Introduction', href: 'index.html' },
       { label: 'Installation', href: 'installation.html' },
       { label: 'Theming', href: 'theming.html' },
+      { label: 'Dark Mode', href: 'dark-mode.html' },
       { label: 'Data Attribute API', href: 'data-attribute-api.html' },
       { label: 'Cascade Layers', href: 'cascade-layers.html' },
       { label: 'ES Modules', href: 'es-modules.html' },
+      { label: 'Native Web APIs', href: 'native-web-apis.html' },
+      { label: 'Animations', href: 'animations.html' },
+      { label: 'Accessibility', href: 'accessibility.html' },
+      { label: 'Component Skills', href: 'component-skills.html' },
       { label: 'Changelog', href: 'changelog.html' },
     ]},
     { heading: 'Primitives', items: [
@@ -140,7 +145,7 @@
 
   /* Pages that have been built (have a real doc page) */
   var BUILT = new Set([
-    'index.html', 'installation.html', 'theming.html', 'data-attribute-api.html', 'cascade-layers.html', 'es-modules.html', 'changelog.html',
+    'index.html', 'installation.html', 'theming.html', 'dark-mode.html', 'data-attribute-api.html', 'cascade-layers.html', 'es-modules.html', 'native-web-apis.html', 'animations.html', 'accessibility.html', 'component-skills.html', 'changelog.html',
     'typography.html', 'separator.html', 'icon.html', 'link.html', 'label.html',
     'button.html', 'toggle.html', 'toggle-group.html', 'button-group.html', 'toolbar.html',
     'input.html', 'textarea.html', 'checkbox.html', 'radio.html', 'switch.html',
@@ -261,6 +266,7 @@
     connectedCallback() {
       this.style.display = 'contents';
       var html = '<aside class="site-sidebar">';
+      html += '<div class="sidebar-scroll">';
       NAV.forEach(function (section, i) {
         html += '<div class="nav-section" style="margin-bottom:1.25rem;">';
         html += '<p class="nav-heading">' + section.heading + '</p>';
@@ -289,9 +295,10 @@
           '</div>';
         }
       });
+      html += '</div>';
       html += '<div class="sidebar-author">' +
-        '<hr style="border:none;border-top:1px solid var(--sidebar-border);margin:0.75rem 0.75rem 0.875rem;">' +
-        '<p style="padding:0 0.75rem;margin:0;font-size:0.75rem;color:var(--muted-foreground);line-height:1.6;">' +
+        '<hr style="border:none;border-top:1px solid var(--sidebar-border);margin:0 0.75rem 0.875rem;">' +
+        '<p style="padding:0 0.75rem 0;margin:0;font-size:0.75rem;color:var(--muted-foreground);line-height:1.6;">' +
           'Built by <a href="https://codylindley.com" target="_blank" rel="noopener" style="color:var(--foreground);text-decoration:underline;text-underline-offset:3px;font-weight:500;">Cody Lindley</a>' +
         '</p>' +
       '</div>';
@@ -341,13 +348,13 @@
   document.addEventListener('click', function (e) {
     var link = e.target.closest('a.nav-link, .site-header a[href="index.html"]');
     if (!link) return;
-    var sidebar = document.querySelector('.site-sidebar');
+    var sidebar = document.querySelector('.sidebar-scroll');
     if (sidebar) sessionStorage.setItem(SCROLL_KEY, sidebar.scrollTop);
   });
 
   /* Restore sidebar scroll & scroll active link into view */
   document.addEventListener('DOMContentLoaded', function () {
-    var sidebar = document.querySelector('.site-sidebar');
+    var sidebar = document.querySelector('.sidebar-scroll');
     if (!sidebar) return;
     var saved = sessionStorage.getItem(SCROLL_KEY);
     if (saved) {
