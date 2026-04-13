@@ -107,6 +107,10 @@
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" target="_blank" rel="noopener" title="modal with focus trap" class="api-pill"><code>&lt;dialog&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" title="entry animation" class="api-pill"><code>@starting-style</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop" target="_blank" rel="noopener" title="scrim overlay" class="api-pill"><code>::backdrop</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible" target="_blank" rel="noopener" title="keyboard-only focus ring" class="api-pill"><code>:focus-visible</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank" rel="noopener" title="suppresses animations" class="api-pill"><code>prefers-reduced-motion</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="maps to system colors" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
@@ -135,13 +139,14 @@
         </details>
       </div>
         <p class="text-sm font-medium mb-2 mt-6">Default</p>
+        <p class="text-xs text-muted-foreground mb-3">Click the button or press <kbd>⌘K</kbd> to open. Use Arrow keys to navigate, Enter to select, Escape to close.</p>
         <div class="preview">
           <button class="btn" data-variant="outline" data-command-trigger="demo-cmd">Open Command Menu</button>
           <dialog id="demo-cmd" class="command" role="dialog" aria-modal="true" aria-label="Command menu">
             <div class="command-content">
               <div class="command-input-wrapper">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <input class="command-input" type="text" placeholder="Type a command or search...">
+                <input class="command-input" type="text" placeholder="Type a command or search..." autocomplete="off" autocorrect="off" spellcheck="false">
               </div>
               <div class="command-list">
                 <div class="command-group">
@@ -222,7 +227,7 @@
     &amp;::placeholder { color: var(--muted-foreground); }
   }
 
-  .command-list { max-height: 18rem; overflow-y: auto; padding: 0.25rem; }
+  .command-list { max-height: 18rem; overflow-y: auto; overscroll-behavior: contain; padding: 0.25rem; }
   .command-group { padding: 0.25rem 0; }
   .command-group-heading { margin: 0; padding: 0.375rem 0.5rem; font-size: 0.75rem; font-weight: 500; color: var(--muted-foreground); }
 
@@ -230,14 +235,38 @@
     display: flex; align-items: center; gap: 0.5rem; width: 100%;
     padding: 0.5rem 0.5rem; border: none; border-radius: var(--radius-md);
     background: transparent; color: var(--foreground); font-size: 0.8125rem;
-    font-family: inherit; text-align: left; cursor: pointer;
+    font-family: inherit; text-align: left; cursor: pointer; outline: none;
     &amp;:hover, &amp;[data-highlighted] { background-color: var(--accent); }
+    &amp;:focus-visible { outline: 2px solid var(--ring); outline-offset: -2px; }
+    &amp;[aria-disabled=&quot;true&quot;] { pointer-events: none; opacity: 0.5; }
     &amp; svg { width: 1rem; height: 1rem; color: var(--muted-foreground); flex-shrink: 0; }
   }
 
   .command-separator { height: 1px; background-color: var(--border); margin: 0.25rem -0.25rem; }
-  .command-shortcut { margin-left: auto; font-size: 0.6875rem; color: var(--muted-foreground); font-family: var(--font-mono); }
+  .command-shortcut { margin-inline-start: auto; font-size: 0.6875rem; color: var(--muted-foreground); font-family: var(--font-mono); }
   .command-empty { padding: 1.5rem; text-align: center; font-size: 0.875rem; color: var(--muted-foreground); }
+
+  /* -- Accessibility ------------------------------------------ */
+
+  @media (prefers-reduced-motion: reduce) {
+    dialog.command { transition: none; opacity: 1; transform: none; }
+    dialog.command::backdrop { transition: none; }
+  }
+
+  @media (prefers-contrast: more) {
+    dialog.command { border: 2px solid var(--border); }
+    .command-item {
+      &amp;:hover, &amp;[data-highlighted] { outline: 1px solid var(--foreground); }
+    }
+  }
+
+  @media (forced-colors: active) {
+    dialog.command { border: 2px solid CanvasText; }
+    .command-item {
+      &amp;:hover, &amp;[data-highlighted] { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+    }
+    .command-separator { background-color: CanvasText; }
+  }
 }</code></pre>
           </div>
         </section>
@@ -248,55 +277,112 @@
           <p class="text-muted-foreground text-sm mb-4">Interaction logic for the command component. Uses data attributes for wiring.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-javascript">(function () {
-  'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('dialog.command').forEach(function (dialog) {
-      var input = dialog.querySelector('.command-input');
-      var list = dialog.querySelector('.command-list');
-      var empty = dialog.querySelector('.command-empty');
-      if (!input || !list) return;
-      var items = Array.from(list.querySelectorAll('.command-item'));
+            <pre><code class="language-javascript">// -- Command --------------------------------------------------
+// Command palette dialog with search filtering, keyboard navigation, and Cmd/Ctrl+K shortcut.
 
-      function filter(q) {
-        var query = q.toLowerCase(); var hasVisible = false;
-        items.forEach(function (item) {
-          var match = !query || item.textContent.toLowerCase().includes(query);
-          item.hidden = !match; if (match) hasVisible = true;
-        });
-        list.querySelectorAll('.command-group').forEach(function (g) {
-          g.hidden = g.querySelectorAll('.command-item:not([hidden])').length === 0;
-        });
-        if (empty) empty.hidden = hasVisible;
+/* Cmd/Ctrl+K handler — added once at module level */
+let commandKeydownAdded = false;
+if (!commandKeydownAdded) {
+  commandKeydownAdded = true;
+  document.addEventListener('keydown', (e) =&gt; {
+    if ((e.metaKey || e.ctrlKey) &amp;&amp; e.key === 'k') {
+      const dialog = document.querySelector('dialog.command');
+      if (!dialog) return;
+      e.preventDefault();
+      if (dialog.open) { dialog.close(); }
+      else { dialog.showModal(); const input = dialog.querySelector('.command-input'); if (input) input.focus(); }
+    }
+  });
+}
+
+function getVisibleItems(list) {
+  return Array.from(list.querySelectorAll('.command-item:not([hidden]):not([aria-disabled=&quot;true&quot;])'));
+}
+
+function highlightItem(list, index) {
+  const visible = getVisibleItems(list);
+  list.querySelectorAll('.command-item[data-highlighted]').forEach((el) =&gt; delete el.dataset.highlighted);
+  if (visible.length === 0) return -1;
+  const clamped = ((index % visible.length) + visible.length) % visible.length;
+  visible[clamped].dataset.highlighted = '';
+  visible[clamped].scrollIntoView({ block: 'nearest' });
+  return clamped;
+}
+
+function init() {
+document.querySelectorAll('dialog.command:not([data-init])').forEach((dialog) =&gt; {
+    dialog.dataset.init = '';
+    const input = dialog.querySelector('.command-input');
+    const list = dialog.querySelector('.command-list');
+    const empty = dialog.querySelector('.command-empty');
+    if (!input || !list) return;
+    const items = Array.from(list.querySelectorAll('.command-item'));
+    let highlightIndex = -1;
+
+    const filter = (q) =&gt; {
+      const query = q.toLowerCase(); let hasVisible = false;
+      items.forEach((item) =&gt; {
+        const match = !query || item.textContent.toLowerCase().includes(query);
+        item.hidden = !match; if (match) hasVisible = true;
+      });
+      list.querySelectorAll('.command-group').forEach((g) =&gt; {
+        g.hidden = g.querySelectorAll('.command-item:not([hidden])').length === 0;
+      });
+      list.querySelectorAll('.command-separator').forEach((s) =&gt; {
+        s.hidden = !!query;
+      });
+      if (empty) empty.hidden = hasVisible;
+      highlightIndex = highlightItem(list, 0);
+    };
+
+    input.addEventListener('input', () =&gt; { filter(input.value); });
+
+    input.addEventListener('keydown', (e) =&gt; {
+      const visible = getVisibleItems(list);
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        highlightIndex = highlightItem(list, highlightIndex + 1);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        highlightIndex = highlightItem(list, highlightIndex - 1);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (visible[highlightIndex]) { visible[highlightIndex].click(); }
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        highlightIndex = highlightItem(list, 0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        highlightIndex = highlightItem(list, visible.length - 1);
       }
-
-      input.addEventListener('input', function () { filter(input.value); });
-      dialog.addEventListener('click', function (e) {
-        if (e.target === dialog) dialog.close();
-        if (e.target.closest('.command-item')) dialog.close();
-      });
-      dialog.addEventListener('close', function () { input.value = ''; filter(''); });
-
-      document.addEventListener('keydown', function (e) {
-        if ((e.metaKey || e.ctrlKey) &amp;&amp; e.key === 'k') {
-          e.preventDefault();
-          if (dialog.open) dialog.close();
-          else { dialog.showModal(); input.focus(); }
-        }
-      });
     });
 
-    document.querySelectorAll('[data-command-trigger]').forEach(function (trigger) {
-      var dialog = document.getElementById(trigger.dataset.commandTrigger);
-      if (!dialog) return;
-      trigger.addEventListener('click', function () {
-        dialog.showModal();
-        var input = dialog.querySelector('.command-input');
-        if (input) input.focus();
-      });
+    dialog.addEventListener('click', (e) =&gt; {
+      if (e.target === dialog) dialog.close();
+      if (e.target.closest('.command-item')) dialog.close();
+    });
+    dialog.addEventListener('close', () =&gt; {
+      input.value = '';
+      filter('');
+      list.querySelectorAll('.command-item[data-highlighted]').forEach((el) =&gt; delete el.dataset.highlighted);
+      highlightIndex = -1;
     });
   });
-})();</code></pre>
+
+document.querySelectorAll('[data-command-trigger]:not([data-init])').forEach((trigger) =&gt; {
+  trigger.dataset.init = '';
+  const dialog = document.getElementById(trigger.dataset.commandTrigger);
+  if (!dialog) return;
+  trigger.addEventListener('click', () =&gt; {
+    dialog.showModal();
+    const input = dialog.querySelector('.command-input');
+    if (input) input.focus();
+  });
+});
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
           </div>
         </section>
     </main>
@@ -334,33 +420,81 @@
 
 ## Native basis
 
-`<dialog>` + search input for a command palette.
+`<dialog>` + search input for a command palette. Uses `showModal()` for focus trap and Escape-to-close.
+
+---
 
 ## Native Web APIs
 
-- [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) — modal with focus trap
-- [`@starting-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style) — entry animation
+- [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) — modal with focus trap and Escape-to-close
+- [`showModal()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) — opens dialog as modal with backdrop
+- [`::backdrop`](https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop) — scrim overlay behind the dialog
+- [`@starting-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style) — entry animation starting values
+- [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) — keyboard-only focus ring on items
+- [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior) — prevents scroll chaining in command list
+- [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses open/close animations
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — maps highlights to system colors
+
+---
 
 ## Structure
 
 ```html
-<button class="btn" data-command-trigger="cmd">Open Command</button>
-<dialog id="cmd" class="command" role="dialog" aria-modal="true">
+<button class="btn" data-command-trigger="cmd">Open Command<\/button>
+<dialog id="cmd" class="command" role="dialog" aria-modal="true" aria-label="Command menu">
   <div class="command-content">
     <div class="command-input-wrapper">
-      <svg><!-- search --></svg>
-      <input class="command-input" type="text" placeholder="Type a command...">
-    </div>
+      <svg aria-hidden="true"><!-- search icon --><\/svg>
+      <input class="command-input" type="text" placeholder="Type a command or search..."
+             autocomplete="off" autocorrect="off" spellcheck="false">
+    <\/div>
     <div class="command-list">
       <div class="command-group">
-        <p class="command-group-heading">Suggestions</p>
-        <button class="command-item">Calendar</button>
-      </div>
-    </div>
-    <div class="command-empty" hidden>No results found.</div>
-  </div>
-</dialog>
+        <p class="command-group-heading">Suggestions<\/p>
+        <button class="command-item">Calendar<\/button>
+      <\/div>
+    <\/div>
+    <div class="command-empty" hidden>No results found.<\/div>
+  <\/div>
+<\/dialog>
 ```
+
+---
+
+## ARIA
+
+| Attribute | Element | Purpose |
+|-----------|---------|---------|
+| `role="dialog"` | `<dialog>` | Identifies as a dialog |
+| `aria-modal="true"` | `<dialog>` | Indicates modal behavior |
+| `aria-label="Command menu"` | `<dialog>` | Labels the dialog |
+| `aria-disabled="true"` | Disabled item | Marks item as disabled |
+| `data-highlighted` | Active item | JS-managed: highlights keyboard-focused item |
+
+---
+
+## Keyboard
+
+| Key | Action |
+|-----|--------|
+| `Cmd/Ctrl + K` | Opens/closes the command palette |
+| `Escape` | Closes the dialog |
+| `Arrow Down` | Highlights next visible item |
+| `Arrow Up` | Highlights previous visible item |
+| `Enter` | Activates the highlighted item |
+| `Home` | Highlights the first visible item |
+| `End` | Highlights the last visible item |
+
+---
+
+## Notes
+
+- Search input filters items by text content — empty groups are hidden.
+- Separators are hidden during filtering to avoid orphans.
+- `data-command-trigger` on any element wires it as a trigger button.
+- Items with `aria-disabled="true"` are excluded from keyboard navigation.
+- The dialog uses `showModal()` — focus is trapped and Escape closes it natively.
+- On close, input is cleared and all items are restored.
 </script>
 </body>
 </html>

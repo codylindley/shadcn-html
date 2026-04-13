@@ -384,28 +384,31 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code class="language-javascript">// Accordion — single-open mode
-// Only needed when data-type="single" is set on the wrapper.
-// Multi-open accordions require zero JavaScript.
-document.querySelectorAll('.accordion[data-type="single"]').forEach(function (accordion) {
-  var items = accordion.querySelectorAll('.accordion-item');
-  var collapsible = accordion.hasAttribute('data-collapsible');
+            <pre><code class="language-javascript">// -- Accordion -----------------------------------------------
+// Single-open accordion behavior using native &lt;details&gt; elements.
 
-  items.forEach(function (item) {
-    item.addEventListener('toggle', function () {
+function init() {
+  document.querySelectorAll('.accordion[data-type=&quot;single&quot;]:not([data-init])').forEach((accordion) =&gt; {
+  accordion.dataset.init = '';
+  const items = accordion.querySelectorAll('.accordion-item');
+  const collapsible = accordion.hasAttribute('data-collapsible');
+  items.forEach((item) =&gt; {
+    item.addEventListener('toggle', () =&gt; {
       if (item.open) {
-        // Close all other items
-        items.forEach(function (sibling) {
+        items.forEach((sibling) =&gt; {
           if (sibling !== item &amp;&amp; sibling.open) sibling.open = false;
         });
       } else if (!collapsible) {
-        // Prevent closing last open item unless data-collapsible is set
-        var anyOpen = Array.from(items).some(function (i) { return i.open; });
+        const anyOpen = Array.from(items).some((i) =&gt; i.open);
         if (!anyOpen) item.open = true;
       }
     });
   });
-});</code></pre>
+});
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
           </div>
         </section>
     </main>

@@ -344,6 +344,8 @@
             <pre><code class="language-scss">/* -- Typography component --------------------------------------- */
 
 /* -- Base text ---------------------------------------------- */
+/* Sets the default font size for the entire page.            */
+/* All typography classes are sized relative to this baseline. */
 @layer base {
   body {
     font-size: 0.875rem;
@@ -462,14 +464,28 @@
   /* -- Accessibility ------------------------------------------ */
 
   @media (prefers-contrast: more) {
-    .h1, .h2, .h3, .h4 { letter-spacing: 0; }
-    .blockquote { border-inline-start-width: 3px; }
-    .code { outline: 1px solid var(--border); }
-    .muted { color: var(--foreground); }
+    .h1, .h2, .h3, .h4 {
+      letter-spacing: 0;
+    }
+
+    .blockquote {
+      border-inline-start-width: 3px;
+    }
+
+    .code {
+      outline: 1px solid var(--border);
+    }
+
+    .muted {
+      color: var(--foreground);
+    }
   }
 
   @media (forced-colors: active) {
-    .blockquote { border-inline-start-color: CanvasText; }
+    .blockquote {
+      border-inline-start-color: CanvasText;
+    }
+
     .code {
       background: Canvas;
       outline: 1px solid CanvasText;

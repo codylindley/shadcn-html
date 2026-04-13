@@ -248,7 +248,7 @@
       cursor: not-allowed;
     }
 
-    &amp;[aria-invalid=&quot;true&quot;] {
+    &amp;:is([aria-invalid=&quot;true&quot;], :user-invalid) {
       border-color: var(--destructive);
 
       &amp;:focus {

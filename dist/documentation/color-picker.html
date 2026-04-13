@@ -234,24 +234,23 @@
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
             <pre><code class="language-javascript">// -- Color Picker ---------------------------------------------
 // Syncs the hex value display with the color input.
-// Include via &lt;script src=&quot;components/color-picker/color-picker.js&quot; defer&gt;&lt;/script&gt;
 
-(function () {
-  'use strict';
+function init() {
+  document.querySelectorAll('.color-picker:not([data-init])').forEach((picker) =&gt; {
+  picker.dataset.init = '';
+  const input = picker.querySelector('input[type=&quot;color&quot;]');
+  const display = picker.querySelector('.color-picker-value');
+  if (!input || !display) return;
 
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.color-picker').forEach(function (picker) {
-      var input = picker.querySelector('input[type=&quot;color&quot;]');
-      var display = picker.querySelector('.color-picker-value');
-      if (!input || !display) return;
-
-      display.textContent = input.value;
-      input.addEventListener('input', function () {
-        display.textContent = input.value;
-      });
-    });
+  display.textContent = input.value;
+  input.addEventListener('input', () =&gt; {
+    display.textContent = input.value;
   });
-})();</code></pre>
+});
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
           </div>
         </section>
 

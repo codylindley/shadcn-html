@@ -332,6 +332,8 @@
   }
 
   .combobox-content {
+    position: fixed;
+    inset: auto;
     margin: 0;
     padding: 0;
     background-color: var(--popover);
@@ -340,6 +342,13 @@
     border-radius: var(--radius-lg);
     box-shadow: 0 4px 16px oklch(0 0 0 / 0.12);
     overflow: hidden;
+
+    /* -- Anchor positioning -- */
+    top: anchor(bottom);
+    left: anchor(left);
+    width: anchor-size(width);
+    margin-top: 4px;
+    position-try-fallbacks: flip-block;
   }
 
   .combobox-search {
@@ -437,121 +446,92 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code class="language-javascript">document.querySelectorAll('.combobox').forEach(function (wrapper) {
-  var trigger     = wrapper.querySelector('.combobox-trigger');
-  var valueEl     = wrapper.querySelector('.combobox-value');
-  var popover     = wrapper.querySelector('.combobox-content');
-  var searchInput = wrapper.querySelector('.combobox-search-input');
-  var listbox     = wrapper.querySelector('[role="listbox"]');
-  var empty       = wrapper.querySelector('.combobox-empty');
-  if (!trigger || !popover || !searchInput || !listbox) return;
+            <pre><code class="language-javascript">// -- Combobox -------------------------------------------------
+// Searchable select with keyboard navigation and popover positioning.
 
-  var allItems    = Array.from(listbox.querySelectorAll('[role="option"]'));
-  var highlighted = -1;
+function init() {
+  document.querySelectorAll('.combobox:not([data-init])').forEach((wrapper) =&gt; {
+    wrapper.dataset.init = '';
+    const trigger = wrapper.querySelector('.combobox-trigger');
+    const valueEl = wrapper.querySelector('.combobox-value');
+    const popover = wrapper.querySelector('.combobox-content');
+    const searchInput = wrapper.querySelector('.combobox-search-input');
+    const listbox = wrapper.querySelector('[role=&quot;listbox&quot;]');
+    const empty = wrapper.querySelector('.combobox-empty');
+    if (!trigger || !popover || !searchInput || !listbox) return;
 
-  function getVisibleItems() {
-    return allItems.filter(function (item) {
-      return !item.hidden
-        &amp;&amp; item.getAttribute('aria-disabled') !== 'true';
+    const allItems = Array.from(listbox.querySelectorAll('[role=&quot;option&quot;]'));
+    const placeholder = valueEl ? valueEl.getAttribute('data-placeholder') || '' : '';
+    let highlighted = -1;
+
+    // CSS anchor positioning - unique name per trigger-popover pair
+    const anchorId = `--combobox-${popover.id}`;
+    trigger.style.anchorName = anchorId;
+    popover.style.positionAnchor = anchorId;
+
+    const getVisibleItems = () =&gt; allItems.filter((item) =&gt; !item.hidden &amp;&amp; item.getAttribute('aria-disabled') !== 'true');
+    const open = () =&gt; {
+      popover.showPopover();
+      trigger.setAttribute('aria-expanded', 'true');
+      searchInput.value = '';
+      filter('');
+      searchInput.focus();
+    };
+    const close = () =&gt; {
+      popover.hidePopover();
+      trigger.setAttribute('aria-expanded', 'false');
+      searchInput.setAttribute('aria-activedescendant', '');
+      clearHighlight();
+      trigger.focus();
+    };
+    const isOpen = () =&gt; popover.matches(':popover-open');
+    const filter = (query) =&gt; {
+      const q = query.toLowerCase(); let hasVisible = false;
+      allItems.forEach((item) =&gt; { const match = !q || item.textContent.trim().toLowerCase().includes(q); item.hidden = !match; if (match) hasVisible = true; });
+      listbox.querySelectorAll('.combobox-group-label').forEach((label) =&gt; {
+        let next = label.nextElementSibling; let groupHasVisible = false;
+        while (next &amp;&amp; !next.classList.contains('combobox-group-label') &amp;&amp; !next.classList.contains('combobox-separator')) {
+          if (next.getAttribute('role') === 'option' &amp;&amp; !next.hidden) groupHasVisible = true; next = next.nextElementSibling;
+        }
+        label.hidden = !groupHasVisible;
+      });
+      listbox.querySelectorAll('.combobox-separator').forEach((sep) =&gt; { const prev = sep.previousElementSibling; const next = sep.nextElementSibling; sep.hidden = (prev &amp;&amp; prev.hidden) || (next &amp;&amp; next.hidden); });
+      if (empty) empty.hidden = hasVisible;
+    };
+    const clearHighlight = () =&gt; { allItems.forEach((item) =&gt; { delete item.dataset.highlighted; }); highlighted = -1; };
+    const doHighlight = (index) =&gt; {
+      const items = getVisibleItems(); clearHighlight();
+      if (index &lt; 0 || index &gt;= items.length) return;
+      highlighted = index; items[index].dataset.highlighted = '';
+      items[index].scrollIntoView({ block: 'nearest' });
+      searchInput.setAttribute('aria-activedescendant', items[index].id);
+    };
+    const selectItem = (item) =&gt; {
+      if (item.getAttribute('aria-disabled') === 'true') return;
+      allItems.forEach((i) =&gt; { i.setAttribute('aria-selected', 'false'); });
+      item.setAttribute('aria-selected', 'true');
+      if (valueEl) { valueEl.textContent = item.textContent.trim(); valueEl.removeAttribute('data-placeholder'); }
+      close();
+    };
+    trigger.addEventListener('click', () =&gt; { if (isOpen()) { close(); } else { open(); } });
+    searchInput.addEventListener('input', () =&gt; { filter(searchInput.value); doHighlight(0); });
+    searchInput.addEventListener('keydown', (e) =&gt; {
+      const items = getVisibleItems();
+      switch (e.key) {
+        case 'ArrowDown': e.preventDefault(); doHighlight(Math.min(highlighted + 1, items.length - 1)); break;
+        case 'ArrowUp': e.preventDefault(); doHighlight(Math.max(highlighted - 1, 0)); break;
+        case 'Enter': e.preventDefault(); if (highlighted &gt;= 0 &amp;&amp; items[highlighted]) selectItem(items[highlighted]); break;
+        case 'Escape': e.preventDefault(); close(); break;
+      }
     });
-  }
-
-  function positionPopover() {
-    var rect = trigger.getBoundingClientRect();
-    popover.style.position = 'fixed';
-    popover.style.top   = rect.bottom + 4 + 'px';
-    popover.style.left  = rect.left + 'px';
-    popover.style.width = rect.width + 'px';
-  }
-
-  function open() {
-    positionPopover();
-    popover.showPopover();
-    trigger.setAttribute('aria-expanded', 'true');
-    searchInput.value = '';
-    filter('');
-    searchInput.focus();
-  }
-
-  function close() {
-    popover.hidePopover();
-    trigger.setAttribute('aria-expanded', 'false');
-    clearHighlight();
-    trigger.focus();
-  }
-
-  function filter(query) {
-    var q = query.toLowerCase();
-    var hasVisible = false;
-    allItems.forEach(function (item) {
-      var match = !q ||
-        item.textContent.trim().toLowerCase().includes(q);
-      item.hidden = !match;
-      if (match) hasVisible = true;
-    });
-    if (empty) empty.hidden = hasVisible;
-  }
-
-  function clearHighlight() {
-    allItems.forEach(function (item) {
-      delete item.dataset.highlighted;
-    });
-    highlighted = -1;
-  }
-
-  function doHighlight(index) {
-    var items = getVisibleItems();
-    clearHighlight();
-    if (index &lt; 0 || index &gt;= items.length) return;
-    highlighted = index;
-    items[index].dataset.highlighted = '';
-    items[index].scrollIntoView({ block: 'nearest' });
-  }
-
-  function selectItem(item) {
-    allItems.forEach(function (i) {
-      i.setAttribute('aria-selected', 'false');
-    });
-    item.setAttribute('aria-selected', 'true');
-    if (valueEl) {
-      valueEl.textContent = item.textContent.trim();
-      valueEl.removeAttribute('data-placeholder');
-    }
-    close();
-  }
-
-  trigger.addEventListener('click', function () {
-    if (popover.matches(':popover-open')) close();
-    else open();
+    listbox.addEventListener('click', (e) =&gt; { const item = e.target.closest('[role=&quot;option&quot;]'); if (item &amp;&amp; !item.hidden &amp;&amp; item.getAttribute('aria-disabled') !== 'true') selectItem(item); });
+    listbox.addEventListener('mousemove', (e) =&gt; { const item = e.target.closest('[role=&quot;option&quot;]'); if (item &amp;&amp; !item.hidden) { const items = getVisibleItems(); doHighlight(items.indexOf(item)); } });
+    popover.addEventListener('toggle', (e) =&gt; { if (e.newState === 'closed') { trigger.setAttribute('aria-expanded', 'false'); clearHighlight(); } });
   });
+}
 
-  searchInput.addEventListener('input', function () {
-    filter(searchInput.value);
-    doHighlight(0);
-  });
-
-  searchInput.addEventListener('keydown', function (e) {
-    var items = getVisibleItems();
-    switch (e.key) {
-      case 'ArrowDown': e.preventDefault();
-        doHighlight(Math.min(highlighted + 1, items.length - 1));
-        break;
-      case 'ArrowUp': e.preventDefault();
-        doHighlight(Math.max(highlighted - 1, 0));
-        break;
-      case 'Enter': e.preventDefault();
-        if (highlighted &gt;= 0 &amp;&amp; items[highlighted])
-          selectItem(items[highlighted]);
-        break;
-      case 'Escape': e.preventDefault(); close(); break;
-    }
-  });
-
-  listbox.addEventListener('click', function (e) {
-    var item = e.target.closest('[role="option"]');
-    if (item &amp;&amp; !item.hidden) selectItem(item);
-  });
-});</code></pre>
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
           </div>
         </section>
     </main>

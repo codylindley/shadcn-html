@@ -389,7 +389,7 @@
     }
 
     /* -- Invalid state --------------------------------------- */
-    &amp;[aria-invalid=&quot;true&quot;] {
+    &amp;:is([aria-invalid=&quot;true&quot;], :user-invalid) {
       border-color: var(--destructive);
 
       &amp;:focus {
@@ -432,19 +432,6 @@
     min-height: 5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-  }
-
-  /* -- Label ------------------------------------------------- */
-  label.label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    display: block;
-    margin-bottom: 0.375rem;
-
-    /* Highlight label when its associated input is focused */
-    &amp;:has(+ .input:focus) {
-      color: var(--foreground);
-    }
   }
 
   /* -- Field description ------------------------------------- */

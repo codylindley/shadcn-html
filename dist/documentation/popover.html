@@ -156,6 +156,8 @@
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
             <pre><code class="language-scss">@layer components {
   .popover {
+    position: fixed;
+    inset: auto;
     margin: 0;
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
@@ -167,6 +169,12 @@
     opacity: 0;
     transform: translateY(-4px);
     transition: opacity 150ms ease, transform 150ms ease, display 150ms allow-discrete;
+
+    /* -- Anchor positioning -- */
+    top: anchor(bottom);
+    left: anchor(left);
+    margin-top: 4px;
+    position-try-fallbacks: flip-block;
 
     &amp;:popover-open {
       opacity: 1;
@@ -195,27 +203,25 @@
           <p class="text-muted-foreground text-sm mb-4">Interaction logic for the popover component. Uses data attributes for wiring.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-javascript">(function () {
-  'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('[popovertarget]').forEach(function (trigger) {
-      var id = trigger.getAttribute('popovertarget');
-      var popover = document.getElementById(id);
-      if (!popover || !popover.classList.contains('popover')) return;
-      function position() {
-        var rect = trigger.getBoundingClientRect();
-        popover.style.position = 'fixed';
-        popover.style.top = (rect.bottom + 4) + 'px';
-        popover.style.left = rect.left + 'px';
-      }
-      trigger.addEventListener('click', function (e) {
-        e.preventDefault();
-        position();
-        popover.togglePopover();
-      });
-    });
-  });
-})();</code></pre>
+            <pre><code class="language-javascript">// -- Popover --------------------------------------------------
+// CSS anchor positioning for popover components.
+
+function init() {
+  document.querySelectorAll('[popovertarget]:not([data-init])').forEach((trigger) =&gt; {
+  trigger.dataset.init = '';
+  const id = trigger.getAttribute('popovertarget');
+  const popover = document.getElementById(id);
+  if (!popover || !popover.classList.contains('popover')) return;
+
+  // CSS anchor positioning - unique name per trigger-popover pair
+  const anchorId = `--popover-${id}`;
+  trigger.style.anchorName = anchorId;
+  popover.style.positionAnchor = anchorId;
+});
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
           </div>
         </section>
     </main>

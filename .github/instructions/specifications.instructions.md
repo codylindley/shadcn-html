@@ -119,6 +119,16 @@ element styles inside the base selector:
 - **`forced-colors: active`** — support Windows High Contrast Mode with system colors
 - **`prefers-color-scheme`** — automatic dark mode defaults from OS preference
 
+### After editing component CSS or JS
+
+Doc pages display each component's CSS and JS in inline `<pre><code>` blocks.
+After changing any `.css` or `.js` file, run the sync scripts to keep doc pages accurate:
+
+```
+node scripts/sync-css-snippets.js
+node scripts/sync-js-snippets.js
+```
+
 ## Accuracy requirements
 
 - All CSS values must match what the documentation site actually renders

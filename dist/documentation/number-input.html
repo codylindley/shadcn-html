@@ -252,36 +252,31 @@
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
             <pre><code class="language-javascript">// -- Number Input ---------------------------------------------
 // Increment/decrement buttons for .number-input containers.
-// Include via &lt;script src=&quot;components/number-input/number-input.js&quot; defer&gt;&lt;/script&gt;
 
-(function () {
-  'use strict';
+function init() {
+  document.querySelectorAll('.number-input:not([data-init])').forEach((wrapper) =&gt; {
+  wrapper.dataset.init = '';
+  const input = wrapper.querySelector('input[type=&quot;number&quot;]');
+  const decBtn = wrapper.querySelector('[data-action=&quot;decrement&quot;]');
+  const incBtn = wrapper.querySelector('[data-action=&quot;increment&quot;]');
+  if (!input) return;
 
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.number-input').forEach(function (wrapper) {
-      var input = wrapper.querySelector('input[type=&quot;number&quot;]');
-      var decBtn = wrapper.querySelector('[data-action=&quot;decrement&quot;]');
-      var incBtn = wrapper.querySelector('[data-action=&quot;increment&quot;]');
-      if (!input) return;
+  const update = (direction) =&gt; {
+    try {
+      if (direction &gt; 0) input.stepUp();
+      else input.stepDown();
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    } catch(e) { /* min/max boundary */ }
+  };
 
-      function update(delta) {
-        var step = parseFloat(input.step) || 1;
-        var min = input.min !== '' ? parseFloat(input.min) : -Infinity;
-        var max = input.max !== '' ? parseFloat(input.max) : Infinity;
-        var val = parseFloat(input.value) || 0;
-        var next = Math.round((val + delta * step) * 1e10) / 1e10;
-        if (next &gt;= min &amp;&amp; next &lt;= max) {
-          input.value = next;
-          input.dispatchEvent(new Event('input', { bubbles: true }));
-          input.dispatchEvent(new Event('change', { bubbles: true }));
-        }
-      }
+  if (decBtn) decBtn.addEventListener('click', () =&gt; { update(-1); });
+  if (incBtn) incBtn.addEventListener('click', () =&gt; { update(1); });
+});
+}
 
-      if (decBtn) decBtn.addEventListener('click', function () { update(-1); });
-      if (incBtn) incBtn.addEventListener('click', function () { update(1); });
-    });
-  });
-})();</code></pre>
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
           </div>
         </section>
 

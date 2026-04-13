@@ -55,6 +55,20 @@ Every page imports ALL component CSS and JS files (not just its own). This ensur
 components used in demos on other pages render correctly. CSS and JS files live in
 `../components/{name}/{name}.css` and `../components/{name}/{name}.js` respectively.
 
+## Inline source code snippets
+
+Each component doc page displays the component's CSS and JS in `<pre><code>` blocks.
+These inline snippets must always match the actual files in `dist/components/`.
+After editing any component `.css` or `.js` file, run:
+
+```
+node scripts/sync-css-snippets.js
+node scripts/sync-js-snippets.js
+```
+
+These scripts replace every inline snippet with the current file content.
+Do NOT manually edit the `<pre><code>` blocks — they will be overwritten by the sync scripts.
+
 ## Doc-site Tailwind CSS
 
 The doc site uses Tailwind utility classes for layout in page content.

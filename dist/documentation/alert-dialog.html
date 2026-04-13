@@ -322,43 +322,43 @@
             <pre><code class="language-javascript">// -- Alert Dialog ----------------------------------------------
 // Wires [data-alert-dialog-trigger] buttons to &lt;dialog class=&quot;alert-dialog&quot;&gt;.
 // Unlike regular dialogs: no backdrop-close, Escape key blocked.
-// Include via &lt;script src=&quot;components/alert-dialog/alert-dialog.js&quot; defer&gt;&lt;/script&gt;
 
-(function () {
-  'use strict';
+function init() {
+/* Wire triggers */
+document.querySelectorAll('[data-alert-dialog-trigger]:not([data-init])').forEach((trigger) =&gt; {
+  trigger.dataset.init = '';
+  const dialog = document.getElementById(trigger.dataset.alertDialogTrigger);
+  if (!dialog) return;
+  trigger.addEventListener('click', () =&gt; {
+    dialog._trigger = trigger;
+    dialog.showModal();
+  });
+});
 
-  document.addEventListener('DOMContentLoaded', function () {
-    /* Wire triggers */
-    document.querySelectorAll('[data-alert-dialog-trigger]').forEach(function (trigger) {
-      var dialog = document.getElementById(trigger.dataset.alertDialogTrigger);
-      if (!dialog) return;
-      trigger.addEventListener('click', function () {
-        dialog._trigger = trigger;
-        dialog.showModal();
-      });
-    });
+/* Wire close buttons and block Escape */
+document.querySelectorAll('dialog.alert-dialog:not([data-init])').forEach((dialog) =&gt; {
+  dialog.dataset.init = '';
+  /* Block Escape key */
+  dialog.addEventListener('cancel', (e) =&gt; {
+    e.preventDefault();
+  });
 
-    /* Wire close buttons and block Escape */
-    document.querySelectorAll('dialog.alert-dialog').forEach(function (dialog) {
-      /* Block Escape key */
-      dialog.addEventListener('cancel', function (e) {
-        e.preventDefault();
-      });
-
-      /* Wire close buttons */
-      dialog.querySelectorAll('[data-alert-dialog-close]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          dialog.close();
-        });
-      });
-
-      /* Return focus to trigger */
-      dialog.addEventListener('close', function () {
-        if (dialog._trigger) dialog._trigger.focus();
-      });
+  /* Wire close buttons */
+  dialog.querySelectorAll('[data-alert-dialog-close]').forEach((btn) =&gt; {
+    btn.addEventListener('click', () =&gt; {
+      dialog.close();
     });
   });
-})();</code></pre>
+
+  /* Return focus to trigger */
+  dialog.addEventListener('close', () =&gt; {
+    if (dialog._trigger) dialog._trigger.focus();
+  });
+});
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
           </div>
         </section>
     </main>

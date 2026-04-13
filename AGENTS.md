@@ -294,6 +294,11 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
 
 9. **Rebuild doc CSS** (if new Tailwind classes were used) → `npm run docs:build-css`
 
+10. **Sync inline source snippets** → run `node scripts/sync-css-snippets.js` and
+    `node scripts/sync-js-snippets.js` to replace the inline `<pre><code>` blocks in
+    every doc page with the actual contents of each component's `.css` and `.js` files.
+    This must be done after any change to a component's CSS or JS — not just for new components.
+
 ---
 
 ## Common pitfalls
@@ -310,4 +315,8 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
   Doc-site-only scripts (site.js) use `window.onPageReady(fn)` for their own re-init.
 - **Font stacks**: The system tokens use generic font stacks. The doc site overrides
   them in `css/docs-theme.css`. Don't put custom fonts in `default-semantic-tokens.css`.
+- **Inline source snippet drift**: Doc pages show the component's CSS and JS in
+  `<pre><code>` blocks. These must always match the actual files. After editing any
+  component `.css` or `.js`, run `node scripts/sync-css-snippets.js` and
+  `node scripts/sync-js-snippets.js` to update all doc pages automatically.
 

@@ -343,162 +343,163 @@
           <p class="text-muted-foreground text-sm mb-4">Interaction logic for the calendar component. Uses data attributes for wiring.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-javascript">(function () {
-  'use strict';
+            <pre><code class="language-javascript">// -- Calendar -------------------------------------------------
+// Interactive calendar grid with month navigation and day selection.
 
-  var DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-  var MONTHS = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
+const DAYS = Array.from({ length: 7 }, (_, i) =&gt;
+  new Intl.DateTimeFormat(undefined, { weekday: 'short' }).format(new Date(2024, 0, i))
+);
+const MONTHS = Array.from({ length: 12 }, (_, i) =&gt;
+  new Intl.DateTimeFormat(undefined, { month: 'long' }).format(new Date(2024, i, 1))
+);
 
-  function daysInMonth(year, month) {
-    return new Date(year, month + 1, 0).getDate();
+const daysInMonth = (year, month) =&gt; new Date(year, month + 1, 0).getDate();
+
+const firstDayOfMonth = (year, month) =&gt; new Date(year, month, 1).getDay();
+
+const isToday = (year, month, day) =&gt; {
+  const now = new Date();
+  return now.getFullYear() === year &amp;&amp; now.getMonth() === month &amp;&amp; now.getDate() === day;
+};
+
+const renderCalendar = (el, year, month, selectedDay) =&gt; {
+  const total = daysInMonth(year, month);
+  const startDay = firstDayOfMonth(year, month);
+  const prevTotal = daysInMonth(year, month - 1);
+
+  /* Header */
+  const heading = el.querySelector('.calendar-heading');
+  if (heading) heading.textContent = `${MONTHS[month]} ${year}`;
+
+  /* Grid */
+  const grid = el.querySelector('.calendar-grid');
+  if (!grid) return;
+
+  let html = '&lt;thead&gt;&lt;tr&gt;';
+  for (let d = 0; d &lt; 7; d++) {
+    html += `&lt;th class=&quot;calendar-day-label&quot; scope=&quot;col&quot;&gt;${DAYS[d]}&lt;/th&gt;`;
   }
+  html += '&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;';
 
-  function firstDayOfMonth(year, month) {
-    return new Date(year, month, 1).getDay();
-  }
+  let dayNum = 1;
+  let nextDayNum = 1;
+  const rows = Math.ceil((startDay + total) / 7);
 
-  function isToday(year, month, day) {
-    var now = new Date();
-    return now.getFullYear() === year &amp;&amp; now.getMonth() === month &amp;&amp; now.getDate() === day;
-  }
-
-  function renderCalendar(el, year, month, selectedDay) {
-    var total = daysInMonth(year, month);
-    var startDay = firstDayOfMonth(year, month);
-    var prevTotal = daysInMonth(year, month - 1);
-
-    /* Header */
-    var heading = el.querySelector('.calendar-heading');
-    if (heading) heading.textContent = MONTHS[month] + ' ' + year;
-
-    /* Grid */
-    var grid = el.querySelector('.calendar-grid');
-    if (!grid) return;
-
-    var html = '&lt;thead&gt;&lt;tr&gt;';
-    for (var d = 0; d &lt; 7; d++) {
-      html += '&lt;th class=&quot;calendar-day-label&quot; scope=&quot;col&quot;&gt;' + DAYS[d] + '&lt;/th&gt;';
-    }
-    html += '&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;';
-
-    var dayNum = 1;
-    var nextDayNum = 1;
-    var rows = Math.ceil((startDay + total) / 7);
-
-    for (var r = 0; r &lt; rows; r++) {
-      html += '&lt;tr&gt;';
-      for (var c = 0; c &lt; 7; c++) {
-        var cellIndex = r * 7 + c;
-        if (cellIndex &lt; startDay) {
-          var prevDay = prevTotal - startDay + cellIndex + 1;
-          html += '&lt;td class=&quot;calendar-day" data-outside="&quot;&gt;&lt;button tabindex=&quot;-1&quot; data-day=&quot;' + prevDay + '&quot; data-outside=&quot;prev&quot;&gt;' + prevDay + '&lt;/button&gt;&lt;/td&gt;';
-        } else if (dayNum &gt; total) {
-          html += '&lt;td class=&quot;calendar-day" data-outside="&quot;&gt;&lt;button tabindex=&quot;-1&quot; data-day=&quot;' + nextDayNum + '&quot; data-outside=&quot;next&quot;&gt;' + nextDayNum + '&lt;/button&gt;&lt;/td&gt;';
-          nextDayNum++;
-        } else {
-          var cls = 'calendar-day';
-          if (isToday(year, month, dayNum)) attrs += ' data-today';
-          if (dayNum === selectedDay) attrs += ' data-selected';
-          html += '&lt;td class=&quot;' + cls + '&quot;&gt;&lt;button data-day=&quot;' + dayNum + '&quot;&gt;' + dayNum + '&lt;/button&gt;&lt;/td&gt;';
-          dayNum++;
-        }
+  for (let r = 0; r &lt; rows; r++) {
+    html += '&lt;tr&gt;';
+    for (let c = 0; c &lt; 7; c++) {
+      const cellIndex = r * 7 + c;
+      if (cellIndex &lt; startDay) {
+        const prevDay = prevTotal - startDay + cellIndex + 1;
+        html += `&lt;td class=&quot;calendar-day&quot; data-outside&gt;&lt;button tabindex=&quot;-1&quot; data-day=&quot;${prevDay}&quot; data-outside=&quot;prev&quot;&gt;${prevDay}&lt;/button&gt;&lt;/td&gt;`;
+      } else if (dayNum &gt; total) {
+        html += `&lt;td class=&quot;calendar-day&quot; data-outside&gt;&lt;button tabindex=&quot;-1&quot; data-day=&quot;${nextDayNum}&quot; data-outside=&quot;next&quot;&gt;${nextDayNum}&lt;/button&gt;&lt;/td&gt;`;
+        nextDayNum++;
+      } else {
+        let cls = 'calendar-day';
+        let attrs = '';
+        if (isToday(year, month, dayNum)) attrs += ' data-today';
+        if (dayNum === selectedDay) attrs += ' data-selected';
+        html += `&lt;td class=&quot;${cls}&quot;${attrs}&gt;&lt;button data-day=&quot;${dayNum}&quot;&gt;${dayNum}&lt;/button&gt;&lt;/td&gt;`;
+        dayNum++;
       }
-      html += '&lt;/tr&gt;';
     }
-    html += '&lt;/tbody&gt;';
-    grid.innerHTML = html;
+    html += '&lt;/tr&gt;';
   }
+  html += '&lt;/tbody&gt;';
+  grid.innerHTML = html;
+};
 
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.calendar').forEach(function (cal) {
-      var now = new Date();
-      var state = {
-        year: now.getFullYear(),
-        month: now.getMonth(),
-        selected: null
-      };
+function init() {
+document.querySelectorAll('.calendar:not([data-init])').forEach((cal) =&gt; {
+    cal.dataset.init = '';
+    const now = new Date();
+    const state = {
+      year: now.getFullYear(),
+      month: now.getMonth(),
+      selected: null
+    };
 
-      renderCalendar(cal, state.year, state.month, state.selected);
+    renderCalendar(cal, state.year, state.month, state.selected);
 
-      /* Navigation */
-      cal.addEventListener('click', function (e) {
-        var nav = e.target.closest('.calendar-nav');
-        if (nav) {
-          var action = nav.dataset.action;
-          if (action === 'prev-month') {
-            state.month--;
-            if (state.month &lt; 0) { state.month = 11; state.year--; }
-            state.selected = null;
-          } else if (action === 'next-month') {
-            state.month++;
-            if (state.month &gt; 11) { state.month = 0; state.year++; }
-            state.selected = null;
-          }
-          renderCalendar(cal, state.year, state.month, state.selected);
-          return;
+    /* Navigation */
+    cal.addEventListener('click', (e) =&gt; {
+      const nav = e.target.closest('.calendar-nav');
+      if (nav) {
+        const action = nav.dataset.action;
+        if (action === 'prev-month') {
+          state.month--;
+          if (state.month &lt; 0) { state.month = 11; state.year--; }
+          state.selected = null;
+        } else if (action === 'next-month') {
+          state.month++;
+          if (state.month &gt; 11) { state.month = 0; state.year++; }
+          state.selected = null;
         }
+        renderCalendar(cal, state.year, state.month, state.selected);
+        return;
+      }
 
-        /* Day selection */
-        var dayBtn = e.target.closest('.calendar-day button');
-        if (dayBtn &amp;&amp; !dayBtn.closest('[data-disabled]')) {
-          var day = parseInt(dayBtn.dataset.day, 10);
-          var outside = dayBtn.dataset.outside;
-          if (outside === 'prev') {
-            state.month--;
-            if (state.month &lt; 0) { state.month = 11; state.year--; }
-            state.selected = day;
-          } else if (outside === 'next') {
-            state.month++;
-            if (state.month &gt; 11) { state.month = 0; state.year++; }
-            state.selected = day;
-          } else {
-            state.selected = day;
-          }
-          renderCalendar(cal, state.year, state.month, state.selected);
-
-          /* Dispatch custom event */
-          cal.dispatchEvent(new CustomEvent('calendar:select', {
-            detail: { date: new Date(state.year, state.month, state.selected) },
-            bubbles: true
-          }));
+      /* Day selection */
+      const dayBtn = e.target.closest('.calendar-day button');
+      if (dayBtn &amp;&amp; !dayBtn.closest('[data-disabled]')) {
+        const day = parseInt(dayBtn.dataset.day, 10);
+        const outside = dayBtn.dataset.outside;
+        if (outside === 'prev') {
+          state.month--;
+          if (state.month &lt; 0) { state.month = 11; state.year--; }
+          state.selected = day;
+        } else if (outside === 'next') {
+          state.month++;
+          if (state.month &gt; 11) { state.month = 0; state.year++; }
+          state.selected = day;
+        } else {
+          state.selected = day;
         }
-      });
+        renderCalendar(cal, state.year, state.month, state.selected);
 
-      /* Keyboard navigation in grid */
-      cal.addEventListener('keydown', function (e) {
-        var dayBtn = e.target.closest('.calendar-day button');
-        if (!dayBtn) return;
-
-        var allBtns = Array.from(cal.querySelectorAll('.calendar-day button'));
-        var idx = allBtns.indexOf(dayBtn);
-        var next = null;
-
-        switch (e.key) {
-          case 'ArrowRight':
-            e.preventDefault();
-            next = allBtns[idx + 1];
-            break;
-          case 'ArrowLeft':
-            e.preventDefault();
-            next = allBtns[idx - 1];
-            break;
-          case 'ArrowDown':
-            e.preventDefault();
-            next = allBtns[idx + 7];
-            break;
-          case 'ArrowUp':
-            e.preventDefault();
-            next = allBtns[idx - 7];
-            break;
-        }
-        if (next) next.focus();
-      });
+        /* Dispatch custom event */
+        cal.dispatchEvent(new CustomEvent('calendar:select', {
+          detail: { date: new Date(state.year, state.month, state.selected) },
+          bubbles: true
+        }));
+      }
     });
-  });
-})();</code></pre>
+
+    /* Keyboard navigation in grid */
+    cal.addEventListener('keydown', (e) =&gt; {
+      const dayBtn = e.target.closest('.calendar-day button');
+      if (!dayBtn) return;
+
+      const allBtns = Array.from(cal.querySelectorAll('.calendar-day button'));
+      const idx = allBtns.indexOf(dayBtn);
+      let next = null;
+
+      switch (e.key) {
+        case 'ArrowRight':
+          e.preventDefault();
+          next = allBtns[idx + 1];
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          next = allBtns[idx - 1];
+          break;
+        case 'ArrowDown':
+          e.preventDefault();
+          next = allBtns[idx + 7];
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          next = allBtns[idx - 7];
+          break;
+      }
+      if (next) next.focus();
+    });
+});
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
           </div>
         </section>
     </main>

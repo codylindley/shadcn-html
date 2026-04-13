@@ -399,16 +399,22 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code class="language-javascript">// Toggle — aria-pressed state
-// Skips toggles inside .toggle-group (managed by toggle-group.js).
+            <pre><code class="language-javascript">// -- Toggle ---------------------------------------------------
+// Toggles aria-pressed on .toggle buttons.
+// Skips toggles inside .toggle-group — those are managed by toggle-group.js.
 
-document.querySelectorAll('.toggle:not([data-init]):not(.toggle-group .toggle)').forEach((toggle) =&gt; {
+function init() {
+  document.querySelectorAll('.toggle:not([data-init]):not(.toggle-group .toggle)').forEach((toggle) =&gt; {
   toggle.dataset.init = '';
   toggle.addEventListener('click', () =&gt; {
     const pressed = toggle.getAttribute('aria-pressed') === 'true';
     toggle.setAttribute('aria-pressed', !pressed);
   });
-});</code></pre>
+});
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
           </div>
         </section>
 

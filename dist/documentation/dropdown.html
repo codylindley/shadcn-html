@@ -447,71 +447,137 @@
     box-shadow: 0 4px 16px oklch(0 0 0 / 0.12), 0 0 0 1px var(--border);
 
     /* -- Anchor positioning ------------------------------------ */
-    position: fixed; inset: auto;
-    top: anchor(bottom); left: anchor(left);
-    margin: 0; margin-top: 4px;
+    position: fixed;
+    inset: auto;
+    top: anchor(bottom);
+    left: anchor(left);
+    margin: 0;
+    margin-top: 4px;
     position-try-fallbacks: flip-block;
 
     /* -- Animation --------------------------------------------- */
-    opacity: 0; transform: scale(0.96) translateY(-0.25rem);
+    opacity: 0;
+    transform: scale(0.96) translateY(-0.25rem);
     transition: opacity 150ms ease, transform 150ms ease,
                 display 150ms allow-discrete;
 
-    &amp;:popover-open { opacity: 1; transform: scale(1) translateY(0); }
+    &amp;:popover-open {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
   }
 
   @starting-style {
     .dropdown-content:popover-open {
-      opacity: 0; transform: scale(0.96) translateY(-0.25rem);
+      opacity: 0;
+      transform: scale(0.96) translateY(-0.25rem);
     }
   }
 
   .dropdown-item {
-    display: flex; align-items: center; gap: 0.5rem;
-    width: 100%; padding: 0.375rem 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.375rem 0.5rem;
     border-radius: calc(var(--radius) * 0.6);
-    font-size: 0.875rem; border: none; background: transparent;
-    color: var(--foreground); cursor: pointer; outline: none; text-align: left;
+    font-size: 0.875rem;
+    border: none;
+    background: transparent;
+    color: var(--foreground);
+    cursor: pointer;
+    outline: none;
+    text-align: left;
 
     &amp;:hover, &amp;[data-highlighted] {
-      background-color: var(--accent); color: var(--accent-foreground);
+      background-color: var(--accent);
+      color: var(--accent-foreground);
     }
+
     &amp;[data-variant=&quot;destructive&quot;] {
       &amp;:hover, &amp;[data-highlighted] {
-        background-color: var(--destructive); color: var(--destructive-foreground);
+        background-color: var(--destructive);
+        color: var(--destructive-foreground);
       }
     }
-    &amp;:disabled { pointer-events: none; opacity: 0.5; }
+
+    &amp;:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
   }
 
   /* -- Checkbox / Radio indicators ----------------------------- */
-  .dropdown-check, .dropdown-radio {
-    padding-inline-start: 1.5rem; position: relative;
-    &amp;::before { content: ''; position: absolute; inset-inline-start: 0.375rem;
-      top: 50%; transform: translateY(-50%); width: 0.875rem; height: 0.875rem; }
-  }
-  .dropdown-check[aria-checked=&quot;true&quot;]::before {
-    background-image: url(&quot;data:image/svg+xml,...check...&quot;);
-    background-size: contain; background-repeat: no-repeat;
-  }
-  .dropdown-radio[aria-checked=&quot;true&quot;]::before {
-    background-image: url(&quot;data:image/svg+xml,...dot...&quot;);
-    background-size: contain; background-repeat: no-repeat;
+  .dropdown-check,
+  .dropdown-radio {
+    padding-inline-start: 1.5rem;
+    position: relative;
+
+    &amp;::before {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0.375rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0.875rem;
+      height: 0.875rem;
+    }
   }
 
-  .dropdown-separator { height: 1px; background: var(--border); margin: 0.25rem -0.25rem; }
-  .dropdown-label { padding: 0.375rem 0.5rem; font-size: 0.75rem; font-weight: 600; color: var(--muted-foreground); }
-  .dropdown-shortcut { margin-inline-start: auto; font-size: 0.75rem; color: var(--muted-foreground); letter-spacing: 0.05em; }
+  .dropdown-check[aria-checked=&quot;true&quot;]::before {
+    content: '';
+    background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E&quot;);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .dropdown-radio[aria-checked=&quot;true&quot;]::before {
+    content: '';
+    background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3C/svg%3E&quot;);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .dropdown-separator {
+    height: 1px;
+    background: var(--border);
+    margin: 0.25rem -0.25rem;
+  }
+
+  .dropdown-label {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted-foreground);
+  }
+
+  .dropdown-shortcut {
+    margin-inline-start: auto;
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    letter-spacing: 0.05em;
+  }
+
+  /* -- Accessibility ------------------------------------------ */
 
   @media (prefers-reduced-motion: reduce) {
-    .dropdown-content, .dropdown-item { transition: none; }
+    .dropdown-content {
+      transition: none;
+    }
+    .dropdown-item {
+      transition: none;
+    }
   }
 
   @media (forced-colors: active) {
-    .dropdown-content { border-color: ButtonText; }
+    .dropdown-content {
+      border-color: ButtonText;
+    }
     .dropdown-item {
       &amp;:hover, &amp;[data-highlighted] {
-        forced-color-adjust: none; background: Highlight; color: HighlightText;
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
       }
     }
   }
@@ -544,27 +610,26 @@ function init() {
     menu.style.positionAnchor = anchorId;
 
     const getItems = () =&gt; {
-      return Array.from(menu.querySelectorAll(
-        '[role=&quot;menuitem&quot;]:not(:disabled), ' +
-        '[role=&quot;menuitemcheckbox&quot;]:not(:disabled), ' +
-        '[role=&quot;menuitemradio&quot;]:not(:disabled)'
-      ));
+      return Array.from(menu.querySelectorAll('[role=&quot;menuitem&quot;]:not(:disabled), [role=&quot;menuitemcheckbox&quot;]:not(:disabled), [role=&quot;menuitemradio&quot;]:not(:disabled)'));
     };
     const highlight = (item) =&gt; {
       getItems().forEach((i) =&gt; { i.removeAttribute('data-highlighted'); });
       if (item) { item.setAttribute('data-highlighted', ''); item.focus(); }
     };
-
     trigger.addEventListener('click', () =&gt; { menu.togglePopover(); });
-
     menu.addEventListener('toggle', (e) =&gt; {
       const open = e.newState === 'open';
       trigger.setAttribute('aria-expanded', open);
       if (open) { const first = getItems()[0]; if (first) highlight(first); }
-      else { getItems().forEach((i) =&gt; { i.removeAttribute('data-highlighted'); });
-             trigger.focus(); }
+      else { getItems().forEach((i) =&gt; { i.removeAttribute('data-highlighted'); }); trigger.focus(); }
     });
-
+    menu.addEventListener('mousemove', (e) =&gt; {
+      const item = e.target.closest('[role=&quot;menuitem&quot;], [role=&quot;menuitemcheckbox&quot;], [role=&quot;menuitemradio&quot;]');
+      if (item &amp;&amp; !item.disabled) highlight(item);
+    });
+    menu.addEventListener('mouseleave', () =&gt; {
+      getItems().forEach((i) =&gt; { i.removeAttribute('data-highlighted'); });
+    });
     menu.addEventListener('keydown', (e) =&gt; {
       const items = getItems();
       const current = items.indexOf(document.activeElement);
@@ -583,29 +648,19 @@ function init() {
               document.activeElement.setAttribute('aria-checked', !checked);
             } else if (role === 'menuitemradio') {
               const group = document.activeElement.closest('[role=&quot;group&quot;]');
-              if (group) group.querySelectorAll('[role=&quot;menuitemradio&quot;]')
-                .forEach((r) =&gt; { r.setAttribute('aria-checked', 'false'); });
+              if (group) group.querySelectorAll('[role=&quot;menuitemradio&quot;]').forEach((r) =&gt; { r.setAttribute('aria-checked', 'false'); });
               document.activeElement.setAttribute('aria-checked', 'true');
             } else { document.activeElement.click(); menu.hidePopover(); }
           }
           break;
         default:
           if (e.key.length === 1 &amp;&amp; !e.ctrlKey &amp;&amp; !e.metaKey) {
-            const match = items.find((item) =&gt;
-              item.textContent.trim().toLowerCase().startsWith(e.key.toLowerCase()));
+            const match = items.find((item) =&gt; item.textContent.trim().toLowerCase().startsWith(e.key.toLowerCase()));
             if (match) highlight(match);
           }
       }
     });
-    // Mouse support
-    menu.addEventListener('mousemove', (e) =&gt; {
-      const item = e.target.closest('[role=&quot;menuitem&quot;], [role=&quot;menuitemcheckbox&quot;], [role=&quot;menuitemradio&quot;]');
-      if (item &amp;&amp; !item.disabled) highlight(item);
-    });
-    menu.addEventListener('mouseleave', () =&gt; {
-      getItems().forEach((i) =&gt; { i.removeAttribute('data-highlighted'); });
-    });
-  });
+});
 }
 
 init();

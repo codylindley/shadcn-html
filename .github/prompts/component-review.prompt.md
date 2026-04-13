@@ -67,6 +67,7 @@ Shoelace / Web Awesome, Microsoft FAST, Adobe Spectrum Web Components, Ionic
 - Add the new component's `<link>` and `<script>` tags to ALL HTML pages in `dist/documentation/` (if new component)
 - Update `README.md` — add the component to the appropriate category (if new component)
 - Run `npm run docs:build-css` if new Tailwind classes were used
+- Run `node scripts/sync-css-snippets.js` and `node scripts/sync-js-snippets.js` to sync inline source code blocks in all doc pages with the actual component files (required after ANY CSS or JS change)
 
 ## 7. Verify in the browser
 
@@ -85,5 +86,6 @@ Before finishing, confirm:
 - [ ] The doc page loads without console errors
 - [ ] Dark mode renders correctly
 - [ ] No new `--*` tokens were invented (token boundary rule)
+- [ ] Inline source snippets synced (`node scripts/sync-css-snippets.js` and `node scripts/sync-js-snippets.js`)
 
 Ask questions only if you have to — make good decisions based on the reference sites and AGENTS.md. Implement everything and verify.

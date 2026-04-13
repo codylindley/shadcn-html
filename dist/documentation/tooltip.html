@@ -410,10 +410,9 @@
     max-width: 16rem;
     width: max-content;
     opacity: 0;
-    transition: opacity 150ms ease, translate 150ms ease,
-                display 150ms allow-discrete;
+    transition: opacity 150ms ease, translate 150ms ease, display 150ms allow-discrete;
 
-    /* Default: top center */
+    /* -- Default: top center -- */
     position-area: top;
     margin-bottom: 6px;
     translate: 0 2px;
@@ -421,39 +420,76 @@
 
     &amp;:popover-open { opacity: 1; translate: 0 0; }
 
-    /* Side variants */
-    &amp;[data-side="bottom"] {
-      position-area: bottom; margin-bottom: 0; margin-top: 6px;
+    /* ----- Side variants ----- */
+    &amp;[data-side=&quot;bottom&quot;] {
+      position-area: bottom;
+      margin-bottom: 0;
+      margin-top: 6px;
       translate: 0 -2px;
       &amp;:popover-open { translate: 0 0; }
     }
-    &amp;[data-side="left"] {
-      position-area: left; margin-bottom: 0; margin-right: 6px;
+
+    &amp;[data-side=&quot;left&quot;] {
+      position-area: left;
+      margin-bottom: 0;
+      margin-right: 6px;
       translate: 2px 0;
       &amp;:popover-open { translate: 0 0; }
     }
-    &amp;[data-side="right"] {
-      position-area: right; margin-bottom: 0; margin-left: 6px;
+
+    &amp;[data-side=&quot;right&quot;] {
+      position-area: right;
+      margin-bottom: 0;
+      margin-left: 6px;
       translate: -2px 0;
       &amp;:popover-open { translate: 0 0; }
     }
 
-    /* Align variants (combined with side) */
-    &amp;[data-align="start"] { ... }
-    &amp;[data-align="end"] { ... }
+    /* ----- Align variants (combined with side) ----- */
+    &amp;[data-align=&quot;start&quot;] {
+      &amp;:not([data-side=&quot;left&quot;]):not([data-side=&quot;right&quot;]) { position-area: top left; }
+      &amp;[data-side=&quot;bottom&quot;] { position-area: bottom left; }
+      &amp;[data-side=&quot;left&quot;] { position-area: left top; }
+      &amp;[data-side=&quot;right&quot;] { position-area: right top; }
+    }
 
-    /* Arrow */
+    &amp;[data-align=&quot;end&quot;] {
+      &amp;:not([data-side=&quot;left&quot;]):not([data-side=&quot;right&quot;]) { position-area: top right; }
+      &amp;[data-side=&quot;bottom&quot;] { position-area: bottom right; }
+      &amp;[data-side=&quot;left&quot;] { position-area: left bottom; }
+      &amp;[data-side=&quot;right&quot;] { position-area: right bottom; }
+    }
+
+    /* ----- Arrow ----- */
     &amp; [data-arrow] {
-      position: absolute; width: 8px; height: 8px;
-      background: inherit; rotate: 45deg;
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: inherit;
+      rotate: 45deg;
+      border: none;
+    }
+
+    /* Arrow placement — default (top side): arrow at bottom center */
+    &amp;:not([data-side]), &amp;[data-side=&quot;top&quot;] {
+      &amp; [data-arrow] { bottom: -4px; left: 50%; margin-left: -4px; }
+    }
+    &amp;[data-side=&quot;bottom&quot;] {
+      &amp; [data-arrow] { top: -4px; left: 50%; margin-left: -4px; }
+    }
+    &amp;[data-side=&quot;left&quot;] {
+      &amp; [data-arrow] { right: -4px; top: 50%; margin-top: -4px; }
+    }
+    &amp;[data-side=&quot;right&quot;] {
+      &amp; [data-arrow] { left: -4px; top: 50%; margin-top: -4px; }
     }
   }
 
   @starting-style {
     .tooltip:popover-open { opacity: 0; translate: 0 2px; }
-    .tooltip[data-side="bottom"]:popover-open { opacity: 0; translate: 0 -2px; }
-    .tooltip[data-side="left"]:popover-open { opacity: 0; translate: 2px 0; }
-    .tooltip[data-side="right"]:popover-open { opacity: 0; translate: -2px 0; }
+    .tooltip[data-side=&quot;bottom&quot;]:popover-open { opacity: 0; translate: 0 -2px; }
+    .tooltip[data-side=&quot;left&quot;]:popover-open { opacity: 0; translate: 2px 0; }
+    .tooltip[data-side=&quot;right&quot;]:popover-open { opacity: 0; translate: -2px 0; }
   }
 }</code></pre>
         </div>
@@ -465,13 +501,16 @@
         <p class="text-muted-foreground text-sm mb-4">Delay, group behavior, ARIA wiring, and scroll dismiss.</p>
         <div style="position:relative;margin-top:0.5rem;">
           <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-          <pre><code class="language-javascript">// Tooltip — delay, group behavior, ARIA, scroll dismiss
-const DELAY_DEFAULT = 700;
-const CLOSE_DELAY_DEFAULT = 0;
-const GROUP_TIMEOUT = 400;
+          <pre><code class="language-javascript">// -- Tooltip --------------------------------------------------
+// Popover API tooltips with delay, group behavior, ARIA wiring,
+// CSS anchor positioning, and scroll dismiss.
 
-let groupOpen = false;
-let groupTimer = null;
+const DELAY_DEFAULT = 700;      // ms before first tooltip opens
+const CLOSE_DELAY_DEFAULT = 0;  // ms before tooltip closes
+const GROUP_TIMEOUT = 400;      // ms after last tooltip hides before delay resets
+
+let groupOpen = false;       // true while any tooltip is visible
+let groupTimer = null;       // timeout to reset groupOpen
 
 function markGroupOpen() {
   groupOpen = true;
@@ -483,21 +522,23 @@ function scheduleGroupReset() {
   groupTimer = setTimeout(() =&gt; { groupOpen = false; }, GROUP_TIMEOUT);
 }
 
+function init() {
 document.querySelectorAll('[data-tooltip-trigger]:not([data-init])').forEach((trigger) =&gt; {
   trigger.dataset.init = '';
   const tip = document.getElementById(trigger.dataset.tooltipTrigger);
   if (!tip) return;
 
-  // CSS anchor positioning
+  // CSS anchor positioning — unique name per trigger-tooltip pair
   const anchorId = `--tooltip-${tip.id}`;
   trigger.style.anchorName = anchorId;
   tip.style.positionAnchor = anchorId;
 
-  // ARIA
+  // ARIA — link trigger to tooltip
   trigger.setAttribute('aria-describedby', tip.id);
 
   const delay = Number(trigger.dataset.delay ?? DELAY_DEFAULT);
   const closeDelay = Number(trigger.dataset.closeDelay ?? CLOSE_DELAY_DEFAULT);
+
   let openTimer = null;
   let closeTimer = null;
 
@@ -506,7 +547,7 @@ document.querySelectorAll('[data-tooltip-trigger]:not([data-init])').forEach((tr
     clearTimeout(openTimer);
     const wait = groupOpen ? 0 : delay;
     openTimer = setTimeout(() =&gt; {
-      try { tip.showPopover(); } catch (e) {}
+      try { tip.showPopover(); } catch (e) { /* already open */ }
       markGroupOpen();
     }, wait);
   }
@@ -515,7 +556,7 @@ document.querySelectorAll('[data-tooltip-trigger]:not([data-init])').forEach((tr
     clearTimeout(openTimer);
     clearTimeout(closeTimer);
     closeTimer = setTimeout(() =&gt; {
-      try { tip.hidePopover(); } catch (e) {}
+      try { tip.hidePopover(); } catch (e) { /* already closed */ }
       scheduleGroupReset();
     }, closeDelay);
   }
@@ -524,7 +565,22 @@ document.querySelectorAll('[data-tooltip-trigger]:not([data-init])').forEach((tr
   trigger.addEventListener('mouseleave', hide);
   trigger.addEventListener('focus', show);
   trigger.addEventListener('blur', hide);
-});</code></pre>
+});
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });
+
+// -- Scroll dismiss -------------------------------------------
+// Hide any open tooltip when the page scrolls.
+if (!document.__tooltipScrollInit) {
+  document.__tooltipScrollInit = true;
+  document.addEventListener('scroll', () =&gt; {
+    document.querySelectorAll('.tooltip:popover-open').forEach((tip) =&gt; {
+      try { tip.hidePopover(); } catch (e) {}
+    });
+  }, { passive: true, capture: true });
+}</code></pre>
         </div>
       </section>
     </main>

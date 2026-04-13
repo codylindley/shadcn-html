@@ -479,14 +479,29 @@
   }
 
   /* -- Vertical orientation ---------------------------------- */
-  .steps[data-orientation="vertical"] {
-    flex-direction: column; gap: 0;
+  .steps[data-orientation=&quot;vertical&quot;] {
+    flex-direction: column;
+    gap: 0;
+
     &amp; .step {
-      flex-direction: row; align-items: flex-start; text-align: left; padding-bottom: 1.5rem;
-      &amp;:not(:last-child)::after { top: 2.25rem; left: 0.9375rem; right: auto; width: 2px; height: calc(100% - 2.25rem); }
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+      padding-bottom: 1.5rem;
+
+      &amp;:not(:last-child)::after {
+        top: 2.25rem;
+        left: 0.9375rem;
+        right: auto;
+        width: 2px;
+        height: calc(100% - 2.25rem);
+      }
     }
+
     &amp; .step-content { padding-top: 0.25rem; }
   }
+
+  /* -- Accessibility ------------------------------------------ */
 
   @media (prefers-reduced-motion: reduce) {
     .step-indicator,
@@ -496,7 +511,7 @@
   @media (prefers-contrast: more) {
     .step-indicator { border-width: 3px; }
     .step:not(:last-child)::after { height: 3px; }
-    .steps[data-orientation="vertical"] .step:not(:last-child)::after { width: 3px; height: calc(100% - 2.25rem); }
+    .steps[data-orientation=&quot;vertical&quot;] .step:not(:last-child)::after { width: 3px; height: calc(100% - 2.25rem); }
   }
 
   @media (forced-colors: active) {
