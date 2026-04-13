@@ -83,4 +83,34 @@
   @media (prefers-reduced-motion: reduce) {
     .toggle { transition: none; }
   }
+
+  @media (prefers-contrast: more) {
+    .toggle {
+      border: 2px solid transparent;
+
+      &[data-variant="outline"] {
+        border-color: var(--foreground);
+      }
+
+      &[aria-pressed="true"] {
+        border-color: currentColor;
+      }
+    }
+  }
+
+  @media (forced-colors: active) {
+    .toggle {
+      border: 1px solid ButtonText;
+
+      &[aria-pressed="true"] {
+        background: Highlight;
+        color: HighlightText;
+      }
+
+      &:disabled {
+        border-color: GrayText;
+        color: GrayText;
+      }
+    }
+  }
 }
