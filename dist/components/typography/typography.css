@@ -51,6 +51,7 @@
     font-size: 1.25rem;
     font-weight: 600;
     line-height: 1.4;
+    text-wrap: balance;
     color: var(--foreground);
   }
 
@@ -69,6 +70,7 @@
     font-size: 1.25rem;
     line-height: 1.6;
     color: var(--muted-foreground);
+    text-wrap: pretty;
   }
 
   /* -- Large -------------------------------------------------- */
@@ -95,8 +97,8 @@
   /* -- Blockquote --------------------------------------------- */
   .blockquote {
     margin-top: 1.5rem;
-    border-left: 2px solid var(--border);
-    padding-left: 1.5rem;
+    border-inline-start: 2px solid var(--border);
+    padding-inline-start: 1.5rem;
     font-style: italic;
     hanging-punctuation: first last;
     color: var(--foreground);
@@ -116,4 +118,35 @@
     color: var(--foreground);
   }
 
+  /* -- Accessibility ------------------------------------------ */
+
+  @media (prefers-contrast: more) {
+    .h1, .h2, .h3, .h4 {
+      letter-spacing: 0;
+    }
+
+    .blockquote {
+      border-inline-start-width: 3px;
+    }
+
+    .code {
+      outline: 1px solid var(--border);
+    }
+
+    .muted {
+      color: var(--foreground);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .blockquote {
+      border-inline-start-color: CanvasText;
+    }
+
+    .code {
+      background: Canvas;
+      outline: 1px solid CanvasText;
+      color: CanvasText;
+    }
+  }
 }

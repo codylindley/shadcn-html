@@ -1,79 +1,153 @@
 @layer components {
-  .carousel { position: relative; width: 100%; }
+  .carousel {
+    position: relative;
+    width: 100%;
 
-  .carousel-viewport {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 1rem;
-    overscroll-behavior-x: contain;
-    scrollbar-width: none;
-    &::-webkit-scrollbar { display: none; }
-  }
-
-  .carousel-slide {
-    flex: 0 0 100%;
-    scroll-snap-align: start;
-    min-height: 12rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    background-color: var(--card);
-    font-size: 0.875rem;
-    color: var(--foreground);
-  }
-
-  .carousel-prev, .carousel-next {
-    position: absolute;
-    top: 50%;
-    translate: 0 -50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid var(--border);
-    border-radius: 9999px;
-    background-color: var(--background);
-    color: var(--foreground);
-    cursor: pointer;
-    box-shadow: var(--shadow-sm);
-    transition: background-color 150ms ease;
-    font-size: 0.875rem;
-
-    &:hover { background-color: var(--accent); }
-    &:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
-    &:disabled { opacity: 0.5; cursor: not-allowed; }
-    & svg { width: 1rem; height: 1rem; }
-  }
-
-  .carousel-prev { left: -1rem; }
-  .carousel-next { right: -1rem; }
-
-  /* Vertical orientation */
-  &[data-orientation="vertical"] {
+    /* ── Viewport ──────────────────────────────── */
     & .carousel-viewport {
-      flex-direction: column;
-      overflow-x: hidden;
-      overflow-y: auto;
-      scroll-snap-type: y mandatory;
-      overscroll-behavior-y: contain;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+
+      &::-webkit-scrollbar { display: none; }
     }
-    & .carousel-slide { flex: 0 0 100%; }
-    & .carousel-prev, & .carousel-next {
-      left: 50%;
-      translate: -50% 0;
-      top: auto;
+
+    /* ── Slide ─────────────────────────────────── */
+    & .carousel-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      min-width: 0;
     }
-    & .carousel-prev { top: -1rem; }
-    & .carousel-next { bottom: -1rem; }
+
+    /* ── Prev / Next buttons ───────────────────── */
+    & .carousel-prev,
+    & .carousel-next {
+      position: absolute;
+      top: 50%;
+      translate: 0 -50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      background-color: var(--background);
+      color: var(--foreground);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: background-color 150ms ease, opacity 150ms ease;
+      font-size: 0.875rem;
+      z-index: 1;
+
+      &:hover { background-color: var(--accent); }
+      &:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+      &:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+      & svg { width: 1rem; height: 1rem; }
+    }
+
+    & .carousel-prev { left: -1rem; }
+    & .carousel-next { right: -1rem; }
+
+    /* ── Dot indicators ────────────────────────── */
+    & .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding-block: 0.75rem;
+    }
+
+    & .carousel-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      background-color: var(--border);
+      transition: background-color 150ms ease, scale 150ms ease;
+
+      &[aria-current="true"] {
+        background-color: var(--foreground);
+        scale: 1.25;
+      }
+
+      &:hover:not([aria-current="true"]) {
+        background-color: var(--muted-foreground);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+      }
+    }
+
+    /* ── Counter text ──────────────────────────── */
+    & .carousel-counter {
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--muted-foreground);
+      padding-block-start: 0.5rem;
+    }
+
+    /* ── Vertical orientation ──────────────────── */
+    &[data-orientation="vertical"] {
+      & .carousel-viewport {
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        overscroll-behavior-x: unset;
+        overscroll-behavior-y: contain;
+      }
+
+      & .carousel-prev,
+      & .carousel-next {
+        left: 50%;
+        right: auto;
+        translate: -50% 0;
+        top: auto;
+      }
+      & .carousel-prev { top: -1rem; bottom: auto; }
+      & .carousel-next { bottom: -1rem; top: auto; }
+
+      & .carousel-dots { flex-direction: column; }
+    }
   }
 
-  /* Reduced motion: instant scroll, no transitions */
+  /* ── Accessibility ─────────────────────────── */
   @media (prefers-reduced-motion: reduce) {
-    .carousel-viewport { scroll-behavior: auto; }
-    .carousel-prev, .carousel-next { transition: none; }
+    .carousel .carousel-viewport { scroll-behavior: auto; }
+    .carousel .carousel-prev,
+    .carousel .carousel-next { transition: none; }
+    .carousel .carousel-dot { transition: none; }
+  }
+
+  @media (prefers-contrast: more) {
+    .carousel .carousel-prev,
+    .carousel .carousel-next {
+      border-width: 2px;
+    }
+    .carousel .carousel-dot {
+      border: 1px solid var(--foreground);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .carousel .carousel-prev,
+    .carousel .carousel-next {
+      border: 1px solid ButtonText;
+      background: ButtonFace;
+      color: ButtonText;
+    }
+    .carousel .carousel-dot {
+      background: ButtonText;
+      &[aria-current="true"] { background: Highlight; }
+    }
   }
 }

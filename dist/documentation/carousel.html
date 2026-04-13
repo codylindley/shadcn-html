@@ -91,7 +91,7 @@
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Carousel</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
-          Horizontal slide viewer with CSS scroll-snap and navigation buttons.
+          A scrollable content slider built on CSS scroll-snap with keyboard navigation, dot indicators, loop, and autoplay support. No libraries needed.
         </p>
         <!-- Component Skill -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
@@ -101,14 +101,20 @@
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">CSS scroll-snap with navigation buttons.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">CSS <code>scroll-snap</code> on an overflow container, with <code>IntersectionObserver</code> for active-slide tracking and native <code>&lt;button&gt;</code> elements for navigation.</p>
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type" target="_blank" rel="noopener" title="mandatory snap scrolling" class="api-pill"><code>scroll-snap-type</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-align" target="_blank" rel="noopener" title="snap point alignment per slide" class="api-pill"><code>scroll-snap-align</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-stop" target="_blank" rel="noopener" title="forces snap to each slide" class="api-pill"><code>scroll-snap-stop</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior" target="_blank" rel="noopener" title="prevents scroll chaining" class="api-pill"><code>overscroll-behavior</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver" target="_blank" rel="noopener" title="tracks visible slide" class="api-pill"><code>IntersectionObserver</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible" target="_blank" rel="noopener" title="keyboard-only focus rings" class="api-pill"><code>:focus-visible</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank" rel="noopener" title="suppresses smooth scroll" class="api-pill"><code>prefers-reduced-motion</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast" target="_blank" rel="noopener" title="high contrast support" class="api-pill"><code>prefers-contrast</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="Windows High Contrast" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://www.w3.org/WAI/ARIA/apg/patterns/carousel/" target="_blank" rel="noopener" title="WAI-ARIA Carousel pattern" class="api-pill"><code>WAI-ARIA Carousel</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
@@ -118,20 +124,27 @@
               <code>.carousel-slide</code>
               <code>.carousel-prev</code>
               <code>.carousel-next</code>
+              <code>.carousel-dots</code>
+              <code>.carousel-dot</code>
+              <code>.carousel-counter</code>
             </div>
           </div>
         </details>
       </div>
+
+        <!-- ═══ Default ═══════════════════════════════ -->
         <p class="text-sm font-medium mb-2 mt-6">Default</p>
-        <div class="preview">
-          <div class="carousel" style="max-width:24rem;margin:0 2rem;">
-            <div class="carousel-viewport">
-              <div class="carousel-slide">Slide 1</div>
-              <div class="carousel-slide">Slide 2</div>
-              <div class="carousel-slide">Slide 3</div>
+        <div class="preview" style="padding: 2.5rem 3rem;">
+          <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Default demo" style="max-width:24rem;margin:0 auto;">
+            <div class="carousel-viewport" aria-live="polite">
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">1</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">2</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">3</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">4</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">5</div>
             </div>
-            <button class="carousel-prev" aria-label="Previous">&lsaquo;</button>
-            <button class="carousel-next" aria-label="Next">&rsaquo;</button>
+            <button class="carousel-prev" aria-label="Previous slide"><i data-lucide="chevron-left"></i></button>
+            <button class="carousel-next" aria-label="Next slide"><i data-lucide="chevron-right"></i></button>
           </div>
         </div>
         <div style="position:relative;margin-top:0.5rem;">
@@ -139,45 +152,352 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;div class="carousel"&gt;
-  &lt;div class="carousel-viewport"&gt;
-    &lt;div class="carousel-slide"&gt;Slide 1&lt;/div&gt;
-    &lt;div class="carousel-slide"&gt;Slide 2&lt;/div&gt;
+          <pre><code class="language-html">&lt;div class="carousel" role="region" aria-roledescription="carousel" aria-label="Featured slides"&gt;
+  &lt;div class="carousel-viewport" aria-live="polite"&gt;
+    &lt;div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 5"&gt;1&lt;/div&gt;
+    &lt;div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 5"&gt;2&lt;/div&gt;
+    &lt;div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 5"&gt;3&lt;/div&gt;
   &lt;/div&gt;
-  &lt;button class="carousel-prev" aria-label="Previous"&gt;&amp;lsaquo;&lt;/button&gt;
-  &lt;button class="carousel-next" aria-label="Next"&gt;&amp;rsaquo;&lt;/button&gt;
+  &lt;button class="carousel-prev" aria-label="Previous slide"&gt;&lt;i data-lucide="chevron-left"&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class="carousel-next" aria-label="Next slide"&gt;&lt;i data-lucide="chevron-right"&gt;&lt;/i&gt;&lt;/button&gt;
 &lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- ═══ Sizes (multi-slide) ════════════════════ -->
+        <p class="text-sm font-medium mb-2 mt-8">Sizes</p>
+        <p class="text-muted-foreground text-sm mb-4">Set <code>flex</code> on <code>.carousel-slide</code> to show multiple slides. Use <code>calc()</code> to account for the gap.</p>
+        <div class="preview" style="padding: 2.5rem 3rem;">
+          <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Multi-slide demo" style="max-width:30rem;margin:0 auto;">
+            <div class="carousel-viewport" aria-live="polite">
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 9" style="flex:0 0 calc(33.333% - 0.667rem);min-height:10rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">1</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 9" style="flex:0 0 calc(33.333% - 0.667rem);min-height:10rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">2</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 9" style="flex:0 0 calc(33.333% - 0.667rem);min-height:10rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">3</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 9" style="flex:0 0 calc(33.333% - 0.667rem);min-height:10rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">4</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 9" style="flex:0 0 calc(33.333% - 0.667rem);min-height:10rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">5</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="6 of 9" style="flex:0 0 calc(33.333% - 0.667rem);min-height:10rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">6</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="7 of 9" style="flex:0 0 calc(33.333% - 0.667rem);min-height:10rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">7</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="8 of 9" style="flex:0 0 calc(33.333% - 0.667rem);min-height:10rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">8</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="9 of 9" style="flex:0 0 calc(33.333% - 0.667rem);min-height:10rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">9</div>
+            </div>
+            <button class="carousel-prev" aria-label="Previous slide"><i data-lucide="chevron-left"></i></button>
+            <button class="carousel-next" aria-label="Next slide"><i data-lucide="chevron-right"></i></button>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+          <pre><code class="language-html">&lt;!-- 33% width per slide (3 visible) --&gt;
+&lt;div class="carousel-slide" style="flex: 0 0 calc(33.333% - 0.667rem);"&gt;…&lt;/div&gt;
+
+&lt;!-- 50% width per slide (2 visible) --&gt;
+&lt;div class="carousel-slide" style="flex: 0 0 calc(50% - 0.5rem);"&gt;…&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- ═══ With Dots ══════════════════════════════ -->
+        <p class="text-sm font-medium mb-2 mt-8">With Dot Indicators</p>
+        <p class="text-muted-foreground text-sm mb-4">Add an empty <code>.carousel-dots</code> container — dots are auto-generated from the slide count.</p>
+        <div class="preview" style="padding: 2.5rem 3rem;">
+          <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Dots demo" style="max-width:24rem;margin:0 auto;">
+            <div class="carousel-viewport" aria-live="polite">
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">1</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">2</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">3</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">4</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">5</div>
+            </div>
+            <button class="carousel-prev" aria-label="Previous slide"><i data-lucide="chevron-left"></i></button>
+            <button class="carousel-next" aria-label="Next slide"><i data-lucide="chevron-right"></i></button>
+            <div class="carousel-dots" role="group" aria-label="Choose slide to display"></div>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+          <pre><code class="language-html">&lt;div class="carousel" role="region" aria-roledescription="carousel" aria-label="Gallery"&gt;
+  &lt;div class="carousel-viewport" aria-live="polite"&gt;
+    &lt;div class="carousel-slide" role="group" aria-roledescription="slide"&gt;…&lt;/div&gt;
+    &lt;!-- more slides --&gt;
+  &lt;/div&gt;
+  &lt;button class="carousel-prev" aria-label="Previous slide"&gt;…&lt;/button&gt;
+  &lt;button class="carousel-next" aria-label="Next slide"&gt;…&lt;/button&gt;
+  &lt;div class="carousel-dots" role="group" aria-label="Choose slide to display"&gt;
+    &lt;!-- dots auto-generated by JS --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- ═══ With Counter ═══════════════════════════ -->
+        <p class="text-sm font-medium mb-2 mt-8">With Counter</p>
+        <p class="text-muted-foreground text-sm mb-4">Add a <code>.carousel-counter</code> element — JS updates it automatically.</p>
+        <div class="preview" style="padding: 2.5rem 3rem;">
+          <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Counter demo" style="max-width:24rem;margin:0 auto;">
+            <div class="carousel-viewport" aria-live="polite">
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">1</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">2</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">3</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">4</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">5</div>
+            </div>
+            <button class="carousel-prev" aria-label="Previous slide"><i data-lucide="chevron-left"></i></button>
+            <button class="carousel-next" aria-label="Next slide"><i data-lucide="chevron-right"></i></button>
+            <div class="carousel-counter" aria-live="polite">Slide 1 of 5</div>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+          <pre><code class="language-html">&lt;div class="carousel" role="region" aria-roledescription="carousel" aria-label="Slides"&gt;
+  &lt;div class="carousel-viewport" aria-live="polite"&gt;…&lt;/div&gt;
+  &lt;button class="carousel-prev" aria-label="Previous slide"&gt;…&lt;/button&gt;
+  &lt;button class="carousel-next" aria-label="Next slide"&gt;…&lt;/button&gt;
+  &lt;div class="carousel-counter" aria-live="polite"&gt;Slide 1 of 5&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- ═══ Vertical ══════════════════════════════ -->
+        <p class="text-sm font-medium mb-2 mt-8">Vertical</p>
+        <p class="text-muted-foreground text-sm mb-4">Set <code>data-orientation="vertical"</code> and give the viewport a fixed height.</p>
+        <div class="preview" style="padding: 2.5rem 3rem;">
+          <div class="carousel" data-orientation="vertical" role="region" aria-roledescription="carousel" aria-label="Vertical demo" style="max-width:24rem;margin:2rem auto;">
+            <div class="carousel-viewport" aria-live="polite" style="height:14rem;">
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 5" style="flex:0 0 100%;min-height:14rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">1</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 5" style="flex:0 0 100%;min-height:14rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">2</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 5" style="flex:0 0 100%;min-height:14rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">3</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 5" style="flex:0 0 100%;min-height:14rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">4</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 5" style="flex:0 0 100%;min-height:14rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">5</div>
+            </div>
+            <button class="carousel-prev" aria-label="Previous slide"><i data-lucide="chevron-up"></i></button>
+            <button class="carousel-next" aria-label="Next slide"><i data-lucide="chevron-down"></i></button>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+          <pre><code class="language-html">&lt;div class="carousel" data-orientation="vertical" role="region" aria-roledescription="carousel" aria-label="Vertical slides"&gt;
+  &lt;div class="carousel-viewport" aria-live="polite" style="height: 14rem;"&gt;
+    &lt;div class="carousel-slide" role="group" aria-roledescription="slide"&gt;…&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button class="carousel-prev" aria-label="Previous slide"&gt;&lt;i data-lucide="chevron-up"&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class="carousel-next" aria-label="Next slide"&gt;&lt;i data-lucide="chevron-down"&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- ═══ Loop ═══════════════════════════════════ -->
+        <p class="text-sm font-medium mb-2 mt-8">Loop</p>
+        <p class="text-muted-foreground text-sm mb-4">Add <code>data-loop</code> for infinite circular navigation — buttons never disable.</p>
+        <div class="preview" style="padding: 2.5rem 3rem;">
+          <div class="carousel" data-loop role="region" aria-roledescription="carousel" aria-label="Loop demo" style="max-width:24rem;margin:0 auto;">
+            <div class="carousel-viewport" aria-live="polite">
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">1</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">2</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">3</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">4</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">5</div>
+            </div>
+            <button class="carousel-prev" aria-label="Previous slide"><i data-lucide="chevron-left"></i></button>
+            <button class="carousel-next" aria-label="Next slide"><i data-lucide="chevron-right"></i></button>
+            <div class="carousel-dots" role="group" aria-label="Choose slide to display"></div>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+          <pre><code class="language-html">&lt;div class="carousel" data-loop role="region" aria-roledescription="carousel" aria-label="Looping slides"&gt;
+  &lt;div class="carousel-viewport" aria-live="polite"&gt;…&lt;/div&gt;
+  &lt;button class="carousel-prev" aria-label="Previous slide"&gt;…&lt;/button&gt;
+  &lt;button class="carousel-next" aria-label="Next slide"&gt;…&lt;/button&gt;
+  &lt;div class="carousel-dots" role="group" aria-label="Choose slide to display"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- ═══ Autoplay ═══════════════════════════════ -->
+        <p class="text-sm font-medium mb-2 mt-8">Autoplay</p>
+        <p class="text-muted-foreground text-sm mb-4">Set <code>data-autoplay="3000"</code> (in milliseconds). Pauses on hover and focus per WAI-ARIA requirements.</p>
+        <div class="preview" style="padding: 2.5rem 3rem;">
+          <div class="carousel" data-autoplay="3000" data-loop role="region" aria-roledescription="carousel" aria-label="Auto-rotating demo" style="max-width:24rem;margin:0 auto;">
+            <div class="carousel-viewport" aria-live="off">
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">1</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">2</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">3</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">4</div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 5" style="flex:0 0 100%;min-height:12rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--card);font-size:0.875rem;color:var(--foreground);">5</div>
+            </div>
+            <button class="carousel-prev" aria-label="Previous slide"><i data-lucide="chevron-left"></i></button>
+            <button class="carousel-next" aria-label="Next slide"><i data-lucide="chevron-right"></i></button>
+            <div class="carousel-dots" role="group" aria-label="Choose slide to display"></div>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+          <pre><code class="language-html">&lt;div class="carousel" data-autoplay="3000" data-loop role="region" aria-roledescription="carousel" aria-label="Auto slides"&gt;
+  &lt;div class="carousel-viewport" aria-live="off"&gt;…&lt;/div&gt;
+  &lt;button class="carousel-prev" aria-label="Previous slide"&gt;…&lt;/button&gt;
+  &lt;button class="carousel-next" aria-label="Next slide"&gt;…&lt;/button&gt;
+  &lt;div class="carousel-dots" role="group" aria-label="Choose slide to display"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- ═══ With Cards ═════════════════════════════ -->
+        <p class="text-sm font-medium mb-2 mt-8">With Cards</p>
+        <p class="text-muted-foreground text-sm mb-4">Compose with the Card component for richer slide content.</p>
+        <div class="preview" style="padding: 2.5rem 3rem;">
+          <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Card carousel" style="max-width:24rem;margin:0 auto;">
+            <div class="carousel-viewport" aria-live="polite">
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 3" style="flex:0 0 100%;">
+                <div class="card" style="width:100%;">
+                  <div class="card-header">
+                    <h3 class="card-title">Project Alpha</h3>
+                    <p class="card-description">A new design system built from scratch</p>
+                  </div>
+                  <div class="card-content">
+                    <p class="text-sm text-muted-foreground">Built with modern CSS and native web APIs. No frameworks, no libraries — just the platform.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 3" style="flex:0 0 100%;">
+                <div class="card" style="width:100%;">
+                  <div class="card-header">
+                    <h3 class="card-title">Project Beta</h3>
+                    <p class="card-description">Performance-first component library</p>
+                  </div>
+                  <div class="card-content">
+                    <p class="text-sm text-muted-foreground">Zero JavaScript for static components. Interaction JS only where HTML and CSS can't express it.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 3" style="flex:0 0 100%;">
+                <div class="card" style="width:100%;">
+                  <div class="card-header">
+                    <h3 class="card-title">Project Gamma</h3>
+                    <p class="card-description">Accessible by default</p>
+                  </div>
+                  <div class="card-content">
+                    <p class="text-sm text-muted-foreground">WAI-ARIA patterns, keyboard navigation, reduced motion, high contrast — all built in.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-prev" aria-label="Previous slide"><i data-lucide="chevron-left"></i></button>
+            <button class="carousel-next" aria-label="Next slide"><i data-lucide="chevron-right"></i></button>
+            <div class="carousel-dots" role="group" aria-label="Choose slide to display"></div>
+          </div>
         </div>
 
         <!-- -- CSS --------------------------------------- -->
         <section style="margin-top:3rem;" id="source-css">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/carousel/carousel.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
-          <p class="text-muted-foreground text-sm mb-4">Styles for the carousel component. Uses design tokens for colors, spacing, and radius.</p>
+          <p class="text-muted-foreground text-sm mb-4">Component styles using scroll-snap, design tokens, and accessibility media queries.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-scss">@layer components {
-  .carousel { position: relative; width: 100%; }
-  .carousel-viewport {
-    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem;
-    scrollbar-width: none; &amp;::-webkit-scrollbar { display: none; }
+            <pre><code class="language-css">@layer components {
+  .carousel {
+    position: relative;
+    width: 100%;
+
+    &amp; .carousel-viewport {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      &amp;::-webkit-scrollbar { display: none; }
+    }
+
+    &amp; .carousel-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      min-width: 0;
+    }
+
+    &amp; .carousel-prev,
+    &amp; .carousel-next {
+      position: absolute;
+      top: 50%;
+      translate: 0 -50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      background-color: var(--background);
+      color: var(--foreground);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: background-color 150ms ease, opacity 150ms ease;
+      font-size: 0.875rem;
+      z-index: 1;
+
+      &amp;:hover { background-color: var(--accent); }
+      &amp;:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+      &amp;:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+      &amp; svg { width: 1rem; height: 1rem; }
+    }
+
+    &amp; .carousel-prev { left: -1rem; }
+    &amp; .carousel-next { right: -1rem; }
+
+    &amp; .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding-block: 0.75rem;
+    }
+
+    &amp; .carousel-dot {
+      width: 0.5rem; height: 0.5rem;
+      border-radius: 9999px; border: none; padding: 0;
+      cursor: pointer;
+      background-color: var(--border);
+      transition: background-color 150ms ease, scale 150ms ease;
+      &amp;[aria-current="true"] { background-color: var(--foreground); scale: 1.25; }
+      &amp;:hover:not([aria-current="true"]) { background-color: var(--muted-foreground); }
+      &amp;:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+    }
+
+    &amp; .carousel-counter {
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--muted-foreground);
+      padding-block-start: 0.5rem;
+    }
+
+    &amp;[data-orientation="vertical"] {
+      &amp; .carousel-viewport {
+        flex-direction: column;
+        overflow-x: hidden; overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        overscroll-behavior-x: unset;
+        overscroll-behavior-y: contain;
+      }
+      &amp; .carousel-prev, &amp; .carousel-next {
+        left: 50%; right: auto; translate: -50% 0; top: auto;
+      }
+      &amp; .carousel-prev { top: -1rem; bottom: auto; }
+      &amp; .carousel-next { bottom: -1rem; top: auto; }
+      &amp; .carousel-dots { flex-direction: column; }
+    }
   }
-  .carousel-slide {
-    flex: 0 0 100%; scroll-snap-align: start; min-height: 12rem;
-    display: flex; align-items: center; justify-content: center;
-    border: 1px solid var(--border); border-radius: var(--radius-xl);
-    background-color: var(--card); font-size: 0.875rem; color: var(--foreground);
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel .carousel-viewport { scroll-behavior: auto; }
+    .carousel .carousel-prev, .carousel .carousel-next { transition: none; }
+    .carousel .carousel-dot { transition: none; }
   }
-  .carousel-prev, .carousel-next {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 2rem; height: 2rem; border: 1px solid var(--border); border-radius: 9999px;
-    background-color: var(--background); color: var(--foreground); cursor: pointer;
-    box-shadow: var(--shadow-sm); transition: background-color 150ms ease; font-size: 0.875rem;
-    &amp;:hover { background-color: var(--accent); }
-    &amp; svg { width: 1rem; height: 1rem; }
+
+  @media (prefers-contrast: more) {
+    .carousel .carousel-prev, .carousel .carousel-next { border-width: 2px; }
+    .carousel .carousel-dot { border: 1px solid var(--foreground); }
   }
-  .carousel-prev { left: -1rem; }
-  .carousel-next { right: -1rem; }
+
+  @media (forced-colors: active) {
+    .carousel .carousel-prev, .carousel .carousel-next {
+      border: 1px solid ButtonText; background: ButtonFace; color: ButtonText;
+    }
+    .carousel .carousel-dot {
+      background: ButtonText;
+      &amp;[aria-current="true"] { background: Highlight; }
+    }
+  }
 }</code></pre>
           </div>
         </section>
@@ -185,27 +505,136 @@
         <!-- -- JavaScript -------------------------------- -->
         <section style="margin-top:3rem;" id="source-js">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/carousel/carousel.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
-          <p class="text-muted-foreground text-sm mb-4">Interaction logic for the carousel component. Uses data attributes for wiring.</p>
+          <p class="text-muted-foreground text-sm mb-4">Scroll-snap carousel with IntersectionObserver tracking, ARIA, keyboard navigation, dots, loop, and autoplay.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-javascript">(function () {
-  'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.carousel').forEach(function (carousel) {
-      var viewport = carousel.querySelector('.carousel-viewport');
-      var prev = carousel.querySelector('.carousel-prev');
-      var next = carousel.querySelector('.carousel-next');
-      if (!viewport) return;
-      function scrollBy(dir) {
-        var slide = viewport.querySelector('.carousel-slide');
-        if (!slide) return;
-        viewport.scrollBy({ left: dir * slide.offsetWidth, behavior: 'smooth' });
-      }
-      if (prev) prev.addEventListener('click', function () { scrollBy(-1); });
-      if (next) next.addEventListener('click', function () { scrollBy(1); });
-    });
+            <pre><code class="language-javascript">document.querySelectorAll('.carousel:not([data-init])').forEach((carousel) =&gt; {
+  carousel.dataset.init = '';
+  const viewport = carousel.querySelector('.carousel-viewport');
+  const prevBtn = carousel.querySelector('.carousel-prev');
+  const nextBtn = carousel.querySelector('.carousel-next');
+  const dotsContainer = carousel.querySelector('.carousel-dots');
+  const counter = carousel.querySelector('.carousel-counter');
+  if (!viewport) return;
+
+  const slides = () =&gt; Array.from(viewport.querySelectorAll('.carousel-slide'));
+  const isVertical = carousel.dataset.orientation === 'vertical';
+  const isLoop = carousel.hasAttribute('data-loop');
+  const autoplayDelay = carousel.dataset.autoplay
+    ? parseInt(carousel.dataset.autoplay, 10) : 0;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const behavior = reducedMotion ? 'auto' : 'smooth';
+  let currentIndex = 0;
+  let autoplayTimer = null;
+
+  // ARIA setup
+  if (!carousel.hasAttribute('role')) carousel.setAttribute('role', 'region');
+  carousel.setAttribute('aria-roledescription', 'carousel');
+  slides().forEach((slide, i) =&gt; {
+    slide.setAttribute('role', 'group');
+    slide.setAttribute('aria-roledescription', 'slide');
+    if (!slide.hasAttribute('aria-label'))
+      slide.setAttribute('aria-label', `${i + 1} of ${slides().length}`);
   });
-})();</code></pre>
+
+  // Scroll to index
+  const scrollToIndex = (index) =&gt; {
+    const allSlides = slides();
+    if (!allSlides.length) return;
+    let target = isLoop
+      ? ((index % allSlides.length) + allSlides.length) % allSlides.length
+      : Math.max(0, Math.min(index, allSlides.length - 1));
+    const slide = allSlides[target];
+    if (isVertical)
+      viewport.scrollTo({ top: slide.offsetTop - viewport.offsetTop, behavior });
+    else
+      viewport.scrollTo({ left: slide.offsetLeft - viewport.offsetLeft, behavior });
+  };
+
+  // Update state (buttons, dots, counter)
+  const updateState = (index) =&gt; {
+    const allSlides = slides();
+    if (!allSlides.length) return;
+    currentIndex = index;
+    if (!isLoop) {
+      if (prevBtn) prevBtn.disabled = currentIndex &lt;= 0;
+      if (nextBtn) nextBtn.disabled = currentIndex &gt;= allSlides.length - 1;
+    }
+    if (dotsContainer) {
+      dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, i) =&gt; {
+        dot.setAttribute('aria-current', i === currentIndex ? 'true' : 'false');
+      });
+    }
+    if (counter) counter.textContent = `Slide ${currentIndex + 1} of ${allSlides.length}`;
+  };
+
+  // IntersectionObserver for current slide
+  const observer = new IntersectionObserver((entries) =&gt; {
+    for (const entry of entries)
+      if (entry.isIntersecting &amp;&amp; entry.intersectionRatio &gt;= 0.5) {
+        const idx = slides().indexOf(entry.target);
+        if (idx !== -1) updateState(idx);
+      }
+  }, { root: viewport, threshold: 0.5 });
+  slides().forEach((slide) =&gt; observer.observe(slide));
+
+  // Navigation
+  const goNext = () =&gt; scrollToIndex(currentIndex + 1);
+  const goPrev = () =&gt; scrollToIndex(currentIndex - 1);
+  if (prevBtn) prevBtn.addEventListener('click', goPrev);
+  if (nextBtn) nextBtn.addEventListener('click', goNext);
+
+  // Auto-generate dots
+  if (dotsContainer &amp;&amp; !dotsContainer.children.length) {
+    slides().forEach((_, i) =&gt; {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot';
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      dot.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+      dotsContainer.appendChild(dot);
+    });
+  }
+  if (dotsContainer) dotsContainer.addEventListener('click', (e) =&gt; {
+    const dot = e.target.closest('.carousel-dot');
+    if (!dot) return;
+    const idx = [...dotsContainer.querySelectorAll('.carousel-dot')].indexOf(dot);
+    if (idx !== -1) scrollToIndex(idx);
+  });
+
+  // Keyboard navigation
+  carousel.addEventListener('keydown', (e) =&gt; {
+    const prevKey = isVertical ? 'ArrowUp' : 'ArrowLeft';
+    const nextKey = isVertical ? 'ArrowDown' : 'ArrowRight';
+    if (e.key === prevKey) { e.preventDefault(); goPrev(); }
+    if (e.key === nextKey) { e.preventDefault(); goNext(); }
+    if (e.key === 'Home') { e.preventDefault(); scrollToIndex(0); }
+    if (e.key === 'End') { e.preventDefault(); scrollToIndex(slides().length - 1); }
+  });
+  if (!carousel.hasAttribute('tabindex')) carousel.setAttribute('tabindex', '0');
+
+  // Autoplay
+  const startAutoplay = () =&gt; {
+    if (!autoplayDelay) return;
+    stopAutoplay();
+    autoplayTimer = setInterval(goNext, autoplayDelay);
+    viewport.setAttribute('aria-live', 'off');
+  };
+  const stopAutoplay = () =&gt; {
+    if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null; }
+    viewport.setAttribute('aria-live', 'polite');
+  };
+  if (autoplayDelay) {
+    startAutoplay();
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+    carousel.addEventListener('focusin', stopAutoplay);
+    carousel.addEventListener('focusout', startAutoplay);
+  } else {
+    viewport.setAttribute('aria-live', 'polite');
+  }
+
+  updateState(0);
+});</code></pre>
           </div>
         </section>
     </main>
@@ -243,25 +672,31 @@
 
 ## Native basis
 
-CSS scroll-snap for snap points with keyboard navigation and prev/next buttons.
+CSS `scroll-snap` on an overflow container, with `IntersectionObserver` for active-slide tracking and native `<button>` elements for navigation.
 
 ## Native Web APIs
 
 - [`scroll-snap-type`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type) — mandatory snap scrolling
 - [`scroll-snap-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-align) — snap point alignment per slide
+- [`scroll-snap-stop`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-stop) — forces snap to each slide
 - [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior) — prevents scroll chaining
+- [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) — tracks visible slide
+- [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) — keyboard-only focus rings
 - [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses smooth scroll
+- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — high contrast support
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — Windows High Contrast
+- [WAI-ARIA Carousel](https://www.w3.org/WAI/ARIA/apg/patterns/carousel/) — role region, aria-roledescription
 
 ## Structure
 
 ```html
-<div class="carousel">
-  <div class="carousel-viewport">
-    <div class="carousel-slide">Slide 1</div>
-    <div class="carousel-slide">Slide 2</div>
+<div class="carousel" role="region" aria-roledescription="carousel" aria-label="Featured slides">
+  <div class="carousel-viewport" aria-live="polite">
+    <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 5">…</div>
   </div>
-  <button class="carousel-prev" aria-label="Previous">&lt;</button>
-  <button class="carousel-next" aria-label="Next">&gt;</button>
+  <button class="carousel-prev" aria-label="Previous slide"><i data-lucide="chevron-left"></i></button>
+  <button class="carousel-next" aria-label="Next slide"><i data-lucide="chevron-right"></i></button>
+  <div class="carousel-dots" role="group" aria-label="Choose slide to display"></div>
 </div>
 ```
 </script>

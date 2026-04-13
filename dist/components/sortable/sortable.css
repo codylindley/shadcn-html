@@ -6,6 +6,12 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+
+    /* Horizontal orientation */
+    &[data-orientation="horizontal"] {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
   }
 
   .sortable-item {
@@ -19,13 +25,55 @@
     font-size: 0.875rem;
     color: var(--foreground);
     cursor: grab;
-    transition: box-shadow 150ms ease, opacity 150ms ease;
+    transition: box-shadow 150ms ease, opacity 150ms ease, border-color 150ms ease;
     user-select: none;
 
     &:active { cursor: grabbing; }
-    &:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
-    &[data-dragging] { opacity: 0.5; box-shadow: var(--shadow-md); }
-    &[data-over] { border-color: var(--primary); border-style: dashed; }
+
+    /* Keyboard focus (roving tabindex) */
+    &:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    /* Active descendant highlight (keyboard navigation) */
+    &[data-active] {
+      border-color: var(--ring);
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+
+    /* Drag in progress */
+    &[data-dragging] {
+      opacity: 0.5;
+      box-shadow: var(--shadow-md);
+      border-style: dashed;
+    }
+
+    /* Drop target indicator */
+    &[data-over="before"] {
+      border-top: 2px solid var(--primary);
+    }
+    &[data-over="after"] {
+      border-bottom: 2px solid var(--primary);
+    }
+
+    /* Horizontal drop indicators */
+    .sortable[data-orientation="horizontal"] &[data-over="before"] {
+      border-top: 1px solid var(--border);
+      border-inline-start: 2px solid var(--primary);
+    }
+    .sortable[data-orientation="horizontal"] &[data-over="after"] {
+      border-bottom: 1px solid var(--border);
+      border-inline-end: 2px solid var(--primary);
+    }
+
+    /* Disabled */
+    &[aria-disabled="true"] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
   }
 
   .sortable-handle {
@@ -34,10 +82,50 @@
     font-size: 1rem;
     line-height: 1;
     flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+
+    &:active { cursor: grabbing; }
     & svg { width: 1rem; height: 1rem; }
+  }
+
+  /* Live region for screen reader announcements */
+  .sortable-live {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   @media (prefers-reduced-motion: reduce) {
     .sortable-item { transition: none; }
+  }
+
+  @media (prefers-contrast: more) {
+    .sortable-item {
+      border-width: 2px;
+      &[data-active] { outline: 2px solid LinkText; }
+      &[data-over="before"] { border-top-width: 3px; }
+      &[data-over="after"] { border-bottom-width: 3px; }
+    }
+  }
+
+  @media (forced-colors: active) {
+    .sortable-item {
+      border-color: ButtonBorder;
+      color: ButtonText;
+      background-color: ButtonFace;
+      &[data-active] { border-color: Highlight; color: HighlightText; }
+      &[data-dragging] { border-color: GrayText; }
+      &[data-over="before"] { border-top-color: Highlight; }
+      &[data-over="after"] { border-bottom-color: Highlight; }
+      &[aria-disabled="true"] { color: GrayText; border-color: GrayText; }
+    }
+    .sortable-handle { color: GrayText; }
   }
 }

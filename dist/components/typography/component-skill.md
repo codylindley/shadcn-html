@@ -14,6 +14,9 @@ Pure CSS — no JavaScript or ARIA required.
 - [`text-wrap: balance`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap) — balanced line wrapping for headings
 - [`text-wrap: pretty`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap) — orphan prevention for body text
 - [`hanging-punctuation`](https://developer.mozilla.org/en-US/docs/Web/CSS/hanging-punctuation) — optical quote alignment for blockquotes
+- [Logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values) — `border-inline-start`, `padding-inline-start` for RTL support
+- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — enhanced contrast for high-contrast preference
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — Windows High Contrast Mode with system colors
 
 ---
 
@@ -66,12 +69,32 @@ Pure CSS — no JavaScript or ARIA required.
 
 ---
 
+## Classes
+
+| Class | Element | Description |
+|---|---|---|
+| `.h1` | `<h1>` or any | 2.25rem extrabold heading, tight tracking, balanced wrapping |
+| `.h2` | `<h2>` or any | 1.875rem semibold heading with bottom border |
+| `.h3` | `<h3>` or any | 1.5rem semibold heading |
+| `.h4` | `<h4>` or any | 1.25rem semibold heading |
+| `.p` | `<p>` | Body text, 1.75 line-height, auto-spacing between siblings |
+| `.lead` | `<p>` | 1.25rem muted intro paragraph |
+| `.large` | `<div>` or any | 1.125rem semibold text |
+| `.small` | `<small>` or any | 0.875rem medium text, line-height 1 |
+| `.muted` | `<p>` or any | 0.875rem muted-foreground text |
+| `.blockquote` | `<blockquote>` | Italic block with inline-start border, hanging punctuation |
+| `.code` | `<code>` | Monospace inline code with muted background |
+
+---
+
 ## Accessibility
 
 - Use heading levels in order (`h1` → `h2` → `h3`). Do not skip levels.
 - Headings create the document outline used by screen readers for navigation.
-- `<blockquote>` is announced as a quote by assistive technology.
+- `<blockquote>` is announced as a quote by assistive technology — no extra ARIA needed.
 - `<code>` is announced as code — no extra ARIA needed.
+- `prefers-contrast: more` — removes tight letter-spacing on headings, adds outline to inline code, thickens blockquote border, and promotes muted text to foreground color.
+- `forced-colors: active` — blockquote border and inline code adapt to system colors (`CanvasText`, `Canvas`).
 
 ---
 
@@ -80,6 +103,9 @@ Pure CSS — no JavaScript or ARIA required.
 - These are utility classes for prose content — not a component with variants/sizes.
 - The `.h1`–`.h4` classes allow applying heading styles to non-heading elements when semantic headings aren't appropriate.
 - Typography classes compose freely with other components (Card content, Dialog body, Alert description).
-- `text-wrap: balance` is used on headings for better visual line distribution.
+- `text-wrap: balance` is used on all headings (h1–h4) for better visual line distribution.
+- `text-wrap: pretty` is used on paragraphs and lead text for orphan prevention.
+- `hanging-punctuation: first last` is used on blockquotes for optical quote alignment.
+- Blockquote uses `border-inline-start` / `padding-inline-start` (logical properties) for automatic RTL support.
 - For lists, use the List component (`list.css`) — typography does not ship its own list styles.
 - For prose tables, use the Table component (`table.css`) — typography does not ship its own table styles.

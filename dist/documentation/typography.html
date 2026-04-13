@@ -115,6 +115,9 @@
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap" target="_blank" rel="noopener" title="balanced line wrapping for headings" class="api-pill"><code>text-wrap: balance</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap" target="_blank" rel="noopener" title="orphan prevention for body text" class="api-pill"><code>text-wrap: pretty</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/hanging-punctuation" target="_blank" rel="noopener" title="optical quote alignment for blockquotes" class="api-pill"><code>hanging-punctuation</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values" target="_blank" rel="noopener" title="border-inline-start, padding-inline-start for RTL support" class="api-pill"><code>Logical properties</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast" target="_blank" rel="noopener" title="enhanced contrast for high-contrast preference" class="api-pill"><code>prefers-contrast</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="Windows High Contrast Mode with system colors" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
@@ -135,17 +138,20 @@
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use heading levels in order (<code>h1</code> → <code>h2</code> → <code>h3</code>). Do not skip levels.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Headings create the document outline used by screen readers for navigation.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>&lt;blockquote&gt;</code> is announced as a quote by assistive technology.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>&lt;code&gt;</code> is announced as code — no extra ARIA needed.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>&lt;blockquote&gt;</code> is announced as a quote by assistive technology — no extra ARIA needed.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>&lt;code&gt;</code> is announced as code — no extra ARIA needed.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>prefers-contrast: more</code> — removes tight letter-spacing, adds outline to inline code, thickens blockquote border, promotes muted text to foreground color.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>forced-colors: active</code> — blockquote border and inline code adapt to system colors.</p>
 
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• These are utility classes for prose content — not a component with variants/sizes.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The <code>.h1</code>–<code>.h4</code> classes allow applying heading styles to non-heading elements when semantic headings aren't appropriate.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Typography classes compose freely with other components (Card content, Dialog body, Alert description).</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>text-wrap: balance</code> is used on headings for better visual line distribution.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>text-wrap: pretty</code> is used on paragraphs for orphan prevention.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>text-wrap: balance</code> is used on all headings (h1–h4) for better visual line distribution.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>text-wrap: pretty</code> is used on paragraphs and lead text for orphan prevention.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>hanging-punctuation</code> is used on blockquotes for optical quote alignment.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Blockquote uses logical properties (<code>border-inline-start</code>, <code>padding-inline-start</code>) for automatic RTL support.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• For lists, use the List component (<code>list.css</code>) — typography does not ship its own list styles.</p>
             <p class="text-muted-foreground" style="margin:0 0 0;">• For prose tables, use the Table component (<code>table.css</code>) — typography does not ship its own table styles.</p>
           </div>
@@ -254,6 +260,54 @@
           <pre><code class="language-markup">&lt;code class="code"&gt;default-semantic-tokens.css&lt;/code&gt;</code></pre>
         </div>
 
+        <!-- Prose Composition -->
+        <p class="text-sm font-medium mb-2 mt-8">Prose Composition</p>
+        <p class="text-xs text-muted-foreground mb-3">All typography classes combined in a full prose layout — matching the shadcn/ui demo.</p>
+        <div class="preview" style="text-align:left;padding:2.5rem;">
+          <div style="max-width:38rem;margin:0 auto;">
+            <h1 class="h1" style="text-align:center;">Taxing Laughter: The Joke Tax Chronicles</h1>
+            <p class="p">Once upon a time, in a far-off land, there was a very lazy king who spent all day lounging on his throne. One day, his advisors came to him with a problem: the kingdom was running out of money.</p>
+            <h2 class="h2">The King's Plan</h2>
+            <p class="p">The king thought long and hard, and finally came up with <a href="#" style="text-decoration:underline;text-underline-offset:4px;">a brilliant plan</a>: he would tax the jokes in the kingdom.</p>
+            <blockquote class="blockquote">
+              <p>"After all," he said, "everyone enjoys a good joke, so it's only fair that they should pay for the privilege."</p>
+            </blockquote>
+            <h3 class="h3">The Joke Tax</h3>
+            <p class="p">The king's subjects were not amused. They grumbled and complained, but the king was firm:</p>
+            <ul class="list" style="margin:1.5rem 0 1.5rem 1.5rem;list-style:disc;">
+              <li style="margin-top:0.5rem;">1st level of puns: 5 gold coins</li>
+              <li style="margin-top:0.5rem;">2nd level of jokes: 10 gold coins</li>
+              <li style="margin-top:0.5rem;">3rd level of one-liners: 20 gold coins</li>
+            </ul>
+            <p class="p">As a result, people stopped telling jokes, and the kingdom fell into a gloom. But there was one person who refused to let the king's foolishness get him down: a court jester named Jokester.</p>
+            <h3 class="h3">Jokester's Revolt</h3>
+            <p class="p">Jokester began sneaking into the castle in the middle of the night and leaving jokes all over the place: under the king's pillow, in his soup, even in the royal toilet. The king was furious, but he couldn't seem to stop Jokester.</p>
+            <p class="p">And then, one day, the people of the kingdom discovered that the jokes left by Jokester were so funny that they couldn't help but laugh. And once they started laughing, they couldn't stop.</p>
+            <h3 class="h3">The People's Rebellion</h3>
+            <p class="p">The people of the kingdom, feeling uplifted by the laughter, started to tell jokes and puns again, and soon the entire kingdom was in on the joke.</p>
+            <p class="p">The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax. Jokester was declared a hero, and the kingdom lived happily ever after.</p>
+            <p class="p">The moral of the story is: never underestimate the power of a good laugh and always be careful of bad ideas.</p>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;h1 class="h1" style="text-align:center;"&gt;Taxing Laughter&lt;/h1&gt;
+&lt;p class="p"&gt;Once upon a time...&lt;/p&gt;
+&lt;h2 class="h2"&gt;The King's Plan&lt;/h2&gt;
+&lt;p class="p"&gt;The king thought long and hard...&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+  &lt;p&gt;"After all," he said...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 class="h3"&gt;The Joke Tax&lt;/h3&gt;
+&lt;ul class="list"&gt;
+  &lt;li&gt;1st level of puns: 5 gold coins&lt;/li&gt;
+  &lt;li&gt;2nd level of jokes: 10 gold coins&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+
         <!-- Spec link -->
 
         <!-- -- CSS --------------------------------------- -->
@@ -312,6 +366,7 @@
     font-size: 1.25rem;
     font-weight: 600;
     line-height: 1.4;
+    text-wrap: balance;
     color: var(--foreground);
   }
 
@@ -330,6 +385,7 @@
     font-size: 1.25rem;
     line-height: 1.6;
     color: var(--muted-foreground);
+    text-wrap: pretty;
   }
 
   /* -- Large -------------------------------------------------- */
@@ -356,8 +412,8 @@
   /* -- Blockquote --------------------------------------------- */
   .blockquote {
     margin-top: 1.5rem;
-    border-left: 2px solid var(--border);
-    padding-left: 1.5rem;
+    border-inline-start: 2px solid var(--border);
+    padding-inline-start: 1.5rem;
     font-style: italic;
     hanging-punctuation: first last;
     color: var(--foreground);
@@ -375,6 +431,24 @@
     font-size: 0.875em;
     font-weight: 600;
     color: var(--foreground);
+  }
+
+  /* -- Accessibility ------------------------------------------ */
+
+  @media (prefers-contrast: more) {
+    .h1, .h2, .h3, .h4 { letter-spacing: 0; }
+    .blockquote { border-inline-start-width: 3px; }
+    .code { outline: 1px solid var(--border); }
+    .muted { color: var(--foreground); }
+  }
+
+  @media (forced-colors: active) {
+    .blockquote { border-inline-start-color: CanvasText; }
+    .code {
+      background: Canvas;
+      outline: 1px solid CanvasText;
+      color: CanvasText;
+    }
   }
 }</code></pre>
           </div>
@@ -428,6 +502,9 @@ Pure CSS — no JavaScript or ARIA required.
 - [`text-wrap: balance`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap) — balanced line wrapping for headings
 - [`text-wrap: pretty`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap) — orphan prevention for body text
 - [`hanging-punctuation`](https://developer.mozilla.org/en-US/docs/Web/CSS/hanging-punctuation) — optical quote alignment for blockquotes
+- [Logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values) — `border-inline-start`, `padding-inline-start` for RTL support
+- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — enhanced contrast for high-contrast preference
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — Windows High Contrast Mode with system colors
 
 ---
 
@@ -480,12 +557,32 @@ Pure CSS — no JavaScript or ARIA required.
 
 ---
 
+## Classes
+
+| Class | Element | Description |
+|---|---|---|
+| `.h1` | `<h1>` or any | 2.25rem extrabold heading, tight tracking, balanced wrapping |
+| `.h2` | `<h2>` or any | 1.875rem semibold heading with bottom border |
+| `.h3` | `<h3>` or any | 1.5rem semibold heading |
+| `.h4` | `<h4>` or any | 1.25rem semibold heading |
+| `.p` | `<p>` | Body text, 1.75 line-height, auto-spacing between siblings |
+| `.lead` | `<p>` | 1.25rem muted intro paragraph |
+| `.large` | `<div>` or any | 1.125rem semibold text |
+| `.small` | `<small>` or any | 0.875rem medium text, line-height 1 |
+| `.muted` | `<p>` or any | 0.875rem muted-foreground text |
+| `.blockquote` | `<blockquote>` | Italic block with inline-start border, hanging punctuation |
+| `.code` | `<code>` | Monospace inline code with muted background |
+
+---
+
 ## Accessibility
 
 - Use heading levels in order (`h1` → `h2` → `h3`). Do not skip levels.
 - Headings create the document outline used by screen readers for navigation.
-- `<blockquote>` is announced as a quote by assistive technology.
+- `<blockquote>` is announced as a quote by assistive technology — no extra ARIA needed.
 - `<code>` is announced as code — no extra ARIA needed.
+- `prefers-contrast: more` — removes tight letter-spacing on headings, adds outline to inline code, thickens blockquote border, and promotes muted text to foreground color.
+- `forced-colors: active` — blockquote border and inline code adapt to system colors (`CanvasText`, `Canvas`).
 
 ---
 
@@ -494,7 +591,10 @@ Pure CSS — no JavaScript or ARIA required.
 - These are utility classes for prose content — not a component with variants/sizes.
 - The `.h1`–`.h4` classes allow applying heading styles to non-heading elements when semantic headings aren't appropriate.
 - Typography classes compose freely with other components (Card content, Dialog body, Alert description).
-- `text-wrap: balance` is used on headings for better visual line distribution.
+- `text-wrap: balance` is used on all headings (h1–h4) for better visual line distribution.
+- `text-wrap: pretty` is used on paragraphs and lead text for orphan prevention.
+- `hanging-punctuation: first last` is used on blockquotes for optical quote alignment.
+- Blockquote uses `border-inline-start` / `padding-inline-start` (logical properties) for automatic RTL support.
 - For lists, use the List component (`list.css`) — typography does not ship its own list styles.
 - For prose tables, use the Table component (`table.css`) — typography does not ship its own table styles.
 </script>

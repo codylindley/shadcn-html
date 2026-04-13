@@ -6,7 +6,7 @@
     align-items: center;
     gap: 0.0625rem;
 
-    /* Propagate outline variant to child toggles */
+    /* -- Outline variant: propagate border + shadow to children -- */
     &[data-variant="outline"] > .toggle {
       border: 1px solid var(--input);
       background: transparent;
@@ -23,46 +23,102 @@
       }
     }
 
-    /* Propagate sizes to child toggles */
-    &[data-size="sm"] > .toggle  { height: 2rem;  padding: 0 0.375rem; min-width: 2rem; }
-    &[data-size="lg"] > .toggle  { height: 2.5rem; padding: 0 0.625rem; min-width: 2.5rem; }
+    /* Collapse double borders on connected outline items */
+    &[data-variant="outline"]:not([data-spacing]) > .toggle:not(:first-child) {
+      margin-inline-start: -1px;
+    }
 
-    /* Vertical orientation */
-    &[aria-orientation="vertical"] {
+    &[data-variant="outline"]:not([data-spacing])[data-orientation="vertical"] > .toggle:not(:first-child) {
+      margin-inline-start: 0;
+      margin-block-start: -1px;
+    }
+
+    /* -- Sizes: propagate to child toggles ---------------------- */
+    &[data-size="sm"] > .toggle {
+      height: 2rem;
+      padding: 0 0.375rem;
+      min-width: 2rem;
+
+      & svg { width: 0.875rem; height: 0.875rem; }
+    }
+
+    &[data-size="lg"] > .toggle {
+      height: 2.5rem;
+      padding: 0 0.625rem;
+      min-width: 2.5rem;
+
+      & svg { width: 1.125rem; height: 1.125rem; }
+    }
+
+    /* -- Vertical orientation ----------------------------------- */
+    &[data-orientation="vertical"] {
       flex-direction: column;
     }
 
-    /* Connected borders: merge adjacent toggle borders */
+    /* -- Connected borders: merge adjacent toggle radii --------- */
     & > .toggle:not(:first-child) {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+      border-start-start-radius: 0;
+      border-end-start-radius: 0;
     }
 
     & > .toggle:not(:last-child) {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+      border-start-end-radius: 0;
+      border-end-end-radius: 0;
     }
 
-    &[aria-orientation="vertical"] {
+    &[data-orientation="vertical"] {
       & > .toggle:not(:first-child) {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: var(--radius-md);
+        border-start-start-radius: 0;
+        border-start-end-radius: 0;
+        border-end-start-radius: var(--radius-md);
       }
 
       & > .toggle:not(:last-child) {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        border-top-right-radius: var(--radius-md);
+        border-end-start-radius: 0;
+        border-end-end-radius: 0;
+        border-start-end-radius: var(--radius-md);
       }
     }
 
-    /* Spacing variant — adds gap and restores individual radii */
+    /* -- Spacing: adds gap and restores individual radii --------- */
     &[data-spacing] {
       gap: 0.25rem;
 
       & > .toggle {
         border-radius: var(--radius-md);
+      }
+    }
+
+    /* -- Disabled group ----------------------------------------- */
+    &[data-disabled] {
+      pointer-events: none;
+
+      & > .toggle {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  /* -- Accessibility -------------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    .toggle-group .toggle {
+      transition: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .toggle-group > .toggle {
+      border-color: ButtonBorder;
+
+      &[aria-pressed="true"] {
+        background-color: Highlight;
+        color: HighlightText;
+        border-color: Highlight;
+      }
+
+      &:focus-visible {
+        outline-color: Highlight;
       }
     }
   }
