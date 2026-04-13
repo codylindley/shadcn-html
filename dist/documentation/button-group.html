@@ -110,6 +110,10 @@
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/group_role" target="_blank" rel="noopener" title="groups related buttons" class="api-pill"><code>role=&quot;group&quot;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label" target="_blank" rel="noopener" title="accessible name for the group" class="api-pill"><code>aria-label</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role" target="_blank" rel="noopener" title="visually divides buttons within a group" class="api-pill"><code>role=&quot;separator&quot;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has" target="_blank" rel="noopener" title="restores radius on buttons adjacent to separators" class="api-pill"><code>:has()</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values" target="_blank" rel="noopener" title="RTL support via logical properties" class="api-pill"><code>Logical properties</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="maps separator to system ButtonText" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
@@ -126,6 +130,8 @@
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Button groups work best with the <code>outline</code> variant — the connected borders create a cohesive unit.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Adjacent button borders collapse so only one border renders between buttons.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The group removes internal border-radii to create seamless joins.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>&lt;hr role=&quot;separator&quot;&gt;</code> to visually divide non-outline buttons.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Uses CSS logical properties for automatic RTL support.</p>
             <p class="text-muted-foreground" style="margin:0 0 0;">• No JavaScript required — this is purely a CSS layout component.</p>
           </div>
         </details>
@@ -199,6 +205,93 @@
 
         <!-- Spec link -->
 
+        <!-- Separator -->
+        <p class="text-sm font-medium mb-2 mt-8">Separator</p>
+        <p class="text-xs text-muted-foreground mb-3">Use <code>&lt;hr role="separator"&gt;</code> to visually divide non-outline buttons. Outline buttons don't need separators since they have visible borders.</p>
+        <div class="preview">
+          <div class="btn-group" role="group" aria-label="Clipboard">
+            <button class="btn" data-variant="default">Copy</button>
+            <hr role="separator">
+            <button class="btn" data-variant="default">Paste</button>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;div class="btn-group" role="group" aria-label="Clipboard"&gt;
+  &lt;button class="btn" data-variant="default"&gt;Copy&lt;/button&gt;
+  &lt;hr role="separator"&gt;
+  &lt;button class="btn" data-variant="default"&gt;Paste&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Sizes -->
+        <p class="text-sm font-medium mb-2 mt-8">Sizes</p>
+        <p class="text-xs text-muted-foreground mb-3">Control button size with <code>data-size</code> on individual buttons.</p>
+        <div class="preview">
+          <div class="flex flex-col gap-4 items-center">
+            <div class="btn-group" role="group" aria-label="Small actions">
+              <button class="btn" data-variant="outline" data-size="sm">Save</button>
+              <button class="btn" data-variant="outline" data-size="sm">Edit</button>
+              <button class="btn" data-variant="outline" data-size="sm" aria-label="More"><i data-lucide="ellipsis"></i></button>
+            </div>
+            <div class="btn-group" role="group" aria-label="Default actions">
+              <button class="btn" data-variant="outline">Save</button>
+              <button class="btn" data-variant="outline">Edit</button>
+              <button class="btn" data-variant="outline" data-size="icon" aria-label="More"><i data-lucide="ellipsis"></i></button>
+            </div>
+            <div class="btn-group" role="group" aria-label="Large actions">
+              <button class="btn" data-variant="outline" data-size="lg">Save</button>
+              <button class="btn" data-variant="outline" data-size="lg">Edit</button>
+              <button class="btn" data-variant="outline" data-size="icon-lg" aria-label="More"><i data-lucide="ellipsis"></i></button>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;!-- Small --&gt;
+&lt;div class="btn-group" role="group" aria-label="Actions"&gt;
+  &lt;button class="btn" data-variant="outline" data-size="sm"&gt;Save&lt;/button&gt;
+  &lt;button class="btn" data-variant="outline" data-size="sm"&gt;Edit&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Large --&gt;
+&lt;div class="btn-group" role="group" aria-label="Actions"&gt;
+  &lt;button class="btn" data-variant="outline" data-size="lg"&gt;Save&lt;/button&gt;
+  &lt;button class="btn" data-variant="outline" data-size="lg"&gt;Edit&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Split -->
+        <p class="text-sm font-medium mb-2 mt-8">Split button</p>
+        <p class="text-xs text-muted-foreground mb-3">A primary action button with a dropdown trigger.</p>
+        <div class="preview">
+          <div class="btn-group" role="group" aria-label="Split action">
+            <button class="btn" data-variant="outline">Save</button>
+            <hr role="separator">
+            <button class="btn" data-variant="outline" data-size="icon" aria-label="More options"><i data-lucide="chevron-down"></i></button>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;div class="btn-group" role="group" aria-label="Split action"&gt;
+  &lt;button class="btn" data-variant="outline"&gt;Save&lt;/button&gt;
+  &lt;hr role="separator"&gt;
+  &lt;button class="btn" data-variant="outline" data-size="icon"
+          aria-label="More options"&gt;
+    &lt;i data-lucide="chevron-down"&gt;&lt;/i&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
         <!-- -- CSS --------------------------------------- -->
         <section style="margin-top:3rem;" id="source-css">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/button-group/button-group.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
@@ -209,22 +302,34 @@
 @layer components {
   .btn-group {
     display: inline-flex;
-    align-items: center;
+    align-items: stretch;
 
     /* Collapse borders between adjacent buttons */
     &amp; &gt; .btn + .btn {
-      margin-left: -1px;
+      margin-inline-start: -1px;
     }
 
     /* Remove internal radii for connected appearance */
-    &amp; &gt; .btn:not(:first-child) {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+    &amp; &gt; .btn:not(:first-child):not(:has(+ [role=&quot;separator&quot;])) {
+      border-start-start-radius: 0;
+      border-end-start-radius: 0;
     }
 
-    &amp; &gt; .btn:not(:last-child) {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+    &amp; &gt; .btn:not(:last-child):not([role=&quot;separator&quot;] + .btn) {
+      border-start-end-radius: 0;
+      border-end-end-radius: 0;
+    }
+
+    /* Buttons after a separator get start radii back */
+    &amp; &gt; [role=&quot;separator&quot;] + .btn {
+      border-start-start-radius: var(--radius-md);
+      border-end-start-radius: var(--radius-md);
+    }
+
+    /* Buttons before a separator get end radii back */
+    &amp; &gt; .btn:has(+ [role=&quot;separator&quot;]) {
+      border-start-end-radius: var(--radius-md);
+      border-end-end-radius: var(--radius-md);
     }
 
     /* Ensure hovered/focused button stacks above its neighbors */
@@ -234,36 +339,59 @@
       z-index: 1;
     }
 
+    /* -- Separator ------------------------------------------- */
+    &amp; &gt; [role=&quot;separator&quot;] {
+      width: 1px;
+      align-self: stretch;
+      background: var(--border);
+      border: 0;
+      margin: 0;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
     /* -- Vertical orientation -------------------------------- */
     &amp;[data-orientation=&quot;vertical&quot;] {
       flex-direction: column;
+      align-items: stretch;
 
       &amp; &gt; .btn + .btn {
-        margin-left: 0;
+        margin-inline-start: 0;
         margin-top: -1px;
       }
 
       &amp; &gt; .btn:not(:first-child) {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: var(--radius-md);
+        border-start-start-radius: 0;
+        border-start-end-radius: 0;
+        border-end-start-radius: var(--radius-md);
       }
 
       &amp; &gt; .btn:not(:last-child) {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        border-top-right-radius: var(--radius-md);
+        border-end-start-radius: 0;
+        border-end-end-radius: 0;
+        border-start-end-radius: var(--radius-md);
       }
 
       &amp; &gt; .btn:first-child {
-        border-top-left-radius: var(--radius-md);
-        border-top-right-radius: var(--radius-md);
+        border-start-start-radius: var(--radius-md);
+        border-start-end-radius: var(--radius-md);
       }
 
       &amp; &gt; .btn:last-child {
-        border-bottom-left-radius: var(--radius-md);
-        border-bottom-right-radius: var(--radius-md);
+        border-end-start-radius: var(--radius-md);
+        border-end-end-radius: var(--radius-md);
       }
+
+      &amp; &gt; [role=&quot;separator&quot;] {
+        width: auto;
+        height: 1px;
+      }
+    }
+  }
+
+  @media (forced-colors: active) {
+    .btn-group &gt; [role=&quot;separator&quot;] {
+      background: ButtonText;
     }
   }
 }</code></pre>
@@ -312,6 +440,10 @@
 ## Native Web APIs
 - [`role="group"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/group_role) — groups related buttons
 - [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) — accessible name for the group
+- [`role="separator"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role) — visually divides buttons within a group
+- [`:has()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) — restores border-radius on buttons adjacent to separators
+- [Logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values) — `margin-inline-start`, `border-start-start-radius` for RTL support
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — maps separator to system `ButtonText` color
 
 ---
 
@@ -335,6 +467,15 @@
 </div>
 ```
 
+### With separator
+```html
+<div class="btn-group" role="group" aria-label="Actions">
+  <button class="btn" data-variant="default">Copy</button>
+  <hr role="separator">
+  <button class="btn" data-variant="default">Paste</button>
+</div>
+```
+
 ---
 
 ## Accessibility
@@ -343,6 +484,7 @@
 |-----------|---------|---------|
 | `role="group"` | Container | Groups related buttons |
 | `aria-label` | Container | Accessible name for the group |
+| `role="separator"` | `<hr>` | Visually divides buttons |
 
 ---
 
@@ -351,6 +493,9 @@
 - Button groups work best with the `outline` variant — the connected borders create a cohesive unit.
 - Adjacent button borders collapse so only one border renders between buttons.
 - The group removes internal border-radii to create seamless joins.
+- Use `<hr role="separator">` to visually divide non-outline buttons (e.g., `default` variant).
+- Outline buttons already have visible borders and don't need separators.
+- Uses CSS logical properties (`margin-inline-start`, `border-start-*-radius`) for automatic RTL support.
 - No JavaScript required — this is purely a CSS layout component.
 </script>
 </body>

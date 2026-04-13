@@ -3,22 +3,34 @@
 @layer components {
   .btn-group {
     display: inline-flex;
-    align-items: center;
+    align-items: stretch;
 
     /* Collapse borders between adjacent buttons */
     & > .btn + .btn {
-      margin-left: -1px;
+      margin-inline-start: -1px;
     }
 
     /* Remove internal radii for connected appearance */
-    & > .btn:not(:first-child) {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+    & > .btn:not(:first-child):not(:has(+ [role="separator"])) {
+      border-start-start-radius: 0;
+      border-end-start-radius: 0;
     }
 
-    & > .btn:not(:last-child) {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+    & > .btn:not(:last-child):not([role="separator"] + .btn) {
+      border-start-end-radius: 0;
+      border-end-end-radius: 0;
+    }
+
+    /* Buttons after a separator get start radii back */
+    & > [role="separator"] + .btn {
+      border-start-start-radius: var(--radius-md);
+      border-end-start-radius: var(--radius-md);
+    }
+
+    /* Buttons before a separator get end radii back */
+    & > .btn:has(+ [role="separator"]) {
+      border-start-end-radius: var(--radius-md);
+      border-end-end-radius: var(--radius-md);
     }
 
     /* Ensure hovered/focused button stacks above its neighbors */
@@ -28,36 +40,59 @@
       z-index: 1;
     }
 
+    /* -- Separator ------------------------------------------- */
+    & > [role="separator"] {
+      width: 1px;
+      align-self: stretch;
+      background: var(--border);
+      border: 0;
+      margin: 0;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
     /* -- Vertical orientation -------------------------------- */
     &[data-orientation="vertical"] {
       flex-direction: column;
+      align-items: stretch;
 
       & > .btn + .btn {
-        margin-left: 0;
+        margin-inline-start: 0;
         margin-top: -1px;
       }
 
       & > .btn:not(:first-child) {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: var(--radius-md);
+        border-start-start-radius: 0;
+        border-start-end-radius: 0;
+        border-end-start-radius: var(--radius-md);
       }
 
       & > .btn:not(:last-child) {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        border-top-right-radius: var(--radius-md);
+        border-end-start-radius: 0;
+        border-end-end-radius: 0;
+        border-start-end-radius: var(--radius-md);
       }
 
       & > .btn:first-child {
-        border-top-left-radius: var(--radius-md);
-        border-top-right-radius: var(--radius-md);
+        border-start-start-radius: var(--radius-md);
+        border-start-end-radius: var(--radius-md);
       }
 
       & > .btn:last-child {
-        border-bottom-left-radius: var(--radius-md);
-        border-bottom-right-radius: var(--radius-md);
+        border-end-start-radius: var(--radius-md);
+        border-end-end-radius: var(--radius-md);
       }
+
+      & > [role="separator"] {
+        width: auto;
+        height: 1px;
+      }
+    }
+  }
+
+  @media (forced-colors: active) {
+    .btn-group > [role="separator"] {
+      background: ButtonText;
     }
   }
 }
