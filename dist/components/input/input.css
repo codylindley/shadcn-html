@@ -27,6 +27,18 @@
       cursor: not-allowed;
     }
 
+    /* -- Readonly state -------------------------------------- */
+    &:read-only:not([type="file"]) {
+      background: var(--muted);
+      cursor: default;
+      opacity: 0.7;
+
+      &:focus {
+        border-color: var(--input);
+        box-shadow: var(--shadow-xs);
+      }
+    }
+
     /* -- Invalid state --------------------------------------- */
     &:is([aria-invalid="true"], :user-invalid) {
       border-color: var(--destructive);
