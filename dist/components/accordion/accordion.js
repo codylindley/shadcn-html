@@ -1,7 +1,8 @@
 // -- Accordion -----------------------------------------------
 // Single-open accordion behavior using native <details> elements.
 
-document.querySelectorAll('.accordion[data-type="single"]:not([data-init])').forEach((accordion) => {
+function init() {
+  document.querySelectorAll('.accordion[data-type="single"]:not([data-init])').forEach((accordion) => {
   accordion.dataset.init = '';
   const items = accordion.querySelectorAll('.accordion-item');
   const collapsible = accordion.hasAttribute('data-collapsible');
@@ -18,3 +19,7 @@ document.querySelectorAll('.accordion[data-type="single"]:not([data-init])').for
     });
   });
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

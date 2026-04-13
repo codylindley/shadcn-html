@@ -1,7 +1,8 @@
 // -- Context Menu ---------------------------------------------
 // Right-click context menu using the Popover API.
 
-document.querySelectorAll('[data-context-menu]:not([data-init])').forEach((trigger) => {
+function init() {
+  document.querySelectorAll('[data-context-menu]:not([data-init])').forEach((trigger) => {
   trigger.dataset.init = '';
   const menu = document.getElementById(trigger.dataset.contextMenu);
   if (!menu) return;
@@ -16,3 +17,7 @@ document.querySelectorAll('[data-context-menu]:not([data-init])').forEach((trigg
     if (e.target.closest('.context-menu-item')) menu.hidePopover();
   });
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

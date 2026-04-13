@@ -2,6 +2,7 @@
 // Wires [data-alert-dialog-trigger] buttons to <dialog class="alert-dialog">.
 // Unlike regular dialogs: no backdrop-close, Escape key blocked.
 
+function init() {
 /* Wire triggers */
 document.querySelectorAll('[data-alert-dialog-trigger]:not([data-init])').forEach((trigger) => {
   trigger.dataset.init = '';
@@ -33,3 +34,7 @@ document.querySelectorAll('dialog.alert-dialog:not([data-init])').forEach((dialo
     if (dialog._trigger) dialog._trigger.focus();
   });
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

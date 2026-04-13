@@ -108,8 +108,10 @@
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hr" target="_blank" rel="noopener" title="thematic break / horizontal rule" class="api-pill"><code>&lt;hr&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role" target="_blank" rel="noopener" title="ARIA separator role for non-`&lt;hr&gt;` elements" class="api-pill"><code>role=&quot;separator&quot;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hr" target="_blank" rel="noopener" title="thematic break / horizontal rule with implicit role=&quot;separator&quot;" class="api-pill"><code>&lt;hr&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role" target="_blank" rel="noopener" title="ARIA separator role for non-&lt;hr&gt; elements (vertical orientation)" class="api-pill"><code>role=&quot;separator&quot;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="Windows High Contrast Mode support with system colors" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast" target="_blank" rel="noopener" title="increased contrast when requested by the user" class="api-pill"><code>prefers-contrast</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
@@ -128,10 +130,19 @@
               <code>vertical</code><span class="text-muted-foreground">Vertical — &lt;div role=&quot;separator&quot;&gt;</span>
             </div>
 
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">ARIA</p>
+            <div style="display:grid;grid-template-columns:auto auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>role="separator"</code><span class="text-muted-foreground">&lt;div&gt;</span><span class="text-muted-foreground">Required on vertical separators</span>
+              <code>role="none"</code><span class="text-muted-foreground">&lt;hr&gt;</span><span class="text-muted-foreground">Marks decorative separators — hidden from AT</span>
+              <code>aria-hidden="true"</code><span class="text-muted-foreground">&lt;hr&gt;</span><span class="text-muted-foreground">Alternative for decorative separators</span>
+            </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The vertical separator requires the parent to be a flex container.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The labeled separator uses a flex layout with two <code>&lt;hr&gt;</code> elements flanking the label text.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Decorative separators should use <code>role="none"</code> or <code>aria-hidden="true"</code>.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• In <code>forced-colors</code> mode, the separator uses <code>CanvasText</code> system color.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• In <code>prefers-contrast: more</code> mode, thickness doubles to 2px.</p>
             <p class="text-muted-foreground" style="margin:0 0 0;">• Separators are purely visual — no JavaScript required.</p>
           </div>
         </details>
@@ -206,6 +217,103 @@
 &lt;/div&gt;</code></pre>
         </div>
 
+        <!-- Menu -->
+        <p class="text-sm font-medium mb-2 mt-8">Menu</p>
+        <p class="text-xs text-muted-foreground mb-3">Vertical separators between menu items with descriptions.</p>
+        <div class="preview">
+          <div style="display:flex;align-items:stretch;gap:0;width:100%;max-width:32rem;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;">
+            <div style="flex:1;padding:1rem;">
+              <p style="font-weight:600;font-size:0.875rem;margin:0;">Settings</p>
+              <p class="text-xs text-muted-foreground" style="margin:0.25rem 0 0;">Manage preferences</p>
+            </div>
+            <div class="separator" data-orientation="vertical" role="separator"></div>
+            <div style="flex:1;padding:1rem;">
+              <p style="font-weight:600;font-size:0.875rem;margin:0;">Account</p>
+              <p class="text-xs text-muted-foreground" style="margin:0.25rem 0 0;">Profile &amp; security</p>
+            </div>
+            <div class="separator" data-orientation="vertical" role="separator"></div>
+            <div style="flex:1;padding:1rem;">
+              <p style="font-weight:600;font-size:0.875rem;margin:0;">Help</p>
+              <p class="text-xs text-muted-foreground" style="margin:0.25rem 0 0;">Support &amp; docs</p>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;div style="display:flex;align-items:stretch;"&gt;
+  &lt;div style="flex:1;padding:1rem;"&gt;
+    &lt;p&gt;Settings&lt;/p&gt;
+    &lt;p&gt;Manage preferences&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="separator" data-orientation="vertical" role="separator"&gt;&lt;/div&gt;
+  &lt;div style="flex:1;padding:1rem;"&gt;
+    &lt;p&gt;Account&lt;/p&gt;
+    &lt;p&gt;Profile &amp;amp; security&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="separator" data-orientation="vertical" role="separator"&gt;&lt;/div&gt;
+  &lt;div style="flex:1;padding:1rem;"&gt;
+    &lt;p&gt;Help&lt;/p&gt;
+    &lt;p&gt;Support &amp;amp; docs&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- List -->
+        <p class="text-sm font-medium mb-2 mt-8">List</p>
+        <p class="text-xs text-muted-foreground mb-3">Horizontal separators between list items.</p>
+        <div class="preview">
+          <div style="width:100%;max-width:20rem;text-align:left;">
+            <div class="flex items-center justify-between" style="padding:0.75rem 0;">
+              <span style="font-weight:600;font-size:0.875rem;">Item 1</span>
+              <span class="text-sm text-muted-foreground">Value 1</span>
+            </div>
+            <hr class="separator">
+            <div class="flex items-center justify-between" style="padding:0.75rem 0;">
+              <span style="font-weight:600;font-size:0.875rem;">Item 2</span>
+              <span class="text-sm text-muted-foreground">Value 2</span>
+            </div>
+            <hr class="separator">
+            <div class="flex items-center justify-between" style="padding:0.75rem 0;">
+              <span style="font-weight:600;font-size:0.875rem;">Item 3</span>
+              <span class="text-sm text-muted-foreground">Value 3</span>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;div&gt;
+  &lt;div&gt;Item 1 — Value 1&lt;/div&gt;
+  &lt;hr class="separator"&gt;
+  &lt;div&gt;Item 2 — Value 2&lt;/div&gt;
+  &lt;hr class="separator"&gt;
+  &lt;div&gt;Item 3 — Value 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Decorative -->
+        <p class="text-sm font-medium mb-2 mt-8">Decorative</p>
+        <p class="text-xs text-muted-foreground mb-3">A purely visual divider hidden from assistive technology using <code>role="none"</code>.</p>
+        <div class="preview">
+          <div style="width:100%;max-width:24rem;text-align:left;">
+            <p class="text-sm" style="margin:0;">Content above</p>
+            <hr class="separator" role="none" style="margin:1rem 0;">
+            <p class="text-sm" style="margin:0;">Content below</p>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;hr class="separator" role="none"&gt;</code></pre>
+        </div>
+
         <!-- Spec link -->
 
         <!-- -- CSS --------------------------------------- -->
@@ -232,6 +340,12 @@
       width: 1px;
       align-self: stretch;
     }
+
+    /* Decorative — hidden from assistive technology */
+    &amp;[aria-hidden=&quot;true&quot;],
+    &amp;[role=&quot;none&quot;] {
+      /* No visual change — purely semantic */
+    }
   }
 
   /* -- Labeled separator ------------------------------------- */
@@ -250,6 +364,25 @@
       letter-spacing: 0.05em;
       white-space: nowrap;
       flex-shrink: 0;
+    }
+  }
+
+  /* -- Accessibility ----------------------------------------- */
+  @media (forced-colors: active) {
+    .separator {
+      background: CanvasText;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .separator {
+      background: var(--foreground);
+      height: 2px;
+
+      &amp;[data-orientation=&quot;vertical&quot;] {
+        width: 2px;
+        height: auto;
+      }
     }
   }
 }</code></pre>
@@ -296,8 +429,10 @@
 ---
 
 ## Native Web APIs
-- [`<hr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hr) — thematic break / horizontal rule
-- [`role="separator"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role) — ARIA separator role for non-`<hr>` elements
+- [`<hr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hr) — thematic break / horizontal rule with implicit `role="separator"`
+- [`role="separator"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role) — ARIA separator role for non-`<hr>` elements (vertical orientation)
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — Windows High Contrast Mode support with system colors
+- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — increased contrast when requested by the user
 
 ---
 
@@ -322,29 +457,62 @@
 </div>
 ```
 
+### Decorative (hidden from screen readers)
+```html
+<hr class="separator" role="none">
+```
+
+### In a list
+```html
+<ul>
+  <li>Item 1</li>
+  <li role="separator"><hr class="separator"></li>
+  <li>Item 2</li>
+</ul>
+```
+
+### Between menu items
+```html
+<div class="flex items-center gap-4" style="height:1.25rem;">
+  <span>Blog</span>
+  <div class="separator" data-orientation="vertical" role="separator"></div>
+  <span>Docs</span>
+  <div class="separator" data-orientation="vertical" role="separator"></div>
+  <span>Source</span>
+</div>
+```
+
 ---
 
 ## Variants
 
-| `data-orientation` | Direction | Element |
-|--------------------|-----------|---------|
-| *(default)*        | Horizontal | `<hr>` |
-| `vertical`         | Vertical  | `<div role="separator">` |
+| `data-orientation` | Direction  | Element                   |
+|--------------------|------------|---------------------------|
+| *(default)*        | Horizontal | `<hr>`                    |
+| `vertical`         | Vertical   | `<div role="separator">` |
 
 ---
 
-## Accessibility
+## ARIA
 
-- `<hr>` has implicit `role="separator"` — no extra ARIA needed for horizontal.
-- Vertical separators use `<div role="separator">` since `<hr>` is horizontal-only semantically.
-- Decorative separators can use `role="none"` or `aria-hidden="true"` to hide from screen readers.
+| Attribute          | Element     | Purpose                                           |
+|--------------------|-------------|---------------------------------------------------|
+| `role="separator"` | `<div>`     | Required on vertical separators (non-`<hr>`)      |
+| `role="none"`      | `<hr>`      | Marks decorative separators — hidden from AT      |
+| `aria-hidden="true"`| `<hr>`     | Alternative way to hide decorative separators     |
+| `aria-orientation` | `<div>`     | Implicit from `role="separator"`; defaults to horizontal |
 
 ---
 
 ## Notes
 
+- `<hr>` has implicit `role="separator"` — no extra ARIA needed for horizontal.
+- Vertical separators use `<div role="separator">` since `<hr>` is semantic horizontal only.
+- Decorative separators (purely visual with no semantic meaning) should use `role="none"` or `aria-hidden="true"` to hide from screen readers.
 - The vertical separator requires the parent to be a flex container.
 - The labeled separator uses a flex layout with two `<hr>` elements flanking the label text.
+- In `forced-colors` mode, the separator uses `CanvasText` system color for visibility.
+- In `prefers-contrast: more` mode, the separator uses `--foreground` and doubles in thickness (2px) for visibility.
 - Separators are purely visual — no JavaScript required.
 </script>
 </body>

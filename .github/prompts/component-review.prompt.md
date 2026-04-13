@@ -1,0 +1,89 @@
+---
+description: "Deep-dive review and implementation audit of a component against reference sites and AGENTS.md rules"
+argument-hint: "component name (e.g., typography, tooltip, sidebar)"
+agent: "agent"
+model: ['Claude Opus 4.6 (1M context)(Internal only)']
+---
+
+Review the **$1** component at http://localhost:3000/documentation/$1.html
+
+## 1. Read project rules first
+
+Before making any changes, read these instruction files:
+- `.github/instructions/specifications.instructions.md` (component skill template)
+- `.github/instructions/documentation.instructions.md` (doc page boilerplate)
+- `.github/instructions/tokens.instructions.md` (token boundary rule — components must ONLY use tokens from the allowed list; never invent new `--*` tokens)
+
+## 2. Read the current implementation
+
+If `dist/components/$1/` exists, read in this order:
+1. `dist/components/$1/component-skill.md`
+2. `dist/components/$1/$1.css`
+3. `dist/components/$1/$1.js` (if it exists)
+4. `dist/documentation/$1.html`
+5. `dist/theme/default-semantic-tokens.css` (for available tokens)
+
+If the component folder doesn't exist, this is a **new component** — follow the full creation workflow from AGENTS.md.
+
+## 3. Fetch reference sites
+
+Fetch these to understand the full feature set:
+
+- https://ui.shadcn.com/docs/components/$1
+- https://basecoatui.com/components/$1/
+- https://base-ui.com/react/components/$1
+- https://www.w3.org/WAI/ARIA/apg/patterns/$1/ (if 404, try alternate slugs: e.g., `dialog-modal`, `menu-button`, `listbox`)
+
+If you can't find this component on one of those sites, search modern UI component libraries in this order:
+
+**Tier 1: Headless / Behavior-Only Primitives**
+Radix UI, Ark UI, React Aria, Headless UI, Kobalte, Ariakit, Zag.js, TanStack (Table, Form, Virtual), Base UI
+
+**Tier 2: Copy-Paste / Ownership Model**
+Origin UI, Tremor, Magic UI, Aceternity UI, Catalyst, AlignUI, Untitled UI React, DaisyUI
+
+**Tier 3: Full-Featured Styled Libraries**
+MUI (Material UI), Mantine, Chakra UI, Ant Design, HeroUI, PrimeReact
+
+**Tier 4: Web Components / Framework-Agnostic Runtime**
+Shoelace / Web Awesome, Microsoft FAST, Adobe Spectrum Web Components, Ionic
+
+## 4. Audit
+
+- Audit against [AGENTS.md](../../AGENTS.md) rules and the Native Web APIs page in the documentation — identify every native web API that could replace JS workarounds or improve the component (e.g., `position-area`, `popover`, `<dialog>`, `<details>`, `:has()`, `field-sizing`, `@starting-style`, `commandfor`/`command`, `scroll-snap`, `overscroll-behavior`, `prefers-reduced-motion`, `color-mix()`, `:focus-visible`, `:user-valid`/`:user-invalid`, anchor positioning, etc.).
+- Compare features against the reference sites — every variant, size, state, and composition pattern shown on shadcn/Basecoat must be accounted for. Identify what's missing.
+
+## 5. Implement all changes
+
+- Update the CSS (add missing modern CSS, `prefers-reduced-motion`, any new variants/states)
+- Update or create the JS (if interactive behavior is needed)
+- Rewrite the component-skill.md with full variant tables, ARIA section, keyboard section, and notes
+- Update the doc page: API pills, inline source code, embedded spec markdown
+- If the doc page demos are insufficient, add the missing demo sections
+
+## 6. Complete the full checklist
+
+- Update `dist/documentation/js/layout.js` — add to `NAV` array and `BUILT` set (if new component)
+- Add the new component's `<link>` and `<script>` tags to ALL HTML pages in `dist/documentation/` (if new component)
+- Update `README.md` — add the component to the appropriate category (if new component)
+- Run `npm run docs:build-css` if new Tailwind classes were used
+
+## 7. Verify in the browser
+
+Use the Chrome MCP tools to verify:
+- Navigate to `http://localhost:3000/documentation/$1.html`
+- Take screenshots to verify visual rendering
+- Test every interactive feature (click, keyboard, hover)
+- Toggle dark mode and verify it renders correctly
+- Check the browser console for errors
+
+## 8. Exit criteria
+
+Before finishing, confirm:
+- [ ] `prefers-reduced-motion` is handled in the CSS
+- [ ] No JS is used where a native API (`popover`, `<dialog>`, `<details>`, `commandfor`) would work
+- [ ] The doc page loads without console errors
+- [ ] Dark mode renders correctly
+- [ ] No new `--*` tokens were invented (token boundary rule)
+
+Ask questions only if you have to — make good decisions based on the reference sites and AGENTS.md. Implement everything and verify.

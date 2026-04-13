@@ -2,6 +2,7 @@
 // Scroll-snap carousel with keyboard navigation, prev/next buttons,
 // dot indicators, loop, autoplay, and ARIA.
 
+function init() {
 document.querySelectorAll('.carousel:not([data-init])').forEach((carousel) => {
   carousel.dataset.init = '';
 
@@ -176,3 +177,7 @@ document.querySelectorAll('.carousel:not([data-init])').forEach((carousel) => {
   // ── Initial state ───────────────────────────
   updateState(0);
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

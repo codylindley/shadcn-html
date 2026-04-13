@@ -65,6 +65,7 @@ const renderCalendar = (el, year, month, selectedDay) => {
   grid.innerHTML = html;
 };
 
+function init() {
 document.querySelectorAll('.calendar:not([data-init])').forEach((cal) => {
     cal.dataset.init = '';
     const now = new Date();
@@ -150,3 +151,7 @@ document.querySelectorAll('.calendar:not([data-init])').forEach((cal) => {
       if (next) next.focus();
     });
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

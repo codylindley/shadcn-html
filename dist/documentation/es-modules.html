@@ -145,27 +145,33 @@
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">No <code>import</code>, no <code>export</code></h2>
   <p class="text-sm text-muted-foreground mb-5">
     You'll notice our component modules don't use <code>import</code> or <code>export</code> at all. This is intentional.
-    Each <code>.js</code> file is a <strong>side-effect module</strong> — its entire job is to query the DOM and bind
-    event listeners. There's nothing to export because the module's purpose <em>is</em> its side effect:
-    wiring behavior to HTML elements.
+    Each <code>.js</code> file is a <strong>side-effect module</strong> — it wraps its DOM-querying logic in an
+    <code>init()</code> function, calls it once on load, and sets up a <code>MutationObserver</code> to
+    re-run it whenever the DOM changes. There's nothing to export because the module's purpose <em>is</em>
+    its side effect: wiring behavior to HTML elements.
   </p>
 
   <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;">
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
-      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">dialog.js — the entire file is top-level code</span>
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">dialog.js — init() + MutationObserver pattern</span>
     </div>
     <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript">// No imports — this component has no dependencies
 // No exports — the side effect IS the module
 
-document.querySelectorAll('[data-dialog-trigger]:not([data-init])').forEach((trigger) => {
-  trigger.dataset.init = '';
-  const dialog = document.getElementById(trigger.dataset.dialogTrigger);
-  if (!dialog) return;
-  trigger.addEventListener('click', () => {
-    dialog._trigger = trigger;
-    dialog.showModal();
+function init() {
+  document.querySelectorAll('[data-dialog-trigger]:not([data-init])').forEach((trigger) => {
+    trigger.dataset.init = '';
+    const dialog = document.getElementById(trigger.dataset.dialogTrigger);
+    if (!dialog) return;
+    trigger.addEventListener('click', () => {
+      dialog._trigger = trigger;
+      dialog.showModal();
+    });
   });
-});</code></pre>
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
   </div>
 
   <p class="text-sm text-muted-foreground mb-3">
@@ -184,7 +190,7 @@ document.querySelectorAll('[data-dialog-trigger]:not([data-init])').forEach((tri
   <!-- -- Static vs SPA usage -- -->
   <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Static pages vs. SPAs</h2>
   <p class="text-sm text-muted-foreground mb-5">
-    How you load component JS depends on whether your pages are static or dynamically updated.
+    Component JS works the same way on both static and dynamic pages — load it once and it handles the rest.
   </p>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
@@ -204,10 +210,10 @@ document.querySelectorAll('[data-dialog-trigger]:not([data-init])').forEach((tri
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">SPA / dynamic content</span>
       </div>
       <div style="padding:1.25rem;font-size:0.8125rem;display:flex;flex-direction:column;gap:0.75rem;">
-        <div class="text-muted-foreground">New HTML inserted after page load has no listeners</div>
-        <div class="text-muted-foreground">Re-import the module to initialize new elements</div>
-        <div class="text-muted-foreground">Append <code>?t=Date.now()</code> so the browser re-executes it</div>
-        <div class="text-muted-foreground">Already-initialized elements are skipped automatically</div>
+        <div class="text-muted-foreground">New HTML inserted after page load needs initialization</div>
+        <div class="text-muted-foreground">Each component uses a <code>MutationObserver</code> to watch for new elements</div>
+        <div class="text-muted-foreground">New elements are automatically initialized — no manual re-import needed</div>
+        <div class="text-muted-foreground">Already-initialized elements are skipped via <code>data-init</code> guard</div>
       </div>
     </div>
   </div>
@@ -217,24 +223,31 @@ document.querySelectorAll('[data-dialog-trigger]:not([data-init])').forEach((tri
     just works. No setup, no configuration.
   </p>
   <p class="text-sm text-muted-foreground mb-5">
-    In an SPA or any page that dynamically updates its HTML, the new elements arrive without event
-    listeners. To wire them up, re-import the component module with a cache-busting timestamp —
-    the browser treats the new URL as a fresh module and re-executes the code. Elements that were
-    already initialized are skipped, so nothing gets double-bound:
+    In an SPA or any page that dynamically updates its HTML, new elements are initialized automatically.
+    Each component module sets up a <code>MutationObserver</code> that watches the document for DOM changes
+    and re-runs its initialization logic. The <code>data-init</code> attribute on every initialized element
+    prevents double-binding — the <code>:not([data-init])</code> selector ensures only new elements are
+    wired up. There is nothing to call or configure:
   </p>
 
   <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
     <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
-      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">reinitialize after inserting new component HTML</span>
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">how auto-initialization works inside each component module</span>
     </div>
-    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript">// After swapping page content or injecting new HTML:
-document.querySelectorAll('script[type="module"][src*="components/"]')
-  .forEach((s) => {
-    const el = document.createElement('script');
-    el.type = 'module';
-    el.src = s.getAttribute('src') + '?t=' + Date.now();
-    document.body.appendChild(el);
-  });</code></pre>
+    <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-javascript">// Each component module follows this pattern:
+
+function init() {
+  document.querySelectorAll('.my-component:not([data-init])').forEach((el) => {
+    el.dataset.init = '';
+    // ... bind event listeners, set ARIA attributes, etc.
+  });
+}
+
+// Run once on load
+init();
+
+// Auto-run when the DOM changes (SPA navigation, dynamic content, etc.)
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
   </div>
 
   <div class="sep"></div>

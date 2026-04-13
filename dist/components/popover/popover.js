@@ -1,7 +1,8 @@
 // -- Popover --------------------------------------------------
 // CSS anchor positioning for popover components.
 
-document.querySelectorAll('[popovertarget]:not([data-init])').forEach((trigger) => {
+function init() {
+  document.querySelectorAll('[popovertarget]:not([data-init])').forEach((trigger) => {
   trigger.dataset.init = '';
   const id = trigger.getAttribute('popovertarget');
   const popover = document.getElementById(id);
@@ -12,3 +13,7 @@ document.querySelectorAll('[popovertarget]:not([data-init])').forEach((trigger) 
   trigger.style.anchorName = anchorId;
   popover.style.positionAnchor = anchorId;
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

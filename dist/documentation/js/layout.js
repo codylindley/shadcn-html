@@ -33,8 +33,8 @@
   /* -- SPA page-ready helper ----------------------------------- */
   /* Doc-site scripts (site.js) call window.onPageReady(fn)      */
   /* to register functions that run on initial load AND after     */
-  /* each SPA navigation. Component modules run at top level     */
-  /* and are re-imported by the SPA router after navigation.     */
+  /* each SPA navigation. Component modules auto-reinitialize    */
+  /* via MutationObserver when the DOM changes.                  */
   var domReady = false;
   document.addEventListener('DOMContentLoaded', function () { domReady = true; });
 
@@ -67,11 +67,6 @@
       { label: 'Typography', href: 'typography.html' },
       { label: 'Separator', href: 'separator.html' },
       { label: 'Icon', href: 'icon.html' },
-    ]},
-    { heading: 'Layout', items: [
-      { label: 'Scroll Area', href: 'scroll-area.html' },
-      { label: 'Carousel', href: 'carousel.html' },
-      { label: 'Sortable', href: 'sortable.html' },
     ]},
     { heading: 'Actions', items: [
       { label: 'Button', href: 'button.html' },
@@ -107,6 +102,9 @@
       { label: 'Timeline', href: 'timeline.html' },
       { label: 'Tree View', href: 'tree-view.html' },
       { label: 'Calendar', href: 'calendar.html' },
+      { label: 'Carousel', href: 'carousel.html' },
+      { label: 'Scroll Area', href: 'scroll-area.html' },
+      { label: 'Sortable', href: 'sortable.html' },
     ]},
     { heading: 'Feedback &amp; Status', items: [
       { label: 'Spinner', href: 'spinner.html' },
@@ -436,13 +434,8 @@
           /* (doc tabs, hljs, copy buttons, lucide, etc.) */
           (window.__spaInits || []).forEach(function (fn) { fn(); });
 
-          /* Re-run component ES modules so they bind to new DOM */
-          document.querySelectorAll('script[type="module"][src*="components/"]').forEach(function (s) {
-            var el = document.createElement('script');
-            el.type = 'module';
-            el.src = s.getAttribute('src') + '?t=' + Date.now();
-            document.body.appendChild(el);
-          });
+          /* Component ES modules auto-reinitialize via MutationObserver */
+          /* when the DOM changes — no script re-import needed.         */
 
           navigating = false;
         };

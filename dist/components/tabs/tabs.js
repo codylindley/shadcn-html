@@ -14,6 +14,7 @@ const activateTab = (tab, triggers) => {
   if (panel) panel.hidden = false;
 };
 
+function init() {
 document.querySelectorAll('[role="tablist"]:not([data-init])').forEach((tablist) => {
     tablist.dataset.init = '';
     if (!tablist.querySelector('.tab-trigger')) return;
@@ -57,4 +58,7 @@ document.querySelectorAll('[role="tablist"]:not([data-init])').forEach((tablist)
         }
       });
     });
-});
+});}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

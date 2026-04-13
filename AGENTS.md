@@ -8,7 +8,7 @@ The consumer-facing system lives in `dist/`.
 ## Project structure
 
 ```
-ai-web-prototyper/
+shadcn-html/
 ├── dist/                              ← the distributable (drop into any project)
 │   ├── theme/default-semantic-tokens.css      ← design tokens (source of truth for colors, radius, shadows)
 │   ├── components/                    ← self-contained component folders
@@ -22,7 +22,20 @@ ai-web-prototyper/
 │       ├── css/docs-theme.css         ← doc-site font overrides (not part of the system)
 │       ├── css/layout.css             ← doc-site layout (not part of the system)
 │       ├── js/layout.js               ← SPA router, <site-header>/<site-nav> web components
-│       └── js/site.js                 ← doc-site-only JS (hljs, tabs, copy buttons, skill modal)
+│       ├── js/site.js                 ← doc-site-only JS (tabs, copy buttons, skill modal, code collapse)
+│       ├── js/shiki-highlight.js      ← Shiki-based syntax highlighting (ES module, CDN)
+│       ├── js/themes.js               ← tweakcn color theme presets (global THEMES array)
+│       └── js/theme-switcher.js       ← applies theme overrides to CSS custom properties
+│
+├── .github/
+│   ├── instructions/                  ← auto-attached instruction files for Copilot
+│   │   ├── documentation.instructions.md
+│   │   ├── specifications.instructions.md
+│   │   └── tokens.instructions.md
+│   └── prompts/                       ← reusable prompt files
+│       └── component-review.prompt.md
+│
+├── scripts/                           ← build & deployment scripts
 │
 └── AGENTS.md                          ← this file (maintainer instructions)
 ```
@@ -152,13 +165,22 @@ no libraries, no frameworks.
 
 All `querySelectorAll` loops that add event listeners **must** guard against
 double-initialization using `:not([data-init])` in the selector and setting
-`element.dataset.init = ''` as the first line inside the loop:
+`element.dataset.init = ''` as the first line inside the loop.
+
+Component JS files wrap initialization in an `init()` function, call it once,
+then use a `MutationObserver` to auto-initialize new elements after SPA
+navigation or dynamic DOM changes:
 
 ```js
-document.querySelectorAll('.my-component:not([data-init])').forEach((el) => {
-  el.dataset.init = '';
-  el.addEventListener('click', () => { /* … */ });
-});
+function init() {
+  document.querySelectorAll('.my-component:not([data-init])').forEach((el) => {
+    el.dataset.init = '';
+    el.addEventListener('click', () => { /* … */ });
+  });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });
 ```
 
 For document-level event delegation (no per-element loop), use a global flag:
@@ -251,9 +273,10 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
    - Edit directly — no build step
 
 4. **Write the JS** (if interactive) → `dist/components/{name}/{name}.js`
-   - Plain ES module — initialization code runs at top level, no wrapper function
-   - No `export`, no `init()`, no `window.onPageReady` — just top-level code
-   - The doc site SPA router re-imports component modules after navigation
+   - Plain ES module — wrap initialization in an `init()` function
+   - Call `init()` immediately, then add `new MutationObserver(init).observe(document, { childList: true, subtree: true });`
+   - This auto-initializes new elements after SPA navigation or dynamic DOM changes
+   - No `export`, no `window.onPageReady` — just the init function + MutationObserver
 
 5. **Create the doc page** → `dist/documentation/{name}.html`
    - Copy an existing component page as template (e.g., badge.html)
@@ -282,9 +305,9 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
 - **CSS/JS import drift**: When adding a component, you must add its `<link>` and
   `<script>` tags to ALL HTML pages. Missing imports cause components in cross-page
   demos to break silently.
-- **SPA re-initialization**: Component JS modules run at top level and are
-  re-imported by the SPA router after navigation (with cache-busting). Doc-site-only
-  scripts (site.js) use `window.onPageReady(fn)` for their own re-init.
+- **SPA re-initialization**: Component JS modules use `MutationObserver` to
+  auto-initialize new elements when the DOM changes — no manual re-import needed.
+  Doc-site-only scripts (site.js) use `window.onPageReady(fn)` for their own re-init.
 - **Font stacks**: The system tokens use generic font stacks. The doc site overrides
   them in `css/docs-theme.css`. Don't put custom fonts in `default-semantic-tokens.css`.
 

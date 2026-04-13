@@ -2,7 +2,8 @@
 // Wires [data-dropdown-trigger] buttons to popover menus with
 // full keyboard navigation and ARIA support.
 
-document.querySelectorAll('[data-dropdown-trigger]:not([data-init])').forEach((trigger) => {
+function init() {
+  document.querySelectorAll('[data-dropdown-trigger]:not([data-init])').forEach((trigger) => {
     trigger.dataset.init = '';
     const menu = document.getElementById(trigger.dataset.dropdownTrigger);
     if (!menu) return;
@@ -64,3 +65,7 @@ document.querySelectorAll('[data-dropdown-trigger]:not([data-init])').forEach((t
       }
     });
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

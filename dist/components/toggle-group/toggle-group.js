@@ -1,7 +1,8 @@
 // -- Toggle Group ---------------------------------------------
 // Manages single/multiple selection and roving tabindex across .toggle buttons.
 
-document.querySelectorAll('.toggle-group:not([data-init])').forEach((group) => {
+function init() {
+  document.querySelectorAll('.toggle-group:not([data-init])').forEach((group) => {
   group.dataset.init = '';
   const type = group.getAttribute('data-type') || 'single';
 
@@ -72,3 +73,7 @@ document.querySelectorAll('.toggle-group:not([data-init])').forEach((group) => {
     }
   });
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

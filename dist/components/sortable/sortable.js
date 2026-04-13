@@ -3,6 +3,7 @@
 // Keyboard: Arrow keys navigate, Alt+Arrow reorders, Home/End jump.
 // Live region announces position changes to screen readers.
 
+function init() {
 document.querySelectorAll('.sortable:not([data-init])').forEach((list) => {
   list.dataset.init = '';
 
@@ -191,3 +192,7 @@ document.querySelectorAll('.sortable:not([data-init])').forEach((list) => {
     if (item && list.contains(item)) setActive(item);
   });
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

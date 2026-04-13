@@ -1,7 +1,8 @@
 // -- Number Input ---------------------------------------------
 // Increment/decrement buttons for .number-input containers.
 
-document.querySelectorAll('.number-input:not([data-init])').forEach((wrapper) => {
+function init() {
+  document.querySelectorAll('.number-input:not([data-init])').forEach((wrapper) => {
   wrapper.dataset.init = '';
   const input = wrapper.querySelector('input[type="number"]');
   const decBtn = wrapper.querySelector('[data-action="decrement"]');
@@ -20,3 +21,7 @@ document.querySelectorAll('.number-input:not([data-init])').forEach((wrapper) =>
   if (decBtn) decBtn.addEventListener('click', () => { update(-1); });
   if (incBtn) incBtn.addEventListener('click', () => { update(1); });
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

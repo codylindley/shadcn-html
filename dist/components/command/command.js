@@ -16,6 +16,7 @@ if (!commandKeydownAdded) {
   });
 }
 
+function init() {
 document.querySelectorAll('dialog.command:not([data-init])').forEach((dialog) => {
     dialog.dataset.init = '';
     const input = dialog.querySelector('.command-input');
@@ -54,3 +55,7 @@ document.querySelectorAll('[data-command-trigger]:not([data-init])').forEach((tr
     if (input) input.focus();
   });
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

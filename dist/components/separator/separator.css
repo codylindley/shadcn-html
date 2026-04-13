@@ -17,6 +17,12 @@
       width: 1px;
       align-self: stretch;
     }
+
+    /* Decorative — hidden from assistive technology */
+    &[aria-hidden="true"],
+    &[role="none"] {
+      /* No visual change — purely semantic */
+    }
   }
 
   /* -- Labeled separator ------------------------------------- */
@@ -35,6 +41,25 @@
       letter-spacing: 0.05em;
       white-space: nowrap;
       flex-shrink: 0;
+    }
+  }
+
+  /* -- Accessibility ----------------------------------------- */
+  @media (forced-colors: active) {
+    .separator {
+      background: CanvasText;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .separator {
+      background: var(--foreground);
+      height: 2px;
+
+      &[data-orientation="vertical"] {
+        width: 2px;
+        height: auto;
+      }
     }
   }
 }

@@ -29,21 +29,23 @@ elements render without FOUC when the parser encounters them in `<body>`.
 2. Change the `<title>`, `<h1>`, breadcrumb, and main content
 3. Add `<link rel="stylesheet" href="../components/{name}/{name}.css">` to the head
 4. Add `<script type="module" src="../components/{name}/{name}.js"></script>` if interactive
-5. In `layout.js`: add the page href to the `BUILT` set
+5. In `layout.js`: add the page to the `NAV` array and the `BUILT` set
 
 No need to update sidebar nav links in other files — `<site-nav>` handles it globally.
 
 ## Sidebar nav order
 
 The sidebar is ordered by dependency (primitives first):
-1. Primitives (Typography, Separator, Icon, Link, Label)
-2. Actions (Button, Toggle, Toggle Group, Button Group, Toolbar)
-3. Forms & Inputs
-4. Data Display
-5. Feedback & Status
-6. Overlays
-7. Navigation
-8. Layout
+1. Overview (Introduction, Installation, Theming, Dark Mode, Data Attribute API, Cascade Layers, ES Modules, Native Web APIs, Animations, Accessibility, Component Skills, Changelog)
+2. Primitives (Typography, Separator, Icon)
+3. Layout (Scroll Area, Carousel, Sortable)
+4. Actions (Button, Toggle, Toggle Group, Button Group, Toolbar)
+5. Forms & Inputs (Label, Input, Textarea, Checkbox, Radio Group, Switch, Slider, Select, Number Input, File Input, Color Picker, Date Picker, Combobox, Form)
+6. Data Display (Badge, Avatar, Card, Image, Statistic, Table, Collapsible, Timeline, Tree View, Calendar)
+7. Feedback & Status (Spinner, Skeleton, Progress, Alert, Alert Dialog, Toast)
+8. Overlays (Popover, Tooltip, Context Menu, Dialog, Sheet, Accordion, Command)
+9. Navigation (Breadcrumb, Pagination, Steps, Tabs, Dropdown Menu, Navigation Menu)
+10. Application (Sidebar)
 
 To reorder, edit the `NAV` array in `layout.js`.
 

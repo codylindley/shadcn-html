@@ -19,6 +19,7 @@ function scheduleGroupReset() {
   groupTimer = setTimeout(() => { groupOpen = false; }, GROUP_TIMEOUT);
 }
 
+function init() {
 document.querySelectorAll('[data-tooltip-trigger]:not([data-init])').forEach((trigger) => {
   trigger.dataset.init = '';
   const tip = document.getElementById(trigger.dataset.tooltipTrigger);
@@ -62,6 +63,10 @@ document.querySelectorAll('[data-tooltip-trigger]:not([data-init])').forEach((tr
   trigger.addEventListener('focus', show);
   trigger.addEventListener('blur', hide);
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });
 
 // -- Scroll dismiss -------------------------------------------
 // Hide any open tooltip when the page scrolls.

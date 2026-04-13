@@ -1,6 +1,7 @@
 // -- Sheet ----------------------------------------------------
 // Wires [data-sheet-trigger] buttons to <dialog class="sheet"> elements.
 
+function init() {
 document.querySelectorAll('[data-sheet-trigger]:not([data-init])').forEach((trigger) => {
   trigger.dataset.init = '';
   const sheet = document.getElementById(trigger.dataset.sheetTrigger);
@@ -22,3 +23,7 @@ document.querySelectorAll('dialog.sheet:not([data-init])').forEach((sheet) => {
     if (sheet._trigger) sheet._trigger.focus();
   });
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });

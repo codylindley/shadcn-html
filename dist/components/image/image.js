@@ -1,6 +1,7 @@
 /* -- Image component ----------------------------------------- */
 /* Fallback on error + lightbox preview for [data-preview].    */
 
+function init() {
 /* -- Fallback: mark images that fail to load ----------------- */
 document.querySelectorAll('.image:not([data-init]) > img').forEach((img) => {
   img.closest('.image').dataset.init = '';
@@ -17,6 +18,10 @@ document.querySelectorAll('.image:not([data-init]) > img').forEach((img) => {
     delete img.dataset.error;
   });
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });
 
 /* -- Lightbox ------------------------------------------------ */
 let lightbox = null;

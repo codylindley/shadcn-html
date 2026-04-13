@@ -1,6 +1,7 @@
 // -- Sidebar --------------------------------------------------
 // Toggle collapse, keyboard shortcut (Cmd+B), and mobile dialog.
 
+function init() {
 document.querySelectorAll('.app-sidebar:not([data-init])').forEach((sidebar) => {
   sidebar.dataset.init = '';
 
@@ -29,6 +30,10 @@ document.querySelectorAll('[data-sidebar-mobile]:not([data-init])').forEach((tri
     btn.addEventListener('click', () => { dialog.close(); });
   });
 });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });
 
 // -- Keyboard shortcut: Cmd+B / Ctrl+B ----------------------
 if (!document.__sidebarKbInit) {
