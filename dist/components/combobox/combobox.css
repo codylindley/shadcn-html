@@ -38,7 +38,7 @@
     color: var(--popover-foreground);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    box-shadow: 0 4px 16px oklch(0 0 0 / 0.12);
+    box-shadow: var(--shadow-md);
     overflow: hidden;
 
     /* -- Anchor positioning -- */
@@ -47,6 +47,24 @@
     width: anchor-size(width);
     margin-top: 4px;
     position-try-fallbacks: flip-block;
+
+    /* -- Animation --------------------------------------------- */
+    opacity: 0;
+    transform: scale(0.96) translateY(-0.25rem);
+    transition: opacity 150ms ease, transform 150ms ease,
+                display 150ms allow-discrete;
+
+    &:popover-open {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @starting-style {
+    .combobox-content:popover-open {
+      opacity: 0;
+      transform: scale(0.96) translateY(-0.25rem);
+    }
   }
 
   .combobox-search {
@@ -77,6 +95,7 @@
   .combobox-listbox {
     max-height: 16rem;
     overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 0.25rem;
   }
 
@@ -130,5 +149,29 @@
     height: 1px;
     background: var(--border);
     margin: 0.25rem -0.25rem;
+  }
+
+  /* -- Accessibility ------------------------------------------ */
+
+  @media (prefers-reduced-motion: reduce) {
+    .combobox-content {
+      transition: none;
+    }
+    .combobox-item {
+      transition: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .combobox-content {
+      border-color: ButtonText;
+    }
+    .combobox-item {
+      &:hover, &[data-highlighted] {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
+    }
   }
 }

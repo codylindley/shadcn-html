@@ -13,7 +13,6 @@ function init() {
     if (!trigger || !popover || !searchInput || !listbox) return;
 
     const allItems = Array.from(listbox.querySelectorAll('[role="option"]'));
-    const placeholder = valueEl ? valueEl.getAttribute('data-placeholder') || '' : '';
     let highlighted = -1;
 
     // CSS anchor positioning - unique name per trigger-popover pair
@@ -72,8 +71,11 @@ function init() {
       switch (e.key) {
         case 'ArrowDown': e.preventDefault(); doHighlight(Math.min(highlighted + 1, items.length - 1)); break;
         case 'ArrowUp': e.preventDefault(); doHighlight(Math.max(highlighted - 1, 0)); break;
+        case 'Home': e.preventDefault(); doHighlight(0); break;
+        case 'End': e.preventDefault(); doHighlight(items.length - 1); break;
         case 'Enter': e.preventDefault(); if (highlighted >= 0 && items[highlighted]) selectItem(items[highlighted]); break;
         case 'Escape': e.preventDefault(); close(); break;
+        case 'Tab': close(); break;
       }
     });
     listbox.addEventListener('click', (e) => { const item = e.target.closest('[role="option"]'); if (item && !item.hidden && item.getAttribute('aria-disabled') !== 'true') selectItem(item); });

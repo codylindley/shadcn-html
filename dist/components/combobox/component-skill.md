@@ -14,6 +14,9 @@ the search input when the popover opens.
 
 ## Native Web APIs
 - [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) — top-layer rendering and light-dismiss for the dropdown list
+- [CSS Anchor Positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning) — positions the popover relative to the trigger without JS
+- [`@starting-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style) — entry animation starting values for popover appearance
+- [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior) — prevents scroll chaining from the listbox to the page
 - [WAI-ARIA Combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/) — keyboard navigation and screen reader contract
 
 ---
@@ -87,6 +90,16 @@ the search input when the popover opens.
 
 ---
 
+## Data Attributes
+
+| Attribute          | Element              | Values                            | Description                                          |
+|--------------------|----------------------|-----------------------------------|------------------------------------------------------|
+| `data-placeholder` | `.combobox-value`    | (presence)                        | Present when showing placeholder text; removed on selection. CSS uses it to set muted color. |
+| `data-highlighted` | `.combobox-item`     | (presence, JS-managed)            | Set by JS on the currently keyboard-highlighted option. CSS applies accent background. |
+| `data-value`       | `.combobox-item`     | any string                        | The programmatic value of the option, used by JS for selection tracking. Not targeted by CSS. |
+
+---
+
 ## ARIA
 
 | Attribute                | Where            | Value                                   |
@@ -113,12 +126,14 @@ the search input when the popover opens.
 
 | Key           | Behavior                                         |
 |---------------|--------------------------------------------------|
-| `ArrowDown`   | Open popup, highlight first/next item            |
-| `ArrowUp`     | Open popup, highlight last/previous item         |
+| `ArrowDown`   | Highlight next item                              |
+| `ArrowUp`     | Highlight previous item                          |
+| `Home`        | Highlight first visible item                     |
+| `End`         | Highlight last visible item                      |
 | `Enter`       | Select highlighted item, close popup             |
-| `Escape`      | Close popup                                      |
+| `Escape`      | Close popup, return focus to trigger             |
 | `Tab`         | Close popup, move focus to next element          |
-| Typing        | Filter items, open popup if closed               |
+| Typing        | Filter items, auto-highlight first match         |
 
 ---
 
@@ -129,7 +144,12 @@ the search input when the popover opens.
 - When the popover closes, focus returns to the trigger button
 - Use `aria-activedescendant` to communicate the highlighted item to screen readers
 - The `popover` attribute enables top-layer rendering and light-dismiss
+- CSS anchor positioning (`position-anchor`, `anchor()`, `position-try-fallbacks: flip-block`) places the popover below the trigger; no JS positioning needed
+- The popover animates in via `@starting-style` + `transition-behavior: allow-discrete`
 - The check icon for selected items uses a CSS `::before` pseudo-element
-- For multi-select, toggle `aria-selected` on click and display selected items as chips
-- Filter matching should be case-insensitive and support substring matching
-- The empty state element should be shown when no items match the filter query
+- Filter matching is case-insensitive and supports substring matching
+- The empty state element is shown when no items match the filter query
+- Group labels and separators auto-hide when their group has no visible items
+- `overscroll-behavior: contain` prevents scroll chaining from the listbox
+- `prefers-reduced-motion: reduce` disables all transitions
+- `forced-colors: active` supports Windows High Contrast Mode

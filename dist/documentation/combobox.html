@@ -109,6 +109,9 @@
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API" target="_blank" rel="noopener" title="top-layer rendering and light-dismiss for the dropdown list" class="api-pill"><code>Popover API</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning" target="_blank" rel="noopener" title="positions the popover relative to the trigger without JS" class="api-pill"><code>CSS Anchor Positioning</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" title="entry animation starting values for popover appearance" class="api-pill"><code>@starting-style</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior" target="_blank" rel="noopener" title="prevents scroll chaining from the listbox to the page" class="api-pill"><code>overscroll-behavior</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://www.w3.org/WAI/ARIA/apg/patterns/combobox/" target="_blank" rel="noopener" title="keyboard navigation and screen reader contract" class="api-pill"><code>WAI-ARIA Combobox pattern</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
@@ -130,21 +133,22 @@
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-placeholder</code></p>
-
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">State attributes (managed by JS)</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-highlighted</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-placeholder</code> — on <code>.combobox-value</code>; present when showing placeholder text, removed on selection</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-highlighted</code> — on <code>.combobox-item</code>; JS-managed, set on the currently keyboard-highlighted option</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-value</code> — on <code>.combobox-item</code>; the programmatic value of the option (used by JS, not CSS)</p>
 
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Keyboard</p>
             <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
               <code>Key</code><span class="text-muted-foreground">Behavior</span>
-              <code>ArrowDown</code><span class="text-muted-foreground">Open popup, highlight first/next item</span>
-              <code>ArrowUp</code><span class="text-muted-foreground">Open popup, highlight last/previous item</span>
+              <code>ArrowDown</code><span class="text-muted-foreground">Highlight next item</span>
+              <code>ArrowUp</code><span class="text-muted-foreground">Highlight previous item</span>
+              <code>Home</code><span class="text-muted-foreground">Highlight first visible item</span>
+              <code>End</code><span class="text-muted-foreground">Highlight last visible item</span>
               <code>Enter</code><span class="text-muted-foreground">Select highlighted item, close popup</span>
-              <code>Escape</code><span class="text-muted-foreground">Close popup</span>
+              <code>Escape</code><span class="text-muted-foreground">Close popup, return focus to trigger</span>
               <code>Tab</code><span class="text-muted-foreground">Close popup, move focus to next element</span>
-              <code>Typing</code><span class="text-muted-foreground">Filter items, open popup if closed</span>
+              <code>Typing</code><span class="text-muted-foreground">Filter items, auto-highlight first match</span>
             </div>
 
 
@@ -154,10 +158,14 @@
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• When the popover closes, focus returns to the trigger button</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>aria-activedescendant</code> to communicate the highlighted item to screen readers</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The <code>popover</code> attribute enables top-layer rendering and light-dismiss</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• CSS anchor positioning places the popover below the trigger; no JS positioning needed</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The popover animates in via <code>@starting-style</code> + <code>transition-behavior: allow-discrete</code></p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The check icon for selected items uses a CSS <code>::before</code> pseudo-element</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• For multi-select, toggle <code>aria-selected</code> on click and display selected items as chips</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Filter matching should be case-insensitive and support substring matching</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• The empty state element should be shown when no items match the filter query</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Filter matching is case-insensitive and supports substring matching</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Group labels and separators auto-hide when their group has no visible items</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>overscroll-behavior: contain</code> prevents scroll chaining from the listbox</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>prefers-reduced-motion: reduce</code> disables all transitions</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>forced-colors: active</code> supports Windows High Contrast Mode</p>
           </div>
         </details>
       </div>
@@ -295,6 +303,49 @@
 &lt;div role="option" class="combobox-item"
      aria-disabled="true"&gt;EET (Bucharest)&lt;/div&gt;</code></pre>
           </div>
+
+        <!-- --- Example 3: Disabled Combobox --- -->
+          <p class="text-sm font-medium mb-2 mt-6">Disabled</p>
+          <p class="text-xs text-muted-foreground mb-3">Disable the trigger button to prevent interaction.</p>
+
+          <div class="preview" style="min-height:6rem;align-items:flex-start;padding-top:2rem;">
+            <div class="combobox" style="width:14rem;">
+              <label class="label" id="cb-disabled-label">Framework</label>
+              <button class="btn combobox-trigger" data-variant="outline" disabled
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      aria-labelledby="cb-disabled-label"
+                      aria-controls="cb-disabled-popover">
+                <span class="combobox-value" data-placeholder="Select framework...">Select framework...</span>
+                <svg class="combobox-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+              </button>
+              <div id="cb-disabled-popover" class="combobox-content" popover>
+                <div class="combobox-search">
+                  <svg class="combobox-search-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                  <input class="combobox-search-input" type="text" role="combobox" autocomplete="off" aria-expanded="true" aria-controls="cb-disabled-listbox" aria-activedescendant="" aria-autocomplete="list" placeholder="Search...">
+                </div>
+                <div id="cb-disabled-listbox" role="listbox" class="combobox-listbox" aria-label="Frameworks">
+                  <div class="combobox-empty" hidden>No results found.</div>
+                  <div role="option" id="cb-dis-next" class="combobox-item" data-value="nextjs" aria-selected="false">Next.js</div>
+                  <div role="option" id="cb-dis-svelte" class="combobox-item" data-value="sveltekit" aria-selected="false">SvelteKit</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code class="language-markup">&lt;!-- Add disabled to the trigger button --&gt;
+&lt;button class="btn combobox-trigger"
+        data-variant="outline" disabled
+        aria-haspopup="listbox"
+        aria-expanded="false"&gt;
+  ...
+&lt;/button&gt;</code></pre>
+          </div>
         <!-- -- CSS --------------------------------------- -->
         <section style="margin-top:3rem;" id="source-css">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/combobox/combobox.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
@@ -340,7 +391,7 @@
     color: var(--popover-foreground);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    box-shadow: 0 4px 16px oklch(0 0 0 / 0.12);
+    box-shadow: var(--shadow-md);
     overflow: hidden;
 
     /* -- Anchor positioning -- */
@@ -349,6 +400,24 @@
     width: anchor-size(width);
     margin-top: 4px;
     position-try-fallbacks: flip-block;
+
+    /* -- Animation --------------------------------------------- */
+    opacity: 0;
+    transform: scale(0.96) translateY(-0.25rem);
+    transition: opacity 150ms ease, transform 150ms ease,
+                display 150ms allow-discrete;
+
+    &amp;:popover-open {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @starting-style {
+    .combobox-content:popover-open {
+      opacity: 0;
+      transform: scale(0.96) translateY(-0.25rem);
+    }
   }
 
   .combobox-search {
@@ -379,6 +448,7 @@
   .combobox-listbox {
     max-height: 16rem;
     overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 0.25rem;
   }
 
@@ -433,6 +503,30 @@
     background: var(--border);
     margin: 0.25rem -0.25rem;
   }
+
+  /* -- Accessibility ------------------------------------------ */
+
+  @media (prefers-reduced-motion: reduce) {
+    .combobox-content {
+      transition: none;
+    }
+    .combobox-item {
+      transition: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .combobox-content {
+      border-color: ButtonText;
+    }
+    .combobox-item {
+      &amp;:hover, &amp;[data-highlighted] {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
+    }
+  }
 }</code></pre>
           </div>
         </section>
@@ -461,7 +555,6 @@ function init() {
     if (!trigger || !popover || !searchInput || !listbox) return;
 
     const allItems = Array.from(listbox.querySelectorAll('[role=&quot;option&quot;]'));
-    const placeholder = valueEl ? valueEl.getAttribute('data-placeholder') || '' : '';
     let highlighted = -1;
 
     // CSS anchor positioning - unique name per trigger-popover pair
@@ -520,8 +613,11 @@ function init() {
       switch (e.key) {
         case 'ArrowDown': e.preventDefault(); doHighlight(Math.min(highlighted + 1, items.length - 1)); break;
         case 'ArrowUp': e.preventDefault(); doHighlight(Math.max(highlighted - 1, 0)); break;
+        case 'Home': e.preventDefault(); doHighlight(0); break;
+        case 'End': e.preventDefault(); doHighlight(items.length - 1); break;
         case 'Enter': e.preventDefault(); if (highlighted &gt;= 0 &amp;&amp; items[highlighted]) selectItem(items[highlighted]); break;
         case 'Escape': e.preventDefault(); close(); break;
+        case 'Tab': close(); break;
       }
     });
     listbox.addEventListener('click', (e) =&gt; { const item = e.target.closest('[role=&quot;option&quot;]'); if (item &amp;&amp; !item.hidden &amp;&amp; item.getAttribute('aria-disabled') !== 'true') selectItem(item); });
@@ -583,6 +679,9 @@ the search input when the popover opens.
 
 ## Native Web APIs
 - [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) — top-layer rendering and light-dismiss for the dropdown list
+- [CSS Anchor Positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning) — positions the popover relative to the trigger without JS
+- [`@starting-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style) — entry animation starting values for popover appearance
+- [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior) — prevents scroll chaining from the listbox to the page
 - [WAI-ARIA Combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/) — keyboard navigation and screen reader contract
 
 ---
@@ -656,6 +755,16 @@ the search input when the popover opens.
 
 ---
 
+## Data Attributes
+
+| Attribute          | Element              | Values                            | Description                                          |
+|--------------------|----------------------|-----------------------------------|------------------------------------------------------|
+| `data-placeholder` | `.combobox-value`    | (presence)                        | Present when showing placeholder text; removed on selection. CSS uses it to set muted color. |
+| `data-highlighted` | `.combobox-item`     | (presence, JS-managed)            | Set by JS on the currently keyboard-highlighted option. CSS applies accent background. |
+| `data-value`       | `.combobox-item`     | any string                        | The programmatic value of the option, used by JS for selection tracking. Not targeted by CSS. |
+
+---
+
 ## ARIA
 
 | Attribute                | Where            | Value                                   |
@@ -682,12 +791,14 @@ the search input when the popover opens.
 
 | Key           | Behavior                                         |
 |---------------|--------------------------------------------------|
-| `ArrowDown`   | Open popup, highlight first/next item            |
-| `ArrowUp`     | Open popup, highlight last/previous item         |
+| `ArrowDown`   | Highlight next item                              |
+| `ArrowUp`     | Highlight previous item                          |
+| `Home`        | Highlight first visible item                     |
+| `End`         | Highlight last visible item                      |
 | `Enter`       | Select highlighted item, close popup             |
-| `Escape`      | Close popup                                      |
+| `Escape`      | Close popup, return focus to trigger             |
 | `Tab`         | Close popup, move focus to next element          |
-| Typing        | Filter items, open popup if closed               |
+| Typing        | Filter items, auto-highlight first match         |
 
 ---
 
@@ -698,10 +809,15 @@ the search input when the popover opens.
 - When the popover closes, focus returns to the trigger button
 - Use `aria-activedescendant` to communicate the highlighted item to screen readers
 - The `popover` attribute enables top-layer rendering and light-dismiss
+- CSS anchor positioning (`position-anchor`, `anchor()`, `position-try-fallbacks: flip-block`) places the popover below the trigger; no JS positioning needed
+- The popover animates in via `@starting-style` + `transition-behavior: allow-discrete`
 - The check icon for selected items uses a CSS `::before` pseudo-element
-- For multi-select, toggle `aria-selected` on click and display selected items as chips
-- Filter matching should be case-insensitive and support substring matching
-- The empty state element should be shown when no items match the filter query
+- Filter matching is case-insensitive and supports substring matching
+- The empty state element is shown when no items match the filter query
+- Group labels and separators auto-hide when their group has no visible items
+- `overscroll-behavior: contain` prevents scroll chaining from the listbox
+- `prefers-reduced-motion: reduce` disables all transitions
+- `forced-colors: active` supports Windows High Contrast Mode
 </script>
 </body>
 </html>
