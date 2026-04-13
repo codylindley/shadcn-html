@@ -11,8 +11,51 @@
     border: 2px solid var(--border); color: var(--muted-foreground); background-color: var(--background); position: relative; z-index: 1;
     .step[data-status='current'] & { border-color: var(--primary); color: var(--primary); }
     .step[data-status='complete'] & { border-color: var(--primary); background-color: var(--primary); color: var(--primary-foreground); }
+
+    & svg { width: 0.875rem; height: 0.875rem; pointer-events: none; }
   }
   .step-content { display: flex; flex-direction: column; gap: 0.125rem; }
   .step-title { margin: 0; font-size: 0.8125rem; font-weight: 500; color: var(--foreground); }
   .step-description { margin: 0; font-size: 0.75rem; color: var(--muted-foreground); }
+
+  /* -- Vertical orientation ---------------------------------- */
+  .steps[data-orientation="vertical"] {
+    flex-direction: column;
+    gap: 0;
+
+    & .step {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+      padding-bottom: 1.5rem;
+
+      &:not(:last-child)::after {
+        top: 2.25rem;
+        left: 0.9375rem;
+        right: auto;
+        width: 2px;
+        height: calc(100% - 2.25rem);
+      }
+    }
+
+    & .step-content { padding-top: 0.25rem; }
+  }
+
+  /* -- Accessibility ------------------------------------------ */
+
+  @media (prefers-contrast: more) {
+    .step-indicator { border-width: 3px; }
+    .step:not(:last-child)::after { height: 3px; }
+    .steps[data-orientation="vertical"] .step:not(:last-child)::after { width: 3px; height: calc(100% - 2.25rem); }
+  }
+
+  @media (forced-colors: active) {
+    .step-indicator {
+      border-color: ButtonText;
+      .step[data-status='current'] & { border-color: Highlight; color: Highlight; }
+      .step[data-status='complete'] & { border-color: Highlight; background: Highlight; color: HighlightText; }
+    }
+    .step:not(:last-child)::after { background: ButtonText; }
+    .step[data-status='complete']:not(:last-child)::after { background: Highlight; }
+  }
 }

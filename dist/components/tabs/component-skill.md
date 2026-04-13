@@ -9,6 +9,10 @@ panel switching. Follows the WAI-ARIA Tabs design pattern.
 
 ## Native Web APIs
 - [WAI-ARIA Tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) — role contract (`tablist`, `tab`, `tabpanel`) and roving tabindex keyboard navigation
+- [`:has()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) — auto-detects vertical orientation for layout switching
+- [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) — keyboard-only focus ring on tabs and panels
+- [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses tab transition animations
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — maps active tab indicator to system `Highlight`
 
 ---
 

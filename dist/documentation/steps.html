@@ -106,6 +106,9 @@
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol" target="_blank" rel="noopener" title="ordered list" class="api-pill"><code>&lt;ol&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current" target="_blank" rel="noopener" title="identifies the current step" class="api-pill"><code>aria-current=&quot;step&quot;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast" target="_blank" rel="noopener" title="thickens borders and connector lines" class="api-pill"><code>prefers-contrast</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="maps to system colors" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
@@ -124,7 +127,7 @@
         <div class="preview">
           <ol class="steps" style="max-width:28rem;width:100%;">
             <li class="step" data-status="complete"><div class="step-indicator">1</div><div class="step-content"><p class="step-title">Account</p></div></li>
-            <li class="step" data-status="current"><div class="step-indicator">2</div><div class="step-content"><p class="step-title">Profile</p></div></li>
+            <li class="step" data-status="current" aria-current="step"><div class="step-indicator">2</div><div class="step-content"><p class="step-title">Profile</p></div></li>
             <li class="step"><div class="step-indicator">3</div><div class="step-content"><p class="step-title">Complete</p></div></li>
           </ol>
         </div>
@@ -138,7 +141,7 @@
     &lt;div class="step-indicator"&gt;1&lt;/div&gt;
     &lt;div class="step-content"&gt;&lt;p class="step-title"&gt;Account&lt;/p&gt;&lt;/div&gt;
   &lt;/li&gt;
-  &lt;li class="step" data-status="current"&gt;
+  &lt;li class="step" data-status="current" aria-current="step"&gt;
     &lt;div class="step-indicator"&gt;2&lt;/div&gt;
     &lt;div class="step-content"&gt;&lt;p class="step-title"&gt;Profile&lt;/p&gt;&lt;/div&gt;
   &lt;/li&gt;
@@ -159,7 +162,7 @@
                 <div class="step-indicator">1</div>
                 <div class="step-content"><p class="step-title">Account</p><p class="step-description">Create credentials</p></div>
               </li>
-              <li class="step" data-status="current">
+              <li class="step" data-status="current" aria-current="step">
                 <div class="step-indicator">2</div>
                 <div class="step-content"><p class="step-title">Profile</p><p class="step-description">Personal details</p></div>
               </li>
@@ -187,6 +190,99 @@
           </div>
         </div>
 
+        <!-- With Checkmarks -->
+        <p class="text-sm font-medium mb-2 mt-8">With checkmarks</p>
+        <p class="text-xs text-muted-foreground mb-3">Complete steps show a checkmark SVG instead of the step number.</p>
+        <div class="preview">
+          <ol class="steps" style="max-width:32rem;width:100%;">
+            <li class="step" data-status="complete">
+              <div class="step-indicator">
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <div class="step-content"><p class="step-title">Account</p><p class="step-description">Create credentials</p></div>
+            </li>
+            <li class="step" data-status="complete">
+              <div class="step-indicator">
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <div class="step-content"><p class="step-title">Profile</p><p class="step-description">Personal details</p></div>
+            </li>
+            <li class="step" data-status="current" aria-current="step">
+              <div class="step-indicator">3</div>
+              <div class="step-content"><p class="step-title">Complete</p><p class="step-description">Review &amp; confirm</p></div>
+            </li>
+          </ol>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;li class="step" data-status="complete"&gt;
+  &lt;div class="step-indicator"&gt;
+    &lt;svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="3"&gt;
+      &lt;path d="M20 6 9 17l-5-5"/&gt;
+    &lt;/svg&gt;
+  &lt;/div&gt;
+  &lt;div class="step-content"&gt;
+    &lt;p class="step-title"&gt;Account&lt;/p&gt;
+    &lt;p class="step-description"&gt;Create credentials&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/li&gt;</code></pre>
+        </div>
+
+        <!-- Vertical -->
+        <p class="text-sm font-medium mb-2 mt-8">Vertical</p>
+        <p class="text-xs text-muted-foreground mb-3">Add <code>data-orientation="vertical"</code> for a stacked layout with a vertical connector line.</p>
+        <div class="preview" style="justify-content:flex-start;padding:2rem 2.5rem;">
+          <ol class="steps" data-orientation="vertical" style="max-width:16rem;">
+            <li class="step" data-status="complete">
+              <div class="step-indicator">
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <div class="step-content"><p class="step-title">Create account</p><p class="step-description">Set up your email and password</p></div>
+            </li>
+            <li class="step" data-status="current" aria-current="step">
+              <div class="step-indicator">2</div>
+              <div class="step-content"><p class="step-title">Set up profile</p><p class="step-description">Add your personal information</p></div>
+            </li>
+            <li class="step">
+              <div class="step-indicator">3</div>
+              <div class="step-content"><p class="step-title">Confirmation</p><p class="step-description">Review and submit</p></div>
+            </li>
+          </ol>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;ol class="steps" data-orientation="vertical"&gt;
+  &lt;li class="step" data-status="complete"&gt;
+    &lt;div class="step-indicator"&gt;
+      &lt;svg aria-hidden="true" ...&gt;&lt;path d="M20 6 9 17l-5-5"/&gt;&lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div class="step-content"&gt;
+      &lt;p class="step-title"&gt;Create account&lt;/p&gt;
+      &lt;p class="step-description"&gt;Set up your email and password&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li class="step" data-status="current" aria-current="step"&gt;
+    &lt;div class="step-indicator"&gt;2&lt;/div&gt;
+    &lt;div class="step-content"&gt;
+      &lt;p class="step-title"&gt;Set up profile&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li class="step"&gt;
+    &lt;div class="step-indicator"&gt;3&lt;/div&gt;
+    &lt;div class="step-content"&gt;
+      &lt;p class="step-title"&gt;Confirmation&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+        </div>
+
         <!-- -- CSS --------------------------------------- -->
         <section style="margin-top:3rem;" id="source-css">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/steps/steps.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
@@ -206,10 +302,37 @@
     border: 2px solid var(--border); color: var(--muted-foreground); background-color: var(--background); position: relative; z-index: 1;
     .step[data-status='current'] &amp; { border-color: var(--primary); color: var(--primary); }
     .step[data-status='complete'] &amp; { border-color: var(--primary); background-color: var(--primary); color: var(--primary-foreground); }
+
+    &amp; svg { width: 0.875rem; height: 0.875rem; pointer-events: none; }
   }
   .step-content { display: flex; flex-direction: column; gap: 0.125rem; }
   .step-title { margin: 0; font-size: 0.8125rem; font-weight: 500; color: var(--foreground); }
   .step-description { margin: 0; font-size: 0.75rem; color: var(--muted-foreground); }
+
+  /* -- Vertical orientation ---------------------------------- */
+  .steps[data-orientation=&quot;vertical&quot;] {
+    flex-direction: column; gap: 0;
+    &amp; .step {
+      flex-direction: row; align-items: flex-start; text-align: left; padding-bottom: 1.5rem;
+      &amp;:not(:last-child)::after { top: 2.25rem; left: 0.9375rem; right: auto; width: 2px; height: calc(100% - 2.25rem); }
+    }
+    &amp; .step-content { padding-top: 0.25rem; }
+  }
+
+  @media (prefers-contrast: more) {
+    .step-indicator { border-width: 3px; }
+    .step:not(:last-child)::after { height: 3px; }
+  }
+
+  @media (forced-colors: active) {
+    .step-indicator {
+      border-color: ButtonText;
+      .step[data-status='current'] &amp; { border-color: Highlight; color: Highlight; }
+      .step[data-status='complete'] &amp; { border-color: Highlight; background: Highlight; color: HighlightText; }
+    }
+    .step:not(:last-child)::after { background: ButtonText; }
+    .step[data-status='complete']:not(:last-child)::after { background: Highlight; }
+  }
 }</code></pre>
           </div>
         </section>
@@ -252,17 +375,65 @@
 
 ## Native Web APIs
 
-- [`<ol>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol) — ordered list
+- [`<ol>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol) — ordered list providing sequential numbering semantics
+- [`aria-current="step"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current) — identifies the current step for screen readers
+- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — thickens indicator borders and connector lines
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — maps indicator and connector to system colors
+
+---
 
 ## Structure
 
 ```html
 <ol class="steps">
-  <li class="step" data-status="complete"><div class="step-indicator">1</div><div class="step-content"><p class="step-title">Account</p></div></li>
-  <li class="step" data-status="current"><div class="step-indicator">2</div><div class="step-content"><p class="step-title">Profile</p></div></li>
-  <li class="step"><div class="step-indicator">3</div><div class="step-content"><p class="step-title">Complete</p></div></li>
+  <li class="step" data-status="complete">
+    <div class="step-indicator">
+      <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/><\/svg>
+    </div>
+    <div class="step-content">
+      <p class="step-title">Account</p>
+    </div>
+  </li>
+  <li class="step" data-status="current" aria-current="step">
+    <div class="step-indicator">2</div>
+    <div class="step-content"><p class="step-title">Profile</p></div>
+  </li>
+  <li class="step">
+    <div class="step-indicator">3</div>
+    <div class="step-content"><p class="step-title">Complete</p></div>
+  </li>
 </ol>
 ```
+
+---
+
+## States
+
+| `data-status` | Indicator | Connector |
+|---------------|-----------|-----------|
+| `complete` | Primary fill, white text/checkmark | Primary color line |
+| `current` | Primary border, primary text | Default border color |
+| *(none)* | Border only, muted text | Default border color |
+
+---
+
+## ARIA
+
+| Attribute | Element | Purpose |
+|-----------|---------|---------|
+| `aria-current="step"` | Current `<li>` | Identifies the active step |
+| `aria-hidden="true"` | Checkmark `<svg>` | Decorative indicator |
+
+---
+
+## Notes
+
+- Use `<ol>` for semantic ordering.
+- Complete steps can show a checkmark SVG or the step number.
+- Add `aria-current="step"` to the current step for accessibility.
+- Vertical orientation uses `data-orientation="vertical"` on `.steps`.
+- No JavaScript required — pure CSS component.
 </script>
 </body>
 </html>
