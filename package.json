@@ -1,6 +1,6 @@
 {
   "name": "shadcn-html",
-  "version": "0.7.6-alpha",
+  "version": "0.7.7-alpha",
   "private": true,
   "description": "The AI prototyping substrate — themeable semantic HTML, modern CSS, vanilla JS",
   "scripts": {
