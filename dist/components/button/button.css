@@ -100,11 +100,42 @@
     &[data-size="sm"]      { height: 2rem;    padding: 0 0.75rem; font-size: 0.8125rem; }
     &[data-size="lg"]      { height: 2.75rem; padding: 0 2rem;    font-size: 1rem; }
     &[data-size="icon"]    { height: 2.25rem; width: 2.25rem;  padding: 0; }
+    &[data-size="icon-xs"] { height: 1.75rem; width: 1.75rem;  padding: 0; border-radius: var(--radius-sm); }
     &[data-size="icon-sm"] { height: 2rem;    width: 2rem;     padding: 0; }
     &[data-size="icon-lg"] { height: 2.75rem; width: 2.75rem;  padding: 0; }
   }
 
+  /* -- Accessibility ------------------------------------------ */
+
   @media (prefers-reduced-motion: reduce) {
     .btn { transition: none; }
+  }
+
+  @media (prefers-contrast: more) {
+    .btn {
+      border: 2px solid transparent;
+
+      &[data-variant="default"],
+      &[data-variant="secondary"],
+      &[data-variant="destructive"] {
+        border-color: currentColor;
+      }
+
+      &[data-variant="outline"],
+      &[data-variant="ghost"] {
+        border-color: var(--foreground);
+      }
+    }
+  }
+
+  @media (forced-colors: active) {
+    .btn {
+      border: 1px solid ButtonText;
+
+      &:disabled, &[aria-disabled="true"] {
+        border-color: GrayText;
+        color: GrayText;
+      }
+    }
   }
 }

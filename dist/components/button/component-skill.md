@@ -10,6 +10,8 @@
 - [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) — keyboard-only focus ring, avoids showing focus on mouse clicks
 - [`commandfor` / `command`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#command) — declarative button→dialog/popover triggers without JS click handlers
 - [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses hover/focus transitions
+- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — adds visible borders to all variants in high-contrast mode
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — maps button border/text to system colors in Windows High Contrast Mode
 
 ---
 
@@ -58,6 +60,7 @@
 | *(default)* | `2.25rem` | `0 1rem`      | `0.875rem`   | `var(--radius-md)`  |
 | `lg`        | `2.75rem` | `0 2rem`      | `1rem`       | `var(--radius-md)`  |
 | `icon`      | `2.25rem` | `0` (square)  | —            | `var(--radius-md)`  |
+| `icon-xs`   | `1.75rem` | `0` (square)  | —            | `var(--radius-sm)`  |
 | `icon-sm`   | `2rem`    | `0` (square)  | —            | `var(--radius-md)`  |
 | `icon-lg`   | `2.75rem` | `0` (square)  | —            | `var(--radius-md)`  |
 
