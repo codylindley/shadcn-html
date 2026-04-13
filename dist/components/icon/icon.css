@@ -39,6 +39,12 @@
     }
   }
 
+  @media (prefers-contrast: more) {
+    [data-lucide] {
+      stroke-width: 2.5;
+    }
+  }
+
   @media (forced-colors: active) {
     [data-lucide] {
       color: CanvasText;

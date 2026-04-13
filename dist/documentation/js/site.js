@@ -98,8 +98,18 @@
 
     var main = document.querySelector('main');
     if (!main) return;
-    var details = main.querySelector('details');
-    if (details) {
+
+    // Move spec <details> out of sticky page-header into scrollable area
+    var pageHeader = main.querySelector('.page-header');
+    var details = pageHeader ? pageHeader.querySelector('details') : main.querySelector('details');
+    if (details && pageHeader && pageHeader.contains(details)) {
+      pageHeader.insertAdjacentElement('afterend', details);
+    }
+
+    // Place toolbar inside the sticky header (after the last child)
+    if (pageHeader) {
+      pageHeader.appendChild(toolbar);
+    } else if (details) {
       details.insertAdjacentElement('afterend', toolbar);
     } else {
       previews[0].insertAdjacentElement('beforebegin', toolbar);
@@ -170,33 +180,11 @@
 
     // Code collapse/expand toggles
     initCodeCollapse();
-
-    // Auto-close spec <details> on page scroll
-    initSpecAutoClose();
   }
 
   // Register content initializer with SPA router
   // (runs on initial load AND after each SPA navigation)
   window.onPageReady(initPageContent);
-
-  // -- Auto-close spec <details> on page scroll ------------
-  var _specScrollHandler = null;
-  function initSpecAutoClose() {
-    // Remove previous listener (SPA nav)
-    if (_specScrollHandler) {
-      window.removeEventListener('scroll', _specScrollHandler);
-      _specScrollHandler = null;
-    }
-    var main = document.querySelector('main');
-    if (!main) return;
-    var specDetails = main.querySelector('details');
-    if (!specDetails) return;
-
-    _specScrollHandler = function () {
-      if (specDetails.open) specDetails.removeAttribute('open');
-    };
-    window.addEventListener('scroll', _specScrollHandler, { passive: true });
-  }
 
   // -- Spec modal viewer (runs once, uses delegation) ------
   function initSpecModal() {

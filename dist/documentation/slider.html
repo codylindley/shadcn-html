@@ -196,7 +196,7 @@
           </button>
           <pre><code class="language-markup">&lt;div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;"&gt;
   &lt;label class="label" for="temp" style="margin:0;"&gt;Temperature&lt;/label&gt;
-  &lt;output id="temp-output" class="text-sm text-muted-foreground" style="font-family:var(--font-mono);" for="temp"&gt;0.5&lt;/output&gt;
+  &lt;output id="temp-output" class="text-muted-foreground" style="font-size:0.875rem;font-family:var(--font-mono);" for="temp"&gt;0.5&lt;/output&gt;
 &lt;/div&gt;
 &lt;input class="slider" type="range" id="temp" min="0" max="1" step="0.1" value="0.5"
   oninput="document.getElementById('temp-output').value = this.value"&gt;</code></pre>
@@ -538,7 +538,7 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 ```html
 <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
   <label class="label" for="temp" style="margin:0;">Temperature</label>
-  <output class="text-sm text-muted-foreground" style="font-family:var(--font-mono);" for="temp">0.5</output>
+  <output class="text-muted-foreground" style="font-size:0.875rem;font-family:var(--font-mono);" for="temp">0.5</output>
 </div>
 <input class="slider" type="range" id="temp" min="0" max="1" step="0.1" value="0.5">
 ```

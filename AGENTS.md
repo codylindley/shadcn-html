@@ -290,9 +290,7 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
 7. **Add CSS/JS imports to all HTML pages** → add the new component's `<link>` and
    `<script>` tags to every HTML file in `dist/documentation/`
 
-8. **Update README.md** → add the component to the appropriate category in the Components section
-
-9. **Rebuild doc CSS** (if new Tailwind classes were used) → `npm run docs:build-css`
+8. **Rebuild doc CSS** (if new Tailwind classes were used) → `npm run docs:build-css`
 
 10. **Sync inline source snippets** → run `node scripts/sync-css-snippets.js` and
     `node scripts/sync-js-snippets.js` to replace the inline `<pre><code>` blocks in

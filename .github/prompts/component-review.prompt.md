@@ -52,6 +52,7 @@ Shoelace / Web Awesome, Microsoft FAST, Adobe Spectrum Web Components, Ionic
 
 - Audit against [AGENTS.md](../../AGENTS.md) rules and the Native Web APIs page in the documentation — identify every native web API that could replace JS workarounds or improve the component (e.g., `position-area`, `popover`, `<dialog>`, `<details>`, `:has()`, `field-sizing`, `@starting-style`, `commandfor`/`command`, `scroll-snap`, `overscroll-behavior`, `prefers-reduced-motion`, `color-mix()`, `:focus-visible`, `:user-valid`/`:user-invalid`, anchor positioning, etc.).
 - Compare features against the reference sites — every variant, size, state, and composition pattern shown on shadcn/Basecoat must be accounted for. Identify what's missing.
+- **Cross-check data attributes between CSS and component skill (CRITICAL).** Extract every `data-*` selector from the CSS file (e.g., `[data-variant="..."]`, `[data-size="..."]`, `[data-animate="..."]`). Then check the component skill's **Data Attributes** table. Every `data-*` attribute in the CSS must appear in the skill table with all its valid values, and vice versa — no attribute may exist in one file but not the other. If the skill has no Data Attributes table, create one. This is the #1 source of drift between the CSS and skill.
 
 ## 5. Remove Tailwind from demos
 
@@ -69,14 +70,16 @@ Do **not** touch Tailwind classes used in the doc-site layout scaffolding (outsi
 - Update the CSS (add missing modern CSS, `prefers-reduced-motion`, any new variants/states)
 - Update or create the JS (if interactive behavior is needed)
 - Rewrite the component-skill.md with full variant tables, ARIA section, keyboard section, and notes
+  - The **Data Attributes** table is mandatory — list every `data-*` attribute the CSS targets, with all accepted values and a description. When you add a new `data-*` selector to the CSS, you **must** add it to this table in the same edit pass.
 - Update the doc page: API pills, inline source code, embedded spec markdown
+  - The `<details>` summary's "Data attributes" section must list the same attributes as the skill table.
+  - The embedded `<script type="text/plain" id="spec-md-content">` must include the Data Attributes table.
 - If the doc page demos are insufficient, add the missing demo sections
 
 ## 7. Complete the full checklist
 
 - Update `dist/documentation/js/layout.js` — add to `NAV` array and `BUILT` set (if new component)
 - Add the new component's `<link>` and `<script>` tags to ALL HTML pages in `dist/documentation/` (if new component)
-- Update `README.md` — add the component to the appropriate category (if new component)
 - Run `npm run docs:build-css` if new Tailwind classes were used
 - Run `node scripts/sync-css-snippets.js` and `node scripts/sync-js-snippets.js` to sync inline source code blocks in all doc pages with the actual component files (required after ANY CSS or JS change)
 
@@ -98,6 +101,7 @@ Before finishing, confirm:
 - [ ] Dark mode renders correctly
 - [ ] No new `--*` tokens were invented (token boundary rule)
 - [ ] No Tailwind utility classes in demo/example markup (replaced with inline styles or component CSS)
+- [ ] Data attribute parity — every `data-*` selector in the CSS appears in the component skill's Data Attributes table (and vice versa), in the doc page `<details>` summary, and in the embedded spec markdown
 - [ ] Inline source snippets synced (`node scripts/sync-css-snippets.js` and `node scripts/sync-js-snippets.js`)
 
 Ask questions only if you have to — make good decisions based on the reference sites and AGENTS.md. Implement everything and verify.

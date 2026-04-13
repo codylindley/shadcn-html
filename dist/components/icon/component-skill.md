@@ -11,6 +11,7 @@
 - [`currentColor`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword) — icons inherit stroke color from the parent's `color` property
 - [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses icon animations (e.g., spinning loaders) when user prefers reduced motion
 - [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — maps icon color to system `CanvasText` in Windows High Contrast Mode
+- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — increases stroke width when user requests more contrast
 
 ---
 
@@ -22,6 +23,16 @@ Include the Lucide CDN script and call `createIcons()`:
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>lucide.createIcons();</script>
 ```
+
+---
+
+## Data Attributes
+
+| Attribute | Values | Description |
+|-----------|--------|-------------|
+| `data-lucide` | any icon name | Icon to render (required) |
+| `data-size` | `xs`, `sm`, `md`, `lg`, `xl` | Controls icon dimensions |
+| `data-animate` | `spin` | Applies continuous rotation animation |
 
 ---
 
@@ -101,15 +112,26 @@ Default stroke width is `2`.
 
 ---
 
-## Color
+## Filled icons
 
-Icons inherit `currentColor` for stroke. Change color with CSS:
+Use the `fill` attribute for filled icon variants. Set `stroke-width="0"` for fill-only, or keep a stroke for a fill+outline look. Works well with simple shapes (star, heart, circle, bookmark).
 
 ```html
-<i data-lucide="star" class="text-primary"></i>
-<i data-lucide="star" class="text-muted-foreground"></i>
-<i data-lucide="star" class="text-destructive"></i>
-<i data-lucide="star" style="color: green;"></i>
+<i data-lucide="star" fill="currentColor" stroke-width="0"></i>
+<i data-lucide="heart" fill="currentColor" stroke-width="1"></i>
+```
+
+---
+
+## Color
+
+Icons inherit `currentColor` for stroke. Change color with inline styles or token references:
+
+```html
+<i data-lucide="star" style="color:var(--primary);"></i>
+<i data-lucide="star" style="color:var(--muted-foreground);"></i>
+<i data-lucide="star" style="color:var(--destructive);"></i>
+<i data-lucide="star" style="color:oklch(0.72 0.19 142);"></i>
 ```
 
 ---
@@ -134,3 +156,4 @@ Icons inherit `currentColor` for stroke. Change color with CSS:
 - Prefer visually-hidden text (`.sr-only`) over `aria-label` for accessible standalone icons — `aria-label` may not be translated by browser translation tools
 - Add `pointer-events: none` is set in CSS — icons don't capture clicks, so the parent element handles interaction
 - Animations (e.g., `data-animate="spin"` on a loader icon) are suppressed when the user has `prefers-reduced-motion` enabled
+- `prefers-contrast: more` increases stroke width to 2.5 for better visibility

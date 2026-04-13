@@ -89,7 +89,7 @@
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / icon</p>
-          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a></div>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span style="font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Icon</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
@@ -112,10 +112,13 @@
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword" target="_blank" rel="noopener" title="icons inherit stroke color from the parent's color property" class="api-pill"><code>currentColor</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank" rel="noopener" title="suppresses icon animations when user prefers reduced motion" class="api-pill"><code>prefers-reduced-motion</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="maps icon color to system CanvasText in Windows High Contrast Mode" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast" target="_blank" rel="noopener" title="increases stroke width when user requests more contrast" class="api-pill"><code>prefers-contrast</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-lucide</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-lucide</code> — icon name (required)</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>data-size</code> — <code>xs</code> | <code>sm</code> | <code>md</code> | <code>lg</code> | <code>xl</code></p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <code>data-animate</code> — <code>spin</code></p>
 
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
@@ -125,7 +128,8 @@
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The CDN script replaces <code>&lt;i data-lucide=&quot;name&quot;&gt;</code> elements with inline SVGs on page load</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>stroke-width</code> attribute to adjust line thickness (default: <code>2</code>)</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Prefer visually-hidden text (<code>.sr-only</code>) over <code>aria-label</code> for accessible standalone icons</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• Animations (e.g., <code>data-animate=&quot;spin&quot;</code>) are suppressed when the user has <code>prefers-reduced-motion</code> enabled</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Animations (e.g., <code>data-animate=&quot;spin&quot;</code>) are suppressed when the user has <code>prefers-reduced-motion</code> enabled</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>prefers-contrast: more</code> increases stroke width to 2.5 for better visibility</p>
           </div>
         </details>
       </div>
@@ -160,23 +164,27 @@
           <div class="preview" style="gap:2rem;align-items:center;">
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
               <i data-lucide="star" data-size="xs"></i>
-              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">xs (12px)</span>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">xs (12px)</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
-              <i data-lucide="star" ></i>
-              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">default (16px)</span>
+              <i data-lucide="star" data-size="sm"></i>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">sm (14px)</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              <i data-lucide="star"></i>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">default (16px)</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
               <i data-lucide="star" data-size="md"></i>
-              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">md (20px)</span>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">md (20px)</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
               <i data-lucide="star" data-size="lg"></i>
-              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">lg (24px)</span>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">lg (24px)</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
               <i data-lucide="star" data-size="xl"></i>
-              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">xl (32px)</span>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">xl (32px)</span>
             </div>
           </div>
           <div style="position:relative;margin-top:0.5rem;">
@@ -185,7 +193,8 @@
               Copy
             </button>
             <pre><code class="language-markup">&lt;i data-lucide="star" data-size="xs"&gt;&lt;/i&gt;
-&lt;i data-lucide="star" &gt;&lt;/i&gt;
+&lt;i data-lucide="star" data-size="sm"&gt;&lt;/i&gt;
+&lt;i data-lucide="star"&gt;&lt;/i&gt;
 &lt;i data-lucide="star" data-size="md"&gt;&lt;/i&gt;
 &lt;i data-lucide="star" data-size="lg"&gt;&lt;/i&gt;
 &lt;i data-lucide="star" data-size="xl"&gt;&lt;/i&gt;</code></pre>
@@ -252,19 +261,19 @@
           <div class="preview" style="gap:2rem;align-items:center;">
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
               <i data-lucide="heart" data-size="lg" stroke-width="1"></i>
-              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">1</span>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">1</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
               <i data-lucide="heart" data-size="lg" stroke-width="1.5"></i>
-              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">1.5</span>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">1.5</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
               <i data-lucide="heart" data-size="lg" stroke-width="2"></i>
-              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">2</span>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">2</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
               <i data-lucide="heart" data-size="lg" stroke-width="3"></i>
-              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">3</span>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);font-family:var(--font-mono);">3</span>
             </div>
           </div>
           <div style="position:relative;margin-top:0.5rem;">
@@ -327,6 +336,28 @@
           </div>
 
         <!-- -- Browse all icons ---------------------------------- -->
+          <p class="text-sm font-medium mb-2 mt-6">Filled icons</p>
+          <p class="text-xs text-muted-foreground mb-3">Use the <code>fill</code> and <code>stroke-width</code> attributes for filled icon variants. Works well with simple shapes.</p>
+          <div class="preview" style="gap:1.5rem;align-items:center;">
+            <i data-lucide="star" data-size="lg" fill="currentColor" stroke-width="0"></i>
+            <i data-lucide="heart" data-size="lg" fill="currentColor" stroke-width="0"></i>
+            <i data-lucide="circle" data-size="lg" fill="currentColor" stroke-width="0"></i>
+            <i data-lucide="bookmark" data-size="lg" fill="currentColor" stroke-width="0"></i>
+            <i data-lucide="star" data-size="lg" fill="currentColor" stroke-width="1" style="color:oklch(0.77 0.17 75);"></i>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code class="language-markup">&lt;i data-lucide="star" data-size="lg" fill="currentColor" stroke-width="0"&gt;&lt;/i&gt;
+&lt;i data-lucide="heart" data-size="lg" fill="currentColor" stroke-width="0"&gt;&lt;/i&gt;
+
+&lt;!-- Filled with stroke outline --&gt;
+&lt;i data-lucide="star" data-size="lg" fill="currentColor" stroke-width="1"&gt;&lt;/i&gt;</code></pre>
+          </div>
+
+        <!-- -- Browse all icons ---------------------------------- -->
           <p class="text-sm font-medium mb-2 mt-6">Browse all icons</p>
           <p class="text-xs text-muted-foreground mb-3">Lucide provides ~1,500 icons. Browse and search the full set at:</p>
           <a href="https://lucide.dev/icons/" target="_blank" class="btn" data-variant="outline" style="text-decoration:none;">
@@ -377,6 +408,12 @@
     [data-lucide] {
       animation: none !important;
       transition: none !important;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    [data-lucide] {
+      stroke-width: 2.5;
     }
   }
 
@@ -435,6 +472,7 @@
 - [`currentColor`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword) — icons inherit stroke color from the parent's `color` property
 - [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses icon animations (e.g., spinning loaders) when user prefers reduced motion
 - [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — maps icon color to system `CanvasText` in Windows High Contrast Mode
+- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — increases stroke width when user requests more contrast
 
 ---
 
@@ -446,6 +484,16 @@ Include the Lucide CDN script and call `createIcons()`:
 <script src="https://unpkg.com/lucide@1.8.0"><\/script>
 <script>lucide.createIcons();<\/script>
 ```
+
+---
+
+## Data Attributes
+
+| Attribute | Values | Description |
+|-----------|--------|-------------|
+| `data-lucide` | any icon name | Icon to render (required) |
+| `data-size` | `xs`, `sm`, `md`, `lg`, `xl` | Controls icon dimensions |
+| `data-animate` | `spin` | Applies continuous rotation animation |
 
 ---
 
@@ -525,15 +573,26 @@ Default stroke width is `2`.
 
 ---
 
-## Color
+## Filled icons
 
-Icons inherit `currentColor` for stroke. Change color with CSS:
+Use the `fill` attribute for filled icon variants. Set `stroke-width="0"` for fill-only, or keep a stroke for a fill+outline look. Works well with simple shapes (star, heart, circle, bookmark).
 
 ```html
-<i data-lucide="star" class="text-primary"></i>
-<i data-lucide="star" class="text-muted-foreground"></i>
-<i data-lucide="star" class="text-destructive"></i>
-<i data-lucide="star" style="color: green;"></i>
+<i data-lucide="star" fill="currentColor" stroke-width="0"></i>
+<i data-lucide="heart" fill="currentColor" stroke-width="1"></i>
+```
+
+---
+
+## Color
+
+Icons inherit `currentColor` for stroke. Change color with inline styles or token references:
+
+```html
+<i data-lucide="star" style="color:var(--primary);"></i>
+<i data-lucide="star" style="color:var(--muted-foreground);"></i>
+<i data-lucide="star" style="color:var(--destructive);"></i>
+<i data-lucide="star" style="color:oklch(0.72 0.19 142);"></i>
 ```
 
 ---
@@ -557,6 +616,7 @@ Icons inherit `currentColor` for stroke. Change color with CSS:
 - Use `stroke-width` attribute to adjust line thickness (default: `2`)
 - Prefer visually-hidden text (`.sr-only`) over `aria-label` for accessible standalone icons
 - Animations (e.g., `data-animate="spin"`) are suppressed when the user has `prefers-reduced-motion` enabled
+- `prefers-contrast: more` increases stroke width to 2.5 for better visibility
 </script>
 </body>
 </html>

@@ -72,29 +72,7 @@ Tokens are compatible with [tweakcn.com](https://tweakcn.com) theme exports. To 
 
 ## Components
 
-### Primitives
-Typography · Separator · Icon · Label
-
-### Actions
-Button · Toggle · Toggle Group · Button Group · Toolbar
-
-### Forms & Inputs
-Input · Textarea · Checkbox · Radio Group · Switch · Slider · Select · Number Input · File Input · Color Picker · Date Picker · Combobox · Form
-
-### Data Display
-Badge · Avatar · Card · Image · Statistic · Table · Collapsible · Timeline · Tree View · Calendar · Carousel · Scroll Area · Sortable
-
-### Feedback & Status
-Spinner · Skeleton · Progress · Alert · Alert Dialog · Toast
-
-### Overlays
-Popover · Tooltip · Context Menu · Dialog · Sheet · Accordion · Command
-
-### Navigation
-Breadcrumb · Pagination · Steps · Tabs · Dropdown Menu · Navigation Menu
-
-### Application
-Sidebar
+See the **[full component list with live demos →](https://shadcn-html.netlify.app/documentation/)**
 
 ## Design principles
 

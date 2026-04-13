@@ -93,7 +93,7 @@
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Form</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
-          Consistent field layout for forms. Built on native <code>&lt;form&gt;</code> with <code>.form-field</code> spacing and <code>.form-actions</code> button row.
+          Consistent field layout for forms. Built on native <code>&lt;form&gt;</code> with <code>.form-field</code> spacing, <code>.form-field-inline</code> for checkbox/switch rows, <code>.form-field-row</code> for notification-style items, and <code>.form-fieldset</code> for grouped fields.
         </p>
         <!-- Component Skill -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
@@ -103,49 +103,66 @@
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;form&gt;</code> element with consistent field layout using Label, Input, and description/error helpers.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;form&gt;</code> element with consistent field layout using Label, Input, and description/error helpers. Composes with all form control components.</p>
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form" target="_blank" rel="noopener" title="native form with submission, validation, and reset" class="api-pill"><code>&lt;form&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset" target="_blank" rel="noopener" title="groups related fields" class="api-pill"><code>&lt;fieldset&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation" target="_blank" rel="noopener" title="native browser validation" class="api-pill"><code>Constraint Validation API</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid" target="_blank" rel="noopener" title="post-interaction validation styling" class="api-pill"><code>:user-valid / :user-invalid</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby" target="_blank" rel="noopener" title="connects descriptions and errors to inputs" class="api-pill"><code>aria-describedby</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData" target="_blank" rel="noopener" title="native form serialization" class="api-pill"><code>FormData</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <code>.form</code>
               <code>.form-field</code>
-              <code>.form-actions</code>
               <code>.form-field-inline</code>
-              <code>.label</code>
+              <code>.form-field-row</code>
+              <code>.form-actions</code>
+              <code>.form-fieldset</code>
+              <code>.form-group</code>
             </div>
 
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;margin-bottom:1.25rem;">
+              <code>data-orientation="horizontal"</code><span class="text-muted-foreground">On <code>.form-field</code> — places label beside control</span>
+              <code>data-invalid</code><span class="text-muted-foreground">On <code>.form-field</code> — marks field as invalid, description turns destructive</span>
+              <code>data-disabled</code><span class="text-muted-foreground">On <code>.form-field-row</code> — reduces row opacity</span>
+            </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>.form-field</code> provides consistent vertical spacing between fields.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>.form-actions</code> provides a flex row for submit/reset buttons.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• No JavaScript needed for basic forms — use native validation.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• Compose with Label, Input, Textarea, Select, Checkbox, Radio, Switch, etc.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>.form-field-inline</code> aligns checkbox/switch/radio horizontally with their label.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>.form-field-row</code> creates a card-like row for notification-style switch items.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>.form-fieldset</code> styles native <code>&lt;fieldset&gt;</code> with legend and description.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• No JavaScript needed for basic forms — use native Constraint Validation.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• Compose with Label, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, etc.</p>
           </div>
         </details>
       </div>
+
+        <!-- Default -->
         <p class="text-sm font-medium mb-2 mt-6">Default</p>
-        <p class="text-xs text-muted-foreground mb-3">Simple form with labeled fields.</p>
+        <p class="text-xs text-muted-foreground mb-3">Simple form with labeled fields and descriptions.</p>
         <div class="preview" style="justify-content:start;padding:2rem;">
           <form class="form" style="width:100%;max-width:24rem;" onsubmit="return false;">
             <div class="form-field">
-              <label class="label" for="f-name">Name</label>
-              <input class="input" type="text" id="f-name" placeholder="Jane Doe" required>
-              <p class="field-description">Your full name.</p>
+              <label class="label" for="f-name">Username</label>
+              <input class="input" type="text" id="f-name" placeholder="codylindley" required>
+              <p class="field-description">This is your public display name.</p>
             </div>
             <div class="form-field">
               <label class="label" for="f-email">Email</label>
               <input class="input" type="email" id="f-email" placeholder="you@example.com" required>
+              <p class="field-description">You can manage email addresses in your settings.</p>
             </div>
             <div class="form-field">
-              <label class="label" for="f-msg">Message</label>
-              <textarea class="textarea" id="f-msg" placeholder="Your message..."></textarea>
+              <label class="label" for="f-bio">Bio</label>
+              <textarea class="textarea" id="f-bio" placeholder="Tell us about yourself..."></textarea>
+              <p class="field-description">You can @mention other users and organizations.</p>
             </div>
             <div class="form-actions">
               <button class="btn" type="submit" data-variant="default">Submit</button>
@@ -160,31 +177,43 @@
           </button>
           <pre><code class="language-markup">&lt;form class="form"&gt;
   &lt;div class="form-field"&gt;
-    &lt;label class="label" for="name"&gt;Name&lt;/label&gt;
+    &lt;label class="label" for="name"&gt;Username&lt;/label&gt;
     &lt;input class="input" type="text" id="name" required&gt;
-    &lt;p class="field-description"&gt;Your full name.&lt;/p&gt;
+    &lt;p class="field-description"&gt;This is your public display name.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="form-field"&gt;
+    &lt;label class="label" for="email"&gt;Email&lt;/label&gt;
+    &lt;input class="input" type="email" id="email" required&gt;
+    &lt;p class="field-description"&gt;You can manage email addresses in your settings.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="form-field"&gt;
+    &lt;label class="label" for="bio"&gt;Bio&lt;/label&gt;
+    &lt;textarea class="textarea" id="bio"&gt;&lt;/textarea&gt;
+    &lt;p class="field-description"&gt;You can @mention other users and organizations.&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="form-actions"&gt;
-    &lt;button class="btn" type="submit"&gt;Submit&lt;/button&gt;
+    &lt;button class="btn" type="submit" data-variant="default"&gt;Submit&lt;/button&gt;
+    &lt;button class="btn" type="reset" data-variant="outline"&gt;Reset&lt;/button&gt;
   &lt;/div&gt;
 &lt;/form&gt;</code></pre>
         </div>
 
+        <!-- Inline fields -->
         <p class="text-sm font-medium mb-2 mt-8">Inline fields</p>
-        <p class="text-xs text-muted-foreground mb-3">Checkbox and switch in a form.</p>
+        <p class="text-xs text-muted-foreground mb-3">Checkbox and switch aligned with labels.</p>
         <div class="preview" style="justify-content:start;padding:2rem;">
           <form class="form" style="width:100%;max-width:24rem;" onsubmit="return false;">
             <div class="form-field">
-              <label class="label" for="f-user">Username</label>
-              <input class="input" type="text" id="f-user" placeholder="codylindley">
+              <label class="label" for="f2-user">Username</label>
+              <input class="input" type="text" id="f2-user" placeholder="codylindley">
             </div>
             <div class="form-field-inline">
-              <input class="checkbox" type="checkbox" id="f-terms">
-              <label for="f-terms" style="font-size:0.875rem;">Accept terms</label>
+              <input class="checkbox" type="checkbox" id="f2-terms">
+              <label for="f2-terms" style="font-size:0.875rem;">Accept terms and conditions</label>
             </div>
             <div class="form-field-inline">
-              <input class="switch" type="checkbox" role="switch" id="f-news">
-              <label for="f-news" style="font-size:0.875rem;">Subscribe to newsletter</label>
+              <input class="switch" type="checkbox" role="switch" id="f2-news">
+              <label for="f2-news" style="font-size:0.875rem;">Subscribe to newsletter</label>
             </div>
             <div class="form-actions">
               <button class="btn" type="submit" data-variant="default">Create account</button>
@@ -198,8 +227,294 @@
           </button>
           <pre><code class="language-markup">&lt;div class="form-field-inline"&gt;
   &lt;input class="checkbox" type="checkbox" id="terms"&gt;
-  &lt;label for="terms"&gt;Accept terms&lt;/label&gt;
+  &lt;label for="terms"&gt;Accept terms and conditions&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="form-field-inline"&gt;
+  &lt;input class="switch" type="checkbox" role="switch" id="news"&gt;
+  &lt;label for="news"&gt;Subscribe to newsletter&lt;/label&gt;
 &lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Notification / switch rows -->
+        <p class="text-sm font-medium mb-2 mt-8">Switch rows (notifications)</p>
+        <p class="text-xs text-muted-foreground mb-3">Notification-style rows with label, description, and switch.</p>
+        <div class="preview" style="justify-content:start;padding:2rem;">
+          <form class="form" style="width:100%;max-width:28rem;" onsubmit="return false;">
+            <div class="form-field-row">
+              <div>
+                <label class="label" for="f3-marketing">Marketing emails</label>
+                <p class="field-description">Receive emails about new products, features, and more.</p>
+              </div>
+              <input class="switch" type="checkbox" role="switch" id="f3-marketing">
+            </div>
+            <div class="form-field-row">
+              <div>
+                <label class="label" for="f3-security">Security emails</label>
+                <p class="field-description">Receive emails about your account security.</p>
+              </div>
+              <input class="switch" type="checkbox" role="switch" id="f3-security" checked disabled>
+            </div>
+            <div class="form-actions">
+              <button class="btn" type="submit" data-variant="default">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;div class="form-field-row"&gt;
+  &lt;div&gt;
+    &lt;label class="label" for="marketing"&gt;Marketing emails&lt;/label&gt;
+    &lt;p class="field-description"&gt;Receive emails about new products, features, and more.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;input class="switch" type="checkbox" role="switch" id="marketing"&gt;
+&lt;/div&gt;
+&lt;div class="form-field-row"&gt;
+  &lt;div&gt;
+    &lt;label class="label" for="security"&gt;Security emails&lt;/label&gt;
+    &lt;p class="field-description"&gt;Receive emails about your account security.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;input class="switch" type="checkbox" role="switch" id="security" checked disabled&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Fieldset grouping -->
+        <p class="text-sm font-medium mb-2 mt-8">Fieldset grouping</p>
+        <p class="text-xs text-muted-foreground mb-3">Group related fields with <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code>.</p>
+        <div class="preview" style="justify-content:start;padding:2rem;">
+          <form class="form" style="width:100%;max-width:24rem;" onsubmit="return false;">
+            <div class="form-field">
+              <label class="label" for="f4-name">Full name</label>
+              <input class="input" type="text" id="f4-name" placeholder="Jane Doe" required>
+            </div>
+            <fieldset class="form-fieldset">
+              <legend>Notify me about...</legend>
+              <div class="form-group">
+                <div class="form-field-inline">
+                  <input class="radio" type="radio" name="f4-notify" id="f4-all" checked>
+                  <label for="f4-all" style="font-size:0.875rem;">All new messages</label>
+                </div>
+                <div class="form-field-inline">
+                  <input class="radio" type="radio" name="f4-notify" id="f4-direct">
+                  <label for="f4-direct" style="font-size:0.875rem;">Direct messages and mentions</label>
+                </div>
+                <div class="form-field-inline">
+                  <input class="radio" type="radio" name="f4-notify" id="f4-none">
+                  <label for="f4-none" style="font-size:0.875rem;">Nothing</label>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-actions">
+              <button class="btn" type="submit" data-variant="default">Save preferences</button>
+            </div>
+          </form>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;fieldset class="form-fieldset"&gt;
+  &lt;legend&gt;Notify me about...&lt;/legend&gt;
+  &lt;div class="form-group"&gt;
+    &lt;div class="form-field-inline"&gt;
+      &lt;input class="radio" type="radio" name="notify" id="all" checked&gt;
+      &lt;label for="all"&gt;All new messages&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class="form-field-inline"&gt;
+      &lt;input class="radio" type="radio" name="notify" id="direct"&gt;
+      &lt;label for="direct"&gt;Direct messages and mentions&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class="form-field-inline"&gt;
+      &lt;input class="radio" type="radio" name="notify" id="none"&gt;
+      &lt;label for="none"&gt;Nothing&lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+        </div>
+
+        <!-- Horizontal layout -->
+        <p class="text-sm font-medium mb-2 mt-8">Horizontal layout</p>
+        <p class="text-xs text-muted-foreground mb-3">Label placed beside the control with <code>data-orientation="horizontal"</code>.</p>
+        <div class="preview" style="justify-content:start;padding:2rem;">
+          <form class="form" style="width:100%;max-width:32rem;" onsubmit="return false;">
+            <div class="form-field" data-orientation="horizontal">
+              <label class="label" for="f5-name">Name</label>
+              <div>
+                <input class="input" type="text" id="f5-name" placeholder="Jane Doe">
+                <p class="field-description">Your full name for identification.</p>
+              </div>
+            </div>
+            <div class="form-field" data-orientation="horizontal">
+              <label class="label" for="f5-email">Email</label>
+              <div>
+                <input class="input" type="email" id="f5-email" placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn" type="submit" data-variant="default">Save</button>
+              <button class="btn" type="reset" data-variant="outline">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;div class="form-field" data-orientation="horizontal"&gt;
+  &lt;label class="label" for="name"&gt;Name&lt;/label&gt;
+  &lt;div&gt;
+    &lt;input class="input" type="text" id="name"&gt;
+    &lt;p class="field-description"&gt;Your full name for identification.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Validation / error state -->
+        <p class="text-sm font-medium mb-2 mt-8">Validation with errors</p>
+        <p class="text-xs text-muted-foreground mb-3">Fields with <code>data-invalid</code> and <code>aria-invalid</code> for error states.</p>
+        <div class="preview" style="justify-content:start;padding:2rem;">
+          <form class="form" style="width:100%;max-width:24rem;" onsubmit="return false;" novalidate>
+            <div class="form-field" data-invalid>
+              <label class="label" for="f6-user">Username</label>
+              <input class="input" type="text" id="f6-user" aria-invalid="true" aria-describedby="f6-user-err" value="ab">
+              <p class="field-error" id="f6-user-err" role="alert">Username must be at least 3 characters.</p>
+            </div>
+            <div class="form-field" data-invalid>
+              <label class="label" for="f6-email">Email</label>
+              <input class="input" type="email" id="f6-email" aria-invalid="true" aria-describedby="f6-email-err" value="not-an-email">
+              <p class="field-error" id="f6-email-err" role="alert">Please enter a valid email address.</p>
+            </div>
+            <div class="form-field">
+              <label class="label" for="f6-msg">Message</label>
+              <textarea class="textarea" id="f6-msg" placeholder="Your message..."></textarea>
+              <p class="field-description">Optional message.</p>
+            </div>
+            <div class="form-actions">
+              <button class="btn" type="submit" data-variant="default">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;div class="form-field" data-invalid&gt;
+  &lt;label class="label" for="user"&gt;Username&lt;/label&gt;
+  &lt;input class="input" type="text" id="user"
+    aria-invalid="true" aria-describedby="user-err"&gt;
+  &lt;p class="field-error" id="user-err" role="alert"&gt;
+    Username must be at least 3 characters.
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Full kitchen sink -->
+        <p class="text-sm font-medium mb-2 mt-8">Full composition</p>
+        <p class="text-xs text-muted-foreground mb-3">Comprehensive form composing multiple field types.</p>
+        <div class="preview" style="justify-content:start;padding:2rem;">
+          <form class="form" style="width:100%;max-width:28rem;" onsubmit="return false;">
+            <div class="form-field">
+              <label class="label" for="f7-name">Username</label>
+              <input class="input" type="text" id="f7-name" placeholder="codylindley" required>
+              <p class="field-description">This is your public display name.</p>
+            </div>
+            <div class="form-field">
+              <label class="label" for="f7-email">Email</label>
+              <select class="select" id="f7-email">
+                <option value="m@example.com">m@example.com</option>
+                <option value="m@google.com">m@google.com</option>
+                <option value="m@support.com">m@support.com</option>
+              </select>
+              <p class="field-description">You can manage email addresses in your settings.</p>
+            </div>
+            <div class="form-field">
+              <label class="label" for="f7-bio">Bio</label>
+              <textarea class="textarea" id="f7-bio" placeholder="I like to..."></textarea>
+              <p class="field-description">You can @mention other users and organizations.</p>
+            </div>
+            <div class="form-field">
+              <label class="label" for="f7-dob">Date of birth</label>
+              <input class="input" type="date" id="f7-dob">
+              <p class="field-description">Your date of birth is used to calculate your age.</p>
+            </div>
+            <fieldset class="form-fieldset">
+              <legend>Notify me about...</legend>
+              <div class="form-group">
+                <div class="form-field-inline">
+                  <input class="radio" type="radio" name="f7-notify" id="f7-all" checked>
+                  <label for="f7-all" style="font-size:0.875rem;">All new messages</label>
+                </div>
+                <div class="form-field-inline">
+                  <input class="radio" type="radio" name="f7-notify" id="f7-direct">
+                  <label for="f7-direct" style="font-size:0.875rem;">Direct messages and mentions</label>
+                </div>
+                <div class="form-field-inline">
+                  <input class="radio" type="radio" name="f7-notify" id="f7-nothing">
+                  <label for="f7-nothing" style="font-size:0.875rem;">Nothing</label>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-field-row">
+              <div>
+                <label class="label" for="f7-marketing">Marketing emails</label>
+                <p class="field-description">Receive emails about new products, features, and more.</p>
+              </div>
+              <input class="switch" type="checkbox" role="switch" id="f7-marketing">
+            </div>
+            <div class="form-field-row" data-disabled>
+              <div>
+                <label class="label" for="f7-security">Security emails</label>
+                <p class="field-description">Receive emails about your account security.</p>
+              </div>
+              <input class="switch" type="checkbox" role="switch" id="f7-security" checked disabled>
+            </div>
+            <div class="form-actions">
+              <button class="btn" type="submit" data-variant="default">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;form class="form"&gt;
+  &lt;div class="form-field"&gt;
+    &lt;label class="label" for="name"&gt;Username&lt;/label&gt;
+    &lt;input class="input" type="text" id="name" required&gt;
+    &lt;p class="field-description"&gt;This is your public display name.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="form-field"&gt;
+    &lt;label class="label" for="email"&gt;Email&lt;/label&gt;
+    &lt;select class="select" id="email"&gt;
+      &lt;option&gt;m@example.com&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+  &lt;fieldset class="form-fieldset"&gt;
+    &lt;legend&gt;Notify me about...&lt;/legend&gt;
+    &lt;div class="form-group"&gt;
+      &lt;div class="form-field-inline"&gt;
+        &lt;input class="radio" type="radio" name="notify" id="all" checked&gt;
+        &lt;label for="all"&gt;All new messages&lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+  &lt;div class="form-field-row"&gt;
+    &lt;div&gt;
+      &lt;label class="label" for="marketing"&gt;Marketing emails&lt;/label&gt;
+      &lt;p class="field-description"&gt;Receive emails about new products.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;input class="switch" type="checkbox" role="switch" id="marketing"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-actions"&gt;
+    &lt;button class="btn" type="submit"&gt;Submit&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
         </div>
 
         <!-- -- CSS --------------------------------------- -->
@@ -216,17 +531,32 @@
     gap: 1.5rem;
   }
 
+  /* -- Form field -------------------------------------------- */
   .form-field {
     display: flex;
     flex-direction: column;
     gap: 0;
-  }
 
-  .form-actions {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    padding-top: 0.5rem;
+    /* -- Horizontal orientation (label beside control) ------- */
+    &amp;[data-orientation=&quot;horizontal&quot;] {
+      flex-direction: row;
+      align-items: start;
+      gap: 1rem;
+
+      &amp; &gt; .label {
+        margin-bottom: 0;
+        padding-top: 0.5rem;
+        min-width: 8rem;
+        flex-shrink: 0;
+      }
+    }
+
+    /* -- Invalid state -------------------------------------- */
+    &amp;[data-invalid] {
+      &amp; &gt; .field-description {
+        color: var(--destructive);
+      }
+    }
   }
 
   /* -- Inline field (checkbox, switch, radio inline) -------- */
@@ -237,6 +567,93 @@
 
     &amp; &gt; .label {
       margin-bottom: 0;
+    }
+  }
+
+  /* -- Notification / switch row layout --------------------- */
+  .form-field-row {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    box-shadow: var(--shadow-xs);
+
+    &amp; &gt; div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+    }
+
+    &amp; &gt; div &gt; .label {
+      margin-bottom: 0;
+      line-height: 1.4;
+    }
+
+    &amp; &gt; div &gt; .field-description {
+      margin: 0;
+    }
+
+    &amp;[data-disabled] {
+      opacity: 0.6;
+    }
+  }
+
+  /* -- Button actions row ----------------------------------- */
+  .form-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding-top: 0.5rem;
+  }
+
+  /* -- Fieldset --------------------------------------------- */
+  .form-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &amp; &gt; legend {
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: var(--font-sans);
+      color: var(--foreground);
+      padding: 0;
+      margin-bottom: 0.25rem;
+    }
+
+    &amp; &gt; .field-description {
+      margin: -0.25rem 0 0.5rem;
+    }
+  }
+
+  /* -- Form group (vertical stack of fields) ---------------- */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* -- Accessibility ---------------------------------------- */
+  @media (prefers-contrast: more) {
+    .form-field-row {
+      border-width: 2px;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .form-field-row {
+      border-color: ButtonBorder;
+    }
+
+    .form-fieldset &gt; legend {
+      color: LinkText;
     }
   }
 }</code></pre>
@@ -279,29 +696,30 @@
 <script type="text/plain" id="spec-md-content"># Pattern: Form
 
 ## Native basis
-`<form>` element with consistent field layout using Label, Input, and description/error helpers.
+`<form>` element with consistent field layout using Label, Input, and description/error helpers. Composes with all form control components (Input, Textarea, Select, Checkbox, Radio, Switch, Slider, etc.).
 
 ---
 
 ## Native Web APIs
 - [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) — native form with submission, validation, and reset
-- [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset) — groups related fields
-- [Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation) — native browser validation
+- [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset) — groups related fields with `<legend>`
+- [Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation) — native browser validation (`required`, `pattern`, `min`, `max`, `minlength`, `maxlength`)
+- [`:user-valid` / `:user-invalid`](https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid) — post-interaction validation styling without JS
+- [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) — connects descriptions and errors to inputs
+- [`aria-invalid`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-invalid) — marks invalid form controls for assistive technology
+- [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) — native form serialization
 
 ---
 
 ## Structure
 
+### Default form
 ```html
 <form class="form">
   <div class="form-field">
     <label class="label" for="f-name">Name</label>
     <input class="input" type="text" id="f-name" required>
     <p class="field-description">Your full name.</p>
-  </div>
-  <div class="form-field">
-    <label class="label" for="f-email">Email</label>
-    <input class="input" type="email" id="f-email" required>
   </div>
   <div class="form-actions">
     <button class="btn" type="submit" data-variant="default">Submit</button>
@@ -310,14 +728,80 @@
 </form>
 ```
 
+### Inline field (checkbox, switch)
+```html
+<div class="form-field-inline">
+  <input class="checkbox" type="checkbox" id="terms">
+  <label for="terms">Accept terms</label>
+</div>
+```
+
+### Switch row (notification-style)
+```html
+<div class="form-field-row">
+  <div>
+    <label class="label" for="marketing">Marketing emails</label>
+    <p class="field-description">Receive emails about new products.</p>
+  </div>
+  <input class="switch" type="checkbox" role="switch" id="marketing">
+</div>
+```
+
+### Fieldset grouping
+```html
+<fieldset class="form-fieldset">
+  <legend>Notifications</legend>
+  <div class="form-group">
+    <div class="form-field-inline">
+      <input class="radio" type="radio" name="notify" id="all" checked>
+      <label for="all">All new messages</label>
+    </div>
+  </div>
+</fieldset>
+```
+
+### Invalid field with error
+```html
+<div class="form-field" data-invalid>
+  <label class="label" for="email">Email</label>
+  <input class="input" type="email" id="email" aria-invalid="true" aria-describedby="email-err">
+  <p class="field-error" id="email-err" role="alert">Please enter a valid email address.</p>
+</div>
+```
+
+---
+
+## Data Attributes
+
+| Attribute | Element | Values | Description |
+|---|---|---|---|
+| `data-orientation` | `.form-field` | `horizontal` | Places label beside the control instead of stacked above |
+| `data-invalid` | `.form-field` | (presence) | Marks field as invalid — description text turns destructive color |
+| `data-disabled` | `.form-field-row` | (presence) | Reduces opacity on the row |
+
+---
+
+## ARIA
+
+| Attribute | Element | Purpose |
+|---|---|---|
+| `for` / `id` | `<label>` → `<input>` | Associates label with control |
+| `aria-describedby` | `<input>` | Points to `.field-description` or `.field-error` `id` |
+| `aria-invalid="true"` | `<input>` | Marks control as invalid for assistive technology |
+| `role="alert"` | `.field-error` | Announces error messages to screen readers |
+| `required` | `<input>` | Native required validation |
+
 ---
 
 ## Notes
 
 - `.form-field` provides consistent vertical spacing between fields.
-- `.form-actions` provides a flex row for submit/reset buttons.
-- No JavaScript needed for basic forms — use native validation.
-- Compose with Label, Input, Textarea, Select, Checkbox, Radio, Switch, etc.
+- `.form-field-inline` aligns checkbox/switch/radio horizontally with their label.
+- `.form-field-row` creates a card-like row for notification-style switch items.
+- `.form-fieldset` styles native `<fieldset>` with legend and description.
+- `.form-group` is a vertical stack for grouping multiple inline fields.
+- No JavaScript needed for basic forms — use native Constraint Validation.
+- Compose with Label, Input, Textarea, Select, Checkbox, Radio Group, Switch, etc.
 </script>
 </body>
 </html>
