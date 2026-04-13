@@ -310,6 +310,32 @@
 
         <!-- Spec link -->
 
+        <!-- RTL Support -->
+        <p class="text-sm font-medium mb-2 mt-8">RTL support</p>
+        <p class="text-xs text-muted-foreground mb-3">Blockquotes use logical properties (<code>border-inline-start</code>, <code>padding-inline-start</code>) — they flip automatically in RTL contexts.</p>
+        <div class="preview" style="text-align:left;padding:2.5rem;">
+          <div dir="rtl" style="max-width:32rem;margin:0 auto;">
+            <h3 class="h3" style="margin-bottom:0.75rem;">ضريبة النكتة</h3>
+            <p class="p" style="margin-top:0;">فكر الملك طويلاً وبجد، وأخيراً توصل إلى خطة عبقرية: سيفرض ضريبة على النكات في المملكة.</p>
+            <blockquote class="blockquote">
+              <p>"في النهاية،" قال، "الجميع يستمتع بنكتة جيدة، لذا من العدل أن يدفعوا مقابل هذا الامتياز."</p>
+            </blockquote>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;div dir="rtl"&gt;
+  &lt;h3 class="h3"&gt;ضريبة النكتة&lt;/h3&gt;
+  &lt;p class="p"&gt;فكر الملك طويلاً وبجد...&lt;/p&gt;
+  &lt;blockquote class="blockquote"&gt;
+    &lt;p&gt;"في النهاية،" قال...&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
         <!-- -- CSS --------------------------------------- -->
         <section style="margin-top:3rem;" id="source-css">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/typography/typography.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
