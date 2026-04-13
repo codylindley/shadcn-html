@@ -6,9 +6,17 @@
     background: transparent; color: var(--foreground); font-size: 0.875rem; font-weight: 500;
     font-family: inherit; text-decoration: none; cursor: pointer;
     transition: background-color 150ms ease, color 150ms ease;
+    outline: none;
     &:hover { background-color: var(--accent); color: var(--accent-foreground); }
+    &:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
     & svg { width: 0.875rem; height: 0.875rem; color: var(--muted-foreground); transition: transform 200ms ease; }
   }
+
+  /* Rotate chevron when popover is open */
+  .nav-menu-trigger:has(+ .nav-menu-content:popover-open) svg {
+    transform: rotate(180deg);
+  }
+
   .nav-menu-content {
     position: fixed; inset: auto;
     margin: 0; border: 1px solid var(--border); border-radius: var(--radius-xl);
@@ -29,6 +37,23 @@
     text-decoration: none; color: var(--foreground); font-size: 0.875rem;
     transition: background-color 150ms ease;
     &:hover { background-color: var(--accent); }
+    &:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
     & p { margin: 0.125rem 0 0; font-size: 0.75rem; color: var(--muted-foreground); font-weight: 400; }
+  }
+
+  /* -- Accessibility ------------------------------------------ */
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-menu-link, .nav-menu-trigger,
+    .nav-menu-content, .nav-menu-content-link {
+      transition: none;
+    }
+    .nav-menu-trigger svg { transition: none; }
+  }
+
+  @media (forced-colors: active) {
+    .nav-menu-content {
+      border-color: ButtonText;
+    }
   }
 }

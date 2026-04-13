@@ -11,13 +11,15 @@
     margin-bottom: 0.375rem;
     cursor: default;
 
-    /* Highlight label when its associated input is focused */
-    &:has(+ .input:focus, + .input:focus-within) {
-      color: var(--foreground);
+    /* Disabled — explicit attribute */
+    &[data-disabled] {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
 
-    /* Disabled state */
-    &[data-disabled] {
+    /* Disabled — auto-detect via adjacent disabled control */
+    &:has(+ :disabled),
+    &:has(+ [data-disabled]) {
       opacity: 0.7;
       cursor: not-allowed;
     }
@@ -28,5 +30,12 @@
     font-weight: 400;
     font-size: 0.8125rem;
     color: var(--muted-foreground);
+  }
+
+  /* -- Accessibility ---------------------------------------- */
+  @media (forced-colors: active) {
+    .label {
+      color: LinkText;
+    }
   }
 }

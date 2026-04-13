@@ -107,6 +107,12 @@
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav" target="_blank" rel="noopener" title="navigation landmark" class="api-pill"><code>&lt;nav&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API" target="_blank" rel="noopener" title="dropdown panels" class="api-pill"><code>popover API</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#popovertarget" target="_blank" rel="noopener" title="declarative trigger" class="api-pill"><code>popovertarget</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning" target="_blank" rel="noopener" title="positions dropdown relative to trigger" class="api-pill"><code>CSS Anchor Positioning</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" title="entry animation" class="api-pill"><code>@starting-style</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has" target="_blank" rel="noopener" title="chevron rotation on open state" class="api-pill"><code>:has()</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank" rel="noopener" title="suppresses animations" class="api-pill"><code>prefers-reduced-motion</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="maps border to system color" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
@@ -146,6 +152,83 @@
 &lt;/nav&gt;</code></pre>
         </div>
 
+        <!-- With Dropdowns -->
+        <p class="text-sm font-medium mb-2 mt-8">With dropdowns</p>
+        <p class="text-xs text-muted-foreground mb-3">Triggers open anchor-positioned content panels. Chevron rotates when open.</p>
+        <div class="preview" style="min-height: 14rem;">
+          <nav class="nav-menu" aria-label="Site navigation">
+            <ul class="nav-menu-list">
+              <li class="nav-menu-item">
+                <button class="nav-menu-trigger" popovertarget="nav-products">
+                  Products
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="nav-menu-content" id="nav-products" popover>
+                  <a class="nav-menu-content-link" href="#" onclick="event.preventDefault()">
+                    <strong>Analytics</strong>
+                    <p>View your dashboard and metrics</p>
+                  </a>
+                  <a class="nav-menu-content-link" href="#" onclick="event.preventDefault()">
+                    <strong>Automation</strong>
+                    <p>Build workflows and integrations</p>
+                  </a>
+                  <a class="nav-menu-content-link" href="#" onclick="event.preventDefault()">
+                    <strong>Reports</strong>
+                    <p>Generate custom data reports</p>
+                  </a>
+                </div>
+              </li>
+              <li class="nav-menu-item">
+                <button class="nav-menu-trigger" popovertarget="nav-resources">
+                  Resources
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="nav-menu-content" id="nav-resources" popover>
+                  <a class="nav-menu-content-link" href="#" onclick="event.preventDefault()">
+                    <strong>Documentation</strong>
+                    <p>Guides and API reference</p>
+                  </a>
+                  <a class="nav-menu-content-link" href="#" onclick="event.preventDefault()">
+                    <strong>Blog</strong>
+                    <p>Latest news and updates</p>
+                  </a>
+                </div>
+              </li>
+              <li class="nav-menu-item"><a class="nav-menu-link" href="#" onclick="event.preventDefault()">Pricing</a></li>
+              <li class="nav-menu-item"><a class="nav-menu-link" href="#" onclick="event.preventDefault()">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;nav class="nav-menu" aria-label="Site navigation"&gt;
+  &lt;ul class="nav-menu-list"&gt;
+    &lt;li class="nav-menu-item"&gt;
+      &lt;button class="nav-menu-trigger" popovertarget="nav-products"&gt;
+        Products
+        &lt;svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2"&gt;
+          &lt;path d="m6 9 6 6 6-6"/&gt;
+        &lt;/svg&gt;
+      &lt;/button&gt;
+      &lt;div class="nav-menu-content" id="nav-products" popover&gt;
+        &lt;a class="nav-menu-content-link" href="#"&gt;
+          &lt;strong&gt;Analytics&lt;/strong&gt;
+          &lt;p&gt;View your dashboard and metrics&lt;/p&gt;
+        &lt;/a&gt;
+        &lt;a class="nav-menu-content-link" href="#"&gt;...&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li class="nav-menu-item"&gt;
+      &lt;a class="nav-menu-link" href="#"&gt;Pricing&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+
         <!-- -- CSS --------------------------------------- -->
         <section style="margin-top:3rem;" id="source-css">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/navigation-menu/navigation-menu.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
@@ -160,15 +243,29 @@
     background: transparent; color: var(--foreground); font-size: 0.875rem; font-weight: 500;
     font-family: inherit; text-decoration: none; cursor: pointer;
     transition: background-color 150ms ease, color 150ms ease;
+    outline: none;
     &amp;:hover { background-color: var(--accent); color: var(--accent-foreground); }
+    &amp;:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
     &amp; svg { width: 0.875rem; height: 0.875rem; color: var(--muted-foreground); transition: transform 200ms ease; }
   }
+
+  /* Rotate chevron when popover is open */
+  .nav-menu-trigger:has(+ .nav-menu-content:popover-open) svg {
+    transform: rotate(180deg);
+  }
+
   .nav-menu-content {
+    position: fixed; inset: auto;
     margin: 0; border: 1px solid var(--border); border-radius: var(--radius-xl);
     background-color: var(--popover); color: var(--popover-foreground);
     padding: 1rem; box-shadow: var(--shadow-md); min-width: 14rem;
     opacity: 0; transform: translateY(-4px);
     transition: opacity 150ms ease, transform 150ms ease, display 150ms allow-discrete;
+
+    /* -- Anchor positioning -- */
+    top: anchor(bottom); left: anchor(left); margin-top: 4px;
+    position-try-fallbacks: flip-block;
+
     &amp;:popover-open { opacity: 1; transform: translateY(0); }
   }
   @starting-style { .nav-menu-content:popover-open { opacity: 0; transform: translateY(-4px); } }
@@ -177,7 +274,22 @@
     text-decoration: none; color: var(--foreground); font-size: 0.875rem;
     transition: background-color 150ms ease;
     &amp;:hover { background-color: var(--accent); }
+    &amp;:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
     &amp; p { margin: 0.125rem 0 0; font-size: 0.75rem; color: var(--muted-foreground); font-weight: 400; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-menu-link, .nav-menu-trigger,
+    .nav-menu-content, .nav-menu-content-link {
+      transition: none;
+    }
+    .nav-menu-trigger svg { transition: none; }
+  }
+
+  @media (forced-colors: active) {
+    .nav-menu-content {
+      border-color: ButtonText;
+    }
   }
 }</code></pre>
           </div>
@@ -186,28 +298,30 @@
         <!-- -- JavaScript -------------------------------- -->
         <section style="margin-top:3rem;" id="source-js">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/navigation-menu/navigation-menu.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
-          <p class="text-muted-foreground text-sm mb-4">Interaction logic for the navigation-menu component. Uses data attributes for wiring.</p>
+          <p class="text-muted-foreground text-sm mb-4">Sets CSS anchor positioning names for trigger→content pairs. The <code>popover</code> API handles open/close natively.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
-            <pre><code class="language-javascript">(function () {
-  'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.nav-menu').forEach(function (nav) {
-      nav.querySelectorAll('.nav-menu-trigger[popovertarget]').forEach(function (trigger) {
-        var content = document.getElementById(trigger.getAttribute('popovertarget'));
-        if (!content) return;
-        trigger.addEventListener('click', function (e) {
-          e.preventDefault();
-          var rect = trigger.getBoundingClientRect();
-          content.style.position = 'fixed';
-          content.style.top = (rect.bottom + 4) + 'px';
-          content.style.left = rect.left + 'px';
-          content.togglePopover();
-        });
-      });
-    });
+            <pre><code class="language-javascript">// -- Navigation Menu -----------------------------------------
+// CSS anchor positioning for dropdown navigation menus.
+
+function init() {
+  document.querySelectorAll('.nav-menu:not([data-init])').forEach((nav) =&gt; {
+  nav.dataset.init = '';
+  nav.querySelectorAll('.nav-menu-trigger[popovertarget]').forEach((trigger) =&gt; {
+    const id = trigger.getAttribute('popovertarget');
+    const content = document.getElementById(id);
+    if (!content) return;
+
+    // CSS anchor positioning - unique name per trigger-content pair
+    const anchorId = `--nav-menu-${id}`;
+    trigger.style.anchorName = anchorId;
+    content.style.positionAnchor = anchorId;
   });
-})();</code></pre>
+});
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
           </div>
         </section>
     </main>
@@ -250,7 +364,16 @@
 ## Native Web APIs
 
 - [`<nav>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav) — navigation landmark
-- [`popover` API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) — dropdown panels
+- [`popover` API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) — dropdown panels without JS show/hide
+- [`popovertarget`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#popovertarget) — declarative button→popover trigger
+- [CSS Anchor Positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning) — positions dropdown relative to trigger
+- [`@starting-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style) — entry animation for popover
+- [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) — keyboard-only focus ring
+- [`:has()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) — rotates chevron when dropdown is open
+- [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses animations
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — maps dropdown border to system color
+
+---
 
 ## Structure
 
@@ -259,12 +382,49 @@
   <ul class="nav-menu-list">
     <li class="nav-menu-item"><a class="nav-menu-link" href="#">Home</a></li>
     <li class="nav-menu-item">
-      <button class="nav-menu-trigger" popovertarget="nav-dd">Products</button>
-      <div class="nav-menu-content" id="nav-dd" popover>...</div>
+      <button class="nav-menu-trigger" popovertarget="nav-dd">
+        Products
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/><\/svg>
+      </button>
+      <div class="nav-menu-content" id="nav-dd" popover>
+        <a class="nav-menu-content-link" href="#">
+          <strong>Analytics</strong>
+          <p>View your dashboard</p>
+        </a>
+      </div>
     </li>
   </ul>
 </nav>
 ```
+
+---
+
+## ARIA
+
+| Attribute | Element | Purpose |
+|-----------|---------|---------|
+| `aria-label` | `<nav>` | Accessible name for the navigation |
+| `aria-hidden="true"` | chevron `<svg>` | Decorative indicator |
+
+---
+
+## Keyboard
+
+| Key | Action |
+|-----|--------|
+| `Tab` | Moves focus between nav items |
+| `Enter` / `Space` | Opens dropdown (on trigger) |
+| `Escape` | Closes dropdown (native popover behavior) |
+
+---
+
+## Notes
+
+- The `popover` API handles open/close — no JS click handlers needed.
+- CSS anchor positioning aligns the dropdown to its trigger.
+- The chevron rotates via `:has(+ .nav-menu-content:popover-open)`.
+- Dropdown content typically contains `nav-menu-content-link` items with a title and optional description.
 </script>
 </body>
 </html>

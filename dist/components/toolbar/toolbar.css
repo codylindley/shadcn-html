@@ -11,21 +11,29 @@
     background: var(--background);
     width: fit-content;
 
-    /* Vertical separators auto-size in the toolbar context */
+    /* Vertical separators stretch to fill toolbar height */
     & > .separator[data-orientation="vertical"] {
-      height: 1.5rem;
-      margin: 0 0.25rem;
+      align-self: stretch;
+      height: auto;
+      margin: 0.25rem 0.25rem;
     }
 
     /* Vertical toolbar */
     &[aria-orientation="vertical"] {
       flex-direction: column;
 
-      & > .separator[data-orientation="vertical"] {
+      & > .separator[data-orientation="horizontal"],
+      & > .separator:not([data-orientation]) {
         height: 1px;
         width: 1.5rem;
         margin: 0.25rem 0;
       }
+    }
+  }
+
+  @media (forced-colors: active) {
+    .toolbar {
+      border-color: ButtonText;
     }
   }
 }
