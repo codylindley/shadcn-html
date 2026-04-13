@@ -12,6 +12,9 @@ Also covers `<textarea>` with auto-grow via `field-sizing: content`.
 - [`:has()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) — parent styling that reacts to child input state (focus, disabled)
 - [`field-sizing: content`](https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing) — auto-growing textarea without JavaScript
 - [`:user-invalid`](https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid) — native validation styling after user interaction
+- [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses focus/hover transitions
+- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — thicker borders for high-contrast preference
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — Windows High Contrast Mode with system colors
 
 ---
 
@@ -35,7 +38,7 @@ Also covers `<textarea>` with auto-grow via `field-sizing: content`.
 ### Required
 ```html
 <label class="label" for="name">
-  Name <span class="text-destructive">*</span>
+  Name <span aria-hidden="true" class="text-destructive">*</span>
 </label>
 <input class="input" type="text" id="name" required placeholder="Jane Doe">
 ```

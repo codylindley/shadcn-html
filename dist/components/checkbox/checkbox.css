@@ -3,8 +3,8 @@
 @layer components {
   .checkbox {
     appearance: none;
-    width: 1rem;
-    height: 1rem;
+    width: 1.125rem;
+    height: 1.125rem;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     background: var(--background);
@@ -20,13 +20,13 @@
       &::after {
         content: '';
         position: absolute;
-        left: 3px;
-        top: 0px;
-        width: 5px;
-        height: 9px;
+        left: 50%;
+        top: 45%;
+        width: 6px;
+        height: 10px;
         border: solid var(--primary-foreground);
         border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
+        transform: translate(-50%, -50%) rotate(45deg);
       }
     }
 
@@ -37,12 +37,12 @@
       &::after {
         content: '';
         position: absolute;
-        left: 2px;
+        left: 50%;
         top: 50%;
-        width: 8px;
+        width: 10px;
         height: 2px;
         background: var(--primary-foreground);
-        transform: translateY(-50%);
+        transform: translate(-50%, -50%);
       }
     }
 
@@ -58,6 +58,29 @@
 
     &:is([aria-invalid="true"], :user-invalid) {
       border-color: var(--destructive);
+    }
+  }
+
+  /* -- Accessibility ---------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    .checkbox {
+      transition: none;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .checkbox {
+      border-width: 2px;
+    }
+
+    .checkbox:disabled {
+      opacity: 0.7;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .checkbox {
+      appearance: auto;
     }
   }
 }

@@ -8,7 +8,8 @@
 ## Native Web APIs
 - [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) — associates text with a form control via `for`/`id`
 - [`:has()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) — auto-detects disabled state from adjacent control
-- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — Windows High Contrast Mode support
+- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — increases disabled-label opacity for high-contrast preference
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — Windows High Contrast Mode support with `GrayText` for disabled labels
 
 ---
 

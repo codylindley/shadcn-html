@@ -39,4 +39,44 @@
       }
     }
   }
+
+  /* -- Accessibility ---------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    .textarea {
+      transition: none;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .textarea {
+      border-width: 2px;
+    }
+
+    .textarea:disabled {
+      opacity: 0.7;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .textarea {
+      border-color: ButtonBorder;
+      color: ButtonText;
+      background: Field;
+    }
+
+    .textarea:focus {
+      outline: 2px solid Highlight;
+      outline-offset: 1px;
+    }
+
+    .textarea:disabled {
+      opacity: 1;
+      color: GrayText;
+      border-color: GrayText;
+    }
+
+    .textarea:is([aria-invalid="true"], :user-invalid) {
+      border-color: LinkText;
+    }
+  }
 }

@@ -86,4 +86,52 @@
     color: var(--destructive);
     margin: 0.375rem 0 0;
   }
+
+  /* -- Accessibility ---------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    .input {
+      transition: none;
+    }
+
+    .input[type="file"]::file-selector-button {
+      transition: none;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .input {
+      border-width: 2px;
+    }
+
+    .input:disabled {
+      opacity: 0.7;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .input {
+      border-color: ButtonBorder;
+      color: ButtonText;
+      background: Field;
+    }
+
+    .input:focus {
+      outline: 2px solid Highlight;
+      outline-offset: 1px;
+    }
+
+    .input:disabled {
+      opacity: 1;
+      color: GrayText;
+      border-color: GrayText;
+    }
+
+    .input:is([aria-invalid="true"], :user-invalid) {
+      border-color: LinkText;
+    }
+
+    .field-error {
+      color: LinkText;
+    }
+  }
 }
