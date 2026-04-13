@@ -101,11 +101,14 @@
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">Popover API with CSS for positioning.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>popover</code> attribute — native Popover API with CSS anchor positioning for placement.</p>
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/popover" target="_blank" rel="noopener" title="native popover API" class="api-pill"><code>popover attribute</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#popovertarget" target="_blank" rel="noopener" title="declarative trigger wiring" class="api-pill"><code>popovertarget</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position-area" target="_blank" rel="noopener" title="grid-based anchor positioning" class="api-pill"><code>position-area</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position-try-fallbacks" target="_blank" rel="noopener" title="automatic flip on overflow" class="api-pill"><code>position-try-fallbacks</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank" rel="noopener" title="entry animation" class="api-pill"><code>@starting-style</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
@@ -117,10 +120,17 @@
               <code>.popover-description</code>
               <code>.popover-content</code>
             </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Attributes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:0;">
+              <code>data-side="top|right|bottom|left"</code>
+              <code>data-align="start|center|end"</code>
+            </div>
           </div>
         </details>
       </div>
         <p class="text-sm font-medium mb-2 mt-6">Default</p>
+        <p class="text-muted-foreground text-sm mb-4">Click the trigger to open a popover below (default side). Uses native Popover API — no JS for open/close.</p>
         <div class="preview">
           <button class="btn" data-variant="outline" popovertarget="demo-popover">Open Popover</button>
           <div class="popover" id="demo-popover" popover>
@@ -138,20 +148,120 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;button class="btn" popovertarget="my-popover"&gt;Open&lt;/button&gt;
+          <pre><code class="language-markup">&lt;button class="btn" data-variant="outline" popovertarget="my-popover"&gt;Open Popover&lt;/button&gt;
+
 &lt;div class="popover" id="my-popover" popover&gt;
   &lt;div class="popover-header"&gt;
-    &lt;p class="popover-title"&gt;Title&lt;/p&gt;
-    &lt;p class="popover-description"&gt;Description&lt;/p&gt;
+    &lt;p class="popover-title"&gt;Dimensions&lt;/p&gt;
+    &lt;p class="popover-description"&gt;Set the dimensions for the layer.&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="popover-content"&gt;...&lt;/div&gt;
 &lt;/div&gt;</code></pre>
         </div>
 
+        <!-- ═══ With Form ═════════════════════════════ -->
+        <p class="text-sm font-medium mb-2 mt-8">With Form</p>
+        <p class="text-muted-foreground text-sm mb-4">Popover containing form fields — the canonical shadcn popover pattern.</p>
+        <div class="preview">
+          <button class="btn" data-variant="outline" popovertarget="demo-popover-form">Open Popover</button>
+          <div class="popover" id="demo-popover-form" popover style="width:20rem;">
+            <div class="popover-header">
+              <p class="popover-title">Dimensions</p>
+              <p class="popover-description">Set the dimensions for the layer.</p>
+            </div>
+            <div class="popover-content">
+              <div style="display:grid;gap:0.5rem;">
+                <div style="display:grid;grid-template-columns:1fr 2fr;align-items:center;gap:1rem;">
+                  <label class="label" for="pop-width" style="text-align:right;">Width</label>
+                  <input class="input" id="pop-width" type="text" value="100%" style="height:2rem;font-size:0.8125rem;">
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 2fr;align-items:center;gap:1rem;">
+                  <label class="label" for="pop-max-width" style="text-align:right;">Max. width</label>
+                  <input class="input" id="pop-max-width" type="text" value="300px" style="height:2rem;font-size:0.8125rem;">
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 2fr;align-items:center;gap:1rem;">
+                  <label class="label" for="pop-height" style="text-align:right;">Height</label>
+                  <input class="input" id="pop-height" type="text" value="25px" style="height:2rem;font-size:0.8125rem;">
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 2fr;align-items:center;gap:1rem;">
+                  <label class="label" for="pop-max-height" style="text-align:right;">Max. height</label>
+                  <input class="input" id="pop-max-height" type="text" value="none" style="height:2rem;font-size:0.8125rem;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ Align ═════════════════════════════════ -->
+        <p class="text-sm font-medium mb-2 mt-8">Align</p>
+        <p class="text-muted-foreground text-sm mb-4">Use <code>data-align</code> on the popover to control horizontal alignment: <code>start</code>, <code>center</code> (default), or <code>end</code>.</p>
+        <div class="preview" style="display:flex;gap:0.5rem;justify-content:center;">
+          <button class="btn" data-variant="outline" popovertarget="demo-pop-start">Start</button>
+          <div class="popover" id="demo-pop-start" popover data-align="start">
+            <div class="popover-header">
+              <p class="popover-title">Start aligned</p>
+              <p class="popover-description">Popover aligned to the start edge.</p>
+            </div>
+          </div>
+
+          <button class="btn" data-variant="outline" popovertarget="demo-pop-center">Center</button>
+          <div class="popover" id="demo-pop-center" popover>
+            <div class="popover-header">
+              <p class="popover-title">Center aligned</p>
+              <p class="popover-description">Default center alignment.</p>
+            </div>
+          </div>
+
+          <button class="btn" data-variant="outline" popovertarget="demo-pop-end">End</button>
+          <div class="popover" id="demo-pop-end" popover data-align="end">
+            <div class="popover-header">
+              <p class="popover-title">End aligned</p>
+              <p class="popover-description">Popover aligned to the end edge.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ Side ══════════════════════════════════ -->
+        <p class="text-sm font-medium mb-2 mt-8">Side</p>
+        <p class="text-muted-foreground text-sm mb-4">Use <code>data-side</code> to position the popover on a specific side of the trigger: <code>top</code>, <code>right</code>, <code>bottom</code> (default), or <code>left</code>.</p>
+        <div class="preview" style="display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;">
+          <button class="btn" data-variant="outline" popovertarget="demo-pop-top">Top</button>
+          <div class="popover" id="demo-pop-top" popover data-side="top">
+            <div class="popover-header">
+              <p class="popover-title">Top side</p>
+              <p class="popover-description">Positioned above the trigger.</p>
+            </div>
+          </div>
+
+          <button class="btn" data-variant="outline" popovertarget="demo-pop-right">Right</button>
+          <div class="popover" id="demo-pop-right" popover data-side="right">
+            <div class="popover-header">
+              <p class="popover-title">Right side</p>
+              <p class="popover-description">Positioned to the right.</p>
+            </div>
+          </div>
+
+          <button class="btn" data-variant="outline" popovertarget="demo-pop-bottom">Bottom</button>
+          <div class="popover" id="demo-pop-bottom" popover>
+            <div class="popover-header">
+              <p class="popover-title">Bottom side</p>
+              <p class="popover-description">Default bottom positioning.</p>
+            </div>
+          </div>
+
+          <button class="btn" data-variant="outline" popovertarget="demo-pop-left">Left</button>
+          <div class="popover" id="demo-pop-left" popover data-side="left">
+            <div class="popover-header">
+              <p class="popover-title">Left side</p>
+              <p class="popover-description">Positioned to the left.</p>
+            </div>
+          </div>
+        </div>
+
         <!-- -- CSS --------------------------------------- -->
         <section style="margin-top:3rem;" id="source-css">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/popover/popover.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
-          <p class="text-muted-foreground text-sm mb-4">Styles for the popover component. Uses design tokens for colors, spacing, and radius.</p>
+          <p class="text-muted-foreground text-sm mb-4">Uses <code>position-area</code> for anchor positioning, <code>@starting-style</code> for enter animations, and <code>position-try-fallbacks</code> for automatic viewport-overflow flipping. Supports <code>data-side</code> and <code>data-align</code> attributes.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
             <pre><code class="language-scss">@layer components {
@@ -167,32 +277,79 @@
     box-shadow: var(--shadow-md);
     width: 20rem;
     opacity: 0;
-    transform: translateY(-4px);
-    transition: opacity 150ms ease, transform 150ms ease, display 150ms allow-discrete;
+    translate: 0 -4px;
+    transition: opacity 150ms ease, translate 150ms ease, display 150ms allow-discrete;
 
-    /* -- Anchor positioning -- */
-    top: anchor(bottom);
-    left: anchor(left);
+    /* -- Default: bottom center -- */
+    position-area: bottom;
     margin-top: 4px;
     position-try-fallbacks: flip-block;
 
     &amp;:popover-open {
       opacity: 1;
-      transform: translateY(0);
+      translate: 0 0;
+    }
+
+    /* ----- Side variants ----- */
+    &amp;[data-side=&quot;top&quot;] {
+      position-area: top;
+      margin-top: 0;
+      margin-bottom: 4px;
+      translate: 0 4px;
+      &amp;:popover-open { translate: 0 0; }
+    }
+
+    &amp;[data-side=&quot;left&quot;] {
+      position-area: left;
+      margin-top: 0;
+      margin-right: 4px;
+      translate: 4px 0;
+      position-try-fallbacks: flip-inline;
+      &amp;:popover-open { translate: 0 0; }
+    }
+
+    &amp;[data-side=&quot;right&quot;] {
+      position-area: right;
+      margin-top: 0;
+      margin-left: 4px;
+      translate: -4px 0;
+      position-try-fallbacks: flip-inline;
+      &amp;:popover-open { translate: 0 0; }
+    }
+
+    /* ----- Align variants (combined with side) ----- */
+    &amp;[data-align=&quot;start&quot;] {
+      &amp;:not([data-side=&quot;left&quot;]):not([data-side=&quot;right&quot;]) { position-area: bottom left; }
+      &amp;[data-side=&quot;top&quot;] { position-area: top left; }
+      &amp;[data-side=&quot;left&quot;] { position-area: left top; }
+      &amp;[data-side=&quot;right&quot;] { position-area: right top; }
+    }
+
+    &amp;[data-align=&quot;end&quot;] {
+      &amp;:not([data-side=&quot;left&quot;]):not([data-side=&quot;right&quot;]) { position-area: bottom right; }
+      &amp;[data-side=&quot;top&quot;] { position-area: top right; }
+      &amp;[data-side=&quot;left&quot;] { position-area: left bottom; }
+      &amp;[data-side=&quot;right&quot;] { position-area: right bottom; }
     }
   }
 
   @starting-style {
-    .popover:popover-open {
-      opacity: 0;
-      transform: translateY(-4px);
-    }
+    .popover:popover-open { opacity: 0; translate: 0 -4px; }
+    .popover[data-side=&quot;top&quot;]:popover-open { opacity: 0; translate: 0 4px; }
+    .popover[data-side=&quot;left&quot;]:popover-open { opacity: 0; translate: 4px 0; }
+    .popover[data-side=&quot;right&quot;]:popover-open { opacity: 0; translate: -4px 0; }
   }
 
   .popover-header { margin-bottom: 0.75rem; }
   .popover-title { margin: 0; font-size: 0.875rem; font-weight: 500; color: var(--foreground); }
   .popover-description { margin: 0.25rem 0 0; font-size: 0.8125rem; color: var(--muted-foreground); }
   .popover-content { font-size: 0.875rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .popover {
+      transition: none;
+    }
+  }
 }</code></pre>
           </div>
         </section>
@@ -200,7 +357,7 @@
         <!-- -- JavaScript -------------------------------- -->
         <section style="margin-top:3rem;" id="source-js">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JavaScript <a href="../components/popover/popover.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
-          <p class="text-muted-foreground text-sm mb-4">Interaction logic for the popover component. Uses data attributes for wiring.</p>
+          <p class="text-muted-foreground text-sm mb-4">Assigns unique CSS anchor names per trigger–popover pair. Opening, closing, and light-dismiss are handled entirely by the native <code>popovertarget</code> attribute.</p>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
             <pre><code class="language-javascript">// -- Popover --------------------------------------------------
@@ -259,12 +416,17 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 
 ## Native basis
 
-Popover API with CSS for positioning.
+`popover` attribute — native Popover API with CSS anchor positioning for placement.
 
 ## Native Web APIs
 
-- [`popover` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/popover) — native popover API
-- [`@starting-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style) — entry animation
+- [`popover` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/popover) — native popover API with light-dismiss (click outside / Escape)
+- [`popovertarget`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#popovertarget) — declarative button→popover wiring with no JS
+- [CSS Anchor Positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning) — positions popover relative to trigger via `position-area`
+- [`position-area`](https://developer.mozilla.org/en-US/docs/Web/CSS/position-area) — grid-based anchor positioning for side/align placement
+- [`position-try-fallbacks`](https://developer.mozilla.org/en-US/docs/Web/CSS/position-try-fallbacks) — automatic flip when popover overflows viewport
+- [`@starting-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style) — entry animation starting values
+- [`transition-behavior: allow-discrete`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-behavior) — enables transitions on `display` property
 
 ## Structure
 
@@ -276,9 +438,34 @@ Popover API with CSS for positioning.
     <p class="popover-title">Dimensions</p>
     <p class="popover-description">Set the dimensions for the layer.</p>
   </div>
-  <div class="popover-content"><!-- content --></div>
+  <div class="popover-content">
+    <!-- any content -->
+  </div>
 </div>
 ```
+
+## Attributes
+
+| Attribute | Element | Values | Default | Description |
+|---|---|---|---|---|
+| `popover` | `.popover` | `"auto"` | `"auto"` | Enables native Popover API |
+| `popovertarget` | trigger `<button>` | popover `id` | — | Declarative trigger wiring |
+| `data-side` | `.popover` | `top`, `right`, `bottom`, `left` | `bottom` | Which side of the trigger to position |
+| `data-align` | `.popover` | `start`, `center`, `end` | `center` | Alignment along the side axis |
+
+## Keyboard
+
+| Key | Action |
+|---|---|
+| Enter / Space | Toggle popover (on trigger button) |
+| Escape | Close popover (native light-dismiss) |
+
+## Notes
+
+- Renders in the top layer — always above other content regardless of z-index.
+- CSS anchor positioning handles placement; JS only assigns unique anchor names.
+- `position-try-fallbacks` automatically repositions when the popover would overflow the viewport.
+- Use `popover="manual"` if you need the popover to stay open until explicitly closed.
 </script>
 </body>
 </html>
