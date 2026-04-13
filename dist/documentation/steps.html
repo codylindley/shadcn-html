@@ -107,6 +107,7 @@
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol" target="_blank" rel="noopener" title="ordered list" class="api-pill"><code>&lt;ol&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current" target="_blank" rel="noopener" title="identifies the current step" class="api-pill"><code>aria-current=&quot;step&quot;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank" rel="noopener" title="suppresses transitions" class="api-pill"><code>prefers-reduced-motion</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast" target="_blank" rel="noopener" title="thickens borders and connector lines" class="api-pill"><code>prefers-contrast</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="maps to system colors" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
@@ -283,6 +284,147 @@
 &lt;/ol&gt;</code></pre>
         </div>
 
+        <!-- Error State -->
+        <p class="text-sm font-medium mb-2 mt-8">Error State</p>
+        <p class="text-xs text-muted-foreground mb-3">Add <code>data-status="error"</code> and <code>aria-invalid="true"</code> to mark a step with a validation error.</p>
+        <div class="preview">
+          <ol class="steps" style="max-width:28rem;width:100%;">
+            <li class="step" data-status="complete">
+              <div class="step-indicator">
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <div class="step-content"><p class="step-title">Account</p></div>
+            </li>
+            <li class="step" data-status="error" aria-invalid="true">
+              <div class="step-indicator">
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+              </div>
+              <div class="step-content"><p class="step-title">Profile</p><p class="step-description">Please fix the errors</p></div>
+            </li>
+            <li class="step">
+              <div class="step-indicator">3</div>
+              <div class="step-content"><p class="step-title">Complete</p></div>
+            </li>
+          </ol>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;li class="step" data-status="error" aria-invalid="true"&gt;
+  &lt;div class="step-indicator"&gt;
+    &lt;svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="3"&gt;
+      &lt;path d="M18 6 6 18M6 6l12 12"/&gt;
+    &lt;/svg&gt;
+  &lt;/div&gt;
+  &lt;div class="step-content"&gt;
+    &lt;p class="step-title"&gt;Profile&lt;/p&gt;
+    &lt;p class="step-description"&gt;Please fix the errors&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/li&gt;</code></pre>
+        </div>
+
+        <!-- Small Size -->
+        <p class="text-sm font-medium mb-2 mt-8">Small</p>
+        <p class="text-xs text-muted-foreground mb-3">Add <code>data-size="sm"</code> to <code>.steps</code> for a compact step indicator.</p>
+        <div class="preview">
+          <ol class="steps" data-size="sm" style="max-width:24rem;width:100%;">
+            <li class="step" data-status="complete">
+              <div class="step-indicator">
+                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <div class="step-content"><p class="step-title">Account</p></div>
+            </li>
+            <li class="step" data-status="current" aria-current="step">
+              <div class="step-indicator">2</div>
+              <div class="step-content"><p class="step-title">Profile</p></div>
+            </li>
+            <li class="step">
+              <div class="step-indicator">3</div>
+              <div class="step-content"><p class="step-title">Complete</p></div>
+            </li>
+          </ol>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;ol class="steps" data-size="sm"&gt;
+  &lt;li class="step" data-status="complete"&gt;...&lt;/li&gt;
+  &lt;li class="step" data-status="current" aria-current="step"&gt;...&lt;/li&gt;
+  &lt;li class="step"&gt;...&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+        </div>
+
+        <!-- Large Size -->
+        <p class="text-sm font-medium mb-2 mt-8">Large</p>
+        <p class="text-xs text-muted-foreground mb-3">Add <code>data-size="lg"</code> to <code>.steps</code> for a larger step indicator.</p>
+        <div class="preview">
+          <ol class="steps" data-size="lg" style="max-width:32rem;width:100%;">
+            <li class="step" data-status="complete">
+              <div class="step-indicator">
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <div class="step-content"><p class="step-title">Account</p><p class="step-description">Create credentials</p></div>
+            </li>
+            <li class="step" data-status="current" aria-current="step">
+              <div class="step-indicator">2</div>
+              <div class="step-content"><p class="step-title">Profile</p><p class="step-description">Personal details</p></div>
+            </li>
+            <li class="step">
+              <div class="step-indicator">3</div>
+              <div class="step-content"><p class="step-title">Complete</p><p class="step-description">Review &amp; confirm</p></div>
+            </li>
+          </ol>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;ol class="steps" data-size="lg"&gt;
+  &lt;li class="step" data-status="complete"&gt;...&lt;/li&gt;
+  &lt;li class="step" data-status="current" aria-current="step"&gt;...&lt;/li&gt;
+  &lt;li class="step"&gt;...&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+        </div>
+
+        <!-- Clickable Steps -->
+        <p class="text-sm font-medium mb-2 mt-8">Clickable Steps</p>
+        <p class="text-xs text-muted-foreground mb-3">Add <code>data-clickable</code> to individual <code>.step</code> elements to show a pointer cursor and hover affordance on the indicator. Wire up navigation with your own JavaScript.</p>
+        <div class="preview">
+          <ol class="steps" style="max-width:28rem;width:100%;">
+            <li class="step" data-status="complete" data-clickable>
+              <div class="step-indicator" role="button" tabindex="0" aria-label="Go to step 1: Account">
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <div class="step-content"><p class="step-title">Account</p></div>
+            </li>
+            <li class="step" data-status="current" aria-current="step" data-clickable>
+              <div class="step-indicator" role="button" tabindex="0" aria-label="Go to step 2: Profile">2</div>
+              <div class="step-content"><p class="step-title">Profile</p></div>
+            </li>
+            <li class="step">
+              <div class="step-indicator">3</div>
+              <div class="step-content"><p class="step-title">Complete</p></div>
+            </li>
+          </ol>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;li class="step" data-status="complete" data-clickable&gt;
+  &lt;div class="step-indicator" role="button" tabindex="0"
+       aria-label="Go to step 1: Account"&gt;1&lt;/div&gt;
+  &lt;div class="step-content"&gt;&lt;p class="step-title"&gt;Account&lt;/p&gt;&lt;/div&gt;
+&lt;/li&gt;</code></pre>
+        </div>
+
         <!-- -- CSS --------------------------------------- -->
         <section style="margin-top:3rem;" id="source-css">
           <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">CSS <a href="../components/steps/steps.css" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
@@ -295,6 +437,7 @@
     flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; position: relative; text-align: center;
     &amp;:not(:last-child)::after { content: ''; position: absolute; top: 1rem; left: calc(50% + 1.25rem); right: calc(-50% + 1.25rem); height: 2px; background-color: var(--border); }
     &amp;[data-status='complete']::after { background-color: var(--primary); }
+    &amp;[data-status='error']::after { background-color: var(--destructive); }
   }
   .step-indicator {
     display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem;
@@ -302,6 +445,7 @@
     border: 2px solid var(--border); color: var(--muted-foreground); background-color: var(--background); position: relative; z-index: 1;
     .step[data-status='current'] &amp; { border-color: var(--primary); color: var(--primary); }
     .step[data-status='complete'] &amp; { border-color: var(--primary); background-color: var(--primary); color: var(--primary-foreground); }
+    .step[data-status='error'] &amp; { border-color: var(--destructive); background-color: var(--destructive); color: var(--destructive-foreground); }
 
     &amp; svg { width: 0.875rem; height: 0.875rem; pointer-events: none; }
   }
@@ -309,8 +453,33 @@
   .step-title { margin: 0; font-size: 0.8125rem; font-weight: 500; color: var(--foreground); }
   .step-description { margin: 0; font-size: 0.75rem; color: var(--muted-foreground); }
 
+  /* -- Clickable steps ---------------------------------------- */
+  .step[data-clickable] .step-indicator {
+    cursor: pointer;
+    &amp;:hover { opacity: 0.85; }
+  }
+
+  /* -- Size variants ------------------------------------------ */
+  .steps[data-size='sm'] {
+    &amp; .step:not(:last-child)::after { top: 0.75rem; left: calc(50% + 1rem); right: calc(-50% + 1rem); }
+    &amp; .step-indicator { width: 1.5rem; height: 1.5rem; font-size: 0.6875rem; }
+    &amp; .step-indicator svg { width: 0.75rem; height: 0.75rem; }
+    &amp; .step-title { font-size: 0.75rem; }
+    &amp; .step-description { font-size: 0.6875rem; }
+    &amp;[data-orientation='vertical'] .step:not(:last-child)::after { top: 1.75rem; left: 0.6875rem; height: calc(100% - 1.75rem); }
+  }
+
+  .steps[data-size='lg'] {
+    &amp; .step:not(:last-child)::after { top: 1.25rem; left: calc(50% + 1.5rem); right: calc(-50% + 1.5rem); }
+    &amp; .step-indicator { width: 2.5rem; height: 2.5rem; font-size: 0.875rem; }
+    &amp; .step-indicator svg { width: 1rem; height: 1rem; }
+    &amp; .step-title { font-size: 0.9375rem; }
+    &amp; .step-description { font-size: 0.8125rem; }
+    &amp;[data-orientation='vertical'] .step:not(:last-child)::after { top: 2.75rem; left: 1.1875rem; height: calc(100% - 2.75rem); }
+  }
+
   /* -- Vertical orientation ---------------------------------- */
-  .steps[data-orientation=&quot;vertical&quot;] {
+  .steps[data-orientation="vertical"] {
     flex-direction: column; gap: 0;
     &amp; .step {
       flex-direction: row; align-items: flex-start; text-align: left; padding-bottom: 1.5rem;
@@ -319,9 +488,15 @@
     &amp; .step-content { padding-top: 0.25rem; }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .step-indicator,
+    .step:not(:last-child)::after { transition: none; }
+  }
+
   @media (prefers-contrast: more) {
     .step-indicator { border-width: 3px; }
     .step:not(:last-child)::after { height: 3px; }
+    .steps[data-orientation="vertical"] .step:not(:last-child)::after { width: 3px; height: calc(100% - 2.25rem); }
   }
 
   @media (forced-colors: active) {
@@ -329,9 +504,11 @@
       border-color: ButtonText;
       .step[data-status='current'] &amp; { border-color: Highlight; color: Highlight; }
       .step[data-status='complete'] &amp; { border-color: Highlight; background: Highlight; color: HighlightText; }
+      .step[data-status='error'] &amp; { border-color: Mark; background: Mark; color: MarkText; }
     }
     .step:not(:last-child)::after { background: ButtonText; }
     .step[data-status='complete']:not(:last-child)::after { background: Highlight; }
+    .step[data-status='error']:not(:last-child)::after { background: Mark; }
   }
 }</code></pre>
           </div>
@@ -377,6 +554,7 @@
 
 - [`<ol>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol) — ordered list providing sequential numbering semantics
 - [`aria-current="step"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current) — identifies the current step for screen readers
+- [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses transitions for users who prefer reduced motion
 - [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — thickens indicator borders and connector lines
 - [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — maps indicator and connector to system colors
 
@@ -408,12 +586,32 @@
 
 ---
 
+## Variants
+
+| `data-orientation` | Layout |
+|--------------------|--------|
+| *(none)* | Horizontal — steps arranged in a row |
+| `vertical` | Vertical — steps stacked in a column with vertical connector |
+
+---
+
+## Sizes
+
+| `data-size` | Indicator | Title font | Description font |
+|-------------|-----------|------------|------------------|
+| `sm` | 1.5rem | 0.75rem | 0.6875rem |
+| *(none)* | 2rem | 0.8125rem | 0.75rem |
+| `lg` | 2.5rem | 0.9375rem | 0.8125rem |
+
+---
+
 ## States
 
 | `data-status` | Indicator | Connector |
 |---------------|-----------|-----------|
 | `complete` | Primary fill, white text/checkmark | Primary color line |
 | `current` | Primary border, primary text | Default border color |
+| `error` | Destructive fill, destructive-foreground text | Destructive color line |
 | *(none)* | Border only, muted text | Default border color |
 
 ---
@@ -423,7 +621,14 @@
 | Attribute | Element | Purpose |
 |-----------|---------|---------|
 | `aria-current="step"` | Current `<li>` | Identifies the active step |
-| `aria-hidden="true"` | Checkmark `<svg>` | Decorative indicator |
+| `aria-hidden="true"` | Checkmark/X `<svg>` | Decorative icon, hidden from screen readers |
+| `aria-invalid="true"` | Error `<li>` | Marks the step as invalid for screen readers |
+
+---
+
+## Keyboard
+
+This component is CSS-only and does not manage keyboard interaction by default. When steps are made clickable, add `data-clickable` to the `<li>` and `role="button" tabindex="0"` to `.step-indicator`, then handle `click` and `keydown` (Enter/Space) in your own JavaScript.
 
 ---
 
@@ -432,6 +637,7 @@
 - Use `<ol>` for semantic ordering.
 - Complete steps can show a checkmark SVG or the step number.
 - Add `aria-current="step"` to the current step for accessibility.
+- For error steps, add `aria-invalid="true"` alongside `data-status="error"`.
 - Vertical orientation uses `data-orientation="vertical"` on `.steps`.
 - No JavaScript required — pure CSS component.
 </script>
