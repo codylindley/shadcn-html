@@ -89,11 +89,11 @@
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / slider</p>
-          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a></div>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a> <a href="#source-js" class="badge built-with-pill" data-variant="outline">JS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Slider</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
-          An input for selecting a value from a range. Built on native <code>&lt;input type="range"&gt;</code> with custom track and thumb styling.
+          An input for selecting a value from a range. Built on native <code>&lt;input type="range"&gt;</code> with custom track and thumb styling, filled track indicator, and full keyboard support.
         </p>
         <!-- Component Skill -->
         <details style="margin-bottom:2rem;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
@@ -103,13 +103,18 @@
           </summary>
           <div style="padding:1.5rem;font-size:0.875rem;line-height:1.85;">
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
-            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;input type=&quot;range&quot;&gt;</code> element with custom styling.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;input type=&quot;range&quot;&gt;</code> — native range input with built-in keyboard, touch, and assistive technology support.</p>
 
             <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range" target="_blank" rel="noopener" title="native range control with keyboard and touch support" class="api-pill"><code>&lt;input type=&quot;range&quot;&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-thumb" target="_blank" rel="noopener" title="custom thumb styling" class="api-pill"><code>::-webkit-slider-thumb</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-runnable-track" target="_blank" rel="noopener" title="custom track styling" class="api-pill"><code>::-webkit-slider-runnable-track</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-thumb" target="_blank" rel="noopener" title="custom thumb styling (WebKit/Blink)" class="api-pill"><code>::-webkit-slider-thumb</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-runnable-track" target="_blank" rel="noopener" title="custom track styling (WebKit/Blink)" class="api-pill"><code>::-webkit-slider-runnable-track</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-moz-range-progress" target="_blank" rel="noopener" title="filled portion of track (Firefox)" class="api-pill"><code>::-moz-range-progress</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output" target="_blank" rel="noopener" title="displays computed/live result value" class="api-pill"><code>&lt;output&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix" target="_blank" rel="noopener" title="hover state color derivation" class="api-pill"><code>color-mix()</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank" rel="noopener" title="suppresses animations for motion-sensitive users" class="api-pill"><code>prefers-reduced-motion</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="Windows High Contrast Mode support" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
@@ -117,17 +122,27 @@
               <code>.slider</code>
             </div>
 
-            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Native <code>&lt;input type=&quot;range&quot;&gt;</code> provides full keyboard support (arrow keys, Home, End).</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>&lt;label&gt;</code> with <code>for</code> for description.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>min</code>, <code>max</code>, <code>step</code> attributes define the range.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>aria-valuetext</code> for custom value descriptions (e.g., "50%").</p>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>data-orientation=&quot;vertical&quot;</code> — renders as a vertical slider.</p>
 
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Keyboard</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <kbd>Right Arrow</kbd> / <kbd>Up Arrow</kbd> — increase value by one step</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <kbd>Left Arrow</kbd> / <kbd>Down Arrow</kbd> — decrease value by one step</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <kbd>Home</kbd> — set to minimum value</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <kbd>End</kbd> — set to maximum value</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• <kbd>Page Up</kbd> / <kbd>Page Down</kbd> — increase/decrease by larger step</p>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Native <code>&lt;input type=&quot;range&quot;&gt;</code> provides implicit <code>role=&quot;slider&quot;</code>, <code>aria-valuenow</code>, <code>aria-valuemin</code>, <code>aria-valuemax</code>.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>&lt;label for&gt;</code> to associate a visible label.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>aria-valuetext</code> for human-readable value descriptions (e.g., &quot;50%&quot;, &quot;Medium&quot;).</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>aria-label</code> when no visible <code>&lt;label&gt;</code> is present.</p>
+            <p class="text-muted-foreground" style="margin:0 0 1.25rem;">• Use <code>&lt;output for&gt;</code> to display the current value accessibly.</p>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Styled with <code>-webkit-appearance: none</code> and custom pseudo-elements.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Uses CSS accent-color as fallback for unsupported browsers.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• The track fill effect is achieved via a gradient trick.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Firefox uses <code>::-moz-range-progress</code> for the filled track. WebKit/Blink uses a <code>linear-gradient</code> on the track with <code>--slider-value</code> set by JS.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Vertical sliders use <code>writing-mode: vertical-lr; direction: rtl</code> for cross-browser support.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>accent-color</code> set as fallback for browsers that don't support custom pseudo-element styling.</p>
           </div>
         </details>
       </div>
@@ -162,7 +177,68 @@
 &lt;input class="slider" type="range" id="vol" min="0" max="100" value="75"&gt;</code></pre>
         </div>
 
+        <!-- With value display -->
+        <p class="text-sm font-medium mb-2 mt-8">With value display</p>
+        <p class="text-xs text-muted-foreground mb-3">Shows current value using a native <code>&lt;output&gt;</code> element.</p>
+        <div class="preview">
+          <div style="width:100%;max-width:20rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+              <label class="label" for="d-temp" style="margin:0;">Temperature</label>
+              <output id="d-temp-output" class="text-sm text-muted-foreground" style="font-family:var(--font-mono);" for="d-temp">0.5</output>
+            </div>
+            <input class="slider" type="range" id="d-temp" min="0" max="1" step="0.1" value="0.5" oninput="document.getElementById('d-temp-output').value = this.value">
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;"&gt;
+  &lt;label class="label" for="temp" style="margin:0;"&gt;Temperature&lt;/label&gt;
+  &lt;output id="temp-output" class="text-sm text-muted-foreground" style="font-family:var(--font-mono);" for="temp"&gt;0.5&lt;/output&gt;
+&lt;/div&gt;
+&lt;input class="slider" type="range" id="temp" min="0" max="1" step="0.1" value="0.5"
+  oninput="document.getElementById('temp-output').value = this.value"&gt;</code></pre>
+        </div>
+
+        <!-- With steps -->
+        <p class="text-sm font-medium mb-2 mt-8">With steps</p>
+        <p class="text-xs text-muted-foreground mb-3">Slider with discrete step increments.</p>
+        <div class="preview">
+          <div style="width:100%;max-width:20rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+              <label class="label" for="d-step" style="margin:0;">Step: 25</label>
+              <output id="d-step-output" class="text-sm text-muted-foreground" style="font-family:var(--font-mono);" for="d-step">50</output>
+            </div>
+            <input class="slider" type="range" id="d-step" min="0" max="100" step="25" value="50" oninput="document.getElementById('d-step-output').value = this.value">
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;input class="slider" type="range" min="0" max="100" step="25" value="50"&gt;</code></pre>
+        </div>
+
+        <!-- Vertical -->
+        <p class="text-sm font-medium mb-2 mt-8">Vertical</p>
+        <p class="text-xs text-muted-foreground mb-3">Vertical orientation using <code>data-orientation="vertical"</code>.</p>
+        <div class="preview" style="min-height:14rem;">
+          <input class="slider" type="range" data-orientation="vertical" min="0" max="100" value="60">
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;input class="slider" type="range" data-orientation="vertical" min="0" max="100" value="60"&gt;</code></pre>
+        </div>
+
+        <!-- Disabled -->
         <p class="text-sm font-medium mb-2 mt-8">Disabled</p>
+        <p class="text-xs text-muted-foreground mb-3">Slider in disabled state.</p>
         <div class="preview">
           <div style="width:100%;max-width:20rem;">
             <input class="slider" type="range" min="0" max="100" value="30" disabled>
@@ -173,7 +249,7 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;input class="slider" type="range" disabled&gt;</code></pre>
+          <pre><code class="language-markup">&lt;input class="slider" type="range" min="0" max="100" value="30" disabled&gt;</code></pre>
         </div>
 
         <!-- -- CSS --------------------------------------- -->
@@ -185,6 +261,7 @@
 
 @layer components {
   .slider {
+    --slider-value: 50%;
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
@@ -196,11 +273,17 @@
     border: none;
     accent-color: var(--primary);
 
-    /* Track — WebKit */
+    /* Track — WebKit (filled via gradient) */
     &amp;::-webkit-slider-runnable-track {
       height: 0.5rem;
       border-radius: 9999px;
-      background: var(--secondary);
+      background: linear-gradient(
+        to right,
+        var(--primary) 0%,
+        var(--primary) var(--slider-value),
+        var(--secondary) var(--slider-value),
+        var(--secondary) 100%
+      );
     }
 
     /* Track — Firefox */
@@ -228,7 +311,7 @@
       border: 2px solid var(--primary);
       margin-top: -0.375rem;
       cursor: pointer;
-      transition: box-shadow 150ms;
+      transition: box-shadow 150ms, transform 150ms;
     }
 
     /* Thumb — Firefox */
@@ -239,21 +322,32 @@
       background: var(--background);
       border: 2px solid var(--primary);
       cursor: pointer;
-      transition: box-shadow 150ms;
+      transition: box-shadow 150ms, transform 150ms;
     }
 
+    /* Hover */
+    &amp;:hover:not(:disabled) {
+      &amp;::-webkit-slider-thumb {
+        box-shadow: 0 0 0 4px color-mix(in oklch, var(--primary) 15%, transparent);
+      }
+      &amp;::-moz-range-thumb {
+        box-shadow: 0 0 0 4px color-mix(in oklch, var(--primary) 15%, transparent);
+      }
+    }
+
+    /* Focus */
     &amp;:focus-visible {
       &amp;::-webkit-slider-thumb {
         outline: 2px solid var(--ring);
         outline-offset: 2px;
       }
-
       &amp;::-moz-range-thumb {
         outline: 2px solid var(--ring);
         outline-offset: 2px;
       }
     }
 
+    /* Disabled */
     &amp;:disabled {
       opacity: 0.5;
       cursor: not-allowed;
@@ -261,8 +355,114 @@
       &amp;::-webkit-slider-thumb { cursor: not-allowed; }
       &amp;::-moz-range-thumb { cursor: not-allowed; }
     }
+
+    /* Vertical orientation */
+    &amp;[data-orientation=&quot;vertical&quot;] {
+      writing-mode: vertical-lr;
+      direction: rtl;
+      width: 0.5rem;
+      height: 12rem;
+
+      &amp;::-webkit-slider-runnable-track {
+        width: 0.5rem;
+        background: linear-gradient(
+          to top,
+          var(--primary) 0%,
+          var(--primary) var(--slider-value),
+          var(--secondary) var(--slider-value),
+          var(--secondary) 100%
+        );
+      }
+
+      &amp;::-webkit-slider-thumb {
+        margin-top: 0;
+        margin-left: -0.375rem;
+      }
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .slider {
+      &amp;::-webkit-slider-thumb { transition: none; }
+      &amp;::-moz-range-thumb { transition: none; }
+    }
+  }
+
+  /* High contrast */
+  @media (prefers-contrast: more) {
+    .slider {
+      &amp;::-webkit-slider-thumb {
+        border-width: 3px;
+      }
+      &amp;::-moz-range-thumb {
+        border-width: 3px;
+      }
+    }
+  }
+
+  /* Forced colors (Windows High Contrast Mode) */
+  @media (forced-colors: active) {
+    .slider {
+      &amp;::-webkit-slider-runnable-track {
+        background: ButtonFace;
+        border: 1px solid ButtonText;
+      }
+      &amp;::-moz-range-track {
+        background: ButtonFace;
+        border: 1px solid ButtonText;
+      }
+      &amp;::-moz-range-progress {
+        background: Highlight;
+      }
+      &amp;::-webkit-slider-thumb {
+        background: ButtonText;
+        border-color: ButtonText;
+      }
+      &amp;::-moz-range-thumb {
+        background: ButtonText;
+        border-color: ButtonText;
+      }
+
+      &amp;:focus-visible {
+        &amp;::-webkit-slider-thumb {
+          outline-color: Highlight;
+        }
+        &amp;::-moz-range-thumb {
+          outline-color: Highlight;
+        }
+      }
+    }
   }
 }</code></pre>
+          </div>
+        </section>
+
+        <!-- -- JS --------------------------------------- -->
+        <section style="margin-top:3rem;" id="source-js">
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.375rem;">JS <a href="../components/slider/slider.js" target="_blank" style="font-size:0.75rem;font-weight:400;color:var(--muted-foreground);text-decoration:underline;text-underline-offset:3px;margin-left:0.5rem;">view file</a></h2>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copy</button>
+            <pre><code class="language-javascript">/* -- Slider component ------------------------------------------- */
+
+function updateSliderValue(el) {
+  const min = parseFloat(el.min || 0);
+  const max = parseFloat(el.max || 100);
+  const value = parseFloat(el.value);
+  const percent = max === min ? 0 : ((value - min) / (max - min)) * 100;
+  el.style.setProperty('--slider-value', `${percent}%`);
+}
+
+function init() {
+  document.querySelectorAll('.slider:not([data-init])').forEach((el) =&gt; {
+    el.dataset.init = '';
+    updateSliderValue(el);
+    el.addEventListener('input', () =&gt; updateSliderValue(el));
+  });
+}
+
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
           </div>
         </section>
 
@@ -295,46 +495,108 @@
   <script type="module" src="../components/navigation-menu/navigation-menu.js"></script>
   <script type="module" src="../components/sidebar/sidebar.js"></script>
   <script type="module" src="../components/carousel/carousel.js"></script>
+  <script type="module" src="../components/slider/slider.js"></script>
   <script type="module" src="../components/sortable/sortable.js"></script>
   <script src="https://unpkg.com/lucide@1.8.0" integrity="sha384-+8nbzwDAyu5kAjqtR/XKxIgPHQD2TflvbZgeDZn5t3JP+OOogNH1jXnfel8ZAgzS" crossorigin="anonymous"></script>
   <script>lucide.createIcons();</script>
 <script type="text/plain" id="spec-md-content"># Pattern: Slider
 
 ## Native basis
-`<input type="range">` element with custom styling.
+`<input type="range">` — native range input with built-in keyboard, touch, and assistive technology support.
 
 ---
 
 ## Native Web APIs
 - [`<input type="range">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range) — native range control with keyboard and touch support
-- [`::-webkit-slider-thumb`](https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-thumb) — custom thumb styling
-- [`::-webkit-slider-runnable-track`](https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-runnable-track) — custom track styling
+- [`::-webkit-slider-thumb`](https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-thumb) — custom thumb styling (WebKit/Blink)
+- [`::-webkit-slider-runnable-track`](https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-runnable-track) — custom track styling (WebKit/Blink)
+- [`::-moz-range-thumb`](https://developer.mozilla.org/en-US/docs/Web/CSS/::-moz-range-thumb) — custom thumb styling (Firefox)
+- [`::-moz-range-track`](https://developer.mozilla.org/en-US/docs/Web/CSS/::-moz-range-track) — custom track styling (Firefox)
+- [`::-moz-range-progress`](https://developer.mozilla.org/en-US/docs/Web/CSS/::-moz-range-progress) — filled portion of track (Firefox)
+- [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output) — displays computed/live result value
+- [`color-mix()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix) — hover state color derivation
+- [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses animations for motion-sensitive users
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — Windows High Contrast Mode support
+- [WAI-ARIA Slider pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slider/) — canonical keyboard and ARIA reference
 
 ---
 
 ## Structure
 
+### Default
+```html
+<input class="slider" type="range" min="0" max="100" value="50">
+```
+
+### With label
 ```html
 <label class="label" for="volume">Volume</label>
 <input class="slider" type="range" id="volume" min="0" max="100" value="50">
 ```
 
+### With label and value display
+```html
+<div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+  <label class="label" for="temp" style="margin:0;">Temperature</label>
+  <output class="text-sm text-muted-foreground" style="font-family:var(--font-mono);" for="temp">0.5</output>
+</div>
+<input class="slider" type="range" id="temp" min="0" max="1" step="0.1" value="0.5">
+```
+
+### Vertical
+```html
+<input class="slider" type="range" data-orientation="vertical" min="0" max="100" value="50">
+```
+
+### Disabled
+```html
+<input class="slider" type="range" min="0" max="100" value="50" disabled>
+```
+
 ---
 
-## Accessibility
+## Data attributes
 
-- Native `<input type="range">` provides full keyboard support (arrow keys, Home, End).
-- Use `<label>` with `for` for description.
-- `min`, `max`, `step` attributes define the range.
-- `aria-valuetext` for custom value descriptions (e.g., "50%").
+| Attribute | Values | Description |
+|-----------|--------|-------------|
+| `data-orientation` | `vertical` | Renders as a vertical slider |
+
+---
+
+## Keyboard
+
+| Key | Action |
+|-----|--------|
+| Right Arrow / Up Arrow | Increase value by one step |
+| Left Arrow / Down Arrow | Decrease value by one step |
+| Home | Set to minimum value |
+| End | Set to maximum value |
+| Page Up | Increase by larger step |
+| Page Down | Decrease by larger step |
+
+---
+
+## ARIA
+
+| Attribute | Element | Purpose |
+|-----------|---------|--------|
+| `role="slider"` | `<input>` | Implicit from `type="range"` |
+| `aria-valuenow` | `<input>` | Implicit from `value` attribute |
+| `aria-valuemin` | `<input>` | Implicit from `min` attribute |
+| `aria-valuemax` | `<input>` | Implicit from `max` attribute |
+| `aria-valuetext` | `<input>` | Custom human-readable value |
+| `aria-label` | `<input>` | Accessible name when no visible label |
+| `for` | `<label>` | Associates label with slider input |
+| `for` | `<output>` | Associates output display with slider input |
 
 ---
 
 ## Notes
 
-- Styled with `-webkit-appearance: none` and custom pseudo-elements.
-- Uses CSS accent-color as fallback for unsupported browsers.
-- The track fill effect is achieved via a gradient trick.
+- Firefox uses `::-moz-range-progress` for the filled track. WebKit/Blink uses a `linear-gradient` with `--slider-value` set by JS.
+- Vertical sliders use `writing-mode: vertical-lr; direction: rtl` for cross-browser support.
+- `accent-color` set as fallback for browsers that don't support custom pseudo-element styling.
+- Use `<output for="slider-id">` to display the current value accessibly.
 </script>
 </body>
 </html>

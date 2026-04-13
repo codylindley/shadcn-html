@@ -220,7 +220,7 @@
         <p class="text-sm font-medium mb-2 mt-8">With Checkbox</p>
         <p class="text-xs text-muted-foreground mb-3">Inline label paired with a checkbox control.</p>
         <div class="preview">
-          <div class="flex items-center gap-2">
+          <div class="checkbox-item">
             <input class="checkbox" type="checkbox" id="demo-terms">
             <label class="label" for="demo-terms" style="margin:0;">Accept terms and conditions</label>
           </div>
@@ -230,7 +230,7 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;div class="flex items-center gap-2"&gt;
+          <pre><code class="language-markup">&lt;div class="checkbox-item"&gt;
   &lt;input class="checkbox" type="checkbox" id="terms"&gt;
   &lt;label class="label" for="terms" style="margin:0;"&gt;Accept terms and conditions&lt;/label&gt;
 &lt;/div&gt;</code></pre>
@@ -240,7 +240,7 @@
         <p class="text-sm font-medium mb-2 mt-8">With Switch</p>
         <p class="text-xs text-muted-foreground mb-3">Inline label paired with a switch control.</p>
         <div class="preview">
-          <div class="flex items-center gap-2">
+          <div class="switch-item">
             <input class="switch" type="checkbox" role="switch" id="demo-airplane">
             <label class="label" for="demo-airplane" style="margin:0;">Airplane Mode</label>
           </div>
@@ -250,7 +250,7 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;div class="flex items-center gap-2"&gt;
+          <pre><code class="language-markup">&lt;div class="switch-item"&gt;
   &lt;input class="switch" type="checkbox" role="switch" id="airplane"&gt;
   &lt;label class="label" for="airplane" style="margin:0;"&gt;Airplane Mode&lt;/label&gt;
 &lt;/div&gt;</code></pre>
@@ -373,6 +373,7 @@
   <script type="module" src="../components/navigation-menu/navigation-menu.js"></script>
   <script type="module" src="../components/sidebar/sidebar.js"></script>
   <script type="module" src="../components/carousel/carousel.js"></script>
+  <script type="module" src="../components/slider/slider.js"></script>
   <script type="module" src="../components/sortable/sortable.js"></script>
   <script src="https://unpkg.com/lucide@1.8.0" integrity="sha384-+8nbzwDAyu5kAjqtR/XKxIgPHQD2TflvbZgeDZn5t3JP+OOogNH1jXnfel8ZAgzS" crossorigin="anonymous"></script>
   <script>lucide.createIcons();</script>
@@ -429,7 +430,7 @@ The label auto-dims when the adjacent control is disabled — no `data-disabled`
 
 ### With checkbox (inline)
 ```html
-<div class="flex items-center gap-2">
+<div class="checkbox-item">
   <input class="checkbox" type="checkbox" id="terms">
   <label class="label" for="terms" style="margin:0;">Accept terms and conditions</label>
 </div>
@@ -437,7 +438,7 @@ The label auto-dims when the adjacent control is disabled — no `data-disabled`
 
 ### With switch (inline)
 ```html
-<div class="flex items-center gap-2">
+<div class="checkbox-item">
   <input class="switch" type="checkbox" role="switch" id="airplane">
   <label class="label" for="airplane" style="margin:0;">Airplane Mode</label>
 </div>

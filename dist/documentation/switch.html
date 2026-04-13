@@ -105,16 +105,23 @@
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
             <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;input type=&quot;checkbox&quot; role=&quot;switch&quot;&gt;</code> element styled as a toggle switch.</p>
 
-            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox" target="_blank" rel="noopener" title="native toggle control" class="api-pill"><code>&lt;input type=&quot;checkbox&quot;&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/switch_role" target="_blank" rel="noopener" title="communicates on/off semantics" class="api-pill"><code>role=&quot;switch&quot;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:checked" target="_blank" rel="noopener" title="matches the on state" class="api-pill"><code>:checked</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible" target="_blank" rel="noopener" title="keyboard-only focus ring" class="api-pill"><code>:focus-visible</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has" target="_blank" rel="noopener" title="parent-state styling for disabled label" class="api-pill"><code>:has()</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank" rel="noopener" title="suppress transitions for motion-sensitive users" class="api-pill"><code>prefers-reduced-motion</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="Windows High Contrast Mode support" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <code>.switch</code>
+              <code>.switch-item</code>
+              <code>.switch-item-block</code>
+              <code>.switch-description</code>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Sizes (data-size)</p>
@@ -125,22 +132,26 @@
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>role=&quot;switch&quot;</code> tells screen readers this is an on/off toggle, not a checkbox.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>aria-checked</code> is automatically set by the browser for <code>type=&quot;checkbox&quot;</code>.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• Use <code>&lt;label&gt;</code> with <code>for</code> to associate the label text.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>:focus-visible</code> provides keyboard-only focus ring.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>prefers-reduced-motion</code> disables all transitions.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>forced-colors</code> provides Windows High Contrast Mode support.</p>
 
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Pure CSS — no JavaScript needed.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The thumb slides via <code>:checked</code> and <code>translateX()</code>.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• Uses <code>appearance: none</code> with <code>::after</code> for the thumb.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Uses <code>appearance: none</code> with <code>::after</code> for the thumb.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Wrap in <code>.switch-item</code> for auto disabled label styling via <code>:has()</code>.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>aria-invalid=&quot;true&quot;</code> shows the track in the destructive color.</p>
           </div>
         </details>
       </div>
         <p class="text-sm font-medium mb-2 mt-6">Default</p>
         <p class="text-xs text-muted-foreground mb-3">Toggle switch with label.</p>
         <div class="preview">
-          <div class="flex items-center gap-2">
+          <div class="switch-item">
             <input class="switch" type="checkbox" role="switch" id="d-airplane">
-            <label for="d-airplane" style="font-size:0.875rem;">Airplane Mode</label>
+            <label for="d-airplane">Airplane Mode</label>
           </div>
         </div>
         <div style="position:relative;margin-top:0.5rem;">
@@ -148,13 +159,36 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;input class="switch" type="checkbox" role="switch" id="airplane"&gt;
-&lt;label for="airplane"&gt;Airplane Mode&lt;/label&gt;</code></pre>
+          <pre><code class="language-markup">&lt;div class="switch-item"&gt;
+  &lt;input class="switch" type="checkbox" role="switch" id="airplane"&gt;
+  &lt;label for="airplane"&gt;Airplane Mode&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <p class="text-sm font-medium mb-2 mt-8">With Description</p>
+        <p class="text-xs text-muted-foreground mb-3">Switch with label and description text using <code>.switch-item-block</code>.</p>
+        <div class="preview">
+          <div class="switch-item-block" style="max-width:22rem;">
+            <label for="d-share">Share across devices</label>
+            <input class="switch" type="checkbox" role="switch" id="d-share" checked>
+            <span class="switch-description">Focus is shared across devices, and turns off when you leave the app.</span>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;div class="switch-item-block"&gt;
+  &lt;label for="share"&gt;Share across devices&lt;/label&gt;
+  &lt;input class="switch" type="checkbox" role="switch" id="share" checked&gt;
+  &lt;span class="switch-description"&gt;Focus is shared across devices.&lt;/span&gt;
+&lt;/div&gt;</code></pre>
         </div>
 
         <p class="text-sm font-medium mb-2 mt-8">Small</p>
         <div class="preview">
-          <div class="flex items-center gap-2">
+          <div class="switch-item">
             <input class="switch" type="checkbox" role="switch" id="d-sm-sw" data-size="sm">
             <label for="d-sm-sw" style="font-size:0.8125rem;">Small switch</label>
           </div>
@@ -164,14 +198,17 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;input class="switch" data-size="sm" type="checkbox" role="switch"&gt;</code></pre>
+          <pre><code class="language-markup">&lt;div class="switch-item"&gt;
+  &lt;input class="switch" data-size="sm" type="checkbox" role="switch"&gt;
+  &lt;label&gt;Small switch&lt;/label&gt;
+&lt;/div&gt;</code></pre>
         </div>
 
         <p class="text-sm font-medium mb-2 mt-8">Checked by default</p>
         <div class="preview">
-          <div class="flex items-center gap-2">
+          <div class="switch-item">
             <input class="switch" type="checkbox" role="switch" id="d-notif" checked>
-            <label for="d-notif" style="font-size:0.875rem;">Notifications</label>
+            <label for="d-notif">Notifications</label>
           </div>
         </div>
         <div style="position:relative;margin-top:0.5rem;">
@@ -179,14 +216,18 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;input class="switch" type="checkbox" role="switch" checked&gt;</code></pre>
+          <pre><code class="language-markup">&lt;div class="switch-item"&gt;
+  &lt;input class="switch" type="checkbox" role="switch" checked&gt;
+  &lt;label&gt;Notifications&lt;/label&gt;
+&lt;/div&gt;</code></pre>
         </div>
 
         <p class="text-sm font-medium mb-2 mt-8">Disabled</p>
+        <p class="text-xs text-muted-foreground mb-3">Disabled state — <code>.switch-item</code> auto-dims the label via <code>:has()</code>.</p>
         <div class="preview">
-          <div class="flex items-center gap-2">
+          <div class="switch-item">
             <input class="switch" type="checkbox" role="switch" id="d-dis-sw" disabled>
-            <label for="d-dis-sw" style="font-size:0.875rem;opacity:0.5;">Disabled</label>
+            <label for="d-dis-sw">Disabled</label>
           </div>
         </div>
         <div style="position:relative;margin-top:0.5rem;">
@@ -194,7 +235,31 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;input class="switch" type="checkbox" role="switch" disabled&gt;</code></pre>
+          <pre><code class="language-markup">&lt;div class="switch-item"&gt;
+  &lt;input class="switch" type="checkbox" role="switch" disabled&gt;
+  &lt;label&gt;Disabled&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <p class="text-sm font-medium mb-2 mt-8">Invalid</p>
+        <p class="text-xs text-muted-foreground mb-3">Validation error state with <code>aria-invalid="true"</code>.</p>
+        <div class="preview">
+          <div class="switch-item-block" style="max-width:22rem;">
+            <label for="d-terms">Accept terms and conditions</label>
+            <input class="switch" type="checkbox" role="switch" id="d-terms" aria-invalid="true">
+            <span class="switch-description" style="color:var(--destructive);">You must accept the terms and conditions to continue.</span>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;div class="switch-item-block"&gt;
+  &lt;label for="terms"&gt;Accept terms and conditions&lt;/label&gt;
+  &lt;input class="switch" type="checkbox" role="switch" id="terms" aria-invalid="true"&gt;
+  &lt;span class="switch-description" style="color:var(--destructive);"&gt;You must accept the terms.&lt;/span&gt;
+&lt;/div&gt;</code></pre>
         </div>
 
         <!-- -- CSS --------------------------------------- -->
@@ -250,6 +315,14 @@
       cursor: not-allowed;
     }
 
+    &amp;[aria-invalid=&quot;true&quot;] {
+      background: var(--destructive);
+
+      &amp;:checked {
+        background: var(--destructive);
+      }
+    }
+
     /* -- Sizes ----------------------------------------------- */
     &amp;[data-size=&quot;sm&quot;] {
       width: 1.75rem;
@@ -262,6 +335,86 @@
 
       &amp;:checked::after {
         transform: translateX(0.75rem);
+      }
+    }
+  }
+
+  /* -- Switch item layout ----------------------------------- */
+  .switch-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &amp; &gt; label {
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+  }
+
+  /* With-description layout */
+  .switch-item-block {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 0.75rem;
+    align-items: center;
+
+    &amp; &gt; .switch {
+      grid-row: 1 / 3;
+    }
+
+    &amp; &gt; label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    &amp; &gt; .switch-description {
+      font-size: 0.8125rem;
+      color: var(--muted-foreground);
+      line-height: 1.5;
+    }
+  }
+
+  /* Label disabled styling via :has() */
+  .switch-item:has(.switch:disabled),
+  .switch-item-block:has(.switch:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* -- Accessibility ---------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    .switch,
+    .switch::after {
+      transition: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .switch {
+      background: ButtonFace;
+      border: 1px solid ButtonText;
+
+      &amp;::after {
+        background: ButtonText;
+        box-shadow: none;
+      }
+
+      &amp;:checked {
+        background: Highlight;
+        border-color: Highlight;
+
+        &amp;::after {
+          background: HighlightText;
+        }
+      }
+
+      &amp;:disabled {
+        border-color: GrayText;
+
+        &amp;::after {
+          background: GrayText;
+        }
       }
     }
   }
@@ -298,6 +451,7 @@
   <script type="module" src="../components/navigation-menu/navigation-menu.js"></script>
   <script type="module" src="../components/sidebar/sidebar.js"></script>
   <script type="module" src="../components/carousel/carousel.js"></script>
+  <script type="module" src="../components/slider/slider.js"></script>
   <script type="module" src="../components/sortable/sortable.js"></script>
   <script src="https://unpkg.com/lucide@1.8.0" integrity="sha384-+8nbzwDAyu5kAjqtR/XKxIgPHQD2TflvbZgeDZn5t3JP+OOogNH1jXnfel8ZAgzS" crossorigin="anonymous"></script>
   <script>lucide.createIcons();</script>

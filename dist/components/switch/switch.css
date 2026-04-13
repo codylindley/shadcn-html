@@ -46,6 +46,14 @@
       cursor: not-allowed;
     }
 
+    &[aria-invalid="true"] {
+      background: var(--destructive);
+
+      &:checked {
+        background: var(--destructive);
+      }
+    }
+
     /* -- Sizes ----------------------------------------------- */
     &[data-size="sm"] {
       width: 1.75rem;
@@ -58,6 +66,86 @@
 
       &:checked::after {
         transform: translateX(0.75rem);
+      }
+    }
+  }
+
+  /* -- Switch item layout ----------------------------------- */
+  .switch-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    & > label {
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+  }
+
+  /* With-description layout */
+  .switch-item-block {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 0.75rem;
+    align-items: center;
+
+    & > .switch {
+      grid-row: 1 / 3;
+    }
+
+    & > label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    & > .switch-description {
+      font-size: 0.8125rem;
+      color: var(--muted-foreground);
+      line-height: 1.5;
+    }
+  }
+
+  /* Label disabled styling via :has() */
+  .switch-item:has(.switch:disabled),
+  .switch-item-block:has(.switch:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* -- Accessibility ---------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    .switch,
+    .switch::after {
+      transition: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .switch {
+      background: ButtonFace;
+      border: 1px solid ButtonText;
+
+      &::after {
+        background: ButtonText;
+        box-shadow: none;
+      }
+
+      &:checked {
+        background: Highlight;
+        border-color: Highlight;
+
+        &::after {
+          background: HighlightText;
+        }
+      }
+
+      &:disabled {
+        border-color: GrayText;
+
+        &::after {
+          background: GrayText;
+        }
       }
     }
   }

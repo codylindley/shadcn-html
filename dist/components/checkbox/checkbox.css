@@ -61,6 +61,40 @@
     }
   }
 
+  /* -- Checkbox item layout --------------------------------- */
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    & > label {
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+  }
+
+  .checkbox-item-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    & > label {
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+
+    & > .checkbox {
+      margin-top: 0.125rem;
+    }
+  }
+
+  /* Disabled auto-styling */
+  .checkbox-item:has(.checkbox:disabled),
+  .checkbox-item-block:has(.checkbox:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   /* -- Accessibility ---------------------------------------- */
   @media (prefers-reduced-motion: reduce) {
     .checkbox {
