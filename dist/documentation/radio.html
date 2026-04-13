@@ -105,29 +105,50 @@
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Native basis</p>
             <p class="text-muted-foreground" style="margin:0 0 1.25rem;"><code>&lt;input type=&quot;radio&quot;&gt;</code> elements with shared <code>name</code> attribute for mutual exclusivity.</p>
 
-            <p style="margin:0 0 0.625rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Web Platform APIs</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio" target="_blank" rel="noopener" title="native radio button with group exclusivity via `name`" class="api-pill"><code>&lt;input type=&quot;radio&quot;&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio" target="_blank" rel="noopener" title="native radio button with group exclusivity via name" class="api-pill"><code>&lt;input type=&quot;radio&quot;&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset" target="_blank" rel="noopener" title="semantic group container with native disabled propagation" class="api-pill"><code>&lt;fieldset&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:checked" target="_blank" rel="noopener" title="matches selected state" class="api-pill"><code>:checked</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible" target="_blank" rel="noopener" title="keyboard-only focus ring" class="api-pill"><code>:focus-visible</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has" target="_blank" rel="noopener" title="parent-state styling for card variant" class="api-pill"><code>:has()</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank" rel="noopener" title="suppress transitions for motion-sensitive users" class="api-pill"><code>prefers-reduced-motion</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="Windows High Contrast Mode support" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Classes</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <code>.radio-group</code>
               <code>.radio-item</code>
+              <code>.radio-item-block</code>
+              <code>.radio-card</code>
               <code>.radio</code>
+              <code>.radio-description</code>
+              <code>.radio-group-description</code>
+            </div>
+
+            <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data Attributes</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
+              <code>data-orientation="horizontal"</code>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Accessibility</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Native <code>&lt;fieldset&gt;</code> + <code>&lt;legend&gt;</code> provides group labeling.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Radio buttons sharing the same <code>name</code> are mutually exclusive by default.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• Arrow keys navigate between options (native browser behavior).</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Arrow keys navigate between options (native browser behavior).</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>:focus-visible</code> provides keyboard-only focus rings.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• <code>prefers-reduced-motion</code> disables transitions.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>forced-colors</code> provides Windows High Contrast Mode support.</p>
 
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Styled with <code>appearance: none</code> and a custom dot via <code>::after</code>.</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The <code>name</code> attribute is required for mutual exclusivity.</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• No JavaScript needed — browsers handle group behavior natively.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• No JavaScript needed — browsers handle group behavior natively.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>.radio-item</code> for simple label. Use <code>.radio-item-block</code> for label + description.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>.radio-card</code> for card-style selection with <code>:has()</code> highlight.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Add <code>data-orientation="horizontal"</code> for horizontal layout.</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• <code>&lt;fieldset disabled&gt;</code> disables all radios in the group natively.</p>
           </div>
         </details>
       </div>
@@ -158,14 +179,147 @@
           <pre><code class="language-markup">&lt;fieldset class="radio-group"&gt;
   &lt;legend class="label"&gt;Choose a plan&lt;/legend&gt;
   &lt;div class="radio-item"&gt;
-    &lt;input class="radio" type="radio" name="plan" id="free" checked&gt;
+    &lt;input class="radio" type="radio" name="plan" id="free" value="free" checked&gt;
     &lt;label for="free"&gt;Free&lt;/label&gt;
   &lt;/div&gt;
-  ...
+  &lt;div class="radio-item"&gt;
+    &lt;input class="radio" type="radio" name="plan" id="pro" value="pro"&gt;
+    &lt;label for="pro"&gt;Pro&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class="radio-item"&gt;
+    &lt;input class="radio" type="radio" name="plan" id="ent" value="enterprise"&gt;
+    &lt;label for="ent"&gt;Enterprise&lt;/label&gt;
+  &lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+        </div>
+
+        <p class="text-sm font-medium mb-2 mt-8">With Description</p>
+        <p class="text-xs text-muted-foreground mb-3">Radio items with label and description text using <code>.radio-item-block</code>.</p>
+        <div class="preview">
+          <fieldset class="radio-group" style="max-width:22rem;">
+            <legend class="label">Spacing</legend>
+            <div class="radio-item-block">
+              <input class="radio" type="radio" name="d-spacing" id="d-sp-default" value="default" checked>
+              <label for="d-sp-default">Default</label>
+              <span class="radio-description">Standard spacing for most use cases.</span>
+            </div>
+            <div class="radio-item-block">
+              <input class="radio" type="radio" name="d-spacing" id="d-sp-comfortable" value="comfortable">
+              <label for="d-sp-comfortable">Comfortable</label>
+              <span class="radio-description">More space between elements.</span>
+            </div>
+            <div class="radio-item-block">
+              <input class="radio" type="radio" name="d-spacing" id="d-sp-compact" value="compact">
+              <label for="d-sp-compact">Compact</label>
+              <span class="radio-description">Minimal spacing for dense layouts.</span>
+            </div>
+          </fieldset>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;fieldset class="radio-group"&gt;
+  &lt;legend class="label"&gt;Spacing&lt;/legend&gt;
+  &lt;div class="radio-item-block"&gt;
+    &lt;input class="radio" type="radio" name="spacing" id="sp-default" value="default" checked&gt;
+    &lt;label for="sp-default"&gt;Default&lt;/label&gt;
+    &lt;span class="radio-description"&gt;Standard spacing for most use cases.&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="radio-item-block"&gt;
+    &lt;input class="radio" type="radio" name="spacing" id="sp-comfortable" value="comfortable"&gt;
+    &lt;label for="sp-comfortable"&gt;Comfortable&lt;/label&gt;
+    &lt;span class="radio-description"&gt;More space between elements.&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+        </div>
+
+        <p class="text-sm font-medium mb-2 mt-8">Choice Card</p>
+        <p class="text-xs text-muted-foreground mb-3">Card-style radios using <code>.radio-card</code> with <code>:has()</code> for checked highlight.</p>
+        <div class="preview">
+          <fieldset class="radio-group" style="max-width:22rem;">
+            <legend class="label">Select a plan</legend>
+            <label class="radio-card" for="d-c-plus">
+              <input class="radio" type="radio" name="d-card" id="d-c-plus" value="plus">
+              <label for="d-c-plus">Plus</label>
+              <span class="radio-description">For individuals and small teams.</span>
+            </label>
+            <label class="radio-card" for="d-c-pro">
+              <input class="radio" type="radio" name="d-card" id="d-c-pro" value="pro" checked>
+              <label for="d-c-pro">Pro</label>
+              <span class="radio-description">For growing businesses.</span>
+            </label>
+            <label class="radio-card" for="d-c-ent">
+              <input class="radio" type="radio" name="d-card" id="d-c-ent" value="enterprise">
+              <label for="d-c-ent">Enterprise</label>
+              <span class="radio-description">For large teams and enterprises.</span>
+            </label>
+          </fieldset>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;fieldset class="radio-group"&gt;
+  &lt;legend class="label"&gt;Select a plan&lt;/legend&gt;
+  &lt;label class="radio-card" for="c-plus"&gt;
+    &lt;input class="radio" type="radio" name="card" id="c-plus" value="plus"&gt;
+    &lt;label for="c-plus"&gt;Plus&lt;/label&gt;
+    &lt;span class="radio-description"&gt;For individuals and small teams.&lt;/span&gt;
+  &lt;/label&gt;
+  &lt;label class="radio-card" for="c-pro"&gt;
+    &lt;input class="radio" type="radio" name="card" id="c-pro" value="pro" checked&gt;
+    &lt;label for="c-pro"&gt;Pro&lt;/label&gt;
+    &lt;span class="radio-description"&gt;For growing businesses.&lt;/span&gt;
+  &lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+        </div>
+
+        <p class="text-sm font-medium mb-2 mt-8">Horizontal</p>
+        <p class="text-xs text-muted-foreground mb-3">Horizontal layout with <code>data-orientation="horizontal"</code>.</p>
+        <div class="preview">
+          <fieldset class="radio-group" data-orientation="horizontal">
+            <legend class="label">Alignment</legend>
+            <div class="radio-item">
+              <input class="radio" type="radio" name="d-align" id="d-al-left" value="left" checked>
+              <label for="d-al-left">Left</label>
+            </div>
+            <div class="radio-item">
+              <input class="radio" type="radio" name="d-align" id="d-al-center" value="center">
+              <label for="d-al-center">Center</label>
+            </div>
+            <div class="radio-item">
+              <input class="radio" type="radio" name="d-align" id="d-al-right" value="right">
+              <label for="d-al-right">Right</label>
+            </div>
+          </fieldset>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;fieldset class="radio-group" data-orientation="horizontal"&gt;
+  &lt;legend class="label"&gt;Alignment&lt;/legend&gt;
+  &lt;div class="radio-item"&gt;
+    &lt;input class="radio" type="radio" name="align" id="left" value="left" checked&gt;
+    &lt;label for="left"&gt;Left&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class="radio-item"&gt;
+    &lt;input class="radio" type="radio" name="align" id="center" value="center"&gt;
+    &lt;label for="center"&gt;Center&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class="radio-item"&gt;
+    &lt;input class="radio" type="radio" name="align" id="right" value="right"&gt;
+    &lt;label for="right"&gt;Right&lt;/label&gt;
+  &lt;/div&gt;
 &lt;/fieldset&gt;</code></pre>
         </div>
 
         <p class="text-sm font-medium mb-2 mt-8">Disabled</p>
+        <p class="text-xs text-muted-foreground mb-3">Individual or group-level disabling via <code>disabled</code> attribute.</p>
         <div class="preview">
           <fieldset class="radio-group">
             <legend class="label">Disabled group</legend>
@@ -184,7 +338,56 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             Copy
           </button>
-          <pre><code class="language-markup">&lt;input class="radio" type="radio" disabled checked&gt;</code></pre>
+          <pre><code class="language-markup">&lt;fieldset class="radio-group"&gt;
+  &lt;legend class="label"&gt;Disabled group&lt;/legend&gt;
+  &lt;div class="radio-item"&gt;
+    &lt;input class="radio" type="radio" name="dis" id="d1" disabled checked&gt;
+    &lt;label for="d1"&gt;Option A&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class="radio-item"&gt;
+    &lt;input class="radio" type="radio" name="dis" id="d2" disabled&gt;
+    &lt;label for="d2"&gt;Option B&lt;/label&gt;
+  &lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+        </div>
+
+        <p class="text-sm font-medium mb-2 mt-8">Invalid</p>
+        <p class="text-xs text-muted-foreground mb-3">Validation error state with <code>aria-invalid="true"</code>.</p>
+        <div class="preview">
+          <fieldset class="radio-group" style="max-width:22rem;">
+            <legend class="label">Notification Preferences</legend>
+            <p class="radio-group-description">Choose how you want to receive notifications.</p>
+            <div class="radio-item">
+              <input class="radio" type="radio" name="d-inv" id="d-inv1" value="email" aria-invalid="true">
+              <label for="d-inv1">Email only</label>
+            </div>
+            <div class="radio-item">
+              <input class="radio" type="radio" name="d-inv" id="d-inv2" value="sms" aria-invalid="true">
+              <label for="d-inv2">SMS only</label>
+            </div>
+            <div class="radio-item">
+              <input class="radio" type="radio" name="d-inv" id="d-inv3" value="both" aria-invalid="true">
+              <label for="d-inv3">Both Email &amp; SMS</label>
+            </div>
+          </fieldset>
+        </div>
+        <div style="position:relative;margin-top:0.5rem;">
+          <button class="copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+          <pre><code class="language-markup">&lt;fieldset class="radio-group"&gt;
+  &lt;legend class="label"&gt;Notification Preferences&lt;/legend&gt;
+  &lt;p class="radio-group-description"&gt;Choose how you want to receive notifications.&lt;/p&gt;
+  &lt;div class="radio-item"&gt;
+    &lt;input class="radio" type="radio" name="notif" id="inv1" value="email" aria-invalid="true"&gt;
+    &lt;label for="inv1"&gt;Email only&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class="radio-item"&gt;
+    &lt;input class="radio" type="radio" name="notif" id="inv2" value="sms" aria-invalid="true"&gt;
+    &lt;label for="inv2"&gt;SMS only&lt;/label&gt;
+  &lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
         </div>
 
         <!-- -- CSS --------------------------------------- -->
@@ -206,6 +409,13 @@
     &amp; &gt; legend {
       margin-bottom: 0.375rem;
     }
+
+    /* Horizontal layout */
+    &amp;[data-orientation=&quot;horizontal&quot;] {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
   }
 
   .radio-item {
@@ -217,6 +427,82 @@
       font-size: 0.875rem;
       font-weight: 400;
       cursor: pointer;
+    }
+  }
+
+  /* -- With-description layout -------------------------------- */
+  .radio-item-block {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 0.5rem;
+
+    &amp; &gt; .radio {
+      grid-row: 1 / 3;
+      margin-top: 0.125rem;
+    }
+
+    &amp; &gt; label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+
+    &amp; &gt; .radio-description {
+      grid-column: 2;
+      font-size: 0.8125rem;
+      color: var(--muted-foreground);
+      line-height: 1.5;
+    }
+  }
+
+  /* -- Card variant ------------------------------------------- */
+  .radio-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: border-color 150ms, background 150ms;
+
+    &amp;:hover {
+      background: var(--accent);
+    }
+
+    &amp;:has(.radio:checked) {
+      border-color: var(--primary);
+    }
+
+    &amp;:has(.radio:focus-visible) {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    &amp;:has(.radio:disabled) {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    &amp; &gt; .radio {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    &amp; &gt; label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    &amp; &gt; .radio-description {
+      font-size: 0.8125rem;
+      color: var(--muted-foreground);
+      line-height: 1.5;
     }
   }
 
@@ -262,6 +548,59 @@
 
     &amp;[aria-invalid=&quot;true&quot;] {
       border-color: var(--destructive);
+
+      &amp;:checked {
+        border-color: var(--destructive);
+
+        &amp;::after {
+          background: var(--destructive);
+        }
+      }
+    }
+  }
+
+  /* Helper text for group-level descriptions */
+  .radio-group-description {
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+    margin: -0.125rem 0 0.25rem;
+  }
+
+  /* -- Accessibility ------------------------------------------ */
+  @media (prefers-reduced-motion: reduce) {
+    .radio,
+    .radio-card {
+      transition: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .radio {
+      border-color: ButtonText;
+
+      &amp;:checked {
+        border-color: Highlight;
+
+        &amp;::after {
+          background: Highlight;
+        }
+      }
+
+      &amp;:disabled {
+        border-color: GrayText;
+
+        &amp;:checked::after {
+          background: GrayText;
+        }
+      }
+    }
+
+    .radio-card {
+      border-color: ButtonText;
+
+      &amp;:has(.radio:checked) {
+        border-color: Highlight;
+      }
     }
   }
 }</code></pre>

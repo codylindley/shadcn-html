@@ -166,15 +166,18 @@
       this.style.display = 'contents';
       this.innerHTML =
         '<header class="site-header">' +
-          '<a href="index.html" style="display:flex;align-items:center;gap:0.625rem;text-decoration:none;">' +
-            '<span style="font-family:var(--font-display);font-size:1.1875rem;font-weight:500;letter-spacing:-0.03em;color:var(--foreground);">shadcn<em>-html</em></span>' +
-            '<span class="badge" data-variant="outline" style="font-family:var(--font-mono);">v0.7.5-alpha</span>' +
+          '<button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation menu">' +
+            '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>' +
+          '</button>' +
+          '<a href="index.html" class="header-brand">' +
+            '<span class="header-brand-name">shadcn<em>-html</em></span>' +
+            '<span class="badge header-brand-version" data-variant="outline" style="font-family:var(--font-mono);">v0.7.5-alpha</span>' +
           '</a>' +
           '<div style="flex:1;"></div>' +
           '<nav style="display:flex;align-items:center;gap:0.25rem;">' +
             '<a href="https://github.com/codylindley/shadcn-html" target="_blank" rel="noopener" class="header-action">' +
               '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>' +
-              'GitHub' +
+              '<span class="github-label">GitHub</span>' +
               '<span class="github-stars"></span>' +
             '</a>' +
             '<button id="theme-toggle" class="header-action theme-toggle-btn" aria-label="Toggle dark mode">' +
@@ -336,6 +339,59 @@
 
   customElements.define('site-header', SiteHeader);
   customElements.define('site-nav', SiteNav);
+
+  /* -- Mobile sidebar toggle ---------------------------------- */
+  function initMobileSidebar() {
+    var toggle = document.getElementById('sidebar-toggle');
+    var sidebar = document.querySelector('.site-sidebar');
+    if (!toggle || !sidebar) return;
+
+    /* Create backdrop element if not already present */
+    var backdrop = document.querySelector('.sidebar-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'sidebar-backdrop';
+      sidebar.parentElement.appendChild(backdrop);
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      backdrop.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      backdrop.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    toggle.addEventListener('click', function () {
+      if (sidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    });
+
+    backdrop.addEventListener('click', closeSidebar);
+
+    /* Close sidebar when a nav link is clicked (mobile) */
+    sidebar.addEventListener('click', function (e) {
+      if (e.target.closest('a.nav-link')) {
+        closeSidebar();
+      }
+    });
+
+    /* Close sidebar on Escape key */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+        closeSidebar();
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initMobileSidebar);
 
   /* -- Sidebar scroll persistence ----------------------------- */
   /* Save scroll position before navigating, restore on load.   */

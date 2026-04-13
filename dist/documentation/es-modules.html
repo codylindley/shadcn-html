@@ -104,7 +104,7 @@
     instead of a classic script. The key differences:
   </p>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(16rem, 1fr));gap:1rem;margin-bottom:2.5rem;">
     <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">Classic script</span>
@@ -193,7 +193,7 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
     Component JS works the same way on both static and dynamic pages — load it once and it handles the rest.
   </p>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(16rem, 1fr));gap:1rem;margin-bottom:2.5rem;">
     <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.625rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">Static page</span>
@@ -259,7 +259,7 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
     things like keyboard navigation, focus management, and state coordination.
   </p>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(16rem, 1fr));gap:1rem;margin-bottom:2.5rem;">
     <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
       <div style="padding:0.75rem 1rem;background:var(--muted);border-bottom:1px solid var(--border);">
         <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">CSS-only — no JS needed</span>
