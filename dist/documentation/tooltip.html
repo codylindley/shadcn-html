@@ -136,7 +136,7 @@
       <!-- Default -->
       <p class="text-sm font-medium mb-2 mt-6">Default</p>
       <div class="preview">
-        <div class="flex items-center justify-center gap-4" style="padding:2.5rem 0;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:1.0rem;padding:2.5rem 0;" >
           <button class="btn" data-variant="outline" data-tooltip-trigger="tip-default">Hover me</button>
           <div class="tooltip" id="tip-default" popover="hint" role="tooltip">Add to library</div>
         </div>
@@ -154,7 +154,7 @@
       <p class="text-sm font-medium mb-2 mt-8">Side</p>
       <p class="text-muted-foreground text-sm mb-4">Use <code>data-side</code> on the tooltip to control placement.</p>
       <div class="preview">
-        <div class="flex items-center justify-center gap-4 flex-wrap" style="padding:2.5rem 0;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:1.0rem;flex-wrap:wrap;padding:2.5rem 0;" >
           <button class="btn" data-variant="outline" data-tooltip-trigger="tip-top">Top</button>
           <div class="tooltip" id="tip-top" popover="hint" role="tooltip">Top tooltip</div>
 
@@ -194,7 +194,7 @@
       <p class="text-sm font-medium mb-2 mt-8">With Arrow</p>
       <p class="text-muted-foreground text-sm mb-4">Add <code>&lt;div data-arrow&gt;&lt;/div&gt;</code> inside the tooltip for a connecting caret.</p>
       <div class="preview">
-        <div class="flex items-center justify-center gap-4 flex-wrap" style="padding:2.5rem 0;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:1.0rem;flex-wrap:wrap;padding:2.5rem 0;" >
           <button class="btn" data-variant="outline" data-tooltip-trigger="tip-arrow-top">Top</button>
           <div class="tooltip" id="tip-arrow-top" popover="hint" role="tooltip">
             Top with arrow
@@ -235,7 +235,7 @@
       <!-- With Keyboard Shortcut -->
       <p class="text-sm font-medium mb-2 mt-8">With Keyboard Shortcut</p>
       <div class="preview">
-        <div class="flex items-center justify-center gap-4 " style="padding:2.5rem 0;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:1.0rem;padding:2.5rem 0;" >
           <button class="btn" data-variant="outline" data-tooltip-trigger="tip-kbd">
             <i data-lucide="save" style="width:16px;height:16px;"></i>
             Save
@@ -265,7 +265,7 @@
       <p class="text-sm font-medium mb-2 mt-8">Alignment</p>
       <p class="text-muted-foreground text-sm mb-4">Use <code>data-align</code> to control tooltip alignment relative to the trigger.</p>
       <div class="preview">
-        <div class="flex items-center justify-center gap-4 flex-wrap" style="padding:2.5rem 0;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:1.0rem;flex-wrap:wrap;padding:2.5rem 0;" >
           <button class="btn" data-variant="outline" data-tooltip-trigger="tip-align-start">Start</button>
           <div class="tooltip" id="tip-align-start" popover="hint" role="tooltip" data-align="start">
             Aligned to start
@@ -301,7 +301,7 @@
       <p class="text-sm font-medium mb-2 mt-8">Disabled Button</p>
       <p class="text-muted-foreground text-sm mb-4">Wrap a disabled button in a <code>&lt;span&gt;</code> with the trigger attribute, since disabled elements don't fire mouse events.</p>
       <div class="preview">
-        <div class="flex items-center justify-center gap-4 " style="padding:2.5rem 0;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:1.0rem;padding:2.5rem 0;" >
           <span data-tooltip-trigger="tip-disabled" style="cursor:not-allowed;">
             <button class="btn" data-variant="outline" disabled style="pointer-events:none;">Disabled</button>
           </span>
@@ -325,7 +325,7 @@
       <p class="text-sm font-medium mb-2 mt-8">Custom Delay</p>
       <p class="text-muted-foreground text-sm mb-4">Use <code>data-delay</code> on the trigger to override the default 700 ms open delay.</p>
       <div class="preview">
-        <div class="flex items-center justify-center gap-4 flex-wrap" style="padding:2.5rem 0;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:1.0rem;flex-wrap:wrap;padding:2.5rem 0;" >
           <button class="btn" data-variant="outline" data-tooltip-trigger="tip-instant" data-delay="0">Instant (0 ms)</button>
           <div class="tooltip" id="tip-instant" popover="hint" role="tooltip">No delay!</div>
 
@@ -352,7 +352,7 @@
       <p class="text-sm font-medium mb-2 mt-8">Group Behavior</p>
       <p class="text-muted-foreground text-sm mb-4">Once any tooltip opens, subsequent tooltips in the page skip the delay and appear instantly. After 400 ms with no tooltip visible, the delay resets. Hover across the buttons below to see the effect.</p>
       <div class="preview">
-        <div class="flex items-center justify-center gap-2 " style="padding:2.5rem 0;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:2.5rem 0;" >
           <button class="btn" data-variant="outline" data-size="sm" data-tooltip-trigger="tip-g1">
             <i data-lucide="bold" style="width:14px;height:14px;"></i>
           </button>

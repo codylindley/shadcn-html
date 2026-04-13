@@ -89,7 +89,7 @@
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / icon</p>
-          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a></div>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;"><span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);white-space:nowrap;">Built with:</span> <a href="#source-css" class="badge built-with-pill" data-variant="outline">CSS</a></div>
         </div>
         <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Icon</h1>
         <p class="text-muted-foreground leading-relaxed mb-6">
@@ -125,7 +125,7 @@
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The CDN script replaces <code>&lt;i data-lucide=&quot;name&quot;&gt;</code> elements with inline SVGs on page load</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>stroke-width</code> attribute to adjust line thickness (default: <code>2</code>)</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Prefer visually-hidden text (<code>.sr-only</code>) over <code>aria-label</code> for accessible standalone icons</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• Animations (e.g., <code>animate-spin</code>) are suppressed when the user has <code>prefers-reduced-motion</code> enabled</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• Animations (e.g., <code>data-animate=&quot;spin&quot;</code>) are suppressed when the user has <code>prefers-reduced-motion</code> enabled</p>
           </div>
         </details>
       </div>
@@ -156,27 +156,27 @@
 
         <!-- -- Example: Sizes ------------------------------------ -->
           <p class="text-sm font-medium mb-2 mt-6">Sizes</p>
-          <p class="text-xs text-muted-foreground mb-3">Use Tailwind width/height classes to control icon size.</p>
+          <p class="text-xs text-muted-foreground mb-3">Use <code>data-size</code> to control icon size.</p>
           <div class="preview" style="gap:2rem;align-items:center;">
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
-              <i data-lucide="star" class="w-3 h-3"></i>
-              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">w-3 h-3</span>
+              <i data-lucide="star" data-size="xs"></i>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">xs (12px)</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
-              <i data-lucide="star" class="w-4 h-4"></i>
-              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">w-4 h-4</span>
+              <i data-lucide="star" ></i>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">default (16px)</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
-              <i data-lucide="star" class="w-5 h-5"></i>
-              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">w-5 h-5</span>
+              <i data-lucide="star" data-size="md"></i>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">md (20px)</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
-              <i data-lucide="star" class="w-6 h-6"></i>
-              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">w-6 h-6</span>
+              <i data-lucide="star" data-size="lg"></i>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">lg (24px)</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
-              <i data-lucide="star" class="w-8 h-8"></i>
-              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">w-8 h-8</span>
+              <i data-lucide="star" data-size="xl"></i>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">xl (32px)</span>
             </div>
           </div>
           <div style="position:relative;margin-top:0.5rem;">
@@ -184,11 +184,11 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code class="language-markup">&lt;i data-lucide="star" class="w-3 h-3"&gt;&lt;/i&gt;
-&lt;i data-lucide="star" class="w-4 h-4"&gt;&lt;/i&gt;
-&lt;i data-lucide="star" class="w-5 h-5"&gt;&lt;/i&gt;
-&lt;i data-lucide="star" class="w-6 h-6"&gt;&lt;/i&gt;
-&lt;i data-lucide="star" class="w-8 h-8"&gt;&lt;/i&gt;</code></pre>
+            <pre><code class="language-markup">&lt;i data-lucide="star" data-size="xs"&gt;&lt;/i&gt;
+&lt;i data-lucide="star" &gt;&lt;/i&gt;
+&lt;i data-lucide="star" data-size="md"&gt;&lt;/i&gt;
+&lt;i data-lucide="star" data-size="lg"&gt;&lt;/i&gt;
+&lt;i data-lucide="star" data-size="xl"&gt;&lt;/i&gt;</code></pre>
           </div>
 
         <!-- -- Example: With Button ------------------------------ -->
@@ -230,20 +230,20 @@
           <p class="text-sm font-medium mb-2 mt-6">Color</p>
           <p class="text-xs text-muted-foreground mb-3">Icons inherit <code>currentColor</code>. Change color with text color utilities.</p>
           <div class="preview" style="gap:1.5rem;">
-            <i data-lucide="circle-check" class="text-green-500 w-6 h-6"></i>
-            <i data-lucide="alert-triangle" class="text-amber-500 w-6 h-6"></i>
-            <i data-lucide="x-circle" class="text-destructive w-6 h-6"></i>
-            <i data-lucide="info" class="text-blue-500 w-6 h-6"></i>
+            <i data-lucide="circle-check" data-size="lg" style="color:oklch(0.72 0.19 142);"></i>
+            <i data-lucide="alert-triangle" data-size="lg" style="color:oklch(0.77 0.17 75);"></i>
+            <i data-lucide="x-circle" data-size="lg" style="color:var(--destructive);"></i>
+            <i data-lucide="info" data-size="lg" style="color:oklch(0.62 0.21 255);"></i>
           </div>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code class="language-markup">&lt;i data-lucide="circle-check" class="text-green-500 w-6 h-6"&gt;&lt;/i&gt;
-&lt;i data-lucide="alert-triangle" class="text-amber-500 w-6 h-6"&gt;&lt;/i&gt;
-&lt;i data-lucide="x-circle" class="text-destructive w-6 h-6"&gt;&lt;/i&gt;
-&lt;i data-lucide="info" class="text-blue-500 w-6 h-6"&gt;&lt;/i&gt;</code></pre>
+            <pre><code class="language-markup">&lt;i data-lucide="circle-check" data-size="lg" style="color:oklch(0.72 0.19 142);"&gt;&lt;/i&gt;
+&lt;i data-lucide="alert-triangle" data-size="lg" style="color:oklch(0.77 0.17 75);"&gt;&lt;/i&gt;
+&lt;i data-lucide="x-circle" data-size="lg" style="color:var(--destructive);"&gt;&lt;/i&gt;
+&lt;i data-lucide="info" data-size="lg" style="color:oklch(0.62 0.21 255);"&gt;&lt;/i&gt;</code></pre>
           </div>
 
         <!-- -- Example: Stroke Width ------------------------------ -->
@@ -251,20 +251,20 @@
           <p class="text-xs text-muted-foreground mb-3">Adjust line thickness with the <code>stroke-width</code> attribute. Default is <code>2</code>.</p>
           <div class="preview" style="gap:2rem;align-items:center;">
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
-              <i data-lucide="heart" class="w-6 h-6" stroke-width="1"></i>
-              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">1</span>
+              <i data-lucide="heart" data-size="lg" stroke-width="1"></i>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">1</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
-              <i data-lucide="heart" class="w-6 h-6" stroke-width="1.5"></i>
-              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">1.5</span>
+              <i data-lucide="heart" data-size="lg" stroke-width="1.5"></i>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">1.5</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
-              <i data-lucide="heart" class="w-6 h-6" stroke-width="2"></i>
-              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">2</span>
+              <i data-lucide="heart" data-size="lg" stroke-width="2"></i>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">2</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
-              <i data-lucide="heart" class="w-6 h-6" stroke-width="3"></i>
-              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">3</span>
+              <i data-lucide="heart" data-size="lg" stroke-width="3"></i>
+              <span style="font-size:0.75rem;color:var(--muted-foreground);" style="font-family:var(--font-mono);">3</span>
             </div>
           </div>
           <div style="position:relative;margin-top:0.5rem;">
@@ -272,10 +272,10 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code class="language-markup">&lt;i data-lucide="heart" class="w-6 h-6" stroke-width="1"&gt;&lt;/i&gt;
-&lt;i data-lucide="heart" class="w-6 h-6" stroke-width="1.5"&gt;&lt;/i&gt;
-&lt;i data-lucide="heart" class="w-6 h-6" stroke-width="2"&gt;&lt;/i&gt;
-&lt;i data-lucide="heart" class="w-6 h-6" stroke-width="3"&gt;&lt;/i&gt;</code></pre>
+            <pre><code class="language-markup">&lt;i data-lucide="heart" data-size="lg" stroke-width="1"&gt;&lt;/i&gt;
+&lt;i data-lucide="heart" data-size="lg" stroke-width="1.5"&gt;&lt;/i&gt;
+&lt;i data-lucide="heart" data-size="lg" stroke-width="2"&gt;&lt;/i&gt;
+&lt;i data-lucide="heart" data-size="lg" stroke-width="3"&gt;&lt;/i&gt;</code></pre>
           </div>
 
         <!-- -- Example: Accessible icon --------------------------- -->
@@ -283,10 +283,10 @@
           <p class="text-xs text-muted-foreground mb-3">For standalone icons that convey meaning, use visually-hidden text or <code>aria-label</code>.</p>
           <div class="preview" style="gap:2rem;align-items:center;">
             <span style="display:inline-flex;align-items:center;">
-              <i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i>
+              <i data-lucide="phone" data-size="md" aria-hidden="true"></i>
               <span class="sr-only">Phone number</span>
             </span>
-            <i data-lucide="alert-triangle" class="w-5 h-5" aria-label="Warning" role="img"></i>
+            <i data-lucide="alert-triangle" data-size="md" aria-label="Warning" role="img"></i>
           </div>
           <div style="position:relative;margin-top:0.5rem;">
             <button class="copy-btn">
@@ -305,11 +305,11 @@
 
         <!-- -- Example: Animated ---------------------------------- -->
           <p class="text-sm font-medium mb-2 mt-6">Animated (spinner)</p>
-          <p class="text-xs text-muted-foreground mb-3">Add <code>animate-spin</code> for loading indicators. Animation is suppressed when the user has <code>prefers-reduced-motion</code> enabled.</p>
+          <p class="text-xs text-muted-foreground mb-3">Add <code>data-animate=&quot;spin&quot;</code> for loading indicators. Animation is suppressed when the user has <code>prefers-reduced-motion</code> enabled.</p>
           <div class="preview" style="gap:2rem;align-items:center;">
-            <i data-lucide="loader-circle" class="w-5 h-5 animate-spin"></i>
+            <i data-lucide="loader-circle" data-size="md" data-animate="spin"></i>
             <button class="btn" data-variant="outline" disabled>
-              <i data-lucide="loader-circle" class="animate-spin"></i>
+              <i data-lucide="loader-circle" data-animate="spin"></i>
               Loading…
             </button>
           </div>
@@ -318,10 +318,10 @@
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy
             </button>
-            <pre><code class="language-markup">&lt;i data-lucide="loader-circle" class="w-5 h-5 animate-spin"&gt;&lt;/i&gt;
+            <pre><code class="language-markup">&lt;i data-lucide="loader-circle" data-size="md" data-animate="spin"&gt;&lt;/i&gt;
 
 &lt;button class="btn" data-variant="outline" disabled&gt;
-  &lt;i data-lucide="loader-circle" class="animate-spin"&gt;&lt;/i&gt;
+  &lt;i data-lucide="loader-circle" data-animate="spin"&gt;&lt;/i&gt;
   Loading…
 &lt;/button&gt;</code></pre>
           </div>
@@ -353,6 +353,22 @@
     width: 1rem;
     height: 1rem;
     pointer-events: none;
+
+    /* -- Sizes via data-size --------------------------------- */
+    &amp;[data-size=&quot;xs&quot;] { width: 0.75rem; height: 0.75rem; }
+    &amp;[data-size=&quot;sm&quot;] { width: 0.875rem; height: 0.875rem; }
+    &amp;[data-size=&quot;md&quot;] { width: 1.25rem; height: 1.25rem; }
+    &amp;[data-size=&quot;lg&quot;] { width: 1.5rem; height: 1.5rem; }
+    &amp;[data-size=&quot;xl&quot;] { width: 2rem; height: 2rem; }
+
+    /* -- Spin animation ------------------------------------- */
+    &amp;[data-animate=&quot;spin&quot;] {
+      animation: icon-spin 1s linear infinite;
+    }
+  }
+
+  @keyframes icon-spin {
+    to { transform: rotate(360deg); }
   }
 
   /* ---- Accessibility ---------------------------------------- */
@@ -472,24 +488,25 @@ Include the Lucide CDN script and call `createIcons()`:
 
 ## Sizing
 
-Control icon size with CSS classes, inline styles, or HTML attributes:
+Control icon size with `data-size`, inline styles, or HTML attributes:
 
 | Method | Example |
 |--------|---------|
-| Tailwind classes | `<i data-lucide="star" class="w-4 h-4"></i>` |
+| data-size attribute | `<i data-lucide="star" data-size="lg"></i>` |
 | Inline style | `<i data-lucide="star" style="width:16px;height:16px;"></i>` |
 | HTML attributes | `<i data-lucide="star" width="16" height="16"></i>` |
 | `em` units (font-relative) | `<i data-lucide="star" style="width:1em;height:1em;"></i>` |
 
-The component CSS sets a default size of `1rem` (16px). Common size utility classes:
+The component CSS sets a default size of `1rem` (16px). Available sizes via `data-size`:
 
-| Class | Size |
-|-------|------|
-| `w-3 h-3` | 12px |
-| `w-4 h-4` | 16px (default) |
-| `w-5 h-5` | 20px |
-| `w-6 h-6` | 24px |
-| `w-8 h-8` | 32px |
+| `data-size` | Size |
+|-------------|------|
+| `xs` | 12px (0.75rem) |
+| `sm` | 14px (0.875rem) |
+| *(default)* | 16px (1rem) |
+| `md` | 20px (1.25rem) |
+| `lg` | 24px (1.5rem) |
+| `xl` | 32px (2rem) |
 
 ---
 
@@ -539,7 +556,7 @@ Icons inherit `currentColor` for stroke. Change color with CSS:
 - The CDN script replaces `<i data-lucide="name">` elements with inline SVGs on page load
 - Use `stroke-width` attribute to adjust line thickness (default: `2`)
 - Prefer visually-hidden text (`.sr-only`) over `aria-label` for accessible standalone icons
-- Animations (e.g., `animate-spin`) are suppressed when the user has `prefers-reduced-motion` enabled
+- Animations (e.g., `data-animate="spin"`) are suppressed when the user has `prefers-reduced-motion` enabled
 </script>
 </body>
 </html>

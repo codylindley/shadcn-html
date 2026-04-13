@@ -184,7 +184,7 @@
           <div style="width:100%;max-width:20rem;">
             <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
               <label class="label" for="d-temp" style="margin:0;">Temperature</label>
-              <output id="d-temp-output" class="text-sm text-muted-foreground" style="font-family:var(--font-mono);" for="d-temp">0.5</output>
+              <output id="d-temp-output" class="text-muted-foreground" for="d-temp" style="font-size:0.875rem;font-family:var(--font-mono);" >0.5</output>
             </div>
             <input class="slider" type="range" id="d-temp" min="0" max="1" step="0.1" value="0.5" oninput="document.getElementById('d-temp-output').value = this.value">
           </div>
@@ -209,7 +209,7 @@
           <div style="width:100%;max-width:20rem;">
             <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
               <label class="label" for="d-step" style="margin:0;">Step: 25</label>
-              <output id="d-step-output" class="text-sm text-muted-foreground" style="font-family:var(--font-mono);" for="d-step">50</output>
+              <output id="d-step-output" class="text-muted-foreground" for="d-step" style="font-size:0.875rem;font-family:var(--font-mono);" >50</output>
             </div>
             <input class="slider" type="range" id="d-step" min="0" max="100" step="25" value="50" oninput="document.getElementById('d-step-output').value = this.value">
           </div>

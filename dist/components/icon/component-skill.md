@@ -64,24 +64,25 @@ Include the Lucide CDN script and call `createIcons()`:
 
 ## Sizing
 
-Control icon size with CSS classes, inline styles, or HTML attributes:
+Control icon size with `data-size`, inline styles, or HTML attributes:
 
 | Method | Example |
-|--------|---------|
-| Tailwind classes | `<i data-lucide="star" class="w-4 h-4"></i>` |
+|--------|--------|
+| `data-size` attribute | `<i data-lucide="star" data-size="lg"></i>` |
 | Inline style | `<i data-lucide="star" style="width:16px;height:16px;"></i>` |
 | HTML attributes | `<i data-lucide="star" width="16" height="16"></i>` |
 | `em` units (font-relative) | `<i data-lucide="star" style="width:1em;height:1em;"></i>` |
 
-The component CSS sets a default size of `1rem` (16px). Common size utility classes:
+The component CSS sets a default size of `1rem` (16px). Available sizes via `data-size`:
 
-| Class | Size |
-|-------|------|
-| `w-3 h-3` | 12px |
-| `w-4 h-4` | 16px (default) |
-| `w-5 h-5` | 20px |
-| `w-6 h-6` | 24px |
-| `w-8 h-8` | 32px |
+| `data-size` | Size |
+|-------------|------|
+| `xs` | 12px (0.75rem) |
+| `sm` | 14px (0.875rem) |
+| *(default)* | 16px (1rem) |
+| `md` | 20px (1.25rem) |
+| `lg` | 24px (1.5rem) |
+| `xl` | 32px (2rem) |
 
 ---
 
@@ -132,4 +133,4 @@ Icons inherit `currentColor` for stroke. Change color with CSS:
 - Use `stroke-width` attribute to adjust line thickness (default: `2`)
 - Prefer visually-hidden text (`.sr-only`) over `aria-label` for accessible standalone icons — `aria-label` may not be translated by browser translation tools
 - Add `pointer-events: none` is set in CSS — icons don't capture clicks, so the parent element handles interaction
-- Animations (e.g., `animate-spin` on a loader icon) are suppressed when the user has `prefers-reduced-motion` enabled
+- Animations (e.g., `data-animate="spin"` on a loader icon) are suppressed when the user has `prefers-reduced-motion` enabled
