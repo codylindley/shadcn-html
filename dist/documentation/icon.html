@@ -109,6 +109,9 @@
             <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem;">
               <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg" target="_blank" rel="noopener" title="inline scalable vector graphics (injected by Lucide)" class="api-pill"><code>&lt;svg&gt;</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
               <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden" target="_blank" rel="noopener" title="hides decorative icons from screen readers" class="api-pill"><code>aria-hidden</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword" target="_blank" rel="noopener" title="icons inherit stroke color from the parent's color property" class="api-pill"><code>currentColor</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank" rel="noopener" title="suppresses icon animations when user prefers reduced motion" class="api-pill"><code>prefers-reduced-motion</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" target="_blank" rel="noopener" title="maps icon color to system CanvasText in Windows High Contrast Mode" class="api-pill"><code>forced-colors</code><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
             </div>
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Data attributes</p>
@@ -117,9 +120,12 @@
 
             <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.8125rem;font-family:var(--font-mono);">Notes</p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Icons inherit <code>currentColor</code> for stroke — they automatically match the parent's text color</p>
-            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Browse all available icons at [lucide.dev/icons](https://lucide.dev/icons/)</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Browse all available icons at <a href="https://lucide.dev/icons/" target="_blank" style="color:var(--primary);text-decoration:underline;text-underline-offset:4px;">lucide.dev/icons</a></p>
             <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Lucide provides ~1,500 icons covering every common web app need</p>
-            <p class="text-muted-foreground" style="margin:0 0 0;">• The CDN script replaces <code>&lt;i data-lucide=&quot;name&quot;&gt;</code> elements with inline SVGs on page load</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• The CDN script replaces <code>&lt;i data-lucide=&quot;name&quot;&gt;</code> elements with inline SVGs on page load</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Use <code>stroke-width</code> attribute to adjust line thickness (default: <code>2</code>)</p>
+            <p class="text-muted-foreground" style="margin:0 0 0.25rem;">• Prefer visually-hidden text (<code>.sr-only</code>) over <code>aria-label</code> for accessible standalone icons</p>
+            <p class="text-muted-foreground" style="margin:0 0 0;">• Animations (e.g., <code>animate-spin</code>) are suppressed when the user has <code>prefers-reduced-motion</code> enabled</p>
           </div>
         </details>
       </div>
@@ -240,6 +246,86 @@
 &lt;i data-lucide="info" class="text-blue-500 w-6 h-6"&gt;&lt;/i&gt;</code></pre>
           </div>
 
+        <!-- -- Example: Stroke Width ------------------------------ -->
+          <p class="text-sm font-medium mb-2 mt-6">Stroke width</p>
+          <p class="text-xs text-muted-foreground mb-3">Adjust line thickness with the <code>stroke-width</code> attribute. Default is <code>2</code>.</p>
+          <div class="preview" style="gap:2rem;align-items:center;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              <i data-lucide="heart" class="w-6 h-6" stroke-width="1"></i>
+              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">1</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              <i data-lucide="heart" class="w-6 h-6" stroke-width="1.5"></i>
+              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">1.5</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              <i data-lucide="heart" class="w-6 h-6" stroke-width="2"></i>
+              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">2</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+              <i data-lucide="heart" class="w-6 h-6" stroke-width="3"></i>
+              <span class="text-xs text-muted-foreground" style="font-family:var(--font-mono);">3</span>
+            </div>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code class="language-markup">&lt;i data-lucide="heart" class="w-6 h-6" stroke-width="1"&gt;&lt;/i&gt;
+&lt;i data-lucide="heart" class="w-6 h-6" stroke-width="1.5"&gt;&lt;/i&gt;
+&lt;i data-lucide="heart" class="w-6 h-6" stroke-width="2"&gt;&lt;/i&gt;
+&lt;i data-lucide="heart" class="w-6 h-6" stroke-width="3"&gt;&lt;/i&gt;</code></pre>
+          </div>
+
+        <!-- -- Example: Accessible icon --------------------------- -->
+          <p class="text-sm font-medium mb-2 mt-6">Accessible icon</p>
+          <p class="text-xs text-muted-foreground mb-3">For standalone icons that convey meaning, use visually-hidden text or <code>aria-label</code>.</p>
+          <div class="preview" style="gap:2rem;align-items:center;">
+            <span style="display:inline-flex;align-items:center;">
+              <i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i>
+              <span class="sr-only">Phone number</span>
+            </span>
+            <i data-lucide="alert-triangle" class="w-5 h-5" aria-label="Warning" role="img"></i>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code class="language-markup">&lt;!-- Preferred: visually-hidden text --&gt;
+&lt;span style="display:inline-flex;align-items:center;"&gt;
+  &lt;i data-lucide="phone" aria-hidden="true"&gt;&lt;/i&gt;
+  &lt;span class="sr-only"&gt;Phone number&lt;/span&gt;
+&lt;/span&gt;
+
+&lt;!-- Alternative: aria-label --&gt;
+&lt;i data-lucide="alert-triangle" aria-label="Warning" role="img"&gt;&lt;/i&gt;</code></pre>
+          </div>
+
+        <!-- -- Example: Animated ---------------------------------- -->
+          <p class="text-sm font-medium mb-2 mt-6">Animated (spinner)</p>
+          <p class="text-xs text-muted-foreground mb-3">Add <code>animate-spin</code> for loading indicators. Animation is suppressed when the user has <code>prefers-reduced-motion</code> enabled.</p>
+          <div class="preview" style="gap:2rem;align-items:center;">
+            <i data-lucide="loader-circle" class="w-5 h-5 animate-spin"></i>
+            <button class="btn" data-variant="outline" disabled>
+              <i data-lucide="loader-circle" class="animate-spin"></i>
+              Loading…
+            </button>
+          </div>
+          <div style="position:relative;margin-top:0.5rem;">
+            <button class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <pre><code class="language-markup">&lt;i data-lucide="loader-circle" class="w-5 h-5 animate-spin"&gt;&lt;/i&gt;
+
+&lt;button class="btn" data-variant="outline" disabled&gt;
+  &lt;i data-lucide="loader-circle" class="animate-spin"&gt;&lt;/i&gt;
+  Loading…
+&lt;/button&gt;</code></pre>
+          </div>
+
         <!-- -- Browse all icons ---------------------------------- -->
           <p class="text-sm font-medium mb-2 mt-6">Browse all icons</p>
           <p class="text-xs text-muted-foreground mb-3">Lucide provides ~1,500 icons. Browse and search the full set at:</p>
@@ -266,6 +352,22 @@
     vertical-align: middle;
     width: 1rem;
     height: 1rem;
+    pointer-events: none;
+  }
+
+  /* ---- Accessibility ---------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-lucide] {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  @media (forced-colors: active) {
+    [data-lucide] {
+      color: CanvasText;
+    }
   }
 }</code></pre>
           </div>
@@ -312,7 +414,10 @@
 
 ## Native Web APIs
 - [`<svg>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg) — inline scalable vector graphics (injected by Lucide)
-- [`aria-hidden`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden) — hides decorative icons from screen readers
+- [`aria-hidden`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden) — hides decorative icons from screen readers (Lucide sets this by default)
+- [`currentColor`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword) — icons inherit stroke color from the parent's `color` property
+- [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses icon animations (e.g., spinning loaders) when user prefers reduced motion
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — maps icon color to system `CanvasText` in Windows High Contrast Mode
 
 ---
 
@@ -334,9 +439,17 @@ Include the Lucide CDN script and call `createIcons()`:
 <i data-lucide="sun"></i>
 ```
 
-### With accessible label
+### With accessible label (aria-label)
 ```html
 <i data-lucide="alert-triangle" aria-label="Warning" role="img"></i>
+```
+
+### With visually-hidden text (preferred for accessibility)
+```html
+<span style="display:inline-flex;align-items:center;">
+  <i data-lucide="phone" aria-hidden="true"></i>
+  <span class="sr-only">Phone number</span>
+</span>
 ```
 
 ### Inside a button
@@ -358,13 +471,51 @@ Include the Lucide CDN script and call `createIcons()`:
 
 ## Sizing
 
-Lucide icons default to 24×24. Control size with inline CSS or Tailwind classes:
+Control icon size with CSS classes, inline styles, or HTML attributes:
+
+| Method | Example |
+|--------|---------|
+| Tailwind classes | `<i data-lucide="star" class="w-4 h-4"></i>` |
+| Inline style | `<i data-lucide="star" style="width:16px;height:16px;"></i>` |
+| HTML attributes | `<i data-lucide="star" width="16" height="16"></i>` |
+| `em` units (font-relative) | `<i data-lucide="star" style="width:1em;height:1em;"></i>` |
+
+The component CSS sets a default size of `1rem` (16px). Common size utility classes:
+
+| Class | Size |
+|-------|------|
+| `w-3 h-3` | 12px |
+| `w-4 h-4` | 16px (default) |
+| `w-5 h-5` | 20px |
+| `w-6 h-6` | 24px |
+| `w-8 h-8` | 32px |
+
+---
+
+## Stroke width
+
+Adjust stroke weight with the `stroke-width` attribute on the `<i>` element:
 
 ```html
-<i data-lucide="sun" style="width:16px;height:16px;"></i>
-<i data-lucide="sun" class="w-4 h-4"></i>
-<i data-lucide="sun" class="w-5 h-5"></i>
-<i data-lucide="sun" class="w-6 h-6"></i>
+<i data-lucide="heart" stroke-width="1"></i>
+<i data-lucide="heart" stroke-width="1.5"></i>
+<i data-lucide="heart" stroke-width="2"></i>
+<i data-lucide="heart" stroke-width="3"></i>
+```
+
+Default stroke width is `2`.
+
+---
+
+## Color
+
+Icons inherit `currentColor` for stroke. Change color with CSS:
+
+```html
+<i data-lucide="star" class="text-primary"></i>
+<i data-lucide="star" class="text-muted-foreground"></i>
+<i data-lucide="star" class="text-destructive"></i>
+<i data-lucide="star" style="color: green;"></i>
 ```
 
 ---
@@ -373,9 +524,9 @@ Lucide icons default to 24×24. Control size with inline CSS or Tailwind classes
 
 | Attribute | When | Value |
 |-----------|------|-------|
-| (none) | Decorative (icon next to text) | Lucide adds `aria-hidden` by default |
-| `role="img"` | Meaningful (icon conveys info alone) | Add with `aria-label` |
-| `aria-label` | Meaningful icon | Describes the icon's purpose |
+| (none) | Decorative (icon next to text) | Lucide adds `aria-hidden="true"` by default |
+| `role="img"` + `aria-label` | Meaningful (icon conveys info alone) | Describes the icon's purpose |
+| Visually-hidden `<span>` | Meaningful (preferred alternative) | Provides screen reader text via `.sr-only` |
 
 ---
 
@@ -385,6 +536,9 @@ Lucide icons default to 24×24. Control size with inline CSS or Tailwind classes
 - Browse all available icons at [lucide.dev/icons](https://lucide.dev/icons/)
 - Lucide provides ~1,500 icons covering every common web app need
 - The CDN script replaces `<i data-lucide="name">` elements with inline SVGs on page load
+- Use `stroke-width` attribute to adjust line thickness (default: `2`)
+- Prefer visually-hidden text (`.sr-only`) over `aria-label` for accessible standalone icons
+- Animations (e.g., `animate-spin`) are suppressed when the user has `prefers-reduced-motion` enabled
 </script>
 </body>
 </html>

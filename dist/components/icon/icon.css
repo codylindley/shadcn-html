@@ -11,5 +11,21 @@
     vertical-align: middle;
     width: 1rem;
     height: 1rem;
+    pointer-events: none;
+  }
+
+  /* ---- Accessibility ---------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-lucide] {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  @media (forced-colors: active) {
+    [data-lucide] {
+      color: CanvasText;
+    }
   }
 }
