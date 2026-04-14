@@ -109,7 +109,9 @@ element styles inside the base selector:
 - **Logical properties** — `margin-inline`, `padding-block`, `inset-inline-start` for RTL support
 - **Subgrid** — `grid-template-columns: subgrid` for child alignment to parent grid tracks
 - **`:is()` / `:where()`** — selector grouping; `:where()` has zero specificity (ideal for resets)
-- **`@scope`** — bounded style scoping with upper and lower boundaries
+- **`@scope`** — bounded style scoping with upper and lower boundaries (available but
+  **not used in this project** — we use `@layer` + descriptive prefixed class names instead;
+  see cascade-layers.html for rationale)
 - **Dynamic viewport units** — `dvh`, `svh`, `lvh` for mobile browser chrome awareness
 - **CSS math** — `clamp()`, `min()`, `max()`, `round()` for responsive sizing
 

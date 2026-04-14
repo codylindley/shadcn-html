@@ -123,7 +123,9 @@ can do it, we don't write JavaScript for it.
   JS resize calculations
 - Use `:is()` / `:where()` for selector grouping — not repeated selectors
 - Use `hanging-punctuation` for optical quote alignment — not negative text-indent
-- Use `@scope` for bounded style scoping — not BEM naming hacks
+- Use `@layer` + descriptive prefixed class names (`card-header`, `slider-track`) for
+  style scoping — not `@scope` (generic class names lose context for AI generation)
+  or Shadow DOM
 - Use `@media (scripting)` for no-JS progressive enhancement — not `<noscript>` alone
 
 **Accessibility (REQUIRED)**
