@@ -160,7 +160,7 @@
 
   <!-- The five layers -->
   <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:400;letter-spacing:-0.025em;margin:0 0 0.875rem;">Built on five layers.</h2>
-  <p class="text-sm text-muted-foreground mb-4">Tokens. CSS. HTML. JavaScript. Component skill. That's the whole system.</p>
+  <p class="text-sm text-muted-foreground mb-4">Tokens. Component skill. CSS. HTML. JavaScript (if needed). That's the whole system.</p>
 
   <!-- Layer 1 — Tokens -->
   <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:0.75rem;">
@@ -180,28 +180,62 @@
 .dark { <span class="dim">/* same keys, dark values */</span> }</code></pre>
   </div>
 
-  <!-- Layer 2 — CSS -->
+  <!-- Layer 2 — Component Skill -->
   <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:0.75rem;">
     <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
-      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">2 — component CSS</span>
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">2 — component-skill.md file</span>
+    </div>
+    <pre style="border-radius:0;border:none;"><code class="language-markup"><span class="dim"># Pattern: Button</span>
+
+## Native basis
+`&lt;button&gt;` element. Also works on `&lt;a&gt;` for link-style buttons.
+
+## Native Web APIs
+- `&lt;button&gt;` — native clickable element with built-in keyboard and form support
+- `:focus-visible` — keyboard-only focus ring
+- `commandfor` / `command` — declarative button→dialog/popover triggers without JS
+<span class="dim">  # ...prefers-reduced-motion, prefers-contrast, forced-colors</span>
+
+## Structure
+&lt;button class="btn" data-variant="default"&gt;Click me&lt;/button&gt;
+
+## Variants
+| data-variant  | Surface              | Text                     | Hover           |
+|---------------|----------------------|--------------------------|-----------------|
+| default       | --primary            | --primary-foreground     | opacity: 0.88   |
+| secondary     | --secondary          | --secondary-foreground   | opacity: 0.8    |
+| outline       | --background + border | --foreground             | --accent bg     |
+| ghost         | transparent          | --foreground             | --accent bg     |
+| destructive   | --destructive        | --destructive-foreground | opacity: 0.88   |
+| link          | transparent          | --primary                | underline       |
+<span class="dim">  # ...sizes, accessibility, notes</span></code></pre>
+  </div>
+
+  <!-- Layer 3 — CSS -->
+  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:0.75rem;">
+    <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">3 — component CSS</span>
     </div>
     <pre style="border-radius:0;border:none;"><code class="language-css"><span class="dim">/* button.css — styled with tokens */</span>
-.btn {
-  display: inline-flex;
-  align-items: center;
-  border-radius: var(--radius-md);
-  font-weight: 500;
-}
-.btn[data-variant="default"] {
-  background: var(--primary);
-  color: var(--primary-foreground);
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+  }
+  .btn[data-variant="default"] {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  <span class="dim">/* ...secondary, destructive, outline, ghost, link */</span>
 }</code></pre>
   </div>
 
-  <!-- Layer 3 — HTML -->
+  <!-- Layer 4 — HTML -->
   <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:0.75rem;">
     <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
-      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">3 — semantic HTML</span>
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">4 — semantic HTML</span>
     </div>
     <pre style="border-radius:0;border:none;"><code class="language-markup">&lt;button class="btn" data-variant="default"
         data-dialog-trigger="confirm"&gt;
@@ -213,43 +247,24 @@
 &lt;/dialog&gt;</code></pre>
   </div>
 
-  <!-- Layer 4 — JavaScript -->
-  <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:0.75rem;">
-    <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
-      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">4 — vanilla JavaScript</span>
-    </div>
-    <pre style="border-radius:0;border:none;"><code class="language-javascript"><span class="dim">// dialog.js — wire interactivity</span>
-document.querySelectorAll('[data-dialog-trigger]')
-  .forEach(btn =&gt; {
-    const dialog = document.getElementById(
-      btn.dataset.dialogTrigger
-    );
-    btn.addEventListener('click', () =&gt; dialog.showModal());
-  });</code></pre>
-  </div>
-
-  <!-- Layer 5 — Component Skill -->
+  <!-- Layer 5 — JavaScript -->
   <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
     <div style="padding:0.75rem 1.25rem;background:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
-      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">5 — component skill</span>
+      <span style="font-size:0.75rem;font-family:var(--font-mono);color:var(--muted-foreground);">5 — vanilla JavaScript (if needed)</span>
     </div>
-    <pre style="border-radius:0;border:none;"><code class="language-markup"><span class="dim"># component-skill.md — the instruction set AI reads to build correctly</span>
+    <pre style="border-radius:0;border:none;"><code class="language-javascript"><span class="dim">// dialog.js — wire interactivity</span>
+function init() {
+  document.querySelectorAll('[data-dialog-trigger]:not([data-init])').forEach((trigger) =&gt; {
+    trigger.dataset.init = '';
+    const dialog = document.getElementById(trigger.dataset.dialogTrigger);
+    if (!dialog) return;
+    trigger.addEventListener('click', () =&gt; dialog.showModal());
+  });
+  <span class="dim">/* ...close-on-backdrop, [data-dialog-close] buttons, focus restore */</span>
+}
 
-## Structure
-&lt;button class="btn" data-variant="default"&gt;Click me&lt;/button&gt;
-
-## Variants
-| data-variant  | Surface     | Text                   |
-|---------------|-------------|------------------------|
-| default       | --primary   | --primary-foreground   |
-| secondary     | --secondary | --secondary-foreground |
-| destructive   | --destructive | --destructive-foreground |
-| outline       | --background + border | --foreground |
-| ghost         | transparent | --foreground           |
-
-## Accessibility
-- Icon-only buttons require aria-label.
-- Use &lt;button&gt; for actions, &lt;a&gt; for navigation.</code></pre>
+init();
+new MutationObserver(init).observe(document, { childList: true, subtree: true });</code></pre>
   </div>
     </main>
   </div>
