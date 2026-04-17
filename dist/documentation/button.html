@@ -20,7 +20,7 @@
   <script src="js/layout.js"></script>
   <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
-  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/docs-utilities.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/button/button.css">
@@ -85,7 +85,7 @@
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
     <site-nav></site-nav>
 
-    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+    <main style="flex: 1; min-width: 0; max-width: 44rem; padding: 2rem 3.5rem 8rem;">
       <div class="page-header">
 <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / button</p>
@@ -338,7 +338,7 @@
 
         <!-- Rounded -->
         <p class="text-sm font-medium mb-2 mt-8">Rounded</p>
-        <p class="text-xs text-muted-foreground mb-3">Add <code>style="border-radius:9999px"</code> or a Tailwind <code>rounded-full</code> class for pill-shaped buttons.</p>
+        <p class="text-xs text-muted-foreground mb-3">Add <code>style="border-radius:9999px"</code> for pill-shaped buttons.</p>
         <div class="preview">
           <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;justify-content:center;">
             <button class="btn" data-variant="default" style="border-radius:9999px;">Rounded</button>
@@ -551,8 +551,8 @@
 
 ## Native Web APIs
 - [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) — native clickable element with built-in keyboard and form support
-- [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) — keyboard-only focus ring
-- [`commandfor` / `command`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#command) — declarative button→dialog/popover triggers
+- [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) — keyboard-only focus ring, avoids showing focus on mouse clicks
+- [`commandfor` / `command`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#command) — declarative button→dialog/popover triggers without JS click handlers
 - [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses hover/focus transitions
 - [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — adds visible borders to all variants in high-contrast mode
 - [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — maps button border/text to system colors in Windows High Contrast Mode

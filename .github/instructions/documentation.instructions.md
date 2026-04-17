@@ -69,9 +69,13 @@ node scripts/sync-js-snippets.js
 These scripts replace every inline snippet with the current file content.
 Do NOT manually edit the `<pre><code>` blocks — they will be overwritten by the sync scripts.
 
-## Doc-site Tailwind CSS
+## Doc-site utility classes
 
-The doc site uses Tailwind utility classes for layout in page content.
-These are compiled to a static CSS file (`css/docs-tailwind.css`) — there is no CDN
-or runtime dependency. If new Tailwind classes are added to HTML, rebuild with:
-`npm run docs:build-css`
+The doc site uses a small, hand-written set of utility classes for layout and
+spacing inside doc pages (`css/docs-utilities.css`). The utilities are plain
+class rules — they only affect elements that explicitly opt in by using the
+class name, so they cannot leak into component styles.
+
+If you need a new utility (e.g. `mt-4`, `gap-5`), add it directly to
+`css/docs-utilities.css`. Keep the utility set minimal — prefer inline `style`
+attributes for one-off layout tweaks in demo wrappers.

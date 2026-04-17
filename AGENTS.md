@@ -18,7 +18,7 @@ shadcn-html/
 │   │       └── {name}.js              ← interaction JS (only for interactive components)
 │   └── documentation/                 ← reference implementations + public website
 │       ├── *.html                     ← one page per component + overview pages
-│       ├── css/docs-tailwind.css      ← compiled Tailwind utilities for doc pages
+│       ├── css/docs-utilities.css    ← hand-written utility classes for doc pages
 │       ├── css/docs-theme.css         ← doc-site font overrides (not part of the system)
 │       ├── css/layout.css             ← doc-site layout (not part of the system)
 │       ├── js/layout.js               ← SPA router, <site-header>/<site-nav> web components
@@ -292,9 +292,7 @@ support status of newer APIs (`popover`, anchor positioning, `@starting-style`, 
 7. **Add CSS/JS imports to all HTML pages** → add the new component's `<link>` and
    `<script>` tags to every HTML file in `dist/documentation/`
 
-8. **Rebuild doc CSS** (if new Tailwind classes were used) → `npm run docs:build-css`
-
-10. **Sync inline source snippets** → run `node scripts/sync-css-snippets.js` and
+8. **Sync inline source snippets** → run `node scripts/sync-css-snippets.js` and
     `node scripts/sync-js-snippets.js` to replace the inline `<pre><code>` blocks in
     every doc page with the actual contents of each component's `.css` and `.js` files.
     This must be done after any change to a component's CSS or JS — not just for new components.

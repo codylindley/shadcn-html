@@ -20,7 +20,7 @@
   <script src="js/layout.js"></script>
   <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
-  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/docs-utilities.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/button/button.css">
@@ -83,7 +83,7 @@
   <site-header></site-header>
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
     <site-nav></site-nav>
-    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+    <main style="flex: 1; min-width: 0; max-width: 44rem; padding: 2rem 3.5rem 8rem;">
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / carousel</p>
@@ -771,29 +771,151 @@ CSS `scroll-snap` on an overflow container, with `IntersectionObserver` for acti
 
 ## Native Web APIs
 
-- [`scroll-snap-type`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type) — mandatory snap scrolling
-- [`scroll-snap-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-align) — snap point alignment per slide
-- [`scroll-snap-stop`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-stop) — forces snap to each slide
-- [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior) — prevents scroll chaining
-- [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) — tracks visible slide
-- [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) — keyboard-only focus rings
-- [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses smooth scroll
-- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — high contrast support
-- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — Windows High Contrast
-- [WAI-ARIA Carousel](https://www.w3.org/WAI/ARIA/apg/patterns/carousel/) — role region, aria-roledescription
+- [`scroll-snap-type`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type) — mandatory snap scrolling for horizontal and vertical axes
+- [`scroll-snap-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-align) — snap-point alignment per slide
+- [`scroll-snap-stop`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-stop) — forces snap to each slide (prevents fast-scroll skip)
+- [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior) — prevents scroll chaining to parent
+- [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) — tracks which slide is currently visible without scroll listeners
+- [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) — keyboard-only focus rings on buttons and dots
+- [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) — suppresses smooth scroll and transitions
+- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — increases border widths for high-contrast mode
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — Windows High Contrast Mode support
+- [WAI-ARIA Carousel pattern](https://www.w3.org/WAI/ARIA/apg/patterns/carousel/) — `role="region"`, `aria-roledescription="carousel"`, slide groups
 
 ## Structure
 
+### Default (horizontal, single slide)
 ```html
 <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Featured slides">
   <div class="carousel-viewport" aria-live="polite">
-    <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 5">…</div>
+    <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 5">
+      <!-- slide content -->
+    </div>
+    <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 5">
+      <!-- slide content -->
+    </div>
+    <!-- more slides -->
+  </div>
+  <button class="carousel-prev" aria-label="Previous slide">
+    <i data-lucide="chevron-left"></i>
+  </button>
+  <button class="carousel-next" aria-label="Next slide">
+    <i data-lucide="chevron-right"></i>
+  </button>
+</div>
+```
+
+### With dot indicators
+```html
+<div class="carousel" role="region" aria-roledescription="carousel" aria-label="Gallery">
+  <div class="carousel-viewport" aria-live="polite">
+    <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 3">…</div>
+    <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">…</div>
+    <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 3">…</div>
   </div>
   <button class="carousel-prev" aria-label="Previous slide"><i data-lucide="chevron-left"></i></button>
   <button class="carousel-next" aria-label="Next slide"><i data-lucide="chevron-right"></i></button>
-  <div class="carousel-dots" role="group" aria-label="Choose slide to display"></div>
+  <div class="carousel-dots" role="group" aria-label="Choose slide to display">
+    <!-- dots are auto-generated by JS if this container is empty -->
+  </div>
 </div>
 ```
+
+### With counter
+```html
+<div class="carousel" role="region" aria-roledescription="carousel" aria-label="Slides">
+  <div class="carousel-viewport" aria-live="polite">…</div>
+  <button class="carousel-prev" aria-label="Previous slide"><i data-lucide="chevron-left"></i></button>
+  <button class="carousel-next" aria-label="Next slide"><i data-lucide="chevron-right"></i></button>
+  <div class="carousel-counter" aria-live="polite">Slide 1 of 5</div>
+</div>
+```
+
+### Vertical
+```html
+<div class="carousel" data-orientation="vertical" role="region" aria-roledescription="carousel" aria-label="Vertical slides">
+  <div class="carousel-viewport" aria-live="polite" style="height: 16rem;">
+    <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 3">…</div>
+    <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">…</div>
+    <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 3">…</div>
+  </div>
+  <button class="carousel-prev" aria-label="Previous slide"><i data-lucide="chevron-up"></i></button>
+  <button class="carousel-next" aria-label="Next slide"><i data-lucide="chevron-down"></i></button>
+</div>
+```
+
+### Loop
+Add `data-loop` to the carousel container to enable infinite circular navigation:
+```html
+<div class="carousel" data-loop role="region" aria-roledescription="carousel" aria-label="Looping slides">
+  …
+</div>
+```
+
+### Autoplay
+Add `data-autoplay="3000"` (milliseconds) to auto-advance slides. Auto-rotation pauses on hover and focus per WAI-ARIA requirements:
+```html
+<div class="carousel" data-autoplay="3000" data-loop role="region" aria-roledescription="carousel" aria-label="Auto-rotating slides">
+  …
+</div>
+```
+
+### Multi-slide sizing
+Set `flex-basis` on `.carousel-slide` to control per-slide width:
+```html
+<!-- 3 slides visible -->
+<div class="carousel-slide" style="flex: 0 0 calc(33.333% - 0.667rem);" role="group" aria-roledescription="slide" aria-label="1 of 9">…</div>
+
+<!-- 2 slides visible -->
+<div class="carousel-slide" style="flex: 0 0 calc(50% - 0.5rem);" role="group" aria-roledescription="slide" aria-label="1 of 6">…</div>
+```
+
+## Variants
+
+| Attribute | Value | Behavior |
+| --- | --- | --- |
+| `data-orientation` | *(omitted)* | Horizontal scrolling; Left/Right arrows |
+| `data-orientation` | `vertical` | Vertical scrolling; Up/Down arrows |
+| `data-loop` | *(presence)* | Enables circular/infinite navigation |
+| `data-autoplay` | `"3000"` | Auto-advances every N ms; pauses on hover/focus |
+
+## ARIA
+
+| Attribute | Element | Purpose |
+| --- | --- | --- |
+| `role="region"` | `.carousel` | Identifies the carousel landmark |
+| `aria-roledescription="carousel"` | `.carousel` | Announces as "carousel" instead of "region" |
+| `aria-label` | `.carousel` | Accessible name (should not include "carousel") |
+| `role="group"` | `.carousel-slide` | Groups slide content |
+| `aria-roledescription="slide"` | `.carousel-slide` | Announces as "slide" instead of "group" |
+| `aria-label="X of Y"` | `.carousel-slide` | Positional label for each slide |
+| `aria-live="polite"` | `.carousel-viewport` | Announces slide changes (set to `off` during autoplay) |
+| `aria-label` | `.carousel-prev` | "Previous slide" |
+| `aria-label` | `.carousel-next` | "Next slide" |
+| `disabled` | `.carousel-prev/.next` | Set when at boundary (non-loop only) |
+| `aria-current="true"` | `.carousel-dot` | Indicates active dot |
+| `aria-label="Go to slide N"` | `.carousel-dot` | Purpose of each dot button |
+
+## Keyboard
+
+| Key | Action |
+| --- | --- |
+| `←` / `→` | Previous / Next slide (horizontal) |
+| `↑` / `↓` | Previous / Next slide (vertical) |
+| `Home` | Jump to first slide |
+| `End` | Jump to last slide |
+| `Tab` | Moves focus through interactive elements (buttons, dots) |
+
+## Notes
+
+- **No library needed** — built entirely on CSS scroll-snap + IntersectionObserver.
+- **Slide sizing** — default is `flex: 0 0 100%`. Override `flex` on `.carousel-slide` to show multiple slides (e.g., `calc(33.333% - 0.667rem)` for 3-up).
+- **Gap / spacing** — controlled by the `gap` property on `.carousel-viewport` (default `1rem`).
+- **Dot auto-generation** — if `.carousel-dots` is present but empty, dots are auto-created by JS from the slide count.
+- **Autoplay pauses** — on `mouseenter` and `focusin`, restarts on `mouseleave` and `focusout` (per WAI-ARIA APG).
+- **Reduced motion** — `prefers-reduced-motion: reduce` removes smooth scrolling and all transitions.
+- **Scroll containment** — `overscroll-behavior: contain` prevents parent page scrolling when at carousel edges.
+- **Buttons disabled at edges** — in non-loop mode, prev is disabled at first slide, next at last slide.
 </script>
 </body>
 </html>

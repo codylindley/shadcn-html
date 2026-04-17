@@ -20,7 +20,7 @@
   <script src="js/layout.js"></script>
   <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
-  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/docs-utilities.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/button/button.css">
@@ -85,7 +85,7 @@
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
     <site-nav></site-nav>
 
-    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+    <main style="flex: 1; min-width: 0; max-width: 44rem; padding: 2rem 3.5rem 8rem;">
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / label</p>
@@ -387,7 +387,8 @@
 ## Native Web APIs
 - [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) — associates text with a form control via `for`/`id`
 - [`:has()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) — auto-detects disabled state from adjacent control
-- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — Windows High Contrast Mode support
+- [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) — increases disabled-label opacity for high-contrast preference
+- [`forced-colors`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) — Windows High Contrast Mode support with `GrayText` for disabled labels
 
 ---
 
@@ -430,7 +431,7 @@ The label auto-dims when the adjacent control is disabled — no `data-disabled`
 
 ### With checkbox (inline)
 ```html
-<div class="checkbox-item">
+<div class="flex items-center gap-2">
   <input class="checkbox" type="checkbox" id="terms">
   <label class="label" for="terms" style="margin:0;">Accept terms and conditions</label>
 </div>
@@ -438,7 +439,7 @@ The label auto-dims when the adjacent control is disabled — no `data-disabled`
 
 ### With switch (inline)
 ```html
-<div class="checkbox-item">
+<div class="flex items-center gap-2">
   <input class="switch" type="checkbox" role="switch" id="airplane">
   <label class="label" for="airplane" style="margin:0;">Airplane Mode</label>
 </div>
@@ -473,7 +474,6 @@ The label auto-dims when the adjacent control is disabled — no `data-disabled`
 - The `.label` class is intentionally minimal — it styles the label text with appropriate font size, weight, and color.
 - Labels auto-detect disabled state from adjacent controls via `:has(+ :disabled)` — the explicit `data-disabled` attribute is also supported.
 - For inline use with checkboxes, switches, or radios, add `style="margin:0;"` to remove the default bottom margin.
-- Labels compose with Input, Textarea, Select, Checkbox, Radio, Switch, and all other form controls.
 - Labels compose with Input, Textarea, Select, Checkbox, Radio, Switch, and all other form controls.
 </script>
 </body>

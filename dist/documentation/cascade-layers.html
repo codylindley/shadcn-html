@@ -20,7 +20,7 @@
   <script src="js/layout.js"></script>
   <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
-  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/docs-utilities.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/button/button.css">
@@ -85,7 +85,7 @@
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
     <site-nav></site-nav>
 
-    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+    <main style="flex: 1; min-width: 0; max-width: 44rem; padding: 2rem 3.5rem 8rem;">
       <div class="page-header">
 <p class="text-sm text-muted-foreground mb-3" style="font-family:var(--font-mono);">shadcn-html / cascade-layers</p>
   <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:400;letter-spacing:-0.035em;margin:0 0 0.75rem;">Cascade Layers</h1>
@@ -260,10 +260,10 @@
 
   <div class="sep"></div>
 
-  <!-- -- Using with Tailwind -- -->
-  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Using with Tailwind CSS</h2>
+  <!-- -- Using with other CSS frameworks -- -->
+  <h2 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.875rem;">Using with other CSS frameworks</h2>
   <p class="text-sm text-muted-foreground mb-5">
-    Tailwind v4 uses its own <code>@layer</code> declarations. If you're mixing shadcn-html components with Tailwind utilities,
+    If you're mixing shadcn-html components with another CSS framework that uses its own <code>@layer</code> declarations,
     you can declare an explicit layer order at the top of your main stylesheet to control priority:
   </p>
 
@@ -274,7 +274,7 @@
     <pre style="border-radius:0;border:none;margin:0;background:transparent;flex:1;overflow:hidden;"><code class="language-css"><span class="dim">/* Declare layer order: first listed = lowest priority */</span>
 @layer components, utilities;
 
-<span class="dim">/* Now Tailwind utilities beat shadcn-html component styles,
+<span class="dim">/* Now framework utilities beat shadcn-html component styles,
    and your unlayered CSS beats everything. */</span></code></pre>
   </div>
 
@@ -327,7 +327,7 @@
     <span class="text-sm text-muted-foreground">Component internals can use any selector complexity — it won't leak into your layer.</span>
 
     <span style="font-weight:600;font-size:0.8125rem;">Composable layers</span>
-    <span class="text-sm text-muted-foreground">Works cleanly alongside Tailwind, other libraries, or your own <code>@layer</code> declarations.</span>
+    <span class="text-sm text-muted-foreground">Works cleanly alongside other libraries or your own <code>@layer</code> declarations.</span>
 
     <span style="font-weight:600;font-size:0.8125rem;">Future-proof</span>
     <span class="text-sm text-muted-foreground"><code>@layer</code> is a W3C standard, built into every modern browser. Not a framework convention.</span>

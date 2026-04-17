@@ -54,16 +54,24 @@ Shoelace / Web Awesome, Microsoft FAST, Adobe Spectrum Web Components, Ionic
 - Compare features against the reference sites — every variant, size, state, and composition pattern shown on shadcn/Basecoat must be accounted for. Identify what's missing.
 - **Cross-check data attributes between CSS and component skill (CRITICAL).** Extract every `data-*` selector from the CSS file (e.g., `[data-variant="..."]`, `[data-size="..."]`, `[data-animate="..."]`). Then check the component skill's **Data Attributes** table. Every `data-*` attribute in the CSS must appear in the skill table with all its valid values, and vice versa — no attribute may exist in one file but not the other. If the skill has no Data Attributes table, create one. This is the #1 source of drift between the CSS and skill.
 
-## 5. Remove Tailwind from demos
+## 5. Keep utility classes out of demos
 
-Scan the doc page (`dist/documentation/$1.html`) for any Tailwind utility classes used inside demo/example markup (the `.preview` sections and any code shown to users). Tailwind is only for the doc-site layout — **component demos must not rely on it**.
+The doc site uses a tiny set of hand-written utility classes (see
+`dist/documentation/css/docs-utilities.css`) for page layout only. **Component
+demos must not rely on them.**
 
-For each Tailwind class found in demo markup:
+Scan the doc page (`dist/documentation/$1.html`) for any utility classes
+(`mb-*`, `mt-*`, `gap-*`, `flex`, `flex-col`, `items-*`, `justify-*`,
+`text-sm`, `text-muted-foreground`, `font-medium`, `leading-relaxed`, etc.)
+used inside demo/example markup (the `.preview` sections and any code shown
+to users).
+
+For each utility class found in demo markup:
 - If it controls **component-level styling** (colors, borders, radius, shadows, typography tied to the component), move it into the component's `.css` file as a proper rule using design tokens.
 - If it controls **demo layout or spacing** (centering a preview, adding gaps between examples), replace it with an inline `style` attribute on the demo wrapper.
-- Remove the Tailwind class from the element.
+- Remove the utility class from the element.
 
-Do **not** touch Tailwind classes used in the doc-site layout scaffolding (outside of demo sections).
+Do **not** touch utility classes used in the doc-site layout scaffolding (outside of demo sections).
 
 ## 6. Implement all changes
 
@@ -80,7 +88,6 @@ Do **not** touch Tailwind classes used in the doc-site layout scaffolding (outsi
 
 - Update `dist/documentation/js/layout.js` — add to `NAV` array and `BUILT` set (if new component)
 - Add the new component's `<link>` and `<script>` tags to ALL HTML pages in `dist/documentation/` (if new component)
-- Run `npm run docs:build-css` if new Tailwind classes were used
 - Run `node scripts/sync-css-snippets.js` and `node scripts/sync-js-snippets.js` to sync inline source code blocks in all doc pages with the actual component files (required after ANY CSS or JS change)
 
 ## 8. Verify in the browser
@@ -100,7 +107,7 @@ Before finishing, confirm:
 - [ ] The doc page loads without console errors
 - [ ] Dark mode renders correctly
 - [ ] No new `--*` tokens were invented (token boundary rule)
-- [ ] No Tailwind utility classes in demo/example markup (replaced with inline styles or component CSS)
+- [ ] No doc-site utility classes (`mb-*`, `flex`, `gap-*`, `text-muted-foreground`, etc.) in demo/example markup (replaced with inline styles or component CSS)
 - [ ] Data attribute parity — every `data-*` selector in the CSS appears in the component skill's Data Attributes table (and vice versa), in the doc page `<details>` summary, and in the embedded spec markdown
 - [ ] Inline source snippets synced (`node scripts/sync-css-snippets.js` and `node scripts/sync-js-snippets.js`)
 

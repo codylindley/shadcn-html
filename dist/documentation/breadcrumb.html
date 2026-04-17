@@ -20,7 +20,7 @@
   <script src="js/layout.js"></script>
   <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
-  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/docs-utilities.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/button/button.css">
@@ -83,7 +83,7 @@
   <site-header></site-header>
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
     <site-nav></site-nav>
-    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+    <main style="flex: 1; min-width: 0; max-width: 44rem; padding: 2rem 3.5rem 8rem;">
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / breadcrumb</p>
@@ -326,14 +326,59 @@
 
 ## Structure
 
+### Default (slash separator)
+
 ```html
 <nav class="breadcrumb" aria-label="Breadcrumb">
   <ol class="breadcrumb-list">
-    <li class="breadcrumb-item"><a class="breadcrumb-link" href="#">Home</a><\/li>
-    <li class="breadcrumb-separator" aria-hidden="true">/<\/li>
-    <li class="breadcrumb-item"><span class="breadcrumb-page" aria-current="page">Current<\/span><\/li>
-  <\/ol>
-<\/nav>
+    <li class="breadcrumb-item"><a class="breadcrumb-link" href="#">Home</a></li>
+    <li class="breadcrumb-separator" aria-hidden="true">/</li>
+    <li class="breadcrumb-item"><a class="breadcrumb-link" href="#">Components</a></li>
+    <li class="breadcrumb-separator" aria-hidden="true">/</li>
+    <li class="breadcrumb-item"><span class="breadcrumb-page" aria-current="page">Breadcrumb</span></li>
+  </ol>
+</nav>
+```
+
+### Custom separator (chevron icon)
+
+```html
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    <li class="breadcrumb-item"><a class="breadcrumb-link" href="#">Home</a></li>
+    <li class="breadcrumb-separator" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round"
+           stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </li>
+    <li class="breadcrumb-item"><a class="breadcrumb-link" href="#">Components</a></li>
+    <li class="breadcrumb-separator" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round"
+           stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </li>
+    <li class="breadcrumb-item"><span class="breadcrumb-page" aria-current="page">Breadcrumb</span></li>
+  </ol>
+</nav>
+```
+
+### Collapsed (with ellipsis)
+
+```html
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    <li class="breadcrumb-item"><a class="breadcrumb-link" href="#">Home</a></li>
+    <li class="breadcrumb-separator" aria-hidden="true">/</li>
+    <li class="breadcrumb-item">
+      <span class="breadcrumb-ellipsis" aria-hidden="true">⋯</span>
+      <span class="sr-only">More pages</span>
+    </li>
+    <li class="breadcrumb-separator" aria-hidden="true">/</li>
+    <li class="breadcrumb-item"><a class="breadcrumb-link" href="#">Components</a></li>
+    <li class="breadcrumb-separator" aria-hidden="true">/</li>
+    <li class="breadcrumb-item"><span class="breadcrumb-page" aria-current="page">Breadcrumb</span></li>
+  </ol>
+</nav>
 ```
 
 ---
@@ -343,9 +388,9 @@
 | Attribute | Element | Purpose |
 |-----------|---------|---------|
 | `aria-label="Breadcrumb"` | `<nav>` | Names the navigation region |
-| `aria-current="page"` | Current page `<span>` | Identifies the current page |
-| `aria-hidden="true"` | Separator `<li>` | Hides decorative separators |
-| `aria-hidden="true"` | Ellipsis `<span>` | Hides decorative ellipsis |
+| `aria-current="page"` | Current page `<span>` | Identifies the current page in the trail |
+| `aria-hidden="true"` | Separator `<li>` | Hides decorative separators from screen readers |
+| `aria-hidden="true"` | Ellipsis `<span>` | Hides decorative ellipsis from screen readers |
 
 ---
 
@@ -357,16 +402,19 @@
 | `Shift + Tab` | Moves focus to the previous breadcrumb link |
 | `Enter` | Activates the focused link |
 
+All links are native `<a>` elements — keyboard navigation works automatically.
+
 ---
 
 ## Notes
 
-- Use `<ol>` to convey hierarchy to assistive technology.
-- Current page uses `<span>` (not `<a>`) — add `aria-current="page"`.
+- Use `<ol>` (ordered list) to convey the hierarchical order to assistive technology.
+- The current page uses `<span>` (not `<a>`) since it's not a link — add `aria-current="page"`.
 - Separators are decorative — always add `aria-hidden="true"`.
-- Default separator is `/`. Replace with an SVG chevron for the icon variant.
-- Collapse middle items with `.breadcrumb-ellipsis` for long trails.
-- No JavaScript required — pure CSS component.
+- Default separator is `/` text. Replace with an SVG chevron for the icon variant.
+- For long trails, collapse middle items using `.breadcrumb-ellipsis`.
+- CSS uses `[dir="rtl"]` to auto-flip chevron SVG separators.
+- No JavaScript required — this is a purely CSS component.
 </script>
 </body>
 </html>

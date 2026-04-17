@@ -52,9 +52,9 @@ Also covers `<textarea>` with auto-grow via `field-sizing: content`.
 
 ### With icon
 ```html
-<div class="relative">
-  <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4"></i>
-  <input class="input pl-9" type="search" placeholder="Search...">
+<div style="position:relative;">
+  <i data-lucide="search" style="position:absolute;left:0.75rem;top:50%;transform:translateY(-50%);color:var(--muted-foreground);width:1rem;height:1rem;"></i>
+  <input class="input" type="search" placeholder="Search..." style="padding-left:2.25rem;">
 </div>
 ```
 

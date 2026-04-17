@@ -22,7 +22,11 @@
   --font-display:            'Fraunces', serif;
 }
 
-/* -- Minimal base (Tailwind preflight handles the rest) --- */
+/* -- Minimal base reset ------------------------------------ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
 body {
   font-family: var(--font-sans);
   margin: 0;

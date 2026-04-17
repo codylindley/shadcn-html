@@ -20,7 +20,7 @@
   <script src="js/layout.js"></script>
   <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
-  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/docs-utilities.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/button/button.css">
@@ -83,7 +83,7 @@
   <site-header></site-header>
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
     <site-nav></site-nav>
-    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+    <main style="flex: 1; min-width: 0; max-width: 44rem; padding: 2rem 3.5rem 8rem;">
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / pagination</p>
@@ -412,7 +412,8 @@
 <nav class="pagination" aria-label="Pagination">
   <ul class="pagination-list">
     <li><a class="pagination-prev" href="#" aria-label="Go to previous page">
-      <svg aria-hidden="true" ...><path d="m15 18-6-6 6-6"/><\/svg>
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
       Previous
     </a></li>
     <li><a class="pagination-link" href="#">1</a></li>
@@ -421,7 +422,40 @@
     <li><span class="pagination-ellipsis" aria-hidden="true">&hellip;</span></li>
     <li><a class="pagination-next" href="#" aria-label="Go to next page">
       Next
-      <svg aria-hidden="true" ...><path d="m9 18 6-6-6-6"/><\/svg>
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+    </a></li>
+  </ul>
+</nav>
+```
+
+### Simple (page numbers only)
+
+```html
+<nav class="pagination" aria-label="Pagination">
+  <ul class="pagination-list">
+    <li><a class="pagination-link" href="#">1</a></li>
+    <li><a class="pagination-link pagination-active" href="#" aria-current="page">2</a></li>
+    <li><a class="pagination-link" href="#">3</a></li>
+    <li><a class="pagination-link" href="#">4</a></li>
+    <li><a class="pagination-link" href="#">5</a></li>
+  </ul>
+</nav>
+```
+
+### Icons only (compact)
+
+```html
+<nav class="pagination" aria-label="Pagination">
+  <ul class="pagination-list">
+    <li><a class="pagination-prev" href="#" aria-label="Go to previous page" aria-disabled="true">
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+    </a></li>
+    <li><span style="font-size:0.875rem;color:var(--muted-foreground);padding:0 0.5rem;">Page 1 of 10</span></li>
+    <li><a class="pagination-next" href="#" aria-label="Go to next page">
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
     </a></li>
   </ul>
 </nav>
@@ -435,9 +469,9 @@
 |-----------|---------|---------|
 | `aria-label="Pagination"` | `<nav>` | Names the navigation region |
 | `aria-current="page"` | Active link | Identifies the current page |
-| `aria-label` | Prev/Next | Descriptive label for icon triggers |
+| `aria-label="Go to previous/next page"` | Prev/Next | Descriptive label for icon-only triggers |
 | `aria-disabled="true"` | Prev/Next | Disables at page boundaries |
-| `aria-hidden="true"` | Ellipsis span | Hides decorative ellipsis from screen readers |
+| `aria-hidden="true"` | Ellipsis `<span>` | Hides decorative ellipsis from screen readers |
 
 ---
 
@@ -449,16 +483,19 @@
 | `Shift + Tab` | Moves focus to the previous pagination link |
 | `Enter` | Activates the focused link |
 
+All links are native `<a>` elements — keyboard navigation works automatically.
+
 ---
 
 ## Notes
 
-- Use `<a>` elements for page links — they support native keyboard focus.
-- Mark the active page with `aria-current="page"` and `.pagination-active`.
-- Disable prev on first page, next on last page with `aria-disabled="true"`.
-- Use `<span class="pagination-ellipsis" aria-hidden="true">` for "…" — it's not a link.
-- CSS uses logical properties (`padding-inline`) for RTL support.
-- No JavaScript required — pure CSS component.
+- Use `<a>` elements for page links — they support native keyboard focus and navigation.
+- Mark the active page with `aria-current="page"` and the `.pagination-active` class.
+- On the first page, add `aria-disabled="true"` to the Previous link. On the last page, add it to Next.
+- Use `<span class="pagination-ellipsis" aria-hidden="true">` for the "…" indicator — it's not a link.
+- Chevron SVG icons are preferred over text arrows for visual consistency.
+- CSS uses logical properties (`padding-inline`) for automatic RTL support.
+- No JavaScript required — this is a purely CSS component.
 </script>
 </body>
 </html>

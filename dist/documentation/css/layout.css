@@ -586,7 +586,7 @@ html.dark pre.shiki span {
 }
 
 /* Hide TOC on narrow screens */
-@media (max-width: 80rem) {
+@media (max-width: 72rem) {
   .site-toc { display: none; }
 }
 

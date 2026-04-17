@@ -20,7 +20,7 @@
   <script src="js/layout.js"></script>
   <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
-  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/docs-utilities.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/button/button.css">
@@ -83,7 +83,7 @@
   <site-header></site-header>
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
     <site-nav></site-nav>
-    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+    <main style="flex: 1; min-width: 0; max-width: 44rem; padding: 2rem 3.5rem 8rem;">
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / popover</p>
@@ -445,6 +445,19 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 </div>
 ```
 
+### With side and alignment
+
+```html
+<button class="btn" popovertarget="pop-top">Top</button>
+<div class="popover" id="pop-top" popover data-side="top">...</div>
+
+<button class="btn" popovertarget="pop-right">Right</button>
+<div class="popover" id="pop-right" popover data-side="right">...</div>
+
+<button class="btn" popovertarget="pop-end">End aligned</button>
+<div class="popover" id="pop-end" popover data-align="end">...</div>
+```
+
 ## Attributes
 
 | Attribute | Element | Values | Default | Description |
@@ -453,6 +466,16 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 | `popovertarget` | trigger `<button>` | popover `id` | — | Declarative trigger wiring |
 | `data-side` | `.popover` | `top`, `right`, `bottom`, `left` | `bottom` | Which side of the trigger to position |
 | `data-align` | `.popover` | `start`, `center`, `end` | `center` | Alignment along the side axis |
+
+## ARIA
+
+No additional ARIA attributes are needed. The native `popover` attribute and `popovertarget` handle accessibility automatically:
+
+| Feature | Handled by |
+|---|---|
+| Toggle open/close | `popovertarget` (declarative, no JS) |
+| Light dismiss | Popover API (click outside or Escape closes) |
+| Focus management | Browser moves focus into popover on open |
 
 ## Keyboard
 
@@ -463,10 +486,11 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 
 ## Notes
 
-- Renders in the top layer — always above other content regardless of z-index.
-- CSS anchor positioning handles placement; JS only assigns unique anchor names.
-- `position-try-fallbacks` automatically repositions when the popover would overflow the viewport.
-- Use `popover="manual"` if you need the popover to stay open until explicitly closed.
+- The popover renders in the **top layer**, so it appears above all other content regardless of `z-index`.
+- CSS anchor positioning (`position-area`) handles placement — the JS only assigns unique anchor names per trigger–popover pair.
+- `position-try-fallbacks: flip-block` (or `flip-inline` for left/right sides) automatically repositions when the popover would overflow the viewport.
+- The `popover` attribute defaults to `"auto"` which provides light-dismiss behavior. Use `popover="manual"` if you need the popover to stay open until explicitly closed.
+- Do not place the `.popover` element inside scroll containers — it renders in the top layer and will not scroll with parent content.
 </script>
 </body>
 </html>

@@ -20,7 +20,7 @@
   <script src="js/layout.js"></script>
   <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
-  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/docs-utilities.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/button/button.css">
@@ -85,7 +85,7 @@
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
     <site-nav></site-nav>
 
-    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+    <main style="flex: 1; min-width: 0; max-width: 44rem; padding: 2rem 3.5rem 8rem;">
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / form</p>
@@ -721,6 +721,10 @@
     <input class="input" type="text" id="f-name" required>
     <p class="field-description">Your full name.</p>
   </div>
+  <div class="form-field">
+    <label class="label" for="f-email">Email</label>
+    <input class="input" type="email" id="f-email" required>
+  </div>
   <div class="form-actions">
     <button class="btn" type="submit" data-variant="default">Submit</button>
     <button class="btn" type="reset" data-variant="outline">Reset</button>
@@ -736,14 +740,25 @@
 </div>
 ```
 
+### Horizontal field (label beside control)
+```html
+<div class="form-field" data-orientation="horizontal">
+  <label class="label" for="f-user">Username</label>
+  <div>
+    <input class="input" type="text" id="f-user">
+    <p class="field-description">Your public display name.</p>
+  </div>
+</div>
+```
+
 ### Switch row (notification-style)
 ```html
 <div class="form-field-row">
   <div>
-    <label class="label" for="marketing">Marketing emails</label>
-    <p class="field-description">Receive emails about new products.</p>
+    <label class="label" for="f-marketing">Marketing emails</label>
+    <p class="field-description">Receive emails about new products and features.</p>
   </div>
-  <input class="switch" type="checkbox" role="switch" id="marketing">
+  <input class="switch" type="checkbox" role="switch" id="f-marketing">
 </div>
 ```
 
@@ -751,10 +766,15 @@
 ```html
 <fieldset class="form-fieldset">
   <legend>Notifications</legend>
+  <p class="field-description">Choose what you want to be notified about.</p>
   <div class="form-group">
     <div class="form-field-inline">
-      <input class="radio" type="radio" name="notify" id="all" checked>
-      <label for="all">All new messages</label>
+      <input class="checkbox" type="checkbox" id="opt-1">
+      <label for="opt-1">All new messages</label>
+    </div>
+    <div class="form-field-inline">
+      <input class="checkbox" type="checkbox" id="opt-2">
+      <label for="opt-2">Direct messages only</label>
     </div>
   </div>
 </fieldset>
@@ -763,9 +783,9 @@
 ### Invalid field with error
 ```html
 <div class="form-field" data-invalid>
-  <label class="label" for="email">Email</label>
-  <input class="input" type="email" id="email" aria-invalid="true" aria-describedby="email-err">
-  <p class="field-error" id="email-err" role="alert">Please enter a valid email address.</p>
+  <label class="label" for="f-email">Email</label>
+  <input class="input" type="email" id="f-email" aria-invalid="true" aria-describedby="f-email-err">
+  <p class="field-error" id="f-email-err" role="alert">Please enter a valid email address.</p>
 </div>
 ```
 
@@ -789,6 +809,7 @@
 | `aria-describedby` | `<input>` | Points to `.field-description` or `.field-error` `id` |
 | `aria-invalid="true"` | `<input>` | Marks control as invalid for assistive technology |
 | `role="alert"` | `.field-error` | Announces error messages to screen readers |
+| `role="group"` | container | Groups related controls (optional on `.form-field`) |
 | `required` | `<input>` | Native required validation |
 
 ---
@@ -797,11 +818,15 @@
 
 - `.form-field` provides consistent vertical spacing between fields.
 - `.form-field-inline` aligns checkbox/switch/radio horizontally with their label.
-- `.form-field-row` creates a card-like row for notification-style switch items.
+- `.form-field-row` creates a card-like row for notification-style switch items (label + description on left, switch on right).
+- `.form-actions` provides a flex row for submit/reset buttons.
 - `.form-fieldset` styles native `<fieldset>` with legend and description.
 - `.form-group` is a vertical stack for grouping multiple inline fields.
 - No JavaScript needed for basic forms — use native Constraint Validation.
-- Compose with Label, Input, Textarea, Select, Checkbox, Radio Group, Switch, etc.
+- Prefer `:user-valid` / `:user-invalid` for post-interaction validation styling (defined in input.css).
+- Compose with Label, Input, Textarea, Select, Checkbox, Radio Group, Switch, Slider, etc.
+- `data-invalid` on `.form-field` turns the description text to destructive color; use alongside `aria-invalid="true"` on the control.
+- For custom JS validation, set `data-invalid` on the field wrapper and `aria-invalid="true"` on the input programmatically.
 </script>
 </body>
 </html>

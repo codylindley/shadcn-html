@@ -20,7 +20,7 @@
   <script src="js/layout.js"></script>
   <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
-  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/docs-utilities.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/button/button.css">
@@ -83,7 +83,7 @@
   <site-header></site-header>
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
     <site-nav></site-nav>
-    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+    <main style="flex: 1; min-width: 0; max-width: 44rem; padding: 2rem 3.5rem 8rem;">
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / command</p>
@@ -441,23 +441,31 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 ## Structure
 
 ```html
-<button class="btn" data-command-trigger="cmd">Open Command<\/button>
+<button class="btn" data-command-trigger="cmd">Open Command</button>
 <dialog id="cmd" class="command" role="dialog" aria-modal="true" aria-label="Command menu">
   <div class="command-content">
     <div class="command-input-wrapper">
-      <svg aria-hidden="true"><!-- search icon --><\/svg>
-      <input class="command-input" type="text" placeholder="Type a command or search..."
+      <svg aria-hidden="true"><!-- search icon --></svg>
+      <input class="command-input" type="text"
+             placeholder="Type a command or search..."
              autocomplete="off" autocorrect="off" spellcheck="false">
-    <\/div>
+    </div>
     <div class="command-list">
       <div class="command-group">
-        <p class="command-group-heading">Suggestions<\/p>
-        <button class="command-item">Calendar<\/button>
-      <\/div>
-    <\/div>
-    <div class="command-empty" hidden>No results found.<\/div>
-  <\/div>
-<\/dialog>
+        <p class="command-group-heading">Suggestions</p>
+        <button class="command-item">Calendar</button>
+        <button class="command-item">Search Emoji</button>
+      </div>
+      <div class="command-separator"></div>
+      <div class="command-group">
+        <p class="command-group-heading">Settings</p>
+        <button class="command-item">Profile <span class="command-shortcut">⌘P</span></button>
+        <button class="command-item">Settings <span class="command-shortcut">⌘S</span></button>
+      </div>
+    </div>
+    <div class="command-empty" hidden>No results found.</div>
+  </div>
+</dialog>
 ```
 
 ---
@@ -468,9 +476,10 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 |-----------|---------|---------|
 | `role="dialog"` | `<dialog>` | Identifies as a dialog |
 | `aria-modal="true"` | `<dialog>` | Indicates modal behavior |
-| `aria-label="Command menu"` | `<dialog>` | Labels the dialog |
-| `aria-disabled="true"` | Disabled item | Marks item as disabled |
-| `data-highlighted` | Active item | JS-managed: highlights keyboard-focused item |
+| `aria-label="Command menu"` | `<dialog>` | Labels the dialog for screen readers |
+| `aria-hidden="true"` | Search icon `<svg>` | Hides decorative icon |
+| `aria-disabled="true"` | Disabled `<button>` | Marks item as disabled |
+| `data-highlighted` | Active `<button>` | JS-managed: visually highlights the keyboard-focused item |
 
 ---
 
@@ -478,10 +487,10 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 
 | Key | Action |
 |-----|--------|
-| `Cmd/Ctrl + K` | Opens/closes the command palette |
-| `Escape` | Closes the dialog |
-| `Arrow Down` | Highlights next visible item |
-| `Arrow Up` | Highlights previous visible item |
+| `Cmd/Ctrl + K` | Opens/closes the command palette (global) |
+| `Escape` | Closes the dialog (native `<dialog>` behavior) |
+| `Arrow Down` | Highlights the next visible item |
+| `Arrow Up` | Highlights the previous visible item |
 | `Enter` | Activates the highlighted item |
 | `Home` | Highlights the first visible item |
 | `End` | Highlights the last visible item |
@@ -490,12 +499,15 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 
 ## Notes
 
-- Search input filters items by text content — empty groups are hidden.
-- Separators are hidden during filtering to avoid orphans.
-- `data-command-trigger` on any element wires it as a trigger button.
-- Items with `aria-disabled="true"` are excluded from keyboard navigation.
-- The dialog uses `showModal()` — focus is trapped and Escape closes it natively.
-- On close, input is cleared and all items are restored.
+- The search input filters items by text content — groups with no matching items are hidden automatically.
+- When all items are filtered out, the `.command-empty` element is shown.
+- Separators are hidden during filtering to avoid visual orphans.
+- The `data-command-trigger` attribute on any element wires it as a trigger button via JS.
+- `Cmd/Ctrl+K` is registered as a global keyboard shortcut.
+- Items with `aria-disabled="true"` are excluded from keyboard navigation and filtering.
+- The dialog uses `showModal()` — focus is trapped inside and Escape closes it natively.
+- On close, the search input is cleared and all items are restored.
+- No JavaScript positioning is needed — the dialog uses CSS `position: fixed` with `top: 15%`.
 </script>
 </body>
 </html>

@@ -136,7 +136,7 @@ node scripts/sync-js-snippets.js
 - All CSS values must match what the documentation site actually renders
 - All class names must match the CSS selectors exactly
 - Token references must use `var(--*)` — never raw color values (see token boundary rule in tokens.instructions.md)
-- `<dialog>` components must include `margin: auto; position: fixed; inset: 0;` for centering (Tailwind preflight strips the default)
+- `<dialog>` components must include `margin: auto; position: fixed; inset: 0;` for centering (some browsers need this explicitly)
 
 ## Variant and size API (data attributes)
 

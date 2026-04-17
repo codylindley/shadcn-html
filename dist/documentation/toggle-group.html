@@ -20,7 +20,7 @@
   <script src="js/layout.js"></script>
   <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
-  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/docs-utilities.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/button/button.css">
@@ -85,7 +85,7 @@
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
     <site-nav></site-nav>
 
-    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+    <main style="flex: 1; min-width: 0; max-width: 44rem; padding: 2rem 3.5rem 8rem;">
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / toggle-group</p>
@@ -704,6 +704,8 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 
 ## Variants
 
+Inherits variants from `.toggle`:
+
 | `data-variant` (on group) | Visual |
 |---------------------------|--------|
 | *(default)*               | Transparent background, no border |
@@ -755,15 +757,20 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 | `End` | Moves focus to last item |
 | `Space` / `Enter` | Toggles the focused item (native button behavior) |
 
+Arrow direction follows `data-orientation`: horizontal uses Left/Right, vertical uses Up/Down.
+
 ---
 
 ## Notes
 
-- Uses **roving tabindex**: only one item has `tabindex="0"` at a time; others have `tabindex="-1"`.
-- `data-type="single"` enforces one-at-a-time selection. Pressing the active item deselects it.
-- `data-type="multiple"` allows any combination of pressed states.
-- Connected mode collapses adjacent radii; outline variant collapses double borders via negative margin.
-- CSS uses logical properties for RTL support.
+- Uses **roving tabindex**: only one item has `tabindex="0"` at a time; others have `tabindex="-1"`. Tab enters/exits the group as a single stop.
+- `data-type="single"` enforces one-at-a-time selection (radio-like). Pressing the active item deselects it.
+- `data-type="multiple"` allows any combination of pressed states (checkbox-like).
+- The group propagates `data-variant`, `data-size` to child toggles via CSS selectors.
+- Connected mode (default): adjacent toggle radii are collapsed; outline variant collapses double borders via negative margin.
+- `data-spacing` adds gap and restores individual border-radius on each item.
+- Disabled items are skipped during keyboard navigation.
+- CSS uses logical properties (`border-start-start-radius`, `margin-inline-start`) for RTL support.
 </script>
 </body>
 </html>

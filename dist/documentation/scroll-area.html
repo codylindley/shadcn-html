@@ -20,7 +20,7 @@
   <script src="js/layout.js"></script>
   <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
-  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/docs-utilities.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/button/button.css">
@@ -83,7 +83,7 @@
   <site-header></site-header>
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
     <site-nav></site-nav>
-    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+    <main style="flex: 1; min-width: 0; max-width: 44rem; padding: 2rem 3.5rem 8rem;">
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / scroll-area</p>
@@ -208,7 +208,7 @@ CSS overflow with custom-styled scrollbars using both standard and Webkit scroll
 ## Native Web APIs
 
 - [`overflow`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) — scrollable container
-- [`scrollbar-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-width) — standard thin scrollbar
+- [`scrollbar-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-width) — standard thin scrollbar (Firefox, Chrome 121+)
 - [`scrollbar-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color) — standard scrollbar colors
 - [`scrollbar-gutter`](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-gutter) — reserves space for scrollbar to prevent layout shift
 - [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior) — prevents scroll chaining to parent containers
@@ -216,9 +216,33 @@ CSS overflow with custom-styled scrollbars using both standard and Webkit scroll
 
 ## Structure
 
+### Vertical (default)
 ```html
-<div class="scroll-area" style="height:12rem;"><!-- long content --></div>
+<div class="scroll-area" style="height:12rem;">
+  <!-- long content -->
+</div>
 ```
+
+### Horizontal
+```html
+<div class="scroll-area" style="max-width:24rem;overflow-x:auto;">
+  <div style="display:flex;gap:1rem;width:max-content;">
+    <!-- wide content -->
+  </div>
+</div>
+```
+
+## Accessibility
+
+- Scrollable areas are keyboard-navigable by default when they have focusable content or `tabindex="0"`.
+- `overscroll-behavior: contain` prevents accidental page scroll when reaching the end of the scroll area.
+
+## Notes
+
+- Uses both `scrollbar-width: thin` / `scrollbar-color` (standard, cross-browser) and `::-webkit-scrollbar` (legacy Webkit) for maximum compatibility.
+- `scrollbar-gutter: stable` prevents layout shift when content grows enough to trigger a scrollbar.
+- `overscroll-behavior: contain` is especially important when used inside overlays (dialogs, sheets, popovers) to prevent background scroll.
+- Pure CSS — no JavaScript required.
 </script>
 </body>
 </html>

@@ -29,7 +29,7 @@
 
 ### With description
 ```html
-<div class="flex items-start gap-2">
+<div style="display:flex;align-items:flex-start;gap:0.5rem;">
   <input class="checkbox" type="checkbox" id="notify" style="margin-top:0.125rem;">
   <div>
     <label class="label" for="notify" style="margin:0;">Enable notifications</label>

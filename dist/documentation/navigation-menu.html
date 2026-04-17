@@ -20,7 +20,7 @@
   <script src="js/layout.js"></script>
   <link rel="stylesheet" href="../theme/default-semantic-tokens.css">
   <link rel="stylesheet" href="css/docs-theme.css">
-  <link rel="stylesheet" href="css/docs-tailwind.css">
+  <link rel="stylesheet" href="css/docs-utilities.css">
   <link rel="stylesheet" href="css/layout.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" defer integrity="sha384-H+hy9ULve6xfxRkWIh/YOtvDdpXgV2fmAGQkIDTxIgZwNoaoBal14Di2YTMR6MzR" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../components/button/button.css">
@@ -83,7 +83,7 @@
   <site-header></site-header>
   <div class="flex" style="margin-top: 3.5rem; min-height: calc(100vh - 3.5rem);">
     <site-nav></site-nav>
-    <main style="flex: 1; min-width: 0; max-width: 54rem; padding: 2rem 3.5rem 8rem;">
+    <main style="flex: 1; min-width: 0; max-width: 44rem; padding: 2rem 3.5rem 8rem;">
       <div class="page-header">
         <div class="flex items-baseline justify-between mb-1">
           <p class="text-sm text-muted-foreground" style="font-family:var(--font-mono);">shadcn-html / navigation-menu</p>
@@ -388,12 +388,16 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
       <button class="nav-menu-trigger" popovertarget="nav-dd">
         Products
         <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/><\/svg>
+             stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
       </button>
       <div class="nav-menu-content" id="nav-dd" popover>
         <a class="nav-menu-content-link" href="#">
           <strong>Analytics</strong>
           <p>View your dashboard</p>
+        </a>
+        <a class="nav-menu-content-link" href="#">
+          <strong>Reports</strong>
+          <p>Generate custom reports</p>
         </a>
       </div>
     </li>
@@ -408,7 +412,7 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 | Attribute | Element | Purpose |
 |-----------|---------|---------|
 | `aria-label` | `<nav>` | Accessible name for the navigation |
-| `aria-hidden="true"` | chevron `<svg>` | Decorative indicator |
+| `aria-hidden="true"` | chevron `<svg>` | Decorative indicator, hidden from screen readers |
 
 ---
 
@@ -425,8 +429,10 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
 ## Notes
 
 - The `popover` API handles open/close — no JS click handlers needed.
-- CSS anchor positioning aligns the dropdown to its trigger.
-- The chevron rotates via `:has(+ .nav-menu-content:popover-open)`.
+- `popovertarget` on the button declaratively toggles the popover. No `togglePopover()` calls.
+- CSS anchor positioning aligns the dropdown to its trigger. The JS only sets unique `anchor-name` / `position-anchor` pairs.
+- The chevron rotates via `:has(+ .nav-menu-content:popover-open)` — no JS class toggling.
+- Icon-only triggers must have `aria-label`.
 - Dropdown content typically contains `nav-menu-content-link` items with a title and optional description.
 </script>
 </body>

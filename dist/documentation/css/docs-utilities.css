@@ -1,0 +1,63 @@
+/* ----------------------------------------------------------------
+   docs-utilities.css
+   Hand-written utility classes used by documentation pages only.
+
+   These utilities only affect elements that explicitly opt in by
+   using the class name, so they cannot leak into component styles.
+---------------------------------------------------------------- */
+
+/* Flex / layout */
+.flex           { display: flex; }
+.flex-col       { flex-direction: column; }
+.flex-wrap      { flex-wrap: wrap; }
+.grid           { display: grid; }
+.items-center   { align-items: center; }
+.items-baseline { align-items: baseline; }
+.justify-between{ justify-content: space-between; }
+.ml-auto        { margin-left: auto; }
+
+/* Gap scale (1 = 0.25rem) */
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+
+/* Margin bottom */
+.mb-1  { margin-bottom: 0.25rem; }
+.mb-2  { margin-bottom: 0.5rem; }
+.mb-3  { margin-bottom: 0.75rem; }
+.mb-4  { margin-bottom: 1rem; }
+.mb-5  { margin-bottom: 1.25rem; }
+.mb-6  { margin-bottom: 1.5rem; }
+.mb-8  { margin-bottom: 2rem; }
+.mb-10 { margin-bottom: 2.5rem; }
+.mb-12 { margin-bottom: 3rem; }
+
+/* Margin top */
+.mt-2 { margin-top: 0.5rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+
+/* Typography */
+.text-sm               { font-size: 0.875rem; line-height: 1.25rem; }
+.text-xs               { font-size: 0.75rem;  line-height: 1rem; }
+.text-lg               { font-size: 1.125rem; line-height: 1.75rem; }
+.text-muted-foreground { color: var(--muted-foreground); }
+.text-destructive      { color: var(--destructive); }
+.font-medium           { font-weight: 500; }
+.leading-relaxed       { line-height: 1.625; }
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
