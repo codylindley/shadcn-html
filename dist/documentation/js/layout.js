@@ -171,7 +171,7 @@
           '</button>' +
           '<a href="index.html" class="header-brand">' +
             '<span class="header-brand-name">shadcn<em>-html</em></span>' +
-            '<span class="badge header-brand-version" data-variant="outline" style="font-family:var(--font-mono);">v0.7.10-alpha</span>' +
+            '<span class="badge header-brand-version" data-variant="outline" style="font-family:var(--font-mono);">v0.7.11-alpha</span>' +
           '</a>' +
           '<div style="flex:1;"></div>' +
           '<nav style="display:flex;align-items:center;gap:0.25rem;">' +
