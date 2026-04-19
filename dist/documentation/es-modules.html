@@ -113,9 +113,9 @@
         <code style="display:block;font-size:0.75rem;background:var(--muted);padding:0.5rem 0.75rem;border-radius:var(--radius-md);">&lt;script src="..." defer&gt;</code>
         <div class="text-muted-foreground">Variables leak to global scope</div>
         <div class="text-muted-foreground">Must add <code>'use strict'</code> manually</div>
-        <div class="text-muted-foreground">Executes once, synchronously</div>
+        <div class="text-muted-foreground">Blocks parsing without <code>defer</code></div>
         <div class="text-muted-foreground">IIFE wrappers needed for isolation</div>
-        <div class="text-muted-foreground">Works from <code>file://</code></div>
+        <div class="text-muted-foreground">Generally works from <code>file://</code></div>
       </div>
     </div>
     <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;">
@@ -135,7 +135,7 @@
 
   <p class="text-sm text-muted-foreground mb-5">
     Module scope, strict mode, and deferred execution — with a classic script you'd need an IIFE,
-    a <code>'use strict'</code> directive, and a <code>DOMContentLoaded</code> listener to get all three.
+    a <code>'use strict'</code> directive, and either <code>defer</code> or a <code>DOMContentLoaded</code> listener to get the same combination.
     With <code>type="module"</code>, the browser handles them automatically.
   </p>
 
@@ -180,7 +180,8 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
     Each component works on its own — include only the <code>&lt;script&gt;</code> tags you need.
   </p>
   <p class="text-sm text-muted-foreground mb-5">
-    This is the key advantage of the pattern: <strong>no bundler, no import maps, no dependency resolution</strong>.
+    This is the key advantage of <em>this self-contained pattern</em>, not ES modules in general:
+    <strong>no bundler, no import maps, no dependency resolution between components</strong>.
     Drop a <code>&lt;script type="module"&gt;</code> tag onto the page and the component works. Remove it
     and nothing breaks. You're composing at the HTML level, not the JavaScript level.
   </p>
@@ -227,7 +228,8 @@ new MutationObserver(init).observe(document, { childList: true, subtree: true })
     Each component module sets up a <code>MutationObserver</code> that watches the document for DOM changes
     and re-runs its initialization logic. The <code>data-init</code> attribute on every initialized element
     prevents double-binding — the <code>:not([data-init])</code> selector ensures only new elements are
-    wired up. There is nothing to call or configure:
+    wired up. Even with many component observers on the page, each callback is cheap because the
+    <code>querySelectorAll</code> guard skips already-initialized elements immediately. There is nothing to call or configure:
   </p>
 
   <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:2.5rem;">
